@@ -1,0 +1,24 @@
+export '/backend/schema/util/schema_util.dart';
+
+export 'tbl_afiliado_cupom_fe_ty2_gib_struct.dart';
+export 'tbl_afiliado_f_fez_x1b2_struct.dart';
+export 'tbl_afiliados_dashboard_gve_b12f_b_v_struct.dart';
+export 'tbl_calendario_personalizado_struct.dart';
+export 'tbl_carrinho_struct.dart';
+export 'tbl_cliente_logado_struct.dart';
+export 'tbl_dispositivo_informacoes_struct.dart';
+export 'tbl_estabelecimento_dashboard_fe_b31_k3_struct.dart';
+export 'tbl_estabelecimento_logado_struct.dart';
+export 'tbl_horario_funcionamento_struct.dart';
+export 'tbl_horarios_disponiveis_struct.dart';
+export 'tbl_horarios_disponiveis_profissional_struct.dart';
+export 'tbl_modelos_banners_x_tfv1c8_struct.dart';
+export 'tbl_modelos_servicos_tbc8_ba_b5_struct.dart';
+export 'tbl_planos_periodos_x_tfe_z1c_struct.dart';
+export 'tbl_planos_d_xve3y_n_struct.dart';
+export 'tbl_profissional_serv_lib_struct.dart';
+export 'tbl_usuario_logado_admin_struct.dart';
+export 'tbl_verificar_senha_struct.dart';
+export 'tbl_whats_app_struct.dart';
+export 'tbl_segmentos_dx_v1c_pz_struct.dart';
+export 'tbl_agen_temp_struct.dart';

@@ -50,6 +50,20 @@
   <meta name="theme-color" media="(prefers-color-scheme: dark)"  content="#14181b">
 
   <link rel="manifest" href="manifest.json">
+
+  <!-- OneSignal Web Push SDK v16 -->
+  <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+  <script>
+    window.OneSignalDeferred = window.OneSignalDeferred || [];
+    OneSignalDeferred.push(async function(OneSignal) {
+      await OneSignal.init({
+        appId: "5438416a-02cf-4ff7-901c-1df6362ca882",
+        notifyButton: { enable: true },
+        allowLocalhostAsSecureOrigin: true
+      });
+    });
+  </script>
+  
   
 </head>
 <body>

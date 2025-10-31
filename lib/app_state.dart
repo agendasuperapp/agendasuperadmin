@@ -112,7 +112,7 @@ class FFAppState extends ChangeNotifier {
 
   late FlutterSecureStorage secureStorage;
 
-  String _VarVersaoSistema = '4.1.17';
+  String _VarVersaoSistema = '4.1.18';
   String get VarVersaoSistema => _VarVersaoSistema;
   set VarVersaoSistema(String value) {
     _VarVersaoSistema = value;

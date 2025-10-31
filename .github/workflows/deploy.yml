@@ -1,0 +1,214 @@
+# 🌐 Build & Deploy (3 Sites)
+name: 🌐 Build & Deploy (2 Sites)
+
+on:
+  push:
+    branches:
+      - flutterflow   # ajuste se o FlutterFlow usar outra branch (ex: main)
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Clona o repositório
+      - name: 📥 Clonar código do repositório
+        uses: actions/checkout@v4
+
+      # 2️⃣ Instala o Flutter (versão atual estável compatível com FlutterFlow)
+      - name: 🧰 Instalar Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.35.7'
+          channel: 'stable'
+
+      # 3️⃣ Limpa cache e instala dependências
+      - name: 🧹 Preparar ambiente Flutter limpo
+        run: |
+          flutter clean
+          flutter pub get
+          flutter --version
+          dart --version
+
+      # 4️⃣ Faz o build web idêntico ao seu script local
+      - name: 🏗️ Build Web (modo release)
+        run: |
+          echo "🚀 Iniciando build web..."
+          flutter build web --release 
+
+      # 5️⃣ Exibe informações do build (diagnóstico)
+      - name: 🔎 Verificar arquivos gerados
+        run: |
+          echo "📁 Conteúdo da pasta build/web:"
+          ls -lh build/web/ | head -20
+          echo "📦 Tamanho do main.dart.js:"
+          du -h build/web/main.dart.js || true
+
+      # 6️⃣ Armazena o build para o job de deploy
+      - name: 📦 Armazenar build como artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-build
+          path: build/web/
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        target:
+          - name: agendasuper
+            overlay: .github/overlays/agendasuper
+            ftp_server: FTP_SERVER_ADMIN
+            ftp_user: FTP_USER_ADMIN
+            ftp_pass: FTP_PASS_ADMIN
+            ftp_dir:  FTP_DIR_ADMIN
+
+
+          - name: rendarecorrente
+            overlay: .github/overlays/rendarecorrente
+            ftp_server: FTP_SERVER_AFI
+            ftp_user: FTP_USER_AFI
+            ftp_pass: FTP_PASS_AFI
+            ftp_dir:  FTP_DIR_AFI
+
+    steps:
+      # 7️⃣ Baixa o código e o build gerado
+      - name: 📥 Baixar código e build
+        uses: actions/checkout@v4
+
+      - name: 📦 Baixar build artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: web-build
+          path: web-build
+
+      # 8️⃣ Instala utilitários e prepara pastas
+      - name: ⚙️ Instalar utilitários necessários
+        run: |
+          sudo apt-get update && sudo apt-get install -y jq rsync curl
+          mkdir -p temp/${{ matrix.target.name }}
+
+      # 9️⃣ Copia build base e aplica overlay personalizado
+      - name: 🧩 Aplicar overlay personalizado
+        run: |
+          echo "📦 Copiando build web base..."
+          rsync -av --delete web-build/ temp/${{ matrix.target.name }}/
+          echo "🧩 Aplicando overlay de ${{ matrix.target.name }}..."
+          rsync -av --exclude ".git" "${{ matrix.target.overlay }}/" "temp/${{ matrix.target.name }}/"
+
+      # 🔟 Personaliza main.dart.js, index.html e gera log de versão
+      - name: 🧠 Personalizar arquivos e gerar log de versão
+        run: |
+          TEMP_DIR="temp/${{ matrix.target.name }}"
+          VERSION=$(jq -r '.version' "${TEMP_DIR}/version.json")
+          echo "📦 Versão detectada: $VERSION"
+
+          case "${{ matrix.target.name }}" in
+            "agendasuper")
+              APPNAME="Agenda Super"
+              APPID="1"
+              SITE="agendasuper.com.br"
+              ;;
+            "appfinanceiro")
+              APPNAME="APP Financeiro"
+              APPID="2"
+              SITE="appfinanceiro.com"
+              ;;
+            "rendarecorrente")
+              APPNAME="APP Afiliado"
+              APPID="3"
+              SITE="rendarecorrente.app"
+              ;;
+          esac
+
+          echo "🛠️ Aplicando personalizações para $APPNAME"
+
+          sed -i "s/Landing Pages Apps/${APPNAME}/g" "${TEMP_DIR}/main.dart.js"
+          sed -i "s/91234567890/${APPID}/g" "${TEMP_DIR}/main.dart.js"
+          sed -i "s/const appVersion = \".*\";/const appVersion = \"${VERSION}\";/g" "${TEMP_DIR}/index.html"
+
+          BUILD_DATE=$(date '+%Y-%m-%d %H:%M:%S')
+          LOG_FILE="${TEMP_DIR}/${SITE}_${VERSION}.txt"
+          echo "Versão: ${VERSION}" > "${LOG_FILE}"
+          echo "Data: ${BUILD_DATE}" >> "${LOG_FILE}"
+          echo "📄 Criado ${LOG_FILE}"
+
+          echo "🔍 Trecho de verificação no main.dart.js:"
+          grep -m 1 "${APPNAME}" "${TEMP_DIR}/main.dart.js" || true
+          grep -m 1 "${APPID}" "${TEMP_DIR}/main.dart.js" || true
+
+      # 1️⃣1️⃣ Faz o deploy via FTP (Hostinger)
+      - name: 🚀 Publicar via FTP (Hostinger)
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets[ matrix.target.ftp_server ] }}
+          username: ${{ secrets[ matrix.target.ftp_user ] }}
+          password: ${{ secrets[ matrix.target.ftp_pass ] }}
+          protocol: ftp
+          port: 21
+          local-dir: temp/${{ matrix.target.name }}/
+          server-dir: ${{ secrets[ matrix.target.ftp_dir ] }}
+          dangerous-clean-slate: true
+          log-level: verbose
+
+      # 1️⃣2️⃣ Registrar versão no Supabase (com status real)
+      - name: 💾 Registrar versão no Supabase
+        if: success() || failure()
+        run: |
+          TEMP_DIR="temp/${{ matrix.target.name }}"
+          VERSION=$(jq -r '.version' "${TEMP_DIR}/version.json")
+          DESC="${{ github.event.head_commit.message }}"
+          STATUS="${{ job.status }}"
+          APP_ID=0
+          if [[ "${{ matrix.target.name }}" == "agendasuper" ]]; then APP_ID=1; fi
+          if [[ "${{ matrix.target.name }}" == "appfinanceiro" ]]; then APP_ID=2; fi
+          if [[ "${{ matrix.target.name }}" == "rendarecorrente" ]]; then APP_ID=3; fi
+
+          echo "📦 Enviando versão ${VERSION} para Supabase (App ID: ${APP_ID}, Status: ${STATUS})..."
+
+          curl -X POST "${{ secrets.SUPABASE_URL }}/rest/v1/tbl_versoes_sistema" \
+            -H "apikey: ${{ secrets.SUPABASE_ANON_KEY }}" \
+            -H "Authorization: Bearer ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}" \
+            -H "Content-Type: application/json" \
+            -d "{\"versao\": \"${VERSION}\", \"descricao\": \"${DESC}\", \"id_afiliado_app\": ${APP_ID}, \"status\": \"${STATUS}\"}"
+
+      # 1️⃣3️⃣ Finaliza e mostra status
+      - name: ✅ Finalização do deploy
+        run: echo "🎉 Deploy concluído com sucesso para ${{ matrix.target.name }}!"
+
+      # 1️⃣4️⃣ Captura informações para o e-mail
+      - name: 📨 Preparar informações para e-mail
+        if: success() || failure()
+        run: |
+          TEMP_DIR="temp/${{ matrix.target.name }}"
+          VERSION=$(jq -r '.version' "${TEMP_DIR}/version.json")
+          DATA=$(date '+%d/%m/%Y %H:%M:%S')
+          STATUS="${{ job.status }}"
+          DESC="${{ github.event.head_commit.message }}"
+          echo "VERSION=${VERSION}" >> $GITHUB_ENV
+          echo "DATA=${DATA}" >> $GITHUB_ENV
+          echo "STATUS=${STATUS}" >> $GITHUB_ENV
+          echo "DESC=${DESC}" >> $GITHUB_ENV
+
+      # 1️⃣5️⃣ Enviar e-mail de notificação
+      - name: ✉️ Disparar e-mail de status do deploy
+        if: success() || failure()
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          username: ${{ secrets.MAIL_USER }}
+          password: ${{ secrets.MAIL_PASS }}
+          subject: "🚀 Deploy concluído ${{ matrix.target.name }}"
+          to: "hersoares12@gmail.com, contatoagendasuper@gmail.com, gerenciavendasdigitais2@gmail.com"
+          from: "${{ matrix.target.name }} ${{ env.VERSION }} ${{ env.STATUS }} Nova versão disponível <${{ secrets.MAIL_USER }}>"
+          body: |
+            ✅ Deploy finalizado para **${{ matrix.target.name }}**
+            🌐 Versão: ${{ env.VERSION }}
+            📝 Descrição: ${{ env.DESC }}
+            📅 Data: ${{ env.DATA }}
+            📁 Pasta: ${{ matrix.target.name }}
+            ⚙️ Status: ${{ env.STATUS }}

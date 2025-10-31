@@ -817,7 +817,7 @@ Future acAtualizarInicializacaoSistema(
   String? resultgetLoadedAppVersionIni;
   bool? resultisRunningAsPWAIni;
 
-  if (kDebugMode) {
+  if (kDebugMode || FFAppState().VarEmDesenvolvimento) {
     FFAppState().varIDAPPAfiliado = 3;
     FFAppState().update(() {});
   }

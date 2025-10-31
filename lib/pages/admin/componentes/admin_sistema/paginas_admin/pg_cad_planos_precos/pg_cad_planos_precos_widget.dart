@@ -5,6 +5,7 @@ import '/pages/admin/componentes/admin_sistema/cp_admin/cp_cad_planos_precos/cp_
 import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:provider/provider.dart';
 import 'pg_cad_planos_precos_model.dart';
 export 'pg_cad_planos_precos_model.dart';
 
@@ -13,10 +14,12 @@ class PgCadPlanosPrecosWidget extends StatefulWidget {
     super.key,
     bool? paramCadastro,
     this.paramTblPlanoPreco,
+    this.paramIDAfiliadoApp,
   }) : this.paramCadastro = paramCadastro ?? true;
 
   final bool paramCadastro;
   final ViewTblAppPlanosRow? paramTblPlanoPreco;
+  final int? paramIDAfiliadoApp;
 
   static String routeName = 'pg_cad_planos_precos';
   static String routePath = '/admin/CadPlanosPrecos';
@@ -53,6 +56,8 @@ class _PgCadPlanosPrecosWidgetState extends State<PgCadPlanosPrecosWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -66,14 +71,16 @@ class _PgCadPlanosPrecosWidgetState extends State<PgCadPlanosPrecosWidget> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              wrapWithModel(
-                model: _model.cpCadPlanosPrecosModel,
-                updateCallback: () => safeSetState(() {}),
-                child: CpCadPlanosPrecosWidget(
-                  paramCadastro: widget.paramCadastro,
-                  paramRowTblPlanoPreco: widget.paramTblPlanoPreco,
+              if (FFAppState().varTblUsuarios.adminSistema == true)
+                wrapWithModel(
+                  model: _model.cpCadPlanosPrecosModel,
+                  updateCallback: () => safeSetState(() {}),
+                  child: CpCadPlanosPrecosWidget(
+                    paramCadastro: widget.paramCadastro,
+                    paramRowTblAppPlanos: widget.paramTblPlanoPreco,
+                    paramIDAfiliadoApp: widget.paramIDAfiliadoApp,
+                  ),
                 ),
-              ),
             ],
           ),
         ),

@@ -346,8 +346,9 @@ class _CpCadTemasBlackgroundxWidgetState
                                         selectedMedia.every((m) =>
                                             validateFileFormat(
                                                 m.storagePath, context))) {
-                                      safeSetState(
-                                          () => _model.isDataUploading1 = true);
+                                      safeSetState(() => _model
+                                              .isDataUploading_uploadDataLigth =
+                                          true);
                                       var selectedUploadedFiles =
                                           <FFUploadedFile>[];
 
@@ -371,16 +372,17 @@ class _CpCadTemasBlackgroundxWidgetState
                                           selectedFiles: selectedMedia,
                                         );
                                       } finally {
-                                        _model.isDataUploading1 = false;
+                                        _model.isDataUploading_uploadDataLigth =
+                                            false;
                                       }
                                       if (selectedUploadedFiles.length ==
                                               selectedMedia.length &&
                                           downloadUrls.length ==
                                               selectedMedia.length) {
                                         safeSetState(() {
-                                          _model.uploadedLocalFile1 =
+                                          _model.uploadedLocalFile_uploadDataLigth =
                                               selectedUploadedFiles.first;
-                                          _model.uploadedFileUrl1 =
+                                          _model.uploadedFileUrl_uploadDataLigth =
                                               downloadUrls.first;
                                         });
                                       } else {
@@ -394,8 +396,10 @@ class _CpCadTemasBlackgroundxWidgetState
                                     child: Image.network(
                                       valueOrDefault<String>(
                                         () {
-                                          if (_model.uploadedFileUrl1 != '') {
-                                            return _model.uploadedFileUrl1;
+                                          if (_model.uploadedFileUrl_uploadDataLigth !=
+                                                  '') {
+                                            return _model
+                                                .uploadedFileUrl_uploadDataLigth;
                                           } else if ((widget.paramCadastro ==
                                                   false) &&
                                               (widget.paramRowTblTemasBlackground
@@ -462,7 +466,8 @@ class _CpCadTemasBlackgroundxWidgetState
                                         0.0, 0.0, 0.0, 25.0),
                                     child: FFButtonWidget(
                                       onPressed: () async {
-                                        if (_model.uploadedFileUrl1 != '') {
+                                        if (_model.uploadedFileUrl_uploadDataLigth !=
+                                                '') {
                                           await showDialog(
                                             context: context,
                                             builder: (dialogContext) {
@@ -477,8 +482,8 @@ class _CpCadTemasBlackgroundxWidgetState
                                                         context)),
                                                 child: WebViewAware(
                                                   child: CpFotoWidget(
-                                                    paramFoto:
-                                                        _model.uploadedFileUrl1,
+                                                    paramFoto: _model
+                                                        .uploadedFileUrl_uploadDataLigth,
                                                   ),
                                                 ),
                                               );
@@ -841,8 +846,9 @@ class _CpCadTemasBlackgroundxWidgetState
                                           selectedMedia.every((m) =>
                                               validateFileFormat(
                                                   m.storagePath, context))) {
-                                        safeSetState(() =>
-                                            _model.isDataUploading2 = true);
+                                        safeSetState(() => _model
+                                                .isDataUploading_uploadDataDark =
+                                            true);
                                         var selectedUploadedFiles =
                                             <FFUploadedFile>[];
 
@@ -867,16 +873,17 @@ class _CpCadTemasBlackgroundxWidgetState
                                             selectedFiles: selectedMedia,
                                           );
                                         } finally {
-                                          _model.isDataUploading2 = false;
+                                          _model.isDataUploading_uploadDataDark =
+                                              false;
                                         }
                                         if (selectedUploadedFiles.length ==
                                                 selectedMedia.length &&
                                             downloadUrls.length ==
                                                 selectedMedia.length) {
                                           safeSetState(() {
-                                            _model.uploadedLocalFile2 =
+                                            _model.uploadedLocalFile_uploadDataDark =
                                                 selectedUploadedFiles.first;
-                                            _model.uploadedFileUrl2 =
+                                            _model.uploadedFileUrl_uploadDataDark =
                                                 downloadUrls.first;
                                           });
                                         } else {
@@ -890,8 +897,10 @@ class _CpCadTemasBlackgroundxWidgetState
                                       child: Image.network(
                                         valueOrDefault<String>(
                                           () {
-                                            if (_model.uploadedFileUrl2 != '') {
-                                              return _model.uploadedFileUrl2;
+                                            if (_model.uploadedFileUrl_uploadDataDark !=
+                                                    '') {
+                                              return _model
+                                                  .uploadedFileUrl_uploadDataDark;
                                             } else if ((widget.paramCadastro ==
                                                     false) &&
                                                 (widget.paramRowTblTemasBlackground
@@ -952,7 +961,8 @@ class _CpCadTemasBlackgroundxWidgetState
                                           0.0, 210.0, 0.0, 0.0),
                                       child: FFButtonWidget(
                                         onPressed: () async {
-                                          if (_model.uploadedFileUrl2 != '') {
+                                          if (_model.uploadedFileUrl_uploadDataDark !=
+                                                  '') {
                                             await showDialog(
                                               context: context,
                                               builder: (dialogContext) {
@@ -970,7 +980,7 @@ class _CpCadTemasBlackgroundxWidgetState
                                                   child: WebViewAware(
                                                     child: CpFotoWidget(
                                                       paramFoto: _model
-                                                          .uploadedFileUrl2,
+                                                          .uploadedFileUrl_uploadDataDark,
                                                     ),
                                                   ),
                                                 );
@@ -1181,7 +1191,8 @@ class _CpCadTemasBlackgroundxWidgetState
                               return;
                             }
                             if (widget.paramCadastro! &&
-                                (_model.uploadedFileUrl1 == '')) {
+                                (_model.uploadedFileUrl_uploadDataLigth ==
+                                        '')) {
                               await action_blocks.acMensagemDialog(
                                 context,
                                 paramTitulo: 'Atenção!',
@@ -1208,24 +1219,27 @@ class _CpCadTemasBlackgroundxWidgetState
                             if (widget.paramCadastro!) {
                               await TblAppTemasBlackgroundTable().insert({
                                 'nome': _model.textController.text,
-                                'foto_light_mode': _model.uploadedFileUrl1,
+                                'foto_light_mode':
+                                    _model.uploadedFileUrl_uploadDataLigth,
                                 'situacao': _model.varSituacao,
                                 'foto_dark_mod':
                                     'https://hzmixuvrnzpypriagecv.supabase.co/storage/v1/object/public/fotos/temas/1728593485779000.jpg',
                                 'id_segmentos': _model.varIDSegmentosLiberados,
                               });
                               safeSetState(() {
-                                _model.isDataUploading2 = false;
-                                _model.uploadedLocalFile2 = FFUploadedFile(
-                                    bytes: Uint8List.fromList([]));
-                                _model.uploadedFileUrl2 = '';
+                                _model.isDataUploading_uploadDataDark = false;
+                                _model.uploadedLocalFile_uploadDataDark =
+                                    FFUploadedFile(
+                                        bytes: Uint8List.fromList([]));
+                                _model.uploadedFileUrl_uploadDataDark = '';
                               });
 
                               safeSetState(() {
-                                _model.isDataUploading1 = false;
-                                _model.uploadedLocalFile1 = FFUploadedFile(
-                                    bytes: Uint8List.fromList([]));
-                                _model.uploadedFileUrl1 = '';
+                                _model.isDataUploading_uploadDataLigth = false;
+                                _model.uploadedLocalFile_uploadDataLigth =
+                                    FFUploadedFile(
+                                        bytes: Uint8List.fromList([]));
+                                _model.uploadedFileUrl_uploadDataLigth = '';
                               });
 
                               safeSetState(() {
@@ -1250,8 +1264,10 @@ class _CpCadTemasBlackgroundxWidgetState
                                 data: {
                                   'nome': _model.textController.text,
                                   'foto_light_mode':
-                                      _model.uploadedFileUrl1 != ''
-                                          ? _model.uploadedFileUrl1
+                                      _model.uploadedFileUrl_uploadDataLigth !=
+                                                  ''
+                                          ? _model
+                                              .uploadedFileUrl_uploadDataLigth
                                           : widget.paramRowTblTemasBlackground
                                               ?.fotoLightMode,
                                   'situacao': _model.varSituacao,

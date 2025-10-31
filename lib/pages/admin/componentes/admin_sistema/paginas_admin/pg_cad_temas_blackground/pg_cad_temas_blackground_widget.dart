@@ -5,6 +5,7 @@ import '/pages/admin/componentes/admin_sistema/cp_admin/cp_cad_temas_blackground
 import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:provider/provider.dart';
 import 'pg_cad_temas_blackground_model.dart';
 export 'pg_cad_temas_blackground_model.dart';
 
@@ -54,6 +55,8 @@ class _PgCadTemasBlackgroundWidgetState
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -67,15 +70,16 @@ class _PgCadTemasBlackgroundWidgetState
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              wrapWithModel(
-                model: _model.cpCadTemasBlackgroundxModel,
-                updateCallback: () => safeSetState(() {}),
-                child: CpCadTemasBlackgroundxWidget(
-                  paramCadastro: widget.paramCadastro,
-                  paramRowTblTemasBlackground:
-                      widget.paramRowTblTemasBlackground,
+              if (FFAppState().varTblUsuarios.adminSistema == true)
+                wrapWithModel(
+                  model: _model.cpCadTemasBlackgroundxModel,
+                  updateCallback: () => safeSetState(() {}),
+                  child: CpCadTemasBlackgroundxWidget(
+                    paramCadastro: widget.paramCadastro,
+                    paramRowTblTemasBlackground:
+                        widget.paramRowTblTemasBlackground,
+                  ),
                 ),
-              ),
             ],
           ),
         ),

@@ -803,3 +803,32 @@ String fcRemoverCaracteresEEspacosString(String varString) {
   varString = varString.replaceAll(' ', ''); // Remove spaces
   return varString;
 }
+
+String fcRemoverAcentosString(String varConsultaNormalizada) {
+  // create a removeDiacritics function
+  varConsultaNormalizada = varConsultaNormalizada
+      .replaceAll(RegExp(r'[áàâãäå]'), 'a')
+      .replaceAll(RegExp(r'[ÁÀÂÃÄÅ]'), 'A')
+      .replaceAll(RegExp(r'[éèêë]'), 'e')
+      .replaceAll(RegExp(r'[ÉÈÊË]'), 'E')
+      .replaceAll(RegExp(r'[íìîï]'), 'i')
+      .replaceAll(RegExp(r'[ÍÌÎÏ]'), 'I')
+      .replaceAll(RegExp(r'[óòôõö]'), 'o')
+      .replaceAll(RegExp(r'[ÓÒÔÕÖ]'), 'O')
+      .replaceAll(RegExp(r'[úùûü]'), 'u')
+      .replaceAll(RegExp(r'[ÚÙÛÜ]'), 'U')
+      .replaceAll(RegExp(r'[ç]'), 'c')
+      .replaceAll(RegExp(r'[Ç]'), 'C');
+  return varConsultaNormalizada;
+}
+
+List<String> fcConverterStringParaLista(String varString) {
+  // convert multi-line string to multi-string array
+  return varString.split('\n'); // Split the string by new lines
+}
+
+String fcConverterArrayParaString(List<String> varStringArray) {
+  // Converter string array para uma string com várias linhas
+  return varStringArray.join(
+      '\n'); // Converte o array de strings em uma string com várias linhas
+}

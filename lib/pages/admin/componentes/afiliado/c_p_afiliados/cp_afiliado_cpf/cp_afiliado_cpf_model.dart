@@ -16,7 +16,7 @@ class CpAfiliadoCpfModel extends FlutterFlowModel<CpAfiliadoCpfWidget> {
   // State field(s) for TextFieldCPF widget.
   FocusNode? textFieldCPFFocusNode;
   TextEditingController? textFieldCPFTextController;
-  final textFieldCPFMask = MaskTextInputFormatter(mask: '###.###.###-##');
+  late MaskTextInputFormatter textFieldCPFMask;
   String? Function(BuildContext, String?)? textFieldCPFTextControllerValidator;
   String? _textFieldCPFTextControllerValidator(
       BuildContext context, String? val) {
@@ -36,12 +36,12 @@ class CpAfiliadoCpfModel extends FlutterFlowModel<CpAfiliadoCpfWidget> {
     return null;
   }
 
-  // Stores action output result for [Action Block - acConsultarCPFSportingBet] action in TextFieldCPF widget.
+  // Stores action output result for [Action Block - acConsultarCPF] action in TextFieldCPF widget.
   String? resultConsCpfSportBet;
   // State field(s) for TextFieldDtNascimento widget.
   FocusNode? textFieldDtNascimentoFocusNode;
   TextEditingController? textFieldDtNascimentoTextController;
-  final textFieldDtNascimentoMask = MaskTextInputFormatter(mask: '##/##/####');
+  late MaskTextInputFormatter textFieldDtNascimentoMask;
   String? Function(BuildContext, String?)?
       textFieldDtNascimentoTextControllerValidator;
   String? _textFieldDtNascimentoTextControllerValidator(
@@ -62,7 +62,7 @@ class CpAfiliadoCpfModel extends FlutterFlowModel<CpAfiliadoCpfWidget> {
     return null;
   }
 
-  // Stores action output result for [Action Block - acConsultarCPFSportingBet] action in TextFieldDtNascimento widget.
+  // Stores action output result for [Action Block - acConsultarCPF] action in TextFieldDtNascimento widget.
   String? resultConsCpfSportBet2;
   // State field(s) for TextFieldNomeAfiliado widget.
   FocusNode? textFieldNomeAfiliadoFocusNode;
@@ -71,10 +71,8 @@ class CpAfiliadoCpfModel extends FlutterFlowModel<CpAfiliadoCpfWidget> {
       textFieldNomeAfiliadoTextControllerValidator;
   // Stores action output result for [Action Block - acConsultarCPFCNPJCad] action in Button widget.
   String? acResultConsCPFCad;
-  // Stores action output result for [Backend Call - Insert Row] action in Button widget.
-  TblAfiliadosRow? resultInsertAfiliado;
-  // Stores action output result for [Backend Call - Insert Row] action in Button widget.
-  TblAfiliadosAtivDashRow? afi;
+  // Stores action output result for [Backend Call - Update Row(s)] action in Button widget.
+  List<TblAfiliadosRow>? resultInsertAfiliado;
 
   @override
   void initState(BuildContext context) {

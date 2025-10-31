@@ -43,7 +43,11 @@ class _CpDialogSnackBarWidgetState extends State<CpDialogSnackBarWidget> {
       _model.varContador = 0;
       safeSetState(() {});
       while (_model.varContador <= widget.paramTempoMsFechar!) {
-        await Future.delayed(const Duration(milliseconds: 1000));
+        await Future.delayed(
+          Duration(
+            milliseconds: 1000,
+          ),
+        );
         _model.varContador = _model.varContador + 1000;
         safeSetState(() {});
       }

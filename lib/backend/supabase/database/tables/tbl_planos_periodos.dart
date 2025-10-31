@@ -49,4 +49,10 @@ class TblPlanosPeriodosRow extends SupabaseDataRow {
 
   bool get excluido => getField<bool>('excluido')!;
   set excluido(bool value) => setField<bool>('excluido', value);
+
+  String get tipo => getField<String>('tipo')!;
+  set tipo(String value) => setField<String>('tipo', value);
+
+  double get tempoDias => getField<double>('tempo_dias')!;
+  set tempoDias(double value) => setField<double>('tempo_dias', value);
 }

@@ -20,19 +20,6 @@ class ViewTblAppPlanosEstabelecimentosRow extends SupabaseDataRow {
   set idEstabelecimento(int? value) =>
       setField<int>('id_estabelecimento', value);
 
-  String? get userIdEstabelecimento =>
-      getField<String>('user_id_estabelecimento');
-  set userIdEstabelecimento(String? value) =>
-      setField<String>('user_id_estabelecimento', value);
-
-  int? get quantAgendamentosCad => getField<int>('quant_agendamentos_cad');
-  set quantAgendamentosCad(int? value) =>
-      setField<int>('quant_agendamentos_cad', value);
-
-  int? get quantProfissionaisCad => getField<int>('quant_profissionais_cad');
-  set quantProfissionaisCad(int? value) =>
-      setField<int>('quant_profissionais_cad', value);
-
   int? get idPlanoPeriodo => getField<int>('id_plano_periodo');
   set idPlanoPeriodo(int? value) => setField<int>('id_plano_periodo', value);
 
@@ -85,20 +72,8 @@ class ViewTblAppPlanosEstabelecimentosRow extends SupabaseDataRow {
   int? get cupomTempo => getField<int>('cupom_tempo');
   set cupomTempo(int? value) => setField<int>('cupom_tempo', value);
 
-  double? get cupomDesconto => getField<double>('cupom_desconto');
-  set cupomDesconto(double? value) => setField<double>('cupom_desconto', value);
-
-  double? get valorComDesconto => getField<double>('valor_com_desconto');
-  set valorComDesconto(double? value) =>
-      setField<double>('valor_com_desconto', value);
-
-  double? get valorSemDesconto => getField<double>('valor_sem_desconto');
-  set valorSemDesconto(double? value) =>
-      setField<double>('valor_sem_desconto', value);
-
-  int? get idFormaPagamento => getField<int>('id_forma_pagamento');
-  set idFormaPagamento(int? value) =>
-      setField<int>('id_forma_pagamento', value);
+  double? get valor => getField<double>('valor');
+  set valor(double? value) => setField<double>('valor', value);
 
   String? get statusPagamento => getField<String>('status_pagamento');
   set statusPagamento(String? value) =>
@@ -118,10 +93,9 @@ class ViewTblAppPlanosEstabelecimentosRow extends SupabaseDataRow {
   set quantProfissionaisMaxSalvo(int? value) =>
       setField<int>('quant_profissionais_max_salvo', value);
 
-  int? get quantAgendamentosMaxSalvo =>
-      getField<int>('quant_agendamentos_max_salvo');
-  set quantAgendamentosMaxSalvo(int? value) =>
-      setField<int>('quant_agendamentos_max_salvo', value);
+  int? get quantProfissionaisCad => getField<int>('quant_profissionais_cad');
+  set quantProfissionaisCad(int? value) =>
+      setField<int>('quant_profissionais_cad', value);
 
   bool? get planoAtivo => getField<bool>('plano_ativo');
   set planoAtivo(bool? value) => setField<bool>('plano_ativo', value);
@@ -130,42 +104,77 @@ class ViewTblAppPlanosEstabelecimentosRow extends SupabaseDataRow {
   set porcentagemDesconto(double? value) =>
       setField<double>('porcentagem_desconto', value);
 
-  int? get idPlanoAnterior => getField<int>('id_plano_anterior');
-  set idPlanoAnterior(int? value) => setField<int>('id_plano_anterior', value);
-
-  String? get nomeFormaPagamento => getField<String>('nome_forma_pagamento');
-  set nomeFormaPagamento(String? value) =>
-      setField<String>('nome_forma_pagamento', value);
-
-  String? get qrCode => getField<String>('qr_code');
-  set qrCode(String? value) => setField<String>('qr_code', value);
-
-  String? get urlPix => getField<String>('url_pix');
-  set urlPix(String? value) => setField<String>('url_pix', value);
-
-  String? get idPagamentoBanco => getField<String>('id_pagamento_banco');
-  set idPagamentoBanco(String? value) =>
-      setField<String>('id_pagamento_banco', value);
-
-  String? get chaveFormaPagamento => getField<String>('chave_forma_pagamento');
-  set chaveFormaPagamento(String? value) =>
-      setField<String>('chave_forma_pagamento', value);
-
-  String? get externalReference => getField<String>('external_reference');
-  set externalReference(String? value) =>
-      setField<String>('external_reference', value);
-
-  String? get statusPagamentoMp => getField<String>('status_pagamento_mp');
-  set statusPagamentoMp(String? value) =>
-      setField<String>('status_pagamento_mp', value);
-
-  String? get statusDetail => getField<String>('status_detail');
-  set statusDetail(String? value) => setField<String>('status_detail', value);
-
-  DateTime? get dateApproved => getField<DateTime>('date_approved');
-  set dateApproved(DateTime? value) =>
-      setField<DateTime>('date_approved', value);
-
   bool? get renovacao => getField<bool>('renovacao');
   set renovacao(bool? value) => setField<bool>('renovacao', value);
+
+  String? get stripeUrl => getField<String>('stripe_url');
+  set stripeUrl(String? value) => setField<String>('stripe_url', value);
+
+  String? get stripeStatusPg => getField<String>('stripe_status_pg');
+  set stripeStatusPg(String? value) =>
+      setField<String>('stripe_status_pg', value);
+
+  bool? get assinatura => getField<bool>('assinatura');
+  set assinatura(bool? value) => setField<bool>('assinatura', value);
+
+  double? get precoAssinatura => getField<double>('preco_assinatura');
+  set precoAssinatura(double? value) =>
+      setField<double>('preco_assinatura', value);
+
+  String? get stripeStatus => getField<String>('stripe_status');
+  set stripeStatus(String? value) => setField<String>('stripe_status', value);
+
+  String? get stripeSubscriptionId =>
+      getField<String>('stripe_subscription_id');
+  set stripeSubscriptionId(String? value) =>
+      setField<String>('stripe_subscription_id', value);
+
+  String? get chargeId => getField<String>('charge_id');
+  set chargeId(String? value) => setField<String>('charge_id', value);
+
+  bool? get assinaturaCancSolicitado =>
+      getField<bool>('assinatura_canc_solicitado');
+  set assinaturaCancSolicitado(bool? value) =>
+      setField<bool>('assinatura_canc_solicitado', value);
+
+  DateTime? get assinaturaCancSolicData =>
+      getField<DateTime>('assinatura_canc_solic_data');
+  set assinaturaCancSolicData(DateTime? value) =>
+      setField<DateTime>('assinatura_canc_solic_data', value);
+
+  String? get statusAssinatura => getField<String>('status_assinatura');
+  set statusAssinatura(String? value) =>
+      setField<String>('status_assinatura', value);
+
+  int? get trialPeriodDays => getField<int>('trial_period_days');
+  set trialPeriodDays(int? value) => setField<int>('trial_period_days', value);
+
+  DateTime? get trialPeriodDate => getField<DateTime>('trial_period_date');
+  set trialPeriodDate(DateTime? value) =>
+      setField<DateTime>('trial_period_date', value);
+
+  bool? get trialPeriod => getField<bool>('trial_period');
+  set trialPeriod(bool? value) => setField<bool>('trial_period', value);
+
+  String? get upgradeDowngrade => getField<String>('upgrade_downgrade');
+  set upgradeDowngrade(String? value) =>
+      setField<String>('upgrade_downgrade', value);
+
+  DateTime? get assinaturaInicio => getField<DateTime>('assinatura_inicio');
+  set assinaturaInicio(DateTime? value) =>
+      setField<DateTime>('assinatura_inicio', value);
+
+  DateTime? get assinaturaFinal => getField<DateTime>('assinatura_final');
+  set assinaturaFinal(DateTime? value) =>
+      setField<DateTime>('assinatura_final', value);
+
+  String? get stripeCustomerId => getField<String>('stripe_customer_id');
+  set stripeCustomerId(String? value) =>
+      setField<String>('stripe_customer_id', value);
+
+  int? get idAfiliadoApp => getField<int>('id_afiliado_app');
+  set idAfiliadoApp(int? value) => setField<int>('id_afiliado_app', value);
+
+  double? get percComissao => getField<double>('perc_comissao');
+  set percComissao(double? value) => setField<double>('perc_comissao', value);
 }

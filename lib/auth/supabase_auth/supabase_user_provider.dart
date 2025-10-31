@@ -5,8 +5,8 @@ import '../base_auth_user_provider.dart';
 
 export '../base_auth_user_provider.dart';
 
-class AgendaSuperAdminSupabaseUser extends BaseAuthUser {
-  AgendaSuperAdminSupabaseUser(this.user);
+class APPAgendaSuperEAfiliadoSupabaseUser extends BaseAuthUser {
+  APPAgendaSuperEAfiliadoSupabaseUser(this.user);
   User? user;
   bool get loggedIn => user != null;
 
@@ -66,7 +66,7 @@ class AgendaSuperAdminSupabaseUser extends BaseAuthUser {
 /// [SupaFlow.client.auth.onAuthStateChange] does not yield any values until the
 /// user is already authenticated. So we add a default null user to the stream,
 /// if we need to interact with the [currentUser] before logging in.
-Stream<BaseAuthUser> agendaSuperAdminSupabaseUserStream() {
+Stream<BaseAuthUser> aPPAgendaSuperEAfiliadoSupabaseUserStream() {
   final supabaseAuthStream = SupaFlow.client.auth.onAuthStateChange.debounce(
       (authState) => authState.event == AuthChangeEvent.tokenRefreshed
           ? TimerStream(authState, Duration(seconds: 1))
@@ -76,7 +76,8 @@ Stream<BaseAuthUser> agendaSuperAdminSupabaseUserStream() {
           : supabaseAuthStream)
       .map<BaseAuthUser>(
     (authState) {
-      currentUser = AgendaSuperAdminSupabaseUser(authState?.session?.user);
+      currentUser =
+          APPAgendaSuperEAfiliadoSupabaseUser(authState?.session?.user);
       return currentUser!;
     },
   );

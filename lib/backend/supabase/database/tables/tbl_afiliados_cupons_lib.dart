@@ -54,4 +54,10 @@ class TblAfiliadosCuponsLibRow extends SupabaseDataRow {
   DateTime? get dataExclusao => getField<DateTime>('data_exclusao');
   set dataExclusao(DateTime? value) =>
       setField<DateTime>('data_exclusao', value);
+
+  String get uuid => getField<String>('uuid')!;
+  set uuid(String value) => setField<String>('uuid', value);
+
+  int get idAfiliadoApp => getField<int>('id_afiliado_app')!;
+  set idAfiliadoApp(int value) => setField<int>('id_afiliado_app', value);
 }

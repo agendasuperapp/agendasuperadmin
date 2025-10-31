@@ -4,10 +4,11 @@ import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
-import '/pages/admin/componentes/estabelecimento/comp_estabelecimento/cp_cad_servicos/cp_cad_servicos_widget.dart';
+import '/pages/admin/componentes/afiliado/estabelecimento/comp_estabelecimento/cp_cad_servicos/cp_cad_servicos_widget.dart';
 import 'dart:async';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
+import '/index.dart';
 import 'cp_home_assistente_cad_widget.dart' show CpHomeAssistenteCadWidget;
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
@@ -90,30 +91,28 @@ class CpHomeAssistenteCadModel
   ScrollController? columnController1;
   // State field(s) for StaggeredView widget.
   ScrollController? staggeredViewController1;
-  // State field(s) for GridView widget.
-  ScrollController? gridViewController;
   // State field(s) for DropDownSegmento widget.
   int? dropDownSegmentoValue;
   FormFieldController<int>? dropDownSegmentoValueController;
   // State field(s) for ColumnFotoPerfil widget.
-  ScrollController? columnFotoPerfil;
-  bool isDataUploading1 = false;
-  FFUploadedFile uploadedLocalFile1 =
+  ScrollController? columnFotoPerfilScrollController;
+  bool isDataUploading_uploadDataEstabelecimentoPerfilAssist = false;
+  FFUploadedFile uploadedLocalFile_uploadDataEstabelecimentoPerfilAssist =
       FFUploadedFile(bytes: Uint8List.fromList([]));
-  String uploadedFileUrl1 = '';
+  String uploadedFileUrl_uploadDataEstabelecimentoPerfilAssist = '';
 
   // State field(s) for StaggeredViewFotosPerfis widget.
-  ScrollController? staggeredViewFotosPerfis;
+  ScrollController? staggeredViewFotosPerfisScrollController;
   // State field(s) for Column widget.
-  ScrollController? column;
+  ScrollController? columnScrollController;
   // State field(s) for StaggeredView widget.
   ScrollController? staggeredViewController2;
   // State field(s) for ColumnFormPagComodEnd widget.
-  ScrollController? columnFormPagComodEnd;
+  ScrollController? columnFormPagComodEndScrollController;
   // State field(s) for TextFieldCEP widget.
   FocusNode? textFieldCEPFocusNode;
   TextEditingController? textFieldCEPTextController;
-  final textFieldCEPMask = MaskTextInputFormatter(mask: '#####-###');
+  late MaskTextInputFormatter textFieldCEPMask;
   String? Function(BuildContext, String?)? textFieldCEPTextControllerValidator;
   String? _textFieldCEPTextControllerValidator(
       BuildContext context, String? val) {
@@ -165,20 +164,6 @@ class CpHomeAssistenteCadModel
   TextEditingController? textFieldComplementoTextController;
   String? Function(BuildContext, String?)?
       textFieldComplementoTextControllerValidator;
-  // State field(s) for TextFieldCidade widget.
-  FocusNode? textFieldCidadeFocusNode;
-  TextEditingController? textFieldCidadeTextController;
-  String? Function(BuildContext, String?)?
-      textFieldCidadeTextControllerValidator;
-  String? _textFieldCidadeTextControllerValidator(
-      BuildContext context, String? val) {
-    if (val == null || val.isEmpty) {
-      return 'Cidade não localizada neste CEP';
-    }
-
-    return null;
-  }
-
   // State field(s) for TextFieldBairro widget.
   FocusNode? textFieldBairroFocusNode;
   TextEditingController? textFieldBairroTextController;
@@ -188,6 +173,20 @@ class CpHomeAssistenteCadModel
       BuildContext context, String? val) {
     if (val == null || val.isEmpty) {
       return 'Informe o nome do Bairro';
+    }
+
+    return null;
+  }
+
+  // State field(s) for TextFieldCidade widget.
+  FocusNode? textFieldCidadeFocusNode;
+  TextEditingController? textFieldCidadeTextController;
+  String? Function(BuildContext, String?)?
+      textFieldCidadeTextControllerValidator;
+  String? _textFieldCidadeTextControllerValidator(
+      BuildContext context, String? val) {
+    if (val == null || val.isEmpty) {
+      return 'Cidade não localizada neste CEP';
     }
 
     return null;
@@ -213,12 +212,12 @@ class CpHomeAssistenteCadModel
   // State field(s) for Column widget.
   ScrollController? columnController2;
   // State field(s) for ListViewHrFuncionamento widget.
-  ScrollController? listViewHrFuncionamento;
+  ScrollController? listViewHrFuncionamentoScrollController;
   Completer<List<TblHorariosFuncionamentoRow>>? requestCompleter1;
   // State field(s) for Column widget.
   ScrollController? columnController3;
   // State field(s) for ListViewServicos widget.
-  ScrollController? listViewServicos;
+  ScrollController? listViewServicosScrollController;
   // State field(s) for Column widget.
   ScrollController? columnController4;
   // State field(s) for TextNomeProfissional widget.
@@ -236,7 +235,7 @@ class CpHomeAssistenteCadModel
   }
 
   // State field(s) for StaggeredViewServLib widget.
-  ScrollController? staggeredViewServLib;
+  ScrollController? staggeredViewServLibScrollController;
   Completer<List<ViewTblAppPlanosEstabelecimentosRow>>? requestCompleter3;
   // Stores action output result for [Backend Call - Query Rows] action in Button widget.
   List<ViewTblProfissionaisRow>? queryConsNomeAss;
@@ -244,11 +243,11 @@ class CpHomeAssistenteCadModel
   TblProfissionaisRow? resultInsertProfissional;
   Completer<List<TblProfissionaisRow>>? requestCompleter2;
   // State field(s) for ListViewHrProfissionais widget.
-  ScrollController? listViewHrProfissionais;
-  bool isDataUploading2 = false;
-  FFUploadedFile uploadedLocalFile2 =
+  ScrollController? listViewHrProfissionaisScrollController;
+  bool isDataUploading_uploadDataProfissionaisAss = false;
+  FFUploadedFile uploadedLocalFile_uploadDataProfissionaisAss =
       FFUploadedFile(bytes: Uint8List.fromList([]));
-  String uploadedFileUrl2 = '';
+  String uploadedFileUrl_uploadDataProfissionaisAss = '';
 
   // State field(s) for Column widget.
   ScrollController? columnController5;
@@ -308,31 +307,30 @@ class CpHomeAssistenteCadModel
   void initState(BuildContext context) {
     columnController1 = ScrollController();
     staggeredViewController1 = ScrollController();
-    gridViewController = ScrollController();
-    columnFotoPerfil = ScrollController();
-    staggeredViewFotosPerfis = ScrollController();
-    column = ScrollController();
+    columnFotoPerfilScrollController = ScrollController();
+    staggeredViewFotosPerfisScrollController = ScrollController();
+    columnScrollController = ScrollController();
     staggeredViewController2 = ScrollController();
-    columnFormPagComodEnd = ScrollController();
+    columnFormPagComodEndScrollController = ScrollController();
     textFieldCEPTextControllerValidator = _textFieldCEPTextControllerValidator;
     textFieldRuaTextControllerValidator = _textFieldRuaTextControllerValidator;
     textFieldNumeroTextControllerValidator =
         _textFieldNumeroTextControllerValidator;
-    textFieldCidadeTextControllerValidator =
-        _textFieldCidadeTextControllerValidator;
     textFieldBairroTextControllerValidator =
         _textFieldBairroTextControllerValidator;
+    textFieldCidadeTextControllerValidator =
+        _textFieldCidadeTextControllerValidator;
     textFieldEstadoTextControllerValidator =
         _textFieldEstadoTextControllerValidator;
     columnController2 = ScrollController();
-    listViewHrFuncionamento = ScrollController();
+    listViewHrFuncionamentoScrollController = ScrollController();
     columnController3 = ScrollController();
-    listViewServicos = ScrollController();
+    listViewServicosScrollController = ScrollController();
     columnController4 = ScrollController();
     textNomeProfissionalTextControllerValidator =
         _textNomeProfissionalTextControllerValidator;
-    staggeredViewServLib = ScrollController();
-    listViewHrProfissionais = ScrollController();
+    staggeredViewServLibScrollController = ScrollController();
+    listViewHrProfissionaisScrollController = ScrollController();
     columnController5 = ScrollController();
     textNomeTextControllerValidator = _textNomeTextControllerValidator;
     textUsernameTextControllerValidator = _textUsernameTextControllerValidator;
@@ -342,12 +340,11 @@ class CpHomeAssistenteCadModel
   void dispose() {
     columnController1?.dispose();
     staggeredViewController1?.dispose();
-    gridViewController?.dispose();
-    columnFotoPerfil?.dispose();
-    staggeredViewFotosPerfis?.dispose();
-    column?.dispose();
+    columnFotoPerfilScrollController?.dispose();
+    staggeredViewFotosPerfisScrollController?.dispose();
+    columnScrollController?.dispose();
     staggeredViewController2?.dispose();
-    columnFormPagComodEnd?.dispose();
+    columnFormPagComodEndScrollController?.dispose();
     textFieldCEPFocusNode?.dispose();
     textFieldCEPTextController?.dispose();
 
@@ -360,25 +357,25 @@ class CpHomeAssistenteCadModel
     textFieldComplementoFocusNode?.dispose();
     textFieldComplementoTextController?.dispose();
 
-    textFieldCidadeFocusNode?.dispose();
-    textFieldCidadeTextController?.dispose();
-
     textFieldBairroFocusNode?.dispose();
     textFieldBairroTextController?.dispose();
+
+    textFieldCidadeFocusNode?.dispose();
+    textFieldCidadeTextController?.dispose();
 
     textFieldEstadoFocusNode?.dispose();
     textFieldEstadoTextController?.dispose();
 
     columnController2?.dispose();
-    listViewHrFuncionamento?.dispose();
+    listViewHrFuncionamentoScrollController?.dispose();
     columnController3?.dispose();
-    listViewServicos?.dispose();
+    listViewServicosScrollController?.dispose();
     columnController4?.dispose();
     textNomeProfissionalFocusNode?.dispose();
     textNomeProfissionalTextController?.dispose();
 
-    staggeredViewServLib?.dispose();
-    listViewHrProfissionais?.dispose();
+    staggeredViewServLibScrollController?.dispose();
+    listViewHrProfissionaisScrollController?.dispose();
     columnController5?.dispose();
     textNomeFocusNode?.dispose();
     textNomeTextController?.dispose();
@@ -389,20 +386,9 @@ class CpHomeAssistenteCadModel
 
   /// Action blocks.
   Future<bool> acContinuarTelaInfo(BuildContext context) async {
-    String? resultConsNomeEstabAssit;
     String? resultConsUsername;
     List<TblEstabelecimentoRow>? resultUpdateInfos;
 
-    resultConsNomeEstabAssit = await action_blocks.acConsultarNomeTabs(
-      context,
-      paramNome:
-          functions.fcConverterStringMaiusculo(textNomeTextController.text),
-      paramTabela: 'tbl_estabelecimento',
-      paramID: FFAppState().VarIDEstabelecimentoLogado,
-    );
-    if (resultConsNomeEstabAssit != 'False') {
-      return false;
-    }
     resultConsUsername = await action_blocks.acConsultarUsername(
       context,
       paramUsername: textUsernameTextController.text,
@@ -410,26 +396,6 @@ class CpHomeAssistenteCadModel
       paramID: FFAppState().VarIDEstabelecimentoLogado,
     );
     if (resultConsUsername != 'False') {
-      return false;
-    }
-    if (varInformarEndereco && varCEPInvalido) {
-      await showDialog(
-        context: context,
-        builder: (alertDialogContext) {
-          return WebViewAware(
-            child: AlertDialog(
-              title: Text('Atenç'),
-              content: Text('CEP inválido, verifique'),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(alertDialogContext),
-                  child: Text('Ok'),
-                ),
-              ],
-            ),
-          );
-        },
-      );
       return false;
     }
     await TblEstabelecimentoTable().update(
@@ -524,6 +490,24 @@ class CpHomeAssistenteCadModel
       context,
       paramIDSegmento: varIDSegmentoSelecionado,
     );
+  }
+
+  Future acConcluirAssistente(BuildContext context) async {
+    await TblEstabelecimentoTable().update(
+      data: {
+        'assistente_cad_concluido': true,
+      },
+      matchingRows: (rows) => rows.eqOrNull(
+        'id',
+        FFAppState().VarIDEstabelecimentoLogado,
+      ),
+    );
+    await action_blocks.acAtualizarEstabelecimentoLogado(context);
+    if (FFAppState().varCarregouPrimeiraPagina) {
+      Navigator.pop(context);
+    } else {
+      context.pushNamed(PgDashboardWidget.routeName);
+    }
   }
 
   /// Additional helper methods.

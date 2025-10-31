@@ -1,15 +1,23 @@
 {
-  "name": "AgendaSuperPush",
-  "short_name": "Agenda",
-  "start_url": "/",
-  "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#1d2428",
-  "icons": [
-    {
-      "src": "/icons/Icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    }
-  ]
+    "name": "APP Agenda Super e Afiliado",
+    "short_name": "APP Agenda Super e Afiliado",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#0175C2",
+    "theme_color": "#0175C2",
+    "description": "A new Flutter project.",
+    "orientation": "portrait-primary",
+    "prefer_related_applications": false,
+    "icons": [
+        {
+            "src": "icons/app_launcher_icon.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/app_launcher_icon.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
 }

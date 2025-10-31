@@ -2,10 +2,10 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/admin/a_sistema/home/cp_cabecalho_pagina/cp_cabecalho_pagina_widget.dart';
 import '/pages/admin/a_sistema/home/cp_menu_lateral/cp_menu_lateral_widget.dart';
+import '/pages/admin/componentes/admin_sistema/cp_admin/cp_admin_configuracoes/cp_admin_configuracoes_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:webviewx_plus/webviewx_plus.dart';
 import 'pg_config_admin_model.dart';
@@ -155,7 +155,8 @@ class _PgConfigAdminWidgetState extends State<PgConfigAdminWidget> {
                                 padding: EdgeInsets.all(8.0),
                                 child: Icon(
                                   Icons.menu,
-                                  color: FlutterFlowTheme.of(context).info,
+                                  color: FlutterFlowTheme.of(context)
+                                      .colorIconMenu,
                                   size: 24.0,
                                 ),
                               ),
@@ -194,37 +195,14 @@ class _PgConfigAdminWidgetState extends State<PgConfigAdminWidget> {
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Align(
-                            alignment: AlignmentDirectional(0.0, 0.0),
-                            child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  12.0, 200.0, 12.0, 0.0),
-                              child: Text(
-                                'CONFIGURAÇÕES ADMIN',
-                                textAlign: TextAlign.center,
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      font: GoogleFonts.readexPro(
-                                        fontWeight: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontWeight,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontStyle,
-                                      ),
-                                      fontSize: 35.0,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontStyle,
-                                    ),
+                          if (FFAppState().varTblUsuarios.adminSistema == true)
+                            Flexible(
+                              child: wrapWithModel(
+                                model: _model.cpAdminConfiguracoesModel,
+                                updateCallback: () => safeSetState(() {}),
+                                child: CpAdminConfiguracoesWidget(),
                               ),
                             ),
-                          ),
                         ],
                       ),
                     ),

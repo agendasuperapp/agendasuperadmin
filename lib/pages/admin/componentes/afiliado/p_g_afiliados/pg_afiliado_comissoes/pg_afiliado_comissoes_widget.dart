@@ -2,12 +2,12 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/admin/a_sistema/home/cp_cabecalho_pagina/cp_cabecalho_pagina_widget.dart';
 import '/pages/admin/a_sistema/home/cp_menu_lateral/cp_menu_lateral_widget.dart';
+import '/pages/admin/a_sistema/home/cp_rodape/cp_rodape_widget.dart';
 import '/pages/admin/componentes/afiliado/c_p_afiliados/cp_afiliado_comissoes/cp_afiliado_comissoes_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 import 'pg_afiliado_comissoes_model.dart';
 export 'pg_afiliado_comissoes_model.dart';
 
@@ -59,58 +59,6 @@ class _PgAfiliadoComissoesWidgetState extends State<PgAfiliadoComissoesWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        drawer: Container(
-          width: valueOrDefault<double>(
-            FFAppState().varLayoutTamanhoMenuLateral.toDouble(),
-            225.0,
-          ),
-          child: Drawer(
-            elevation: 16.0,
-            child: WebViewAware(
-              child: Stack(
-                children: [
-                  wrapWithModel(
-                    model: _model.cpMenuLateralModel2,
-                    updateCallback: () => safeSetState(() {}),
-                    child: CpMenuLateralWidget(
-                      paramBotaoSelecionado: 'AFILIADO_COMISSOES',
-                      paramGrupoBotao: 'AFILIADO',
-                      paramElpacamentoTop: true,
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 12.0, 0.0),
-                    child: InkWell(
-                      splashColor: Colors.transparent,
-                      focusColor: Colors.transparent,
-                      hoverColor: Colors.transparent,
-                      highlightColor: Colors.transparent,
-                      onTap: () async {
-                        if (scaffoldKey.currentState!.isDrawerOpen ||
-                            scaffoldKey.currentState!.isEndDrawerOpen) {
-                          Navigator.pop(context);
-                        }
-                      },
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Icon(
-                            Icons.close,
-                            color: FlutterFlowTheme.of(context)
-                                .customTextoMenuLateral,
-                            size: 24.0,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
         body: Column(
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -126,8 +74,17 @@ class _PgAfiliadoComissoesWidgetState extends State<PgAfiliadoComissoesWidget> {
                       updateCallback: () => safeSetState(() {}),
                       child: CpCabecalhoPaginaWidget(),
                     ),
-                    if (MediaQuery.sizeOf(context).width <
-                        FFAppState().varTamanhoMinimoTelaMenuLateral.toDouble())
+                    if ((MediaQuery.sizeOf(context).width <
+                            FFAppState()
+                                .varTamanhoMinimoTelaMenuLateral
+                                .toDouble()) &&
+                        responsiveVisibility(
+                          context: context,
+                          phone: false,
+                          tablet: false,
+                          tabletLandscape: false,
+                          desktop: false,
+                        ))
                       Align(
                         alignment: AlignmentDirectional(0.0, 0.0),
                         child: Padding(
@@ -157,7 +114,8 @@ class _PgAfiliadoComissoesWidgetState extends State<PgAfiliadoComissoesWidget> {
                                 padding: EdgeInsets.all(8.0),
                                 child: Icon(
                                   Icons.menu,
-                                  color: FlutterFlowTheme.of(context).info,
+                                  color: FlutterFlowTheme.of(context)
+                                      .colorIconMenu,
                                   size: 24.0,
                                 ),
                               ),
@@ -184,7 +142,7 @@ class _PgAfiliadoComissoesWidgetState extends State<PgAfiliadoComissoesWidget> {
                           phone: false,
                         ))
                       wrapWithModel(
-                        model: _model.cpMenuLateralModel1,
+                        model: _model.cpMenuLateralModel,
                         updateCallback: () => safeSetState(() {}),
                         child: CpMenuLateralWidget(
                           paramBotaoSelecionado: 'AFILIADO_COMISSOES',
@@ -219,6 +177,15 @@ class _PgAfiliadoComissoesWidgetState extends State<PgAfiliadoComissoesWidget> {
                 ),
               ),
             ),
+            if (MediaQuery.sizeOf(context).width <=
+                FFAppState().varTamanhoMinimoTelaMenuLateral.toDouble())
+              wrapWithModel(
+                model: _model.cpRodapeModel,
+                updateCallback: () => safeSetState(() {}),
+                child: CpRodapeWidget(
+                  paramBotaoSelecionado: 'AFILIADO_COMISSOES',
+                ),
+              ),
           ],
         ),
       ),

@@ -1,7 +1,8 @@
+import '/flutter_flow/flutter_flow_button_tabbar.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/pages/admin/componentes/estabelecimento/comp_estabelecimento/cp_agendamentos_carrinhos/cp_agendamentos_carrinhos_widget.dart';
-import '/pages/admin/componentes/estabelecimento/comp_estabelecimento/cp_agendamentos_diarios/cp_agendamentos_diarios_widget.dart';
+import '/pages/admin/componentes/afiliado/estabelecimento/comp_estabelecimento/cp_agendamentos_carrinhos/cp_agendamentos_carrinhos_widget.dart';
+import '/pages/admin/componentes/afiliado/estabelecimento/comp_estabelecimento/cp_agendamentos_diarios/cp_agendamentos_diarios_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -177,10 +178,8 @@ class _CpAgendamentosViewAdminWidgetState
                   children: [
                     Align(
                       alignment: Alignment(0.0, 0),
-                      child: TabBar(
-                        labelColor: FlutterFlowTheme.of(context).primary,
-                        unselectedLabelColor:
-                            FlutterFlowTheme.of(context).secondaryText,
+                      child: FlutterFlowButtonTabBar(
+                        useToggleButtonStyle: false,
                         labelStyle:
                             FlutterFlowTheme.of(context).titleMedium.override(
                                   font: GoogleFonts.readexPro(
@@ -225,7 +224,20 @@ class _CpAgendamentosViewAdminWidgetState
                                       .titleMedium
                                       .fontStyle,
                                 ),
-                        indicatorColor: FlutterFlowTheme.of(context).primary,
+                        labelColor: FlutterFlowTheme.of(context).primary,
+                        unselectedLabelColor:
+                            FlutterFlowTheme.of(context).secondaryText,
+                        backgroundColor: FlutterFlowTheme.of(context).accent1,
+                        unselectedBackgroundColor:
+                            FlutterFlowTheme.of(context).alternate,
+                        borderColor: FlutterFlowTheme.of(context).primary,
+                        unselectedBorderColor:
+                            FlutterFlowTheme.of(context).alternate,
+                        borderWidth: 2.0,
+                        borderRadius: 8.0,
+                        elevation: 0.0,
+                        buttonMargin:
+                            EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
                         tabs: [
                           Tab(
                             text: 'Agendamentos Diários',

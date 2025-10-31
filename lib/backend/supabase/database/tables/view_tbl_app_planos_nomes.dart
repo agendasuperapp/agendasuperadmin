@@ -52,4 +52,16 @@ class ViewTblAppPlanosNomesRow extends SupabaseDataRow {
 
   bool? get excluido => getField<bool>('excluido');
   set excluido(bool? value) => setField<bool>('excluido', value);
+
+  String? get tipo => getField<String>('tipo');
+  set tipo(String? value) => setField<String>('tipo', value);
+
+  int? get idAfiliadoApp => getField<int>('id_afiliado_app');
+  set idAfiliadoApp(int? value) => setField<int>('id_afiliado_app', value);
+
+  String? get nomeApp => getField<String>('nome_app');
+  set nomeApp(String? value) => setField<String>('nome_app', value);
+
+  String? get nomeAppPlano => getField<String>('nome_app_plano');
+  set nomeAppPlano(String? value) => setField<String>('nome_app_plano', value);
 }

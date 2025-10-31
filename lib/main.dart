@@ -71,7 +71,6 @@ class _MyAppState extends State<MyApp> {
       _router.routerDelegate.currentConfiguration.matches
           .map((e) => getRoute(e))
           .toList();
-
   late Stream<BaseAuthUser> userStream;
 
   @override
@@ -80,7 +79,7 @@ class _MyAppState extends State<MyApp> {
 
     _appStateNotifier = AppStateNotifier.instance;
     _router = createRouter(_appStateNotifier);
-    userStream = agendaSuperAdminSupabaseUserStream()
+    userStream = aPPAgendaSuperEAfiliadoSupabaseUserStream()
       ..listen((user) {
         _appStateNotifier.update(user);
       });
@@ -104,7 +103,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      title: 'Agenda Super - Admin',
+      title: 'APP Afiliado',
       scrollBehavior: MyAppScrollBehavior(),
       localizationsDelegates: [
         FFLocalizationsDelegate(),

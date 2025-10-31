@@ -16,8 +16,8 @@ class ViewTblEstabelecimentosAdminRow extends SupabaseDataRow {
   @override
   SupabaseTable get table => ViewTblEstabelecimentosAdminTable();
 
-  int? get id => getField<int>('id');
-  set id(int? value) => setField<int>('id', value);
+  String? get id => getField<String>('id');
+  set id(String? value) => setField<String>('id', value);
 
   DateTime? get dataCadastro => getField<DateTime>('data_cadastro');
   set dataCadastro(DateTime? value) =>
@@ -25,6 +25,10 @@ class ViewTblEstabelecimentosAdminRow extends SupabaseDataRow {
 
   String? get nome => getField<String>('nome');
   set nome(String? value) => setField<String>('nome', value);
+
+  String? get nomeNormalizado => getField<String>('nome_normalizado');
+  set nomeNormalizado(String? value) =>
+      setField<String>('nome_normalizado', value);
 
   bool? get situacao => getField<bool>('situacao');
   set situacao(bool? value) => setField<bool>('situacao', value);
@@ -97,4 +101,63 @@ class ViewTblEstabelecimentosAdminRow extends SupabaseDataRow {
   int? get quantAgendamentos => getField<int>('quant_agendamentos');
   set quantAgendamentos(int? value) =>
       setField<int>('quant_agendamentos', value);
+
+  DateTime? get dataInicial => getField<DateTime>('data_inicial');
+  set dataInicial(DateTime? value) => setField<DateTime>('data_inicial', value);
+
+  DateTime? get dataFinal => getField<DateTime>('data_final');
+  set dataFinal(DateTime? value) => setField<DateTime>('data_final', value);
+
+  String? get assinatura => getField<String>('assinatura');
+  set assinatura(String? value) => setField<String>('assinatura', value);
+
+  String? get statusAssinatura => getField<String>('status_assinatura');
+  set statusAssinatura(String? value) =>
+      setField<String>('status_assinatura', value);
+
+  String? get statusPagamento => getField<String>('status_pagamento');
+  set statusPagamento(String? value) =>
+      setField<String>('status_pagamento', value);
+
+  String? get nomePlanoPeriodos => getField<String>('nome_plano_periodos');
+  set nomePlanoPeriodos(String? value) =>
+      setField<String>('nome_plano_periodos', value);
+
+  String? get nomePlano => getField<String>('nome_plano');
+  set nomePlano(String? value) => setField<String>('nome_plano', value);
+
+  String? get idPlanoNome => getField<String>('id_plano_nome');
+  set idPlanoNome(String? value) => setField<String>('id_plano_nome', value);
+
+  bool? get contaTeste => getField<bool>('conta_teste');
+  set contaTeste(bool? value) => setField<bool>('conta_teste', value);
+
+  bool? get periodoTeste => getField<bool>('periodo_teste');
+  set periodoTeste(bool? value) => setField<bool>('periodo_teste', value);
+
+  String? get tempoTeste => getField<String>('tempo_teste');
+  set tempoTeste(String? value) => setField<String>('tempo_teste', value);
+
+  DateTime? get assinaturaInicio => getField<DateTime>('assinatura_inicio');
+  set assinaturaInicio(DateTime? value) =>
+      setField<DateTime>('assinatura_inicio', value);
+
+  DateTime? get assinaturaFinal => getField<DateTime>('assinatura_final');
+  set assinaturaFinal(DateTime? value) =>
+      setField<DateTime>('assinatura_final', value);
+
+  String? get statusPlano => getField<String>('status_plano');
+  set statusPlano(String? value) => setField<String>('status_plano', value);
+
+  int? get quantPagamentos => getField<int>('quant_pagamentos');
+  set quantPagamentos(int? value) => setField<int>('quant_pagamentos', value);
+
+  String? get periodoTesteAtivo => getField<String>('periodo_teste_ativo');
+  set periodoTesteAtivo(String? value) =>
+      setField<String>('periodo_teste_ativo', value);
+
+  String? get assinaturaCancSolicitado =>
+      getField<String>('assinatura_canc_solicitado');
+  set assinaturaCancSolicitado(String? value) =>
+      setField<String>('assinatura_canc_solicitado', value);
 }

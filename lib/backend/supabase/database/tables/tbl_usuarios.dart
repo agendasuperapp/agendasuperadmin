@@ -34,8 +34,8 @@ class TblUsuariosRow extends SupabaseDataRow {
   String get telefone => getField<String>('telefone')!;
   set telefone(String value) => setField<String>('telefone', value);
 
-  bool? get telefoneVerificado => getField<bool>('telefone_verificado');
-  set telefoneVerificado(bool? value) =>
+  bool get telefoneVerificado => getField<bool>('telefone_verificado')!;
+  set telefoneVerificado(bool value) =>
       setField<bool>('telefone_verificado', value);
 
   DateTime? get dataVerificacaoTelefone =>
@@ -46,8 +46,8 @@ class TblUsuariosRow extends SupabaseDataRow {
   String get email => getField<String>('email')!;
   set email(String value) => setField<String>('email', value);
 
-  bool? get emailVerificado => getField<bool>('email_verificado');
-  set emailVerificado(bool? value) => setField<bool>('email_verificado', value);
+  bool get emailVerificado => getField<bool>('email_verificado')!;
+  set emailVerificado(bool value) => setField<bool>('email_verificado', value);
 
   DateTime? get dataVerificacaoEmail =>
       getField<DateTime>('data_verificacao_email');
@@ -57,11 +57,11 @@ class TblUsuariosRow extends SupabaseDataRow {
   bool? get situacao => getField<bool>('situacao');
   set situacao(bool? value) => setField<bool>('situacao', value);
 
-  bool? get bloqueado => getField<bool>('bloqueado');
-  set bloqueado(bool? value) => setField<bool>('bloqueado', value);
+  bool get bloqueado => getField<bool>('bloqueado')!;
+  set bloqueado(bool value) => setField<bool>('bloqueado', value);
 
-  DateTime? get dataSenha => getField<DateTime>('data_senha');
-  set dataSenha(DateTime? value) => setField<DateTime>('data_senha', value);
+  DateTime get dataSenha => getField<DateTime>('data_senha')!;
+  set dataSenha(DateTime value) => setField<DateTime>('data_senha', value);
 
   String? get fotoPerfil => getField<String>('foto_perfil');
   set fotoPerfil(String? value) => setField<String>('foto_perfil', value);
@@ -69,9 +69,9 @@ class TblUsuariosRow extends SupabaseDataRow {
   int get idTipoUsuario => getField<int>('id_tipo_usuario')!;
   set idTipoUsuario(int value) => setField<int>('id_tipo_usuario', value);
 
-  bool? get adminLoja => getField<bool>('admin_loja');
-  set adminLoja(bool? value) => setField<bool>('admin_loja', value);
+  bool get adminLoja => getField<bool>('admin_loja')!;
+  set adminLoja(bool value) => setField<bool>('admin_loja', value);
 
-  bool? get adminSistema => getField<bool>('admin_sistema');
-  set adminSistema(bool? value) => setField<bool>('admin_sistema', value);
+  bool get adminSistema => getField<bool>('admin_sistema')!;
+  set adminSistema(bool value) => setField<bool>('admin_sistema', value);
 }

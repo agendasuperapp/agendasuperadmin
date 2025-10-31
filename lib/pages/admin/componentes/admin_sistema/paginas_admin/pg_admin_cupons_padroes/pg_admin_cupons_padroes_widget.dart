@@ -157,7 +157,8 @@ class _PgAdminCuponsPadroesWidgetState
                                 padding: EdgeInsets.all(8.0),
                                 child: Icon(
                                   Icons.menu,
-                                  color: FlutterFlowTheme.of(context).info,
+                                  color: FlutterFlowTheme.of(context)
+                                      .colorIconMenu,
                                   size: 24.0,
                                 ),
                               ),
@@ -196,13 +197,14 @@ class _PgAdminCuponsPadroesWidgetState
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Flexible(
-                            child: wrapWithModel(
-                              model: _model.cpAdminCuponsPadroesModel,
-                              updateCallback: () => safeSetState(() {}),
-                              child: CpAdminCuponsPadroesWidget(),
+                          if (FFAppState().varTblUsuarios.adminSistema == true)
+                            Flexible(
+                              child: wrapWithModel(
+                                model: _model.cpAdminCuponsPadroesModel,
+                                updateCallback: () => safeSetState(() {}),
+                                child: CpAdminCuponsPadroesWidget(),
+                              ),
                             ),
-                          ),
                         ],
                       ),
                     ),

@@ -14,6 +14,7 @@ export 'tbl_horarios_disponiveis_struct.dart';
 export 'tbl_horarios_disponiveis_profissional_struct.dart';
 export 'tbl_modelos_banners_x_tfv1c8_struct.dart';
 export 'tbl_modelos_servicos_tbc8_ba_b5_struct.dart';
+export 'tbl_one_signal_options_xve_sve1az_struct.dart';
 export 'tbl_planos_periodos_x_tfe_z1c_struct.dart';
 export 'tbl_planos_d_xve3y_n_struct.dart';
 export 'tbl_profissional_serv_lib_struct.dart';

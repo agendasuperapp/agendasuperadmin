@@ -2,7 +2,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/admin/a_sistema/home/cp_cabecalho_pagina/cp_cabecalho_pagina_widget.dart';
 import '/pages/admin/a_sistema/home/cp_menu_lateral/cp_menu_lateral_widget.dart';
-import '/pages/admin/componentes/admin_sistema/cp_admin/cp_planos/cp_planos_widget.dart';
+import '/pages/admin/componentes/admin_sistema/cp_admin/cp_cad_planos/cp_cad_planos_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -155,7 +155,8 @@ class _PgPlanosWidgetState extends State<PgPlanosWidget> {
                                 padding: EdgeInsets.all(8.0),
                                 child: Icon(
                                   Icons.menu,
-                                  color: FlutterFlowTheme.of(context).info,
+                                  color: FlutterFlowTheme.of(context)
+                                      .colorIconMenu,
                                   size: 24.0,
                                 ),
                               ),
@@ -194,13 +195,14 @@ class _PgPlanosWidgetState extends State<PgPlanosWidget> {
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Flexible(
-                            child: wrapWithModel(
-                              model: _model.cpPlanosModel,
-                              updateCallback: () => safeSetState(() {}),
-                              child: CpPlanosWidget(),
+                          if (FFAppState().varTblUsuarios.adminSistema == true)
+                            Flexible(
+                              child: wrapWithModel(
+                                model: _model.cpCadPlanosModel,
+                                updateCallback: () => safeSetState(() {}),
+                                child: CpCadPlanosWidget(),
+                              ),
                             ),
-                          ),
                         ],
                       ),
                     ),

@@ -1,6 +1,7 @@
 import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/admin/a_sistema/home/cp_cabecalho_pagina/cp_cabecalho_pagina_widget.dart';
 import '/pages/admin/a_sistema/home/cp_menu_lateral/cp_menu_lateral_widget.dart';
+import '/pages/admin/a_sistema/home/cp_rodape/cp_rodape_widget.dart';
 import '/pages/admin/componentes/afiliado/c_p_afiliados/cp_afiliado_indicacoes/cp_afiliado_indicacoes_widget.dart';
 import 'pg_afiliado_indicacoes_widget.dart' show PgAfiliadoIndicacoesWidget;
 import 'package:flutter/material.dart';
@@ -12,27 +13,27 @@ class PgAfiliadoIndicacoesModel
   // Model for cp_cabecalho_pagina component.
   late CpCabecalhoPaginaModel cpCabecalhoPaginaModel;
   // Model for cp_menu_lateral component.
-  late CpMenuLateralModel cpMenuLateralModel1;
+  late CpMenuLateralModel cpMenuLateralModel;
   // Model for cp_afiliado_indicacoes component.
   late CpAfiliadoIndicacoesModel cpAfiliadoIndicacoesModel;
-  // Model for cp_menu_lateral component.
-  late CpMenuLateralModel cpMenuLateralModel2;
+  // Model for cp_rodape component.
+  late CpRodapeModel cpRodapeModel;
 
   @override
   void initState(BuildContext context) {
     cpCabecalhoPaginaModel =
         createModel(context, () => CpCabecalhoPaginaModel());
-    cpMenuLateralModel1 = createModel(context, () => CpMenuLateralModel());
+    cpMenuLateralModel = createModel(context, () => CpMenuLateralModel());
     cpAfiliadoIndicacoesModel =
         createModel(context, () => CpAfiliadoIndicacoesModel());
-    cpMenuLateralModel2 = createModel(context, () => CpMenuLateralModel());
+    cpRodapeModel = createModel(context, () => CpRodapeModel());
   }
 
   @override
   void dispose() {
     cpCabecalhoPaginaModel.dispose();
-    cpMenuLateralModel1.dispose();
+    cpMenuLateralModel.dispose();
     cpAfiliadoIndicacoesModel.dispose();
-    cpMenuLateralModel2.dispose();
+    cpRodapeModel.dispose();
   }
 }

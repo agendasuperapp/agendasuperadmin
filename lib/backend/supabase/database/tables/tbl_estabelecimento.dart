@@ -69,16 +69,16 @@ class TblEstabelecimentoRow extends SupabaseDataRow {
   String? get email => getField<String>('email');
   set email(String? value) => setField<String>('email', value);
 
-  bool? get emailVerificado => getField<bool>('email_verificado');
-  set emailVerificado(bool? value) => setField<bool>('email_verificado', value);
+  bool get emailVerificado => getField<bool>('email_verificado')!;
+  set emailVerificado(bool value) => setField<bool>('email_verificado', value);
 
   DateTime? get dataVerificacaoEmail =>
       getField<DateTime>('data_verificacao_email');
   set dataVerificacaoEmail(DateTime? value) =>
       setField<DateTime>('data_verificacao_email', value);
 
-  bool? get telefoneVerificado => getField<bool>('telefone_verificado');
-  set telefoneVerificado(bool? value) =>
+  bool get telefoneVerificado => getField<bool>('telefone_verificado')!;
+  set telefoneVerificado(bool value) =>
       setField<bool>('telefone_verificado', value);
 
   DateTime? get dataVerificacaoTelefone =>
@@ -145,8 +145,8 @@ class TblEstabelecimentoRow extends SupabaseDataRow {
   String? get textoBanner => getField<String>('texto_banner');
   set textoBanner(String? value) => setField<String>('texto_banner', value);
 
-  int? get idModeloBanner => getField<int>('id_modelo_banner');
-  set idModeloBanner(int? value) => setField<int>('id_modelo_banner', value);
+  int get idModeloBanner => getField<int>('id_modelo_banner')!;
+  set idModeloBanner(int value) => setField<int>('id_modelo_banner', value);
 
   String? get tipoBanner => getField<String>('tipo_banner');
   set tipoBanner(String? value) => setField<String>('tipo_banner', value);
@@ -237,34 +237,34 @@ class TblEstabelecimentoRow extends SupabaseDataRow {
   set idAfiliadoIndicador(int value) =>
       setField<int>('id_afiliado_indicador', value);
 
-  DateTime? get dataUltimaAtualizacao =>
-      getField<DateTime>('data_ultima_atualizacao');
-  set dataUltimaAtualizacao(DateTime? value) =>
+  DateTime get dataUltimaAtualizacao =>
+      getField<DateTime>('data_ultima_atualizacao')!;
+  set dataUltimaAtualizacao(DateTime value) =>
       setField<DateTime>('data_ultima_atualizacao', value);
 
-  DateTime? get dataUltimaAtualizacaoServicos =>
-      getField<DateTime>('data_ultima_atualizacao_servicos');
-  set dataUltimaAtualizacaoServicos(DateTime? value) =>
+  DateTime get dataUltimaAtualizacaoServicos =>
+      getField<DateTime>('data_ultima_atualizacao_servicos')!;
+  set dataUltimaAtualizacaoServicos(DateTime value) =>
       setField<DateTime>('data_ultima_atualizacao_servicos', value);
 
-  DateTime? get dataUltimaAtualizacaoBanners =>
-      getField<DateTime>('data_ultima_atualizacao_banners');
-  set dataUltimaAtualizacaoBanners(DateTime? value) =>
+  DateTime get dataUltimaAtualizacaoBanners =>
+      getField<DateTime>('data_ultima_atualizacao_banners')!;
+  set dataUltimaAtualizacaoBanners(DateTime value) =>
       setField<DateTime>('data_ultima_atualizacao_banners', value);
 
-  DateTime? get dataUltimaAtualizacaoProfissionais =>
-      getField<DateTime>('data_ultima_atualizacao_profissionais');
-  set dataUltimaAtualizacaoProfissionais(DateTime? value) =>
+  DateTime get dataUltimaAtualizacaoProfissionais =>
+      getField<DateTime>('data_ultima_atualizacao_profissionais')!;
+  set dataUltimaAtualizacaoProfissionais(DateTime value) =>
       setField<DateTime>('data_ultima_atualizacao_profissionais', value);
 
-  DateTime? get dataUltimaAtualizacaoHrFunc =>
-      getField<DateTime>('data_ultima_atualizacao_hr_func');
-  set dataUltimaAtualizacaoHrFunc(DateTime? value) =>
+  DateTime get dataUltimaAtualizacaoHrFunc =>
+      getField<DateTime>('data_ultima_atualizacao_hr_func')!;
+  set dataUltimaAtualizacaoHrFunc(DateTime value) =>
       setField<DateTime>('data_ultima_atualizacao_hr_func', value);
 
-  DateTime? get dataUltimaAtualizacaoAgend =>
-      getField<DateTime>('data_ultima_atualizacao_agend');
-  set dataUltimaAtualizacaoAgend(DateTime? value) =>
+  DateTime get dataUltimaAtualizacaoAgend =>
+      getField<DateTime>('data_ultima_atualizacao_agend')!;
+  set dataUltimaAtualizacaoAgend(DateTime value) =>
       setField<DateTime>('data_ultima_atualizacao_agend', value);
 
   String get userIdAfiliadoIndicador =>
@@ -306,4 +306,7 @@ class TblEstabelecimentoRow extends SupabaseDataRow {
       getField<bool>('assistente_cad_concluido');
   set assistenteCadConcluido(bool? value) =>
       setField<bool>('assistente_cad_concluido', value);
+
+  bool get excluido => getField<bool>('excluido')!;
+  set excluido(bool value) => setField<bool>('excluido', value);
 }

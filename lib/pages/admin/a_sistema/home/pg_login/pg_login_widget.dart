@@ -2,21 +2,21 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/admin/a_sistema/home/cp_login/cp_login_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'pg_login_model.dart';
 export 'pg_login_model.dart';
 
 class PgLoginWidget extends StatefulWidget {
   const PgLoginWidget({
     super.key,
-    String? tp,
-    required this.hm,
-  }) : this.tp = tp ?? 'login';
+    this.email,
+  });
 
-  final String tp;
-  final bool? hm;
+  final String? email;
 
   static String routeName = 'pg_login';
-  static String routePath = '/admin/login';
+  static String routePath = '/login';
 
   @override
   State<PgLoginWidget> createState() => _PgLoginWidgetState();
@@ -31,6 +31,31 @@ class _PgLoginWidgetState extends State<PgLoginWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => PgLoginModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      await showModalBottomSheet(
+        isScrollControlled: true,
+        backgroundColor: Colors.transparent,
+        isDismissible: false,
+        enableDrag: false,
+        context: context,
+        builder: (context) {
+          return WebViewAware(
+            child: GestureDetector(
+              onTap: () {
+                FocusScope.of(context).unfocus();
+                FocusManager.instance.primaryFocus?.unfocus();
+              },
+              child: Padding(
+                padding: MediaQuery.viewInsetsOf(context),
+                child: CpLoginWidget(),
+              ),
+            ),
+          );
+        },
+      ).then((value) => safeSetState(() {}));
+    });
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -52,17 +77,6 @@ class _PgLoginWidgetState extends State<PgLoginWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-        body: SafeArea(
-          top: true,
-          child: wrapWithModel(
-            model: _model.cpLoginModel,
-            updateCallback: () => safeSetState(() {}),
-            child: CpLoginWidget(
-              tp: widget.tp,
-              hm: true,
-            ),
-          ),
-        ),
       ),
     );
   }

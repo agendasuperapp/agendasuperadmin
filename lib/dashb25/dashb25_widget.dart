@@ -3020,7 +3020,6 @@ class _Dashb25WidgetState extends State<Dashb25Widget>
                                                 text: 'Add New',
                                                 icon: Icon(
                                                   Icons.add_rounded,
-                                                  color: Colors.white,
                                                   size: 15.0,
                                                 ),
                                                 options: FFButtonOptions(
@@ -3032,6 +3031,7 @@ class _Dashb25WidgetState extends State<Dashb25Widget>
                                                       EdgeInsetsDirectional
                                                           .fromSTEB(0.0, 0.0,
                                                               0.0, 0.0),
+                                                  iconColor: Colors.white,
                                                   color: Color(0xFF6F61EF),
                                                   textStyle: FlutterFlowTheme
                                                           .of(context)
@@ -5610,7 +5610,6 @@ class _Dashb25WidgetState extends State<Dashb25Widget>
                                           text: 'Add New',
                                           icon: Icon(
                                             Icons.add_rounded,
-                                            color: Colors.white,
                                             size: 15.0,
                                           ),
                                           options: FFButtonOptions(
@@ -5621,6 +5620,7 @@ class _Dashb25WidgetState extends State<Dashb25Widget>
                                             iconPadding:
                                                 EdgeInsetsDirectional.fromSTEB(
                                                     0.0, 0.0, 0.0, 0.0),
+                                            iconColor: Colors.white,
                                             color: Color(0xFF6F61EF),
                                             textStyle: FlutterFlowTheme.of(
                                                     context)

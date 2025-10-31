@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/pages/admin/a_sistema/home/cp_cabecalho_pagina/cp_cabecalho_pagina_widget.dart';
 import '/pages/admin/a_sistema/home/cp_menu_lateral/cp_menu_lateral_widget.dart';
+import '/pages/admin/a_sistema/home/cp_rodape/cp_rodape_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/index.dart';
 import 'package:flutter/material.dart';
@@ -63,239 +64,207 @@ class _PgAfiliadoTreinamentoWidgetState
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        drawer: Container(
-          width: valueOrDefault<double>(
-            FFAppState().varLayoutTamanhoMenuLateral.toDouble(),
-            225.0,
-          ),
-          child: Drawer(
-            elevation: 16.0,
-            child: WebViewAware(
-              child: Stack(
+        body: SafeArea(
+          top: true,
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisSize: MainAxisSize.max,
                 children: [
-                  wrapWithModel(
-                    model: _model.cpMenuLateralModel2,
-                    updateCallback: () => safeSetState(() {}),
-                    child: CpMenuLateralWidget(
-                      paramBotaoSelecionado: 'AFILIADO_TREINAMENTO',
-                      paramGrupoBotao: 'AFILIADO',
-                      paramElpacamentoTop: true,
-                    ),
-                  ),
-                  Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 12.0, 0.0),
-                    child: InkWell(
-                      splashColor: Colors.transparent,
-                      focusColor: Colors.transparent,
-                      hoverColor: Colors.transparent,
-                      highlightColor: Colors.transparent,
-                      onTap: () async {
-                        if (scaffoldKey.currentState!.isDrawerOpen ||
-                            scaffoldKey.currentState!.isEndDrawerOpen) {
-                          Navigator.pop(context);
-                        }
-                      },
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Icon(
-                            Icons.close,
-                            color: FlutterFlowTheme.of(context)
-                                .customTextoMenuLateral,
-                            size: 24.0,
-                          ),
-                        ],
+                  Stack(
+                    alignment: AlignmentDirectional(-1.0, -1.0),
+                    children: [
+                      wrapWithModel(
+                        model: _model.cpCabecalhoPaginaModel,
+                        updateCallback: () => safeSetState(() {}),
+                        child: CpCabecalhoPaginaWidget(),
                       ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-        body: Column(
-          mainAxisSize: MainAxisSize.max,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Stack(
-                  alignment: AlignmentDirectional(-1.0, -1.0),
-                  children: [
-                    wrapWithModel(
-                      model: _model.cpCabecalhoPaginaModel,
-                      updateCallback: () => safeSetState(() {}),
-                      child: CpCabecalhoPaginaWidget(),
-                    ),
-                    if (MediaQuery.sizeOf(context).width <
-                        FFAppState().varTamanhoMinimoTelaMenuLateral.toDouble())
-                      Align(
-                        alignment: AlignmentDirectional(0.0, 0.0),
-                        child: Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0,
-                              valueOrDefault<double>(
-                                isAndroid || FFAppState().VarEmDesenvolvimento
-                                    ? 50.0
-                                    : 0.0,
+                      if ((MediaQuery.sizeOf(context).width <
+                              FFAppState()
+                                  .varTamanhoMinimoTelaMenuLateral
+                                  .toDouble()) &&
+                          responsiveVisibility(
+                            context: context,
+                            phone: false,
+                            tablet: false,
+                            tabletLandscape: false,
+                            desktop: false,
+                          ))
+                        Align(
+                          alignment: AlignmentDirectional(0.0, 0.0),
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0,
-                              ),
-                              0.0,
-                              0.0),
-                          child: InkWell(
-                            splashColor: Colors.transparent,
-                            focusColor: Colors.transparent,
-                            hoverColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            onTap: () async {
-                              scaffoldKey.currentState!.openDrawer();
-                            },
-                            child: Container(
-                              height: 60.0,
-                              decoration: BoxDecoration(),
-                              alignment: AlignmentDirectional(0.0, 0.0),
-                              child: Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: Icon(
-                                  Icons.menu,
-                                  color: FlutterFlowTheme.of(context).info,
-                                  size: 24.0,
+                                valueOrDefault<double>(
+                                  isAndroid || FFAppState().VarEmDesenvolvimento
+                                      ? 50.0
+                                      : 0.0,
+                                  0.0,
+                                ),
+                                0.0,
+                                0.0),
+                            child: InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                scaffoldKey.currentState!.openDrawer();
+                              },
+                              child: Container(
+                                height: 60.0,
+                                decoration: BoxDecoration(),
+                                alignment: AlignmentDirectional(0.0, 0.0),
+                                child: Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: Icon(
+                                    Icons.menu,
+                                    color: FlutterFlowTheme.of(context)
+                                        .colorIconMenu,
+                                    size: 24.0,
+                                  ),
                                 ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                  ],
-                ),
-              ],
-            ),
-            Flexible(
-              child: Align(
-                alignment: AlignmentDirectional(-1.0, 0.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    if ((MediaQuery.sizeOf(context).width >
-                            FFAppState()
-                                .varTamanhoMinimoTelaMenuLateral
-                                .toDouble()) &&
-                        responsiveVisibility(
-                          context: context,
-                          phone: false,
-                        ))
-                      wrapWithModel(
-                        model: _model.cpMenuLateralModel1,
-                        updateCallback: () => safeSetState(() {}),
-                        child: CpMenuLateralWidget(
-                          paramBotaoSelecionado: 'AFILIADO_TREINAMENTO',
-                          paramGrupoBotao: 'AFILIADO',
-                          paramElpacamentoTop: false,
-                        ),
-                      ),
-                    Expanded(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
-                          image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: Image.network(
-                              Theme.of(context).brightness == Brightness.dark
-                                  ? 'SEM FOTO USAR COR CONTAINER'
-                                  : FFAppState()
-                                      .VarTblEstabelecimentoLogado
-                                      .fotoLightMode,
-                            ).image,
+                    ],
+                  ),
+                ],
+              ),
+              Flexible(
+                child: Align(
+                  alignment: AlignmentDirectional(-1.0, 0.0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      if ((MediaQuery.sizeOf(context).width >
+                              FFAppState()
+                                  .varTamanhoMinimoTelaMenuLateral
+                                  .toDouble()) &&
+                          responsiveVisibility(
+                            context: context,
+                            phone: false,
+                          ))
+                        wrapWithModel(
+                          model: _model.cpMenuLateralModel,
+                          updateCallback: () => safeSetState(() {}),
+                          child: CpMenuLateralWidget(
+                            paramBotaoSelecionado: 'AFILIADO_TREINAMENTO',
+                            paramGrupoBotao: 'AFILIADO',
+                            paramElpacamentoTop: false,
                           ),
                         ),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  12.0, 20.0, 12.0, 0.0),
-                              child: Text(
-                                'TREINAMENTO\nDE \nAFILIADOS',
-                                textAlign: TextAlign.center,
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      font: GoogleFonts.readexPro(
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [
+                                FlutterFlowTheme.of(context).colorGradPage1,
+                                FlutterFlowTheme.of(context).colorGradPage2
+                              ],
+                              stops: [0.0, 1.0],
+                              begin: AlignmentDirectional(0.0, -1.0),
+                              end: AlignmentDirectional(0, 1.0),
+                            ),
+                          ),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    12.0, 20.0, 12.0, 0.0),
+                                child: Text(
+                                  'TREINAMENTO\nDE \nAFILIADOS',
+                                  textAlign: TextAlign.center,
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        font: GoogleFonts.readexPro(
+                                          fontWeight: FontWeight.w600,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontStyle,
+                                        ),
+                                        fontSize: 30.0,
+                                        letterSpacing: 0.0,
                                         fontWeight: FontWeight.w600,
                                         fontStyle: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .fontStyle,
                                       ),
-                                      fontSize: 30.0,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w600,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontStyle,
-                                    ),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 20.0, 0.0, 0.0),
-                              child: FFButtonWidget(
-                                onPressed: () async {
-                                  await TblAfiliadosTable().update(
-                                    data: {
-                                      'status_afiliacao': 'ATIVA',
-                                    },
-                                    matchingRows: (rows) => rows.eqOrNull(
-                                      'id',
-                                      FFAppState().varIDAfiliadoLogado,
-                                    ),
-                                  );
-                                  await action_blocks
-                                      .acAtualizarAfiliadoCad(context);
-                                  await showDialog(
-                                    context: context,
-                                    builder: (alertDialogContext) {
-                                      return WebViewAware(
-                                        child: AlertDialog(
-                                          title: Text('Atenção!'),
-                                          content: Text(
-                                              'Seu treinamento foi concluído com sucesso, agora seu painel de afiliado está liberado.'),
-                                          actions: [
-                                            TextButton(
-                                              onPressed: () => Navigator.pop(
-                                                  alertDialogContext),
-                                              child: Text('Ok'),
-                                            ),
-                                          ],
-                                        ),
-                                      );
-                                    },
-                                  );
-                                  context.pop();
-
-                                  context.pushNamed(
-                                      PgAfiliadoDashboardWidget.routeName);
-                                },
-                                text: 'Treinamento Concluído',
-                                icon: Icon(
-                                  Icons.check,
-                                  size: 15.0,
                                 ),
-                                options: FFButtonOptions(
-                                  height: 40.0,
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      16.0, 0.0, 16.0, 0.0),
-                                  iconPadding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 0.0),
-                                  color: FlutterFlowTheme.of(context).primary,
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .override(
-                                        font: GoogleFonts.readexPro(
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 20.0, 0.0, 0.0),
+                                child: FFButtonWidget(
+                                  onPressed: () async {
+                                    await TblAfiliadosTable().update(
+                                      data: {
+                                        'status_afiliacao': 'ATIVA',
+                                      },
+                                      matchingRows: (rows) => rows.eqOrNull(
+                                        'id',
+                                        FFAppState().varIDAfiliadoLogado,
+                                      ),
+                                    );
+                                    await action_blocks
+                                        .acAtualizarAfiliadoCad(context);
+                                    await showDialog(
+                                      context: context,
+                                      builder: (alertDialogContext) {
+                                        return WebViewAware(
+                                          child: AlertDialog(
+                                            title: Text('Atenção!'),
+                                            content: Text(
+                                                'Seu treinamento foi concluído com sucesso, agora seu painel de afiliado está liberado.'),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext),
+                                                child: Text('Ok'),
+                                              ),
+                                            ],
+                                          ),
+                                        );
+                                      },
+                                    );
+
+                                    context
+                                        .pushNamed(PgDashboardWidget.routeName);
+                                  },
+                                  text: 'Treinamento Concluído',
+                                  icon: Icon(
+                                    Icons.check,
+                                    size: 15.0,
+                                  ),
+                                  options: FFButtonOptions(
+                                    height: 40.0,
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        16.0, 0.0, 16.0, 0.0),
+                                    iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                        0.0, 0.0, 0.0, 0.0),
+                                    color: FlutterFlowTheme.of(context).primary,
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .titleSmall
+                                        .override(
+                                          font: GoogleFonts.readexPro(
+                                            fontWeight:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleSmall
+                                                    .fontWeight,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .titleSmall
+                                                    .fontStyle,
+                                          ),
+                                          color: Colors.white,
+                                          letterSpacing: 0.0,
                                           fontWeight:
                                               FlutterFlowTheme.of(context)
                                                   .titleSmall
@@ -305,29 +274,30 @@ class _PgAfiliadoTreinamentoWidgetState
                                                   .titleSmall
                                                   .fontStyle,
                                         ),
-                                        color: Colors.white,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FlutterFlowTheme.of(context)
-                                            .titleSmall
-                                            .fontWeight,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .titleSmall
-                                            .fontStyle,
-                                      ),
-                                  elevation: 0.0,
-                                  borderRadius: BorderRadius.circular(8.0),
+                                    elevation: 0.0,
+                                    borderRadius: BorderRadius.circular(8.0),
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+              if (MediaQuery.sizeOf(context).width <=
+                  FFAppState().varTamanhoMinimoTelaMenuLateral.toDouble())
+                wrapWithModel(
+                  model: _model.cpRodapeModel,
+                  updateCallback: () => safeSetState(() {}),
+                  child: CpRodapeWidget(
+                    paramBotaoSelecionado: 'AFILIADO_TREINAMENTO',
+                  ),
+                ),
+            ],
+          ),
         ),
       ),
     );

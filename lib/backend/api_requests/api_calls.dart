@@ -914,7 +914,8 @@ class RestartInstanceCall {
 
 class SupabaseGroup {
   static String getBaseUrl({
-    String? token = '',
+    String? token =
+        'eyJhbGciOiJIUzI1NiIsImtpZCI6IkZLdFM5emVrUExJOUxSMkQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2h6bWl4dXZybnpweXByaWFnZWN2LnN1cGFiYXNlLmNvL2F1dGgvdjEiLCJzdWIiOiIxYTM5ZDFlNS0wMGM1LTRkZDYtYjRhNy0zOTA2YzBjMzNkZGUiLCJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNzUyNjkxNjEyLCJpYXQiOjE3NTI2ODgwMTIsImVtYWlsIjoiaGVyc29hcmVzMTJAZ21haWwuY29tIiwicGhvbmUiOiIiLCJhcHBfbWV0YWRhdGEiOnsicHJvdmlkZXIiOiJlbWFpbCIsInByb3ZpZGVycyI6WyJlbWFpbCIsImdvb2dsZSJdfSwidXNlcl9tZXRhZGF0YSI6eyJhdmF0YXJfdXJsIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jS1g1YjVZaElvWHA4NVNudWVUWDFId3JSeXRaWHNtVVM5cm5lRklrR010T1B6MUs4RktzZz1zOTYtYyIsImVtYWlsIjoiaGVyc29hcmVzMTJAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZ1bGxfbmFtZSI6Ikhlcm9uIFNvYXJlcyIsImlzcyI6Imh0dHBzOi8vYWNjb3VudHMuZ29vZ2xlLmNvbSIsIm5hbWUiOiJIZXJvbiBTb2FyZXMiLCJwaG9uZV92ZXJpZmllZCI6ZmFsc2UsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NLWDViNVloSW9YcDg1U251ZVRYMUh3clJ5dFpYc21VUzlybmVGSWtHTXRPUHoxSzhGS3NnPXM5Ni1jIiwicHJvdmlkZXJfaWQiOiIxMDYyNDQwNDg3MjI3NjY3MzU0MDciLCJzdWIiOiIxMDYyNDQwNDg3MjI3NjY3MzU0MDcifSwicm9sZSI6ImF1dGhlbnRpY2F0ZWQiLCJhYWwiOiJhYWwxIiwiYW1yIjpbeyJtZXRob2QiOiJwYXNzd29yZCIsInRpbWVzdGFtcCI6MTc1MjY4ODAxMn1dLCJzZXNzaW9uX2lkIjoiYjUxZWU1NWEtNWFiMi00ZDg2LWI1MGEtYzU0NzJkOGMzNjg3IiwiaXNfYW5vbnltb3VzIjpmYWxzZX0.k0sC9IvKbsDcPaclcXTo5suj6_WfKKIEpdM9RPzDb2E',
   }) =>
       'https://hzmixuvrnzpypriagecv.supabase.co';
   static Map<String, String> headers = {
@@ -924,6 +925,10 @@ class SupabaseGroup {
     'Authorization': 'Bearer [token]',
   };
   static UpdateUserCall updateUserCall = UpdateUserCall();
+  static ViewtblestabelecimentosadminCall viewtblestabelecimentosadminCall =
+      ViewtblestabelecimentosadminCall();
+  static ViewtblpagamentosstripelogCall viewtblpagamentosstripelogCall =
+      ViewtblpagamentosstripelogCall();
 }
 
 class UpdateUserCall {
@@ -932,7 +937,8 @@ class UpdateUserCall {
     String? newPassword = '',
     String? value =
         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh6bWl4dXZybnpweXByaWFnZWN2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjQ5NjkzMTQsImV4cCI6MjA0MDU0NTMxNH0.VHtjYivpM8c9RLmKimwRiLgnb8zqGrZ88Q8vpVLZcZ0',
-    String? token = '',
+    String? token =
+        'eyJhbGciOiJIUzI1NiIsImtpZCI6IkZLdFM5emVrUExJOUxSMkQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2h6bWl4dXZybnpweXByaWFnZWN2LnN1cGFiYXNlLmNvL2F1dGgvdjEiLCJzdWIiOiIxYTM5ZDFlNS0wMGM1LTRkZDYtYjRhNy0zOTA2YzBjMzNkZGUiLCJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNzUyNjkxNjEyLCJpYXQiOjE3NTI2ODgwMTIsImVtYWlsIjoiaGVyc29hcmVzMTJAZ21haWwuY29tIiwicGhvbmUiOiIiLCJhcHBfbWV0YWRhdGEiOnsicHJvdmlkZXIiOiJlbWFpbCIsInByb3ZpZGVycyI6WyJlbWFpbCIsImdvb2dsZSJdfSwidXNlcl9tZXRhZGF0YSI6eyJhdmF0YXJfdXJsIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jS1g1YjVZaElvWHA4NVNudWVUWDFId3JSeXRaWHNtVVM5cm5lRklrR010T1B6MUs4RktzZz1zOTYtYyIsImVtYWlsIjoiaGVyc29hcmVzMTJAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZ1bGxfbmFtZSI6Ikhlcm9uIFNvYXJlcyIsImlzcyI6Imh0dHBzOi8vYWNjb3VudHMuZ29vZ2xlLmNvbSIsIm5hbWUiOiJIZXJvbiBTb2FyZXMiLCJwaG9uZV92ZXJpZmllZCI6ZmFsc2UsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NLWDViNVloSW9YcDg1U251ZVRYMUh3clJ5dFpYc21VUzlybmVGSWtHTXRPUHoxSzhGS3NnPXM5Ni1jIiwicHJvdmlkZXJfaWQiOiIxMDYyNDQwNDg3MjI3NjY3MzU0MDciLCJzdWIiOiIxMDYyNDQwNDg3MjI3NjY3MzU0MDcifSwicm9sZSI6ImF1dGhlbnRpY2F0ZWQiLCJhYWwiOiJhYWwxIiwiYW1yIjpbeyJtZXRob2QiOiJwYXNzd29yZCIsInRpbWVzdGFtcCI6MTc1MjY4ODAxMn1dLCJzZXNzaW9uX2lkIjoiYjUxZWU1NWEtNWFiMi00ZDg2LWI1MGEtYzU0NzJkOGMzNjg3IiwiaXNfYW5vbnltb3VzIjpmYWxzZX0.k0sC9IvKbsDcPaclcXTo5suj6_WfKKIEpdM9RPzDb2E',
   }) async {
     final baseUrl = SupabaseGroup.getBaseUrl(
       token: token,
@@ -964,6 +970,122 @@ class UpdateUserCall {
       alwaysAllowBody: false,
     );
   }
+}
+
+class ViewtblestabelecimentosadminCall {
+  Future<ApiCallResponse> call({
+    String? situacao = '',
+    String? assinatura = '',
+    String? contaTeste = '',
+    String? idPlanoNome = '',
+    String? statusPlano = '',
+    String? statusPagamento = '',
+    String? rangeInicial = '',
+    String? rangeFinal = '',
+    String? orderby = 'id',
+    String? ascdesc = 'desc',
+    String? consulta = '',
+    String? assinaturaCancSolicitado = '',
+    String? statusAssinatura = '',
+    String? periodoTesteAtivo = '',
+    String? token =
+        'eyJhbGciOiJIUzI1NiIsImtpZCI6IkZLdFM5emVrUExJOUxSMkQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2h6bWl4dXZybnpweXByaWFnZWN2LnN1cGFiYXNlLmNvL2F1dGgvdjEiLCJzdWIiOiIxYTM5ZDFlNS0wMGM1LTRkZDYtYjRhNy0zOTA2YzBjMzNkZGUiLCJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNzUyNjkxNjEyLCJpYXQiOjE3NTI2ODgwMTIsImVtYWlsIjoiaGVyc29hcmVzMTJAZ21haWwuY29tIiwicGhvbmUiOiIiLCJhcHBfbWV0YWRhdGEiOnsicHJvdmlkZXIiOiJlbWFpbCIsInByb3ZpZGVycyI6WyJlbWFpbCIsImdvb2dsZSJdfSwidXNlcl9tZXRhZGF0YSI6eyJhdmF0YXJfdXJsIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jS1g1YjVZaElvWHA4NVNudWVUWDFId3JSeXRaWHNtVVM5cm5lRklrR010T1B6MUs4RktzZz1zOTYtYyIsImVtYWlsIjoiaGVyc29hcmVzMTJAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZ1bGxfbmFtZSI6Ikhlcm9uIFNvYXJlcyIsImlzcyI6Imh0dHBzOi8vYWNjb3VudHMuZ29vZ2xlLmNvbSIsIm5hbWUiOiJIZXJvbiBTb2FyZXMiLCJwaG9uZV92ZXJpZmllZCI6ZmFsc2UsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NLWDViNVloSW9YcDg1U251ZVRYMUh3clJ5dFpYc21VUzlybmVGSWtHTXRPUHoxSzhGS3NnPXM5Ni1jIiwicHJvdmlkZXJfaWQiOiIxMDYyNDQwNDg3MjI3NjY3MzU0MDciLCJzdWIiOiIxMDYyNDQwNDg3MjI3NjY3MzU0MDcifSwicm9sZSI6ImF1dGhlbnRpY2F0ZWQiLCJhYWwiOiJhYWwxIiwiYW1yIjpbeyJtZXRob2QiOiJwYXNzd29yZCIsInRpbWVzdGFtcCI6MTc1MjY4ODAxMn1dLCJzZXNzaW9uX2lkIjoiYjUxZWU1NWEtNWFiMi00ZDg2LWI1MGEtYzU0NzJkOGMzNjg3IiwiaXNfYW5vbnltb3VzIjpmYWxzZX0.k0sC9IvKbsDcPaclcXTo5suj6_WfKKIEpdM9RPzDb2E',
+  }) async {
+    final baseUrl = SupabaseGroup.getBaseUrl(
+      token: token,
+    );
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'viewtblestabelecimentosadmin',
+      apiUrl:
+          '${baseUrl}/rest/v1/view_tbl_estabelecimentos_admin?&situacao=eq.${situacao}&assinatura=like.${assinatura}*&conta_teste=eq.${contaTeste}&id_plano_nome=like.*${idPlanoNome}&status_plano=like.${statusPlano}*&status_pagamento=like.${statusPagamento}*&or=(nome_normalizado.like.*${consulta}*,id.eq.${consulta})&periodo_teste_ativo=like.${periodoTesteAtivo}*&status_assinatura=like.${statusAssinatura}*&assinatura_canc_solicitado=like.${assinaturaCancSolicitado}*&order=${orderby}.${ascdesc}',
+      callType: ApiCallType.GET,
+      headers: {
+        'apikey':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh6bWl4dXZybnpweXByaWFnZWN2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjQ5NjkzMTQsImV4cCI6MjA0MDU0NTMxNH0.VHtjYivpM8c9RLmKimwRiLgnb8zqGrZ88Q8vpVLZcZ0',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ${token}',
+        'Range-Unit': 'items',
+        'Range': '${rangeInicial}-${rangeFinal}',
+        'Prefer': 'count=exact',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  List<String>? id(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].id''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<String>(x))
+          .withoutNulls
+          .toList();
+}
+
+class ViewtblpagamentosstripelogCall {
+  Future<ApiCallResponse> call({
+    String? idEstabelecimento = '',
+    String? nomeEvento = '',
+    String? rangeInicial = '',
+    String? rangeFinal = '',
+    String? limit = '',
+    String? orderby = 'id',
+    String? ascdesc = 'desc',
+    String? contaTeste = '',
+    String? consulta = '',
+    String? erro = '',
+    String? periodoTeste = '',
+    String? assinaturaCancSolicitado = '',
+    String? semEstabelecimento = '',
+    String? statusAssinatura = '',
+    String? token =
+        'eyJhbGciOiJIUzI1NiIsImtpZCI6IkZLdFM5emVrUExJOUxSMkQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2h6bWl4dXZybnpweXByaWFnZWN2LnN1cGFiYXNlLmNvL2F1dGgvdjEiLCJzdWIiOiIxYTM5ZDFlNS0wMGM1LTRkZDYtYjRhNy0zOTA2YzBjMzNkZGUiLCJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNzUyNjkxNjEyLCJpYXQiOjE3NTI2ODgwMTIsImVtYWlsIjoiaGVyc29hcmVzMTJAZ21haWwuY29tIiwicGhvbmUiOiIiLCJhcHBfbWV0YWRhdGEiOnsicHJvdmlkZXIiOiJlbWFpbCIsInByb3ZpZGVycyI6WyJlbWFpbCIsImdvb2dsZSJdfSwidXNlcl9tZXRhZGF0YSI6eyJhdmF0YXJfdXJsIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jS1g1YjVZaElvWHA4NVNudWVUWDFId3JSeXRaWHNtVVM5cm5lRklrR010T1B6MUs4RktzZz1zOTYtYyIsImVtYWlsIjoiaGVyc29hcmVzMTJAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZ1bGxfbmFtZSI6Ikhlcm9uIFNvYXJlcyIsImlzcyI6Imh0dHBzOi8vYWNjb3VudHMuZ29vZ2xlLmNvbSIsIm5hbWUiOiJIZXJvbiBTb2FyZXMiLCJwaG9uZV92ZXJpZmllZCI6ZmFsc2UsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NLWDViNVloSW9YcDg1U251ZVRYMUh3clJ5dFpYc21VUzlybmVGSWtHTXRPUHoxSzhGS3NnPXM5Ni1jIiwicHJvdmlkZXJfaWQiOiIxMDYyNDQwNDg3MjI3NjY3MzU0MDciLCJzdWIiOiIxMDYyNDQwNDg3MjI3NjY3MzU0MDcifSwicm9sZSI6ImF1dGhlbnRpY2F0ZWQiLCJhYWwiOiJhYWwxIiwiYW1yIjpbeyJtZXRob2QiOiJwYXNzd29yZCIsInRpbWVzdGFtcCI6MTc1MjY4ODAxMn1dLCJzZXNzaW9uX2lkIjoiYjUxZWU1NWEtNWFiMi00ZDg2LWI1MGEtYzU0NzJkOGMzNjg3IiwiaXNfYW5vbnltb3VzIjpmYWxzZX0.k0sC9IvKbsDcPaclcXTo5suj6_WfKKIEpdM9RPzDb2E',
+  }) async {
+    final baseUrl = SupabaseGroup.getBaseUrl(
+      token: token,
+    );
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'viewtblpagamentosstripelog',
+      apiUrl:
+          '${baseUrl}/rest/v1/view_tbl_pagamentos_stripe_log?&id_estabelecimento=like.*${idEstabelecimento}&nome_evento=like.${nomeEvento}*&or=(subscription_id.like.${consulta}*,stripe_id.like.${consulta}*)&conta_teste=eq.${contaTeste}&erro=like.${erro}*&periodo_teste=like.${periodoTeste}*&assinatura_canc_solicitado=like.${assinaturaCancSolicitado}*&sem_estabelecimento=like.${semEstabelecimento}*&status_assinatura=like.${statusAssinatura}*&order=${orderby}.${ascdesc}',
+      callType: ApiCallType.GET,
+      headers: {
+        'apikey':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh6bWl4dXZybnpweXByaWFnZWN2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjQ5NjkzMTQsImV4cCI6MjA0MDU0NTMxNH0.VHtjYivpM8c9RLmKimwRiLgnb8zqGrZ88Q8vpVLZcZ0',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ${token}',
+        'Range-Unit': 'items',
+        'Range': '${rangeInicial}-${rangeFinal}',
+        'Prefer': 'count=exact',
+      },
+      params: {},
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  List<int>? id(dynamic response) => (getJsonField(
+        response,
+        r'''$[:].id''',
+        true,
+      ) as List?)
+          ?.withoutNulls
+          .map((x) => castToType<int>(x))
+          .withoutNulls
+          .toList();
 }
 
 /// End Supabase Group Code
@@ -2439,7 +2561,8 @@ class ObterPagamentoCall {
 
 class EdgeFunctionsSupabaseGroup {
   static String getBaseUrl({
-    String? token = '',
+    String? token =
+        'eyJhbGciOiJIUzI1NiIsImtpZCI6IkZLdFM5emVrUExJOUxSMkQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2h6bWl4dXZybnpweXByaWFnZWN2LnN1cGFiYXNlLmNvL2F1dGgvdjEiLCJzdWIiOiIzNDhiMTk4OS0yNTNhLTQwYzMtYTQxMi1iM2RiYzFkMTc2MDIiLCJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNzU2MTY5OTU3LCJpYXQiOjE3NTYxNjYzNTcsImVtYWlsIjoic2FsYW9pc2FyZXNlbmRpekB0ZXN0ZXguY29tLmJyIiwicGhvbmUiOiIiLCJhcHBfbWV0YWRhdGEiOnsicHJvdmlkZXIiOiJlbWFpbCIsInByb3ZpZGVycyI6WyJlbWFpbCJdfSwidXNlcl9tZXRhZGF0YSI6eyJlbWFpbCI6InNhbGFvaXNhcmVzZW5kaXpAdGVzdGV4LmNvbS5iciIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJwaG9uZV92ZXJpZmllZCI6ZmFsc2UsInN1YiI6IjM0OGIxOTg5LTI1M2EtNDBjMy1hNDEyLWIzZGJjMWQxNzYwMiJ9LCJyb2xlIjoiYXV0aGVudGljYXRlZCIsImFhbCI6ImFhbDEiLCJhbXIiOlt7Im1ldGhvZCI6InBhc3N3b3JkIiwidGltZXN0YW1wIjoxNzU2MTY2MzU2fV0sInNlc3Npb25faWQiOiJkYTg2MTEwMi03ZGNkLTRmNDEtYThiNC1iM2FjMzUwYjZhYmMiLCJpc19hbm9ueW1vdXMiOmZhbHNlfQ.iVBvYphHn_LFOCuZaLhLLN7b-loGnpaTH6Bhno51yzc',
   }) =>
       'https://hzmixuvrnzpypriagecv.supabase.co/functions/v1/';
   static Map<String, String> headers = {
@@ -2449,13 +2572,18 @@ class EdgeFunctionsSupabaseGroup {
   static ConsultarCpfSpbtCall consultarCpfSpbtCall = ConsultarCpfSpbtCall();
   static OnesignalenviarnotificacaoCall onesignalenviarnotificacaoCall =
       OnesignalenviarnotificacaoCall();
+  static StripedesfazcancelassinaturaCall stripedesfazcancelassinaturaCall =
+      StripedesfazcancelassinaturaCall();
+  static StripeportalurlCall stripeportalurlCall = StripeportalurlCall();
+  static ConsultarcpfhubioCall consultarcpfhubioCall = ConsultarcpfhubioCall();
 }
 
 class ConsultarCpfSpbtCall {
   Future<ApiCallResponse> call({
     String? paramDataNascimento = '',
     String? paramCPF = '',
-    String? token = '',
+    String? token =
+        'eyJhbGciOiJIUzI1NiIsImtpZCI6IkZLdFM5emVrUExJOUxSMkQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2h6bWl4dXZybnpweXByaWFnZWN2LnN1cGFiYXNlLmNvL2F1dGgvdjEiLCJzdWIiOiIzNDhiMTk4OS0yNTNhLTQwYzMtYTQxMi1iM2RiYzFkMTc2MDIiLCJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNzU2MTY5OTU3LCJpYXQiOjE3NTYxNjYzNTcsImVtYWlsIjoic2FsYW9pc2FyZXNlbmRpekB0ZXN0ZXguY29tLmJyIiwicGhvbmUiOiIiLCJhcHBfbWV0YWRhdGEiOnsicHJvdmlkZXIiOiJlbWFpbCIsInByb3ZpZGVycyI6WyJlbWFpbCJdfSwidXNlcl9tZXRhZGF0YSI6eyJlbWFpbCI6InNhbGFvaXNhcmVzZW5kaXpAdGVzdGV4LmNvbS5iciIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJwaG9uZV92ZXJpZmllZCI6ZmFsc2UsInN1YiI6IjM0OGIxOTg5LTI1M2EtNDBjMy1hNDEyLWIzZGJjMWQxNzYwMiJ9LCJyb2xlIjoiYXV0aGVudGljYXRlZCIsImFhbCI6ImFhbDEiLCJhbXIiOlt7Im1ldGhvZCI6InBhc3N3b3JkIiwidGltZXN0YW1wIjoxNzU2MTY2MzU2fV0sInNlc3Npb25faWQiOiJkYTg2MTEwMi03ZGNkLTRmNDEtYThiNC1iM2FjMzUwYjZhYmMiLCJpc19hbm9ueW1vdXMiOmZhbHNlfQ.iVBvYphHn_LFOCuZaLhLLN7b-loGnpaTH6Bhno51yzc',
   }) async {
     final baseUrl = EdgeFunctionsSupabaseGroup.getBaseUrl(
       token: token,
@@ -2524,7 +2652,8 @@ class ConsultarCpfSpbtCall {
 class OnesignalenviarnotificacaoCall {
   Future<ApiCallResponse> call({
     int? id,
-    String? token = '',
+    String? token =
+        'eyJhbGciOiJIUzI1NiIsImtpZCI6IkZLdFM5emVrUExJOUxSMkQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2h6bWl4dXZybnpweXByaWFnZWN2LnN1cGFiYXNlLmNvL2F1dGgvdjEiLCJzdWIiOiIzNDhiMTk4OS0yNTNhLTQwYzMtYTQxMi1iM2RiYzFkMTc2MDIiLCJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNzU2MTY5OTU3LCJpYXQiOjE3NTYxNjYzNTcsImVtYWlsIjoic2FsYW9pc2FyZXNlbmRpekB0ZXN0ZXguY29tLmJyIiwicGhvbmUiOiIiLCJhcHBfbWV0YWRhdGEiOnsicHJvdmlkZXIiOiJlbWFpbCIsInByb3ZpZGVycyI6WyJlbWFpbCJdfSwidXNlcl9tZXRhZGF0YSI6eyJlbWFpbCI6InNhbGFvaXNhcmVzZW5kaXpAdGVzdGV4LmNvbS5iciIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJwaG9uZV92ZXJpZmllZCI6ZmFsc2UsInN1YiI6IjM0OGIxOTg5LTI1M2EtNDBjMy1hNDEyLWIzZGJjMWQxNzYwMiJ9LCJyb2xlIjoiYXV0aGVudGljYXRlZCIsImFhbCI6ImFhbDEiLCJhbXIiOlt7Im1ldGhvZCI6InBhc3N3b3JkIiwidGltZXN0YW1wIjoxNzU2MTY2MzU2fV0sInNlc3Npb25faWQiOiJkYTg2MTEwMi03ZGNkLTRmNDEtYThiNC1iM2FjMzUwYjZhYmMiLCJpc19hbm9ueW1vdXMiOmZhbHNlfQ.iVBvYphHn_LFOCuZaLhLLN7b-loGnpaTH6Bhno51yzc',
   }) async {
     final baseUrl = EdgeFunctionsSupabaseGroup.getBaseUrl(
       token: token,
@@ -2553,6 +2682,175 @@ class OnesignalenviarnotificacaoCall {
       alwaysAllowBody: false,
     );
   }
+}
+
+class StripedesfazcancelassinaturaCall {
+  Future<ApiCallResponse> call({
+    String? subscriptionId = '',
+    String? token =
+        'eyJhbGciOiJIUzI1NiIsImtpZCI6IkZLdFM5emVrUExJOUxSMkQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2h6bWl4dXZybnpweXByaWFnZWN2LnN1cGFiYXNlLmNvL2F1dGgvdjEiLCJzdWIiOiIzNDhiMTk4OS0yNTNhLTQwYzMtYTQxMi1iM2RiYzFkMTc2MDIiLCJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNzU2MTY5OTU3LCJpYXQiOjE3NTYxNjYzNTcsImVtYWlsIjoic2FsYW9pc2FyZXNlbmRpekB0ZXN0ZXguY29tLmJyIiwicGhvbmUiOiIiLCJhcHBfbWV0YWRhdGEiOnsicHJvdmlkZXIiOiJlbWFpbCIsInByb3ZpZGVycyI6WyJlbWFpbCJdfSwidXNlcl9tZXRhZGF0YSI6eyJlbWFpbCI6InNhbGFvaXNhcmVzZW5kaXpAdGVzdGV4LmNvbS5iciIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJwaG9uZV92ZXJpZmllZCI6ZmFsc2UsInN1YiI6IjM0OGIxOTg5LTI1M2EtNDBjMy1hNDEyLWIzZGJjMWQxNzYwMiJ9LCJyb2xlIjoiYXV0aGVudGljYXRlZCIsImFhbCI6ImFhbDEiLCJhbXIiOlt7Im1ldGhvZCI6InBhc3N3b3JkIiwidGltZXN0YW1wIjoxNzU2MTY2MzU2fV0sInNlc3Npb25faWQiOiJkYTg2MTEwMi03ZGNkLTRmNDEtYThiNC1iM2FjMzUwYjZhYmMiLCJpc19hbm9ueW1vdXMiOmZhbHNlfQ.iVBvYphHn_LFOCuZaLhLLN7b-loGnpaTH6Bhno51yzc',
+  }) async {
+    final baseUrl = EdgeFunctionsSupabaseGroup.getBaseUrl(
+      token: token,
+    );
+
+    final ffApiRequestBody = '''
+{
+  "subscription_id": "${escapeStringForJson(subscriptionId)}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'stripedesfazcancelassinatura',
+      apiUrl: '${baseUrl}stripe_desfaz_cancel_assinatura',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ${token}',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: true,
+      decodeUtf8: true,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  String? error(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.error''',
+      ));
+  bool? sucesso(dynamic response) => castToType<bool>(getJsonField(
+        response,
+        r'''$.sucesso''',
+      ));
+  bool? resultcancelatperiodend(dynamic response) =>
+      castToType<bool>(getJsonField(
+        response,
+        r'''$.result.cancel_at_period_end''',
+      ));
+}
+
+class StripeportalurlCall {
+  Future<ApiCallResponse> call({
+    String? customerId = '',
+    String? token =
+        'eyJhbGciOiJIUzI1NiIsImtpZCI6IkZLdFM5emVrUExJOUxSMkQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2h6bWl4dXZybnpweXByaWFnZWN2LnN1cGFiYXNlLmNvL2F1dGgvdjEiLCJzdWIiOiIzNDhiMTk4OS0yNTNhLTQwYzMtYTQxMi1iM2RiYzFkMTc2MDIiLCJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNzU2MTY5OTU3LCJpYXQiOjE3NTYxNjYzNTcsImVtYWlsIjoic2FsYW9pc2FyZXNlbmRpekB0ZXN0ZXguY29tLmJyIiwicGhvbmUiOiIiLCJhcHBfbWV0YWRhdGEiOnsicHJvdmlkZXIiOiJlbWFpbCIsInByb3ZpZGVycyI6WyJlbWFpbCJdfSwidXNlcl9tZXRhZGF0YSI6eyJlbWFpbCI6InNhbGFvaXNhcmVzZW5kaXpAdGVzdGV4LmNvbS5iciIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJwaG9uZV92ZXJpZmllZCI6ZmFsc2UsInN1YiI6IjM0OGIxOTg5LTI1M2EtNDBjMy1hNDEyLWIzZGJjMWQxNzYwMiJ9LCJyb2xlIjoiYXV0aGVudGljYXRlZCIsImFhbCI6ImFhbDEiLCJhbXIiOlt7Im1ldGhvZCI6InBhc3N3b3JkIiwidGltZXN0YW1wIjoxNzU2MTY2MzU2fV0sInNlc3Npb25faWQiOiJkYTg2MTEwMi03ZGNkLTRmNDEtYThiNC1iM2FjMzUwYjZhYmMiLCJpc19hbm9ueW1vdXMiOmZhbHNlfQ.iVBvYphHn_LFOCuZaLhLLN7b-loGnpaTH6Bhno51yzc',
+  }) async {
+    final baseUrl = EdgeFunctionsSupabaseGroup.getBaseUrl(
+      token: token,
+    );
+
+    final ffApiRequestBody = '''
+{
+  "customer_id": "${escapeStringForJson(customerId)}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'stripeportalurl',
+      apiUrl: '${baseUrl}stripe_portal_url',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ${token}',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  bool? success(dynamic response) => castToType<bool>(getJsonField(
+        response,
+        r'''$.success''',
+      ));
+  String? url(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.url''',
+      ));
+  String? message(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.message''',
+      ));
+  int? code(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.code''',
+      ));
+}
+
+class ConsultarcpfhubioCall {
+  Future<ApiCallResponse> call({
+    String? cpf = '',
+    String? birthDate = '',
+    String? userId = '',
+    String? token =
+        'eyJhbGciOiJIUzI1NiIsImtpZCI6IkZLdFM5emVrUExJOUxSMkQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2h6bWl4dXZybnpweXByaWFnZWN2LnN1cGFiYXNlLmNvL2F1dGgvdjEiLCJzdWIiOiIzNDhiMTk4OS0yNTNhLTQwYzMtYTQxMi1iM2RiYzFkMTc2MDIiLCJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNzU2MTY5OTU3LCJpYXQiOjE3NTYxNjYzNTcsImVtYWlsIjoic2FsYW9pc2FyZXNlbmRpekB0ZXN0ZXguY29tLmJyIiwicGhvbmUiOiIiLCJhcHBfbWV0YWRhdGEiOnsicHJvdmlkZXIiOiJlbWFpbCIsInByb3ZpZGVycyI6WyJlbWFpbCJdfSwidXNlcl9tZXRhZGF0YSI6eyJlbWFpbCI6InNhbGFvaXNhcmVzZW5kaXpAdGVzdGV4LmNvbS5iciIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJwaG9uZV92ZXJpZmllZCI6ZmFsc2UsInN1YiI6IjM0OGIxOTg5LTI1M2EtNDBjMy1hNDEyLWIzZGJjMWQxNzYwMiJ9LCJyb2xlIjoiYXV0aGVudGljYXRlZCIsImFhbCI6ImFhbDEiLCJhbXIiOlt7Im1ldGhvZCI6InBhc3N3b3JkIiwidGltZXN0YW1wIjoxNzU2MTY2MzU2fV0sInNlc3Npb25faWQiOiJkYTg2MTEwMi03ZGNkLTRmNDEtYThiNC1iM2FjMzUwYjZhYmMiLCJpc19hbm9ueW1vdXMiOmZhbHNlfQ.iVBvYphHn_LFOCuZaLhLLN7b-loGnpaTH6Bhno51yzc',
+  }) async {
+    final baseUrl = EdgeFunctionsSupabaseGroup.getBaseUrl(
+      token: token,
+    );
+
+    final ffApiRequestBody = '''
+{
+  "cpf": "${escapeStringForJson(cpf)}",
+  "birthDate": "${escapeStringForJson(birthDate)}",
+  "user_id": "${escapeStringForJson(userId)}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'consultarcpfhubio',
+      apiUrl: '${baseUrl}consultar_cpf_hubio',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ${token}',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: true,
+      decodeUtf8: true,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  bool? success(dynamic response) => castToType<bool>(getJsonField(
+        response,
+        r'''$.success''',
+      ));
+  String? status(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.data.status''',
+      ));
+  String? situation(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.data.situation''',
+      ));
+  String? name(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.data.name''',
+      ));
+  String? birthDate(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.data.birthDate''',
+      ));
+  String? cpfNumber(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.data.cpfNumber''',
+      ));
+  String? error(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.error''',
+      ));
 }
 
 /// End Edge Functions Supabase Group Code
@@ -2588,6 +2886,11 @@ class FunctionsServerSupabaseGroup {
   static ConsultarEmailCall consultarEmailCall = ConsultarEmailCall();
   static ConsultarModelosServicosCall consultarModelosServicosCall =
       ConsultarModelosServicosCall();
+  static FccriarpagamentoCall fccriarpagamentoCall = FccriarpagamentoCall();
+  static FcCriarPagamentoAfiliacaoCall fcCriarPagamentoAfiliacaoCall =
+      FcCriarPagamentoAfiliacaoCall();
+  static FcconsultarplanoslandpgCall fcconsultarplanoslandpgCall =
+      FcconsultarplanoslandpgCall();
 }
 
 class ConsultarTelefoneCall {
@@ -3305,6 +3608,7 @@ class ConsultarCupomCall {
     String? paramToken = '',
     String? paramUserId = '',
     String? paramUserIdCli = '',
+    String? paramIdAfApp = '',
     String? token = '',
   }) async {
     final baseUrl = FunctionsServerSupabaseGroup.getBaseUrl(
@@ -3314,6 +3618,7 @@ class ConsultarCupomCall {
     final ffApiRequestBody = '''
 {
   "param_cupom": "${escapeStringForJson(paramCupom)}",
+  "param_id_af_app": "${escapeStringForJson(paramIdAfApp)}",
   "param_data": "${escapeStringForJson(paramData)}",
   "param_dv": "${escapeStringForJson(paramDv)}",
   "param_key": "${escapeStringForJson(paramKey)}",
@@ -3408,6 +3713,26 @@ class ConsultarCupomCall {
   String? userid(dynamic response) => castToType<String>(getJsonField(
         response,
         r'''$[:].user_id''',
+      ));
+  String? uuid(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$[:].uuid''',
+      ));
+  String? username(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$[:].username''',
+      ));
+  String? foto(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$[:].foto''',
+      ));
+  String? nome(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$[:].nome''',
+      ));
+  String? message(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.message''',
       ));
 }
 
@@ -3598,6 +3923,197 @@ class ConsultarModelosServicosCall {
           .map((x) => castToType<bool>(x))
           .withoutNulls
           .toList();
+}
+
+class FccriarpagamentoCall {
+  Future<ApiCallResponse> call({
+    String? paramData = '',
+    String? paramDv = '',
+    String? paramIdPlanoPreco = '',
+    String? paramKey = '',
+    String? paramToken = '',
+    String? paramUserId = '',
+    String? paramIdCupom = '',
+    String? paramRenovacao = '',
+    String? paramCheckout = '',
+    String? paramAss = '',
+    String? paramRec = '',
+    String? paramDiasTry = '',
+    String? paramDownUp = '',
+    String? token = '',
+  }) async {
+    final baseUrl = FunctionsServerSupabaseGroup.getBaseUrl(
+      token: token,
+    );
+
+    final ffApiRequestBody = '''
+{
+  "param_data": "${escapeStringForJson(paramData)}",
+  "param_dv": "${escapeStringForJson(paramDv)}",
+  "param_id_plano_preco": "${escapeStringForJson(paramIdPlanoPreco)}",
+  "param_key": "${escapeStringForJson(paramKey)}",
+  "param_token": "${escapeStringForJson(paramToken)}",
+  "param_user_id": "${escapeStringForJson(paramUserId)}",
+  "param_id_cupom": "${escapeStringForJson(paramIdCupom)}",
+  "param_renovacao": "${escapeStringForJson(paramRenovacao)}",
+  "param_checkout": "${escapeStringForJson(paramCheckout)}",
+  "param_ass": "${escapeStringForJson(paramAss)}",
+  "param_rec": "${escapeStringForJson(paramRec)}",
+  "param_dias_try": "${escapeStringForJson(paramDiasTry)}",
+  "param_down_up": "${escapeStringForJson(paramDownUp)}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'fccriarpagamento',
+      apiUrl: '${baseUrl}fc_criar_pagamento',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh6bWl4dXZybnpweXByaWFnZWN2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjQ5NjkzMTQsImV4cCI6MjA0MDU0NTMxNH0.VHtjYivpM8c9RLmKimwRiLgnb8zqGrZ88Q8vpVLZcZ0',
+        'Authorization': 'Bearer ${token}',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: true,
+      decodeUtf8: true,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  String? idpg(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$[:].id_pg''',
+      ));
+  String? message(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.message''',
+      ));
+  String? code(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.code''',
+      ));
+  String? result(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$[:].result''',
+      ));
+}
+
+class FcCriarPagamentoAfiliacaoCall {
+  Future<ApiCallResponse> call({
+    String? paramData = '',
+    String? paramDv = '',
+    String? paramIdPlanoPreco = '',
+    String? paramKey = '',
+    String? paramToken = '',
+    String? paramUserId = '',
+    String? paramIdCupom = '',
+    String? paramRenovacao = '',
+    String? paramCheckout = '',
+    String? paramAss = '',
+    String? paramRec = '',
+    String? paramDiasTry = '',
+    String? paramDownUp = '',
+    String? token = '',
+  }) async {
+    final baseUrl = FunctionsServerSupabaseGroup.getBaseUrl(
+      token: token,
+    );
+
+    final ffApiRequestBody = '''
+{
+  "param_data": "${escapeStringForJson(paramData)}",
+  "param_dv": "${escapeStringForJson(paramDv)}",
+  "param_id_plano_preco": "${escapeStringForJson(paramIdPlanoPreco)}",
+  "param_key": "${escapeStringForJson(paramKey)}",
+  "param_token": "${escapeStringForJson(paramToken)}",
+  "param_user_id": "${escapeStringForJson(paramUserId)}",
+  "param_id_cupom": "${escapeStringForJson(paramIdCupom)}",
+  "param_renovacao": "${escapeStringForJson(paramRenovacao)}",
+  "param_checkout": "${escapeStringForJson(paramCheckout)}",
+  "param_ass": "${escapeStringForJson(paramAss)}",
+  "param_rec": "${escapeStringForJson(paramRec)}",
+  "param_dias_try": "${escapeStringForJson(paramDiasTry)}",
+  "param_down_up": "${escapeStringForJson(paramDownUp)}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'fc criar pagamento afiliacao',
+      apiUrl: '${baseUrl}fc_criar_pagamento_afiliacao',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh6bWl4dXZybnpweXByaWFnZWN2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjQ5NjkzMTQsImV4cCI6MjA0MDU0NTMxNH0.VHtjYivpM8c9RLmKimwRiLgnb8zqGrZ88Q8vpVLZcZ0',
+        'Authorization': 'Bearer ${token}',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: true,
+      decodeUtf8: true,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  String? idpg(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$[:].id_pg''',
+      ));
+  String? message(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.message''',
+      ));
+  String? code(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.code''',
+      ));
+  String? result(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$[:].result''',
+      ));
+}
+
+class FcconsultarplanoslandpgCall {
+  Future<ApiCallResponse> call({
+    String? paramIdAfApp = '',
+    String? token = '',
+  }) async {
+    final baseUrl = FunctionsServerSupabaseGroup.getBaseUrl(
+      token: token,
+    );
+
+    final ffApiRequestBody = '''
+{
+  "param_id_af_app": "${escapeStringForJson(paramIdAfApp)}",
+  "param_id_cupom_pd": "0"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'fcconsultarplanoslandpg',
+      apiUrl: '${baseUrl}fc_consultar_planos_landpg',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh6bWl4dXZybnpweXByaWFnZWN2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjQ5NjkzMTQsImV4cCI6MjA0MDU0NTMxNH0.VHtjYivpM8c9RLmKimwRiLgnb8zqGrZ88Q8vpVLZcZ0',
+        'Authorization': 'Bearer ${token}',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
 }
 
 /// End Functions Server Supabase Group Code

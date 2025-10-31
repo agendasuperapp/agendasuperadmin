@@ -2,6 +2,7 @@ import '/backend/api_requests/api_calls.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/form_field_controller.dart';
+import '/pages/admin/componentes/afiliado/c_p_afiliados/cp_afiliado_aviso_cadastro/cp_afiliado_aviso_cadastro_widget.dart';
 import 'dart:async';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -21,8 +22,6 @@ class CpAfiliadosCadModel extends FlutterFlowModel<CpAfiliadosCadWidget> {
   String? varUrlFotoTemp;
 
   String? varUrlFotoExcluir;
-
-  int testeTamanho = 232;
 
   bool varQrCodeGerado = false;
 
@@ -102,11 +101,13 @@ class CpAfiliadosCadModel extends FlutterFlowModel<CpAfiliadosCadWidget> {
 
   final formKey = GlobalKey<FormState>();
   // State field(s) for ColumnAfiliado widget.
-  ScrollController? columnAfiliado;
-  bool isDataUploading = false;
-  FFUploadedFile uploadedLocalFile =
+  ScrollController? columnAfiliadoScrollController;
+  // Model for cp_afiliado_aviso_cadastro component.
+  late CpAfiliadoAvisoCadastroModel cpAfiliadoAvisoCadastroModel;
+  bool isDataUploading_uploadDataAfliliadoPerfil = false;
+  FFUploadedFile uploadedLocalFile_uploadDataAfliliadoPerfil =
       FFUploadedFile(bytes: Uint8List.fromList([]));
-  String uploadedFileUrl = '';
+  String uploadedFileUrl_uploadDataAfliliadoPerfil = '';
 
   // State field(s) for TextFieldNomeAfiliado widget.
   FocusNode? textFieldNomeAfiliadoFocusNode;
@@ -155,7 +156,6 @@ class CpAfiliadosCadModel extends FlutterFlowModel<CpAfiliadosCadWidget> {
   // State field(s) for TextFieldTel widget.
   FocusNode? textFieldTelFocusNode;
   TextEditingController? textFieldTelTextController;
-  final textFieldTelMask = MaskTextInputFormatter(mask: '(##) #####-####');
   String? Function(BuildContext, String?)? textFieldTelTextControllerValidator;
   String? _textFieldTelTextControllerValidator(
       BuildContext context, String? val) {
@@ -174,7 +174,7 @@ class CpAfiliadosCadModel extends FlutterFlowModel<CpAfiliadosCadWidget> {
   // State field(s) for TextFieldDtNascimento widget.
   FocusNode? textFieldDtNascimentoFocusNode;
   TextEditingController? textFieldDtNascimentoTextController;
-  final textFieldDtNascimentoMask = MaskTextInputFormatter(mask: '##/##/####');
+  late MaskTextInputFormatter textFieldDtNascimentoMask;
   String? Function(BuildContext, String?)?
       textFieldDtNascimentoTextControllerValidator;
   String? _textFieldDtNascimentoTextControllerValidator(
@@ -192,12 +192,12 @@ class CpAfiliadosCadModel extends FlutterFlowModel<CpAfiliadosCadWidget> {
   // State field(s) for TextFieldCPF widget.
   FocusNode? textFieldCPFFocusNode;
   TextEditingController? textFieldCPFTextController;
-  final textFieldCPFMask = MaskTextInputFormatter(mask: '###.###.###-##');
+  late MaskTextInputFormatter textFieldCPFMask;
   String? Function(BuildContext, String?)? textFieldCPFTextControllerValidator;
   // State field(s) for TextFieldCNPJ widget.
   FocusNode? textFieldCNPJFocusNode;
   TextEditingController? textFieldCNPJTextController;
-  final textFieldCNPJMask = MaskTextInputFormatter(mask: '##.###.###.####-##');
+  late MaskTextInputFormatter textFieldCNPJMask;
   String? Function(BuildContext, String?)? textFieldCNPJTextControllerValidator;
   // State field(s) for DropDownGenero widget.
   String? dropDownGeneroValue;
@@ -205,7 +205,7 @@ class CpAfiliadosCadModel extends FlutterFlowModel<CpAfiliadosCadWidget> {
   // State field(s) for TextFieldCEP widget.
   FocusNode? textFieldCEPFocusNode;
   TextEditingController? textFieldCEPTextController;
-  final textFieldCEPMask = MaskTextInputFormatter(mask: '#####-###');
+  late MaskTextInputFormatter textFieldCEPMask;
   String? Function(BuildContext, String?)? textFieldCEPTextControllerValidator;
   String? _textFieldCEPTextControllerValidator(
       BuildContext context, String? val) {
@@ -309,14 +309,12 @@ class CpAfiliadosCadModel extends FlutterFlowModel<CpAfiliadosCadWidget> {
   String? resultConsTelefone;
   // Stores action output result for [Backend Call - Query Rows] action in Button widget.
   List<TblAfiliadosRow>? queryConsAfiliado;
-  // Stores action output result for [Backend Call - Query Rows] action in Button widget.
-  List<TblAfiliadosCuponsLibRow>? queryConsCupom;
-  // Stores action output result for [Backend Call - Insert Row] action in Button widget.
-  TblAfiliadosRow? resultInsertAfiliado;
 
   @override
   void initState(BuildContext context) {
-    columnAfiliado = ScrollController();
+    columnAfiliadoScrollController = ScrollController();
+    cpAfiliadoAvisoCadastroModel =
+        createModel(context, () => CpAfiliadoAvisoCadastroModel());
     textFieldNomeAfiliadoTextControllerValidator =
         _textFieldNomeAfiliadoTextControllerValidator;
     textFieldUsernameTextControllerValidator =
@@ -336,7 +334,8 @@ class CpAfiliadosCadModel extends FlutterFlowModel<CpAfiliadosCadWidget> {
 
   @override
   void dispose() {
-    columnAfiliado?.dispose();
+    columnAfiliadoScrollController?.dispose();
+    cpAfiliadoAvisoCadastroModel.dispose();
     textFieldNomeAfiliadoFocusNode?.dispose();
     textFieldNomeAfiliadoTextController?.dispose();
 
@@ -441,14 +440,14 @@ class CpAfiliadosCadModel extends FlutterFlowModel<CpAfiliadosCadWidget> {
       return;
     }
     if (functions.fcCountCaracteres(textFieldUsernameTextController.text) >
-        12) {
+        20) {
       await showDialog(
         context: context,
         builder: (alertDialogContext) {
           return WebViewAware(
             child: AlertDialog(
               title: Text('Atenção!'),
-              content: Text('O username deve ter no máximo 12 caracteres'),
+              content: Text('O username deve ter no máximo 20 caracteres'),
               actions: [
                 TextButton(
                   onPressed: () => Navigator.pop(alertDialogContext),
@@ -515,7 +514,6 @@ class CpAfiliadosCadModel extends FlutterFlowModel<CpAfiliadosCadWidget> {
         FFAppState().varIDAfiliadoLogado,
       ),
     );
-    await action_blocks.acDeletarCupons(context);
     await action_blocks.acAtualizarAfiliadoCad(context);
     await showDialog(
       context: context,

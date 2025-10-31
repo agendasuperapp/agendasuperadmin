@@ -1,5 +1,6 @@
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/pages/admin/componentes/afiliado/c_p_afiliados/cp_afiliado_aviso_cadastro/cp_afiliado_aviso_cadastro_widget.dart';
 import 'cp_afiliado_saques_widget.dart' show CpAfiliadoSaquesWidget;
 import 'dart:async';
 import 'package:flutter/material.dart';
@@ -16,16 +17,23 @@ class CpAfiliadoSaquesModel extends FlutterFlowModel<CpAfiliadoSaquesWidget> {
   String? acReulstConsAfilDashboard1;
   // Stores action output result for [Action Block - acConsAfiliadoDaschboard] action in Column widget.
   String? acReulstConsAfilDashboard3;
+  // Model for cp_afiliado_aviso_cadastro component.
+  late CpAfiliadoAvisoCadastroModel cpAfiliadoAvisoCadastroModel;
   // Stores action output result for [Action Block - acSolicitarSaque] action in ButtonSolicitarSaque widget.
   String? acResultSolicitarSaque1;
   // Stores action output result for [Action Block - acConsAfiliadoDaschboard] action in ButtonSolicitarSaque widget.
   String? acReulstConsAfilDashboard2;
 
   @override
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    cpAfiliadoAvisoCadastroModel =
+        createModel(context, () => CpAfiliadoAvisoCadastroModel());
+  }
 
   @override
-  void dispose() {}
+  void dispose() {
+    cpAfiliadoAvisoCadastroModel.dispose();
+  }
 
   /// Additional helper methods.
   Future waitForRequestCompleted({

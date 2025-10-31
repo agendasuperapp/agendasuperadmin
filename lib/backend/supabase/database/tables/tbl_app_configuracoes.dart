@@ -64,4 +64,13 @@ class TblAppConfiguracoesRow extends SupabaseDataRow {
   DateTime? get dataVersaoCliente => getField<DateTime>('data_versao_cliente');
   set dataVersaoCliente(DateTime? value) =>
       setField<DateTime>('data_versao_cliente', value);
+
+  String? get tiposPlanosHome => getField<String>('tipos_planos_home');
+  set tiposPlanosHome(String? value) =>
+      setField<String>('tipos_planos_home', value);
+
+  String? get tiposPlanosRenovacao =>
+      getField<String>('tipos_planos_renovacao');
+  set tiposPlanosRenovacao(String? value) =>
+      setField<String>('tipos_planos_renovacao', value);
 }

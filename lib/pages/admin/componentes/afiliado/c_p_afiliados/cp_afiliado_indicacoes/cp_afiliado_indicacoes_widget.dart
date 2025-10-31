@@ -3,6 +3,7 @@ import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/admin/a_sistema/home/cp_sem_cadastro/cp_sem_cadastro_widget.dart';
+import '/pages/admin/componentes/afiliado/c_p_afiliados/cp_afiliado_aviso_cadastro/cp_afiliado_aviso_cadastro_widget.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -41,7 +42,11 @@ class _CpAfiliadoIndicacoesWidgetState extends State<CpAfiliadoIndicacoesWidget>
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       if (FFAppState().varCarregouPrimeiraPagina) {
-        await Future.delayed(const Duration(milliseconds: 1000));
+        await Future.delayed(
+          Duration(
+            milliseconds: 1000,
+          ),
+        );
         if (MediaQuery.sizeOf(context).width < kBreakpointSmall) {
           safeSetState(() => _model.requestCompleter2 = null);
           await _model.waitForRequestCompleted2();
@@ -56,19 +61,6 @@ class _CpAfiliadoIndicacoesWidgetState extends State<CpAfiliadoIndicacoesWidget>
     });
 
     animationsMap.addAll({
-      'containerOnActionTriggerAnimation': AnimationInfo(
-        trigger: AnimationTrigger.onActionTrigger,
-        applyInitialState: true,
-        effectsBuilder: () => [
-          MoveEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 600.0.ms,
-            begin: Offset(0.0, 0.0),
-            end: Offset(115.0, 0.0),
-          ),
-        ],
-      ),
       'containerOnPageLoadAnimation1': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
         effectsBuilder: () => [
@@ -94,12 +86,6 @@ class _CpAfiliadoIndicacoesWidgetState extends State<CpAfiliadoIndicacoesWidget>
         ],
       ),
     });
-    setupAnimations(
-      animationsMap.values.where((anim) =>
-          anim.trigger == AnimationTrigger.onActionTrigger ||
-          !anim.applyInitialState),
-      this,
-    );
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
@@ -177,14 +163,14 @@ class _CpAfiliadoIndicacoesWidgetState extends State<CpAfiliadoIndicacoesWidget>
           return Container(
             height: MediaQuery.sizeOf(context).height * 1.0,
             decoration: BoxDecoration(
-              color: FlutterFlowTheme.of(context).secondaryBackground,
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: Image.network(
-                  Theme.of(context).brightness == Brightness.dark
-                      ? 'sem foto, usar a cor do container'
-                      : FFAppState().VarTblEstabelecimentoLogado.fotoLightMode,
-                ).image,
+              gradient: LinearGradient(
+                colors: [
+                  FlutterFlowTheme.of(context).colorGradPage1,
+                  FlutterFlowTheme.of(context).colorGradPage2
+                ],
+                stops: [0.0, 1.0],
+                begin: AlignmentDirectional(0.0, -1.0),
+                end: AlignmentDirectional(0, 1.0),
               ),
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(0.0),
@@ -196,7 +182,8 @@ class _CpAfiliadoIndicacoesWidgetState extends State<CpAfiliadoIndicacoesWidget>
             child: Stack(
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(4.0, 4.0, 4.0, 38.0),
+                  padding:
+                      EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 38.0),
                   child: RefreshIndicator(
                     onRefresh: () async {
                       if (MediaQuery.sizeOf(context).width < kBreakpointSmall) {
@@ -242,339 +229,107 @@ class _CpAfiliadoIndicacoesWidgetState extends State<CpAfiliadoIndicacoesWidget>
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 8.0, 0.0, 8.0),
-                                child: Text(
-                                  'Indicações',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        font: GoogleFonts.readexPro(
-                                          fontWeight: FontWeight.bold,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .fontStyle,
-                                        ),
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                        fontSize: 18.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FontWeight.bold,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontStyle,
-                                      ),
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0,
+                                valueOrDefault<double>(
+                                  MediaQuery.sizeOf(context).width <=
+                                          FFAppState()
+                                              .varTamanhoMinimoTelaMenuLateral
+                                              .toDouble()
+                                      ? 0.0
+                                      : 16.0,
+                                  0.0,
                                 ),
-                              ),
-                              if (responsiveVisibility(
-                                context: context,
-                                phone: false,
-                                tablet: false,
-                                tabletLandscape: false,
-                                desktop: false,
-                              ))
-                                InkWell(
-                                  splashColor: Colors.transparent,
-                                  focusColor: Colors.transparent,
-                                  hoverColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  onTap: () async {
-                                    _model.varSituacaoCadastro =
-                                        !_model.varSituacaoCadastro;
-                                    safeSetState(() {});
-                                    if (MediaQuery.sizeOf(context).width <
-                                        kBreakpointSmall) {
-                                      safeSetState(() =>
-                                          _model.requestCompleter2 = null);
-                                      await _model.waitForRequestCompleted2();
-                                    } else {
-                                      safeSetState(() =>
-                                          _model.requestCompleter3 = null);
-                                      await _model.waitForRequestCompleted3();
-                                    }
-                                  },
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      if (_model.varSituacaoCadastro)
-                                        Icon(
-                                          Icons.check_box_outlined,
-                                          color: FlutterFlowTheme.of(context)
-                                              .success,
-                                          size: 24.0,
-                                        ),
-                                      if (!_model.varSituacaoCadastro)
-                                        Icon(
-                                          Icons.check_box_outline_blank_rounded,
-                                          color: FlutterFlowTheme.of(context)
-                                              .error,
-                                          size: 24.0,
-                                        ),
-                                      Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            4.0, 0.0, 0.0, 0.0),
-                                        child: Text(
-                                          'Ativos',
+                                0.0,
+                                16.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Expanded(
+                                  child: Padding(
+                                    padding: EdgeInsets.all(2.0),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          'Indicações',
                                           style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
+                                              .headlineMedium
                                               .override(
-                                                font: GoogleFonts.readexPro(
-                                                  fontWeight:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .bodyMedium
-                                                          .fontWeight,
+                                                font: GoogleFonts.outfit(
+                                                  fontWeight: FontWeight.w500,
                                                   fontStyle:
                                                       FlutterFlowTheme.of(
                                                               context)
-                                                          .bodyMedium
+                                                          .headlineMedium
                                                           .fontStyle,
                                                 ),
                                                 color:
-                                                    _model.varSituacaoCadastro
-                                                        ? FlutterFlowTheme.of(
-                                                                context)
-                                                            .success
-                                                        : FlutterFlowTheme.of(
-                                                                context)
-                                                            .error,
-                                                letterSpacing: 0.0,
-                                                fontWeight:
                                                     FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .fontWeight,
+                                                        .secondaryText,
+                                                fontSize: 24.0,
+                                                letterSpacing: 0.0,
+                                                fontWeight: FontWeight.w500,
                                                 fontStyle:
                                                     FlutterFlowTheme.of(context)
-                                                        .bodyMedium
+                                                        .headlineMedium
                                                         .fontStyle,
                                               ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              Container(
-                                height: 30.0,
-                                decoration: BoxDecoration(
-                                  color: Color(0xFFF1F4F8),
-                                  borderRadius: BorderRadius.circular(12.0),
-                                  border: Border.all(
-                                    color: Colors.transparent,
-                                  ),
-                                ),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    InkWell(
-                                      splashColor: Colors.transparent,
-                                      focusColor: Colors.transparent,
-                                      hoverColor: Colors.transparent,
-                                      highlightColor: Colors.transparent,
-                                      onTap: () async {
-                                        _model.varSituacaoCadastro = true;
-                                        safeSetState(() {});
-                                        if (MediaQuery.sizeOf(context).width <
-                                            kBreakpointSmall) {
-                                          safeSetState(() =>
-                                              _model.requestCompleter2 = null);
-                                          await _model
-                                              .waitForRequestCompleted2();
-                                        } else {
-                                          safeSetState(() =>
-                                              _model.requestCompleter3 = null);
-                                          await _model
-                                              .waitForRequestCompleted3();
-                                        }
-
-                                        safeSetState(() =>
-                                            _model.requestCompleter1 = null);
-                                        await _model.waitForRequestCompleted1();
-                                      },
-                                      child: Container(
-                                        width: 100.0,
-                                        height:
-                                            MediaQuery.sizeOf(context).height *
-                                                1.0,
-                                        decoration: BoxDecoration(
-                                          color: _model.varSituacaoCadastro
-                                              ? Colors.white
-                                              : Color(0xFFF1F4F8),
-                                          borderRadius:
-                                              BorderRadius.circular(12.0),
-                                          border: Border.all(
-                                            color: _model.varSituacaoCadastro
-                                                ? FlutterFlowTheme.of(context)
-                                                    .customBordaAtivos
-                                                : Colors.transparent,
+                                        Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 4.0, 0.0, 0.0),
+                                          child: Text(
+                                            'Veja todos os cadastros que foram feitos com seu cupom de indicação',
+                                            style: FlutterFlowTheme.of(context)
+                                                .labelMedium
+                                                .override(
+                                                  font: GoogleFonts
+                                                      .plusJakartaSans(
+                                                    fontWeight: FontWeight.w500,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .labelMedium
+                                                            .fontStyle,
+                                                  ),
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryText,
+                                                  fontSize: 14.0,
+                                                  letterSpacing: 0.0,
+                                                  fontWeight: FontWeight.w500,
+                                                  fontStyle:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .labelMedium
+                                                          .fontStyle,
+                                                ),
                                           ),
                                         ),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.min,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Icon(
-                                              Icons
-                                                  .check_circle_outline_rounded,
-                                              color: _model.varSituacaoCadastro
-                                                  ? FlutterFlowTheme.of(context)
-                                                      .success
-                                                  : Color(0xFF57636C),
-                                              size: 16.0,
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(4.0, 0.0, 0.0, 0.0),
-                                              child: Text(
-                                                'Ativos',
-                                                style: FlutterFlowTheme.of(
-                                                        context)
-                                                    .bodyMedium
-                                                    .override(
-                                                      font: GoogleFonts.outfit(
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .fontStyle,
-                                                      ),
-                                                      color: _model
-                                                              .varSituacaoCadastro
-                                                          ? FlutterFlowTheme.of(
-                                                                  context)
-                                                              .success
-                                                          : Color(0xFF57636C),
-                                                      fontSize: 14.0,
-                                                      letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontStyle,
-                                                    ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
+                                      ],
                                     ),
-                                    InkWell(
-                                      splashColor: Colors.transparent,
-                                      focusColor: Colors.transparent,
-                                      hoverColor: Colors.transparent,
-                                      highlightColor: Colors.transparent,
-                                      onTap: () async {
-                                        _model.varSituacaoCadastro = false;
-                                        safeSetState(() {});
-                                        if (MediaQuery.sizeOf(context).width <
-                                            kBreakpointSmall) {
-                                          safeSetState(() =>
-                                              _model.requestCompleter2 = null);
-                                          await _model
-                                              .waitForRequestCompleted2();
-                                        } else {
-                                          safeSetState(() =>
-                                              _model.requestCompleter3 = null);
-                                          await _model
-                                              .waitForRequestCompleted3();
-                                        }
-
-                                        safeSetState(() =>
-                                            _model.requestCompleter1 = null);
-                                        await _model.waitForRequestCompleted1();
-                                      },
-                                      child: Container(
-                                        width: 100.0,
-                                        height:
-                                            MediaQuery.sizeOf(context).height *
-                                                1.0,
-                                        decoration: BoxDecoration(
-                                          color: !_model.varSituacaoCadastro
-                                              ? Colors.white
-                                              : Color(0xFFF1F4F8),
-                                          borderRadius:
-                                              BorderRadius.circular(12.0),
-                                          border: Border.all(
-                                            color: !_model.varSituacaoCadastro
-                                                ? FlutterFlowTheme.of(context)
-                                                    .customBordaInativos
-                                                : Colors.transparent,
-                                          ),
-                                        ),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Icon(
-                                              Icons.block,
-                                              color: !_model.varSituacaoCadastro
-                                                  ? FlutterFlowTheme.of(context)
-                                                      .error
-                                                  : Color(0xFF57636C),
-                                              size: 16.0,
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(4.0, 0.0, 0.0, 0.0),
-                                              child: Text(
-                                                'Inativos',
-                                                style: FlutterFlowTheme.of(
-                                                        context)
-                                                    .bodyMedium
-                                                    .override(
-                                                      font: GoogleFonts.outfit(
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .fontStyle,
-                                                      ),
-                                                      color:
-                                                          !_model.varSituacaoCadastro
-                                                              ? FlutterFlowTheme
-                                                                      .of(
-                                                                          context)
-                                                                  .error
-                                                              : Color(
-                                                                  0xFF57636C),
-                                                      fontSize: 14.0,
-                                                      letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontStyle,
-                                                    ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ).animateOnActionTrigger(
-                                      animationsMap[
-                                          'containerOnActionTriggerAnimation']!,
-                                    ),
-                                  ],
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
+                          if (FFAppState().varTblAfiliado.statusAfiliacao ==
+                              'CADASTRO')
+                            Padding(
+                              padding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 16.0),
+                              child: wrapWithModel(
+                                model: _model.cpAfiliadoAvisoCadastroModel,
+                                updateCallback: () => safeSetState(() {}),
+                                child: CpAfiliadoAvisoCadastroWidget(),
+                              ),
+                            ),
                           if (responsiveVisibility(
                             context: context,
                             phone: false,

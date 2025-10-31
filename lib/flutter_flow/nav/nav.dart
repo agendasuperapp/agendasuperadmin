@@ -79,14 +79,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       refreshListenable: appStateNotifier,
       navigatorKey: appNavigatorKey,
       errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? PgDashboardWidget() : HomePageWidget(),
+          appStateNotifier.loggedIn ? PgDashboardWidget() : PgLoginWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) => appStateNotifier.loggedIn
-              ? PgDashboardWidget()
-              : HomePageWidget(),
+          builder: (context, _) =>
+              appStateNotifier.loggedIn ? PgDashboardWidget() : PgLoginWidget(),
         ),
         FFRoute(
           name: HomePageWidget.routeName,
@@ -112,13 +111,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: PgLoginWidget.routeName,
           path: PgLoginWidget.routePath,
           builder: (context, params) => PgLoginWidget(
-            tp: params.getParam(
-              'tp',
+            email: params.getParam(
+              'email',
               ParamType.String,
-            ),
-            hm: params.getParam(
-              'hm',
-              ParamType.bool,
             ),
           ),
         ),
@@ -272,10 +267,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => PgAgendamentosDiariosWidget(),
         ),
         FFRoute(
-          name: PgEstabelecimentosAdminWidget.routeName,
-          path: PgEstabelecimentosAdminWidget.routePath,
+          name: PgAdminEstabelecimentosWidget.routeName,
+          path: PgAdminEstabelecimentosWidget.routePath,
           requireAuth: true,
-          builder: (context, params) => PgEstabelecimentosAdminWidget(),
+          builder: (context, params) => PgAdminEstabelecimentosWidget(),
         ),
         FFRoute(
           name: PgAfiliadosAdminWidget.routeName,
@@ -349,6 +344,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               'paramTblPlanoPreco',
               ParamType.SupabaseRow,
             ),
+            paramIDAfiliadoApp: params.getParam(
+              'paramIDAfiliadoApp',
+              ParamType.int,
+            ),
           ),
         ),
         FFRoute(
@@ -359,7 +358,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               'paramCadastro',
               ParamType.bool,
             ),
-            paramTblPlanosNomes: params.getParam<TblPlanosNomesRow>(
+            paramTblPlanosNomes: params.getParam<ViewTblAppPlanosNomesRow>(
               'paramTblPlanosNomes',
               ParamType.SupabaseRow,
             ),
@@ -397,10 +396,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: PgAfiliadoDashboardWidget.routeName,
-          path: PgAfiliadoDashboardWidget.routePath,
+          name: DELETEPgAfiliadoDashboardWidget.routeName,
+          path: DELETEPgAfiliadoDashboardWidget.routePath,
           requireAuth: true,
-          builder: (context, params) => PgAfiliadoDashboardWidget(),
+          builder: (context, params) => DELETEPgAfiliadoDashboardWidget(),
         ),
         FFRoute(
           name: PgAfiliadoIndicacoesWidget.routeName,
@@ -445,16 +444,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => PgAfiliadoGoogleMapsWidget(),
         ),
         FFRoute(
-          name: PgAfiliadoApresentacaoWidget.routeName,
-          path: PgAfiliadoApresentacaoWidget.routePath,
+          name: DELETEPgAfiliadoApresentacaoWidget.routeName,
+          path: DELETEPgAfiliadoApresentacaoWidget.routePath,
           requireAuth: true,
-          builder: (context, params) => PgAfiliadoApresentacaoWidget(),
+          builder: (context, params) => DELETEPgAfiliadoApresentacaoWidget(),
         ),
         FFRoute(
-          name: PgAfiliadoAtivacaoWidget.routeName,
-          path: PgAfiliadoAtivacaoWidget.routePath,
+          name: DELETEPgAfiliadoAtivacaoWidget.routeName,
+          path: DELETEPgAfiliadoAtivacaoWidget.routePath,
           requireAuth: true,
-          builder: (context, params) => PgAfiliadoAtivacaoWidget(),
+          builder: (context, params) => DELETEPgAfiliadoAtivacaoWidget(),
         ),
         FFRoute(
           name: PgCupomCadWidget.routeName,
@@ -467,6 +466,10 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             paramTblCupom: params.getParam<ViewTblAfiliadosCuponsAdminRow>(
               'paramTblCupom',
               ParamType.SupabaseRow,
+            ),
+            paramIDAfiliadoApp: params.getParam(
+              'paramIDAfiliadoApp',
+              ParamType.int,
             ),
           ),
         ),
@@ -547,6 +550,30 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: PgHomeAssistenteCadWidget.routePath,
           requireAuth: true,
           builder: (context, params) => PgHomeAssistenteCadWidget(),
+        ),
+        FFRoute(
+          name: PgBancosContasWidget.routeName,
+          path: PgBancosContasWidget.routePath,
+          requireAuth: true,
+          builder: (context, params) => PgBancosContasWidget(),
+        ),
+        FFRoute(
+          name: PgAdminEventosStripeWidget.routeName,
+          path: PgAdminEventosStripeWidget.routePath,
+          requireAuth: true,
+          builder: (context, params) => PgAdminEventosStripeWidget(),
+        ),
+        FFRoute(
+          name: PgAfiliadoCpfWidget.routeName,
+          path: PgAfiliadoCpfWidget.routePath,
+          requireAuth: true,
+          builder: (context, params) => PgAfiliadoCpfWidget(),
+        ),
+        FFRoute(
+          name: PgNotificacoesWidget.routeName,
+          path: PgNotificacoesWidget.routePath,
+          requireAuth: true,
+          builder: (context, params) => PgNotificacoesWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],
@@ -718,7 +745,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.uri.toString());
-            return '/:cupom';
+            return '/login';
           }
           return null;
         },
@@ -736,9 +763,9 @@ class FFRoute {
                   color: Colors.transparent,
                   child: Center(
                     child: Image.asset(
-                      'assets/images/1432676_Admin.png',
+                      'assets/images/AppAfiliado_(5).png',
                       width: 200.0,
-                      fit: BoxFit.contain,
+                      fit: BoxFit.cover,
                     ),
                   ),
                 )

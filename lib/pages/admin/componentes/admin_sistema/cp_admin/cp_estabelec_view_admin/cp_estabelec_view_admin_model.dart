@@ -1,5 +1,5 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import '/pages/admin/componentes/estabelecimento/comp_estabelecimento/cp_estabelecimento_cad/cp_estabelecimento_cad_widget.dart';
+import '/pages/admin/componentes/afiliado/estabelecimento/comp_estabelecimento/cp_estabelecimento_cad/cp_estabelecimento_cad_widget.dart';
 import 'cp_estabelec_view_admin_widget.dart' show CpEstabelecViewAdminWidget;
 import 'package:flutter/material.dart';
 

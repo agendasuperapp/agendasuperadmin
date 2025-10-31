@@ -77,4 +77,16 @@ class TblAfiliadosCuponsPadRow extends SupabaseDataRow {
 
   bool get padraoNovosCad => getField<bool>('padrao_novos_cad')!;
   set padraoNovosCad(bool value) => setField<bool>('padrao_novos_cad', value);
+
+  String? get foto => getField<String>('foto');
+  set foto(String? value) => setField<String>('foto', value);
+
+  int get idAfiliadoApp => getField<int>('id_afiliado_app')!;
+  set idAfiliadoApp(int value) => setField<int>('id_afiliado_app', value);
+
+  bool get admin => getField<bool>('admin')!;
+  set admin(bool value) => setField<bool>('admin', value);
+
+  bool get principal => getField<bool>('principal')!;
+  set principal(bool value) => setField<bool>('principal', value);
 }

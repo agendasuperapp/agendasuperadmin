@@ -48,4 +48,10 @@ class TblPlanosNomesRow extends SupabaseDataRow {
 
   bool get excluido => getField<bool>('excluido')!;
   set excluido(bool value) => setField<bool>('excluido', value);
+
+  String get tipo => getField<String>('tipo')!;
+  set tipo(String value) => setField<String>('tipo', value);
+
+  int get idAfiliadoApp => getField<int>('id_afiliado_app')!;
+  set idAfiliadoApp(int value) => setField<int>('id_afiliado_app', value);
 }

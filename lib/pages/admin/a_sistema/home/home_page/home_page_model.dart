@@ -1,7 +1,8 @@
 import '/backend/schema/structs/index.dart';
+import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/pages/admin/a_sistema/home/cp_home_cadastro/cp_home_cadastro_widget.dart';
+import '/pages/admin/a_sistema/home/d_e_l_e_t_e_cp_home_cadastro/d_e_l_e_t_e_cp_home_cadastro_widget.dart';
 import 'dart:async';
 import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
@@ -35,15 +36,19 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   void updateVarBlackListCuponsAtIndex(int index, Function(String) updateFn) =>
       varBlackListCupons[index] = updateFn(varBlackListCupons[index]);
 
+  bool varAssinatura = true;
+
   ///  State fields for stateful widgets in this page.
 
   final formKey = GlobalKey<FormState>();
   // Stores action output result for [Action Block - acVerificarUserLogado] action in HomePage widget.
   bool? acResultVerificarUserLogadoHome;
+  // Stores action output result for [Backend Call - Query Rows] action in HomePage widget.
+  List<ViewTblConfiguracoesRow>? queryConsTipoPlaHome;
   // Stores action output result for [Action Block - acAplicarCupom] action in HomePage widget.
   bool? acAplicarCupomInic;
   // State field(s) for ColumnConteudo widget.
-  ScrollController? columnConteudo;
+  ScrollController? columnConteudoScrollController;
   // State field(s) for Carousel widget.
   CarouselSliderController? carouselController1;
   int carouselCurrentIndex1 = 3;
@@ -96,12 +101,14 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   bool? acResultVerificarUserLogado;
   // Stores action output result for [Action Block - acAplicarCupom] action in Button widget.
   bool? acResultAplicarCupom;
+  // State field(s) for SwitchAssinatura widget.
+  bool? switchAssinaturaValue;
   // Stores action output result for [Action Block - acVerificarUserLogado] action in Container widget.
   bool? acResultVerificarUserLogado2;
 
   @override
   void initState(BuildContext context) {
-    columnConteudo = ScrollController();
+    columnConteudoScrollController = ScrollController();
     staggeredViewController1 = ScrollController();
     textFieldCupomTextControllerValidator =
         _textFieldCupomTextControllerValidator;
@@ -111,7 +118,7 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
 
   @override
   void dispose() {
-    columnConteudo?.dispose();
+    columnConteudoScrollController?.dispose();
     staggeredViewController1?.dispose();
     textFieldCupomFocusNode?.dispose();
     textFieldCupomTextController?.dispose();
@@ -127,6 +134,7 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
   }) async {
     String? resultConsCupom;
 
+    FFAppState().varTblAfiliadoCupom = TblAfiliadoCupomFeTy2GibStruct();
     if (varIDPlanoPeriodoSelecionado <= 0) {
       await showDialog(
         context: context,
@@ -255,6 +263,8 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
       await showModalBottomSheet(
         isScrollControlled: true,
         backgroundColor: Colors.transparent,
+        isDismissible: false,
+        enableDrag: false,
         context: context,
         builder: (context) {
           return WebViewAware(
@@ -265,7 +275,7 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
               },
               child: Padding(
                 padding: MediaQuery.viewInsetsOf(context),
-                child: CpHomeCadastroWidget(
+                child: DELETECpHomeCadastroWidget(
                   paramTipoCadastro: 'ESTABELECIMENTO',
                   paramIDPlanoPeriodo: varIDPlanoPeriodoSelecionado,
                   paramIDPlano: paramIDPlano!,
@@ -278,6 +288,7 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
                   paramNomeCupom: functions.fcConverterStringMaiusculo(
                       textFieldCupomTextController.text),
                   paramTblPlanos: paramTblPlano!,
+                  paramAssinatura: varAssinatura ? 'true' : 'false',
                 ),
               ),
             ),
@@ -287,6 +298,7 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
     } else {
       await showDialog(
         barrierColor: Color(0xCB0D0D0D),
+        barrierDismissible: false,
         context: context,
         builder: (dialogContext) {
           return Dialog(
@@ -301,7 +313,7 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
                   FocusScope.of(dialogContext).unfocus();
                   FocusManager.instance.primaryFocus?.unfocus();
                 },
-                child: CpHomeCadastroWidget(
+                child: DELETECpHomeCadastroWidget(
                   paramTipoCadastro: 'ESTABELECIMENTO',
                   paramIDPlanoPeriodo: varIDPlanoPeriodoSelecionado,
                   paramIDPlano: paramIDPlano!,
@@ -313,6 +325,7 @@ class HomePageModel extends FlutterFlowModel<HomePageWidget> {
                   paramCupomAplicado: varCupomDescontoAplicado,
                   paramNomeCupom: textFieldCupomTextController.text,
                   paramTblPlanos: paramTblPlano!,
+                  paramAssinatura: varAssinatura ? 'true' : 'false',
                 ),
               ),
             ),

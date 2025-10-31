@@ -20,6 +20,8 @@ class TblDispositivoInformacoesStruct extends BaseStruct {
     String? applicationVersion,
     String? applicationBuildCode,
     String? tamanhoTela,
+    bool? pwa,
+    String? appVersionLoaded,
   })  : _osName = osName,
         _deviceId = deviceId,
         _deviceName = deviceName,
@@ -32,7 +34,9 @@ class TblDispositivoInformacoesStruct extends BaseStruct {
         _applicationName = applicationName,
         _applicationVersion = applicationVersion,
         _applicationBuildCode = applicationBuildCode,
-        _tamanhoTela = tamanhoTela;
+        _tamanhoTela = tamanhoTela,
+        _pwa = pwa,
+        _appVersionLoaded = appVersionLoaded;
 
   // "osName" field.
   String? _osName;
@@ -125,6 +129,20 @@ class TblDispositivoInformacoesStruct extends BaseStruct {
 
   bool hasTamanhoTela() => _tamanhoTela != null;
 
+  // "pwa" field.
+  bool? _pwa;
+  bool get pwa => _pwa ?? false;
+  set pwa(bool? val) => _pwa = val;
+
+  bool hasPwa() => _pwa != null;
+
+  // "appVersionLoaded" field.
+  String? _appVersionLoaded;
+  String get appVersionLoaded => _appVersionLoaded ?? '';
+  set appVersionLoaded(String? val) => _appVersionLoaded = val;
+
+  bool hasAppVersionLoaded() => _appVersionLoaded != null;
+
   static TblDispositivoInformacoesStruct fromMap(Map<String, dynamic> data) =>
       TblDispositivoInformacoesStruct(
         osName: data['osName'] as String?,
@@ -140,6 +158,8 @@ class TblDispositivoInformacoesStruct extends BaseStruct {
         applicationVersion: data['applicationVersion'] as String?,
         applicationBuildCode: data['applicationBuildCode'] as String?,
         tamanhoTela: data['tamanho_tela'] as String?,
+        pwa: data['pwa'] as bool?,
+        appVersionLoaded: data['appVersionLoaded'] as String?,
       );
 
   static TblDispositivoInformacoesStruct? maybeFromMap(dynamic data) => data
@@ -161,6 +181,8 @@ class TblDispositivoInformacoesStruct extends BaseStruct {
         'applicationVersion': _applicationVersion,
         'applicationBuildCode': _applicationBuildCode,
         'tamanho_tela': _tamanhoTela,
+        'pwa': _pwa,
+        'appVersionLoaded': _appVersionLoaded,
       }.withoutNulls;
 
   @override
@@ -215,6 +237,14 @@ class TblDispositivoInformacoesStruct extends BaseStruct {
         ),
         'tamanho_tela': serializeParam(
           _tamanhoTela,
+          ParamType.String,
+        ),
+        'pwa': serializeParam(
+          _pwa,
+          ParamType.bool,
+        ),
+        'appVersionLoaded': serializeParam(
+          _appVersionLoaded,
           ParamType.String,
         ),
       }.withoutNulls;
@@ -287,6 +317,16 @@ class TblDispositivoInformacoesStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        pwa: deserializeParam(
+          data['pwa'],
+          ParamType.bool,
+          false,
+        ),
+        appVersionLoaded: deserializeParam(
+          data['appVersionLoaded'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -307,7 +347,9 @@ class TblDispositivoInformacoesStruct extends BaseStruct {
         applicationName == other.applicationName &&
         applicationVersion == other.applicationVersion &&
         applicationBuildCode == other.applicationBuildCode &&
-        tamanhoTela == other.tamanhoTela;
+        tamanhoTela == other.tamanhoTela &&
+        pwa == other.pwa &&
+        appVersionLoaded == other.appVersionLoaded;
   }
 
   @override
@@ -324,7 +366,9 @@ class TblDispositivoInformacoesStruct extends BaseStruct {
         applicationName,
         applicationVersion,
         applicationBuildCode,
-        tamanhoTela
+        tamanhoTela,
+        pwa,
+        appVersionLoaded
       ]);
 }
 
@@ -342,6 +386,8 @@ TblDispositivoInformacoesStruct createTblDispositivoInformacoesStruct({
   String? applicationVersion,
   String? applicationBuildCode,
   String? tamanhoTela,
+  bool? pwa,
+  String? appVersionLoaded,
 }) =>
     TblDispositivoInformacoesStruct(
       osName: osName,
@@ -357,4 +403,6 @@ TblDispositivoInformacoesStruct createTblDispositivoInformacoesStruct({
       applicationVersion: applicationVersion,
       applicationBuildCode: applicationBuildCode,
       tamanhoTela: tamanhoTela,
+      pwa: pwa,
+      appVersionLoaded: appVersionLoaded,
     );

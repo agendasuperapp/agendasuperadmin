@@ -44,6 +44,13 @@ class ViewTblAppPlanosRow extends SupabaseDataRow {
   double? get preco => getField<double>('preco');
   set preco(double? value) => setField<double>('preco', value);
 
+  double? get precoAssinatura => getField<double>('preco_assinatura');
+  set precoAssinatura(double? value) =>
+      setField<double>('preco_assinatura', value);
+
+  int? get percDescontoAss => getField<int>('perc_desconto_ass');
+  set percDescontoAss(int? value) => setField<int>('perc_desconto_ass', value);
+
   double? get porcentagemDesconto => getField<double>('porcentagem_desconto');
   set porcentagemDesconto(double? value) =>
       setField<double>('porcentagem_desconto', value);
@@ -68,4 +75,39 @@ class ViewTblAppPlanosRow extends SupabaseDataRow {
 
   bool? get situacaoPeriodo => getField<bool>('situacao_periodo');
   set situacaoPeriodo(bool? value) => setField<bool>('situacao_periodo', value);
+
+  int? get idAfiliadoApp => getField<int>('id_afiliado_app');
+  set idAfiliadoApp(int? value) => setField<int>('id_afiliado_app', value);
+
+  int? get idCupomPadrao => getField<int>('id_cupom_padrao');
+  set idCupomPadrao(int? value) => setField<int>('id_cupom_padrao', value);
+
+  String? get obsPlano => getField<String>('obs_plano');
+  set obsPlano(String? value) => setField<String>('obs_plano', value);
+
+  String? get obsDesconto => getField<String>('obs_desconto');
+  set obsDesconto(String? value) => setField<String>('obs_desconto', value);
+
+  double? get precoAnterior => getField<double>('preco_anterior');
+  set precoAnterior(double? value) => setField<double>('preco_anterior', value);
+
+  List<String> get detalhes => getListField<String>('detalhes');
+  set detalhes(List<String>? value) => setListField<String>('detalhes', value);
+
+  String? get nomeCupomPadrao => getField<String>('nome_cupom_padrao');
+  set nomeCupomPadrao(String? value) =>
+      setField<String>('nome_cupom_padrao', value);
+
+  String? get descricaoCupom => getField<String>('descricao_cupom');
+  set descricaoCupom(String? value) =>
+      setField<String>('descricao_cupom', value);
+
+  String? get obsCupom => getField<String>('obs_cupom');
+  set obsCupom(String? value) => setField<String>('obs_cupom', value);
+
+  int? get tempoTrial => getField<int>('tempo_trial');
+  set tempoTrial(int? value) => setField<int>('tempo_trial', value);
+
+  double? get percComissao => getField<double>('perc_comissao');
+  set percComissao(double? value) => setField<double>('perc_comissao', value);
 }

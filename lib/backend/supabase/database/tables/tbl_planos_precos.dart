@@ -55,4 +55,38 @@ class TblPlanosPrecosRow extends SupabaseDataRow {
 
   int get idPlanoNome => getField<int>('id_plano_nome')!;
   set idPlanoNome(int value) => setField<int>('id_plano_nome', value);
+
+  double? get precoAssinatura => getField<double>('preco_assinatura');
+  set precoAssinatura(double? value) =>
+      setField<double>('preco_assinatura', value);
+
+  String get tipo => getField<String>('tipo')!;
+  set tipo(String value) => setField<String>('tipo', value);
+
+  int get idAfiliadoApp => getField<int>('id_afiliado_app')!;
+  set idAfiliadoApp(int value) => setField<int>('id_afiliado_app', value);
+
+  int? get idCupomPadrao => getField<int>('id_cupom_padrao');
+  set idCupomPadrao(int? value) => setField<int>('id_cupom_padrao', value);
+
+  String? get obsPlano => getField<String>('obs_plano');
+  set obsPlano(String? value) => setField<String>('obs_plano', value);
+
+  String? get obsDesconto => getField<String>('obs_desconto');
+  set obsDesconto(String? value) => setField<String>('obs_desconto', value);
+
+  double? get precoAnterior => getField<double>('preco_anterior');
+  set precoAnterior(double? value) => setField<double>('preco_anterior', value);
+
+  List<String> get detalhes => getListField<String>('detalhes');
+  set detalhes(List<String>? value) => setListField<String>('detalhes', value);
+
+  String? get obsCupom => getField<String>('obs_cupom');
+  set obsCupom(String? value) => setField<String>('obs_cupom', value);
+
+  int get tempoTrial => getField<int>('tempo_trial')!;
+  set tempoTrial(int value) => setField<int>('tempo_trial', value);
+
+  double get percComissao => getField<double>('perc_comissao')!;
+  set percComissao(double value) => setField<double>('perc_comissao', value);
 }

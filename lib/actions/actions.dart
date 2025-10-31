@@ -374,10 +374,7 @@ Future<bool> acLogarCliente(BuildContext context) async {
         return WebViewAware(
           child: Padding(
             padding: MediaQuery.viewInsetsOf(context),
-            child: CpLoginWidget(
-              tp: 'login',
-              hm: false,
-            ),
+            child: CpLoginWidget(),
           ),
         );
       },
@@ -402,10 +399,7 @@ Future<bool> acLogarCliente(BuildContext context) async {
         return WebViewAware(
           child: Padding(
             padding: MediaQuery.viewInsetsOf(context),
-            child: CpLoginWidget(
-              tp: 'login',
-              hm: true,
-            ),
+            child: CpLoginWidget(),
           ),
         );
       },
@@ -425,7 +419,6 @@ Future<bool> acAtualizarEstabelecimentoLogado(
 }) async {
   List<ViewTblEstabelecimentosRow>? queryConsEstabLogado;
   List<ViewTblUsuariosRow>? queryTblUsuario;
-  List<TblNotificacoesRow>? queryConsNotificacao;
 
   queryConsEstabLogado = await ViewTblEstabelecimentosTable().queryRows(
     queryFn: (q) => q.eqOrNull(
@@ -519,7 +512,10 @@ Future<bool> acAtualizarEstabelecimentoLogado(
             queryConsEstabLogado!.firstOrNull!.formasPagamento.toList()
         ..comodidades = queryConsEstabLogado.firstOrNull!.comodidades.toList()
         ..idSegmento = queryConsEstabLogado.firstOrNull?.idSegmento
-        ..nomeSegmento = queryConsEstabLogado.firstOrNull?.nomeSegmento,
+        ..nomeSegmento = queryConsEstabLogado.firstOrNull?.nomeSegmento
+        ..assinatura = queryConsEstabLogado.firstOrNull?.assinatura
+        ..statusPagamento = queryConsEstabLogado.firstOrNull?.statusPagamento
+        ..nomeEstado = queryConsEstabLogado.firstOrNull?.nomeEstado,
     );
     FFAppState().updateVarTblWhatsAppStruct(
       (e) => e
@@ -530,16 +526,18 @@ Future<bool> acAtualizarEstabelecimentoLogado(
     FFAppState().VarIDEstabelecimentoLogado =
         queryConsEstabLogado.firstOrNull!.id!;
     FFAppState().update(() {});
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(
-          'ATUALIZANDO ESTABELECIMENTO...',
-          style: TextStyle(),
+    if (FFAppState().VarEmDesenvolvimento) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            'ATUALIZANDO ESTABELECIMENTO...',
+            style: TextStyle(),
+          ),
+          duration: Duration(milliseconds: 1000),
+          backgroundColor: FlutterFlowTheme.of(context).secondary,
         ),
-        duration: Duration(milliseconds: 1000),
-        backgroundColor: FlutterFlowTheme.of(context).secondary,
-      ),
-    );
+      );
+    }
   }
 
   if ((queryConsEstabLogado.firstOrNull?.idAfiliado != null) &&
@@ -603,7 +601,7 @@ Future<bool> acAtualizarEstabelecimentoLogado(
     );
     FFAppState().update(() {});
   }
-  if (kDebugMode || FFAppState().VarEmDesenvolvimento) {
+  if (FFAppState().VarEmDesenvolvimento) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
@@ -614,46 +612,6 @@ Future<bool> acAtualizarEstabelecimentoLogado(
         backgroundColor: FlutterFlowTheme.of(context).secondary,
       ),
     );
-  }
-  queryConsNotificacao = await TblNotificacoesTable().queryRows(
-    queryFn: (q) => q
-        .eqOrNull(
-          'id_estabelecimento',
-          FFAppState().VarIDEstabelecimentoLogado,
-        )
-        .eqOrNull(
-          'data',
-          supaSerialize<DateTime>(getCurrentTimestamp),
-        )
-        .eqOrNull(
-          'tipo',
-          'VENCIMENTO',
-        ),
-  );
-  if ((queryConsNotificacao.length == 0) &&
-      (FFAppState().VarTblEstabelecimentoLogado.planoRenovacao == true
-          ? (FFAppState().VarTblEstabelecimentoLogado.planoDiasRest <= 3)
-          : (FFAppState().VarTblEstabelecimentoLogado.planoDiasRest <= 15))) {
-    await TblNotificacoesTable().insert({
-      'id_estabelecimento': FFAppState().VarIDEstabelecimentoLogado,
-      'id_afiliado': (FFAppState().varIDAfiliadoLogado != null) &&
-              (FFAppState().varIDAfiliadoLogado > 0)
-          ? FFAppState().varIDAfiliadoLogado
-          : null,
-      'user_id': currentUserUid,
-      'situacao': true,
-      'lida': false,
-      'texto':
-          'Seu plano vence em ${FFAppState().VarTblEstabelecimentoLogado.planoDiasRest.toString()}${FFAppState().VarTblEstabelecimentoLogado.planoDiasRest == 1 ? ' dia' : ' dias'}, para continuar usando faça o pagamento até dia ${dateTimeFormat(
-        "dd/MM/y",
-        FFAppState().VarTblEstabelecimentoLogado.planoVencimento,
-        locale: FFLocalizations.of(context).languageCode,
-      )}',
-      'prioridade': true,
-      'tipo': 'VENCIMENTO',
-      'data': supaSerialize<DateTime>(getCurrentTimestamp),
-      'titulo': 'Vencimento',
-    });
   }
   return true;
 }
@@ -682,26 +640,7 @@ Future<bool> acWhatsAppEnviarMensagem(
   }
 
   unawaited(
-    () async {
-      await showDialog(
-        context: context,
-        builder: (alertDialogContext) {
-          return WebViewAware(
-            child: AlertDialog(
-              title: Text(
-                  'Erro ao enviar mensagem WhatsApp, tente novamente mais tarde'),
-              content: Text((apiResultWhatsApp?.bodyText ?? '')),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(alertDialogContext),
-                  child: Text('Ok'),
-                ),
-              ],
-            ),
-          );
-        },
-      );
-    }(),
+    () async {}(),
   );
   return false;
 }
@@ -875,6 +814,8 @@ Future acAtualizarInicializacaoSistema(
 }) async {
   bool? resultVerificarConex;
   List<String>? customDeviceInfo;
+  String? resultgetLoadedAppVersionIni;
+  bool? resultisRunningAsPWAIni;
 
   if ((FFAppState().varCarregouPrimeiraPagina == true) &&
       loggedIn &&
@@ -891,13 +832,14 @@ Future acAtualizarInicializacaoSistema(
   }
   if ((currentUserUid != '') &&
       (FFAppState().VarTblEstabelecimentoLogado.assistenteCadConcluido ==
-          false)) {
+          false) &&
+      !FFAppState().varAssistenteCadastroAberto &&
+      FFAppState().varCarregouPrimeiraPagina &&
+      (FFAppState().varIDAPPAfiliado == 1)) {
     if (MediaQuery.sizeOf(context).width < 900.0) {
       showModalBottomSheet(
         isScrollControlled: true,
         backgroundColor: Colors.transparent,
-        isDismissible: false,
-        enableDrag: false,
         context: context,
         builder: (context) {
           return WebViewAware(
@@ -914,8 +856,7 @@ Future acAtualizarInicializacaoSistema(
       );
     } else {
       showDialog(
-        barrierColor: Color(0xCB0D0D0D),
-        barrierDismissible: false,
+        barrierColor: Color(0xE5000000),
         context: context,
         builder: (dialogContext) {
           return Dialog(
@@ -931,6 +872,8 @@ Future acAtualizarInicializacaoSistema(
         },
       );
     }
+
+    FFAppState().varAssistenteCadastroAberto = true;
   }
   await Future.wait([
     Future(() async {
@@ -938,6 +881,8 @@ Future acAtualizarInicializacaoSistema(
         return;
       }
       customDeviceInfo = await actions.caSistemaOpDetectAll();
+      resultgetLoadedAppVersionIni = await actions.caWebGetLoadedAppVersion();
+      resultisRunningAsPWAIni = await actions.caWebisRunningAsPWA();
       if (customDeviceInfo?.firstOrNull != 'NULL') {
         FFAppState().updateVarTblDispositivoInformacoesStruct(
           (e) => e
@@ -954,7 +899,9 @@ Future acAtualizarInicializacaoSistema(
             ..applicationVersion = customDeviceInfo?.elementAtOrNull(10)
             ..applicationBuildCode = customDeviceInfo?.elementAtOrNull(11)
             ..tamanhoTela =
-                'H:${MediaQuery.sizeOf(context).height.toString()}  W: ${MediaQuery.sizeOf(context).width.toString()}',
+                'H:${MediaQuery.sizeOf(context).height.toString()}  W: ${MediaQuery.sizeOf(context).width.toString()}'
+            ..pwa = resultisRunningAsPWAIni
+            ..appVersionLoaded = resultgetLoadedAppVersionIni,
         );
       }
       if (FFAppState().VarTblDispositivoInformacoes.deviceId == '') {
@@ -980,7 +927,7 @@ Future acAtualizarInicializacaoSistema(
       if (FFAppState().VarEmDesenvolvimento) {
         FFAppState().VarAbrirJanelasWebAndroid = false;
       }
-      if (kDebugMode || FFAppState().VarEmDesenvolvimento) {
+      if (FFAppState().VarEmDesenvolvimento) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
@@ -997,9 +944,22 @@ Future acAtualizarInicializacaoSistema(
     }),
     Future(() async {
       if ((currentUserUid != '') &&
-          (FFAppState().varOneSignalInicializado == false) &&
-          (FFAppState().varNotificacoesAtivas == true)) {
-        await action_blocks.acInicializarNotificacoesOneSignal(context);
+          (isAndroid || isiOS) &&
+          (FFAppState().varAPPOneSignalInicializado == false) &&
+          (FFAppState().varAPPNotificacoesAtivas == true)) {
+        await action_blocks.acOneSignalAPPInicializarNotificacoes(context);
+      } else if (isWeb) {
+        if (isWeb) {
+          unawaited(
+            () async {
+              await action_blocks.acOneSignalWebCarregarNotificacoes(
+                context,
+                paramFuncao: 'SETINI',
+              );
+            }(),
+          );
+          await action_blocks.acOneSignalWebAtualizarOptions(context);
+        }
       }
     }),
   ]);
@@ -1100,6 +1060,8 @@ Future acMensagemDialog(
 }
 
 Future<bool> acSairSistema(BuildContext context) async {
+  String? acResultSetOneSignalEsternalUserIdLogoff2;
+
   var confirmDialogResponse = await showDialog<bool>(
         context: context,
         builder: (alertDialogContext) {
@@ -1131,14 +1093,41 @@ Future<bool> acSairSistema(BuildContext context) async {
     FFAppState().varTblAfiliado = TblAfiliadoFFezX1b2Struct();
     FFAppState().varIDAfiliadoLogado = 0;
     FFAppState().varTblUsuarios = TblUsuarioLogadoAdminStruct();
-    FFAppState().varIDOneSignal = '';
-    FFAppState().varOneSignalInicializado = false;
-    FFAppState().varNotificacoesAtivas = true;
-    unawaited(
-      () async {
-        await actions.oneSignalLogoutExternalId();
-      }(),
-    );
+    FFAppState().varAPPIDOneSignal = '';
+    FFAppState().varAPPOneSignalInicializado = false;
+    FFAppState().varAPPNotificacoesAtivas = true;
+    FFAppState().varWebOneSignalContadorAtzOptions = 0;
+    FFAppState().varWebOneSignalTblOptions =
+        TblOneSignalOptionsXveSve1azStruct();
+    FFAppState().varWebOneSignalOptions = [];
+    FFAppState().varWebOneSignalStatusSetIDExterno = '';
+    FFAppState().varWebOneSignalResultSetExternID = '';
+    FFAppState().varWebOneSignalWebStatusNotificacao = '';
+    FFAppState().varWebOneSignalNotificacoesAtivas = true;
+    FFAppState().deleteVarUltimaSenhaLogada();
+    FFAppState().varUltimaSenhaLogada = '';
+
+    FFAppState().varAssistenteCadastroAberto = false;
+    if (isAndroid || isiOS) {
+      unawaited(
+        () async {
+          await actions.caAPPOneSignalLogoutExternalId();
+        }(),
+      );
+    }
+    if (isWeb) {
+      unawaited(
+        () async {
+          acResultSetOneSignalEsternalUserIdLogoff2 =
+              await actions.caWebOneSignalSetExternalUserId(
+            'LOGOFF${FFAppState().VarTblDispositivoInformacoes.deviceId}',
+          );
+        }(),
+      );
+      FFAppState().varWebOneSignalResultSetExternID = 'LOGOFF';
+      FFAppState().varWebOneSignalStatusSetIDExterno = 'LOGOFF';
+      FFAppState().update(() {});
+    }
     return true;
   } else {
     return false;
@@ -1285,110 +1274,6 @@ Future acCadastrarHrFuncionamento(BuildContext context) async {
   }
 }
 
-Future<bool> acAtualizarPagamentoPIX(
-  BuildContext context, {
-  required String? paramIDPagamentoBanco,
-  required int? paramIDPlano,
-}) async {
-  ApiCallResponse? apiResulObterPagamentoPIX2;
-
-  apiResulObterPagamentoPIX2 = await MercadoPagoGroup.obterPagamentoCall.call(
-    idPagamento: paramIDPagamentoBanco,
-    accessToken:
-        'APP_USR-8088831434284918-112222-b214ab7da4719f99d739c55153882782-464129418',
-  );
-
-  if ((apiResulObterPagamentoPIX2.succeeded ?? true)) {
-    if (MercadoPagoGroup.obterPagamentoCall.status(
-          (apiResulObterPagamentoPIX2.jsonBody ?? ''),
-        ) ==
-        'approved') {
-      await TblEstabelecimentoPlanoTable().update(
-        data: {
-          'status_pagamento': 'PAGO',
-        },
-        matchingRows: (rows) => rows
-            .eqOrNull(
-              'id',
-              paramIDPlano,
-            )
-            .eqOrNull(
-              'id_estabelecimento',
-              FFAppState().VarIDEstabelecimentoLogado,
-            ),
-      );
-      return true;
-    } else {
-      await TblEstabelecimentoPlanoTable().update(
-        data: {
-          'status_pagamento': 'PENDENTE',
-          'card_status_pag': MercadoPagoGroup.obterPagamentoCall.status(
-            (apiResulObterPagamentoPIX2.jsonBody ?? ''),
-          ),
-          'card_status_detalhe':
-              MercadoPagoGroup.obterPagamentoCall.statusdetail(
-            (apiResulObterPagamentoPIX2.jsonBody ?? ''),
-          ),
-        },
-        matchingRows: (rows) => rows
-            .eqOrNull(
-              'id',
-              paramIDPlano,
-            )
-            .eqOrNull(
-              'id_estabelecimento',
-              FFAppState().VarIDEstabelecimentoLogado,
-            ),
-      );
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            'Pagamento não confirmado',
-            style: TextStyle(),
-          ),
-          duration: Duration(milliseconds: 4000),
-          backgroundColor: FlutterFlowTheme.of(context).error,
-        ),
-      );
-      return false;
-    }
-  } else {
-    await TblEstabelecimentoPlanoTable().update(
-      data: {
-        'status_pagamento': 'FALHA',
-      },
-      matchingRows: (rows) => rows
-          .eqOrNull(
-            'id',
-            paramIDPlano,
-          )
-          .eqOrNull(
-            'id_estabelecimento',
-            FFAppState().VarIDEstabelecimentoLogado,
-          ),
-    );
-    await showDialog(
-      context: context,
-      builder: (alertDialogContext) {
-        return WebViewAware(
-          child: AlertDialog(
-            title: Text('Atenção!'),
-            content: Text(
-                'Falha no pagamento, tente novamente: ${(apiResulObterPagamentoPIX2?.bodyText ?? '')}'),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(alertDialogContext),
-                child: Text('Ok'),
-              ),
-            ],
-          ),
-        );
-      },
-    );
-    return false;
-  }
-}
-
 Future<String> acCriptografarStringMD5(
   BuildContext context, {
   required String? paramString,
@@ -1450,7 +1335,7 @@ Future acAtualizarSegmentos(BuildContext context) async {
     ));
     FFAppState().VarContadorBlock = FFAppState().VarContadorBlock + 1;
   }
-  if (kDebugMode || FFAppState().VarEmDesenvolvimento) {
+  if (FFAppState().VarEmDesenvolvimento) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
@@ -1508,7 +1393,7 @@ Future acAtualizarAfiliadoCad(BuildContext context) async {
         ..diaSemanaSaque = queryConsAfiliado?.firstOrNull?.diaSaque,
     );
     FFAppState().update(() {});
-    if (kDebugMode || FFAppState().VarEmDesenvolvimento) {
+    if (FFAppState().VarEmDesenvolvimento) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
@@ -1825,15 +1710,20 @@ Future<String> acConsultarUsername(
   }
 }
 
-Future acAtualizarPlanos(BuildContext context) async {
+Future acAtualizarPlanos(
+  BuildContext context, {
+  required int? paramIDAfiliadoApp,
+}) async {
   List<ViewTblAppPlanosPeriodosRow>? queryConsPlanosPeriodo;
   List<ViewTblAppPlanosRow>? queryConsTblAppPlanos;
 
   queryConsPlanosPeriodo = await ViewTblAppPlanosPeriodosTable().queryRows(
-    queryFn: (q) => q.eqOrNull(
-      'situacao',
-      true,
-    ),
+    queryFn: (q) => q
+        .eqOrNull(
+          'situacao',
+          true,
+        )
+        .order('tempo', ascending: true),
   );
   queryConsTblAppPlanos = await ViewTblAppPlanosTable().queryRows(
     queryFn: (q) => q
@@ -1844,6 +1734,10 @@ Future acAtualizarPlanos(BuildContext context) async {
         .eqOrNull(
           'situacao_periodo',
           true,
+        )
+        .eqOrNull(
+          'id_afiliado_app',
+          paramIDAfiliadoApp,
         ),
   );
   FFAppState().VarContadorBlock = 0;
@@ -1927,6 +1821,13 @@ Future acAtualizarPlanos(BuildContext context) async {
       situacao: queryConsTblAppPlanos
           .elementAtOrNull(FFAppState().VarContadorBlock)
           ?.situacao,
+      precoAssinatura: queryConsTblAppPlanos
+          .elementAtOrNull(FFAppState().VarContadorBlock)
+          ?.precoAssinatura,
+      percDescontoAss: queryConsTblAppPlanos
+          .elementAtOrNull(FFAppState().VarContadorBlock)
+          ?.percDescontoAss
+          ?.toDouble(),
     ));
     FFAppState().VarContadorBlock = FFAppState().VarContadorBlock + 1;
   }
@@ -1965,6 +1866,8 @@ Future<String> acConsultarCupom(
     paramKey: FFAppState().varKeyCriptoBlock,
     paramToken: acBlockRecultCriptMD5ConsCupom,
     paramUserId: currentUserUid,
+    paramUserIdCli: '0',
+    paramIdAfApp: '1',
   );
 
   FFAppState().varTblAfiliadoCupom = TblAfiliadoCupomFeTy2GibStruct();
@@ -2133,44 +2036,54 @@ Future<String> acConsultarCupom(
     );
     return 'TOKINV';
   } else if (!(apiResultConsCupom.succeeded ?? true)) {
-    await showDialog(
-      context: context,
-      builder: (alertDialogContext) {
-        return WebViewAware(
-          child: AlertDialog(
-            title: Text('Atenção!'),
-            content:
-                Text('Erro ao consultar cupom:${'\n\n'}Código: Sucess False'),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(alertDialogContext),
-                child: Text('Ok'),
+    if (FunctionsServerSupabaseGroup.consultarCupomCall.message(
+          (apiResultConsCupom.jsonBody ?? ''),
+        ) ==
+        'Cupom não encontrado') {
+      if (paramTipoConsulta == 'CAD') {
+        await showDialog(
+          context: context,
+          builder: (alertDialogContext) {
+            return WebViewAware(
+              child: AlertDialog(
+                title: Text('Atenção!'),
+                content: Text(
+                    'Cupom não localizado, verifique se digitou corretamente'),
+                actions: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(alertDialogContext),
+                    child: Text('Ok'),
+                  ),
+                ],
               ),
-            ],
-          ),
+            );
+          },
         );
-      },
-    );
+      }
+      return 'False';
+    } else {
+      await showDialog(
+        context: context,
+        builder: (alertDialogContext) {
+          return WebViewAware(
+            child: AlertDialog(
+              title: Text('Atenção!'),
+              content: Text(
+                  'Erro ao consultar cupom:${'\n\n'}Código: Indefinido ${(apiResultConsCupom?.statusCode ?? 200).toString()}'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(alertDialogContext),
+                  child: Text('Ok'),
+                ),
+              ],
+            ),
+          );
+        },
+      );
+    }
+
     return 'ERRO';
   } else {
-    await showDialog(
-      context: context,
-      builder: (alertDialogContext) {
-        return WebViewAware(
-          child: AlertDialog(
-            title: Text('Atenção!'),
-            content: Text(
-                'Erro ao consultar cupom:${'\n\n'}Código: Indefinido ${(apiResultConsCupom?.statusCode ?? 200).toString()}'),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(alertDialogContext),
-                child: Text('Ok'),
-              ),
-            ],
-          ),
-        );
-      },
-    );
     return 'ERRO';
   }
 }
@@ -2533,7 +2446,7 @@ Future<String?> acConsultarCPFHubDev(
   }
 }
 
-Future<String> acConsultarCPFSportingBet(
+Future<String> acConsultarCPF(
   BuildContext context, {
   required String? paramCPF,
   required String? paramDataNascimento,
@@ -2968,7 +2881,7 @@ Future acAtualizarModelosBanners(BuildContext context) async {
     ));
     FFAppState().VarContadorBlock = FFAppState().VarContadorBlock + 1;
   }
-  if (kDebugMode || FFAppState().VarEmDesenvolvimento) {
+  if (FFAppState().VarEmDesenvolvimento) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(
@@ -3432,11 +3345,14 @@ Future acHomeCadastrarEstabelecimento(
 
   /// Estabelecimento ou afiliado
   required String? paramTipoCadastro,
+  required bool? paramAbrirCheckout,
+  required String? paramAssinatura,
 }) async {
   TblEstabelecimentoRow? supaCadEstabelecimentoBlock;
   TblUsuariosRow? supaCadUsuarioBlock;
   TblClientesRow? reultInsertCliente;
   ApiCallResponse? apiResulEmailCadastro;
+  String? acResultCriarPgPlanoEstabCad;
 
   unawaited(
     () async {}(),
@@ -3497,79 +3413,6 @@ Future acHomeCadastrarEstabelecimento(
     'user_id': currentUserUid,
     'origem_cadastro': 'ESTABELECIMENTO',
   });
-  if (paramTipoCadastro == 'ESTABELECIMENTO') {
-    await TblEstabelecimentoPlanoTable().insert({
-      'id_estabelecimento': supaCadEstabelecimentoBlock.id,
-      'id_plano_preco': paramIDPlanoPreco,
-      'data_inicial': supaSerialize<DateTime>(getCurrentTimestamp),
-      'data_final': supaSerialize<DateTime>(() {
-        if (FFAppState().varTblAfiliadoCupom.tipoCupom == 'MES') {
-          return functions.fcAdicionarMesEmData(
-              getCurrentTimestamp, FFAppState().varTblAfiliadoCupom.tempo);
-        } else if (FFAppState().varTblAfiliadoCupom.tipoCupom == 'DIA') {
-          return functions.fcAdicionarDiasEmData(
-              getCurrentTimestamp, FFAppState().varTblAfiliadoCupom.tempo);
-        } else if (paramTblPlanoPeriodosRow?.periodoMesDia == 'M') {
-          return functions.fcAdicionarMesEmData(
-              getCurrentTimestamp, paramTblPlanoPeriodosRow!.tempo);
-        } else if (paramTblPlanoPeriodosRow?.periodoMesDia == 'D') {
-          return functions.fcAdicionarDiasEmData(
-              getCurrentTimestamp, paramTblPlanoPeriodosRow!.tempo);
-        } else {
-          return getCurrentTimestamp;
-        }
-      }()),
-      'situacao': true,
-      'cupom': paramCupomAplicado!
-          ? functions.fcConverterStringMaiusculo(paramNomeCupom!)
-          : null,
-      'cupom_tipo': paramCupomAplicado
-          ? FFAppState().varTblAfiliadoCupom.tipoCupom
-          : null,
-      'cupom_tempo':
-          paramCupomAplicado ? FFAppState().varTblAfiliadoCupom.tempo : null,
-      'cupom_desconto': paramCupomAplicado
-          ? FFAppState().varTblAfiliadoCupom.percDesconto
-          : null,
-      'valor_sem_desconto': paramTblPlanos?.preco,
-      'valor_com_desconto': paramCupomAplicado
-          ? functions.fcSubtrairPercentualNumeroDouble(paramTblPlanos!.preco,
-              FFAppState().varTblAfiliadoCupom.percDesconto)
-          : paramTblPlanos?.preco,
-      'status_pagamento': paramCupomAplicado &&
-              (FFAppState().varTblAfiliadoCupom.percDesconto == 100.0)
-          ? 'PAGO'
-          : 'PENDENTE',
-      'data_pagamento': supaSerialize<DateTime>(getCurrentTimestamp),
-      'cupom_id_afiliado': paramCupomAplicado
-          ? FFAppState().varTblAfiliadoCupom.idAfiliado
-          : null,
-      'cupom_id_afiliado_cupom':
-          paramCupomAplicado ? FFAppState().varTblAfiliadoCupom.id : null,
-      'quant_profissionais_min': paramTblPlanos?.quantProfissionaisMin,
-      'quant_profissionais_max': paramTblPlanos?.quantProfissionaisMax,
-      'quant_agendamentos_max': paramTblPlanos?.quantAgendamentosMax,
-      'plano_ativo': true,
-      'quant_profissionais_usados': 0,
-      'quant_agendamentos_usados': 0,
-      'tempo': FFAppState().varTblAfiliadoCupom.tempo,
-      'periodo_mes_dia': paramTblPlanoPeriodosRow?.periodoMesDia,
-      'porcentagem_desconto': paramCupomAplicado
-          ? FFAppState().varTblAfiliadoCupom.percDesconto
-          : 0.0,
-      'user_id': currentUserUid,
-      'id_afiliado_indicador': FFAppState().varTblAfiliadoCupom.idAfiliado,
-      'renovacao': false,
-      'external_reference': random_data.randomString(
-        15,
-        15,
-        true,
-        true,
-        true,
-      ),
-    });
-  } else if (paramTipoCadastro == 'AFILIADO') {}
-
   await TblEstabelecimentoTable().update(
     data: {
       'id_usuario': supaCadUsuarioBlock.id,
@@ -3603,30 +3446,58 @@ Future acHomeCadastrarEstabelecimento(
   );
   await action_blocks.acCadastrarHrFuncionamento(context);
   if (!kDebugMode) {
-    apiResulEmailCadastro = await BrevoGroup.enivarEmailCall.call(
-      emailSender: FFAppState().VarEmailContatoAgendaSuper,
-      assunto: 'Bem vindo ao Aplicativo',
-      textoConteudo:
-          '<h2>Ol&aacute; ${paramNomeContato}</h2>  <p>&nbsp;</p>  <p>Obrigado por utilizar o aplicativo Agenda Super.&nbsp;</p>  <p>Agora voc&ecirc; pode gerenciar os agendamentos do seu estabelecimento com praticidade, rapidez e seguran&ccedil;a.</p>  <p>Conclua os cadastros e configura&ccedil;&otilde;es necess&aacute;rias e qualquer d&uacute;vida entre em contato conosco para auxili&aacute;-lo(a)</p>  <p>&nbsp;</p>  <blockquote> <p><span style=\'font-family:arial,helvetica,sans-serif\'>Atencisamente Agenda Super.</span></p>  <p><span style=\'font-family:arial,helvetica,sans-serif\'>Site: www.agendasuper.com</span></p>  <p><span style=\'font-family:arial,helvetica,sans-serif\'>E-mail: contato@agendasuper.com</span></p> </blockquote>',
-      nomeSender: 'Agenda Super',
-      nomeTo: 'to',
-      emailTo: currentUserEmail,
+    unawaited(
+      () async {
+        apiResulEmailCadastro = await BrevoGroup.enivarEmailCall.call(
+          emailSender: FFAppState().VarEmailContatoAgendaSuper,
+          assunto: 'Bem vindo ao Aplicativo',
+          textoConteudo:
+              '<h2>Ol&aacute; ${paramNomeContato}</h2>  <p>&nbsp;</p>  <p>Obrigado por utilizar o aplicativo Agenda Super.&nbsp;</p>  <p>Agora voc&ecirc; pode gerenciar os agendamentos do seu estabelecimento com praticidade, rapidez e seguran&ccedil;a.</p>  <p>Conclua os cadastros e configura&ccedil;&otilde;es necess&aacute;rias e qualquer d&uacute;vida entre em contato conosco para auxili&aacute;-lo(a)</p>  <p>&nbsp;</p>  <blockquote> <p><span style=\'font-family:arial,helvetica,sans-serif\'>Atencisamente Agenda Super.</span></p>  <p><span style=\'font-family:arial,helvetica,sans-serif\'>Site: www.agendasuper.com</span></p>  <p><span style=\'font-family:arial,helvetica,sans-serif\'>E-mail: contato@agendasuper.com</span></p> </blockquote>',
+          nomeSender: 'Agenda Super',
+          nomeTo: 'to',
+          emailTo: currentUserEmail,
+        );
+      }(),
     );
   }
   if (!kDebugMode) {
-    await action_blocks.acWhatsAppEnviarMensagem(
-      context,
-      paramNumeroWhatsApp:
-          '+55${functions.fcRemoverCaracteresELetrasString(paramTelefone!)}',
-      paramMensagem:
-          'Olá! ${functions.fcRetornarPrimeiroNomePessoa(paramNomeContato!)}\\n\\nObrigado por utilizar o aplicativo Agenda Super.\\n\\nAgora você pode gerenciar os agendamentos do seu estabelecimento com praticidade, rapidez e segurança. \\n\\nConclua os cadastros e configurações necessárias e qualquer dúvida entre em contato conosco para auxiliá-lo(a)   \\n\\n\\n\\n  Atenciosamente Agenda Super.\\n  Site: www.agendasuper.com \\n  E-mail: contato@agendasuper.com',
-      paramEnviarDoEstabelecimento: false,
+    unawaited(
+      () async {
+        await action_blocks.acWhatsAppEnviarMensagem(
+          context,
+          paramNumeroWhatsApp:
+              '+55${functions.fcRemoverCaracteresELetrasString(paramTelefone!)}',
+          paramMensagem:
+              'Olá! ${functions.fcRetornarPrimeiroNomePessoa(paramNomeContato!)}\\n\\nObrigado por utilizar o aplicativo Agenda Super.\\n\\nAgora você pode gerenciar os agendamentos do seu estabelecimento com praticidade, rapidez e segurança. \\n\\nConclua os cadastros e configurações necessárias e qualquer dúvida entre em contato conosco para auxiliá-lo(a)   \\n\\n\\n\\n  Atenciosamente Agenda Super.\\n  Site: www.agendasuper.com \\n  E-mail: contato@agendasuper.com',
+          paramEnviarDoEstabelecimento: false,
+        );
+      }(),
     );
   }
+  if (paramTipoCadastro == 'ESTABELECIMENTO') {
+    acResultCriarPgPlanoEstabCad =
+        await action_blocks.acCriarPagamentoPlanoEstab(
+      context,
+      paramidplanopreco: paramIDPlanoPreco?.toString(),
+      paramidcupom:
+          paramCupomAplicado && (FFAppState().varTblAfiliadoCupom.id != null)
+              ? FFAppState().varTblAfiliadoCupom.id.toString()
+              : '0',
+      paramrenovacao: 'false',
+      paramcheckout: paramAbrirCheckout?.toString(),
+      paramAssinatura: paramAssinatura,
+      paramRecriar: 'false',
+      paramdiastry:
+          paramCupomAplicado && (FFAppState().varTblAfiliadoCupom.id != null)
+              ? FFAppState().varTblAfiliadoCupom.tempo.toString()
+              : '3',
+    );
+  } else if (paramTipoCadastro == 'AFILIADO') {}
+
   FFAppState().varCarregouPrimeiraPagina = true;
-  await action_blocks.acAtualizarInicializacaoSistema(
-    context,
-    paramNaoAtualizarTabelas: false,
+  FFAppState().varAssistenteCadastroAberto = false;
+  unawaited(
+    () async {}(),
   );
 
   context.goNamed(PgDashboardWidget.routeName);
@@ -3773,8 +3644,16 @@ Future<String> acSolicitarSaque(BuildContext context) async {
 
 Future<bool> acVerificarUserLogado(BuildContext context) async {
   if (currentUserUid != '') {
-    await action_blocks.acAtualizarInicializacaoSistema(context);
-    await action_blocks.acAtualizarEstabelecimentoLogado(context);
+    unawaited(
+      () async {
+        await action_blocks.acAtualizarInicializacaoSistema(context);
+      }(),
+    );
+    unawaited(
+      () async {
+        await action_blocks.acAtualizarEstabelecimentoLogado(context);
+      }(),
+    );
 
     context.goNamed(PgDashboardWidget.routeName);
 
@@ -4170,34 +4049,54 @@ Future<String> acConsEstabDashboard(BuildContext context) async {
   }
 }
 
-Future<bool> acInicializarNotificacoesOneSignal(BuildContext context) async {
+Future<bool> acOneSignalAPPInicializarNotificacoes(BuildContext context) async {
   bool? resultVerifyNotificationPermission;
   String? resultGetOneSignalUserID;
 
   if ((isAndroid || isiOS) &&
       (currentUserUid != '')) {
-    await actions.caInicializaOneSignal();
-    await Future.delayed(const Duration(milliseconds: 500));
-    await actions.requestNotificationPermissions();
-    await Future.delayed(const Duration(milliseconds: 100));
+    await actions.caAPPOneSignalInicializa();
+    await Future.delayed(
+      Duration(
+        milliseconds: 500,
+      ),
+    );
+    await actions.caAPPOneSignalRequestNotificationPermissions();
+    await Future.delayed(
+      Duration(
+        milliseconds: 100,
+      ),
+    );
     resultVerifyNotificationPermission =
-        await actions.verifyNotificationPermission();
-    await Future.delayed(const Duration(milliseconds: 100));
+        await actions.caAPPOneSignalverifyNotificationPermission();
+    await Future.delayed(
+      Duration(
+        milliseconds: 100,
+      ),
+    );
     if ((resultVerifyNotificationPermission != null) &&
         (resultVerifyNotificationPermission == true)) {
-      resultGetOneSignalUserID = await actions.getOneSignalUserId();
-      await Future.delayed(const Duration(milliseconds: 10));
-      await actions.oneSignalUpdateExternalId(
+      resultGetOneSignalUserID = await actions.caAPPOneSignalgetUserId();
+      await Future.delayed(
+        Duration(
+          milliseconds: 10,
+        ),
+      );
+      await actions.caAPPOneSignalUpdateExternalId(
         currentUserUid,
       );
-      await Future.delayed(const Duration(milliseconds: 10));
-      FFAppState().varIDOneSignal = resultGetOneSignalUserID!;
-      FFAppState().varOneSignalInicializado = true;
+      await Future.delayed(
+        Duration(
+          milliseconds: 10,
+        ),
+      );
+      FFAppState().varAPPIDOneSignal = resultGetOneSignalUserID!;
+      FFAppState().varAPPOneSignalInicializado = true;
       FFAppState().update(() {});
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(
-            'One Signal Atualizado...',
+            'Notificações atualizadas...',
             style: TextStyle(
               color: FlutterFlowTheme.of(context).info,
               fontWeight: FontWeight.bold,
@@ -4232,10 +4131,345 @@ Future<bool> acInicializarNotificacoesOneSignal(BuildContext context) async {
       }
       return true;
     } else {
-      FFAppState().varOneSignalInicializado = false;
+      FFAppState().varAPPOneSignalInicializado = false;
       FFAppState().update(() {});
       return false;
     }
+  } else {
+    return false;
+  }
+}
+
+Future<bool?> acOneSignalWebAtualizarOptions(BuildContext context) async {
+  List<String>? resultOneSignalStorageData;
+  String? resultcaOneSignalWebStatus;
+
+  if (!(isWeb && (currentUserUid != ''))) {
+    return false;
+  }
+  resultOneSignalStorageData =
+      await actions.caWebOneSignalGetLocalStorageData();
+  FFAppState().varWebOneSignalContadorAtzOptions =
+      FFAppState().varWebOneSignalContadorAtzOptions + 1;
+  if (functions.fcConverterListaPString(resultOneSignalStorageData.toList()) ==
+      functions.fcConverterListaPString(
+          FFAppState().varWebOneSignalOptions.toList())) {
+    return false;
+  }
+
+  await actions.caWebOneSignalatualizarVarTbllOptions();
+  resultcaOneSignalWebStatus = await actions.caWebOneSignalStatus();
+  await action_blocks.acOneSignalWebCarregarNotificacoes(
+    context,
+    paramFuncao: 'ATZ',
+  );
+  FFAppState().varWebOneSignalOptions =
+      resultOneSignalStorageData.toList().cast<String>();
+  FFAppState().varWebOneSignalWebStatusNotificacao =
+      resultcaOneSignalWebStatus;
+  FFAppState().update(() {});
+  return true;
+}
+
+Future<bool?> acOneSignalWebCarregarNotificacoes(
+  BuildContext context, {
+  required String? paramFuncao,
+}) async {
+  String? acResultSetOneSignalEsternalUserIdLogoff;
+  String? resultRequestPermissaox4;
+  String? acResultSetOneSignalEsternalUserId;
+
+  if ((paramFuncao == 'SETIDINI') ||
+      (paramFuncao == 'ENTRAR') ||
+      (paramFuncao == 'CAD')) {
+    await Future.delayed(
+      Duration(
+        milliseconds: 3000,
+      ),
+    );
+  }
+  if ((currentUserUid == '') ||
+      (paramFuncao == 'DESATIVAR') ||
+      (paramFuncao == 'LOGOFF')) {
+    if (FFAppState().varWebOneSignalStatusSetIDExterno == 'LOGOFF') {
+      return true;
+    } else if ((currentUserUid == '') &&
+        (FFAppState().varUltimaSenhaLogada != '')) {
+      return true;
+    }
+
+    acResultSetOneSignalEsternalUserIdLogoff =
+        await actions.caWebOneSignalSetExternalUserId(
+      '${paramFuncao}${FFAppState().VarTblDispositivoInformacoes.deviceId}',
+    );
+    FFAppState().varWebOneSignalResultSetExternID =
+        acResultSetOneSignalEsternalUserIdLogoff;
+    FFAppState().varWebOneSignalStatusSetIDExterno =
+        acResultSetOneSignalEsternalUserIdLogoff ==
+                'success: ${paramFuncao}${FFAppState().VarTblDispositivoInformacoes.deviceId}'
+            ? 'SUCESSO'
+            : 'TENTANDOSET';
+    FFAppState().update(() {});
+    if (acResultSetOneSignalEsternalUserIdLogoff ==
+        'success: ${paramFuncao}${FFAppState().VarTblDispositivoInformacoes.deviceId}') {
+      return true;
+    }
+
+    return false;
+  } else {
+    resultRequestPermissaox4 = await actions.caWebOneSignalRequestPermission(
+      FFAppState().VarTblEstabelecimentoLogado.username,
+    );
+    acResultSetOneSignalEsternalUserId =
+        await actions.caWebOneSignalSetExternalUserId(
+      currentUserUid,
+    );
+    FFAppState().varWebOneSignalResultSetExternID =
+        acResultSetOneSignalEsternalUserId;
+    FFAppState().varWebOneSignalStatusSetIDExterno =
+        acResultSetOneSignalEsternalUserId == 'success: ${currentUserUid}'
+            ? 'SUCESSO'
+            : 'TENTANDOSET';
+    FFAppState().update(() {});
+    if (FFAppState().varWebOneSignalStatusSetIDExterno == 'SUCESSO') {
+      return true;
+    } else {
+      return false;
+    }
+  }
+}
+
+Future<String> acCriarPagamentoPlanoEstab(
+  BuildContext context, {
+  required String? paramidplanopreco,
+  required String? paramidcupom,
+  required String? paramrenovacao,
+  required String? paramcheckout,
+  required String? paramAssinatura,
+  required String? paramRecriar,
+  required String? paramdiastry,
+  String? paramDownUp,
+}) async {
+  String? acBlockRecultCriptMD5CriarPgPlanoEstab;
+  ApiCallResponse? apiResultCriarPgPlanoEstab;
+
+  acBlockRecultCriptMD5CriarPgPlanoEstab =
+      await action_blocks.acCriptografarStringMD5(
+    context,
+    paramString: '${paramidplanopreco}28${paramidcupom}89pag',
+  );
+  apiResultCriarPgPlanoEstab =
+      await FunctionsServerSupabaseGroup.fccriarpagamentoCall.call(
+    paramData: FFAppState().varDataCriptoBlock,
+    paramDv: FFAppState().VarTblDispositivoInformacoes.deviceId,
+    paramIdPlanoPreco: paramidplanopreco,
+    paramKey: FFAppState().varKeyCriptoBlock,
+    paramToken: acBlockRecultCriptMD5CriarPgPlanoEstab,
+    paramUserId: currentUserUid,
+    paramIdCupom: paramidcupom,
+    paramRenovacao: paramrenovacao,
+    paramCheckout: paramcheckout,
+    token: currentJwtToken,
+    paramAss: paramAssinatura,
+    paramRec: paramRecriar,
+    paramDiasTry: paramdiastry,
+    paramDownUp: paramDownUp,
+  );
+
+  if (FunctionsServerSupabaseGroup.fccriarpagamentoCall.result(
+        (apiResultCriarPgPlanoEstab.jsonBody ?? ''),
+      ) ==
+      'true') {
+    return FunctionsServerSupabaseGroup.fccriarpagamentoCall.idpg(
+      (apiResultCriarPgPlanoEstab.jsonBody ?? ''),
+    )!;
+  } else {
+    await showDialog(
+      context: context,
+      builder: (alertDialogContext) {
+        return WebViewAware(
+          child: AlertDialog(
+            title: Text('Atenção!'),
+            content: Text(
+                '${FunctionsServerSupabaseGroup.fccriarpagamentoCall.message(
+              (apiResultCriarPgPlanoEstab?.jsonBody ?? ''),
+            )}'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+    return 'ERRO';
+  }
+}
+
+Future<bool> acEdgeFuncDesfazCancAssinatura(
+  BuildContext context, {
+  required String? paramSubscriptionID,
+}) async {
+  ApiCallResponse? apiResultDesfazCancAssinatura;
+
+  apiResultDesfazCancAssinatura =
+      await EdgeFunctionsSupabaseGroup.stripedesfazcancelassinaturaCall.call(
+    subscriptionId: paramSubscriptionID,
+    token: currentJwtToken,
+  );
+
+  if ((apiResultDesfazCancAssinatura.succeeded ?? true)) {
+    return true;
+  }
+
+  await showDialog(
+    context: context,
+    builder: (alertDialogContext) {
+      return WebViewAware(
+        child: AlertDialog(
+          title: Text('Atenção!'),
+          content: Text(
+              'Erro ao desfazer cancelamento, tente novamente.${'\n'}${EdgeFunctionsSupabaseGroup.stripedesfazcancelassinaturaCall.error(
+            (apiResultDesfazCancAssinatura?.jsonBody ?? ''),
+          )}'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(alertDialogContext),
+              child: Text('Ok'),
+            ),
+          ],
+        ),
+      );
+    },
+  );
+  return false;
+}
+
+Future<String> acStripePortalURL(
+  BuildContext context, {
+  required String? paramCustomerID,
+}) async {
+  ApiCallResponse? apiStripePostalUrlResult;
+
+  apiStripePostalUrlResult =
+      await EdgeFunctionsSupabaseGroup.stripeportalurlCall.call(
+    customerId: paramCustomerID,
+    token: currentJwtToken,
+  );
+
+  if ((apiStripePostalUrlResult.succeeded ?? true)) {
+    return EdgeFunctionsSupabaseGroup.stripeportalurlCall.url(
+      (apiStripePostalUrlResult.jsonBody ?? ''),
+    )!;
+  }
+
+  await showDialog(
+    context: context,
+    builder: (alertDialogContext) {
+      return WebViewAware(
+        child: AlertDialog(
+          title: Text('Atenção!'),
+          content: Text(
+              'Erro ao gerar url: ${EdgeFunctionsSupabaseGroup.stripeportalurlCall.message(
+            (apiStripePostalUrlResult?.jsonBody ?? ''),
+          )}'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(alertDialogContext),
+              child: Text('Ok'),
+            ),
+          ],
+        ),
+      );
+    },
+  );
+  return 'false';
+}
+
+Future<String> acCriarPagamentoAfiliacao(
+  BuildContext context, {
+  required String? paramidplanopreco,
+  required String? paramidcupom,
+  required String? paramrenovacao,
+  required String? paramcheckout,
+  required String? paramAssinatura,
+  required String? paramRecriar,
+  required String? paramdiastry,
+  String? paramDownUp,
+}) async {
+  String? acBlockRecultCriptMD5CriarPgPlanoAfiliacao;
+  ApiCallResponse? apiResultCriarPgPlanoAfiliacao;
+
+  acBlockRecultCriptMD5CriarPgPlanoAfiliacao =
+      await action_blocks.acCriptografarStringMD5(
+    context,
+    paramString: '${paramidplanopreco}28${paramidcupom}89pag',
+  );
+  apiResultCriarPgPlanoAfiliacao =
+      await FunctionsServerSupabaseGroup.fcCriarPagamentoAfiliacaoCall.call(
+    paramData: FFAppState().varDataCriptoBlock,
+    paramDv: FFAppState().VarTblDispositivoInformacoes.deviceId,
+    paramIdPlanoPreco: paramidplanopreco,
+    paramKey: FFAppState().varKeyCriptoBlock,
+    paramToken: acBlockRecultCriptMD5CriarPgPlanoAfiliacao,
+    paramUserId: currentUserUid,
+    paramIdCupom: paramidcupom,
+    paramRenovacao: paramrenovacao,
+    paramCheckout: paramcheckout,
+    paramAss: paramAssinatura,
+    paramRec: paramRecriar,
+    paramDiasTry: paramdiastry,
+    paramDownUp: paramDownUp,
+    token: currentJwtToken,
+  );
+
+  if (FunctionsServerSupabaseGroup.fcCriarPagamentoAfiliacaoCall.result(
+        (apiResultCriarPgPlanoAfiliacao.jsonBody ?? ''),
+      ) ==
+      'true') {
+    return FunctionsServerSupabaseGroup.fcCriarPagamentoAfiliacaoCall.idpg(
+      (apiResultCriarPgPlanoAfiliacao.jsonBody ?? ''),
+    )!;
+  } else {
+    await showDialog(
+      context: context,
+      builder: (alertDialogContext) {
+        return WebViewAware(
+          child: AlertDialog(
+            title: Text('Atenção!'),
+            content: Text(
+                '${FunctionsServerSupabaseGroup.fcCriarPagamentoAfiliacaoCall.message(
+              (apiResultCriarPgPlanoAfiliacao?.jsonBody ?? ''),
+            )}'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+    return 'ERRO';
+  }
+}
+
+Future<bool> acAtualizarPlanosJson(BuildContext context) async {
+  ApiCallResponse? apiResultConsPlanos;
+
+  apiResultConsPlanos =
+      await FunctionsServerSupabaseGroup.fcconsultarplanoslandpgCall.call(
+    paramIdAfApp: FFAppState().varIDAPPAfiliado.toString(),
+  );
+
+  if ((apiResultConsPlanos.succeeded ?? true)) {
+    FFAppState().varTblPlanosJson =
+        (apiResultConsPlanos.jsonBody ?? '').toList().cast<dynamic>();
+    FFAppState().update(() {});
+    return true;
   } else {
     return false;
   }

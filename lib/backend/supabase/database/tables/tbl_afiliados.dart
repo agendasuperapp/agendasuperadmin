@@ -88,8 +88,8 @@ class TblAfiliadosRow extends SupabaseDataRow {
   String? get tipoDoc => getField<String>('tipo_doc');
   set tipoDoc(String? value) => setField<String>('tipo_doc', value);
 
-  String get docCpfCnpj => getField<String>('doc_cpf_cnpj')!;
-  set docCpfCnpj(String value) => setField<String>('doc_cpf_cnpj', value);
+  String? get docCpfCnpj => getField<String>('doc_cpf_cnpj');
+  set docCpfCnpj(String? value) => setField<String>('doc_cpf_cnpj', value);
 
   String? get inscEstadual => getField<String>('insc_estadual');
   set inscEstadual(String? value) => setField<String>('insc_estadual', value);
@@ -123,4 +123,7 @@ class TblAfiliadosRow extends SupabaseDataRow {
 
   bool get situacaoPlano => getField<bool>('situacao_plano')!;
   set situacaoPlano(bool value) => setField<bool>('situacao_plano', value);
+
+  String get uuid => getField<String>('uuid')!;
+  set uuid(String value) => setField<String>('uuid', value);
 }

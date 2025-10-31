@@ -308,6 +308,9 @@ class ViewTblEstabelecimentosRow extends SupabaseDataRow {
   set assistenteCadConcluido(bool? value) =>
       setField<bool>('assistente_cad_concluido', value);
 
+  bool? get excluido => getField<bool>('excluido');
+  set excluido(bool? value) => setField<bool>('excluido', value);
+
   String? get nomeUpper => getField<String>('nome_upper');
   set nomeUpper(String? value) => setField<String>('nome_upper', value);
 
@@ -381,4 +384,11 @@ class ViewTblEstabelecimentosRow extends SupabaseDataRow {
   int? get quantProfissionaisMax => getField<int>('quant_profissionais_max');
   set quantProfissionaisMax(int? value) =>
       setField<int>('quant_profissionais_max', value);
+
+  bool? get assinatura => getField<bool>('assinatura');
+  set assinatura(bool? value) => setField<bool>('assinatura', value);
+
+  String? get statusPagamento => getField<String>('status_pagamento');
+  set statusPagamento(String? value) =>
+      setField<String>('status_pagamento', value);
 }

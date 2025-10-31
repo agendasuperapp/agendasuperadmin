@@ -3,33 +3,33 @@ export '/pages/admin/a_sistema/home/home_page/home_page_widget.dart'
     show HomePageWidget;
 export '/pages/calendario/pg_calendario/pg_calendario_widget.dart'
     show PgCalendarioWidget;
-export '/pages/admin/componentes/estabelecimento/pg_estabelecimento/pg_consultar_agendamento/pg_consultar_agendamento_widget.dart'
+export '/pages/admin/componentes/afiliado/estabelecimento/pg_estabelecimento/pg_consultar_agendamento/pg_consultar_agendamento_widget.dart'
     show PgConsultarAgendamentoWidget;
 export '/pages/admin/a_sistema/home/pg_login/pg_login_widget.dart'
     show PgLoginWidget;
-export '/pages/admin/componentes/estabelecimento/pg_estabelecimento/pg_estabelecimento_admin/pg_estabelecimento_admin_widget.dart'
+export '/pages/admin/componentes/afiliado/estabelecimento/pg_estabelecimento/pg_estabelecimento_admin/pg_estabelecimento_admin_widget.dart'
     show PgEstabelecimentoAdminWidget;
-export '/pages/admin/componentes/estabelecimento/pg_estabelecimento/pg_estabelecimento_cad/pg_estabelecimento_cad_widget.dart'
+export '/pages/admin/componentes/afiliado/estabelecimento/pg_estabelecimento/pg_estabelecimento_cad/pg_estabelecimento_cad_widget.dart'
     show PgEstabelecimentoCadWidget;
-export '/pages/admin/componentes/estabelecimento/pg_estabelecimento/pg_dashboard/pg_dashboard_widget.dart'
+export '/pages/admin/componentes/afiliado/estabelecimento/pg_estabelecimento/pg_dashboard/pg_dashboard_widget.dart'
     show PgDashboardWidget;
-export '/pages/admin/componentes/estabelecimento/pg_estabelecimento/pg_lista_profissionais/pg_lista_profissionais_widget.dart'
+export '/pages/admin/componentes/afiliado/estabelecimento/pg_estabelecimento/pg_lista_profissionais/pg_lista_profissionais_widget.dart'
     show PgListaProfissionaisWidget;
-export '/pages/admin/componentes/estabelecimento/pg_estabelecimento/pg_lista_servicos/pg_lista_servicos_widget.dart'
+export '/pages/admin/componentes/afiliado/estabelecimento/pg_estabelecimento/pg_lista_servicos/pg_lista_servicos_widget.dart'
     show PgListaServicosWidget;
-export '/pages/admin/componentes/estabelecimento/pg_estabelecimento/pg_configuracoes/pg_configuracoes_widget.dart'
+export '/pages/admin/componentes/afiliado/estabelecimento/pg_estabelecimento/pg_configuracoes/pg_configuracoes_widget.dart'
     show PgConfiguracoesWidget;
-export '/pages/admin/componentes/estabelecimento/pg_estabelecimento/pg_lista_usuarios/pg_lista_usuarios_widget.dart'
+export '/pages/admin/componentes/afiliado/estabelecimento/pg_estabelecimento/pg_lista_usuarios/pg_lista_usuarios_widget.dart'
     show PgListaUsuariosWidget;
-export '/pages/admin/componentes/estabelecimento/pg_estabelecimento/pg_agendamentos_carrinhos/pg_agendamentos_carrinhos_widget.dart'
+export '/pages/admin/componentes/afiliado/estabelecimento/pg_estabelecimento/pg_agendamentos_carrinhos/pg_agendamentos_carrinhos_widget.dart'
     show PgAgendamentosCarrinhosWidget;
-export '/pages/admin/componentes/estabelecimento/pg_estabelecimento/pg_lista_produtos/pg_lista_produtos_widget.dart'
+export '/pages/admin/componentes/afiliado/estabelecimento/pg_estabelecimento/pg_lista_produtos/pg_lista_produtos_widget.dart'
     show PgListaProdutosWidget;
 export '/pages/admin/a_sistema/home/pg_reset_senha/pg_reset_senha_widget.dart'
     show PgResetSenhaWidget;
-export '/pages/admin/componentes/estabelecimento/pg_estabelecimento/pg_cad_profissionais/pg_cad_profissionais_widget.dart'
+export '/pages/admin/componentes/afiliado/estabelecimento/pg_estabelecimento/pg_cad_profissionais/pg_cad_profissionais_widget.dart'
     show PgCadProfissionaisWidget;
-export '/pages/admin/componentes/estabelecimento/pg_estabelecimento/pg_cad_servicos/pg_cad_servicos_widget.dart'
+export '/pages/admin/componentes/afiliado/estabelecimento/pg_estabelecimento/pg_cad_servicos/pg_cad_servicos_widget.dart'
     show PgCadServicosWidget;
 export '/pages/admin/componentes/admin_sistema/paginas_admin/pg_cad_temas_blackground/pg_cad_temas_blackground_widget.dart'
     show PgCadTemasBlackgroundWidget;
@@ -39,14 +39,14 @@ export '/pages/admin/componentes/admin_sistema/paginas_admin/pg_cad_modelos_bann
     show PgCadModelosBannersWidget;
 export '/pages/admin/componentes/admin_sistema/paginas_admin/pg_modelos_banners/pg_modelos_banners_widget.dart'
     show PgModelosBannersWidget;
-export '/pages/admin/componentes/estabelecimento/pg_estabelecimento/pg_agendamento_historico/pg_agendamento_historico_widget.dart'
+export '/pages/admin/componentes/afiliado/estabelecimento/pg_estabelecimento/pg_agendamento_historico/pg_agendamento_historico_widget.dart'
     show PgAgendamentoHistoricoWidget;
-export '/pages/admin/componentes/estabelecimento/pg_estabelecimento/pg_fidelidade/pg_fidelidade_widget.dart'
+export '/pages/admin/componentes/afiliado/estabelecimento/pg_estabelecimento/pg_fidelidade/pg_fidelidade_widget.dart'
     show PgFidelidadeWidget;
-export '/pages/admin/componentes/estabelecimento/pg_estabelecimento/pg_agendamentos_diarios/pg_agendamentos_diarios_widget.dart'
+export '/pages/admin/componentes/afiliado/estabelecimento/pg_estabelecimento/pg_agendamentos_diarios/pg_agendamentos_diarios_widget.dart'
     show PgAgendamentosDiariosWidget;
-export '/pages/admin/componentes/estabelecimento/pg_estabelecimento/pg_estabelecimentos_admin/pg_estabelecimentos_admin_widget.dart'
-    show PgEstabelecimentosAdminWidget;
+export '/pages/admin/componentes/admin_sistema/paginas_admin/pg_admin_estabelecimentos/pg_admin_estabelecimentos_widget.dart'
+    show PgAdminEstabelecimentosWidget;
 export '/pages/admin/componentes/admin_sistema/paginas_admin/pg_afiliados_admin/pg_afiliados_admin_widget.dart'
     show PgAfiliadosAdminWidget;
 export '/pages/admin/componentes/admin_sistema/paginas_admin/pg_financeiro/pg_financeiro_widget.dart'
@@ -69,16 +69,16 @@ export '/pages/admin/componentes/admin_sistema/paginas_admin/pg_relatorios/pg_re
     show PgRelatoriosWidget;
 export '/pages/admin/componentes/admin_sistema/paginas_admin/pg_cad_planos_precos/pg_cad_planos_precos_widget.dart'
     show PgCadPlanosPrecosWidget;
-export '/pages/admin/componentes/estabelecimento/pg_cad_planos_nomes/pg_cad_planos_nomes_widget.dart'
+export '/pages/admin/componentes/admin_sistema/paginas_admin/pg_cad_planos_nomes/pg_cad_planos_nomes_widget.dart'
     show PgCadPlanosNomesWidget;
-export '/pages/admin/componentes/estabelecimento/pg_estabelecimento/pg_cad_planos_periodos/pg_cad_planos_periodos_widget.dart'
+export '/pages/admin/componentes/afiliado/estabelecimento/pg_estabelecimento/pg_cad_planos_periodos/pg_cad_planos_periodos_widget.dart'
     show PgCadPlanosPeriodosWidget;
 export '/pages/admin/componentes/admin_sistema/paginas_admin/pg_formas_pag/pg_formas_pag_widget.dart'
     show PgFormasPagWidget;
 export '/pages/admin/componentes/afiliado/p_g_afiliados/pg_afiliados_cad/pg_afiliados_cad_widget.dart'
     show PgAfiliadosCadWidget;
-export '/pages/admin/componentes/afiliado/p_g_afiliados/pg_afiliado_dashboard/pg_afiliado_dashboard_widget.dart'
-    show PgAfiliadoDashboardWidget;
+export '/pages/admin/componentes/afiliado/p_g_afiliados/d_e_l_e_t_e_pg_afiliado_dashboard/d_e_l_e_t_e_pg_afiliado_dashboard_widget.dart'
+    show DELETEPgAfiliadoDashboardWidget;
 export '/pages/admin/componentes/afiliado/p_g_afiliados/pg_afiliado_indicacoes/pg_afiliado_indicacoes_widget.dart'
     show PgAfiliadoIndicacoesWidget;
 export '/pages/admin/componentes/afiliado/p_g_afiliados/pg_afiliado_sub_afiliados/pg_afiliado_sub_afiliados_widget.dart'
@@ -93,10 +93,10 @@ export '/pages/admin/componentes/afiliado/p_g_afiliados/pg_afiliado_treinamento/
     show PgAfiliadoTreinamentoWidget;
 export '/pages/admin/componentes/afiliado/p_g_afiliados/pg_afiliado_google_maps/pg_afiliado_google_maps_widget.dart'
     show PgAfiliadoGoogleMapsWidget;
-export '/pages/admin/componentes/afiliado/p_g_afiliados/pg_afiliado_apresentacao/pg_afiliado_apresentacao_widget.dart'
-    show PgAfiliadoApresentacaoWidget;
-export '/pages/admin/componentes/afiliado/p_g_afiliados/pg_afiliado_ativacao/pg_afiliado_ativacao_widget.dart'
-    show PgAfiliadoAtivacaoWidget;
+export '/pages/admin/componentes/afiliado/p_g_afiliados/d_e_l_e_t_e_pg_afiliado_apresentacao/d_e_l_e_t_e_pg_afiliado_apresentacao_widget.dart'
+    show DELETEPgAfiliadoApresentacaoWidget;
+export '/pages/admin/componentes/afiliado/p_g_afiliados/d_e_l_e_t_e_pg_afiliado_ativacao/d_e_l_e_t_e_pg_afiliado_ativacao_widget.dart'
+    show DELETEPgAfiliadoAtivacaoWidget;
 export '/pages/admin/componentes/afiliado/p_g_afiliados/pg_cupom_cad/pg_cupom_cad_widget.dart'
     show PgCupomCadWidget;
 export '/pages/admin/componentes/admin_sistema/paginas_admin/pg_admin_cupons_padroes/pg_admin_cupons_padroes_widget.dart'
@@ -111,7 +111,7 @@ export '/pages/admin/componentes/afiliado/p_g_afiliados/pg_afiliado_plano/pg_afi
     show PgAfiliadoPlanoWidget;
 export '/pages/admin/componentes/afiliado/p_g_afiliados/pg_afiliado_comissoes_mensais/pg_afiliado_comissoes_mensais_widget.dart'
     show PgAfiliadoComissoesMensaisWidget;
-export '/pages/admin/componentes/estabelecimento/pg_estabelecimento/pg_estabelecimento_plano/pg_estabelecimento_plano_widget.dart'
+export '/pages/admin/componentes/afiliado/estabelecimento/pg_estabelecimento/pg_estabelecimento_plano/pg_estabelecimento_plano_widget.dart'
     show PgEstabelecimentoPlanoWidget;
 export '/pages/admin/componentes/admin_sistema/paginas_admin/pg_modelos_fotos/pg_modelos_fotos_widget.dart'
     show PgModelosFotosWidget;
@@ -121,3 +121,11 @@ export '/pages/admin/componentes/admin_sistema/paginas_admin/pg_admin_pag_saques
     show PgAdminPagSaquesWidget;
 export '/pages/admin/a_sistema/home/pg_home_assistente_cad/pg_home_assistente_cad_widget.dart'
     show PgHomeAssistenteCadWidget;
+export '/pages/admin/componentes/admin_sistema/paginas_admin/pg_bancos_contas/pg_bancos_contas_widget.dart'
+    show PgBancosContasWidget;
+export '/pages/admin/componentes/admin_sistema/paginas_admin/pg_admin_eventos_stripe/pg_admin_eventos_stripe_widget.dart'
+    show PgAdminEventosStripeWidget;
+export '/pages/admin/componentes/afiliado/p_g_afiliados/pg_afiliado_cpf/pg_afiliado_cpf_widget.dart'
+    show PgAfiliadoCpfWidget;
+export '/pages/admin/a_sistema/home/pg_notificacoes/pg_notificacoes_widget.dart'
+    show PgNotificacoesWidget;

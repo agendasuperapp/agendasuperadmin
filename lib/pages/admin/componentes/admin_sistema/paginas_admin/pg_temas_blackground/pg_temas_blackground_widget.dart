@@ -156,7 +156,8 @@ class _PgTemasBlackgroundWidgetState extends State<PgTemasBlackgroundWidget> {
                                 padding: EdgeInsets.all(8.0),
                                 child: Icon(
                                   Icons.menu,
-                                  color: FlutterFlowTheme.of(context).info,
+                                  color: FlutterFlowTheme.of(context)
+                                      .colorIconMenu,
                                   size: 24.0,
                                 ),
                               ),
@@ -195,13 +196,14 @@ class _PgTemasBlackgroundWidgetState extends State<PgTemasBlackgroundWidget> {
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Flexible(
-                            child: wrapWithModel(
-                              model: _model.cpListaTemasBlackgroundModel,
-                              updateCallback: () => safeSetState(() {}),
-                              child: CpListaTemasBlackgroundWidget(),
+                          if (FFAppState().varTblUsuarios.adminSistema == true)
+                            Flexible(
+                              child: wrapWithModel(
+                                model: _model.cpListaTemasBlackgroundModel,
+                                updateCallback: () => safeSetState(() {}),
+                                child: CpListaTemasBlackgroundWidget(),
+                              ),
                             ),
-                          ),
                         ],
                       ),
                     ),

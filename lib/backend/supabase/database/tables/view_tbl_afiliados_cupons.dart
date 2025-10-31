@@ -74,9 +74,6 @@ class ViewTblAfiliadosCuponsRow extends SupabaseDataRow {
   set idPlanosNomesLiberados(List<int>? value) =>
       setListField<int>('id_planos_nomes_liberados', value);
 
-  bool? get cupomPadrao => getField<bool>('cupom_padrao');
-  set cupomPadrao(bool? value) => setField<bool>('cupom_padrao', value);
-
   int? get quantUsado => getField<int>('quant_usado');
   set quantUsado(int? value) => setField<int>('quant_usado', value);
 
@@ -91,4 +88,19 @@ class ViewTblAfiliadosCuponsRow extends SupabaseDataRow {
 
   bool? get excluido => getField<bool>('excluido');
   set excluido(bool? value) => setField<bool>('excluido', value);
+
+  int? get idAfiliadoApp => getField<int>('id_afiliado_app');
+  set idAfiliadoApp(int? value) => setField<int>('id_afiliado_app', value);
+
+  bool? get admin => getField<bool>('admin');
+  set admin(bool? value) => setField<bool>('admin', value);
+
+  bool? get principal => getField<bool>('principal');
+  set principal(bool? value) => setField<bool>('principal', value);
+
+  String? get siteLandpage => getField<String>('site_landpage');
+  set siteLandpage(String? value) => setField<String>('site_landpage', value);
+
+  String? get nomeApp => getField<String>('nome_app');
+  set nomeApp(String? value) => setField<String>('nome_app', value);
 }

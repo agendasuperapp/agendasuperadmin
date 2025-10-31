@@ -20,10 +20,10 @@ class CpCadModelosBannersModel
   FocusNode? textFieldFocusNode2;
   TextEditingController? textController2;
   String? Function(BuildContext, String?)? textController2Validator;
-  bool isDataUploading = false;
-  FFUploadedFile uploadedLocalFile =
+  bool isDataUploading_uploadDataBanner = false;
+  FFUploadedFile uploadedLocalFile_uploadDataBanner =
       FFUploadedFile(bytes: Uint8List.fromList([]));
-  String uploadedFileUrl = '';
+  String uploadedFileUrl_uploadDataBanner = '';
 
   @override
   void initState(BuildContext context) {}

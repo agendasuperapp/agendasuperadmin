@@ -252,8 +252,8 @@ class _CpCadPlanosPeriodosWidgetState extends State<CpCadPlanosPeriodosWidget> {
                                                   ?.periodoMesDia
                                               : 'M',
                                     ),
-                                    options: List<String>.from(['M', 'D']),
-                                    optionLabels: ['Mês', 'Dia'],
+                                    options: List<String>.from(['D', 'M', 'A']),
+                                    optionLabels: ['Dia', 'Mês', 'Ano'],
                                     onChanged: (val) => safeSetState(() =>
                                         _model.dropDownTipoPeriodoValue = val),
                                     width:
@@ -794,6 +794,28 @@ class _CpCadPlanosPeriodosWidgetState extends State<CpCadPlanosPeriodosWidget> {
                                 'periodo_mes_dia':
                                     _model.dropDownTipoPeriodoValue,
                                 'tempo': _model.countControllerQtMesesValue,
+                                'tempo_dias': () {
+                                  if (_model.dropDownTipoPeriodoValue == 'D') {
+                                    return _model.countControllerQtMesesValue
+                                        ?.toDouble();
+                                  } else if (_model.dropDownTipoPeriodoValue ==
+                                      'M') {
+                                    return functions
+                                        .fcMultiplicarNumInteiros(
+                                            _model.countControllerQtMesesValue!,
+                                            30)
+                                        .toDouble();
+                                  } else if (_model.dropDownTipoPeriodoValue ==
+                                      'A') {
+                                    return functions
+                                        .fcMultiplicarNumInteiros(
+                                            _model.countControllerQtMesesValue!,
+                                            365)
+                                        .toDouble();
+                                  } else {
+                                    return 0.0;
+                                  }
+                                }(),
                               });
                               safeSetState(() {
                                 _model.textFieldObsTextController?.clear();
@@ -835,6 +857,33 @@ class _CpCadPlanosPeriodosWidgetState extends State<CpCadPlanosPeriodosWidget> {
                                   'periodo_mes_dia':
                                       _model.dropDownTipoPeriodoValue,
                                   'tempo': _model.countControllerQtMesesValue,
+                                  'tempo_dias': () {
+                                    if (_model.dropDownTipoPeriodoValue ==
+                                        'D') {
+                                      return _model.countControllerQtMesesValue
+                                          ?.toDouble();
+                                    } else if (_model
+                                            .dropDownTipoPeriodoValue ==
+                                        'M') {
+                                      return functions
+                                          .fcMultiplicarNumInteiros(
+                                              _model
+                                                  .countControllerQtMesesValue!,
+                                              30)
+                                          .toDouble();
+                                    } else if (_model
+                                            .dropDownTipoPeriodoValue ==
+                                        'A') {
+                                      return functions
+                                          .fcMultiplicarNumInteiros(
+                                              _model
+                                                  .countControllerQtMesesValue!,
+                                              365)
+                                          .toDouble();
+                                    } else {
+                                      return 0.0;
+                                    }
+                                  }(),
                                 },
                                 matchingRows: (rows) => rows.eqOrNull(
                                   'id',

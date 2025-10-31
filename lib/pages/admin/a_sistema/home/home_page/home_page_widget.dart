@@ -1,4 +1,6 @@
 import '/auth/supabase_auth/auth_util.dart';
+import '/backend/schema/structs/index.dart';
+import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -33,7 +35,7 @@ class HomePageWidget extends StatefulWidget {
   final String cupom;
 
   static String routeName = 'HomePage';
-  static String routePath = '/:cupom';
+  static String routePath = '/home';
 
   @override
   State<HomePageWidget> createState() => _HomePageWidgetState();
@@ -68,12 +70,38 @@ class _HomePageWidgetState extends State<HomePageWidget>
             await action_blocks.acVerificarUserLogado(context);
         return;
       } else {
-        await action_blocks.acAtualizarInicializacaoSistema(
+        await action_blocks.acAtualizarPlanos(
           context,
-          paramNaoAtualizarTabelas: true,
+          paramIDAfiliadoApp: 1,
         );
-        await action_blocks.acAtualizarPlanos(context);
-
+        unawaited(
+          () async {
+            await action_blocks.acAtualizarInicializacaoSistema(
+              context,
+              paramNaoAtualizarTabelas: true,
+            );
+          }(),
+        );
+        _model.queryConsTipoPlaHome =
+            await ViewTblConfiguracoesTable().queryRows(
+          queryFn: (q) => q.eqOrNull(
+            'nome',
+            'TIPO PLANO HOME',
+          ),
+        );
+        _model.varAssinatura = () {
+          if (_model.queryConsTipoPlaHome?.firstOrNull?.valor == 'ASSINATURA') {
+            return true;
+          } else if (_model.queryConsTipoPlaHome?.firstOrNull?.valor ==
+              'AVULSO') {
+            return false;
+          } else if (_model.queryConsTipoPlaHome?.firstOrNull?.valor ==
+              'AMBOS') {
+            return true;
+          } else {
+            return false;
+          }
+        }();
         safeSetState(() {});
       }
 
@@ -102,17 +130,10 @@ class _HomePageWidgetState extends State<HomePageWidget>
       } else {
         if ((FFAppState().varUltCupomUsado != '') &&
             (widget.cupom != FFAppState().varUltCupomUsado)) {
-          context.pushNamedAuth(
-            HomePageWidget.routeName,
-            context.mounted,
-            pathParameters: {
-              'cupom': serializeParam(
-                FFAppState().varUltCupomUsado,
-                ParamType.String,
-              ),
-            }.withoutNulls,
-          );
-
+          safeSetState(() {
+            _model.textFieldCupomTextController?.text =
+                FFAppState().varUltCupomUsado;
+          });
           return;
         }
       }
@@ -122,6 +143,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
         TextEditingController(text: FFAppState().varUltCupomUsado);
     _model.textFieldCupomFocusNode ??= FocusNode();
 
+    _model.switchAssinaturaValue = true;
     animationsMap.addAll({
       'containerOnPageLoadAnimation1': AnimationInfo(
         trigger: AnimationTrigger.onPageLoad,
@@ -502,18 +524,6 @@ class _HomePageWidgetState extends State<HomePageWidget>
           ),
         ],
       ),
-      'textOnPageLoadAnimation7': AnimationInfo(
-        trigger: AnimationTrigger.onPageLoad,
-        effectsBuilder: () => [
-          FadeEffect(
-            curve: Curves.easeInOut,
-            delay: 0.0.ms,
-            duration: 1500.0.ms,
-            begin: 0.0,
-            end: 1.0,
-          ),
-        ],
-      ),
       'buttonOnPageLoadAnimation': AnimationInfo(
         loop: true,
         reverse: true,
@@ -525,6 +535,18 @@ class _HomePageWidgetState extends State<HomePageWidget>
             duration: 1500.0.ms,
             begin: Offset(1.08, 1.08),
             end: Offset(1.0, 1.0),
+          ),
+        ],
+      ),
+      'textOnPageLoadAnimation7': AnimationInfo(
+        trigger: AnimationTrigger.onPageLoad,
+        effectsBuilder: () => [
+          FadeEffect(
+            curve: Curves.easeInOut,
+            delay: 0.0.ms,
+            duration: 1500.0.ms,
+            begin: 0.0,
+            end: 1.0,
           ),
         ],
       ),
@@ -621,7 +643,9 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                 onPressed: () async {
                                   unawaited(
                                     () async {
-                                      await _model.columnConteudo?.animateTo(
+                                      await _model
+                                          .columnConteudoScrollController
+                                          ?.animateTo(
                                         0,
                                         duration: Duration(milliseconds: 1000),
                                         curve: Curves.ease,
@@ -637,8 +661,6 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                 text: 'Início',
                                 icon: Icon(
                                   Icons.home_outlined,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
                                   size: 24.0,
                                 ),
                                 options: FFButtonOptions(
@@ -647,6 +669,8 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                       16.0, 0.0, 16.0, 0.0),
                                   iconPadding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
+                                  iconColor:
+                                      FlutterFlowTheme.of(context).primaryText,
                                   color: Color(0x004B39EF),
                                   textStyle: FlutterFlowTheme.of(context)
                                       .titleSmall
@@ -704,8 +728,6 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                   text: 'Sobre',
                                   icon: Icon(
                                     Icons.info_outlined,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
                                     size: 24.0,
                                   ),
                                   options: FFButtonOptions(
@@ -714,6 +736,8 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                         16.0, 0.0, 16.0, 0.0),
                                     iconPadding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
+                                    iconColor: FlutterFlowTheme.of(context)
+                                        .secondaryText,
                                     color: Color(0x004B39EF),
                                     textStyle: FlutterFlowTheme.of(context)
                                         .titleSmall
@@ -773,8 +797,6 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                   text: 'Funcionalidades',
                                   icon: Icon(
                                     Icons.checklist_outlined,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
                                     size: 24.0,
                                   ),
                                   options: FFButtonOptions(
@@ -783,6 +805,8 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                         16.0, 0.0, 16.0, 0.0),
                                     iconPadding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
+                                    iconColor: FlutterFlowTheme.of(context)
+                                        .secondaryText,
                                     color: Color(0x004B39EF),
                                     textStyle: FlutterFlowTheme.of(context)
                                         .titleSmall
@@ -839,8 +863,6 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                   text: 'Preços',
                                   icon: Icon(
                                     Icons.monetization_on_outlined,
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
                                     size: 24.0,
                                   ),
                                   options: FFButtonOptions(
@@ -849,6 +871,8 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                         16.0, 0.0, 16.0, 0.0),
                                     iconPadding: EdgeInsetsDirectional.fromSTEB(
                                         0.0, 0.0, 0.0, 0.0),
+                                    iconColor: FlutterFlowTheme.of(context)
+                                        .secondaryText,
                                     color: Color(0x004B39EF),
                                     textStyle: FlutterFlowTheme.of(context)
                                         .titleSmall
@@ -887,9 +911,11 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                 onPressed: () async {
                                   unawaited(
                                     () async {
-                                      await _model.columnConteudo?.animateTo(
-                                        _model.columnConteudo!.position
-                                            .maxScrollExtent,
+                                      await _model
+                                          .columnConteudoScrollController
+                                          ?.animateTo(
+                                        _model.columnConteudoScrollController!
+                                            .position.maxScrollExtent,
                                         duration: Duration(milliseconds: 1000),
                                         curve: Curves.ease,
                                       );
@@ -904,8 +930,6 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                 text: 'Teste Grátis',
                                 icon: Icon(
                                   Icons.star,
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryText,
                                   size: 24.0,
                                 ),
                                 options: FFButtonOptions(
@@ -914,6 +938,8 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                       16.0, 0.0, 16.0, 0.0),
                                   iconPadding: EdgeInsetsDirectional.fromSTEB(
                                       0.0, 0.0, 0.0, 0.0),
+                                  iconColor:
+                                      FlutterFlowTheme.of(context).primaryText,
                                   color: Color(0x004B39EF),
                                   textStyle: FlutterFlowTheme.of(context)
                                       .titleSmall
@@ -1111,8 +1137,8 @@ class _HomePageWidgetState extends State<HomePageWidget>
                   fit: BoxFit.cover,
                   image: Image.asset(
                     Theme.of(context).brightness == Brightness.dark
-                        ? 'assets/images/6263904-fundo-abstrato-branco-pano-de-fundo-para-design-de-apresentacao-para-site-gratis-foto_(1).png'
-                        : 'assets/images/6263904-fundo-abstrato-branco-pano-de-fundo-para-design-de-apresentacao-para-site-gratis-foto.jpg',
+                        ? 'assets/images/fundoabs1.png'
+                        : 'assets/images/fundoabstrato.jpg',
                   ).image,
                 ),
                 borderRadius: BorderRadius.circular(0.0),
@@ -1212,7 +1238,8 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                               onPressed: () async {
                                                 unawaited(
                                                   () async {
-                                                    await _model.columnConteudo
+                                                    await _model
+                                                        .columnConteudoScrollController
                                                         ?.animateTo(
                                                       0,
                                                       duration: Duration(
@@ -1225,9 +1252,6 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                               text: 'Início',
                                               icon: Icon(
                                                 Icons.home_outlined,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryText,
                                                 size: 24.0,
                                               ),
                                               options: FFButtonOptions(
@@ -1239,6 +1263,9 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                     EdgeInsetsDirectional
                                                         .fromSTEB(
                                                             0.0, 0.0, 0.0, 0.0),
+                                                iconColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
                                                 color: Color(0x004B39EF),
                                                 textStyle: FlutterFlowTheme.of(
                                                         context)
@@ -1306,9 +1333,6 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                 text: 'Sobre',
                                                 icon: Icon(
                                                   Icons.info_outlined,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryText,
                                                   size: 24.0,
                                                 ),
                                                 options: FFButtonOptions(
@@ -1320,6 +1344,10 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                       EdgeInsetsDirectional
                                                           .fromSTEB(0.0, 0.0,
                                                               0.0, 0.0),
+                                                  iconColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .secondaryText,
                                                   color: Color(0x004B39EF),
                                                   textStyle: FlutterFlowTheme
                                                           .of(context)
@@ -1378,9 +1406,6 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                 text: 'Funcionalidades',
                                                 icon: Icon(
                                                   Icons.checklist_outlined,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryText,
                                                   size: 24.0,
                                                 ),
                                                 options: FFButtonOptions(
@@ -1392,6 +1417,10 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                       EdgeInsetsDirectional
                                                           .fromSTEB(0.0, 0.0,
                                                               0.0, 0.0),
+                                                  iconColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .secondaryText,
                                                   color: Color(0x004B39EF),
                                                   textStyle: FlutterFlowTheme
                                                           .of(context)
@@ -1451,9 +1480,6 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                 icon: Icon(
                                                   Icons
                                                       .monetization_on_outlined,
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .secondaryText,
                                                   size: 24.0,
                                                 ),
                                                 options: FFButtonOptions(
@@ -1465,6 +1491,10 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                       EdgeInsetsDirectional
                                                           .fromSTEB(0.0, 0.0,
                                                               0.0, 0.0),
+                                                  iconColor:
+                                                      FlutterFlowTheme.of(
+                                                              context)
+                                                          .secondaryText,
                                                   color: Color(0x004B39EF),
                                                   textStyle: FlutterFlowTheme
                                                           .of(context)
@@ -1514,10 +1544,11 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                               onPressed: () async {
                                                 unawaited(
                                                   () async {
-                                                    await _model.columnConteudo
+                                                    await _model
+                                                        .columnConteudoScrollController
                                                         ?.animateTo(
                                                       _model
-                                                          .columnConteudo!
+                                                          .columnConteudoScrollController!
                                                           .position
                                                           .maxScrollExtent,
                                                       duration: Duration(
@@ -1530,9 +1561,6 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                               text: 'Teste Grátis',
                                               icon: Icon(
                                                 Icons.grade_sharp,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryText,
                                                 size: 24.0,
                                               ),
                                               options: FFButtonOptions(
@@ -1544,6 +1572,9 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                     EdgeInsetsDirectional
                                                         .fromSTEB(
                                                             0.0, 0.0, 0.0, 0.0),
+                                                iconColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
                                                 color: Color(0x004B39EF),
                                                 textStyle: FlutterFlowTheme.of(
                                                         context)
@@ -1597,27 +1628,14 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                 unawaited(
                                                   () async {
                                                     context.pushNamed(
-                                                      PgLoginWidget.routeName,
-                                                      queryParameters: {
-                                                        'tp': serializeParam(
-                                                          'login',
-                                                          ParamType.String,
-                                                        ),
-                                                        'hm': serializeParam(
-                                                          true,
-                                                          ParamType.bool,
-                                                        ),
-                                                      }.withoutNulls,
-                                                    );
+                                                        PgLoginWidget
+                                                            .routeName);
                                                   }(),
                                                 );
                                               },
                                               text: 'Entrar',
                                               icon: Icon(
                                                 Icons.person_outline,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primaryText,
                                                 size: 24.0,
                                               ),
                                               options: FFButtonOptions(
@@ -1629,6 +1647,9 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                     EdgeInsetsDirectional
                                                         .fromSTEB(
                                                             0.0, 0.0, 0.0, 0.0),
+                                                iconColor:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryText,
                                                 color: Color(0x004B39EF),
                                                 textStyle: FlutterFlowTheme.of(
                                                         context)
@@ -1860,9 +1881,6 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                             text: 'Menu',
                                             icon: Icon(
                                               Icons.menu,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
                                               size: 24.0,
                                             ),
                                             options: FFButtonOptions(
@@ -1872,6 +1890,9 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                       16.0, 0.0, 16.0, 0.0),
                                               iconPadding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                              iconColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
                                               color: Color(0x004B39EF),
                                               textStyle: FlutterFlowTheme.of(
                                                       context)
@@ -1919,27 +1940,13 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                               unawaited(
                                                 () async {
                                                   context.pushNamed(
-                                                    PgLoginWidget.routeName,
-                                                    queryParameters: {
-                                                      'tp': serializeParam(
-                                                        'login',
-                                                        ParamType.String,
-                                                      ),
-                                                      'hm': serializeParam(
-                                                        true,
-                                                        ParamType.bool,
-                                                      ),
-                                                    }.withoutNulls,
-                                                  );
+                                                      PgLoginWidget.routeName);
                                                 }(),
                                               );
                                             },
                                             text: 'Entrar',
                                             icon: Icon(
                                               Icons.person_outline,
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .primaryText,
                                               size: 24.0,
                                             ),
                                             options: FFButtonOptions(
@@ -1949,6 +1956,9 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                       16.0, 0.0, 16.0, 0.0),
                                               iconPadding: EdgeInsetsDirectional
                                                   .fromSTEB(0.0, 0.0, 0.0, 0.0),
+                                              iconColor:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
                                               color: Color(0x004B39EF),
                                               textStyle: FlutterFlowTheme.of(
                                                       context)
@@ -2171,7 +2181,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                         padding:
                             EdgeInsetsDirectional.fromSTEB(0.0, 70.0, 0.0, 0.0),
                         child: SingleChildScrollView(
-                          controller: _model.columnConteudo,
+                          controller: _model.columnConteudoScrollController,
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
                             children: [
@@ -7483,6 +7493,16 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                           false;
                                                                       safeSetState(
                                                                           () {});
+                                                                      FFAppState()
+                                                                              .varTblAfiliadoCupom =
+                                                                          TblAfiliadoCupomFeTy2GibStruct();
+                                                                      FFAppState()
+                                                                          .deleteVarUltCupomUsado();
+                                                                      FFAppState()
+                                                                          .varUltCupomUsado = '';
+
+                                                                      safeSetState(
+                                                                          () {});
                                                                     },
                                                                   ),
                                                                   onFieldSubmitted:
@@ -7660,6 +7680,31 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                       size:
                                                                           28.0,
                                                                     ),
+                                                                    suffixIcon: _model
+                                                                            .textFieldCupomTextController!
+                                                                            .text
+                                                                            .isNotEmpty
+                                                                        ? InkWell(
+                                                                            onTap:
+                                                                                () async {
+                                                                              _model.textFieldCupomTextController?.clear();
+                                                                              _model.varCupomDescontoAplicado = false;
+                                                                              safeSetState(() {});
+                                                                              FFAppState().varTblAfiliadoCupom = TblAfiliadoCupomFeTy2GibStruct();
+                                                                              FFAppState().deleteVarUltCupomUsado();
+                                                                              FFAppState().varUltCupomUsado = '';
+
+                                                                              safeSetState(() {});
+                                                                              safeSetState(() {});
+                                                                            },
+                                                                            child:
+                                                                                Icon(
+                                                                              Icons.clear,
+                                                                              color: FlutterFlowTheme.of(context).secondaryText,
+                                                                              size: 18.0,
+                                                                            ),
+                                                                          )
+                                                                        : null,
                                                                   ),
                                                                   style: FlutterFlowTheme.of(
                                                                           context)
@@ -8137,7 +8182,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                               ),
                                                                             Flexible(
                                                                               child: Text(
-                                                                                functions.fcConverterStringMaiusculo(varPlanosPeriodos2Item.nome),
+                                                                                '${_model.varAssinatura ? 'ASSINATURA ' : ''}${functions.fcConverterStringMaiusculo(varPlanosPeriodos2Item.nome)}',
                                                                                 style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                       font: GoogleFonts.readexPro(
                                                                                         fontWeight: FontWeight.bold,
@@ -8359,18 +8404,33 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                                     crossAxisAlignment: CrossAxisAlignment.end,
                                                                                     children: [
                                                                                       Text(
-                                                                                        formatNumber(
-                                                                                          varTblPlanosItem.preco,
-                                                                                          formatType: FormatType.decimal,
-                                                                                          decimalType: DecimalType.commaDecimal,
-                                                                                          currency: 'R\$',
-                                                                                        ),
+                                                                                        _model.varAssinatura
+                                                                                            ? formatNumber(
+                                                                                                varTblPlanosItem.precoAssinatura,
+                                                                                                formatType: FormatType.decimal,
+                                                                                                decimalType: DecimalType.commaDecimal,
+                                                                                                currency: 'R\$',
+                                                                                              )
+                                                                                            : formatNumber(
+                                                                                                varTblPlanosItem.preco,
+                                                                                                formatType: FormatType.decimal,
+                                                                                                decimalType: DecimalType.commaDecimal,
+                                                                                                currency: 'R\$',
+                                                                                              ),
                                                                                         style: FlutterFlowTheme.of(context).bodyMedium.override(
                                                                                               font: GoogleFonts.readexPro(
                                                                                                 fontWeight: FontWeight.bold,
                                                                                                 fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                                               ),
-                                                                                              color: (FFAppState().varTblAfiliadoCupom.tipoCupom == 'DESCONTO') && _model.varCupomDescontoAplicado && ((FFAppState().varTblAfiliadoCupom.idPlanosNomesLiberados.length == 0) || (FFAppState().varTblAfiliadoCupom.idPlanosNomesLiberados.contains(varTblPlanosItem.id) == true)) ? FlutterFlowTheme.of(context).error : Color(0xFF57636C),
+                                                                                              color: () {
+                                                                                                if (((_model.queryConsTipoPlaHome?.firstOrNull?.valor == 'ASSINATURA') || (_model.queryConsTipoPlaHome?.firstOrNull?.valor == 'AMBOS')) && !_model.varAssinatura) {
+                                                                                                  return FlutterFlowTheme.of(context).error;
+                                                                                                } else if ((FFAppState().varTblAfiliadoCupom.tipoCupom == 'DESCONTO') && _model.varCupomDescontoAplicado && ((FFAppState().varTblAfiliadoCupom.idPlanosNomesLiberados.length == 0) || (FFAppState().varTblAfiliadoCupom.idPlanosNomesLiberados.contains(varTblPlanosItem.id) == true))) {
+                                                                                                  return FlutterFlowTheme.of(context).error;
+                                                                                                } else {
+                                                                                                  return Color(0xFF57636C);
+                                                                                                }
+                                                                                              }(),
                                                                                               fontSize: 30.0,
                                                                                               letterSpacing: 0.0,
                                                                                               fontWeight: FontWeight.bold,
@@ -8395,37 +8455,97 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                             ),
                                                                           ],
                                                                         ),
-                                                                        if ((varTblPlanosItem.maxParcSjuros >
-                                                                                1) &&
-                                                                            responsiveVisibility(
-                                                                              context: context,
-                                                                              phone: false,
-                                                                              tablet: false,
-                                                                              tabletLandscape: false,
-                                                                              desktop: false,
-                                                                            ))
+                                                                        if (((_model.queryConsTipoPlaHome?.firstOrNull?.valor == 'ASSINATURA') ||
+                                                                                (_model.queryConsTipoPlaHome?.firstOrNull?.valor == 'AMBOS')) &&
+                                                                            !_model.varAssinatura)
                                                                           Padding(
                                                                             padding: EdgeInsetsDirectional.fromSTEB(
                                                                                 0.0,
-                                                                                4.0,
                                                                                 0.0,
-                                                                                0.0),
+                                                                                0.0,
+                                                                                12.0),
                                                                             child:
-                                                                                Text(
-                                                                              'Parcele em até ${varTblPlanosItem.maxParcSjuros.toString()}X sem juros no cartão de crédito',
-                                                                              textAlign: TextAlign.center,
-                                                                              style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                    font: GoogleFonts.readexPro(
-                                                                                      fontWeight: FontWeight.normal,
-                                                                                      fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                Column(
+                                                                              mainAxisSize: MainAxisSize.max,
+                                                                              children: [
+                                                                                if (_model.varAssinatura == false)
+                                                                                  RichText(
+                                                                                    textScaler: MediaQuery.of(context).textScaler,
+                                                                                    text: TextSpan(
+                                                                                      children: [
+                                                                                        TextSpan(
+                                                                                          text: 'No plano de assinatura sai por ',
+                                                                                          style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                                font: GoogleFonts.readexPro(
+                                                                                                  fontWeight: FontWeight.normal,
+                                                                                                  fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                                ),
+                                                                                                color: Color(0xFF57636C),
+                                                                                                fontSize: 14.0,
+                                                                                                letterSpacing: 0.0,
+                                                                                                fontWeight: FontWeight.normal,
+                                                                                                fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                              ),
+                                                                                        ),
+                                                                                        TextSpan(
+                                                                                          text: formatNumber(
+                                                                                            varTblPlanosItem.precoAssinatura,
+                                                                                            formatType: FormatType.decimal,
+                                                                                            decimalType: DecimalType.commaDecimal,
+                                                                                            currency: 'R\$',
+                                                                                          ),
+                                                                                          style: TextStyle(
+                                                                                            color: FlutterFlowTheme.of(context).success,
+                                                                                            fontWeight: FontWeight.w800,
+                                                                                            fontSize: 20.0,
+                                                                                          ),
+                                                                                        )
+                                                                                      ],
+                                                                                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                            font: GoogleFonts.readexPro(
+                                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                            ),
+                                                                                            color: FlutterFlowTheme.of(context).info,
+                                                                                            letterSpacing: 0.0,
+                                                                                            fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                            fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                          ),
                                                                                     ),
-                                                                                    color: FlutterFlowTheme.of(context).secondaryText,
-                                                                                    fontSize: MediaQuery.sizeOf(context).width < kBreakpointSmall ? 12.0 : 16.0,
-                                                                                    letterSpacing: 0.0,
-                                                                                    fontWeight: FontWeight.normal,
-                                                                                    fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                    textAlign: TextAlign.center,
                                                                                   ),
-                                                                            ).animateOnPageLoad(animationsMap['textOnPageLoadAnimation7']!),
+                                                                                if (_model.varAssinatura == false)
+                                                                                  RichText(
+                                                                                    textScaler: MediaQuery.of(context).textScaler,
+                                                                                    text: TextSpan(
+                                                                                      children: [
+                                                                                        TextSpan(
+                                                                                          text: ' (${formatNumber(
+                                                                                            varTblPlanosItem.percDescontoAss,
+                                                                                            formatType: FormatType.decimal,
+                                                                                            decimalType: DecimalType.commaDecimal,
+                                                                                          )}% de desconto)',
+                                                                                          style: TextStyle(
+                                                                                            color: Color(0xFF57636C),
+                                                                                            fontSize: 14.0,
+                                                                                          ),
+                                                                                        )
+                                                                                      ],
+                                                                                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                            font: GoogleFonts.readexPro(
+                                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                            ),
+                                                                                            color: FlutterFlowTheme.of(context).info,
+                                                                                            letterSpacing: 0.0,
+                                                                                            fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                            fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                          ),
+                                                                                    ),
+                                                                                    textAlign: TextAlign.center,
+                                                                                  ),
+                                                                              ],
+                                                                            ),
                                                                           ),
                                                                         if ((FFAppState().varTblAfiliadoCupom.tipoCupom ==
                                                                                 'DESCONTO') &&
@@ -8573,6 +8693,38 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                                           ),
                                                                         ).animateOnPageLoad(
                                                                             animationsMap['buttonOnPageLoadAnimation']!),
+                                                                        if ((varTblPlanosItem.maxParcSjuros >
+                                                                                1) &&
+                                                                            responsiveVisibility(
+                                                                              context: context,
+                                                                              phone: false,
+                                                                              tablet: false,
+                                                                              tabletLandscape: false,
+                                                                              desktop: false,
+                                                                            ))
+                                                                          Padding(
+                                                                            padding: EdgeInsetsDirectional.fromSTEB(
+                                                                                0.0,
+                                                                                4.0,
+                                                                                0.0,
+                                                                                0.0),
+                                                                            child:
+                                                                                Text(
+                                                                              'Parcele em até ${varTblPlanosItem.maxParcSjuros.toString()}X sem juros no cartão de crédito',
+                                                                              textAlign: TextAlign.center,
+                                                                              style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                                                                    font: GoogleFonts.readexPro(
+                                                                                      fontWeight: FontWeight.normal,
+                                                                                      fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                    ),
+                                                                                    color: FlutterFlowTheme.of(context).secondaryText,
+                                                                                    fontSize: MediaQuery.sizeOf(context).width < kBreakpointSmall ? 12.0 : 16.0,
+                                                                                    letterSpacing: 0.0,
+                                                                                    fontWeight: FontWeight.normal,
+                                                                                    fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                  ),
+                                                                            ).animateOnPageLoad(animationsMap['textOnPageLoadAnimation7']!),
+                                                                          ),
                                                                       ].divide(SizedBox(
                                                                               height: 8.0)),
                                                                     ),
@@ -8591,6 +8743,121 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                         animationsMap[
                                                             'containerOnPageLoadAnimation5']!),
                                                   ),
+                                                  if (_model
+                                                          .queryConsTipoPlaHome
+                                                          ?.firstOrNull
+                                                          ?.valor ==
+                                                      'AMBOS')
+                                                    Container(
+                                                      decoration: BoxDecoration(
+                                                        color: _model
+                                                                .varAssinatura
+                                                            ? FlutterFlowTheme
+                                                                    .of(context)
+                                                                .accent1
+                                                            : FlutterFlowTheme
+                                                                    .of(context)
+                                                                .warning,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(25.0),
+                                                      ),
+                                                      child: Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    0.0,
+                                                                    12.0,
+                                                                    0.0),
+                                                        child: Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.min,
+                                                          children: [
+                                                            Switch.adaptive(
+                                                              value: _model
+                                                                  .switchAssinaturaValue!,
+                                                              onChanged:
+                                                                  (newValue) async {
+                                                                safeSetState(() =>
+                                                                    _model.switchAssinaturaValue =
+                                                                        newValue);
+                                                                if (newValue) {
+                                                                  _model.varAssinatura =
+                                                                      true;
+                                                                  safeSetState(
+                                                                      () {});
+                                                                  safeSetState(
+                                                                      () {
+                                                                    _model
+                                                                        .textFieldCupomTextController
+                                                                        ?.clear();
+                                                                  });
+                                                                } else {
+                                                                  _model.varAssinatura =
+                                                                      false;
+                                                                  safeSetState(
+                                                                      () {});
+                                                                  safeSetState(
+                                                                      () {
+                                                                    _model
+                                                                        .textFieldCupomTextController
+                                                                        ?.clear();
+                                                                  });
+                                                                }
+                                                              },
+                                                              activeColor:
+                                                                  Colors.white,
+                                                              activeTrackColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .success,
+                                                              inactiveTrackColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .error,
+                                                              inactiveThumbColor:
+                                                                  Color(
+                                                                      0xFFD8D9DB),
+                                                            ),
+                                                            Flexible(
+                                                              child: Text(
+                                                                'Planos com cobrança automática (Recorrente/Assinatura) com desconto',
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      font: GoogleFonts
+                                                                          .readexPro(
+                                                                        fontWeight: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .fontWeight,
+                                                                        fontStyle: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .fontStyle,
+                                                                      ),
+                                                                      color: _model.varAssinatura
+                                                                          ? FlutterFlowTheme.of(context)
+                                                                              .info
+                                                                          : FlutterFlowTheme.of(context)
+                                                                              .error,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      fontWeight: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontWeight,
+                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontStyle,
+                                                                    ),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
                                                 ],
                                               ),
                                             ),
@@ -8621,18 +8888,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                 }
 
                                                 context.pushNamed(
-                                                  PgLoginWidget.routeName,
-                                                  queryParameters: {
-                                                    'tp': serializeParam(
-                                                      'login',
-                                                      ParamType.String,
-                                                    ),
-                                                    'hm': serializeParam(
-                                                      true,
-                                                      ParamType.bool,
-                                                    ),
-                                                  }.withoutNulls,
-                                                );
+                                                    PgLoginWidget.routeName);
 
                                                 if (_shouldSetState)
                                                   safeSetState(() {});
@@ -8648,7 +8904,7 @@ class _HomePageWidgetState extends State<HomePageWidget>
                                                   ),
                                                 ),
                                                 child: Padding(
-                                                  padding: EdgeInsets.all(4.0),
+                                                  padding: EdgeInsets.all(8.0),
                                                   child: Row(
                                                     mainAxisSize:
                                                         MainAxisSize.min,

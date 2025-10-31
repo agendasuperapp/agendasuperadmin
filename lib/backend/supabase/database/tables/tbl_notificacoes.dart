@@ -89,4 +89,7 @@ class TblNotificacoesRow extends SupabaseDataRow {
   String? get retornoOneSegnal => getField<String>('retorno_one_segnal');
   set retornoOneSegnal(String? value) =>
       setField<String>('retorno_one_segnal', value);
+
+  String get destino => getField<String>('destino')!;
+  set destino(String value) => setField<String>('destino', value);
 }

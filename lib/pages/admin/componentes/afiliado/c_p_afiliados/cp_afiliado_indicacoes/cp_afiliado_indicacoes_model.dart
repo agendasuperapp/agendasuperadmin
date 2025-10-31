@@ -1,5 +1,6 @@
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/pages/admin/componentes/afiliado/c_p_afiliados/cp_afiliado_aviso_cadastro/cp_afiliado_aviso_cadastro_widget.dart';
 import 'cp_afiliado_indicacoes_widget.dart' show CpAfiliadoIndicacoesWidget;
 import 'dart:async';
 import 'package:flutter/material.dart';
@@ -15,12 +16,19 @@ class CpAfiliadoIndicacoesModel
   Completer<List<ViewTblEstabelecimentosRow>>? requestCompleter2;
   Completer<List<ViewTblAfiliadosEstabelecimentosRow>>? requestCompleter3;
   Completer<List<ViewTblAfiliadosEstabelecimentosQuantRow>>? requestCompleter1;
+  // Model for cp_afiliado_aviso_cadastro component.
+  late CpAfiliadoAvisoCadastroModel cpAfiliadoAvisoCadastroModel;
 
   @override
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    cpAfiliadoAvisoCadastroModel =
+        createModel(context, () => CpAfiliadoAvisoCadastroModel());
+  }
 
   @override
-  void dispose() {}
+  void dispose() {
+    cpAfiliadoAvisoCadastroModel.dispose();
+  }
 
   /// Additional helper methods.
   Future waitForRequestCompleted2({

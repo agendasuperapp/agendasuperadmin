@@ -38,8 +38,7 @@ class CpLoginModel extends FlutterFlowModel<CpLoginWidget> {
   // State field(s) for TextFieldEntrarTel widget.
   FocusNode? textFieldEntrarTelFocusNode;
   TextEditingController? textFieldEntrarTelTextController;
-  final textFieldEntrarTelMask =
-      MaskTextInputFormatter(mask: '(##) #####-####');
+  late MaskTextInputFormatter textFieldEntrarTelMask;
   String? Function(BuildContext, String?)?
       textFieldEntrarTelTextControllerValidator;
   // State field(s) for TextFieldEntrarEmail widget.
@@ -53,14 +52,12 @@ class CpLoginModel extends FlutterFlowModel<CpLoginWidget> {
   late bool textFieldEntrarSenhaVisibility;
   String? Function(BuildContext, String?)?
       textFieldEntrarSenhaTextControllerValidator;
-  // Stores action output result for [Action Block - acEntrar] action in TextFieldEntrarSenha widget.
-  bool? acVerificarCamposEntrar1;
   // Stores action output result for [Action Block - acEntrar] action in Button widget.
   bool? acVerificarCamposEntrar2;
-  bool isDataUploading = false;
-  FFUploadedFile uploadedLocalFile =
+  bool isDataUploading_uploadDataClientesCad = false;
+  FFUploadedFile uploadedLocalFile_uploadDataClientesCad =
       FFUploadedFile(bytes: Uint8List.fromList([]));
-  String uploadedFileUrl = '';
+  String uploadedFileUrl_uploadDataClientesCad = '';
 
   // State field(s) for TextFieldCadNomeEstabelecimento widget.
   FocusNode? textFieldCadNomeEstabelecimentoFocusNode;
@@ -75,8 +72,7 @@ class CpLoginModel extends FlutterFlowModel<CpLoginWidget> {
   // State field(s) for TextFieldCadTelefone widget.
   FocusNode? textFieldCadTelefoneFocusNode;
   TextEditingController? textFieldCadTelefoneTextController;
-  final textFieldCadTelefoneMask =
-      MaskTextInputFormatter(mask: '+55 (##) #####-####');
+  late MaskTextInputFormatter textFieldCadTelefoneMask;
   String? Function(BuildContext, String?)?
       textFieldCadTelefoneTextControllerValidator;
   // State field(s) for TextFieldCadEmail widget.
@@ -99,8 +95,7 @@ class CpLoginModel extends FlutterFlowModel<CpLoginWidget> {
   // State field(s) for TextFieldRecTelefone widget.
   FocusNode? textFieldRecTelefoneFocusNode;
   TextEditingController? textFieldRecTelefoneTextController;
-  final textFieldRecTelefoneMask =
-      MaskTextInputFormatter(mask: '(##) #####-####');
+  late MaskTextInputFormatter textFieldRecTelefoneMask;
   String? Function(BuildContext, String?)?
       textFieldRecTelefoneTextControllerValidator;
   // State field(s) for TextFieldRecEmail widget.

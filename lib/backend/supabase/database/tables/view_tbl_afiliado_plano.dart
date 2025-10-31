@@ -52,10 +52,6 @@ class ViewTblAfiliadoPlanoRow extends SupabaseDataRow {
   bool? get planoAtivo => getField<bool>('plano_ativo');
   set planoAtivo(bool? value) => setField<bool>('plano_ativo', value);
 
-  String? get externalReference => getField<String>('external_reference');
-  set externalReference(String? value) =>
-      setField<String>('external_reference', value);
-
   String? get nomeFormaPagamento => getField<String>('nome_forma_pagamento');
   set nomeFormaPagamento(String? value) =>
       setField<String>('nome_forma_pagamento', value);

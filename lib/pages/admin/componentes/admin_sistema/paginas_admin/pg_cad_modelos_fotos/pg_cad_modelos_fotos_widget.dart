@@ -5,6 +5,7 @@ import '/pages/admin/componentes/admin_sistema/cp_admin/cp_cad_modelos_fotos/cp_
 import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:provider/provider.dart';
 import 'pg_cad_modelos_fotos_model.dart';
 export 'pg_cad_modelos_fotos_model.dart';
 
@@ -53,6 +54,8 @@ class _PgCadModelosFotosWidgetState extends State<PgCadModelosFotosWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -66,16 +69,17 @@ class _PgCadModelosFotosWidgetState extends State<PgCadModelosFotosWidget> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              Flexible(
-                child: wrapWithModel(
-                  model: _model.cpCadModelosFotosModel,
-                  updateCallback: () => safeSetState(() {}),
-                  child: CpCadModelosFotosWidget(
-                    paramCadastro: widget.paramCadastro,
-                    paramRowTbmodelosFotos: widget.paramRowTblModelosFotos,
+              if (FFAppState().varTblUsuarios.adminSistema == true)
+                Flexible(
+                  child: wrapWithModel(
+                    model: _model.cpCadModelosFotosModel,
+                    updateCallback: () => safeSetState(() {}),
+                    child: CpCadModelosFotosWidget(
+                      paramCadastro: widget.paramCadastro,
+                      paramRowTbmodelosFotos: widget.paramRowTblModelosFotos,
+                    ),
                   ),
                 ),
-              ),
             ],
           ),
         ),

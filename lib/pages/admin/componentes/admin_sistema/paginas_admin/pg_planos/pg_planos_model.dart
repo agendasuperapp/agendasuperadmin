@@ -1,7 +1,7 @@
 import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/admin/a_sistema/home/cp_cabecalho_pagina/cp_cabecalho_pagina_widget.dart';
 import '/pages/admin/a_sistema/home/cp_menu_lateral/cp_menu_lateral_widget.dart';
-import '/pages/admin/componentes/admin_sistema/cp_admin/cp_planos/cp_planos_widget.dart';
+import '/pages/admin/componentes/admin_sistema/cp_admin/cp_cad_planos/cp_cad_planos_widget.dart';
 import 'pg_planos_widget.dart' show PgPlanosWidget;
 import 'package:flutter/material.dart';
 
@@ -12,8 +12,8 @@ class PgPlanosModel extends FlutterFlowModel<PgPlanosWidget> {
   late CpCabecalhoPaginaModel cpCabecalhoPaginaModel;
   // Model for cp_menu_lateral component.
   late CpMenuLateralModel cpMenuLateralModel1;
-  // Model for cp_planos component.
-  late CpPlanosModel cpPlanosModel;
+  // Model for cp_cad_planos component.
+  late CpCadPlanosModel cpCadPlanosModel;
   // Model for cp_menu_lateral component.
   late CpMenuLateralModel cpMenuLateralModel2;
 
@@ -22,7 +22,7 @@ class PgPlanosModel extends FlutterFlowModel<PgPlanosWidget> {
     cpCabecalhoPaginaModel =
         createModel(context, () => CpCabecalhoPaginaModel());
     cpMenuLateralModel1 = createModel(context, () => CpMenuLateralModel());
-    cpPlanosModel = createModel(context, () => CpPlanosModel());
+    cpCadPlanosModel = createModel(context, () => CpCadPlanosModel());
     cpMenuLateralModel2 = createModel(context, () => CpMenuLateralModel());
   }
 
@@ -30,7 +30,7 @@ class PgPlanosModel extends FlutterFlowModel<PgPlanosWidget> {
   void dispose() {
     cpCabecalhoPaginaModel.dispose();
     cpMenuLateralModel1.dispose();
-    cpPlanosModel.dispose();
+    cpCadPlanosModel.dispose();
     cpMenuLateralModel2.dispose();
   }
 }

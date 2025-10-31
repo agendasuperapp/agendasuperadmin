@@ -175,7 +175,7 @@ class _CpNotaFiscalWidgetState extends State<CpNotaFiscalWidget> {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(16.0),
                     child: Image.network(
-                      'https://blog.tecnospeed.com.br/wp-content/uploads/2019/07/DANFE-FISCAL.png',
+                      'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/agenda-super-admin-0zp7nv/assets/3l2gp113098k/DANFE-FISCAL.png',
                       fit: BoxFit.contain,
                     ),
                   ),

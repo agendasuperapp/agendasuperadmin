@@ -11,10 +11,10 @@ class CpAdminPagSaquesComprovanteModel
 
   ///  State fields for stateful widgets in this component.
 
-  bool isDataUploading = false;
-  FFUploadedFile uploadedLocalFile =
+  bool isDataUploading_uploadDataComprovantePG = false;
+  FFUploadedFile uploadedLocalFile_uploadDataComprovantePG =
       FFUploadedFile(bytes: Uint8List.fromList([]));
-  String uploadedFileUrl = '';
+  String uploadedFileUrl_uploadDataComprovantePG = '';
 
   @override
   void initState(BuildContext context) {}

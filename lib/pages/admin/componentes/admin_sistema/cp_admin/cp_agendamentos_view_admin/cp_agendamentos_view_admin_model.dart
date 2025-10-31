@@ -1,6 +1,6 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import '/pages/admin/componentes/estabelecimento/comp_estabelecimento/cp_agendamentos_carrinhos/cp_agendamentos_carrinhos_widget.dart';
-import '/pages/admin/componentes/estabelecimento/comp_estabelecimento/cp_agendamentos_diarios/cp_agendamentos_diarios_widget.dart';
+import '/pages/admin/componentes/afiliado/estabelecimento/comp_estabelecimento/cp_agendamentos_carrinhos/cp_agendamentos_carrinhos_widget.dart';
+import '/pages/admin/componentes/afiliado/estabelecimento/comp_estabelecimento/cp_agendamentos_diarios/cp_agendamentos_diarios_widget.dart';
 import 'cp_agendamentos_view_admin_widget.dart'
     show CpAgendamentosViewAdminWidget;
 import 'package:flutter/material.dart';

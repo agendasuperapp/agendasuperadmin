@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Agenda Super Admin</string>
+	<string>APP Agenda Super e Afiliado</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -13,7 +13,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>Agenda Super Admin</string>
+	<string>APP Agenda Super e Afiliado</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 
@@ -26,10 +26,10 @@
         <key>CFBundleTypeRole</key>
         <string>Editor</string>
         <key>CFBundleURLName</key>
-        <string>agendasuperadmin.com</string>
+        <string>appagendasupereafiliado.com</string>
         <key>CFBundleURLSchemes</key>
         <array>
-        <string>agendasuperadmin</string>
+        <string>appagendasupereafiliado</string>
         </array>
         </dict>
     </array>

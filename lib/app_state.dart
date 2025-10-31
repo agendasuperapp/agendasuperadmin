@@ -79,9 +79,29 @@ class FFAppState extends ChangeNotifier {
               _varUltCupomUsado;
     });
     await _safeInitAsync(() async {
-      _varNotificacoesAtivas =
-          await secureStorage.getBool('ff_varNotificacoesAtivas') ??
-              _varNotificacoesAtivas;
+      _varAPPNotificacoesAtivas =
+          await secureStorage.getBool('ff_varAPPNotificacoesAtivas') ??
+              _varAPPNotificacoesAtivas;
+    });
+    await _safeInitAsync(() async {
+      _varWebOneSignalNotificacoesAtivas =
+          await secureStorage.getBool('ff_varWebOneSignalNotificacoesAtivas') ??
+              _varWebOneSignalNotificacoesAtivas;
+    });
+    await _safeInitAsync(() async {
+      _varWebOneSignalContadorAtzOptions =
+          await secureStorage.getInt('ff_varWebOneSignalContadorAtzOptions') ??
+              _varWebOneSignalContadorAtzOptions;
+    });
+    await _safeInitAsync(() async {
+      _varUltimaSenhaLogada =
+          await secureStorage.getString('ff_varUltimaSenhaLogada') ??
+              _varUltimaSenhaLogada;
+    });
+    await _safeInitAsync(() async {
+      _varTextoConcluirCad =
+          await secureStorage.getString('ff_varTextoConcluirCad') ??
+              _varTextoConcluirCad;
     });
   }
 
@@ -91,6 +111,18 @@ class FFAppState extends ChangeNotifier {
   }
 
   late FlutterSecureStorage secureStorage;
+
+  String _VarVersaoSistema = '4.1.15';
+  String get VarVersaoSistema => _VarVersaoSistema;
+  set VarVersaoSistema(String value) {
+    _VarVersaoSistema = value;
+  }
+
+  int _varIDAPPAfiliado = 91234567890;
+  int get varIDAPPAfiliado => _varIDAPPAfiliado;
+  set varIDAPPAfiliado(int value) {
+    _varIDAPPAfiliado = value;
+  }
 
   int _VarIDEstabelecimentoLogado = 0;
   int get VarIDEstabelecimentoLogado => _VarIDEstabelecimentoLogado;
@@ -137,12 +169,6 @@ class FFAppState extends ChangeNotifier {
   int get VarIDUsuarioLogado => _VarIDUsuarioLogado;
   set VarIDUsuarioLogado(int value) {
     _VarIDUsuarioLogado = value;
-  }
-
-  String _VarVersaoSistema = '3.0.31';
-  String get VarVersaoSistema => _VarVersaoSistema;
-  set VarVersaoSistema(String value) {
-    _VarVersaoSistema = value;
   }
 
   TblDispositivoInformacoesStruct _VarTblDispositivoInformacoes =
@@ -812,7 +838,7 @@ class FFAppState extends ChangeNotifier {
     varTblModelosBanners.insert(index, value);
   }
 
-  int _varLayoutTamanhoMenuLateral = 225;
+  int _varLayoutTamanhoMenuLateral = 250;
   int get varLayoutTamanhoMenuLateral => _varLayoutTamanhoMenuLateral;
   set varLayoutTamanhoMenuLateral(int value) {
     _varLayoutTamanhoMenuLateral = value;
@@ -895,27 +921,201 @@ class FFAppState extends ChangeNotifier {
     updateFn(_varTblEstabelecimentoDashboard);
   }
 
-  String _varIDOneSignal = '';
-  String get varIDOneSignal => _varIDOneSignal;
-  set varIDOneSignal(String value) {
-    _varIDOneSignal = value;
+  String _varAPPIDOneSignal = '';
+  String get varAPPIDOneSignal => _varAPPIDOneSignal;
+  set varAPPIDOneSignal(String value) {
+    _varAPPIDOneSignal = value;
   }
 
-  bool _varNotificacoesAtivas = false;
-  bool get varNotificacoesAtivas => _varNotificacoesAtivas;
-  set varNotificacoesAtivas(bool value) {
-    _varNotificacoesAtivas = value;
-    secureStorage.setBool('ff_varNotificacoesAtivas', value);
+  bool _varAPPNotificacoesAtivas = true;
+  bool get varAPPNotificacoesAtivas => _varAPPNotificacoesAtivas;
+  set varAPPNotificacoesAtivas(bool value) {
+    _varAPPNotificacoesAtivas = value;
+    secureStorage.setBool('ff_varAPPNotificacoesAtivas', value);
   }
 
-  void deleteVarNotificacoesAtivas() {
-    secureStorage.delete(key: 'ff_varNotificacoesAtivas');
+  void deleteVarAPPNotificacoesAtivas() {
+    secureStorage.delete(key: 'ff_varAPPNotificacoesAtivas');
   }
 
-  bool _varOneSignalInicializado = false;
-  bool get varOneSignalInicializado => _varOneSignalInicializado;
-  set varOneSignalInicializado(bool value) {
-    _varOneSignalInicializado = value;
+  bool _varAPPOneSignalInicializado = false;
+  bool get varAPPOneSignalInicializado => _varAPPOneSignalInicializado;
+  set varAPPOneSignalInicializado(bool value) {
+    _varAPPOneSignalInicializado = value;
+  }
+
+  bool _varWebOneSignalNotificacoesAtivas = true;
+  bool get varWebOneSignalNotificacoesAtivas =>
+      _varWebOneSignalNotificacoesAtivas;
+  set varWebOneSignalNotificacoesAtivas(bool value) {
+    _varWebOneSignalNotificacoesAtivas = value;
+    secureStorage.setBool('ff_varWebOneSignalNotificacoesAtivas', value);
+  }
+
+  void deleteVarWebOneSignalNotificacoesAtivas() {
+    secureStorage.delete(key: 'ff_varWebOneSignalNotificacoesAtivas');
+  }
+
+  String _varWebOneSignalWebStatusNotificacao = '';
+  String get varWebOneSignalWebStatusNotificacao =>
+      _varWebOneSignalWebStatusNotificacao;
+  set varWebOneSignalWebStatusNotificacao(String value) {
+    _varWebOneSignalWebStatusNotificacao = value;
+  }
+
+  String _varWebOneSignalResultSetExternID = '';
+  String get varWebOneSignalResultSetExternID =>
+      _varWebOneSignalResultSetExternID;
+  set varWebOneSignalResultSetExternID(String value) {
+    _varWebOneSignalResultSetExternID = value;
+  }
+
+  String _varWebOneSignalStatusSetIDExterno = '';
+  String get varWebOneSignalStatusSetIDExterno =>
+      _varWebOneSignalStatusSetIDExterno;
+  set varWebOneSignalStatusSetIDExterno(String value) {
+    _varWebOneSignalStatusSetIDExterno = value;
+  }
+
+  List<String> _varWebOneSignalOptions = [];
+  List<String> get varWebOneSignalOptions => _varWebOneSignalOptions;
+  set varWebOneSignalOptions(List<String> value) {
+    _varWebOneSignalOptions = value;
+  }
+
+  void addToVarWebOneSignalOptions(String value) {
+    varWebOneSignalOptions.add(value);
+  }
+
+  void removeFromVarWebOneSignalOptions(String value) {
+    varWebOneSignalOptions.remove(value);
+  }
+
+  void removeAtIndexFromVarWebOneSignalOptions(int index) {
+    varWebOneSignalOptions.removeAt(index);
+  }
+
+  void updateVarWebOneSignalOptionsAtIndex(
+    int index,
+    String Function(String) updateFn,
+  ) {
+    varWebOneSignalOptions[index] = updateFn(_varWebOneSignalOptions[index]);
+  }
+
+  void insertAtIndexInVarWebOneSignalOptions(int index, String value) {
+    varWebOneSignalOptions.insert(index, value);
+  }
+
+  TblOneSignalOptionsXveSve1azStruct _varWebOneSignalTblOptions =
+      TblOneSignalOptionsXveSve1azStruct();
+  TblOneSignalOptionsXveSve1azStruct get varWebOneSignalTblOptions =>
+      _varWebOneSignalTblOptions;
+  set varWebOneSignalTblOptions(TblOneSignalOptionsXveSve1azStruct value) {
+    _varWebOneSignalTblOptions = value;
+  }
+
+  void updateVarWebOneSignalTblOptionsStruct(
+      Function(TblOneSignalOptionsXveSve1azStruct) updateFn) {
+    updateFn(_varWebOneSignalTblOptions);
+  }
+
+  int _varWebOneSignalContadorAtzOptions = 0;
+  int get varWebOneSignalContadorAtzOptions =>
+      _varWebOneSignalContadorAtzOptions;
+  set varWebOneSignalContadorAtzOptions(int value) {
+    _varWebOneSignalContadorAtzOptions = value;
+    secureStorage.setInt('ff_varWebOneSignalContadorAtzOptions', value);
+  }
+
+  void deleteVarWebOneSignalContadorAtzOptions() {
+    secureStorage.delete(key: 'ff_varWebOneSignalContadorAtzOptions');
+  }
+
+  String _varUltimaSenhaLogada = '';
+  String get varUltimaSenhaLogada => _varUltimaSenhaLogada;
+  set varUltimaSenhaLogada(String value) {
+    _varUltimaSenhaLogada = value;
+    secureStorage.setString('ff_varUltimaSenhaLogada', value);
+  }
+
+  void deleteVarUltimaSenhaLogada() {
+    secureStorage.delete(key: 'ff_varUltimaSenhaLogada');
+  }
+
+  bool _varAssistenteCadastroAberto = false;
+  bool get varAssistenteCadastroAberto => _varAssistenteCadastroAberto;
+  set varAssistenteCadastroAberto(bool value) {
+    _varAssistenteCadastroAberto = value;
+  }
+
+  List<String> _varGruposBotoesAbertos = [];
+  List<String> get varGruposBotoesAbertos => _varGruposBotoesAbertos;
+  set varGruposBotoesAbertos(List<String> value) {
+    _varGruposBotoesAbertos = value;
+  }
+
+  void addToVarGruposBotoesAbertos(String value) {
+    varGruposBotoesAbertos.add(value);
+  }
+
+  void removeFromVarGruposBotoesAbertos(String value) {
+    varGruposBotoesAbertos.remove(value);
+  }
+
+  void removeAtIndexFromVarGruposBotoesAbertos(int index) {
+    varGruposBotoesAbertos.removeAt(index);
+  }
+
+  void updateVarGruposBotoesAbertosAtIndex(
+    int index,
+    String Function(String) updateFn,
+  ) {
+    varGruposBotoesAbertos[index] = updateFn(_varGruposBotoesAbertos[index]);
+  }
+
+  void insertAtIndexInVarGruposBotoesAbertos(int index, String value) {
+    varGruposBotoesAbertos.insert(index, value);
+  }
+
+  List<dynamic> _varTblPlanosJson = [];
+  List<dynamic> get varTblPlanosJson => _varTblPlanosJson;
+  set varTblPlanosJson(List<dynamic> value) {
+    _varTblPlanosJson = value;
+  }
+
+  void addToVarTblPlanosJson(dynamic value) {
+    varTblPlanosJson.add(value);
+  }
+
+  void removeFromVarTblPlanosJson(dynamic value) {
+    varTblPlanosJson.remove(value);
+  }
+
+  void removeAtIndexFromVarTblPlanosJson(int index) {
+    varTblPlanosJson.removeAt(index);
+  }
+
+  void updateVarTblPlanosJsonAtIndex(
+    int index,
+    dynamic Function(dynamic) updateFn,
+  ) {
+    varTblPlanosJson[index] = updateFn(_varTblPlanosJson[index]);
+  }
+
+  void insertAtIndexInVarTblPlanosJson(int index, dynamic value) {
+    varTblPlanosJson.insert(index, value);
+  }
+
+  String _varTextoConcluirCad =
+      'CONCLUA SEU CADASTRO PARA LIBERAR TODAS AS FUNÇÕES';
+  String get varTextoConcluirCad => _varTextoConcluirCad;
+  set varTextoConcluirCad(String value) {
+    _varTextoConcluirCad = value;
+    secureStorage.setString('ff_varTextoConcluirCad', value);
+  }
+
+  void deleteVarTextoConcluirCad() {
+    secureStorage.delete(key: 'ff_varTextoConcluirCad');
   }
 }
 

@@ -98,8 +98,7 @@ class _PgHomeAssistenteCadWidgetState extends State<PgHomeAssistenteCadWidget> {
                         children: [
                           Icon(
                             Icons.close,
-                            color: FlutterFlowTheme.of(context)
-                                .customTextoMenuLateral,
+                            color: FlutterFlowTheme.of(context).txtMenuLateral,
                             size: 24.0,
                           ),
                         ],
@@ -157,7 +156,8 @@ class _PgHomeAssistenteCadWidgetState extends State<PgHomeAssistenteCadWidget> {
                                 padding: EdgeInsets.all(8.0),
                                 child: Icon(
                                   Icons.menu,
-                                  color: FlutterFlowTheme.of(context).info,
+                                  color: FlutterFlowTheme.of(context)
+                                      .colorIconMenu,
                                   size: 24.0,
                                 ),
                               ),

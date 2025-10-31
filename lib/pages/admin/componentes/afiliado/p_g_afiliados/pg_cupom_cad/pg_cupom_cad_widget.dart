@@ -1,7 +1,7 @@
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/pages/admin/componentes/afiliado/c_p_afiliados/cp_afiliado_cupom_cad/cp_afiliado_cupom_cad_widget.dart';
+import '/pages/admin/componentes/admin_sistema/cp_admin/cp_admin_cupons_padroes_cad/cp_admin_cupons_padroes_cad_widget.dart';
 import 'package:flutter/material.dart';
 import 'pg_cupom_cad_model.dart';
 export 'pg_cupom_cad_model.dart';
@@ -11,10 +11,12 @@ class PgCupomCadWidget extends StatefulWidget {
     super.key,
     required this.paramCadastro,
     this.paramTblCupom,
+    required this.paramIDAfiliadoApp,
   });
 
   final bool? paramCadastro;
   final ViewTblAfiliadosCuponsAdminRow? paramTblCupom;
+  final int? paramIDAfiliadoApp;
 
   static String routeName = 'pg_cupom_cad';
   static String routePath = '/pgCupomCad';
@@ -61,11 +63,12 @@ class _PgCupomCadWidgetState extends State<PgCupomCadWidget> {
             children: [
               Flexible(
                 child: wrapWithModel(
-                  model: _model.cpAfiliadoCupomCadModel,
+                  model: _model.cpAdminCuponsPadroesCadModel,
                   updateCallback: () => safeSetState(() {}),
-                  child: CpAfiliadoCupomCadWidget(
+                  child: CpAdminCuponsPadroesCadWidget(
                     paramCadastro: widget.paramCadastro!,
                     paramRowTblCupom: widget.paramTblCupom,
+                    paramIDAfiliadoApp: widget.paramIDAfiliadoApp!,
                   ),
                 ),
               ),

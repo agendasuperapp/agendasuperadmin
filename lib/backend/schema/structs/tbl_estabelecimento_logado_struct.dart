@@ -38,6 +38,7 @@ class TblEstabelecimentoLogadoStruct extends BaseStruct {
     String? bairro,
     String? cidade,
     String? uf,
+    String? nomeEstado,
     String? complemento,
     int? idAfiliadoIndicador,
     String? userIdAfiliadoIndicador,
@@ -53,6 +54,8 @@ class TblEstabelecimentoLogadoStruct extends BaseStruct {
     List<String>? comodidades,
     int? idSegmento,
     String? nomeSegmento,
+    bool? assinatura,
+    String? statusPagamento,
   })  : _idEstabelecimento = idEstabelecimento,
         _nomeEstabelecimento = nomeEstabelecimento,
         _nomeCabecalho = nomeCabecalho,
@@ -84,6 +87,7 @@ class TblEstabelecimentoLogadoStruct extends BaseStruct {
         _bairro = bairro,
         _cidade = cidade,
         _uf = uf,
+        _nomeEstado = nomeEstado,
         _complemento = complemento,
         _idAfiliadoIndicador = idAfiliadoIndicador,
         _userIdAfiliadoIndicador = userIdAfiliadoIndicador,
@@ -98,7 +102,9 @@ class TblEstabelecimentoLogadoStruct extends BaseStruct {
         _formasPagamento = formasPagamento,
         _comodidades = comodidades,
         _idSegmento = idSegmento,
-        _nomeSegmento = nomeSegmento;
+        _nomeSegmento = nomeSegmento,
+        _assinatura = assinatura,
+        _statusPagamento = statusPagamento;
 
   // "id_estabelecimento" field.
   int? _idEstabelecimento;
@@ -325,6 +331,13 @@ class TblEstabelecimentoLogadoStruct extends BaseStruct {
 
   bool hasUf() => _uf != null;
 
+  // "nome_estado" field.
+  String? _nomeEstado;
+  String get nomeEstado => _nomeEstado ?? '';
+  set nomeEstado(String? val) => _nomeEstado = val;
+
+  bool hasNomeEstado() => _nomeEstado != null;
+
   // "complemento" field.
   String? _complemento;
   String get complemento => _complemento ?? '';
@@ -449,6 +462,20 @@ class TblEstabelecimentoLogadoStruct extends BaseStruct {
 
   bool hasNomeSegmento() => _nomeSegmento != null;
 
+  // "assinatura" field.
+  bool? _assinatura;
+  bool get assinatura => _assinatura ?? false;
+  set assinatura(bool? val) => _assinatura = val;
+
+  bool hasAssinatura() => _assinatura != null;
+
+  // "status_pagamento" field.
+  String? _statusPagamento;
+  String get statusPagamento => _statusPagamento ?? '';
+  set statusPagamento(String? val) => _statusPagamento = val;
+
+  bool hasStatusPagamento() => _statusPagamento != null;
+
   static TblEstabelecimentoLogadoStruct fromMap(Map<String, dynamic> data) =>
       TblEstabelecimentoLogadoStruct(
         idEstabelecimento: castToType<int>(data['id_estabelecimento']),
@@ -482,6 +509,7 @@ class TblEstabelecimentoLogadoStruct extends BaseStruct {
         bairro: data['bairro'] as String?,
         cidade: data['cidade'] as String?,
         uf: data['uf'] as String?,
+        nomeEstado: data['nome_estado'] as String?,
         complemento: data['complemento'] as String?,
         idAfiliadoIndicador: castToType<int>(data['id_afiliado_indicador']),
         userIdAfiliadoIndicador: data['user_id_afiliado_indicador'] as String?,
@@ -497,6 +525,8 @@ class TblEstabelecimentoLogadoStruct extends BaseStruct {
         comodidades: getDataList(data['comodidades']),
         idSegmento: castToType<int>(data['id_segmento']),
         nomeSegmento: data['nome_segmento'] as String?,
+        assinatura: data['assinatura'] as bool?,
+        statusPagamento: data['status_pagamento'] as String?,
       );
 
   static TblEstabelecimentoLogadoStruct? maybeFromMap(dynamic data) =>
@@ -536,6 +566,7 @@ class TblEstabelecimentoLogadoStruct extends BaseStruct {
         'bairro': _bairro,
         'cidade': _cidade,
         'uf': _uf,
+        'nome_estado': _nomeEstado,
         'complemento': _complemento,
         'id_afiliado_indicador': _idAfiliadoIndicador,
         'user_id_afiliado_indicador': _userIdAfiliadoIndicador,
@@ -551,6 +582,8 @@ class TblEstabelecimentoLogadoStruct extends BaseStruct {
         'comodidades': _comodidades,
         'id_segmento': _idSegmento,
         'nome_segmento': _nomeSegmento,
+        'assinatura': _assinatura,
+        'status_pagamento': _statusPagamento,
       }.withoutNulls;
 
   @override
@@ -679,6 +712,10 @@ class TblEstabelecimentoLogadoStruct extends BaseStruct {
           _uf,
           ParamType.String,
         ),
+        'nome_estado': serializeParam(
+          _nomeEstado,
+          ParamType.String,
+        ),
         'complemento': serializeParam(
           _complemento,
           ParamType.String,
@@ -739,6 +776,14 @@ class TblEstabelecimentoLogadoStruct extends BaseStruct {
         ),
         'nome_segmento': serializeParam(
           _nomeSegmento,
+          ParamType.String,
+        ),
+        'assinatura': serializeParam(
+          _assinatura,
+          ParamType.bool,
+        ),
+        'status_pagamento': serializeParam(
+          _statusPagamento,
           ParamType.String,
         ),
       }.withoutNulls;
@@ -901,6 +946,11 @@ class TblEstabelecimentoLogadoStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        nomeEstado: deserializeParam(
+          data['nome_estado'],
+          ParamType.String,
+          false,
+        ),
         complemento: deserializeParam(
           data['complemento'],
           ParamType.String,
@@ -976,6 +1026,16 @@ class TblEstabelecimentoLogadoStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        assinatura: deserializeParam(
+          data['assinatura'],
+          ParamType.bool,
+          false,
+        ),
+        statusPagamento: deserializeParam(
+          data['status_pagamento'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -1016,6 +1076,7 @@ class TblEstabelecimentoLogadoStruct extends BaseStruct {
         bairro == other.bairro &&
         cidade == other.cidade &&
         uf == other.uf &&
+        nomeEstado == other.nomeEstado &&
         complemento == other.complemento &&
         idAfiliadoIndicador == other.idAfiliadoIndicador &&
         userIdAfiliadoIndicador == other.userIdAfiliadoIndicador &&
@@ -1030,7 +1091,9 @@ class TblEstabelecimentoLogadoStruct extends BaseStruct {
         listEquality.equals(formasPagamento, other.formasPagamento) &&
         listEquality.equals(comodidades, other.comodidades) &&
         idSegmento == other.idSegmento &&
-        nomeSegmento == other.nomeSegmento;
+        nomeSegmento == other.nomeSegmento &&
+        assinatura == other.assinatura &&
+        statusPagamento == other.statusPagamento;
   }
 
   @override
@@ -1066,6 +1129,7 @@ class TblEstabelecimentoLogadoStruct extends BaseStruct {
         bairro,
         cidade,
         uf,
+        nomeEstado,
         complemento,
         idAfiliadoIndicador,
         userIdAfiliadoIndicador,
@@ -1080,7 +1144,9 @@ class TblEstabelecimentoLogadoStruct extends BaseStruct {
         formasPagamento,
         comodidades,
         idSegmento,
-        nomeSegmento
+        nomeSegmento,
+        assinatura,
+        statusPagamento
       ]);
 }
 
@@ -1116,6 +1182,7 @@ TblEstabelecimentoLogadoStruct createTblEstabelecimentoLogadoStruct({
   String? bairro,
   String? cidade,
   String? uf,
+  String? nomeEstado,
   String? complemento,
   int? idAfiliadoIndicador,
   String? userIdAfiliadoIndicador,
@@ -1129,6 +1196,8 @@ TblEstabelecimentoLogadoStruct createTblEstabelecimentoLogadoStruct({
   bool? assistenteCadConcluido,
   int? idSegmento,
   String? nomeSegmento,
+  bool? assinatura,
+  String? statusPagamento,
 }) =>
     TblEstabelecimentoLogadoStruct(
       idEstabelecimento: idEstabelecimento,
@@ -1162,6 +1231,7 @@ TblEstabelecimentoLogadoStruct createTblEstabelecimentoLogadoStruct({
       bairro: bairro,
       cidade: cidade,
       uf: uf,
+      nomeEstado: nomeEstado,
       complemento: complemento,
       idAfiliadoIndicador: idAfiliadoIndicador,
       userIdAfiliadoIndicador: userIdAfiliadoIndicador,
@@ -1175,4 +1245,6 @@ TblEstabelecimentoLogadoStruct createTblEstabelecimentoLogadoStruct({
       assistenteCadConcluido: assistenteCadConcluido,
       idSegmento: idSegmento,
       nomeSegmento: nomeSegmento,
+      assinatura: assinatura,
+      statusPagamento: statusPagamento,
     );

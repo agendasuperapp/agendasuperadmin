@@ -16,12 +16,14 @@ class TblPlanosDXve3yNStruct extends BaseStruct {
     int? idPlanoPeriodo,
     String? descricao,
     double? preco,
+    double? precoAssinatura,
     double? porcentagemDesconto,
     int? quantProfissionaisMin,
     int? quantProfissionaisMax,
     int? quantAgendamentosMax,
     String? idPlanoNome,
     bool? situacao,
+    double? percDescontoAss,
   })  : _nomePlanoPeriodos = nomePlanoPeriodos,
         _nomePlano = nomePlano,
         _parcelamentoSjuros = parcelamentoSjuros,
@@ -31,12 +33,14 @@ class TblPlanosDXve3yNStruct extends BaseStruct {
         _idPlanoPeriodo = idPlanoPeriodo,
         _descricao = descricao,
         _preco = preco,
+        _precoAssinatura = precoAssinatura,
         _porcentagemDesconto = porcentagemDesconto,
         _quantProfissionaisMin = quantProfissionaisMin,
         _quantProfissionaisMax = quantProfissionaisMax,
         _quantAgendamentosMax = quantAgendamentosMax,
         _idPlanoNome = idPlanoNome,
-        _situacao = situacao;
+        _situacao = situacao,
+        _percDescontoAss = percDescontoAss;
 
   // "nome_plano_periodos" field.
   String? _nomePlanoPeriodos;
@@ -113,6 +117,16 @@ class TblPlanosDXve3yNStruct extends BaseStruct {
 
   bool hasPreco() => _preco != null;
 
+  // "preco_assinatura" field.
+  double? _precoAssinatura;
+  double get precoAssinatura => _precoAssinatura ?? 0.0;
+  set precoAssinatura(double? val) => _precoAssinatura = val;
+
+  void incrementPrecoAssinatura(double amount) =>
+      precoAssinatura = precoAssinatura + amount;
+
+  bool hasPrecoAssinatura() => _precoAssinatura != null;
+
   // "porcentagem_desconto" field.
   double? _porcentagemDesconto;
   double get porcentagemDesconto => _porcentagemDesconto ?? 0.0;
@@ -167,6 +181,16 @@ class TblPlanosDXve3yNStruct extends BaseStruct {
 
   bool hasSituacao() => _situacao != null;
 
+  // "perc_desconto_ass" field.
+  double? _percDescontoAss;
+  double get percDescontoAss => _percDescontoAss ?? 0.0;
+  set percDescontoAss(double? val) => _percDescontoAss = val;
+
+  void incrementPercDescontoAss(double amount) =>
+      percDescontoAss = percDescontoAss + amount;
+
+  bool hasPercDescontoAss() => _percDescontoAss != null;
+
   static TblPlanosDXve3yNStruct fromMap(Map<String, dynamic> data) =>
       TblPlanosDXve3yNStruct(
         nomePlanoPeriodos: data['nome_plano_periodos'] as String?,
@@ -178,12 +202,14 @@ class TblPlanosDXve3yNStruct extends BaseStruct {
         idPlanoPeriodo: castToType<int>(data['id_plano_periodo']),
         descricao: data['descricao'] as String?,
         preco: castToType<double>(data['preco']),
+        precoAssinatura: castToType<double>(data['preco_assinatura']),
         porcentagemDesconto: castToType<double>(data['porcentagem_desconto']),
         quantProfissionaisMin: castToType<int>(data['quant_profissionais_min']),
         quantProfissionaisMax: castToType<int>(data['quant_profissionais_max']),
         quantAgendamentosMax: castToType<int>(data['quant_agendamentos_max']),
         idPlanoNome: data['id_plano_nome'] as String?,
         situacao: data['situacao'] as bool?,
+        percDescontoAss: castToType<double>(data['perc_desconto_ass']),
       );
 
   static TblPlanosDXve3yNStruct? maybeFromMap(dynamic data) => data is Map
@@ -200,12 +226,14 @@ class TblPlanosDXve3yNStruct extends BaseStruct {
         'id_plano_periodo': _idPlanoPeriodo,
         'descricao': _descricao,
         'preco': _preco,
+        'preco_assinatura': _precoAssinatura,
         'porcentagem_desconto': _porcentagemDesconto,
         'quant_profissionais_min': _quantProfissionaisMin,
         'quant_profissionais_max': _quantProfissionaisMax,
         'quant_agendamentos_max': _quantAgendamentosMax,
         'id_plano_nome': _idPlanoNome,
         'situacao': _situacao,
+        'perc_desconto_ass': _percDescontoAss,
       }.withoutNulls;
 
   @override
@@ -246,6 +274,10 @@ class TblPlanosDXve3yNStruct extends BaseStruct {
           _preco,
           ParamType.double,
         ),
+        'preco_assinatura': serializeParam(
+          _precoAssinatura,
+          ParamType.double,
+        ),
         'porcentagem_desconto': serializeParam(
           _porcentagemDesconto,
           ParamType.double,
@@ -269,6 +301,10 @@ class TblPlanosDXve3yNStruct extends BaseStruct {
         'situacao': serializeParam(
           _situacao,
           ParamType.bool,
+        ),
+        'perc_desconto_ass': serializeParam(
+          _percDescontoAss,
+          ParamType.double,
         ),
       }.withoutNulls;
 
@@ -320,6 +356,11 @@ class TblPlanosDXve3yNStruct extends BaseStruct {
           ParamType.double,
           false,
         ),
+        precoAssinatura: deserializeParam(
+          data['preco_assinatura'],
+          ParamType.double,
+          false,
+        ),
         porcentagemDesconto: deserializeParam(
           data['porcentagem_desconto'],
           ParamType.double,
@@ -350,6 +391,11 @@ class TblPlanosDXve3yNStruct extends BaseStruct {
           ParamType.bool,
           false,
         ),
+        percDescontoAss: deserializeParam(
+          data['perc_desconto_ass'],
+          ParamType.double,
+          false,
+        ),
       );
 
   @override
@@ -367,12 +413,14 @@ class TblPlanosDXve3yNStruct extends BaseStruct {
         idPlanoPeriodo == other.idPlanoPeriodo &&
         descricao == other.descricao &&
         preco == other.preco &&
+        precoAssinatura == other.precoAssinatura &&
         porcentagemDesconto == other.porcentagemDesconto &&
         quantProfissionaisMin == other.quantProfissionaisMin &&
         quantProfissionaisMax == other.quantProfissionaisMax &&
         quantAgendamentosMax == other.quantAgendamentosMax &&
         idPlanoNome == other.idPlanoNome &&
-        situacao == other.situacao;
+        situacao == other.situacao &&
+        percDescontoAss == other.percDescontoAss;
   }
 
   @override
@@ -386,12 +434,14 @@ class TblPlanosDXve3yNStruct extends BaseStruct {
         idPlanoPeriodo,
         descricao,
         preco,
+        precoAssinatura,
         porcentagemDesconto,
         quantProfissionaisMin,
         quantProfissionaisMax,
         quantAgendamentosMax,
         idPlanoNome,
-        situacao
+        situacao,
+        percDescontoAss
       ]);
 }
 
@@ -405,12 +455,14 @@ TblPlanosDXve3yNStruct createTblPlanosDXve3yNStruct({
   int? idPlanoPeriodo,
   String? descricao,
   double? preco,
+  double? precoAssinatura,
   double? porcentagemDesconto,
   int? quantProfissionaisMin,
   int? quantProfissionaisMax,
   int? quantAgendamentosMax,
   String? idPlanoNome,
   bool? situacao,
+  double? percDescontoAss,
 }) =>
     TblPlanosDXve3yNStruct(
       nomePlanoPeriodos: nomePlanoPeriodos,
@@ -422,10 +474,12 @@ TblPlanosDXve3yNStruct createTblPlanosDXve3yNStruct({
       idPlanoPeriodo: idPlanoPeriodo,
       descricao: descricao,
       preco: preco,
+      precoAssinatura: precoAssinatura,
       porcentagemDesconto: porcentagemDesconto,
       quantProfissionaisMin: quantProfissionaisMin,
       quantProfissionaisMax: quantProfissionaisMax,
       quantAgendamentosMax: quantAgendamentosMax,
       idPlanoNome: idPlanoNome,
       situacao: situacao,
+      percDescontoAss: percDescontoAss,
     );

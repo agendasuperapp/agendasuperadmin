@@ -1,5 +1,6 @@
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/pages/admin/componentes/afiliado/c_p_afiliados/cp_afiliado_aviso_cadastro/cp_afiliado_aviso_cadastro_widget.dart';
 import 'cp_afiliado_dashboard_widget.dart' show CpAfiliadoDashboardWidget;
 import 'dart:async';
 import 'package:flutter/material.dart';
@@ -49,19 +50,18 @@ class CpAfiliadoDashboardModel
   Completer<List<ViewTblAfiliadosAtividadesRow>>? requestCompleter3;
   // Stores action output result for [Action Block - acConsAfiliadoDaschboard] action in Column widget.
   String? acReulstConsAfilDashboard2;
-  // State field(s) for TextFieldLinkIndicacao widget.
-  FocusNode? textFieldLinkIndicacaoFocusNode;
-  TextEditingController? textFieldLinkIndicacaoTextController;
-  String? Function(BuildContext, String?)?
-      textFieldLinkIndicacaoTextControllerValidator;
+  // Model for cp_afiliado_aviso_cadastro component.
+  late CpAfiliadoAvisoCadastroModel cpAfiliadoAvisoCadastroModel;
 
   @override
-  void initState(BuildContext context) {}
+  void initState(BuildContext context) {
+    cpAfiliadoAvisoCadastroModel =
+        createModel(context, () => CpAfiliadoAvisoCadastroModel());
+  }
 
   @override
   void dispose() {
-    textFieldLinkIndicacaoFocusNode?.dispose();
-    textFieldLinkIndicacaoTextController?.dispose();
+    cpAfiliadoAvisoCadastroModel.dispose();
   }
 
   /// Action blocks.

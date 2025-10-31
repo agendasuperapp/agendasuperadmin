@@ -224,20 +224,30 @@ dynamic deserializeParam<T>(
             return ViewTblAfiQtIndicacoesRow(data);
           case TblAfiliadosComissoesRow:
             return TblAfiliadosComissoesRow(data);
+          case TblAfiliadosLdPgTemasRow:
+            return TblAfiliadosLdPgTemasRow(data);
           case ViewTblEstabDashboardTopcliRow:
             return ViewTblEstabDashboardTopcliRow(data);
           case TblNotificacoesRow:
             return TblNotificacoesRow(data);
+          case TblConsultarCpfRow:
+            return TblConsultarCpfRow(data);
           case TblTesteRow:
             return TblTesteRow(data);
           case TblProfissionaisServLibRow:
             return TblProfissionaisServLibRow(data);
           case TblAgendamentosAtzRow:
             return TblAgendamentosAtzRow(data);
+          case TblPlanosContasRow:
+            return TblPlanosContasRow(data);
           case ViewTblAfiliadoVendasDiariasRow:
             return ViewTblAfiliadoVendasDiariasRow(data);
           case TblPlanosPrecosRow:
             return TblPlanosPrecosRow(data);
+          case ViewTblPagamentosStripeCancRow:
+            return ViewTblPagamentosStripeCancRow(data);
+          case TblDdiRow:
+            return TblDdiRow(data);
           case TblEstabPlanoMpRow:
             return TblEstabPlanoMpRow(data);
           case ViewTblAfiliadosCuponsRow:
@@ -250,24 +260,38 @@ dynamic deserializeParam<T>(
             return TblClientesRow(data);
           case TblCadServicosRow:
             return TblCadServicosRow(data);
+          case ViewTblAfiliadoAppsRow:
+            return ViewTblAfiliadoAppsRow(data);
           case TblHistoricoEmailRow:
             return TblHistoricoEmailRow(data);
+          case ViewTblConfiguracoesRow:
+            return ViewTblConfiguracoesRow(data);
+          case ViewTblAfiliadoPlanoPgRow:
+            return ViewTblAfiliadoPlanoPgRow(data);
           case TblAppConfiguracoesRow:
             return TblAppConfiguracoesRow(data);
+          case TblVersoesSistemaRow:
+            return TblVersoesSistemaRow(data);
           case TblHorariosDisponiveisRow:
             return TblHorariosDisponiveisRow(data);
           case ViewTblEstabPlanoMpRow:
             return ViewTblEstabPlanoMpRow(data);
           case ViewTblHorariosPadraoRow:
             return ViewTblHorariosPadraoRow(data);
-          case TblEstabelecimentoPlanoRow:
-            return TblEstabelecimentoPlanoRow(data);
+          case ViewQuantTblProfissionaisRow:
+            return ViewQuantTblProfissionaisRow(data);
+          case ViewTblEstabStatusAssinaturaFiltroRow:
+            return ViewTblEstabStatusAssinaturaFiltroRow(data);
           case ViewTblAfiliadoPlanoRow:
             return ViewTblAfiliadoPlanoRow(data);
+          case TblPagamentosLogSyncRow:
+            return TblPagamentosLogSyncRow(data);
           case ViewTblAgendamentoCarrinhoNotifRow:
             return ViewTblAgendamentoCarrinhoNotifRow(data);
           case TblWhatsappConsultarRow:
             return TblWhatsappConsultarRow(data);
+          case TblNotificacoesLogTesteRow:
+            return TblNotificacoesLogTesteRow(data);
           case ViewTblHorariosPadraoCount2Row:
             return ViewTblHorariosPadraoCount2Row(data);
           case TblModelosFotosRow:
@@ -276,8 +300,12 @@ dynamic deserializeParam<T>(
             return ViewTblEstabelecimentosRow(data);
           case ViewTblAppPlanosEstabelecimentosRow:
             return ViewTblAppPlanosEstabelecimentosRow(data);
+          case TblPlanosProdutosRow:
+            return TblPlanosProdutosRow(data);
           case TblUsuariosRow:
             return TblUsuariosRow(data);
+          case TblPagamentosStripeCancRow:
+            return TblPagamentosStripeCancRow(data);
           case TblAgendamentosRow:
             return TblAgendamentosRow(data);
           case ViewTblHorariosPadraoCountRow:
@@ -290,8 +318,12 @@ dynamic deserializeParam<T>(
             return TblAfiliadosCuponsPadRow(data);
           case TblPlanosNomesRow:
             return TblPlanosNomesRow(data);
+          case ViewTblPlanosContasRow:
+            return ViewTblPlanosContasRow(data);
           case ViewTblAfiliadosComissaoRow:
             return ViewTblAfiliadosComissaoRow(data);
+          case TblEstabelecimentoPlanoDeleteRow:
+            return TblEstabelecimentoPlanoDeleteRow(data);
           case ViewTblAgendamentosRow:
             return ViewTblAgendamentosRow(data);
           case TblAfiliadosSaquesRow:
@@ -302,22 +334,36 @@ dynamic deserializeParam<T>(
             return TblAfiliadosCuponsLibRow(data);
           case ViewTblAppPlanosPeriodosRow:
             return ViewTblAppPlanosPeriodosRow(data);
+          case ViewTblPagamentosStripeAppRow:
+            return ViewTblPagamentosStripeAppRow(data);
+          case ViewTblAfiliadosCuponsPadFiltroRow:
+            return ViewTblAfiliadosCuponsPadFiltroRow(data);
           case TblDiasSemanaRow:
             return TblDiasSemanaRow(data);
           case ViewTblNotificacoesPushRow:
             return ViewTblNotificacoesPushRow(data);
           case TblEstadosRow:
             return TblEstadosRow(data);
+          case ViewSigningSecretRow:
+            return ViewSigningSecretRow(data);
           case ViewTblAfiliadosComissaoTotaisRow:
             return ViewTblAfiliadosComissaoTotaisRow(data);
           case TblHorariosFuncionamentoRow:
             return TblHorariosFuncionamentoRow(data);
+          case ViewTblPagamentosStripeLogTotaisRow:
+            return ViewTblPagamentosStripeLogTotaisRow(data);
           case TblAfiliadosMetasRow:
             return TblAfiliadosMetasRow(data);
           case TblEstabelecimentoRow:
             return TblEstabelecimentoRow(data);
           case ViewTblAppPlanosNomesRow:
             return ViewTblAppPlanosNomesRow(data);
+          case ViewTblPlanosAssinaturaRow:
+            return ViewTblPlanosAssinaturaRow(data);
+          case ViewTblPgStatusPagamentoFiltroRow:
+            return ViewTblPgStatusPagamentoFiltroRow(data);
+          case TblBkpFuncVersionsRow:
+            return TblBkpFuncVersionsRow(data);
           case ViewTblAfiliadosCuponsAdminRow:
             return ViewTblAfiliadosCuponsAdminRow(data);
           case TblAfiliadosPlanoRow:
@@ -328,18 +374,30 @@ dynamic deserializeParam<T>(
             return TblPlanosPeriodosRow(data);
           case TblAgendamentoCarrinhoRow:
             return TblAgendamentoCarrinhoRow(data);
+          case TblPagamentosStripeRow:
+            return TblPagamentosStripeRow(data);
           case ViewTblNotificacoesRow:
             return ViewTblNotificacoesRow(data);
+          case ViewTblAfiliadosCuponsPadZvef46Row:
+            return ViewTblAfiliadosCuponsPadZvef46Row(data);
           case ViewTblEstabelecimentoVendasDiariasRow:
             return ViewTblEstabelecimentoVendasDiariasRow(data);
           case TblAppTemasBlackgroundRow:
             return TblAppTemasBlackgroundRow(data);
           case ViewTblHorariosDispHorasRow:
             return ViewTblHorariosDispHorasRow(data);
+          case ViewTblVersoesClienteRow:
+            return ViewTblVersoesClienteRow(data);
+          case TblAfiliadosLadPgPergRow:
+            return TblAfiliadosLadPgPergRow(data);
           case TblWhatsappRow:
             return TblWhatsappRow(data);
           case TblAfiliadosAtivDashRow:
             return TblAfiliadosAtivDashRow(data);
+          case TblUsuariosPermissoesRow:
+            return TblUsuariosPermissoesRow(data);
+          case ViewTblAppPlanosAfiliadosRow:
+            return ViewTblAppPlanosAfiliadosRow(data);
           case ViewTblAfiliadoVendasDiariasAdminRow:
             return ViewTblAfiliadoVendasDiariasAdminRow(data);
           case TblPassTempRow:
@@ -348,24 +406,40 @@ dynamic deserializeParam<T>(
             return TblUsuariosTiposRow(data);
           case ViewTblAgendamentosAtzRow:
             return ViewTblAgendamentosAtzRow(data);
+          case ViewInternalTblPlanosContasPxvvgvevxvaRow:
+            return ViewInternalTblPlanosContasPxvvgvevxvaRow(data);
           case ViewTblAfiliadoDashboardRow:
             return ViewTblAfiliadoDashboardRow(data);
           case TblLogFuncoesRow:
             return TblLogFuncoesRow(data);
+          case ViewTblPagamentosStripeLogRow:
+            return ViewTblPagamentosStripeLogRow(data);
+          case TblPagamentosSyncRow:
+            return TblPagamentosSyncRow(data);
           case TblAppSegmentosRow:
             return TblAppSegmentosRow(data);
           case ViewTblClientesRow:
             return ViewTblClientesRow(data);
+          case ViewTblEstabelecimentoPlanoPgRow:
+            return ViewTblEstabelecimentoPlanoPgRow(data);
           case ViewTblEstabDashboardTopservRow:
             return ViewTblEstabDashboardTopservRow(data);
+          case TblPlanosBancosRow:
+            return TblPlanosBancosRow(data);
           case ViewTblEstabDashboardTopprofissRow:
             return ViewTblEstabDashboardTopprofissRow(data);
+          case TblConfiguracoesRow:
+            return TblConfiguracoesRow(data);
           case ViewTblAppSegmentosRow:
             return ViewTblAppSegmentosRow(data);
+          case TblPagamentosStripeLogRow:
+            return TblPagamentosStripeLogRow(data);
           case ViewTblHorariosFuncionamentoRow:
             return ViewTblHorariosFuncionamentoRow(data);
           case TblProfissionaisRow:
             return TblProfissionaisRow(data);
+          case ViewTblAppPlanosNomesFiltrosRow:
+            return ViewTblAppPlanosNomesFiltrosRow(data);
           case TblEmailRow:
             return TblEmailRow(data);
           case ViewTblDevicesRow:
@@ -374,20 +448,40 @@ dynamic deserializeParam<T>(
             return TblAppComodidadesRow(data);
           case ViewTblAfiliadoPgSaquesRow:
             return ViewTblAfiliadoPgSaquesRow(data);
+          case ViewInternalTblPagamentosStripeLogPxafxveaRow:
+            return ViewInternalTblPagamentosStripeLogPxafxveaRow(data);
+          case ViewTblPagamentosStripeEventosRow:
+            return ViewTblPagamentosStripeEventosRow(data);
+          case TblEstabPlanoAssinaturaRow:
+            return TblEstabPlanoAssinaturaRow(data);
           case ViewTblAfiliadosRow:
             return ViewTblAfiliadosRow(data);
+          case ViewTblPgStStatusAssinaturaFiltroRow:
+            return ViewTblPgStStatusAssinaturaFiltroRow(data);
+          case ViewPlanosHistoricoPagamentosRow:
+            return ViewPlanosHistoricoPagamentosRow(data);
+          case TblAfiliadosAppsRow:
+            return TblAfiliadosAppsRow(data);
           case ViewTblServicosRow:
             return ViewTblServicosRow(data);
           case ViewTblAfiliadosEstabelecimentosRow:
             return ViewTblAfiliadosEstabelecimentosRow(data);
+          case ViewInternalTblPlanosProdutosXve123bvzRow:
+            return ViewInternalTblPlanosProdutosXve123bvzRow(data);
           case TblDevicesRow:
             return TblDevicesRow(data);
           case ViewTblAfiliadosQuantRow:
             return ViewTblAfiliadosQuantRow(data);
+          case ViewTblEstabelecimentosTotaisRow:
+            return ViewTblEstabelecimentosTotaisRow(data);
+          case ViewTblEstabelecimentosFiltroRow:
+            return ViewTblEstabelecimentosFiltroRow(data);
           case TblModelosServicosRow:
             return TblModelosServicosRow(data);
           case ViewTblUsuariosRow:
             return ViewTblUsuariosRow(data);
+          case TblPagamentosStripeAppsRow:
+            return TblPagamentosStripeAppsRow(data);
           case TblEstabelecimentoBannersRow:
             return TblEstabelecimentoBannersRow(data);
           case ViewUsersRow:
@@ -398,8 +492,12 @@ dynamic deserializeParam<T>(
             return ViewTblAgendamentoCarrinhoRow(data);
           case ViewTblEstadosRow:
             return ViewTblEstadosRow(data);
+          case ViewInternalTblPlanosBancosXvvgeza23bvzRow:
+            return ViewInternalTblPlanosBancosXvvgeza23bvzRow(data);
           case TblHorariosPadraoRow:
             return TblHorariosPadraoRow(data);
+          case ViewTblAfiliadosCuponsLibXveb34Row:
+            return ViewTblAfiliadosCuponsLibXveb34Row(data);
           case ViewTblWhatsappEdgeFuncRow:
             return ViewTblWhatsappEdgeFuncRow(data);
           case TblAppModelosBannerRow:

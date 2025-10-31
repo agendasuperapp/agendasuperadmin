@@ -1,6 +1,6 @@
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/pages/admin/componentes/estabelecimento/comp_estabelecimento/cp_estabelecimento_cad/cp_estabelecimento_cad_widget.dart';
+import '/pages/admin/componentes/afiliado/estabelecimento/comp_estabelecimento/cp_estabelecimento_cad/cp_estabelecimento_cad_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -105,84 +105,81 @@ class _CpEstabelecViewAdminWidgetState
         ),
         child: Padding(
           padding: EdgeInsetsDirectional.fromSTEB(12.0, 0.0, 12.0, 12.0),
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        InkWell(
-                          splashColor: Colors.transparent,
-                          focusColor: Colors.transparent,
-                          hoverColor: Colors.transparent,
-                          highlightColor: Colors.transparent,
-                          onTap: () async {
-                            if (FFAppState().VarAbrirJanelasWebAndroid ==
-                                true) {
-                              context.safePop();
-                              Navigator.pop(context);
-                            } else {
-                              Navigator.pop(context);
-                            }
-                          },
-                          child: Icon(
-                            Icons.arrow_back_sharp,
-                            color: FlutterFlowTheme.of(context).secondaryText,
-                            size: 28.0,
-                          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      InkWell(
+                        splashColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        onTap: () async {
+                          if (FFAppState().VarAbrirJanelasWebAndroid == true) {
+                            context.safePop();
+                            Navigator.pop(context);
+                          } else {
+                            Navigator.pop(context);
+                          }
+                        },
+                        child: Icon(
+                          Icons.arrow_back_sharp,
+                          color: FlutterFlowTheme.of(context).secondaryText,
+                          size: 28.0,
                         ),
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              8.0, 8.0, 0.0, 8.0),
-                          child: Text(
-                            'Cadastro de empresa',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  font: GoogleFonts.readexPro(
-                                    fontWeight: FontWeight.bold,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .fontStyle,
-                                  ),
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryText,
-                                  fontSize: 18.0,
-                                  letterSpacing: 0.0,
+                      ),
+                      Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(8.0, 8.0, 0.0, 8.0),
+                        child: Text(
+                          'Cadastro de empresa',
+                          style: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .override(
+                                font: GoogleFonts.readexPro(
                                   fontWeight: FontWeight.bold,
                                   fontStyle: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .fontStyle,
                                 ),
-                          ),
+                                color:
+                                    FlutterFlowTheme.of(context).secondaryText,
+                                fontSize: 18.0,
+                                letterSpacing: 0.0,
+                                fontWeight: FontWeight.bold,
+                                fontStyle: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .fontStyle,
+                              ),
                         ),
-                      ],
-                    ),
-                  ],
-                ),
-                Flexible(
-                  child: wrapWithModel(
-                    model: _model.cpEstabelecimentoCadModel,
-                    updateCallback: () => safeSetState(() {}),
-                    child: CpEstabelecimentoCadWidget(
-                      paramAdmin: widget.paramAdmin,
-                    ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              Flexible(
+                child: wrapWithModel(
+                  model: _model.cpEstabelecimentoCadModel,
+                  updateCallback: () => safeSetState(() {}),
+                  child: CpEstabelecimentoCadWidget(
+                    paramAdmin: widget.paramAdmin,
                   ),
                 ),
-                if (MediaQuery.sizeOf(context).width < kBreakpointSmall)
-                  Container(
-                    width: MediaQuery.sizeOf(context).width * 1.0,
-                    height: 30.0,
-                    decoration: BoxDecoration(),
-                  ),
-              ],
-            ),
+              ),
+              if (MediaQuery.sizeOf(context).width < kBreakpointSmall)
+                Container(
+                  width: MediaQuery.sizeOf(context).width * 1.0,
+                  height: 30.0,
+                  decoration: BoxDecoration(),
+                ),
+            ],
           ),
         ),
       ),

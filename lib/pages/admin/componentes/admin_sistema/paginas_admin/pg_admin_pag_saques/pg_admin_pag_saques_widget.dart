@@ -155,7 +155,8 @@ class _PgAdminPagSaquesWidgetState extends State<PgAdminPagSaquesWidget> {
                                 padding: EdgeInsets.all(8.0),
                                 child: Icon(
                                   Icons.menu,
-                                  color: FlutterFlowTheme.of(context).info,
+                                  color: FlutterFlowTheme.of(context)
+                                      .colorIconMenu,
                                   size: 24.0,
                                 ),
                               ),
@@ -194,13 +195,14 @@ class _PgAdminPagSaquesWidgetState extends State<PgAdminPagSaquesWidget> {
                       child: Column(
                         mainAxisSize: MainAxisSize.max,
                         children: [
-                          Flexible(
-                            child: wrapWithModel(
-                              model: _model.cpAdminPagSaquesModel,
-                              updateCallback: () => safeSetState(() {}),
-                              child: CpAdminPagSaquesWidget(),
+                          if (FFAppState().varTblUsuarios.adminSistema == true)
+                            Flexible(
+                              child: wrapWithModel(
+                                model: _model.cpAdminPagSaquesModel,
+                                updateCallback: () => safeSetState(() {}),
+                                child: CpAdminPagSaquesWidget(),
+                              ),
                             ),
-                          ),
                         ],
                       ),
                     ),

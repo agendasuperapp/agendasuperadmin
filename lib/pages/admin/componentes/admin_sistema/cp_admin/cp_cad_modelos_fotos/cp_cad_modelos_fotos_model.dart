@@ -30,10 +30,10 @@ class CpCadModelosFotosModel extends FlutterFlowModel<CpCadModelosFotosWidget> {
   FocusNode? textFieldIDFocusNode;
   TextEditingController? textFieldIDTextController;
   String? Function(BuildContext, String?)? textFieldIDTextControllerValidator;
-  bool isDataUploading = false;
-  FFUploadedFile uploadedLocalFile =
+  bool isDataUploading_uploadDataModeloFoto = false;
+  FFUploadedFile uploadedLocalFile_uploadDataModeloFoto =
       FFUploadedFile(bytes: Uint8List.fromList([]));
-  String uploadedFileUrl = '';
+  String uploadedFileUrl_uploadDataModeloFoto = '';
 
   @override
   void initState(BuildContext context) {}

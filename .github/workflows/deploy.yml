@@ -142,7 +142,7 @@ jobs:
           server: ${{ secrets[ matrix.target.ftp_server ] }}
           username: ${{ secrets[ matrix.target.ftp_user ] }}
           password: ${{ secrets[ matrix.target.ftp_pass ] }}
-          protocol: ftps   # ✅ usa FTP com TLS (seguro)
+          protocol: ftp  
           port: 21
           timeout: 600
           retries: 3

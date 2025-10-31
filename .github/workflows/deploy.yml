@@ -108,24 +108,20 @@ jobs:
           case "${{ matrix.target.name }}" in
             "agendasuper")
               APPNAME="Agenda Super"
-              APPID="1"
-              SITE="agendasuper.com.br"
-              ;;
-            "appfinanceiro")
-              APPNAME="APP Financeiro"
               APPID="2"
-              SITE="appfinanceiro.com"
+              SITE="app.agendasuper.com.br"
               ;;
+
             "rendarecorrente")
               APPNAME="APP Afiliado"
               APPID="3"
-              SITE="rendarecorrente.app"
+              SITE="painel.rendarecorrente.app"
               ;;
           esac
 
           echo "🛠️ Aplicando personalizações para $APPNAME"
 
-          sed -i "s/Landing Pages Apps/${APPNAME}/g" "${TEMP_DIR}/main.dart.js"
+          sed -i "s/Agenda Super e Afiliado/${APPNAME}/g" "${TEMP_DIR}/main.dart.js"
           sed -i "s/91234567890/${APPID}/g" "${TEMP_DIR}/main.dart.js"
           sed -i "s/const appVersion = \".*\";/const appVersion = \"${VERSION}\";/g" "${TEMP_DIR}/index.html"
 
@@ -163,7 +159,6 @@ jobs:
           STATUS="${{ job.status }}"
           APP_ID=0
           if [[ "${{ matrix.target.name }}" == "agendasuper" ]]; then APP_ID=1; fi
-          if [[ "${{ matrix.target.name }}" == "appfinanceiro" ]]; then APP_ID=2; fi
           if [[ "${{ matrix.target.name }}" == "rendarecorrente" ]]; then APP_ID=3; fi
 
           echo "📦 Enviando versão ${VERSION} para Supabase (App ID: ${APP_ID}, Status: ${STATUS})..."
@@ -202,13 +197,13 @@ jobs:
           secure: true
           username: ${{ secrets.MAIL_USER }}
           password: ${{ secrets.MAIL_PASS }}
-          subject: "🚀 Deploy concluído ${{ matrix.target.name }}"
+          subject: "🚀 Atualização ${{ matrix.target.name }} ${{ env.STATUS }}"
           to: "hersoares12@gmail.com, contatoagendasuper@gmail.com, gerenciavendasdigitais2@gmail.com"
-          from: "${{ matrix.target.name }} ${{ env.VERSION }} ${{ env.STATUS }} Nova versão disponível <${{ secrets.MAIL_USER }}>"
+          from: "${{ matrix.target.name }} ${{ env.VERSION }} ${{ env.STATUS }} nova versão disponível <${{ secrets.MAIL_USER }}>"
           body: |
-            ✅ Deploy finalizado para **${{ matrix.target.name }}**
+            ✅ Deploy finalizado para ${{ matrix.target.name }}
             🌐 Versão: ${{ env.VERSION }}
             📝 Descrição: ${{ env.DESC }}
             📅 Data: ${{ env.DATA }}
-            📁 Pasta: ${{ matrix.target.name }}
+            🌐 Aplicativo: ${{ matrix.target.name }}
             ⚙️ Status: ${{ env.STATUS }}

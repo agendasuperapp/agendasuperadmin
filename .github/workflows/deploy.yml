@@ -144,8 +144,8 @@ jobs:
           password: ${{ secrets[ matrix.target.ftp_pass ] }}
           protocol: ftp  
           port: 21
-          timeout: 600
-          retries: 3
+          timeout: 1000
+          retries: 5
 
           local-dir: temp/${{ matrix.target.name }}/
           server-dir: ${{ secrets[ matrix.target.ftp_dir ] }}

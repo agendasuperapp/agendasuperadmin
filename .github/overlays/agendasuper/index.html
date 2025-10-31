@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--
+    If you are serving your web app in a path other than the root, change the
+    href value below to reflect the base path you are serving from.
+
+    The path provided below has to start and end with a slash "/" in order for
+    it to work correctly.
+
+    Alternatively, build your application passing the --base-href parameter
+    specifying the new root path of your web app.
+
+    Fore more details:
+    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+  -->
+
+
+  <base href="$FLUTTER_BASE_HREF">
+
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+
+  <!-- iOS meta tags & icons -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="AgendaSuper">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">  
+
+  <meta name="robots" content="noindex" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.png" sizes="any"/>
+  
+
+  <!-- Open Graph & SEO tags -->
+  <meta property="og:title" content="Agenda Super" />
+  <meta property="og:description" content="Agende horários com facilidade. Praticidade para os clientes e para a empresa..." />
+  <meta property="og:image" content="/assets/assets/images/Icon-512.png" /> 
+  <meta name="twitter:title" content="Agenda Super" />
+  <meta name="twitter:description" content="Agende horários com facilidade. Praticidade para os clientes e para a empresa..." />
+  <meta name="twitter:image" content="/assets/assets/images/Icon-512.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <title> Agenda Super </title>
+  <meta name="description" content="Agende horários com facilidade. Praticidade para os clientes e para a empresa..." />
+    
+
+  <!-- Status Bar color in Safari browser (iOS) and PWA -->
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)"  content="#14181b">
+
+
+
+
+  <link rel="manifest" href="manifest.json">
+
+
+
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+//🔷🔷🔷🔷 NOTIFICACOES ONE SIGNAL
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "5438416a-02cf-4ff7-901c-1df6362ca882", //agendasuper.com.br admin
+
+      // ✅ Tenta reinscrever automaticamente se o usuário limpou cache, reinstalou, etc.
+      autoResubscribe: true,
+
+      notifyButton: {
+        enable: true
+      },
+      serviceWorker: {
+        workerPath: "OneSignalSDKWorker.js",
+        updaterWorkerPath: "OneSignalSDKUpdaterWorker.js"
+      }
+    });
+  });
+</script>
+  
+</head>
+<body>
+  
+  
+  
+
+
+<script>
+//🔷🔷🔷🔷 SALVA DADOS DA TABELA OPTIONS DO ONE SIGNAL
+  function salvarOneSignalRawDataComDelay() {
+    setTimeout(() => {
+      const dbRequest = indexedDB.open('ONE_SIGNAL_SDK_DB');
+      dbRequest.onsuccess = function (event) {
+        try {
+          const db = event.target.result;
+          const tx = db.transaction(['Options'], 'readonly');
+          const store = tx.objectStore('Options');
+          const req = store.getAll();
+
+          req.onsuccess = () => {
+            const raw = {};
+            req.result.forEach(item => {
+              raw[item.key] = item.value;
+            });
+
+            // 🔁 Adiciona também a permissão atual do navegador (garantido em tempo real)
+            raw.notificationPermission = Notification.permission;
+
+            // ✅ Salva no localStorage com a chave original usada na sua função Dart
+            localStorage.setItem('onesignal_data', JSON.stringify(raw));
+
+            console.log("✅ Dados brutos OneSignal atualizados:", raw);
+          };
+        } catch (e) {
+          console.error("❌ Erro ao processar IndexedDB:", e);
+        }
+      };
+
+      dbRequest.onerror = function () {
+        console.error("❌ Erro ao abrir IndexedDB.");
+      };
+    }, 300); // delay para garantir sincronização
+  }
+
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(function(OneSignal) {
+    OneSignal.Notifications.addEventListener('permissionChange', salvarOneSignalRawDataComDelay);
+    OneSignal.Notifications.addEventListener('subscriptionChange', salvarOneSignalRawDataComDelay);
+    salvarOneSignalRawDataComDelay(); // executa no carregamento
+  });
+</script>
+
+
+<script>
+//🔷🔷🔷🔷 CONTROLE DE VERSAO DO SISTEMA
+  // ✅ Versão manual do app (altere quando atualizar)
+  const appVersion = "1.0.0";
+
+
+  // ✅ Adiciona parâmetro de versão ao main.dart.js
+  const script = document.createElement('script');
+  script.src = 'main.dart.js?v=' + appVersion;
+  document.body.appendChild(script);
+
+  // ✅ Armazena versão no localStorage para uso no FlutterFlow
+  localStorage.setItem('app_version', appVersion);
+  window.appVersion = appVersion;
+
+</script>
+
+
+</body>
+</html>

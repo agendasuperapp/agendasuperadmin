@@ -121,7 +121,7 @@ jobs:
 
           echo "🛠️ Aplicando personalizações para $APPNAME"
 
-          sed -i "s/Agenda Super e Afiliado/${APPNAME}/g" "${TEMP_DIR}/main.dart.js"
+          sed -i "s/NomePageTitle/${APPNAME}/g" "${TEMP_DIR}/main.dart.js"
           sed -i "s/91234567890/${IDAFILIADOAPP}/g" "${TEMP_DIR}/main.dart.js"
           sed -i "s/const appVersion = \".*\";/const appVersion = \"${VERSION}\";/g" "${TEMP_DIR}/index.html"
 

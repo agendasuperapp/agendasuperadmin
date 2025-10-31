@@ -201,7 +201,7 @@ class _PgNotificacoesWidgetState extends State<PgNotificacoesWidget> {
                           paramElpacamentoTop: false,
                         ),
                       ),
-                    Expanded(
+                    Flexible(
                       child: Container(
                         decoration: BoxDecoration(
                           color:

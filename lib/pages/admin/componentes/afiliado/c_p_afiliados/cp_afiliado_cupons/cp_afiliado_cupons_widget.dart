@@ -851,7 +851,13 @@ class _CpAfiliadoCuponsWidgetState extends State<CpAfiliadoCuponsWidget>
 
                                 if (listViewCuponsViewTblAfiliadosCuponsRowList
                                     .isEmpty) {
-                                  return CpSemCadastroWidget();
+                                  return CpSemCadastroWidget(
+                                    paramTexto: _model
+                                                .varIDAfiliadoSelecionado <=
+                                            0
+                                        ? 'Selecione um aplicativo para mostrar os cupons'
+                                        : 'Nenhum resultado encontrado',
+                                  );
                                 }
 
                                 return ListView.separated(

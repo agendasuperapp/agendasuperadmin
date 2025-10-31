@@ -817,6 +817,10 @@ Future acAtualizarInicializacaoSistema(
   String? resultgetLoadedAppVersionIni;
   bool? resultisRunningAsPWAIni;
 
+  if (kDebugMode) {
+    FFAppState().varIDAPPAfiliado = 3;
+    FFAppState().update(() {});
+  }
   if ((FFAppState().varCarregouPrimeiraPagina == true) &&
       loggedIn &&
       ((paramNaoAtualizarTabelas == null) ||

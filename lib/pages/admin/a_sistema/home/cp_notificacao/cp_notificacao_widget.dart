@@ -143,118 +143,120 @@ class _CpNotificacaoWidgetState extends State<CpNotificacaoWidget>
         ),
         child: Padding(
           padding: EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(
-                    0.0,
-                    valueOrDefault<double>(
-                      MediaQuery.sizeOf(context).width <=
-                              FFAppState()
-                                  .varTamanhoMinimoTelaMenuLateral
-                                  .toDouble()
-                          ? 0.0
-                          : 16.0,
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(
                       0.0,
-                    ),
-                    0.0,
-                    16.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      child: Padding(
-                        padding: EdgeInsets.all(2.0),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Notificações',
-                              style: FlutterFlowTheme.of(context)
-                                  .headlineMedium
-                                  .override(
-                                    font: GoogleFonts.outfit(
+                      valueOrDefault<double>(
+                        MediaQuery.sizeOf(context).width <=
+                                FFAppState()
+                                    .varTamanhoMinimoTelaMenuLateral
+                                    .toDouble()
+                            ? 0.0
+                            : 16.0,
+                        0.0,
+                      ),
+                      0.0,
+                      16.0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Padding(
+                          padding: EdgeInsets.all(2.0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Notificações',
+                                style: FlutterFlowTheme.of(context)
+                                    .headlineMedium
+                                    .override(
+                                      font: GoogleFonts.outfit(
+                                        fontWeight: FontWeight.w500,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .headlineMedium
+                                            .fontStyle,
+                                      ),
+                                      color: FlutterFlowTheme.of(context)
+                                          .secondaryText,
+                                      fontSize: 24.0,
+                                      letterSpacing: 0.0,
                                       fontWeight: FontWeight.w500,
                                       fontStyle: FlutterFlowTheme.of(context)
                                           .headlineMedium
                                           .fontStyle,
                                     ),
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
-                                    fontSize: 24.0,
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w500,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .headlineMedium
-                                        .fontStyle,
-                                  ),
-                            ),
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 4.0, 0.0, 0.0),
-                              child: Text(
-                                'Veja todas as notificações do aplicativo',
-                                style: FlutterFlowTheme.of(context)
-                                    .labelMedium
-                                    .override(
-                                      font: GoogleFonts.plusJakartaSans(
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 4.0, 0.0, 0.0),
+                                child: Text(
+                                  'Veja todas as notificações do aplicativo',
+                                  style: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .override(
+                                        font: GoogleFonts.plusJakartaSans(
+                                          fontWeight: FontWeight.w500,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelMedium
+                                                  .fontStyle,
+                                        ),
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        fontSize: 14.0,
+                                        letterSpacing: 0.0,
                                         fontWeight: FontWeight.w500,
                                         fontStyle: FlutterFlowTheme.of(context)
                                             .labelMedium
                                             .fontStyle,
                                       ),
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
-                                      fontSize: 14.0,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FontWeight.w500,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .fontStyle,
-                                    ),
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                    if ((MediaQuery.sizeOf(context).width >
-                            valueOrDefault<double>(
-                              FFAppState()
-                                  .varTamanhoMinimoTelaMenuLateral
-                                  .toDouble(),
-                              1000.0,
-                            )) &&
-                        responsiveVisibility(
-                          context: context,
-                          phone: false,
-                        ))
-                      InkWell(
-                        splashColor: Colors.transparent,
-                        focusColor: Colors.transparent,
-                        hoverColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
-                        onTap: () async {
-                          if (FFAppState().VarAbrirJanelasWebAndroid == true) {
-                            Navigator.pop(context);
-                          } else {
-                            Navigator.pop(context);
-                          }
-                        },
-                        child: Icon(
-                          Icons.close,
-                          color: FlutterFlowTheme.of(context).secondaryText,
-                          size: 28.0,
+                      if ((MediaQuery.sizeOf(context).width >
+                              valueOrDefault<double>(
+                                FFAppState()
+                                    .varTamanhoMinimoTelaMenuLateral
+                                    .toDouble(),
+                                1000.0,
+                              )) &&
+                          responsiveVisibility(
+                            context: context,
+                            phone: false,
+                          ))
+                        InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            if (FFAppState().VarAbrirJanelasWebAndroid ==
+                                true) {
+                              Navigator.pop(context);
+                            } else {
+                              Navigator.pop(context);
+                            }
+                          },
+                          child: Icon(
+                            Icons.close,
+                            color: FlutterFlowTheme.of(context).secondaryText,
+                            size: 28.0,
+                          ),
                         ),
-                      ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              SingleChildScrollView(
-                child: Column(
+                Column(
                   mainAxisSize: MainAxisSize.max,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -1228,8 +1230,8 @@ class _CpNotificacaoWidgetState extends State<CpNotificacaoWidget>
                     ),
                   ].divide(SizedBox(height: 8.0)),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

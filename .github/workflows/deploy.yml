@@ -1,4 +1,4 @@
-# 🌐 Build & Deploy (3 Sites)
+# 🌐 Build & Deploy (2 Sites)
 name: 🌐 Build & Deploy (2 Sites)
 
 on:
@@ -144,7 +144,7 @@ jobs:
           password: ${{ secrets[ matrix.target.ftp_pass ] }}
           protocol: ftps   # ✅ usa FTP com TLS (seguro)
           port: 21
-          timeout: 120
+          timeout: 600
           retries: 3
 
           local-dir: temp/${{ matrix.target.name }}/

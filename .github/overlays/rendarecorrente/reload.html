@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Reloading...</title>
+  <script>
+    (async () => {
+      // Limpa SW
+      const registrations = await navigator.serviceWorker.getRegistrations();
+      for (const reg of registrations) {
+        await reg.unregister();
+      }
+
+      // Limpa caches
+      if ('caches' in window) {
+        const keys = await caches.keys();
+        for (const key of keys) {
+          await caches.delete(key);
+        }
+      }
+
+      // Volta para a app original
+      const original = localStorage.getItem('original_url_after_reload') || '/';
+      localStorage.removeItem('original_url_after_reload');
+      location.replace(original);
+    })();
+  </script>
+</head>
+<body>
+  <p>Atualizando o app... Aguarde.</p>
+</body>
+</html>

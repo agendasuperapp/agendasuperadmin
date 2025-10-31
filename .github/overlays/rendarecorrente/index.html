@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- ===========================
+       CONFIGURAÇÕES BÁSICAS
+  ============================ -->
+  <base href="/">
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+
+  <!-- ===========================
+       META TAGS PWA / iOS
+  ============================ -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="APP Afiliado">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="robots" content="noindex" />
+
+  <!-- ===========================
+       ÍCONE E SEO
+  ============================ -->
+  <link rel="icon" href="favicon.png" sizes="any"/>
+  <meta property="og:title" content="APP Afiliado" />
+  <meta property="og:description" content="Seja uma afiliado, ganhe renda recorrente indicando nossos aplicativos..." />
+  <meta property="og:image" content="SocialShareAppAfiliado.png" /> 
+  <meta name="twitter:title" content="APP Afiliado" />
+  <meta name="twitter:description" content="Seja uma afiliado, ganhe renda recorrente indicando nossos aplicativos..." />
+  <meta name="twitter:image" content="SocialShareAppAfiliado.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <title>APP Afiliado</title>
+  <meta name="description" content="Seja uma afiliado, ganhe renda recorrente indicando nossos aplicativos..." />
+
+  <!-- ===========================
+       COR DA BARRA DO APP
+  ============================ -->
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)"  content="#14181b">
+
+  <!-- ===========================
+       MANIFEST PADRÃO
+  ============================ -->
+  <link rel="manifest" href="manifest.json">
+
+  <!-- ===========================
+       SDK ONE SIGNAL
+  ============================ -->
+  <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+
+  <script>
+  // 🔷🔷🔷🔷 INICIALIZAÇÃO DO ONE SIGNAL
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "051879bd-e4a0-4213-a950-07ecc8a4d6ad", // painel.rendarecorrente.app
+      autoResubscribe: true,
+      autoRegister: true,
+      notifyButton: { enable: true },
+      serviceWorker: {
+        workerPath: "OneSignalSDKWorker.js",
+        updaterWorkerPath: "OneSignalSDKUpdaterWorker.js"
+      }
+    });
+
+    console.log("✅ OneSignal inicializado com sucesso.");
+
+    // 🔒 Verifica se está em uma rota autenticada (/admin/)
+    function verificarRotaAtual() {
+      const url = window.location.href;
+      return url.includes("/admin/");
+    }
+
+    // 🔔 Mostra prompt apenas se estiver em rota autenticada
+    if (verificarRotaAtual()) {
+      console.log("👤 Página autenticada detectada:", window.location.href);
+
+      document.addEventListener("click", async function handler() {
+        try {
+          const perm = await OneSignal.Notifications.requestPermission({ force: true });
+          console.log("🔔 Permissão solicitada:", perm);
+        } catch (e) {
+          console.error("❌ Erro ao solicitar permissão:", e);
+        }
+        document.removeEventListener("click", handler);
+      });
+    } else {
+      console.warn("⚠️ Página pública — OneSignal não solicitará permissão.");
+    }
+
+    // 🧭 MONITORA MUDANÇAS DE ROTA NO SPA (FLUTTERFLOW)
+    let ultimaUrl = location.href;
+    function detectarMudancaRota() {
+      const urlAtual = location.href;
+      if (urlAtual !== ultimaUrl) {
+        ultimaUrl = urlAtual;
+        console.log("🔄 Rota alterada:", urlAtual);
+
+        // Se entrar em /admin/, dispara o prompt automaticamente
+        if (urlAtual.includes("/admin/")) {
+          console.log("✅ Nova rota autenticada detectada:", urlAtual);
+          if (window.OneSignal && OneSignal.Notifications) {
+            OneSignal.Notifications.requestPermission({ force: true })
+              .then(perm => console.log("🔔 Permissão solicitada dinamicamente:", perm))
+              .catch(e => console.error("❌ Erro ao solicitar permissão:", e));
+          }
+        }
+      }
+    }
+
+    // Observa mudanças na URL sem recarregar a página (SPA)
+    const observer = new MutationObserver(detectarMudancaRota);
+    observer.observe(document, { subtree: true, childList: true });
+    window.addEventListener("popstate", detectarMudancaRota);
+    window.addEventListener("pushstate", detectarMudancaRota);
+    window.addEventListener("replaceState", detectarMudancaRota);
+  });
+  </script>
+</head>
+
+<body>
+  <!-- ===========================
+       SINCRONIZAÇÃO ONE SIGNAL OPTIONS
+  ============================ -->
+  <script>
+    function salvarOneSignalRawDataComDelay() {
+      setTimeout(() => {
+        const dbRequest = indexedDB.open('ONE_SIGNAL_SDK_DB');
+        dbRequest.onsuccess = function (event) {
+          try {
+            const db = event.target.result;
+            const tx = db.transaction(['Options'], 'readonly');
+            const store = tx.objectStore('Options');
+            const req = store.getAll();
+
+            req.onsuccess = () => {
+              const raw = {};
+              req.result.forEach(item => {
+                raw[item.key] = item.value;
+              });
+              raw.notificationPermission = Notification.permission;
+              localStorage.setItem('onesignal_data', JSON.stringify(raw));
+              console.log("✅ Dados OneSignal atualizados:", raw);
+            };
+          } catch (e) {
+            console.error("❌ Erro ao processar IndexedDB:", e);
+          }
+        };
+
+        dbRequest.onerror = function () {
+          console.error("❌ Erro ao abrir IndexedDB.");
+        };
+      }, 300);// delay para garantir sincronização
+
+    }
+
+    window.OneSignalDeferred = window.OneSignalDeferred || [];
+    OneSignalDeferred.push(function (OneSignal) {
+      OneSignal.Notifications.addEventListener('permissionChange', salvarOneSignalRawDataComDelay);
+      OneSignal.Notifications.addEventListener('subscriptionChange', salvarOneSignalRawDataComDelay);
+      salvarOneSignalRawDataComDelay(); // executa no carregamento
+    });
+  </script>
+
+  <!-- ===========================
+       CONTROLE DE VERSÃO DO APP
+  ============================ -->
+  <script>
+    const appVersion = "4.1.6";
+    const script = document.createElement('script');
+    script.src = 'main.dart.js?v=' + appVersion;
+    document.body.appendChild(script);
+    localStorage.setItem('app_version', appVersion);
+    window.appVersion = appVersion;
+  </script>
+</body>
+</html>

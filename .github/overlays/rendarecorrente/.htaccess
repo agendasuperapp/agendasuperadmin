@@ -1,0 +1,16 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # ✅ Ignora arquivos ou diretórios reais
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # ✅ Só redireciona bots de redes sociais para share.php
+  RewriteCond %{HTTP_USER_AGENT} facebookexternalhit|WhatsApp|Twitterbot|Slackbot|LinkedInBot|TelegramBot|Pinterest [NC]
+  RewriteRule ^([a-zA-Z0-9_-]+)$ share.php?cupom=$1 [QSA,L]
+
+  # ✅ Todo o resto (usuários reais) vai para o Flutter index.html
+  RewriteRule ^.*$ /index.html [L]
+</IfModule>

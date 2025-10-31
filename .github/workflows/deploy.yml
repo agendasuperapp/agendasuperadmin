@@ -136,18 +136,23 @@ jobs:
           grep -m 1 "${IDAFILIADOAPP}" "${TEMP_DIR}/main.dart.js" || true
 
       # 1️⃣1️⃣ Faz o deploy via FTP (Hostinger)
-      - name: 🚀 Publicar via FTP (Hostinger)
+      - name: 🚀 Publicar via FTPS (Hostinger)
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets[ matrix.target.ftp_server ] }}
           username: ${{ secrets[ matrix.target.ftp_user ] }}
           password: ${{ secrets[ matrix.target.ftp_pass ] }}
-          protocol: ftp
+          protocol: ftps   # ✅ usa FTP com TLS (seguro)
           port: 21
+          timeout: 120
+          retries: 3
+
           local-dir: temp/${{ matrix.target.name }}/
           server-dir: ${{ secrets[ matrix.target.ftp_dir ] }}
           dangerous-clean-slate: true
           log-level: verbose
+
+
 
       # 1️⃣2️⃣ Registrar versão no Supabase (com status real)
       - name: 💾 Registrar versão no Supabase

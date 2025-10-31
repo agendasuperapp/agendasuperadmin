@@ -1,4 +1,4 @@
-# APP Agenda Super e Afiliado
+# Agenda Super Admin e Afiliados
 
 A new Flutter project.
 

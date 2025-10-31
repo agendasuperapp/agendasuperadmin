@@ -550,7 +550,7 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                       );
                                                     },
                                                     child: Text(
-                                                      'IF Afiliado APP: ${valueOrDefault<String>(
+                                                      'ID Afiliado APP: ${valueOrDefault<String>(
                                                         FFAppState()
                                                             .varIDAPPAfiliado
                                                             .toString(),

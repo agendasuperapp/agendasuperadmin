@@ -8,16 +8,20 @@ class CpRodapeModel extends FlutterFlowModel<CpRodapeWidget> {
 
   // Stores action output result for [Backend Call - Query Rows] action in cp_rodape widget.
   List<TblNotificacoesQuantRow>? queryConsQtNotif;
-  // State field(s) for MouseRegionInicio widget.
-  bool mouseRegionInicioHovered = false;
-  // State field(s) for MouseRegionComissao widget.
-  bool mouseRegionComissaoHovered = false;
+  // State field(s) for MouseRegionDashBoard widget.
+  bool mouseRegionDashBoardHovered = false;
+  // State field(s) for MouseRegionAgendamentos widget.
+  bool mouseRegionAgendamentosHovered = false;
+  // State field(s) for MouseRegionComissaoDiaria widget.
+  bool mouseRegionComissaoDiariaHovered = false;
   // State field(s) for MouseRegionMenu widget.
   bool mouseRegionMenuHovered = false;
   // State field(s) for MouseRegionNotificacoes widget.
   bool mouseRegionNotificacoesHovered = false;
   // State field(s) for MouseRegionPerfil widget.
   bool mouseRegionPerfilHovered = false;
+  // State field(s) for MouseRegionEmpresa widget.
+  bool mouseRegionEmpresaHovered = false;
 
   @override
   void initState(BuildContext context) {}

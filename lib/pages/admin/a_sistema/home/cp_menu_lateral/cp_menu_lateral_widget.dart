@@ -170,7 +170,7 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                 decoration: BoxDecoration(
                   boxShadow: [
                     BoxShadow(
-                      blurRadius: 20.0,
+                      blurRadius: 2.0,
                       color: FlutterFlowTheme.of(context).secondaryBackground,
                       offset: Offset(
                         0.0,

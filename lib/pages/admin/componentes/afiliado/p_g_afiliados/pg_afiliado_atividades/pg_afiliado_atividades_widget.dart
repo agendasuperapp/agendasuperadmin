@@ -178,12 +178,8 @@ class _PgAfiliadoAtividadesWidgetState
                 ),
               ),
             ),
-            if ((MediaQuery.sizeOf(context).width <=
-                    FFAppState().varTamanhoMinimoTelaMenuLateral.toDouble()) &&
-                responsiveVisibility(
-                  context: context,
-                  desktop: false,
-                ))
+            if (MediaQuery.sizeOf(context).width <=
+                FFAppState().varTamanhoMinimoTelaMenuLateral.toDouble())
               wrapWithModel(
                 model: _model.cpRodapeModel,
                 updateCallback: () => safeSetState(() {}),

@@ -9,8 +9,6 @@ export '/pages/admin/a_sistema/home/pg_login/pg_login_widget.dart'
     show PgLoginWidget;
 export '/pages/admin/componentes/afiliado/estabelecimento/pg_estabelecimento/pg_estabelecimento_admin/pg_estabelecimento_admin_widget.dart'
     show PgEstabelecimentoAdminWidget;
-export '/pages/admin/componentes/afiliado/estabelecimento/pg_estabelecimento/pg_estabelecimento_cad/pg_estabelecimento_cad_widget.dart'
-    show PgEstabelecimentoCadWidget;
 export '/pages/admin/componentes/afiliado/estabelecimento/pg_estabelecimento/pg_dashboard/pg_dashboard_widget.dart'
     show PgDashboardWidget;
 export '/pages/admin/componentes/afiliado/estabelecimento/pg_estabelecimento/pg_lista_profissionais/pg_lista_profissionais_widget.dart'
@@ -43,8 +41,6 @@ export '/pages/admin/componentes/afiliado/estabelecimento/pg_estabelecimento/pg_
     show PgAgendamentoHistoricoWidget;
 export '/pages/admin/componentes/afiliado/estabelecimento/pg_estabelecimento/pg_fidelidade/pg_fidelidade_widget.dart'
     show PgFidelidadeWidget;
-export '/pages/admin/componentes/afiliado/estabelecimento/pg_estabelecimento/pg_agendamentos_diarios/pg_agendamentos_diarios_widget.dart'
-    show PgAgendamentosDiariosWidget;
 export '/pages/admin/componentes/admin_sistema/paginas_admin/pg_admin_estabelecimentos/pg_admin_estabelecimentos_widget.dart'
     show PgAdminEstabelecimentosWidget;
 export '/pages/admin/componentes/admin_sistema/paginas_admin/pg_afiliados_admin/pg_afiliados_admin_widget.dart'
@@ -129,3 +125,7 @@ export '/pages/admin/componentes/afiliado/p_g_afiliados/pg_afiliado_cpf/pg_afili
     show PgAfiliadoCpfWidget;
 export '/pages/admin/a_sistema/home/pg_notificacoes/pg_notificacoes_widget.dart'
     show PgNotificacoesWidget;
+export '/pages/admin/componentes/afiliado/estabelecimento/pg_estabelecimento/pg_estabelecimento_cad/pg_estabelecimento_cad_widget.dart'
+    show PgEstabelecimentoCadWidget;
+export '/pages/admin/componentes/afiliado/estabelecimento/pg_estabelecimento/pg_agendamentos_diarios/pg_agendamentos_diarios_widget.dart'
+    show PgAgendamentosDiariosWidget;

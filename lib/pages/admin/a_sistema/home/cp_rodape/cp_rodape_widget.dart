@@ -86,174 +86,15 @@ class _CpRodapeWidgetState extends State<CpRodapeWidget> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Expanded(
-                    child: MouseRegion(
-                      opaque: false,
-                      cursor: MouseCursor.defer ?? MouseCursor.defer,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsets.all(4.0),
-                          child: InkWell(
-                            splashColor: Colors.transparent,
-                            focusColor: Colors.transparent,
-                            hoverColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            onTap: () async {
-                              if (FFAppState().varCarregouPrimeiraPagina ==
-                                  false) {
-                                if (FFAppState().VarEmDesenvolvimento) {
-                                  await showDialog(
-                                    context: context,
-                                    builder: (alertDialogContext) {
-                                      return WebViewAware(
-                                        child: AlertDialog(
-                                          title: Text('tese'),
-                                          content: Text('Primeira Pág FALSE 1'),
-                                          actions: [
-                                            TextButton(
-                                              onPressed: () => Navigator.pop(
-                                                  alertDialogContext),
-                                              child: Text('Ok'),
-                                            ),
-                                          ],
-                                        ),
-                                      );
-                                    },
-                                  );
-                                }
-                                context.safePop();
-                                if (FFAppState().VarEmDesenvolvimento) {
-                                  await showDialog(
-                                    context: context,
-                                    builder: (alertDialogContext) {
-                                      return WebViewAware(
-                                        child: AlertDialog(
-                                          title: Text('tese'),
-                                          content: Text('Primeira Pág FALSE 2'),
-                                          actions: [
-                                            TextButton(
-                                              onPressed: () => Navigator.pop(
-                                                  alertDialogContext),
-                                              child: Text('Ok'),
-                                            ),
-                                          ],
-                                        ),
-                                      );
-                                    },
-                                  );
-                                }
-                              } else {
-                                if (FFAppState().VarEmDesenvolvimento) {
-                                  await showDialog(
-                                    context: context,
-                                    builder: (alertDialogContext) {
-                                      return WebViewAware(
-                                        child: AlertDialog(
-                                          title: Text('tese'),
-                                          content: Text('Primeira Pág TRUE'),
-                                          actions: [
-                                            TextButton(
-                                              onPressed: () => Navigator.pop(
-                                                  alertDialogContext),
-                                              child: Text('Ok'),
-                                            ),
-                                          ],
-                                        ),
-                                      );
-                                    },
-                                  );
-                                }
-                                FFAppState().varCarregouPrimeiraPagina = false;
-                              }
-
-                              FFAppState().varGrupoBotaoSelecionado =
-                                  'AFILIADO';
-                              FFAppState()
-                                  .addToVarGruposBotoesAbertos('AFILIADO');
-
-                              context.pushNamed(
-                                PgDashboardWidget.routeName,
-                                extra: <String, dynamic>{
-                                  kTransitionInfoKey: TransitionInfo(
-                                    hasTransition: true,
-                                    transitionType: PageTransitionType.fade,
-                                    duration: Duration(milliseconds: 0),
-                                  ),
-                                },
-                              );
-                            },
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                FaIcon(
-                                  FontAwesomeIcons.chartBar,
-                                  color: widget.paramBotaoSelecionado ==
-                                          'DASHBOARD'
-                                      ? FlutterFlowTheme.of(context)
-                                          .menuLatSelecionado
-                                      : FlutterFlowTheme.of(context)
-                                          .txtMenuLateral,
-                                  size: 24.0,
-                                ),
-                                Text(
-                                  'Dashboard',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        font: GoogleFonts.readexPro(
-                                          fontWeight:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .fontWeight,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .fontStyle,
-                                        ),
-                                        color: widget.paramBotaoSelecionado ==
-                                                'DASHBOARD'
-                                            ? FlutterFlowTheme.of(context)
-                                                .menuLatSelecionado
-                                            : FlutterFlowTheme.of(context)
-                                                .txtMenuLateral,
-                                        fontSize: 10.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontWeight,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontStyle,
-                                      ),
-                                ),
-                              ].divide(SizedBox(height: 4.0)),
-                            ),
-                          ),
-                        ),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8.0),
                       ),
-                      onEnter: ((event) async {
-                        safeSetState(
-                            () => _model.mouseRegionInicioHovered = true);
-                      }),
-                      onExit: ((event) async {
-                        safeSetState(
-                            () => _model.mouseRegionInicioHovered = false);
-                      }),
-                    ),
-                  ),
-                  Expanded(
-                    child: MouseRegion(
-                      opaque: false,
-                      cursor: MouseCursor.defer ?? MouseCursor.defer,
-                      child: Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 4.0, 0.0),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
+                      child: Align(
+                        alignment: AlignmentDirectional(0.0, -1.0),
+                        child: MouseRegion(
+                          opaque: false,
+                          cursor: MouseCursor.defer ?? MouseCursor.defer,
                           child: Padding(
                             padding: EdgeInsets.all(4.0),
                             child: InkWell(
@@ -338,7 +179,7 @@ class _CpRodapeWidgetState extends State<CpRodapeWidget> {
                                     .addToVarGruposBotoesAbertos('AFILIADO');
 
                                 context.pushNamed(
-                                  PgAfiliadoComissoesWidget.routeName,
+                                  PgDashboardWidget.routeName,
                                   extra: <String, dynamic>{
                                     kTransitionInfoKey: TransitionInfo(
                                       hasTransition: true,
@@ -351,18 +192,26 @@ class _CpRodapeWidgetState extends State<CpRodapeWidget> {
                               child: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  Icon(
-                                    Icons.monetization_on_outlined,
-                                    color: widget.paramBotaoSelecionado ==
-                                            'AFILIADO_COMISSOES'
-                                        ? FlutterFlowTheme.of(context)
-                                            .menuLatSelecionado
-                                        : FlutterFlowTheme.of(context)
-                                            .txtMenuLateral,
+                                  FaIcon(
+                                    FontAwesomeIcons.chartBar,
+                                    color: () {
+                                      if (_model.mouseRegionDashBoardHovered) {
+                                        return FlutterFlowTheme.of(context)
+                                            .hoverBtnLateral;
+                                      } else if (widget
+                                              .paramBotaoSelecionado ==
+                                          'DASHBOARD') {
+                                        return FlutterFlowTheme.of(context)
+                                            .menuLatSelecionado;
+                                      } else {
+                                        return FlutterFlowTheme.of(context)
+                                            .txtMenuLateral;
+                                      }
+                                    }(),
                                     size: 24.0,
                                   ),
                                   Text(
-                                    'Comissões',
+                                    'Dashboard',
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -376,13 +225,24 @@ class _CpRodapeWidgetState extends State<CpRodapeWidget> {
                                                     .bodyMedium
                                                     .fontStyle,
                                           ),
-                                          color: widget
-                                                      .paramBotaoSelecionado ==
-                                                  'AFILIADO_COMISSOES'
-                                              ? FlutterFlowTheme.of(context)
-                                                  .menuLatSelecionado
-                                              : FlutterFlowTheme.of(context)
-                                                  .txtMenuLateral,
+                                          color: () {
+                                            if (_model
+                                                .mouseRegionDashBoardHovered) {
+                                              return FlutterFlowTheme.of(
+                                                      context)
+                                                  .hoverBtnLateral;
+                                            } else if (widget
+                                                    .paramBotaoSelecionado ==
+                                                'DASHBOARD') {
+                                              return FlutterFlowTheme.of(
+                                                      context)
+                                                  .menuLatSelecionado;
+                                            } else {
+                                              return FlutterFlowTheme.of(
+                                                      context)
+                                                  .txtMenuLateral;
+                                            }
+                                          }(),
                                           fontSize: 10.0,
                                           letterSpacing: 0.0,
                                           fontWeight:
@@ -399,18 +259,348 @@ class _CpRodapeWidgetState extends State<CpRodapeWidget> {
                               ),
                             ),
                           ),
+                          onEnter: ((event) async {
+                            safeSetState(() =>
+                                _model.mouseRegionDashBoardHovered = true);
+                          }),
+                          onExit: ((event) async {
+                            safeSetState(() =>
+                                _model.mouseRegionDashBoardHovered = false);
+                          }),
                         ),
                       ),
-                      onEnter: ((event) async {
-                        safeSetState(
-                            () => _model.mouseRegionComissaoHovered = true);
-                      }),
-                      onExit: ((event) async {
-                        safeSetState(
-                            () => _model.mouseRegionComissaoHovered = false);
-                      }),
                     ),
                   ),
+                  if (FFAppState().varIDAPPAfiliado == 1)
+                    Expanded(
+                      child: Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 4.0, 0.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          child: Align(
+                            alignment: AlignmentDirectional(0.0, -1.0),
+                            child: MouseRegion(
+                              opaque: false,
+                              cursor: MouseCursor.defer ?? MouseCursor.defer,
+                              child: Padding(
+                                padding: EdgeInsets.all(4.0),
+                                child: InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    if (FFAppState()
+                                            .varCarregouPrimeiraPagina ==
+                                        false) {
+                                      context.safePop();
+                                    } else {
+                                      FFAppState().varCarregouPrimeiraPagina =
+                                          false;
+                                    }
+
+                                    FFAppState().varGrupoBotaoSelecionado =
+                                        'AGENDAMENTOS';
+                                    FFAppState().addToVarGruposBotoesAbertos(
+                                        'AGENDAMENTOS');
+
+                                    context.pushNamed(
+                                      PgAgendamentosDiariosWidget.routeName,
+                                      extra: <String, dynamic>{
+                                        kTransitionInfoKey: TransitionInfo(
+                                          hasTransition: true,
+                                          transitionType:
+                                              PageTransitionType.fade,
+                                          duration: Duration(milliseconds: 0),
+                                        ),
+                                      },
+                                    );
+                                  },
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Icon(
+                                        Icons.calendar_month,
+                                        color: () {
+                                          if (_model
+                                              .mouseRegionAgendamentosHovered) {
+                                            return FlutterFlowTheme.of(context)
+                                                .hoverBtnLateral;
+                                          } else if (widget
+                                                  .paramBotaoSelecionado ==
+                                              'AGENDAMENTOSDIARIOS') {
+                                            return FlutterFlowTheme.of(context)
+                                                .menuLatSelecionado;
+                                          } else {
+                                            return FlutterFlowTheme.of(context)
+                                                .txtMenuLateral;
+                                          }
+                                        }(),
+                                        size: 24.0,
+                                      ),
+                                      Text(
+                                        'Agendamentos',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              font: GoogleFonts.readexPro(
+                                                fontWeight:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .fontWeight,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .fontStyle,
+                                              ),
+                                              color: () {
+                                                if (_model
+                                                    .mouseRegionAgendamentosHovered) {
+                                                  return FlutterFlowTheme.of(
+                                                          context)
+                                                      .hoverBtnLateral;
+                                                } else if (widget
+                                                        .paramBotaoSelecionado ==
+                                                    'AGENDAMENTOSDIARIOS') {
+                                                  return FlutterFlowTheme.of(
+                                                          context)
+                                                      .menuLatSelecionado;
+                                                } else {
+                                                  return FlutterFlowTheme.of(
+                                                          context)
+                                                      .txtMenuLateral;
+                                                }
+                                              }(),
+                                              fontSize: 10.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontWeight,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontStyle,
+                                            ),
+                                      ),
+                                    ].divide(SizedBox(height: 4.0)),
+                                  ),
+                                ),
+                              ),
+                              onEnter: ((event) async {
+                                safeSetState(() => _model
+                                    .mouseRegionAgendamentosHovered = true);
+                              }),
+                              onExit: ((event) async {
+                                safeSetState(() => _model
+                                    .mouseRegionAgendamentosHovered = false);
+                              }),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  if (FFAppState().varIDAPPAfiliado == 3)
+                    Expanded(
+                      child: Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 4.0, 0.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8.0),
+                          ),
+                          child: Align(
+                            alignment: AlignmentDirectional(0.0, -1.0),
+                            child: MouseRegion(
+                              opaque: false,
+                              cursor: MouseCursor.defer ?? MouseCursor.defer,
+                              child: Padding(
+                                padding: EdgeInsets.all(4.0),
+                                child: InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    if (FFAppState()
+                                            .varCarregouPrimeiraPagina ==
+                                        false) {
+                                      if (FFAppState().VarEmDesenvolvimento) {
+                                        await showDialog(
+                                          context: context,
+                                          builder: (alertDialogContext) {
+                                            return WebViewAware(
+                                              child: AlertDialog(
+                                                title: Text('tese'),
+                                                content: Text(
+                                                    'Primeira Pág FALSE 1'),
+                                                actions: [
+                                                  TextButton(
+                                                    onPressed: () =>
+                                                        Navigator.pop(
+                                                            alertDialogContext),
+                                                    child: Text('Ok'),
+                                                  ),
+                                                ],
+                                              ),
+                                            );
+                                          },
+                                        );
+                                      }
+                                      context.safePop();
+                                      if (FFAppState().VarEmDesenvolvimento) {
+                                        await showDialog(
+                                          context: context,
+                                          builder: (alertDialogContext) {
+                                            return WebViewAware(
+                                              child: AlertDialog(
+                                                title: Text('tese'),
+                                                content: Text(
+                                                    'Primeira Pág FALSE 2'),
+                                                actions: [
+                                                  TextButton(
+                                                    onPressed: () =>
+                                                        Navigator.pop(
+                                                            alertDialogContext),
+                                                    child: Text('Ok'),
+                                                  ),
+                                                ],
+                                              ),
+                                            );
+                                          },
+                                        );
+                                      }
+                                    } else {
+                                      if (FFAppState().VarEmDesenvolvimento) {
+                                        await showDialog(
+                                          context: context,
+                                          builder: (alertDialogContext) {
+                                            return WebViewAware(
+                                              child: AlertDialog(
+                                                title: Text('tese'),
+                                                content:
+                                                    Text('Primeira Pág TRUE'),
+                                                actions: [
+                                                  TextButton(
+                                                    onPressed: () =>
+                                                        Navigator.pop(
+                                                            alertDialogContext),
+                                                    child: Text('Ok'),
+                                                  ),
+                                                ],
+                                              ),
+                                            );
+                                          },
+                                        );
+                                      }
+                                      FFAppState().varCarregouPrimeiraPagina =
+                                          false;
+                                    }
+
+                                    FFAppState().varGrupoBotaoSelecionado =
+                                        'AFILIADO';
+                                    FFAppState().addToVarGruposBotoesAbertos(
+                                        'AFILIADO');
+
+                                    context.pushNamed(
+                                      PgAfiliadoComissoesWidget.routeName,
+                                      extra: <String, dynamic>{
+                                        kTransitionInfoKey: TransitionInfo(
+                                          hasTransition: true,
+                                          transitionType:
+                                              PageTransitionType.fade,
+                                          duration: Duration(milliseconds: 0),
+                                        ),
+                                      },
+                                    );
+                                  },
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Icon(
+                                        Icons.monetization_on_outlined,
+                                        color: () {
+                                          if (_model
+                                              .mouseRegionComissaoDiariaHovered) {
+                                            return FlutterFlowTheme.of(context)
+                                                .hoverBtnLateral;
+                                          } else if (widget
+                                                  .paramBotaoSelecionado ==
+                                              'AFILIADO_COMISSOES') {
+                                            return FlutterFlowTheme.of(context)
+                                                .menuLatSelecionado;
+                                          } else {
+                                            return FlutterFlowTheme.of(context)
+                                                .txtMenuLateral;
+                                          }
+                                        }(),
+                                        size: 24.0,
+                                      ),
+                                      Text(
+                                        'Comissões',
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .override(
+                                              font: GoogleFonts.readexPro(
+                                                fontWeight:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .fontWeight,
+                                                fontStyle:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .fontStyle,
+                                              ),
+                                              color: () {
+                                                if (_model
+                                                    .mouseRegionComissaoDiariaHovered) {
+                                                  return FlutterFlowTheme.of(
+                                                          context)
+                                                      .hoverBtnLateral;
+                                                } else if (widget
+                                                        .paramBotaoSelecionado ==
+                                                    'AFILIADO_COMISSOES') {
+                                                  return FlutterFlowTheme.of(
+                                                          context)
+                                                      .menuLatSelecionado;
+                                                } else {
+                                                  return FlutterFlowTheme.of(
+                                                          context)
+                                                      .txtMenuLateral;
+                                                }
+                                              }(),
+                                              fontSize: 10.0,
+                                              letterSpacing: 0.0,
+                                              fontWeight:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontWeight,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontStyle,
+                                            ),
+                                      ),
+                                    ].divide(SizedBox(height: 4.0)),
+                                  ),
+                                ),
+                              ),
+                              onEnter: ((event) async {
+                                safeSetState(() => _model
+                                    .mouseRegionComissaoDiariaHovered = true);
+                              }),
+                              onExit: ((event) async {
+                                safeSetState(() => _model
+                                    .mouseRegionComissaoDiariaHovered = false);
+                              }),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                   MouseRegion(
                     opaque: false,
                     cursor: MouseCursor.defer ?? MouseCursor.defer,
@@ -422,7 +612,10 @@ class _CpRodapeWidgetState extends State<CpRodapeWidget> {
                       onTap: () async {
                         await showModalBottomSheet(
                           isScrollControlled: true,
-                          backgroundColor: Colors.transparent,
+                          backgroundColor:
+                              Theme.of(context).brightness == Brightness.dark
+                                  ? Color(0x7F000000)
+                                  : Colors.transparent,
                           useSafeArea: true,
                           context: context,
                           builder: (context) {
@@ -431,7 +624,7 @@ class _CpRodapeWidgetState extends State<CpRodapeWidget> {
                                 padding: MediaQuery.viewInsetsOf(context),
                                 child: Container(
                                   height:
-                                      MediaQuery.sizeOf(context).height * 0.9,
+                                      MediaQuery.sizeOf(context).height * 1.0,
                                   child: CpMenuLateralWidget(
                                     paramBotaoSelecionado: '0',
                                     paramGrupoBotao: '0',
@@ -491,66 +684,77 @@ class _CpRodapeWidgetState extends State<CpRodapeWidget> {
                     }),
                   ),
                   Expanded(
-                    child: MouseRegion(
-                      opaque: false,
-                      cursor: MouseCursor.defer ?? MouseCursor.defer,
-                      child: Padding(
-                        padding:
-                            EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.all(4.0),
-                            child: InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                if (FFAppState().varCarregouPrimeiraPagina ==
-                                    false) {
-                                  context.safePop();
-                                } else {
-                                  FFAppState().varCarregouPrimeiraPagina =
-                                      false;
-                                }
+                    child: Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 0.0, 0.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                        child: Align(
+                          alignment: AlignmentDirectional(0.0, -1.0),
+                          child: MouseRegion(
+                            opaque: false,
+                            cursor: MouseCursor.defer ?? MouseCursor.defer,
+                            child: Padding(
+                              padding: EdgeInsets.all(4.0),
+                              child: InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  if (FFAppState().varCarregouPrimeiraPagina ==
+                                      false) {
+                                    context.safePop();
+                                  } else {
+                                    FFAppState().varCarregouPrimeiraPagina =
+                                        false;
+                                  }
 
-                                FFAppState().varGrupoBotaoSelecionado = '0';
-                                FFAppState().addToVarGruposBotoesAbertos('0');
+                                  FFAppState().varGrupoBotaoSelecionado = '0';
+                                  FFAppState().addToVarGruposBotoesAbertos('0');
 
-                                context.pushNamed(
-                                  PgNotificacoesWidget.routeName,
-                                  extra: <String, dynamic>{
-                                    kTransitionInfoKey: TransitionInfo(
-                                      hasTransition: true,
-                                      transitionType: PageTransitionType.fade,
-                                      duration: Duration(milliseconds: 0),
-                                    ),
-                                  },
-                                );
-                              },
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Stack(
-                                    alignment: AlignmentDirectional(0.0, 0.0),
-                                    children: [
-                                      Icon(
-                                        Icons.notifications_active_outlined,
-                                        color: widget.paramBotaoSelecionado ==
-                                                'NOTIFICACOES'
-                                            ? FlutterFlowTheme.of(context)
-                                                .menuLatSelecionado
-                                            : FlutterFlowTheme.of(context)
-                                                .txtMenuLateral,
-                                        size: 24.0,
+                                  context.pushNamed(
+                                    PgNotificacoesWidget.routeName,
+                                    extra: <String, dynamic>{
+                                      kTransitionInfoKey: TransitionInfo(
+                                        hasTransition: true,
+                                        transitionType: PageTransitionType.fade,
+                                        duration: Duration(milliseconds: 0),
                                       ),
-                                      Align(
-                                        alignment:
-                                            AlignmentDirectional(0.0, -1.0),
-                                        child: Container(
+                                    },
+                                  );
+                                },
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Stack(
+                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      children: [
+                                        Icon(
+                                          Icons.notifications_active_outlined,
+                                          color: () {
+                                            if (_model
+                                                .mouseRegionNotificacoesHovered) {
+                                              return FlutterFlowTheme.of(
+                                                      context)
+                                                  .hoverBtnLateral;
+                                            } else if (widget
+                                                    .paramBotaoSelecionado ==
+                                                'NOTIFICACOES') {
+                                              return FlutterFlowTheme.of(
+                                                      context)
+                                                  .menuLatSelecionado;
+                                            } else {
+                                              return FlutterFlowTheme.of(
+                                                      context)
+                                                  .txtMenuLateral;
+                                            }
+                                          }(),
+                                          size: 24.0,
+                                        ),
+                                        Container(
                                           decoration: BoxDecoration(),
                                           child: Padding(
                                             padding:
@@ -615,15 +819,43 @@ class _CpRodapeWidgetState extends State<CpRodapeWidget> {
                                             ),
                                           ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                  Text(
-                                    'Notificações',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          font: GoogleFonts.readexPro(
+                                      ],
+                                    ),
+                                    Text(
+                                      'Notificações',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            font: GoogleFonts.readexPro(
+                                              fontWeight:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontWeight,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontStyle,
+                                            ),
+                                            color: () {
+                                              if (_model
+                                                  .mouseRegionNotificacoesHovered) {
+                                                return FlutterFlowTheme.of(
+                                                        context)
+                                                    .hoverBtnLateral;
+                                              } else if (widget
+                                                      .paramBotaoSelecionado ==
+                                                  'NOTIFICACOES') {
+                                                return FlutterFlowTheme.of(
+                                                        context)
+                                                    .menuLatSelecionado;
+                                              } else {
+                                                return FlutterFlowTheme.of(
+                                                        context)
+                                                    .txtMenuLateral;
+                                              }
+                                            }(),
+                                            fontSize: 10.0,
+                                            letterSpacing: 0.0,
                                             fontWeight:
                                                 FlutterFlowTheme.of(context)
                                                     .bodyMedium
@@ -633,260 +865,391 @@ class _CpRodapeWidgetState extends State<CpRodapeWidget> {
                                                     .bodyMedium
                                                     .fontStyle,
                                           ),
-                                          color:
-                                              widget.paramBotaoSelecionado ==
-                                                      'NOTIFICACOES'
-                                                  ? FlutterFlowTheme.of(context)
-                                                      .menuLatSelecionado
-                                                  : FlutterFlowTheme.of(context)
-                                                      .txtMenuLateral,
-                                          fontSize: 10.0,
-                                          letterSpacing: 0.0,
-                                          fontWeight:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .fontWeight,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .fontStyle,
-                                        ),
-                                  ),
-                                ].divide(SizedBox(height: 4.0)),
+                                    ),
+                                  ].divide(SizedBox(height: 4.0)),
+                                ),
                               ),
                             ),
+                            onEnter: ((event) async {
+                              safeSetState(() =>
+                                  _model.mouseRegionNotificacoesHovered = true);
+                            }),
+                            onExit: ((event) async {
+                              safeSetState(() => _model
+                                  .mouseRegionNotificacoesHovered = false);
+                            }),
                           ),
                         ),
                       ),
-                      onEnter: ((event) async {
-                        safeSetState(
-                            () => _model.mouseRegionNotificacoesHovered = true);
-                      }),
-                      onExit: ((event) async {
-                        safeSetState(() =>
-                            _model.mouseRegionNotificacoesHovered = false);
-                      }),
                     ),
                   ),
-                  Expanded(
-                    child: MouseRegion(
-                      opaque: false,
-                      cursor: MouseCursor.defer ?? MouseCursor.defer,
+                  if (FFAppState().varIDAPPAfiliado == 3)
+                    Expanded(
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8.0),
                         ),
-                        child: Padding(
-                          padding: EdgeInsets.all(4.0),
-                          child: InkWell(
-                            splashColor: Colors.transparent,
-                            focusColor: Colors.transparent,
-                            hoverColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            onTap: () async {
-                              if (FFAppState().varCarregouPrimeiraPagina ==
-                                  false) {
-                                if (FFAppState().VarEmDesenvolvimento) {
-                                  await showDialog(
-                                    context: context,
-                                    builder: (alertDialogContext) {
-                                      return WebViewAware(
-                                        child: AlertDialog(
-                                          title: Text('tese'),
-                                          content: Text('Primeira Pág FALSE 1'),
-                                          actions: [
-                                            TextButton(
-                                              onPressed: () => Navigator.pop(
-                                                  alertDialogContext),
-                                              child: Text('Ok'),
-                                            ),
-                                          ],
-                                        ),
-                                      );
-                                    },
-                                  );
-                                }
-                                context.safePop();
-                                if (FFAppState().VarEmDesenvolvimento) {
-                                  await showDialog(
-                                    context: context,
-                                    builder: (alertDialogContext) {
-                                      return WebViewAware(
-                                        child: AlertDialog(
-                                          title: Text('tese'),
-                                          content: Text('Primeira Pág FALSE 2'),
-                                          actions: [
-                                            TextButton(
-                                              onPressed: () => Navigator.pop(
-                                                  alertDialogContext),
-                                              child: Text('Ok'),
-                                            ),
-                                          ],
-                                        ),
-                                      );
-                                    },
-                                  );
-                                }
-                              } else {
-                                if (FFAppState().VarEmDesenvolvimento) {
-                                  await showDialog(
-                                    context: context,
-                                    builder: (alertDialogContext) {
-                                      return WebViewAware(
-                                        child: AlertDialog(
-                                          title: Text('tese'),
-                                          content: Text('Primeira Pág TRUE'),
-                                          actions: [
-                                            TextButton(
-                                              onPressed: () => Navigator.pop(
-                                                  alertDialogContext),
-                                              child: Text('Ok'),
-                                            ),
-                                          ],
-                                        ),
-                                      );
-                                    },
-                                  );
-                                }
-                                FFAppState().varCarregouPrimeiraPagina = false;
-                              }
+                        child: Align(
+                          alignment: AlignmentDirectional(0.0, -1.0),
+                          child: MouseRegion(
+                            opaque: false,
+                            cursor: MouseCursor.defer ?? MouseCursor.defer,
+                            child: Padding(
+                              padding: EdgeInsets.all(4.0),
+                              child: InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  if (FFAppState().varCarregouPrimeiraPagina ==
+                                      false) {
+                                    context.safePop();
+                                  } else {
+                                    FFAppState().varCarregouPrimeiraPagina =
+                                        false;
+                                  }
 
-                              FFAppState().varGrupoBotaoSelecionado =
-                                  'AFILIADO';
-                              FFAppState()
-                                  .addToVarGruposBotoesAbertos('AFILIADO');
-                              if (FFAppState().varTblAfiliado.statusAfiliacao ==
-                                  'CADASTRO') {
-                                context.pushNamed(
-                                  PgAfiliadoCpfWidget.routeName,
-                                  extra: <String, dynamic>{
-                                    kTransitionInfoKey: TransitionInfo(
-                                      hasTransition: true,
-                                      transitionType: PageTransitionType.fade,
-                                      duration: Duration(milliseconds: 0),
+                                  FFAppState().varGrupoBotaoSelecionado =
+                                      'AFILIADO';
+                                  FFAppState()
+                                      .addToVarGruposBotoesAbertos('AFILIADO');
+                                  if (FFAppState()
+                                          .varTblAfiliado
+                                          .statusAfiliacao ==
+                                      'CADASTRO') {
+                                    context.pushNamed(
+                                      PgAfiliadoCpfWidget.routeName,
+                                      extra: <String, dynamic>{
+                                        kTransitionInfoKey: TransitionInfo(
+                                          hasTransition: true,
+                                          transitionType:
+                                              PageTransitionType.fade,
+                                          duration: Duration(milliseconds: 0),
+                                        ),
+                                      },
+                                    );
+                                  } else {
+                                    context.pushNamed(
+                                      PgAfiliadosCadWidget.routeName,
+                                      extra: <String, dynamic>{
+                                        kTransitionInfoKey: TransitionInfo(
+                                          hasTransition: true,
+                                          transitionType:
+                                              PageTransitionType.fade,
+                                          duration: Duration(milliseconds: 0),
+                                        ),
+                                      },
+                                    );
+                                  }
+                                },
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Icon(
+                                      Icons.person_4_outlined,
+                                      color: () {
+                                        if (_model.mouseRegionPerfilHovered) {
+                                          return FlutterFlowTheme.of(context)
+                                              .hoverBtnLateral;
+                                        } else if (widget
+                                                .paramBotaoSelecionado ==
+                                            'AFILIADO_CAD') {
+                                          return FlutterFlowTheme.of(context)
+                                              .menuLatSelecionado;
+                                        } else {
+                                          return FlutterFlowTheme.of(context)
+                                              .txtMenuLateral;
+                                        }
+                                      }(),
+                                      size: 24.0,
                                     ),
-                                  },
-                                );
-                              } else {
-                                context.pushNamed(
-                                  PgAfiliadosCadWidget.routeName,
-                                  extra: <String, dynamic>{
-                                    kTransitionInfoKey: TransitionInfo(
-                                      hasTransition: true,
-                                      transitionType: PageTransitionType.fade,
-                                      duration: Duration(milliseconds: 0),
-                                    ),
-                                  },
-                                );
-                              }
-                            },
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Icon(
-                                  Icons.person_4_outlined,
-                                  color: widget.paramBotaoSelecionado ==
-                                          'AFILIADO_CAD'
-                                      ? FlutterFlowTheme.of(context)
-                                          .menuLatSelecionado
-                                      : FlutterFlowTheme.of(context)
-                                          .txtMenuLateral,
-                                  size: 24.0,
-                                ),
-                                if (responsiveVisibility(
-                                  context: context,
-                                  phone: false,
-                                  tablet: false,
-                                  tabletLandscape: false,
-                                  desktop: false,
-                                ))
-                                  Container(
-                                    decoration: BoxDecoration(
-                                      color: widget.paramBotaoSelecionado ==
-                                              'AFILIADO_CAD'
-                                          ? FlutterFlowTheme.of(context)
-                                              .menuLatSelecionado
-                                          : Colors.transparent,
-                                      borderRadius:
-                                          BorderRadius.circular(100.0),
-                                    ),
-                                    child: Padding(
-                                      padding: EdgeInsets.all(1.0),
-                                      child: Container(
-                                        width: 24.0,
-                                        height: 24.0,
-                                        clipBehavior: Clip.antiAlias,
+                                    if (responsiveVisibility(
+                                      context: context,
+                                      phone: false,
+                                      tablet: false,
+                                      tabletLandscape: false,
+                                      desktop: false,
+                                    ))
+                                      Container(
                                         decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
+                                          color:
+                                              widget.paramBotaoSelecionado ==
+                                                      'AFILIADO_CAD'
+                                                  ? FlutterFlowTheme.of(context)
+                                                      .menuLatSelecionado
+                                                  : Colors.transparent,
+                                          borderRadius:
+                                              BorderRadius.circular(100.0),
                                         ),
-                                        child: Image.network(
-                                          valueOrDefault<String>(
-                                            FFAppState().varIDAPPAfiliado == 1
-                                                ? valueOrDefault<String>(
-                                                    FFAppState()
-                                                        .VarTblEstabelecimentoLogado
-                                                        .fotoPerfil,
-                                                    'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/agendador-de-beleza-qia8mb/assets/lp37pdsm6md0/sem-imagem.jpg',
-                                                  )
-                                                : valueOrDefault<String>(
-                                                    FFAppState()
-                                                        .varTblAfiliado
-                                                        .fotoPerfil,
-                                                    'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/agendador-de-beleza-qia8mb/assets/lp37pdsm6md0/sem-imagem.jpg',
-                                                  ),
-                                            'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/agendador-de-beleza-qia8mb/assets/ueul5c3j28pd/images.png',
+                                        child: Padding(
+                                          padding: EdgeInsets.all(1.0),
+                                          child: Container(
+                                            width: 24.0,
+                                            height: 24.0,
+                                            clipBehavior: Clip.antiAlias,
+                                            decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                            ),
+                                            child: Image.network(
+                                              valueOrDefault<String>(
+                                                FFAppState().varIDAPPAfiliado ==
+                                                        1
+                                                    ? valueOrDefault<String>(
+                                                        FFAppState()
+                                                            .VarTblEstabelecimentoLogado
+                                                            .fotoPerfil,
+                                                        'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/agendador-de-beleza-qia8mb/assets/lp37pdsm6md0/sem-imagem.jpg',
+                                                      )
+                                                    : valueOrDefault<String>(
+                                                        FFAppState()
+                                                            .varTblAfiliado
+                                                            .fotoPerfil,
+                                                        'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/agendador-de-beleza-qia8mb/assets/lp37pdsm6md0/sem-imagem.jpg',
+                                                      ),
+                                                'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/agendador-de-beleza-qia8mb/assets/ueul5c3j28pd/images.png',
+                                              ),
+                                              fit: BoxFit.cover,
+                                            ),
                                           ),
-                                          fit: BoxFit.cover,
                                         ),
                                       ),
+                                    Text(
+                                      'Perfil',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            font: GoogleFonts.readexPro(
+                                              fontWeight:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontWeight,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontStyle,
+                                            ),
+                                            color: () {
+                                              if (_model
+                                                  .mouseRegionPerfilHovered) {
+                                                return FlutterFlowTheme.of(
+                                                        context)
+                                                    .hoverBtnLateral;
+                                              } else if (widget
+                                                      .paramBotaoSelecionado ==
+                                                  'AFILIADO_CAD') {
+                                                return FlutterFlowTheme.of(
+                                                        context)
+                                                    .menuLatSelecionado;
+                                              } else {
+                                                return FlutterFlowTheme.of(
+                                                        context)
+                                                    .txtMenuLateral;
+                                              }
+                                            }(),
+                                            fontSize: 10.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .fontWeight,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .fontStyle,
+                                          ),
                                     ),
-                                  ),
-                                Text(
-                                  'Perfil',
-                                  style: FlutterFlowTheme.of(context)
-                                      .bodyMedium
-                                      .override(
-                                        font: GoogleFonts.readexPro(
-                                          fontWeight:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .fontWeight,
-                                          fontStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .bodyMedium
-                                                  .fontStyle,
-                                        ),
-                                        color: widget.paramBotaoSelecionado ==
-                                                'AFILIADO_CAD'
-                                            ? FlutterFlowTheme.of(context)
-                                                .menuLatSelecionado
-                                            : FlutterFlowTheme.of(context)
-                                                .txtMenuLateral,
-                                        fontSize: 10.0,
-                                        letterSpacing: 0.0,
-                                        fontWeight: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontWeight,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontStyle,
-                                      ),
+                                  ].divide(SizedBox(height: 4.0)),
                                 ),
-                              ].divide(SizedBox(height: 4.0)),
+                              ),
                             ),
+                            onEnter: ((event) async {
+                              safeSetState(
+                                  () => _model.mouseRegionPerfilHovered = true);
+                            }),
+                            onExit: ((event) async {
+                              safeSetState(() =>
+                                  _model.mouseRegionPerfilHovered = false);
+                            }),
                           ),
                         ),
                       ),
-                      onEnter: ((event) async {
-                        safeSetState(
-                            () => _model.mouseRegionPerfilHovered = true);
-                      }),
-                      onExit: ((event) async {
-                        safeSetState(
-                            () => _model.mouseRegionPerfilHovered = false);
-                      }),
                     ),
-                  ),
+                  if (FFAppState().varIDAPPAfiliado == 1)
+                    Expanded(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                        child: Align(
+                          alignment: AlignmentDirectional(0.0, -1.0),
+                          child: MouseRegion(
+                            opaque: false,
+                            cursor: MouseCursor.defer ?? MouseCursor.defer,
+                            child: Padding(
+                              padding: EdgeInsets.all(4.0),
+                              child: InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  if (FFAppState().varCarregouPrimeiraPagina ==
+                                      false) {
+                                    context.safePop();
+                                  } else {
+                                    FFAppState().varCarregouPrimeiraPagina =
+                                        false;
+                                  }
+
+                                  FFAppState().varGrupoBotaoSelecionado =
+                                      'CADASTROS';
+                                  FFAppState()
+                                      .addToVarGruposBotoesAbertos('CADASTROS');
+
+                                  context.pushNamed(
+                                    PgEstabelecimentoCadWidget.routeName,
+                                    extra: <String, dynamic>{
+                                      kTransitionInfoKey: TransitionInfo(
+                                        hasTransition: true,
+                                        transitionType: PageTransitionType.fade,
+                                        duration: Duration(milliseconds: 0),
+                                      ),
+                                    },
+                                  );
+                                },
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Icon(
+                                      Icons.home_outlined,
+                                      color: () {
+                                        if (_model.mouseRegionEmpresaHovered) {
+                                          return FlutterFlowTheme.of(context)
+                                              .hoverBtnLateral;
+                                        } else if (widget
+                                                .paramBotaoSelecionado ==
+                                            'EMPRESA') {
+                                          return FlutterFlowTheme.of(context)
+                                              .menuLatSelecionado;
+                                        } else {
+                                          return FlutterFlowTheme.of(context)
+                                              .txtMenuLateral;
+                                        }
+                                      }(),
+                                      size: 24.0,
+                                    ),
+                                    if (responsiveVisibility(
+                                      context: context,
+                                      phone: false,
+                                      tablet: false,
+                                      tabletLandscape: false,
+                                      desktop: false,
+                                    ))
+                                      Container(
+                                        decoration: BoxDecoration(
+                                          color:
+                                              widget.paramBotaoSelecionado ==
+                                                      'AFILIADO_CAD'
+                                                  ? FlutterFlowTheme.of(context)
+                                                      .menuLatSelecionado
+                                                  : Colors.transparent,
+                                          borderRadius:
+                                              BorderRadius.circular(100.0),
+                                        ),
+                                        child: Padding(
+                                          padding: EdgeInsets.all(1.0),
+                                          child: Container(
+                                            width: 24.0,
+                                            height: 24.0,
+                                            clipBehavior: Clip.antiAlias,
+                                            decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                            ),
+                                            child: Image.network(
+                                              valueOrDefault<String>(
+                                                FFAppState().varIDAPPAfiliado ==
+                                                        1
+                                                    ? valueOrDefault<String>(
+                                                        FFAppState()
+                                                            .VarTblEstabelecimentoLogado
+                                                            .fotoPerfil,
+                                                        'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/agendador-de-beleza-qia8mb/assets/lp37pdsm6md0/sem-imagem.jpg',
+                                                      )
+                                                    : valueOrDefault<String>(
+                                                        FFAppState()
+                                                            .varTblAfiliado
+                                                            .fotoPerfil,
+                                                        'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/agendador-de-beleza-qia8mb/assets/lp37pdsm6md0/sem-imagem.jpg',
+                                                      ),
+                                                'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/agendador-de-beleza-qia8mb/assets/ueul5c3j28pd/images.png',
+                                              ),
+                                              fit: BoxFit.cover,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    Text(
+                                      'Empresa',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            font: GoogleFonts.readexPro(
+                                              fontWeight:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontWeight,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontStyle,
+                                            ),
+                                            color: () {
+                                              if (_model
+                                                  .mouseRegionEmpresaHovered) {
+                                                return FlutterFlowTheme.of(
+                                                        context)
+                                                    .hoverBtnLateral;
+                                              } else if (widget
+                                                      .paramBotaoSelecionado ==
+                                                  'EMPRESA') {
+                                                return FlutterFlowTheme.of(
+                                                        context)
+                                                    .menuLatSelecionado;
+                                              } else {
+                                                return FlutterFlowTheme.of(
+                                                        context)
+                                                    .txtMenuLateral;
+                                              }
+                                            }(),
+                                            fontSize: 10.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .fontWeight,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .fontStyle,
+                                          ),
+                                    ),
+                                  ].divide(SizedBox(height: 4.0)),
+                                ),
+                              ),
+                            ),
+                            onEnter: ((event) async {
+                              safeSetState(() =>
+                                  _model.mouseRegionEmpresaHovered = true);
+                            }),
+                            onExit: ((event) async {
+                              safeSetState(() =>
+                                  _model.mouseRegionEmpresaHovered = false);
+                            }),
+                          ),
+                        ),
+                      ),
+                    ),
                 ].divide(SizedBox(width: 2.0)),
               ),
             ),

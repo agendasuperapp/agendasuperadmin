@@ -21,6 +21,10 @@ class FFAppState extends ChangeNotifier {
   Future initializePersistedState() async {
     secureStorage = FlutterSecureStorage();
     await _safeInitAsync(() async {
+      _varIDAPPAfiliado = await secureStorage.getInt('ff_varIDAPPAfiliado') ??
+          _varIDAPPAfiliado;
+    });
+    await _safeInitAsync(() async {
       _VarIDEstabelecimentoLogado =
           await secureStorage.getInt('ff_VarIDEstabelecimentoLogado') ??
               _VarIDEstabelecimentoLogado;
@@ -112,7 +116,7 @@ class FFAppState extends ChangeNotifier {
 
   late FlutterSecureStorage secureStorage;
 
-  String _VarVersaoSistema = '4.1.22';
+  String _VarVersaoSistema = '4.1.23';
   String get VarVersaoSistema => _VarVersaoSistema;
   set VarVersaoSistema(String value) {
     _VarVersaoSistema = value;
@@ -122,6 +126,11 @@ class FFAppState extends ChangeNotifier {
   int get varIDAPPAfiliado => _varIDAPPAfiliado;
   set varIDAPPAfiliado(int value) {
     _varIDAPPAfiliado = value;
+    secureStorage.setInt('ff_varIDAPPAfiliado', value);
+  }
+
+  void deleteVarIDAPPAfiliado() {
+    secureStorage.delete(key: 'ff_varIDAPPAfiliado');
   }
 
   int _VarIDEstabelecimentoLogado = 0;

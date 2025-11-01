@@ -128,12 +128,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: PgEstabelecimentoCadWidget.routeName,
-          path: PgEstabelecimentoCadWidget.routePath,
-          requireAuth: true,
-          builder: (context, params) => PgEstabelecimentoCadWidget(),
-        ),
-        FFRoute(
           name: PgDashboardWidget.routeName,
           path: PgDashboardWidget.routePath,
           requireAuth: true,
@@ -259,12 +253,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: PgFidelidadeWidget.routePath,
           requireAuth: true,
           builder: (context, params) => PgFidelidadeWidget(),
-        ),
-        FFRoute(
-          name: PgAgendamentosDiariosWidget.routeName,
-          path: PgAgendamentosDiariosWidget.routePath,
-          requireAuth: true,
-          builder: (context, params) => PgAgendamentosDiariosWidget(),
         ),
         FFRoute(
           name: PgAdminEstabelecimentosWidget.routeName,
@@ -574,6 +562,18 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: PgNotificacoesWidget.routePath,
           requireAuth: true,
           builder: (context, params) => PgNotificacoesWidget(),
+        ),
+        FFRoute(
+          name: PgEstabelecimentoCadWidget.routeName,
+          path: PgEstabelecimentoCadWidget.routePath,
+          requireAuth: true,
+          builder: (context, params) => PgEstabelecimentoCadWidget(),
+        ),
+        FFRoute(
+          name: PgAgendamentosDiariosWidget.routeName,
+          path: PgAgendamentosDiariosWidget.routePath,
+          requireAuth: true,
+          builder: (context, params) => PgAgendamentosDiariosWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],

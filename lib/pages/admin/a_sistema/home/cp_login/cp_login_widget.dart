@@ -508,7 +508,7 @@ class _CpLoginWidgetState extends State<CpLoginWidget>
                                           3) {
                                         return 'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/agenda-super-admin-0zp7nv/assets/ni2nz3tjg516/App_AfiliadoIcon.png';
                                       } else {
-                                        return '...';
+                                        return 'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/agenda-super-admin-0zp7nv/assets/mrpjpob4896n/Sem_Registros_2.png';
                                       }
                                     }(),
                                     'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/agenda-super-admin-0zp7nv/assets/ni2nz3tjg516/App_AfiliadoIcon.png',

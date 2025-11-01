@@ -1835,7 +1835,7 @@ Future acAtualizarPlanos(
     ));
     FFAppState().VarContadorBlock = FFAppState().VarContadorBlock + 1;
   }
-  if (kDebugMode || FFAppState().VarEmDesenvolvimento) {
+  if (FFAppState().VarEmDesenvolvimento) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(

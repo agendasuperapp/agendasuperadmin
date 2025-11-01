@@ -128,6 +128,11 @@ jobs:
           LOG_FILE="${TEMP_DIR}/${SITE}_${VERSION}.txt"
           echo "Versão: ${VERSION}" > "${LOG_FILE}"
           echo "Data: ${BUILD_DATE}" >> "${LOG_FILE}"
+          echo "📄 Criado ${LOG_FILE}"
+
+          echo "🔍 Trecho de verificação no main.dart.js:"
+          grep -m 1 "${APPNAME}" "${TEMP_DIR}/main.dart.js" || true
+          grep -m 1 "${APPID}" "${TEMP_DIR}/main.dart.js" || true
 
       # 1️⃣2️⃣ Cria backup remoto dentro da hospedagem com número da versão
       - name: 💾 Criar backup remoto com versão atual
@@ -205,7 +210,7 @@ jobs:
             -H "Content-Type: application/json" \
             -d "{\"versao\": \"${VERSION}\", \"descricao\": \"${DESC}\", \"id_app\": ${APP_ID}, \"status\": \"${STATUS}\"}"
 
-      # 1️⃣4️⃣ Captura informações para o e-mail
+      # 1️⃣5️⃣ Captura informações para o e-mail
       - name: 📨 Preparar informações para e-mail
         if: success() || failure()
         run: |
@@ -219,7 +224,7 @@ jobs:
           echo "STATUS=${STATUS}" >> $GITHUB_ENV
           echo "DESC=${DESC}" >> $GITHUB_ENV
 
-      # 1️⃣5️⃣ Enviar e-mail de notificação
+      # 1️⃣6️⃣ Enviar e-mail de notificação
       - name: ✉️ Disparar e-mail de status do deploy
         if: success() || failure()
         uses: dawidd6/action-send-mail@v3
@@ -239,3 +244,8 @@ jobs:
             📅 Data: ${{ env.DATA }}
             🌐 Aplicativo: APP ${{ matrix.target.name }}
             ⚙️ Status: ${{ env.STATUS }}
+
+
+      # 1️⃣7️⃣ Finaliza e mostra status
+      - name: ✅ Finalização do deploy
+        run: echo "🎉 Deploy concluído com sucesso para ${{ matrix.target.name }}!"

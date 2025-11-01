@@ -135,6 +135,15 @@ jobs:
           grep -m 1 "${APPNAME}" "${TEMP_DIR}/main.dart.js" || true
           grep -m 1 "${IDAFILIADOAPP}" "${TEMP_DIR}/main.dart.js" || true
 
+      # 1️⃣1️⃣ Backup automático antes do deploy
+      - name: 💾 Fazer backup do index.html atual no servidor
+        run: |
+          echo "🧩 Fazendo backup remoto antes do deploy..."
+          curl -v --user "${{ secrets[ matrix.target.ftp_user ] }}:${{ secrets[ matrix.target.ftp_pass ] }}" \
+            "ftp://${{ secrets[ matrix.target.ftp_server ] }}/${{ secrets[ matrix.target.ftp_dir ] }}/index.html" \
+            -o "backup_${{ matrix.target.name }}_$(date '+%Y%m%d_%H%M%S').html" || echo "⚠️ Não foi possível baixar backup (arquivo pode não existir)."
+
+
       # 1️⃣1️⃣ Faz o deploy via FTP (Hostinger)
       - name: 🚀 Publicar via FTPS (Hostinger)
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
@@ -144,12 +153,13 @@ jobs:
           password: ${{ secrets[ matrix.target.ftp_pass ] }}
           protocol: ftp  
           port: 21
-          timeout: 1000
+          timeout: 1200
           retries: 5
 
           local-dir: temp/${{ matrix.target.name }}/
           server-dir: ${{ secrets[ matrix.target.ftp_dir ] }}
-          dangerous-clean-slate: true
+          dangerous-clean-slate: false       # ✅ mantém arquivos antigos
+          sync-mode: update                  # ✅ substitui apenas os modificados
           log-level: verbose
 
 

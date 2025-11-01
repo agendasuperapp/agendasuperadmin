@@ -205,8 +205,8 @@ jobs:
             -H "Content-Type: application/json" \
             -d "{\"versao\": \"${VERSION}\", \"descricao\": \"${DESC}\", \"id_app\": ${APP_ID}, \"status\": \"${STATUS}\"}"
 
-      # 1️⃣5️⃣ Envia e-mail de notificação com status do deploy
-      - name: ✉️ Enviar e-mail de notificação
+      # 1️⃣5️⃣ Enviar e-mail de notificação
+      - name: ✉️ Disparar e-mail de status do deploy
         if: success() || failure()
         uses: dawidd6/action-send-mail@v3
         with:
@@ -215,11 +215,13 @@ jobs:
           secure: true
           username: ${{ secrets.MAIL_USER }}
           password: ${{ secrets.MAIL_PASS }}
-          subject: "🚀 Deploy ${{ matrix.target.name }} ${{ job.status }}"
+          subject: "🚀 Atualização ${{ matrix.target.name }} ${{ env.STATUS }}"
           to: "hersoares12@gmail.com, contatoagendasuper@gmail.com, gerenciavendasdigitais2@gmail.com"
-          from: "Deploy GitHub <${{ secrets.MAIL_USER }}>"
+          from: "${{ matrix.target.name }} ${{ env.VERSION }} ${{ env.STATUS }} nova versão disponível <${{ secrets.MAIL_USER }}>"
           body: |
-            ✅ Deploy finalizado para **${{ matrix.target.name }}**
-            🌐 Versão: $(jq -r '.version' temp/${{ matrix.target.name }}/version.json)
-            📅 Data: $(date '+%d/%m/%Y %H:%M:%S')
-            ⚙️ Status: ${{ job.status }}
+            ✅ Deploy finalizado para ${{ matrix.target.name }}
+            🌐 Versão: ${{ env.VERSION }}
+            📝 Descrição: ${{ env.DESC }}
+            📅 Data: ${{ env.DATA }}
+            🌐 Aplicativo: ${{ matrix.target.name }}
+            ⚙️ Status: ${{ env.STATUS }}

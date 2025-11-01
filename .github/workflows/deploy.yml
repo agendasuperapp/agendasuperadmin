@@ -135,13 +135,42 @@ jobs:
           grep -m 1 "${APPNAME}" "${TEMP_DIR}/main.dart.js" || true
           grep -m 1 "${IDAFILIADOAPP}" "${TEMP_DIR}/main.dart.js" || true
 
-      # 1️⃣1️⃣ Backup automático antes do deploy
-      - name: 💾 Fazer backup do index.html atual no servidor
+      # 1️⃣1️⃣ Backup completo remoto dentro da hospedagem (com número da versão)
+      - name: 💾 Criar backup remoto com versão atual
         run: |
-          echo "🧩 Fazendo backup remoto antes do deploy..."
-          curl -v --user "${{ secrets[ matrix.target.ftp_user ] }}:${{ secrets[ matrix.target.ftp_pass ] }}" \
-            "ftp://${{ secrets[ matrix.target.ftp_server ] }}/${{ secrets[ matrix.target.ftp_dir ] }}/index.html" \
-            -o "backup_${{ matrix.target.name }}_$(date '+%Y%m%d_%H%M%S').html" || echo "⚠️ Não foi possível baixar backup (arquivo pode não existir)."
+          echo "🧩 Lendo versão atual do arquivo version.json no servidor..."
+          FTP_HOST="${{ secrets[ matrix.target.ftp_server ] }}"
+          FTP_USER="${{ secrets[ matrix.target.ftp_user ] }}"
+          FTP_PASS="${{ secrets[ matrix.target.ftp_pass ] }}"
+          REMOTE_DIR="${{ secrets[ matrix.target.ftp_dir ] }}"
+
+          # Baixa o arquivo version.json do servidor remoto
+          curl -s -u "$FTP_USER:$FTP_PASS" "ftp://$FTP_HOST/$REMOTE_DIR/version.json" -o version_remote.json || echo "{}" > version_remote.json
+
+          # Extrai versão do JSON (usa "desconhecida" se falhar)
+          VERSION_REMOTE=$(jq -r '.version // "desconhecida"' version_remote.json)
+          echo "📦 Versão atual detectada no servidor: ${VERSION_REMOTE}"
+
+          # Gera timestamp e nome da pasta de backup
+          TIMESTAMP=$(date '+%Y_%m_%d_%H%M%S')
+          BACKUP_DIR="backup_versao_${VERSION_REMOTE}_${TIMESTAMP}"
+
+          echo "📁 Pasta de backup será: ${BACKUP_DIR}"
+
+          # Cria a pasta backup principal e a subpasta com a versão
+          echo "MKD ${REMOTE_DIR}/backup" | curl -s -u "$FTP_USER:$FTP_PASS" "ftp://$FTP_HOST" --ftp-create-dirs || true
+          echo "MKD ${REMOTE_DIR}/backup/${BACKUP_DIR}" | curl -s -u "$FTP_USER:$FTP_PASS" "ftp://$FTP_HOST" || true
+
+          # Copia todos os arquivos da public_html exceto a pasta backup
+          echo "📦 Iniciando cópia remota para ${REMOTE_DIR}/backup/${BACKUP_DIR}..."
+          lftp -u "$FTP_USER","$FTP_PASS" "ftp://$FTP_HOST" <<EOF
+          set ftp:ssl-allow no
+          mirror --reverse --exclude-glob backup/ --verbose ${REMOTE_DIR}/ ${REMOTE_DIR}/backup/${BACKUP_DIR}/
+          quit
+EOF
+
+          echo "✅ Backup completo criado em ${REMOTE_DIR}/backup/${BACKUP_DIR}"
+
 
 
       # 1️⃣1️⃣ Faz o deploy via FTP (Hostinger)

@@ -163,13 +163,14 @@ jobs:
 
           # Copia todos os arquivos da public_html exceto a pasta backup
           echo "📦 Iniciando cópia remota para ${REMOTE_DIR}/backup/${BACKUP_DIR}..."
-          lftp -u "$FTP_USER","$FTP_PASS" "ftp://$FTP_HOST" <<EOF
+          lftp -u "$FTP_USER","$FTP_PASS" "ftp://$FTP_HOST" <<'EOF'
           set ftp:ssl-allow no
           mirror --reverse --exclude-glob backup/ --verbose ${REMOTE_DIR}/ ${REMOTE_DIR}/backup/${BACKUP_DIR}/
           quit
 EOF
 
           echo "✅ Backup completo criado em ${REMOTE_DIR}/backup/${BACKUP_DIR}"
+
 
 
 

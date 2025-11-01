@@ -205,6 +205,20 @@ jobs:
             -H "Content-Type: application/json" \
             -d "{\"versao\": \"${VERSION}\", \"descricao\": \"${DESC}\", \"id_app\": ${APP_ID}, \"status\": \"${STATUS}\"}"
 
+      # 1️⃣4️⃣ Captura informações para o e-mail
+      - name: 📨 Preparar informações para e-mail
+        if: success() || failure()
+        run: |
+          TEMP_DIR="temp/${{ matrix.target.name }}"
+          VERSION=$(jq -r '.version' "${TEMP_DIR}/version.json")
+          DATA=$(date '+%d/%m/%Y %H:%M:%S')
+          STATUS="${{ job.status }}"
+          DESC="${{ github.event.head_commit.message }}"
+          echo "VERSION=${VERSION}" >> $GITHUB_ENV
+          echo "DATA=${DATA}" >> $GITHUB_ENV
+          echo "STATUS=${STATUS}" >> $GITHUB_ENV
+          echo "DESC=${DESC}" >> $GITHUB_ENV
+
       # 1️⃣5️⃣ Enviar e-mail de notificação
       - name: ✉️ Disparar e-mail de status do deploy
         if: success() || failure()
@@ -217,11 +231,11 @@ jobs:
           password: ${{ secrets.MAIL_PASS }}
           subject: "🚀 Atualização ${{ matrix.target.name }} ${{ env.STATUS }}"
           to: "hersoares12@gmail.com, contatoagendasuper@gmail.com, gerenciavendasdigitais2@gmail.com"
-          from: "${{ matrix.target.name }} ${{ env.VERSION }} ${{ env.STATUS }} nova versão disponível <${{ secrets.MAIL_USER }}>"
+          from: "APP ${{ matrix.target.name }} ${{ env.VERSION }} ${{ env.STATUS }} nova versão disponível <${{ secrets.MAIL_USER }}>"
           body: |
-            ✅ Deploy finalizado para ${{ matrix.target.name }}
+            ✅ Deploy finalizado para APP ${{ matrix.target.name }}
             🌐 Versão: ${{ env.VERSION }}
             📝 Descrição: ${{ env.DESC }}
             📅 Data: ${{ env.DATA }}
-            🌐 Aplicativo: ${{ matrix.target.name }}
+            🌐 Aplicativo: APP ${{ matrix.target.name }}
             ⚙️ Status: ${{ env.STATUS }}

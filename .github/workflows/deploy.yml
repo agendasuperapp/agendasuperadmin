@@ -137,6 +137,57 @@ jobs:
           # ✅ Exporta SITE para ser usado nos próximos passos
           echo "SITE=${SITE}" >> $GITHUB_ENV
 
+     # 1️⃣1️⃣-A Criar cópia temporária dos arquivos originais
+      - name: 🗂️ Fazer backup dos arquivos originais (antes do custom_code)
+        run: |
+          echo "🧩 Criando backup temporário dos arquivos originais..."
+          mkdir -p backup_original_actions
+          cp -r lib/custom_code/actions/* backup_original_actions/ || true
+          echo "✅ Backup dos arquivos originais concluído."
+
+
+      # 1️⃣1️⃣-B Substituir arquivos customizados apenas para o build APK
+      - name: 🔁 Aplicar custom_codes para build Android
+        run: |
+          echo "🧩 Aplicando arquivos personalizados de .github/overlays/custom_codes..."
+          rsync -av --exclude ".git" ".github/overlays/custom_codes/" "lib/custom_code/actions/"
+          echo "✅ Arquivos customizados aplicados com sucesso!"
+
+
+      # 1️⃣1️⃣-C Gerar o APK Android (modo release)
+      - name: 🤖 Gerar APK Android (modo release)
+        run: |
+          echo "📱 Iniciando build APK..."
+          flutter build apk --release
+          echo "✅ APK gerado com sucesso!"
+          ls -lh build/app/outputs/flutter-apk/
+
+
+      # 1️⃣1️⃣-D Restaurar arquivos originais após gerar o APK
+      - name: 🔙 Restaurar arquivos originais após build APK
+        run: |
+          echo "♻️ Restaurando arquivos originais em lib/custom_code/actions/..."
+          rm -rf lib/custom_code/actions/*
+          cp -r backup_original_actions/* lib/custom_code/actions/ || true
+          echo "✅ Arquivos originais restaurados."
+
+
+      # 1️⃣1️⃣-E Enviar o APK para a hospedagem Hostinger
+      - name: ☁️ Enviar APK para Hostinger
+        run: |
+          VERSION=$(jq -r '.version' "temp/${{ matrix.target.name }}/version.json")
+          APK_FILE="build/app/outputs/flutter-apk/app-release.apk"
+          APK_REMOTE_PATH="apk/${{ matrix.target.name }}_${VERSION}.apk"
+
+          echo "📤 Enviando ${APK_FILE} para public_html/${APK_REMOTE_PATH}..."
+          lftp -u "${{ secrets[ matrix.target.ftp_user ] }}","${{ secrets[ matrix.target.ftp_pass ] }}" "ftp://${{ secrets[ matrix.target.ftp_server ] }}" -e "
+            set ftp:ssl-allow no;
+            mkdir -p ${{ secrets[ matrix.target.ftp_dir ] }}/apk;
+            put -O ${{ secrets[ matrix.target.ftp_dir ] }}/apk/ ${APK_FILE};
+            bye
+          "
+          echo "✅ APK enviado para Hostinger: /public_html/${APK_REMOTE_PATH}"          
+
       # 1️⃣2️⃣ Cria backup remoto dentro da hospedagem com número da versão
       - name: 💾 Criar backup remoto com versão atual
         run: |

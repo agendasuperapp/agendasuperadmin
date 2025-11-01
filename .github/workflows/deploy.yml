@@ -30,7 +30,7 @@ jobs:
           flutter --version
           dart --version
 
-      # 4️⃣ Faz o build web idêntico ao seu script local
+      # 4️⃣ Faz o build web (modo release)
       - name: 🏗️ Build Web (modo release)
         run: |
           echo "🚀 Iniciando build web..."
@@ -44,7 +44,7 @@ jobs:
           echo "📦 Tamanho do main.dart.js:"
           du -h build/web/main.dart.js || true
 
-      # 6️⃣ Armazena o build para o job de deploy
+      # 6️⃣ Armazena o build como artifact para o job de deploy
       - name: 📦 Armazenar build como artifact
         uses: actions/upload-artifact@v4
         with:
@@ -65,7 +65,6 @@ jobs:
             ftp_pass: FTP_PASS_ADMIN
             ftp_dir:  FTP_DIR_ADMIN
 
-
           - name: rendarecorrente
             overlay: .github/overlays/rendarecorrente
             ftp_server: FTP_SERVER_AFI
@@ -78,19 +77,21 @@ jobs:
       - name: 📥 Baixar código e build
         uses: actions/checkout@v4
 
+      # 8️⃣ Baixa o artifact do build web
       - name: 📦 Baixar build artifact
         uses: actions/download-artifact@v4
         with:
           name: web-build
           path: web-build
 
-      # 8️⃣ Instala utilitários e prepara pastas
+      # 9️⃣ Instala utilitários necessários (jq, rsync, curl, lftp)
       - name: ⚙️ Instalar utilitários necessários
         run: |
-          sudo apt-get update && sudo apt-get install -y jq rsync curl
+          sudo apt-get update
+          sudo apt-get install -y jq rsync curl lftp
           mkdir -p temp/${{ matrix.target.name }}
 
-      # 9️⃣ Copia build base e aplica overlay personalizado
+      # 🔟 Copia build base e aplica overlay personalizado
       - name: 🧩 Aplicar overlay personalizado
         run: |
           echo "📦 Copiando build web base..."
@@ -98,7 +99,7 @@ jobs:
           echo "🧩 Aplicando overlay de ${{ matrix.target.name }}..."
           rsync -av --exclude ".git" "${{ matrix.target.overlay }}/" "temp/${{ matrix.target.name }}/"
 
-      # 🔟 Personaliza main.dart.js, index.html e gera log de versão
+      # 1️⃣1️⃣ Personaliza arquivos e gera log de versão
       - name: 🧠 Personalizar arquivos e gerar log de versão
         run: |
           TEMP_DIR="temp/${{ matrix.target.name }}"
@@ -111,7 +112,6 @@ jobs:
               IDAFILIADOAPP="1"
               SITE="app.agendasuper.com.br"
               ;;
-
             "rendarecorrente")
               APPNAME="APP Afiliado"
               IDAFILIADOAPP="3"
@@ -120,7 +120,6 @@ jobs:
           esac
 
           echo "🛠️ Aplicando personalizações para $APPNAME"
-
           sed -i "s/NomePageTitle/${APPNAME}/g" "${TEMP_DIR}/main.dart.js"
           sed -i "s/91234567890/${IDAFILIADOAPP}/g" "${TEMP_DIR}/main.dart.js"
           sed -i "s/const appVersion = \".*\";/const appVersion = \"${VERSION}\";/g" "${TEMP_DIR}/index.html"
@@ -129,72 +128,65 @@ jobs:
           LOG_FILE="${TEMP_DIR}/${SITE}_${VERSION}.txt"
           echo "Versão: ${VERSION}" > "${LOG_FILE}"
           echo "Data: ${BUILD_DATE}" >> "${LOG_FILE}"
-          echo "📄 Criado ${LOG_FILE}"
 
-          echo "🔍 Trecho de verificação no main.dart.js:"
-          grep -m 1 "${APPNAME}" "${TEMP_DIR}/main.dart.js" || true
-          grep -m 1 "${IDAFILIADOAPP}" "${TEMP_DIR}/main.dart.js" || true
-
-      # 1️⃣1️⃣ Backup completo remoto dentro da hospedagem (com número da versão)
+      # 1️⃣2️⃣ Cria backup remoto dentro da hospedagem com número da versão
       - name: 💾 Criar backup remoto com versão atual
         run: |
-          echo "🧩 Lendo versão atual do arquivo version.json no servidor..."
+          set -e
+          echo "🧩 Lendo versão atual do version.json na hospedagem..."
           FTP_HOST="${{ secrets[ matrix.target.ftp_server ] }}"
           FTP_USER="${{ secrets[ matrix.target.ftp_user ] }}"
           FTP_PASS="${{ secrets[ matrix.target.ftp_pass ] }}"
           REMOTE_DIR="${{ secrets[ matrix.target.ftp_dir ] }}"
 
-          # Baixa o arquivo version.json do servidor remoto
+          # 1️⃣2️⃣.1 Baixa o version.json remoto
           curl -s -u "$FTP_USER:$FTP_PASS" "ftp://$FTP_HOST/$REMOTE_DIR/version.json" -o version_remote.json || echo "{}" > version_remote.json
-
-          # Extrai versão do JSON (usa "desconhecida" se falhar)
           VERSION_REMOTE=$(jq -r '.version // "desconhecida"' version_remote.json)
-          echo "📦 Versão atual detectada no servidor: ${VERSION_REMOTE}"
+          echo "📦 Versão detectada no servidor: ${VERSION_REMOTE}"
 
-          # Gera timestamp e nome da pasta de backup
+          # 1️⃣2️⃣.2 Gera nome da pasta de backup
           TIMESTAMP=$(date '+%Y_%m_%d_%H%M%S')
           BACKUP_DIR="backup_versao_${VERSION_REMOTE}_${TIMESTAMP}"
-
           echo "📁 Pasta de backup será: ${BACKUP_DIR}"
 
-          # Cria a pasta backup principal e a subpasta com a versão
-          echo "MKD ${REMOTE_DIR}/backup" | curl -s -u "$FTP_USER:$FTP_PASS" "ftp://$FTP_HOST" --ftp-create-dirs || true
-          echo "MKD ${REMOTE_DIR}/backup/${BACKUP_DIR}" | curl -s -u "$FTP_USER:$FTP_PASS" "ftp://$FTP_HOST" || true
+          # 1️⃣2️⃣.3 Baixa public_html (sem backup)
+          echo "⬇️ Baixando public_html (sem /backup)..."
+          rm -rf local_backup && mkdir -p local_backup
+          lftp -u "$FTP_USER","$FTP_PASS" "ftp://$FTP_HOST" -e "
+            set ftp:ssl-allow no;
+            mirror --verbose --exclude-glob backup/ ${REMOTE_DIR}/ ./local_backup/;
+            bye
+          "
 
-          # Copia todos os arquivos da public_html exceto a pasta backup
-          echo "📦 Iniciando cópia remota para ${REMOTE_DIR}/backup/${BACKUP_DIR}..."
-          lftp -u "$FTP_USER","$FTP_PASS" "ftp://$FTP_HOST" <<'EOF'
-          set ftp:ssl-allow no
-          mirror --reverse --exclude-glob backup/ --verbose ${REMOTE_DIR}/ ${REMOTE_DIR}/backup/${BACKUP_DIR}/
-          quit
-EOF
+          # 1️⃣2️⃣.4 Envia cópia para /backup/
+          echo "⬆️ Enviando cópia para a pasta de backup..."
+          lftp -u "$FTP_USER","$FTP_PASS" "ftp://$FTP_HOST" -e "
+            set ftp:ssl-allow no;
+            mkdir -p ${REMOTE_DIR}/backup/${BACKUP_DIR};
+            mirror --reverse --verbose ./local_backup/ ${REMOTE_DIR}/backup/${BACKUP_DIR}/;
+            bye
+          "
 
           echo "✅ Backup completo criado em ${REMOTE_DIR}/backup/${BACKUP_DIR}"
 
-
-
-
-      # 1️⃣1️⃣ Faz o deploy via FTP (Hostinger)
-      - name: 🚀 Publicar via FTPS (Hostinger)
+      # 1️⃣3️⃣ Faz o deploy via FTP (sem apagar tudo)
+      - name: 🚀 Publicar via FTP (Hostinger)
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets[ matrix.target.ftp_server ] }}
           username: ${{ secrets[ matrix.target.ftp_user ] }}
           password: ${{ secrets[ matrix.target.ftp_pass ] }}
-          protocol: ftp  
+          protocol: ftp
           port: 21
           timeout: 1200
           retries: 5
-
           local-dir: temp/${{ matrix.target.name }}/
           server-dir: ${{ secrets[ matrix.target.ftp_dir ] }}
-          dangerous-clean-slate: false       # ✅ mantém arquivos antigos
-          sync-mode: update                  # ✅ substitui apenas os modificados
+          dangerous-clean-slate: false       # mantém arquivos antigos
+          sync-mode: update                  # substitui apenas os modificados
           log-level: verbose
 
-
-
-      # 1️⃣2️⃣ Registrar versão no Supabase (com status real)
+      # 1️⃣4️⃣ Registra versão no Supabase
       - name: 💾 Registrar versão no Supabase
         if: success() || failure()
         run: |
@@ -206,34 +198,15 @@ EOF
           if [[ "${{ matrix.target.name }}" == "agendasuper" ]]; then APP_ID=2; fi
           if [[ "${{ matrix.target.name }}" == "rendarecorrente" ]]; then APP_ID=3; fi
 
-          echo "📦 Enviando versão ${VERSION} para Supabase (App ID: ${APP_ID}, Status: ${STATUS})..."
-
+          echo "📦 Enviando versão ${VERSION} para Supabase..."
           curl -X POST "${{ secrets.SUPABASE_URL }}/rest/v1/tbl_versoes_sistema" \
             -H "apikey: ${{ secrets.SUPABASE_ANON_KEY }}" \
             -H "Authorization: Bearer ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}" \
             -H "Content-Type: application/json" \
             -d "{\"versao\": \"${VERSION}\", \"descricao\": \"${DESC}\", \"id_app\": ${APP_ID}, \"status\": \"${STATUS}\"}"
 
-      # 1️⃣3️⃣ Finaliza e mostra status
-      - name: ✅ Finalização do deploy
-        run: echo "🎉 Deploy concluído com sucesso para ${{ matrix.target.name }}!"
-
-      # 1️⃣4️⃣ Captura informações para o e-mail
-      - name: 📨 Preparar informações para e-mail
-        if: success() || failure()
-        run: |
-          TEMP_DIR="temp/${{ matrix.target.name }}"
-          VERSION=$(jq -r '.version' "${TEMP_DIR}/version.json")
-          DATA=$(date '+%d/%m/%Y %H:%M:%S')
-          STATUS="${{ job.status }}"
-          DESC="${{ github.event.head_commit.message }}"
-          echo "VERSION=${VERSION}" >> $GITHUB_ENV
-          echo "DATA=${DATA}" >> $GITHUB_ENV
-          echo "STATUS=${STATUS}" >> $GITHUB_ENV
-          echo "DESC=${DESC}" >> $GITHUB_ENV
-
-      # 1️⃣5️⃣ Enviar e-mail de notificação
-      - name: ✉️ Disparar e-mail de status do deploy
+      # 1️⃣5️⃣ Envia e-mail de notificação com status do deploy
+      - name: ✉️ Enviar e-mail de notificação
         if: success() || failure()
         uses: dawidd6/action-send-mail@v3
         with:
@@ -242,13 +215,11 @@ EOF
           secure: true
           username: ${{ secrets.MAIL_USER }}
           password: ${{ secrets.MAIL_PASS }}
-          subject: "🚀 Atualização ${{ matrix.target.name }} ${{ env.STATUS }}"
+          subject: "🚀 Deploy ${{ matrix.target.name }} ${{ job.status }}"
           to: "hersoares12@gmail.com, contatoagendasuper@gmail.com, gerenciavendasdigitais2@gmail.com"
-          from: "${{ matrix.target.name }} ${{ env.VERSION }} ${{ env.STATUS }} nova versão disponível <${{ secrets.MAIL_USER }}>"
+          from: "Deploy GitHub <${{ secrets.MAIL_USER }}>"
           body: |
-            ✅ Deploy finalizado para ${{ matrix.target.name }}
-            🌐 Versão: ${{ env.VERSION }}
-            📝 Descrição: ${{ env.DESC }}
-            📅 Data: ${{ env.DATA }}
-            🌐 Aplicativo: ${{ matrix.target.name }}
-            ⚙️ Status: ${{ env.STATUS }}
+            ✅ Deploy finalizado para **${{ matrix.target.name }}**
+            🌐 Versão: $(jq -r '.version' temp/${{ matrix.target.name }}/version.json)
+            📅 Data: $(date '+%d/%m/%Y %H:%M:%S')
+            ⚙️ Status: ${{ job.status }}

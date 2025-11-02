@@ -30,36 +30,6 @@ jobs:
           flutter --version
           dart --version
 
-      # 3️⃣-B Personalizar lib/app_state.dart antes dos builds
-      - name: 🧠 Personalizar lib/app_state.dart com IDAFILIADOAPP
-        run: |
-          echo "⚙️ Aplicando personalização em lib/app_state.dart..."
-
-          case "${{ matrix.target.name }}" in
-            "agendasuper")
-              APPNAME="Agenda Super"
-              IDAFILIADOAPP="1"
-              ;;
-            "rendarecorrente")
-              APPNAME="APP Afiliado"
-              IDAFILIADOAPP="3"
-              ;;
-          esac
-
-          echo "🔢 IDAFILIADOAPP definido como ${IDAFILIADOAPP}"
-          echo "📋 Fazendo backup de lib/app_state.dart..."
-          cp lib/app_state.dart lib/app_state_backup.dart || true
-
-          echo "🧩 Substituindo 91234567890 por ${IDAFILIADOAPP}..."
-          perl -pi -e "s/91234567890/${IDAFILIADOAPP}/g" lib/app_state.dart
-
-          echo "✅ lib/app_state.dart atualizado com sucesso!"
-          grep -m 1 "_varIDAPPAfiliado" lib/app_state.dart || true
-
-         if [ -z "$IDAFILIADOAPP" ]; then
-         echo "❌ ERRO: IDAFILIADOAPP não definido!"
-         exit 1
-         fi
     
 
       # 4️⃣ Faz o build web (modo release)
@@ -122,6 +92,42 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y jq rsync curl lftp
           mkdir -p temp/${{ matrix.target.name }}
+
+
+      # 9️⃣-B Personalizar app_state.dart com ID e nome corretos
+      - name: 🧠 Personalizar lib/app_state.dart (antes do build web/apk)
+        run: |
+          echo "⚙️ Iniciando personalização do app_state.dart..."
+
+          case "${{ matrix.target.name }}" in
+            "agendasuper")
+              APPNAME="Agenda Super"
+              IDAFILIADOAPP="1"
+              ;;
+            "rendarecorrente")
+              APPNAME="APP Afiliado"
+              IDAFILIADOAPP="3"
+              ;;
+          esac
+
+          echo "📋 App: $APPNAME  |  IDAFILIADOAPP: $IDAFILIADOAPP"
+
+          # Garante que valor não está vazio
+          if [ -z "$IDAFILIADOAPP" ]; then
+            echo "❌ ERRO: IDAFILIADOAPP não definido!"
+            exit 1
+          fi
+
+          # Faz backup antes da substituição
+          cp lib/app_state.dart lib/app_state_backup.dart || true
+
+          # Substitui o placeholder pelo ID
+          perl -pi -e "s/91234567890/${IDAFILIADOAPP}/g" lib/app_state.dart
+
+          echo "✅ Substituição concluída:"
+          grep -m 1 "_varIDAPPAfiliado" lib/app_state.dart || true
+
+          
 
       # 🔟 Copia build base e aplica overlay personalizado
       - name: 🧩 Aplicar overlay personalizado

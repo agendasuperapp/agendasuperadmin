@@ -47,10 +47,11 @@ jobs:
           esac
 
           echo "🛠️ Substituindo textos nos arquivos fonte..."
-          sed -i "s/91234567890/${IDAFILIADOAPP}/g" lib/app_state.dart || true
+          sed -i "s/NomePageTitle/${APPNAME}/g" lib/app_state.dart || true
+          perl -pi -e "s/91234567890/${IDAFILIADOAPP}/g" lib/app_state.dart
 
           echo "✅ app_state.dart atualizado com ID=${IDAFILIADOAPP} (${APPNAME})"
-          
+         
 
       # 4️⃣ Faz o build web (modo release)
       - name: 🏗️ Build Web (modo release)

@@ -10,7 +10,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 import 'cp_cad_planos_periodos_model.dart';
 export 'cp_cad_planos_periodos_model.dart';
 
@@ -763,19 +762,17 @@ class _CpCadPlanosPeriodosWidgetState extends State<CpCadPlanosPeriodosWidget> {
                               await showDialog(
                                 context: context,
                                 builder: (alertDialogContext) {
-                                  return WebViewAware(
-                                    child: AlertDialog(
-                                      title: Text('Atenção!'),
-                                      content: Text(
-                                          'Esse nome já está cadastrado no sistema.'),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () =>
-                                              Navigator.pop(alertDialogContext),
-                                          child: Text('Ok'),
-                                        ),
-                                      ],
-                                    ),
+                                  return AlertDialog(
+                                    title: Text('Atenção!'),
+                                    content: Text(
+                                        'Esse nome já está cadastrado no sistema.'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () =>
+                                            Navigator.pop(alertDialogContext),
+                                        child: Text('Ok'),
+                                      ),
+                                    ],
                                   );
                                 },
                               );
@@ -903,19 +900,17 @@ class _CpCadPlanosPeriodosWidgetState extends State<CpCadPlanosPeriodosWidget> {
                                 await showDialog(
                                   context: context,
                                   builder: (alertDialogContext) {
-                                    return WebViewAware(
-                                      child: AlertDialog(
-                                        title: Text('Atenção!'),
-                                        content: Text(
-                                            'Todos os planos com esse período foram inativados'),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () => Navigator.pop(
-                                                alertDialogContext),
-                                            child: Text('Ok'),
-                                          ),
-                                        ],
-                                      ),
+                                    return AlertDialog(
+                                      title: Text('Atenção!'),
+                                      content: Text(
+                                          'Todos os planos com esse período foram inativados'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(alertDialogContext),
+                                          child: Text('Ok'),
+                                        ),
+                                      ],
                                     );
                                   },
                                 );

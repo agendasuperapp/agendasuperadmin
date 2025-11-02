@@ -14,7 +14,6 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 import 'cp_cad_planos_precos_model.dart';
 export 'cp_cad_planos_precos_model.dart';
 
@@ -389,20 +388,16 @@ class _CpCadPlanosPrecosWidgetState extends State<CpCadPlanosPrecosWidget>
                                       await showDialog(
                                         context: context,
                                         builder: (alertDialogContext) {
-                                          return WebViewAware(
-                                            child: AlertDialog(
-                                              title: Text('Atenção!'),
-                                              content:
-                                                  Text('Conclua o cadastro'),
-                                              actions: [
-                                                TextButton(
-                                                  onPressed: () =>
-                                                      Navigator.pop(
-                                                          alertDialogContext),
-                                                  child: Text('Ok'),
-                                                ),
-                                              ],
-                                            ),
+                                          return AlertDialog(
+                                            title: Text('Atenção!'),
+                                            content: Text('Conclua o cadastro'),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext),
+                                                child: Text('Ok'),
+                                              ),
+                                            ],
                                           );
                                         },
                                       );
@@ -3464,20 +3459,18 @@ class _CpCadPlanosPrecosWidgetState extends State<CpCadPlanosPrecosWidget>
                                             await showDialog(
                                               context: context,
                                               builder: (alertDialogContext) {
-                                                return WebViewAware(
-                                                  child: AlertDialog(
-                                                    title: Text('Atenção!'),
-                                                    content: Text(
-                                                        'Quant. Máxima deve ser maior ou igual a quant. Mínima de profissionais'),
-                                                    actions: [
-                                                      TextButton(
-                                                        onPressed: () =>
-                                                            Navigator.pop(
-                                                                alertDialogContext),
-                                                        child: Text('Ok'),
-                                                      ),
-                                                    ],
-                                                  ),
+                                                return AlertDialog(
+                                                  title: Text('Atenção!'),
+                                                  content: Text(
+                                                      'Quant. Máxima deve ser maior ou igual a quant. Mínima de profissionais'),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext),
+                                                      child: Text('Ok'),
+                                                    ),
+                                                  ],
                                                 );
                                               },
                                             );
@@ -3490,20 +3483,18 @@ class _CpCadPlanosPrecosWidgetState extends State<CpCadPlanosPrecosWidget>
                                             await showDialog(
                                               context: context,
                                               builder: (alertDialogContext) {
-                                                return WebViewAware(
-                                                  child: AlertDialog(
-                                                    title: Text('Atenção!'),
-                                                    content: Text(
-                                                        'Selecione o Aplicativo'),
-                                                    actions: [
-                                                      TextButton(
-                                                        onPressed: () =>
-                                                            Navigator.pop(
-                                                                alertDialogContext),
-                                                        child: Text('Ok'),
-                                                      ),
-                                                    ],
-                                                  ),
+                                                return AlertDialog(
+                                                  title: Text('Atenção!'),
+                                                  content: Text(
+                                                      'Selecione o Aplicativo'),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext),
+                                                      child: Text('Ok'),
+                                                    ),
+                                                  ],
                                                 );
                                               },
                                             );
@@ -3515,20 +3506,18 @@ class _CpCadPlanosPrecosWidgetState extends State<CpCadPlanosPrecosWidget>
                                             await showDialog(
                                               context: context,
                                               builder: (alertDialogContext) {
-                                                return WebViewAware(
-                                                  child: AlertDialog(
-                                                    title: Text('Atenção!'),
-                                                    content: Text(
-                                                        'Selecione o nome do plano'),
-                                                    actions: [
-                                                      TextButton(
-                                                        onPressed: () =>
-                                                            Navigator.pop(
-                                                                alertDialogContext),
-                                                        child: Text('Ok'),
-                                                      ),
-                                                    ],
-                                                  ),
+                                                return AlertDialog(
+                                                  title: Text('Atenção!'),
+                                                  content: Text(
+                                                      'Selecione o nome do plano'),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext),
+                                                      child: Text('Ok'),
+                                                    ),
+                                                  ],
                                                 );
                                               },
                                             );
@@ -3573,20 +3562,18 @@ class _CpCadPlanosPrecosWidgetState extends State<CpCadPlanosPrecosWidget>
                                             await showDialog(
                                               context: context,
                                               builder: (alertDialogContext) {
-                                                return WebViewAware(
-                                                  child: AlertDialog(
-                                                    title: Text('Atenção!'),
-                                                    content: Text(
-                                                        'Esse plano já está cadastrado no sistema.'),
-                                                    actions: [
-                                                      TextButton(
-                                                        onPressed: () =>
-                                                            Navigator.pop(
-                                                                alertDialogContext),
-                                                        child: Text('Ok'),
-                                                      ),
-                                                    ],
-                                                  ),
+                                                return AlertDialog(
+                                                  title: Text('Atenção!'),
+                                                  content: Text(
+                                                      'Esse plano já está cadastrado no sistema.'),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext),
+                                                      child: Text('Ok'),
+                                                    ),
+                                                  ],
                                                 );
                                               },
                                             );
@@ -3600,20 +3587,18 @@ class _CpCadPlanosPrecosWidgetState extends State<CpCadPlanosPrecosWidget>
                                             await showDialog(
                                               context: context,
                                               builder: (alertDialogContext) {
-                                                return WebViewAware(
-                                                  child: AlertDialog(
-                                                    title: Text('Atenção!'),
-                                                    content: Text(
-                                                        'Selecione o período do plano'),
-                                                    actions: [
-                                                      TextButton(
-                                                        onPressed: () =>
-                                                            Navigator.pop(
-                                                                alertDialogContext),
-                                                        child: Text('Ok'),
-                                                      ),
-                                                    ],
-                                                  ),
+                                                return AlertDialog(
+                                                  title: Text('Atenção!'),
+                                                  content: Text(
+                                                      'Selecione o período do plano'),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext),
+                                                      child: Text('Ok'),
+                                                    ),
+                                                  ],
                                                 );
                                               },
                                             );
@@ -3639,20 +3624,18 @@ class _CpCadPlanosPrecosWidgetState extends State<CpCadPlanosPrecosWidget>
                                             await showDialog(
                                               context: context,
                                               builder: (alertDialogContext) {
-                                                return WebViewAware(
-                                                  child: AlertDialog(
-                                                    title: Text('Atenção!'),
-                                                    content: Text(
-                                                        'Valor  de assinatura inválido'),
-                                                    actions: [
-                                                      TextButton(
-                                                        onPressed: () =>
-                                                            Navigator.pop(
-                                                                alertDialogContext),
-                                                        child: Text('Ok'),
-                                                      ),
-                                                    ],
-                                                  ),
+                                                return AlertDialog(
+                                                  title: Text('Atenção!'),
+                                                  content: Text(
+                                                      'Valor  de assinatura inválido'),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext),
+                                                      child: Text('Ok'),
+                                                    ),
+                                                  ],
                                                 );
                                               },
                                             );
@@ -4864,22 +4847,19 @@ class _CpCadPlanosPrecosWidgetState extends State<CpCadPlanosPrecosWidget>
                                                       context: context,
                                                       builder:
                                                           (alertDialogContext) {
-                                                        return WebViewAware(
-                                                          child: AlertDialog(
-                                                            title: Text(
-                                                                'Atenção!'),
-                                                            content: Text(
-                                                                'Esse Produto já está cadastrado no sistema.'),
-                                                            actions: [
-                                                              TextButton(
-                                                                onPressed: () =>
-                                                                    Navigator.pop(
-                                                                        alertDialogContext),
-                                                                child:
-                                                                    Text('Ok'),
-                                                              ),
-                                                            ],
-                                                          ),
+                                                        return AlertDialog(
+                                                          title:
+                                                              Text('Atenção!'),
+                                                          content: Text(
+                                                              'Esse Produto já está cadastrado no sistema.'),
+                                                          actions: [
+                                                            TextButton(
+                                                              onPressed: () =>
+                                                                  Navigator.pop(
+                                                                      alertDialogContext),
+                                                              child: Text('Ok'),
+                                                            ),
+                                                          ],
                                                         );
                                                       },
                                                     );
@@ -4894,22 +4874,19 @@ class _CpCadPlanosPrecosWidgetState extends State<CpCadPlanosPrecosWidget>
                                                       context: context,
                                                       builder:
                                                           (alertDialogContext) {
-                                                        return WebViewAware(
-                                                          child: AlertDialog(
-                                                            title: Text(
-                                                                'Atenção!'),
-                                                            content: Text(
-                                                                'Selecione o banco do plano'),
-                                                            actions: [
-                                                              TextButton(
-                                                                onPressed: () =>
-                                                                    Navigator.pop(
-                                                                        alertDialogContext),
-                                                                child:
-                                                                    Text('Ok'),
-                                                              ),
-                                                            ],
-                                                          ),
+                                                        return AlertDialog(
+                                                          title:
+                                                              Text('Atenção!'),
+                                                          content: Text(
+                                                              'Selecione o banco do plano'),
+                                                          actions: [
+                                                            TextButton(
+                                                              onPressed: () =>
+                                                                  Navigator.pop(
+                                                                      alertDialogContext),
+                                                              child: Text('Ok'),
+                                                            ),
+                                                          ],
                                                         );
                                                       },
                                                     );
@@ -4924,22 +4901,19 @@ class _CpCadPlanosPrecosWidgetState extends State<CpCadPlanosPrecosWidget>
                                                       context: context,
                                                       builder:
                                                           (alertDialogContext) {
-                                                        return WebViewAware(
-                                                          child: AlertDialog(
-                                                            title: Text(
-                                                                'Atenção!'),
-                                                            content: Text(
-                                                                'Selecione uma conta'),
-                                                            actions: [
-                                                              TextButton(
-                                                                onPressed: () =>
-                                                                    Navigator.pop(
-                                                                        alertDialogContext),
-                                                                child:
-                                                                    Text('Ok'),
-                                                              ),
-                                                            ],
-                                                          ),
+                                                        return AlertDialog(
+                                                          title:
+                                                              Text('Atenção!'),
+                                                          content: Text(
+                                                              'Selecione uma conta'),
+                                                          actions: [
+                                                            TextButton(
+                                                              onPressed: () =>
+                                                                  Navigator.pop(
+                                                                      alertDialogContext),
+                                                              child: Text('Ok'),
+                                                            ),
+                                                          ],
                                                         );
                                                       },
                                                     );
@@ -4963,22 +4937,19 @@ class _CpCadPlanosPrecosWidgetState extends State<CpCadPlanosPrecosWidget>
                                                       context: context,
                                                       builder:
                                                           (alertDialogContext) {
-                                                        return WebViewAware(
-                                                          child: AlertDialog(
-                                                            title: Text(
-                                                                'Atenção!'),
-                                                            content: Text(
-                                                                'Valor inválido'),
-                                                            actions: [
-                                                              TextButton(
-                                                                onPressed: () =>
-                                                                    Navigator.pop(
-                                                                        alertDialogContext),
-                                                                child:
-                                                                    Text('Ok'),
-                                                              ),
-                                                            ],
-                                                          ),
+                                                        return AlertDialog(
+                                                          title:
+                                                              Text('Atenção!'),
+                                                          content: Text(
+                                                              'Valor inválido'),
+                                                          actions: [
+                                                            TextButton(
+                                                              onPressed: () =>
+                                                                  Navigator.pop(
+                                                                      alertDialogContext),
+                                                              child: Text('Ok'),
+                                                            ),
+                                                          ],
                                                         );
                                                       },
                                                     );
@@ -5969,21 +5940,19 @@ class _CpCadPlanosPrecosWidgetState extends State<CpCadPlanosPrecosWidget>
                                                                         await showDialog<bool>(
                                                                               context: context,
                                                                               builder: (alertDialogContext) {
-                                                                                return WebViewAware(
-                                                                                  child: AlertDialog(
-                                                                                    title: Text('Atenção!'),
-                                                                                    content: Text('Deseja ativar a asinatura ${listViewProdutosAssinaturaViewTblPlanosAssinaturaRow.nomeProduto}?'),
-                                                                                    actions: [
-                                                                                      TextButton(
-                                                                                        onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                        child: Text('Não'),
-                                                                                      ),
-                                                                                      TextButton(
-                                                                                        onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                        child: Text('Sim'),
-                                                                                      ),
-                                                                                    ],
-                                                                                  ),
+                                                                                return AlertDialog(
+                                                                                  title: Text('Atenção!'),
+                                                                                  content: Text('Deseja ativar a asinatura ${listViewProdutosAssinaturaViewTblPlanosAssinaturaRow.nomeProduto}?'),
+                                                                                  actions: [
+                                                                                    TextButton(
+                                                                                      onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                      child: Text('Não'),
+                                                                                    ),
+                                                                                    TextButton(
+                                                                                      onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                      child: Text('Sim'),
+                                                                                    ),
+                                                                                  ],
                                                                                 );
                                                                               },
                                                                             ) ??
@@ -6063,21 +6032,19 @@ class _CpCadPlanosPrecosWidgetState extends State<CpCadPlanosPrecosWidget>
                                                                         await showDialog<bool>(
                                                                               context: context,
                                                                               builder: (alertDialogContext) {
-                                                                                return WebViewAware(
-                                                                                  child: AlertDialog(
-                                                                                    title: Text('Atenção!'),
-                                                                                    content: Text('Deseja inativar a asinatura ${listViewProdutosAssinaturaViewTblPlanosAssinaturaRow.nomeProduto}?'),
-                                                                                    actions: [
-                                                                                      TextButton(
-                                                                                        onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                        child: Text('Não'),
-                                                                                      ),
-                                                                                      TextButton(
-                                                                                        onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                        child: Text('Sim'),
-                                                                                      ),
-                                                                                    ],
-                                                                                  ),
+                                                                                return AlertDialog(
+                                                                                  title: Text('Atenção!'),
+                                                                                  content: Text('Deseja inativar a asinatura ${listViewProdutosAssinaturaViewTblPlanosAssinaturaRow.nomeProduto}?'),
+                                                                                  actions: [
+                                                                                    TextButton(
+                                                                                      onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                      child: Text('Não'),
+                                                                                    ),
+                                                                                    TextButton(
+                                                                                      onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                      child: Text('Sim'),
+                                                                                    ),
+                                                                                  ],
                                                                                 );
                                                                               },
                                                                             ) ??

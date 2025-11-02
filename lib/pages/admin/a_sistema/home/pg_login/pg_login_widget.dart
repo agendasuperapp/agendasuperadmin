@@ -3,7 +3,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/pages/admin/a_sistema/home/cp_login/cp_login_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 import 'pg_login_model.dart';
 export 'pg_login_model.dart';
 
@@ -41,16 +40,14 @@ class _PgLoginWidgetState extends State<PgLoginWidget> {
         enableDrag: false,
         context: context,
         builder: (context) {
-          return WebViewAware(
-            child: GestureDetector(
-              onTap: () {
-                FocusScope.of(context).unfocus();
-                FocusManager.instance.primaryFocus?.unfocus();
-              },
-              child: Padding(
-                padding: MediaQuery.viewInsetsOf(context),
-                child: CpLoginWidget(),
-              ),
+          return GestureDetector(
+            onTap: () {
+              FocusScope.of(context).unfocus();
+              FocusManager.instance.primaryFocus?.unfocus();
+            },
+            child: Padding(
+              padding: MediaQuery.viewInsetsOf(context),
+              child: CpLoginWidget(),
             ),
           );
         },

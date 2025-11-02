@@ -8,7 +8,6 @@ import '/flutter_flow/custom_functions.dart' as functions;
 import 'cp_lista_estabelecimentos_admin2_widget.dart'
     show CpListaEstabelecimentosAdmin2Widget;
 import 'package:flutter/material.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 
 class CpListaEstabelecimentosAdmin2Model
     extends FlutterFlowModel<CpListaEstabelecimentosAdmin2Widget> {
@@ -159,11 +158,9 @@ class CpListaEstabelecimentosAdmin2Model
             backgroundColor: Colors.transparent,
             alignment: AlignmentDirectional(0.0, 0.0)
                 .resolve(Directionality.of(context)),
-            child: WebViewAware(
-              child: CaAguardeWidget(
-                paramMostrarAnimacao: true,
-                paramFecharAoClicar: true,
-              ),
+            child: CaAguardeWidget(
+              paramMostrarAnimacao: true,
+              paramFecharAoClicar: true,
             ),
           );
         },

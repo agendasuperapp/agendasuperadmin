@@ -6,7 +6,6 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/pages/admin/a_sistema/home/cp_foto/cp_foto_widget.dart';
 import '/pages/admin/a_sistema/home/cp_notificacao/cp_notificacao_widget.dart';
-import '/pages/admin/componentes/afiliado/estabelecimento/comp_estabelecimento/d_e_l_e_t_e_cp_estabelecimento_plano_renovar2/d_e_l_e_t_e_cp_estabelecimento_plano_renovar2_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import '/index.dart';
@@ -16,7 +15,6 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 import 'cp_cabecalho_pagina_model.dart';
 export 'cp_cabecalho_pagina_model.dart';
 
@@ -194,19 +192,17 @@ class _CpCabecalhoPaginaWidgetState extends State<CpCabecalhoPaginaWidget>
                             await showDialog(
                               context: context,
                               builder: (alertDialogContext) {
-                                return WebViewAware(
-                                  child: AlertDialog(
-                                    title: Text('Atenção!'),
-                                    content:
-                                        Text('Modo desenvolvedor ativado...'),
-                                    actions: [
-                                      TextButton(
-                                        onPressed: () =>
-                                            Navigator.pop(alertDialogContext),
-                                        child: Text('Ok'),
-                                      ),
-                                    ],
-                                  ),
+                                return AlertDialog(
+                                  title: Text('Atenção!'),
+                                  content:
+                                      Text('Modo desenvolvedor ativado...'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () =>
+                                          Navigator.pop(alertDialogContext),
+                                      child: Text('Ok'),
+                                    ),
+                                  ],
                                 );
                               },
                             );
@@ -357,12 +353,10 @@ class _CpCabecalhoPaginaWidgetState extends State<CpCabecalhoPaginaWidget>
                                                       .resolve(
                                                           Directionality.of(
                                                               context)),
-                                              child: WebViewAware(
-                                                child: CpFotoWidget(
-                                                  paramFoto: FFAppState()
-                                                      .VarTblEstabelecimentoLogado
-                                                      .fotoPerfil,
-                                                ),
+                                              child: CpFotoWidget(
+                                                paramFoto: FFAppState()
+                                                    .VarTblEstabelecimentoLogado
+                                                    .fotoPerfil,
                                               ),
                                             );
                                           },
@@ -371,19 +365,17 @@ class _CpCabecalhoPaginaWidgetState extends State<CpCabecalhoPaginaWidget>
                                         await showDialog(
                                           context: context,
                                           builder: (alertDialogContext) {
-                                            return WebViewAware(
-                                              child: AlertDialog(
-                                                title: Text('Atenção!'),
-                                                content: Text('Sem Foto'),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () =>
-                                                        Navigator.pop(
-                                                            alertDialogContext),
-                                                    child: Text('Ok'),
-                                                  ),
-                                                ],
-                                              ),
+                                            return AlertDialog(
+                                              title: Text('Atenção!'),
+                                              content: Text('Sem Foto'),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext),
+                                                  child: Text('Ok'),
+                                                ),
+                                              ],
                                             );
                                           },
                                         );
@@ -457,20 +449,18 @@ class _CpCabecalhoPaginaWidgetState extends State<CpCabecalhoPaginaWidget>
                                             await showDialog(
                                               context: context,
                                               builder: (alertDialogContext) {
-                                                return WebViewAware(
-                                                  child: AlertDialog(
-                                                    title: Text('Atenção!'),
-                                                    content: Text(
-                                                        'Modo desenvolvedor ativado...'),
-                                                    actions: [
-                                                      TextButton(
-                                                        onPressed: () =>
-                                                            Navigator.pop(
-                                                                alertDialogContext),
-                                                        child: Text('Ok'),
-                                                      ),
-                                                    ],
-                                                  ),
+                                                return AlertDialog(
+                                                  title: Text('Atenção!'),
+                                                  content: Text(
+                                                      'Modo desenvolvedor ativado...'),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext),
+                                                      child: Text('Ok'),
+                                                    ),
+                                                  ],
                                                 );
                                               },
                                             );
@@ -744,12 +734,10 @@ class _CpCabecalhoPaginaWidgetState extends State<CpCabecalhoPaginaWidget>
                                       backgroundColor: Colors.transparent,
                                       context: context,
                                       builder: (context) {
-                                        return WebViewAware(
-                                          child: Padding(
-                                            padding: MediaQuery.viewInsetsOf(
-                                                context),
-                                            child: CpNotificacaoWidget(),
-                                          ),
+                                        return Padding(
+                                          padding:
+                                              MediaQuery.viewInsetsOf(context),
+                                          child: CpNotificacaoWidget(),
                                         );
                                       },
                                     ).then((value) => safeSetState(() {}));
@@ -765,9 +753,7 @@ class _CpCabecalhoPaginaWidgetState extends State<CpCabecalhoPaginaWidget>
                                                   0.0, 0.0)
                                               .resolve(
                                                   Directionality.of(context)),
-                                          child: WebViewAware(
-                                            child: CpNotificacaoWidget(),
-                                          ),
+                                          child: CpNotificacaoWidget(),
                                         );
                                       },
                                     );
@@ -1467,177 +1453,119 @@ class _CpCabecalhoPaginaWidgetState extends State<CpCabecalhoPaginaWidget>
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Expanded(
-                          child: Builder(
-                            builder: (context) => Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  16.0, 0.0, 16.0, 0.0),
-                              child: InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  var _shouldSetState = false;
-                                  _model.queryPlanosEstab2 =
-                                      await ViewTblAppPlanosEstabelecimentosTable()
-                                          .queryRows(
-                                    queryFn: (q) => q
-                                        .eqOrNull(
-                                          'id_estabelecimento',
-                                          FFAppState()
-                                              .VarIDEstabelecimentoLogado,
-                                        )
-                                        .eqOrNull(
-                                          'plano_ativo',
-                                          true,
-                                        ),
-                                  );
-                                  _shouldSetState = true;
-                                  if (((_model.queryPlanosEstab2?.firstOrNull
-                                                  ?.stripeStatus ==
-                                              'complete') ||
-                                          (_model.queryPlanosEstab2?.firstOrNull
-                                                      ?.stripeStatus ==
-                                                  null ||
-                                              _model.queryPlanosEstab2?.firstOrNull
-                                                      ?.stripeStatus ==
-                                                  '')) &&
-                                      (_model.queryPlanosEstab2?.firstOrNull
-                                              ?.stripeStatusPg ==
-                                          'unpaid') &&
-                                      (_model.queryPlanosEstab2?.firstOrNull
-                                                  ?.stripeUrl !=
-                                              null &&
-                                          _model.queryPlanosEstab2?.firstOrNull
-                                                  ?.stripeUrl !=
-                                              '')) {
-                                    if (isWeb) {
-                                      await actions.caWebRedirectToUrl(
-                                        _model.queryPlanosEstab2!.firstOrNull!
-                                            .stripeUrl!,
-                                      );
-                                    } else {
-                                      await launchURL(_model.queryPlanosEstab2!
-                                          .firstOrNull!.stripeUrl!);
-                                    }
-
-                                    if (_shouldSetState) safeSetState(() {});
-                                    return;
+                          child: Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                16.0, 0.0, 16.0, 0.0),
+                            child: InkWell(
+                              splashColor: Colors.transparent,
+                              focusColor: Colors.transparent,
+                              hoverColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              onTap: () async {
+                                var _shouldSetState = false;
+                                _model.queryPlanosEstab2 =
+                                    await ViewTblAppPlanosEstabelecimentosTable()
+                                        .queryRows(
+                                  queryFn: (q) => q
+                                      .eqOrNull(
+                                        'id_estabelecimento',
+                                        FFAppState().VarIDEstabelecimentoLogado,
+                                      )
+                                      .eqOrNull(
+                                        'plano_ativo',
+                                        true,
+                                      ),
+                                );
+                                _shouldSetState = true;
+                                if (((_model.queryPlanosEstab2?.firstOrNull
+                                                ?.stripeStatus ==
+                                            'complete') ||
+                                        (_model.queryPlanosEstab2
+                                                    ?.firstOrNull?.stripeStatus ==
+                                                null ||
+                                            _model.queryPlanosEstab2
+                                                    ?.firstOrNull?.stripeStatus ==
+                                                '')) &&
+                                    (_model.queryPlanosEstab2?.firstOrNull
+                                            ?.stripeStatusPg ==
+                                        'unpaid') &&
+                                    (_model.queryPlanosEstab2?.firstOrNull
+                                                ?.stripeUrl !=
+                                            null &&
+                                        _model.queryPlanosEstab2?.firstOrNull
+                                                ?.stripeUrl !=
+                                            '')) {
+                                  if (isWeb) {
+                                    await actions.caWebRedirectToUrl(
+                                      _model.queryPlanosEstab2!.firstOrNull!
+                                          .stripeUrl!,
+                                    );
                                   } else {
-                                    await action_blocks.acAtualizarPlanos(
-                                      context,
-                                      paramIDAfiliadoApp: 1,
-                                    );
-                                    await showDialog(
-                                      barrierColor: FlutterFlowTheme.of(context)
-                                          .customFundoShowComponentes,
-                                      context: context,
-                                      builder: (dialogContext) {
-                                        return Dialog(
-                                          elevation: 0,
-                                          insetPadding: EdgeInsets.zero,
-                                          backgroundColor: Colors.transparent,
-                                          alignment: AlignmentDirectional(
-                                                  0.0, 0.0)
-                                              .resolve(
-                                                  Directionality.of(context)),
-                                          child: WebViewAware(
-                                            child:
-                                                DELETECpEstabelecimentoPlanoRenovar2Widget(
-                                              paramRenovacao: true,
-                                              paramAssinatura: _model
-                                                  .queryPlanosEstab2!
-                                                  .firstOrNull!
-                                                  .assinatura!,
-                                              paramDiasTry: '0',
-                                              paramDownUp: '',
-                                              paramTblAppPlanoEstab: _model
-                                                  .queryPlanosEstab2
-                                                  ?.firstOrNull,
-                                              paramTipo: 'ESTAB',
-                                            ),
-                                          ),
-                                        );
-                                      },
-                                    );
+                                    await launchURL(_model.queryPlanosEstab2!
+                                        .firstOrNull!.stripeUrl!);
                                   }
 
                                   if (_shouldSetState) safeSetState(() {});
-                                },
-                                child: RichText(
-                                  textScaler: MediaQuery.of(context).textScaler,
-                                  text: TextSpan(
-                                    children: [
-                                      TextSpan(
-                                        text: () {
-                                          if (FFAppState()
-                                                  .VarTblEstabelecimentoLogado
-                                                  .planoVencido ==
-                                              true) {
-                                            return 'ATENÇÃO! SEU PLANO VENCEU DIA ${dateTimeFormat(
-                                              "dd/MM/y",
-                                              FFAppState()
-                                                  .VarTblEstabelecimentoLogado
-                                                  .planoVencimento,
-                                              locale:
-                                                  FFLocalizations.of(context)
-                                                      .languageCode,
-                                            )} .  PARA RENOVAR E CONTINUAR USANDO ';
-                                          } else if (FFAppState()
-                                                  .VarTblEstabelecimentoLogado
-                                                  .statusPagamento ==
-                                              'AG. PAGAMENTO') {
-                                            return 'PERÍODO DE TESTE ATIVO, PARA CONTINUAR USANDO FAÇA O PAGAMENTO ATÉ DIA ${dateTimeFormat(
-                                              "dd/MM/y",
-                                              FFAppState()
-                                                  .VarTblEstabelecimentoLogado
-                                                  .planoVencimento,
-                                              locale:
-                                                  FFLocalizations.of(context)
-                                                      .languageCode,
-                                            )}';
-                                          } else if (FFAppState()
-                                                  .VarTblEstabelecimentoLogado
-                                                  .planoDiasRest ==
-                                              0) {
-                                            return 'ATENÇÃO! SEU PLANO ESTÁ VENCENDO HOJE, PARA CONTINUAR USANDO ';
-                                          } else {
-                                            return 'ATENÇÃO! SEU PLANO EXPIRA EM ${FFAppState().VarTblEstabelecimentoLogado.planoDiasRest.toString()}${FFAppState().VarTblEstabelecimentoLogado.planoDiasRest == 1 ? ' DIA' : ' DIAS'}, PARA CONTINUAR USANDO FAÇA O PAGAMENTO ATÉ DIA ${dateTimeFormat(
-                                              "dd/MM/y",
-                                              FFAppState()
-                                                  .VarTblEstabelecimentoLogado
-                                                  .planoVencimento,
-                                              locale:
-                                                  FFLocalizations.of(context)
-                                                      .languageCode,
-                                            )}. ';
-                                          }
-                                        }(),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              font: GoogleFonts.readexPro(
-                                                fontWeight:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .fontWeight,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .fontStyle,
-                                              ),
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .warning,
-                                              fontSize: MediaQuery.sizeOf(
-                                                              context)
-                                                          .width >=
-                                                      FFAppState()
-                                                          .varTamanhoMinimoTelaMenuLateral
-                                                          .toDouble()
-                                                  ? 14.0
-                                                  : 12.0,
-                                              letterSpacing: 0.0,
+                                  return;
+                                } else {
+                                  await action_blocks.acAtualizarPlanos(
+                                    context,
+                                    paramIDAfiliadoApp: 1,
+                                  );
+                                }
+
+                                if (_shouldSetState) safeSetState(() {});
+                              },
+                              child: RichText(
+                                textScaler: MediaQuery.of(context).textScaler,
+                                text: TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text: () {
+                                        if (FFAppState()
+                                                .VarTblEstabelecimentoLogado
+                                                .planoVencido ==
+                                            true) {
+                                          return 'ATENÇÃO! SEU PLANO VENCEU DIA ${dateTimeFormat(
+                                            "dd/MM/y",
+                                            FFAppState()
+                                                .VarTblEstabelecimentoLogado
+                                                .planoVencimento,
+                                            locale: FFLocalizations.of(context)
+                                                .languageCode,
+                                          )} .  PARA RENOVAR E CONTINUAR USANDO ';
+                                        } else if (FFAppState()
+                                                .VarTblEstabelecimentoLogado
+                                                .statusPagamento ==
+                                            'AG. PAGAMENTO') {
+                                          return 'PERÍODO DE TESTE ATIVO, PARA CONTINUAR USANDO FAÇA O PAGAMENTO ATÉ DIA ${dateTimeFormat(
+                                            "dd/MM/y",
+                                            FFAppState()
+                                                .VarTblEstabelecimentoLogado
+                                                .planoVencimento,
+                                            locale: FFLocalizations.of(context)
+                                                .languageCode,
+                                          )}';
+                                        } else if (FFAppState()
+                                                .VarTblEstabelecimentoLogado
+                                                .planoDiasRest ==
+                                            0) {
+                                          return 'ATENÇÃO! SEU PLANO ESTÁ VENCENDO HOJE, PARA CONTINUAR USANDO ';
+                                        } else {
+                                          return 'ATENÇÃO! SEU PLANO EXPIRA EM ${FFAppState().VarTblEstabelecimentoLogado.planoDiasRest.toString()}${FFAppState().VarTblEstabelecimentoLogado.planoDiasRest == 1 ? ' DIA' : ' DIAS'}, PARA CONTINUAR USANDO FAÇA O PAGAMENTO ATÉ DIA ${dateTimeFormat(
+                                            "dd/MM/y",
+                                            FFAppState()
+                                                .VarTblEstabelecimentoLogado
+                                                .planoVencimento,
+                                            locale: FFLocalizations.of(context)
+                                                .languageCode,
+                                          )}. ';
+                                        }
+                                      }(),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            font: GoogleFonts.readexPro(
                                               fontWeight:
                                                   FlutterFlowTheme.of(context)
                                                       .bodyMedium
@@ -1647,57 +1575,16 @@ class _CpCabecalhoPaginaWidgetState extends State<CpCabecalhoPaginaWidget>
                                                       .bodyMedium
                                                       .fontStyle,
                                             ),
-                                      ),
-                                      TextSpan(
-                                        text: () {
-                                          if (FFAppState()
-                                                  .VarTblEstabelecimentoLogado
-                                                  .planoVencido ==
-                                              true) {
-                                            return 'CLIQUE AQUI E FAÇA O PAGAMENTO ';
-                                          } else if (FFAppState()
-                                                  .VarTblEstabelecimentoLogado
-                                                  .planoDiasRest ==
-                                              0) {
-                                            return 'CLIQUE AQUI E FAÇA O PAGAMENTO ';
-                                          } else {
-                                            return 'CLIQUE AQUI PARA PAGAR';
-                                          }
-                                        }(),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              font: GoogleFonts.readexPro(
-                                                fontWeight: FontWeight.bold,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .fontStyle,
-                                              ),
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondary,
-                                              fontSize: MediaQuery.sizeOf(
-                                                              context)
-                                                          .width >=
-                                                      FFAppState()
-                                                          .varTamanhoMinimoTelaMenuLateral
-                                                          .toDouble()
-                                                  ? 14.0
-                                                  : 12.0,
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.bold,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .fontStyle,
-                                            ),
-                                      )
-                                    ],
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodyMedium
-                                        .override(
-                                          font: GoogleFonts.readexPro(
+                                            color: FlutterFlowTheme.of(context)
+                                                .warning,
+                                            fontSize: MediaQuery.sizeOf(context)
+                                                        .width >=
+                                                    FFAppState()
+                                                        .varTamanhoMinimoTelaMenuLateral
+                                                        .toDouble()
+                                                ? 14.0
+                                                : 12.0,
+                                            letterSpacing: 0.0,
                                             fontWeight:
                                                 FlutterFlowTheme.of(context)
                                                     .bodyMedium
@@ -1707,14 +1594,55 @@ class _CpCabecalhoPaginaWidgetState extends State<CpCabecalhoPaginaWidget>
                                                     .bodyMedium
                                                     .fontStyle,
                                           ),
-                                          fontSize: MediaQuery.sizeOf(context)
-                                                      .width >=
-                                                  FFAppState()
-                                                      .varTamanhoMinimoTelaMenuLateral
-                                                      .toDouble()
-                                              ? 14.0
-                                              : 12.0,
-                                          letterSpacing: 0.0,
+                                    ),
+                                    TextSpan(
+                                      text: () {
+                                        if (FFAppState()
+                                                .VarTblEstabelecimentoLogado
+                                                .planoVencido ==
+                                            true) {
+                                          return 'CLIQUE AQUI E FAÇA O PAGAMENTO ';
+                                        } else if (FFAppState()
+                                                .VarTblEstabelecimentoLogado
+                                                .planoDiasRest ==
+                                            0) {
+                                          return 'CLIQUE AQUI E FAÇA O PAGAMENTO ';
+                                        } else {
+                                          return 'CLIQUE AQUI PARA PAGAR';
+                                        }
+                                      }(),
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodyMedium
+                                          .override(
+                                            font: GoogleFonts.readexPro(
+                                              fontWeight: FontWeight.bold,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .fontStyle,
+                                            ),
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondary,
+                                            fontSize: MediaQuery.sizeOf(context)
+                                                        .width >=
+                                                    FFAppState()
+                                                        .varTamanhoMinimoTelaMenuLateral
+                                                        .toDouble()
+                                                ? 14.0
+                                                : 12.0,
+                                            letterSpacing: 0.0,
+                                            fontWeight: FontWeight.bold,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .fontStyle,
+                                          ),
+                                    )
+                                  ],
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        font: GoogleFonts.readexPro(
                                           fontWeight:
                                               FlutterFlowTheme.of(context)
                                                   .bodyMedium
@@ -1724,9 +1652,23 @@ class _CpCabecalhoPaginaWidgetState extends State<CpCabecalhoPaginaWidget>
                                                   .bodyMedium
                                                   .fontStyle,
                                         ),
-                                  ),
-                                  textAlign: TextAlign.center,
+                                        fontSize: MediaQuery.sizeOf(context)
+                                                    .width >=
+                                                FFAppState()
+                                                    .varTamanhoMinimoTelaMenuLateral
+                                                    .toDouble()
+                                            ? 14.0
+                                            : 12.0,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
+                                      ),
                                 ),
+                                textAlign: TextAlign.center,
                               ),
                             ),
                           ),

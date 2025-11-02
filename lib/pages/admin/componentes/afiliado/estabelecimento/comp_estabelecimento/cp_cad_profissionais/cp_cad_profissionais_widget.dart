@@ -25,7 +25,6 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 import 'cp_cad_profissionais_model.dart';
 export 'cp_cad_profissionais_model.dart';
 
@@ -524,20 +523,18 @@ class _CpCadProfissionaisWidgetState extends State<CpCadProfissionaisWidget>
                                         await showDialog(
                                           context: context,
                                           builder: (alertDialogContext) {
-                                            return WebViewAware(
-                                              child: AlertDialog(
-                                                title: Text('Atenção!'),
-                                                content: Text(
-                                                    'Conclua e salve o cadastro!'),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () =>
-                                                        Navigator.pop(
-                                                            alertDialogContext),
-                                                    child: Text('Ok'),
-                                                  ),
-                                                ],
-                                              ),
+                                            return AlertDialog(
+                                              title: Text('Atenção!'),
+                                              content: Text(
+                                                  'Conclua e salve o cadastro!'),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext),
+                                                  child: Text('Ok'),
+                                                ),
+                                              ],
                                             );
                                           },
                                         );
@@ -635,20 +632,18 @@ class _CpCadProfissionaisWidgetState extends State<CpCadProfissionaisWidget>
                                         await showDialog(
                                           context: context,
                                           builder: (alertDialogContext) {
-                                            return WebViewAware(
-                                              child: AlertDialog(
-                                                title: Text('Atenção!'),
-                                                content: Text(
-                                                    'Conclua e salve o cadastro!!!'),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () =>
-                                                        Navigator.pop(
-                                                            alertDialogContext),
-                                                    child: Text('Ok'),
-                                                  ),
-                                                ],
-                                              ),
+                                            return AlertDialog(
+                                              title: Text('Atenção!'),
+                                              content: Text(
+                                                  'Conclua e salve o cadastro!!!'),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext),
+                                                  child: Text('Ok'),
+                                                ),
+                                              ],
                                             );
                                           },
                                         );
@@ -4807,10 +4802,7 @@ class _CpCadProfissionaisWidgetState extends State<CpCadProfissionaisWidget>
                                                                           alignment:
                                                                               AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                           child:
-                                                                              WebViewAware(
-                                                                            child:
-                                                                                CpConfigurarHrPadraoWidget(),
-                                                                          ),
+                                                                              CpConfigurarHrPadraoWidget(),
                                                                         );
                                                                       },
                                                                     );
@@ -5231,21 +5223,19 @@ class _CpCadProfissionaisWidgetState extends State<CpCadProfissionaisWidget>
                                                                                                 var confirmDialogResponse = await showDialog<bool>(
                                                                                                       context: context,
                                                                                                       builder: (alertDialogContext) {
-                                                                                                        return WebViewAware(
-                                                                                                          child: AlertDialog(
-                                                                                                            title: Text('Atenção!'),
-                                                                                                            content: Text('Deseja excluir esse horário dos seus horários padrões?  (Obs: Os horários disponíveis também serão excluídos)'),
-                                                                                                            actions: [
-                                                                                                              TextButton(
-                                                                                                                onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                                                child: Text('Não'),
-                                                                                                              ),
-                                                                                                              TextButton(
-                                                                                                                onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                                                child: Text('Sim'),
-                                                                                                              ),
-                                                                                                            ],
-                                                                                                          ),
+                                                                                                        return AlertDialog(
+                                                                                                          title: Text('Atenção!'),
+                                                                                                          content: Text('Deseja excluir esse horário dos seus horários padrões?  (Obs: Os horários disponíveis também serão excluídos)'),
+                                                                                                          actions: [
+                                                                                                            TextButton(
+                                                                                                              onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                                              child: Text('Não'),
+                                                                                                            ),
+                                                                                                            TextButton(
+                                                                                                              onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                                              child: Text('Sim'),
+                                                                                                            ),
+                                                                                                          ],
                                                                                                         );
                                                                                                       },
                                                                                                     ) ??
@@ -5395,24 +5385,21 @@ class _CpCadProfissionaisWidgetState extends State<CpCadProfissionaisWidget>
                                                                           context,
                                                                       builder:
                                                                           (alertDialogContext) {
-                                                                        return WebViewAware(
-                                                                          child:
-                                                                              AlertDialog(
-                                                                            title:
-                                                                                Text('Atenção!'),
-                                                                            content:
-                                                                                Text('Deseja excluir todos os horários padrões?'),
-                                                                            actions: [
-                                                                              TextButton(
-                                                                                onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                child: Text('Não'),
-                                                                              ),
-                                                                              TextButton(
-                                                                                onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                child: Text('Sim'),
-                                                                              ),
-                                                                            ],
-                                                                          ),
+                                                                        return AlertDialog(
+                                                                          title:
+                                                                              Text('Atenção!'),
+                                                                          content:
+                                                                              Text('Deseja excluir todos os horários padrões?'),
+                                                                          actions: [
+                                                                            TextButton(
+                                                                              onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                              child: Text('Não'),
+                                                                            ),
+                                                                            TextButton(
+                                                                              onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                              child: Text('Sim'),
+                                                                            ),
+                                                                          ],
                                                                         );
                                                                       },
                                                                     ) ??
@@ -6288,22 +6275,19 @@ class _CpCadProfissionaisWidgetState extends State<CpCadProfissionaisWidget>
                                                                       context,
                                                                   builder:
                                                                       (alertDialogContext) {
-                                                                    return WebViewAware(
-                                                                      child:
-                                                                          AlertDialog(
-                                                                        title: Text(
-                                                                            'Atenção!'),
-                                                                        content:
-                                                                            Text('Selecione uma data maior ou igual a hoje'),
-                                                                        actions: [
-                                                                          TextButton(
-                                                                            onPressed: () =>
-                                                                                Navigator.pop(alertDialogContext),
-                                                                            child:
-                                                                                Text('Ok'),
-                                                                          ),
-                                                                        ],
-                                                                      ),
+                                                                    return AlertDialog(
+                                                                      title: Text(
+                                                                          'Atenção!'),
+                                                                      content: Text(
+                                                                          'Selecione uma data maior ou igual a hoje'),
+                                                                      actions: [
+                                                                        TextButton(
+                                                                          onPressed: () =>
+                                                                              Navigator.pop(alertDialogContext),
+                                                                          child:
+                                                                              Text('Ok'),
+                                                                        ),
+                                                                      ],
                                                                     );
                                                                   },
                                                                 );
@@ -6319,32 +6303,30 @@ class _CpCadProfissionaisWidgetState extends State<CpCadProfissionaisWidget>
                                                                             context,
                                                                         builder:
                                                                             (alertDialogContext) {
-                                                                          return WebViewAware(
-                                                                            child:
-                                                                                AlertDialog(
-                                                                              title: Text('Atenção!'),
-                                                                              content: Text(_model.dropDownTipoAtzHrPadraoValue == '1'
-                                                                                  ? 'Deseja incluir os horários padrões no dia ${dateTimeFormat(
-                                                                                      "d MMMM, EEEE",
-                                                                                      FFAppState().varCalendarioDataSelecionada,
-                                                                                      locale: FFLocalizations.of(context).languageCode,
-                                                                                    )}?'
-                                                                                  : 'Deseja incluir os horários padrões no dia ${dateTimeFormat(
-                                                                                      "d MMMM, EEEE",
-                                                                                      FFAppState().varCalendarioDataSelecionada,
-                                                                                      locale: FFLocalizations.of(context).languageCode,
-                                                                                    )} e nos 6 dias seguintes?'),
-                                                                              actions: [
-                                                                                TextButton(
-                                                                                  onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                  child: Text('Não'),
-                                                                                ),
-                                                                                TextButton(
-                                                                                  onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                  child: Text('Sim'),
-                                                                                ),
-                                                                              ],
-                                                                            ),
+                                                                          return AlertDialog(
+                                                                            title:
+                                                                                Text('Atenção!'),
+                                                                            content: Text(_model.dropDownTipoAtzHrPadraoValue == '1'
+                                                                                ? 'Deseja incluir os horários padrões no dia ${dateTimeFormat(
+                                                                                    "d MMMM, EEEE",
+                                                                                    FFAppState().varCalendarioDataSelecionada,
+                                                                                    locale: FFLocalizations.of(context).languageCode,
+                                                                                  )}?'
+                                                                                : 'Deseja incluir os horários padrões no dia ${dateTimeFormat(
+                                                                                    "d MMMM, EEEE",
+                                                                                    FFAppState().varCalendarioDataSelecionada,
+                                                                                    locale: FFLocalizations.of(context).languageCode,
+                                                                                  )} e nos 6 dias seguintes?'),
+                                                                            actions: [
+                                                                              TextButton(
+                                                                                onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                child: Text('Não'),
+                                                                              ),
+                                                                              TextButton(
+                                                                                onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                child: Text('Sim'),
+                                                                              ),
+                                                                            ],
                                                                           );
                                                                         },
                                                                       ) ??
@@ -6375,14 +6357,11 @@ class _CpCadProfissionaisWidgetState extends State<CpCadProfissionaisWidget>
                                                                         .resolve(
                                                                             Directionality.of(context)),
                                                                     child:
-                                                                        WebViewAware(
-                                                                      child:
-                                                                          CaAguardeWidget(
-                                                                        paramMostrarAnimacao:
-                                                                            true,
-                                                                        paramFecharAoClicar:
-                                                                            false,
-                                                                      ),
+                                                                        CaAguardeWidget(
+                                                                      paramMostrarAnimacao:
+                                                                          true,
+                                                                      paramFecharAoClicar:
+                                                                          false,
                                                                     ),
                                                                   );
                                                                 },
@@ -7233,17 +7212,15 @@ class _CpCadProfissionaisWidgetState extends State<CpCadProfissionaisWidget>
                                                                               await showDialog(
                                                                                 context: context,
                                                                                 builder: (alertDialogContext) {
-                                                                                  return WebViewAware(
-                                                                                    child: AlertDialog(
-                                                                                      title: Text('Atenção!'),
-                                                                                      content: Text('Não é possível excluir horário que já foi agendado.'),
-                                                                                      actions: [
-                                                                                        TextButton(
-                                                                                          onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                          child: Text('Ok'),
-                                                                                        ),
-                                                                                      ],
-                                                                                    ),
+                                                                                  return AlertDialog(
+                                                                                    title: Text('Atenção!'),
+                                                                                    content: Text('Não é possível excluir horário que já foi agendado.'),
+                                                                                    actions: [
+                                                                                      TextButton(
+                                                                                        onPressed: () => Navigator.pop(alertDialogContext),
+                                                                                        child: Text('Ok'),
+                                                                                      ),
+                                                                                    ],
                                                                                   );
                                                                                 },
                                                                               );
@@ -7252,21 +7229,19 @@ class _CpCadProfissionaisWidgetState extends State<CpCadProfissionaisWidget>
                                                                             var confirmDialogResponse = await showDialog<bool>(
                                                                                   context: context,
                                                                                   builder: (alertDialogContext) {
-                                                                                    return WebViewAware(
-                                                                                      child: AlertDialog(
-                                                                                        title: Text('Atenção!'),
-                                                                                        content: Text('Deseja excluir esse horário dos seus horários disponíveis?  '),
-                                                                                        actions: [
-                                                                                          TextButton(
-                                                                                            onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                            child: Text('Não'),
-                                                                                          ),
-                                                                                          TextButton(
-                                                                                            onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                            child: Text('Sim'),
-                                                                                          ),
-                                                                                        ],
-                                                                                      ),
+                                                                                    return AlertDialog(
+                                                                                      title: Text('Atenção!'),
+                                                                                      content: Text('Deseja excluir esse horário dos seus horários disponíveis?  '),
+                                                                                      actions: [
+                                                                                        TextButton(
+                                                                                          onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                          child: Text('Não'),
+                                                                                        ),
+                                                                                        TextButton(
+                                                                                          onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                          child: Text('Sim'),
+                                                                                        ),
+                                                                                      ],
                                                                                     );
                                                                                   },
                                                                                 ) ??
@@ -7559,37 +7534,34 @@ class _CpCadProfissionaisWidgetState extends State<CpCadProfissionaisWidget>
                                                               context: context,
                                                               builder:
                                                                   (alertDialogContext) {
-                                                                return WebViewAware(
-                                                                  child:
-                                                                      AlertDialog(
-                                                                    title: Text(
-                                                                        'Atenção!'),
-                                                                    content: Text(
-                                                                        'Delese excluir os  horários do dia ${dateTimeFormat(
-                                                                      "d MMMM, EEEE",
-                                                                      FFAppState()
-                                                                          .varCalendarioDataSelecionada,
-                                                                      locale: FFLocalizations.of(
-                                                                              context)
-                                                                          .languageCode,
-                                                                    )}?'),
-                                                                    actions: [
-                                                                      TextButton(
-                                                                        onPressed: () => Navigator.pop(
-                                                                            alertDialogContext,
-                                                                            false),
-                                                                        child: Text(
-                                                                            'Não'),
-                                                                      ),
-                                                                      TextButton(
-                                                                        onPressed: () => Navigator.pop(
-                                                                            alertDialogContext,
-                                                                            true),
-                                                                        child: Text(
-                                                                            'Sim'),
-                                                                      ),
-                                                                    ],
-                                                                  ),
+                                                                return AlertDialog(
+                                                                  title: Text(
+                                                                      'Atenção!'),
+                                                                  content: Text(
+                                                                      'Delese excluir os  horários do dia ${dateTimeFormat(
+                                                                    "d MMMM, EEEE",
+                                                                    FFAppState()
+                                                                        .varCalendarioDataSelecionada,
+                                                                    locale: FFLocalizations.of(
+                                                                            context)
+                                                                        .languageCode,
+                                                                  )}?'),
+                                                                  actions: [
+                                                                    TextButton(
+                                                                      onPressed: () => Navigator.pop(
+                                                                          alertDialogContext,
+                                                                          false),
+                                                                      child: Text(
+                                                                          'Não'),
+                                                                    ),
+                                                                    TextButton(
+                                                                      onPressed: () => Navigator.pop(
+                                                                          alertDialogContext,
+                                                                          true),
+                                                                      child: Text(
+                                                                          'Sim'),
+                                                                    ),
+                                                                  ],
                                                                 );
                                                               },
                                                             ) ??
@@ -7732,30 +7704,27 @@ class _CpCadProfissionaisWidgetState extends State<CpCadProfissionaisWidget>
                                                               context: context,
                                                               builder:
                                                                   (alertDialogContext) {
-                                                                return WebViewAware(
-                                                                  child:
-                                                                      AlertDialog(
-                                                                    title: Text(
-                                                                        'Atenção!'),
-                                                                    content: Text(
-                                                                        'Deseja excluir todos os horários liberados?'),
-                                                                    actions: [
-                                                                      TextButton(
-                                                                        onPressed: () => Navigator.pop(
-                                                                            alertDialogContext,
-                                                                            false),
-                                                                        child: Text(
-                                                                            'Não'),
-                                                                      ),
-                                                                      TextButton(
-                                                                        onPressed: () => Navigator.pop(
-                                                                            alertDialogContext,
-                                                                            true),
-                                                                        child: Text(
-                                                                            'Sim'),
-                                                                      ),
-                                                                    ],
-                                                                  ),
+                                                                return AlertDialog(
+                                                                  title: Text(
+                                                                      'Atenção!'),
+                                                                  content: Text(
+                                                                      'Deseja excluir todos os horários liberados?'),
+                                                                  actions: [
+                                                                    TextButton(
+                                                                      onPressed: () => Navigator.pop(
+                                                                          alertDialogContext,
+                                                                          false),
+                                                                      child: Text(
+                                                                          'Não'),
+                                                                    ),
+                                                                    TextButton(
+                                                                      onPressed: () => Navigator.pop(
+                                                                          alertDialogContext,
+                                                                          true),
+                                                                      child: Text(
+                                                                          'Sim'),
+                                                                    ),
+                                                                  ],
                                                                 );
                                                               },
                                                             ) ??

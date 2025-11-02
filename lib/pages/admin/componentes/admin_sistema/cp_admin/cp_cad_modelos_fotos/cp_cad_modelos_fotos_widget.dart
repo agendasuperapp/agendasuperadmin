@@ -14,7 +14,6 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 import 'cp_cad_modelos_fotos_model.dart';
 export 'cp_cad_modelos_fotos_model.dart';
 
@@ -754,11 +753,9 @@ class _CpCadModelosFotosWidgetState extends State<CpCadModelosFotosWidget> {
                                                         0.0, 0.0)
                                                     .resolve(Directionality.of(
                                                         context)),
-                                                child: WebViewAware(
-                                                  child: CpFotoWidget(
-                                                    paramFoto: _model
-                                                        .uploadedFileUrl_uploadDataModeloFoto,
-                                                  ),
+                                                child: CpFotoWidget(
+                                                  paramFoto: _model
+                                                      .uploadedFileUrl_uploadDataModeloFoto,
                                                 ),
                                               );
                                             },
@@ -784,12 +781,10 @@ class _CpCadModelosFotosWidgetState extends State<CpCadModelosFotosWidget> {
                                                         0.0, 0.0)
                                                     .resolve(Directionality.of(
                                                         context)),
-                                                child: WebViewAware(
-                                                  child: CpFotoWidget(
-                                                    paramFoto: widget
-                                                        .paramRowTbmodelosFotos!
-                                                        .foto!,
-                                                  ),
+                                                child: CpFotoWidget(
+                                                  paramFoto: widget
+                                                      .paramRowTbmodelosFotos!
+                                                      .foto!,
                                                 ),
                                               );
                                             },

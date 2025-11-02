@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 import 'cp_cad_modelos_banners_model.dart';
 export 'cp_cad_modelos_banners_model.dart';
 
@@ -602,11 +601,9 @@ class _CpCadModelosBannersWidgetState extends State<CpCadModelosBannersWidget> {
                                                       .resolve(
                                                           Directionality.of(
                                                               context)),
-                                              child: WebViewAware(
-                                                child: CpFotoWidget(
-                                                  paramFoto: _model
-                                                      .uploadedFileUrl_uploadDataBanner,
-                                                ),
+                                              child: CpFotoWidget(
+                                                paramFoto: _model
+                                                    .uploadedFileUrl_uploadDataBanner,
                                               ),
                                             );
                                           },
@@ -633,12 +630,10 @@ class _CpCadModelosBannersWidgetState extends State<CpCadModelosBannersWidget> {
                                                       .resolve(
                                                           Directionality.of(
                                                               context)),
-                                              child: WebViewAware(
-                                                child: CpFotoWidget(
-                                                  paramFoto: widget
-                                                      .paramRowTbmodeloBanner!
-                                                      .foto!,
-                                                ),
+                                              child: CpFotoWidget(
+                                                paramFoto: widget
+                                                    .paramRowTbmodeloBanner!
+                                                    .foto!,
                                               ),
                                             );
                                           },

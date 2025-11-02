@@ -7,7 +7,6 @@ import '/pages/admin/a_sistema/home/ca_aguarde/ca_aguarde_widget.dart';
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'cp_lista_eventos_stripe_widget.dart' show CpListaEventosStripeWidget;
 import 'package:flutter/material.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 
 class CpListaEventosStripeModel
     extends FlutterFlowModel<CpListaEventosStripeWidget> {
@@ -151,11 +150,9 @@ class CpListaEventosStripeModel
             backgroundColor: Colors.transparent,
             alignment: AlignmentDirectional(0.0, 0.0)
                 .resolve(Directionality.of(context)),
-            child: WebViewAware(
-              child: CaAguardeWidget(
-                paramMostrarAnimacao: true,
-                paramFecharAoClicar: true,
-              ),
+            child: CaAguardeWidget(
+              paramMostrarAnimacao: true,
+              paramFecharAoClicar: true,
             ),
           );
         },

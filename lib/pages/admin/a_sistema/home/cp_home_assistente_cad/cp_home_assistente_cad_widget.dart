@@ -34,7 +34,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 import 'cp_home_assistente_cad_model.dart';
 export 'cp_home_assistente_cad_model.dart';
 
@@ -1605,13 +1604,10 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                                                                           .resolve(
                                                                               Directionality.of(context)),
                                                                       child:
-                                                                          WebViewAware(
-                                                                        child:
-                                                                            CpFotoWidget(
-                                                                          paramFoto: _model.uploadedFileUrl_uploadDataEstabelecimentoPerfilAssist != ''
-                                                                              ? _model.uploadedFileUrl_uploadDataEstabelecimentoPerfilAssist
-                                                                              : _model.varFotoPerfilSelecionada,
-                                                                        ),
+                                                                          CpFotoWidget(
+                                                                        paramFoto: _model.uploadedFileUrl_uploadDataEstabelecimentoPerfilAssist != ''
+                                                                            ? _model.uploadedFileUrl_uploadDataEstabelecimentoPerfilAssist
+                                                                            : _model.varFotoPerfilSelecionada,
                                                                       ),
                                                                     );
                                                                   },
@@ -1622,22 +1618,19 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                                                                       context,
                                                                   builder:
                                                                       (alertDialogContext) {
-                                                                    return WebViewAware(
-                                                                      child:
-                                                                          AlertDialog(
-                                                                        title: Text(
-                                                                            'Atenção!'),
-                                                                        content:
-                                                                            Text('Adicione uma foto...'),
-                                                                        actions: [
-                                                                          TextButton(
-                                                                            onPressed: () =>
-                                                                                Navigator.pop(alertDialogContext),
-                                                                            child:
-                                                                                Text('Ok'),
-                                                                          ),
-                                                                        ],
-                                                                      ),
+                                                                    return AlertDialog(
+                                                                      title: Text(
+                                                                          'Atenção!'),
+                                                                      content: Text(
+                                                                          'Adicione uma foto...'),
+                                                                      actions: [
+                                                                        TextButton(
+                                                                          onPressed: () =>
+                                                                              Navigator.pop(alertDialogContext),
+                                                                          child:
+                                                                              Text('Ok'),
+                                                                        ),
+                                                                      ],
                                                                     );
                                                                   },
                                                                 );
@@ -4568,15 +4561,13 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                                                                                                   backgroundColor: Colors.transparent,
                                                                                                   context: context,
                                                                                                   builder: (context) {
-                                                                                                    return WebViewAware(
-                                                                                                      child: Padding(
-                                                                                                        padding: MediaQuery.viewInsetsOf(context),
-                                                                                                        child: CpDialogSnackBarWidget(
-                                                                                                          paramMensagem: 'CEP inválido',
-                                                                                                          paramCorTexto: FlutterFlowTheme.of(context).info,
-                                                                                                          paramCorFundo: FlutterFlowTheme.of(context).error,
-                                                                                                          paramTempoMsFechar: 1000,
-                                                                                                        ),
+                                                                                                    return Padding(
+                                                                                                      padding: MediaQuery.viewInsetsOf(context),
+                                                                                                      child: CpDialogSnackBarWidget(
+                                                                                                        paramMensagem: 'CEP inválido',
+                                                                                                        paramCorTexto: FlutterFlowTheme.of(context).info,
+                                                                                                        paramCorFundo: FlutterFlowTheme.of(context).error,
+                                                                                                        paramTempoMsFechar: 1000,
                                                                                                       ),
                                                                                                     );
                                                                                                   },
@@ -5810,13 +5801,12 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                                                                             context,
                                                                         builder:
                                                                             (context) {
-                                                                          return WebViewAware(
+                                                                          return Padding(
+                                                                            padding:
+                                                                                MediaQuery.viewInsetsOf(context),
                                                                             child:
-                                                                                Padding(
-                                                                              padding: MediaQuery.viewInsetsOf(context),
-                                                                              child: CpEstabelecCadHrAtendimentosWidget(
-                                                                                paramDiaSemana: listViewHrFuncionamentoTblHorariosFuncionamentoRow,
-                                                                              ),
+                                                                                CpEstabelecCadHrAtendimentosWidget(
+                                                                              paramDiaSemana: listViewHrFuncionamentoTblHorariosFuncionamentoRow,
                                                                             ),
                                                                           );
                                                                         },
@@ -6233,15 +6223,13 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                                                                                         backgroundColor: Colors.transparent,
                                                                                         context: context,
                                                                                         builder: (context) {
-                                                                                          return WebViewAware(
-                                                                                            child: Padding(
-                                                                                              padding: MediaQuery.viewInsetsOf(context),
-                                                                                              child: Container(
-                                                                                                height: MediaQuery.sizeOf(context).height * 0.8,
-                                                                                                child: CpCadServicosWidget(
-                                                                                                  paramCadastro: false,
-                                                                                                  paramID: varTblModelosServicosListItem.idServico,
-                                                                                                ),
+                                                                                          return Padding(
+                                                                                            padding: MediaQuery.viewInsetsOf(context),
+                                                                                            child: Container(
+                                                                                              height: MediaQuery.sizeOf(context).height * 0.8,
+                                                                                              child: CpCadServicosWidget(
+                                                                                                paramCadastro: false,
+                                                                                                paramID: varTblModelosServicosListItem.idServico,
                                                                                               ),
                                                                                             ),
                                                                                           );
@@ -6256,11 +6244,9 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                                                                                             insetPadding: EdgeInsets.zero,
                                                                                             backgroundColor: Colors.transparent,
                                                                                             alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-                                                                                            child: WebViewAware(
-                                                                                              child: CpCadServicosWidget(
-                                                                                                paramCadastro: false,
-                                                                                                paramID: varTblModelosServicosListItem.idServico,
-                                                                                              ),
+                                                                                            child: CpCadServicosWidget(
+                                                                                              paramCadastro: false,
+                                                                                              paramID: varTblModelosServicosListItem.idServico,
                                                                                             ),
                                                                                           );
                                                                                         },
@@ -6290,21 +6276,19 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                                                                                 var confirmDialogResponse = await showDialog<bool>(
                                                                                       context: context,
                                                                                       builder: (alertDialogContext) {
-                                                                                        return WebViewAware(
-                                                                                          child: AlertDialog(
-                                                                                            title: Text('Atenção!'),
-                                                                                            content: Text('Deseja excluir o serviço ${varTblModelosServicosListItem.nome}?'),
-                                                                                            actions: [
-                                                                                              TextButton(
-                                                                                                onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                                child: Text('Não'),
-                                                                                              ),
-                                                                                              TextButton(
-                                                                                                onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                                child: Text('Sim'),
-                                                                                              ),
-                                                                                            ],
-                                                                                          ),
+                                                                                        return AlertDialog(
+                                                                                          title: Text('Atenção!'),
+                                                                                          content: Text('Deseja excluir o serviço ${varTblModelosServicosListItem.nome}?'),
+                                                                                          actions: [
+                                                                                            TextButton(
+                                                                                              onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                              child: Text('Não'),
+                                                                                            ),
+                                                                                            TextButton(
+                                                                                              onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                              child: Text('Sim'),
+                                                                                            ),
+                                                                                          ],
                                                                                         );
                                                                                       },
                                                                                     ) ??
@@ -6381,15 +6365,13 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                                                                                       backgroundColor: Colors.transparent,
                                                                                       context: context,
                                                                                       builder: (context) {
-                                                                                        return WebViewAware(
-                                                                                          child: Padding(
-                                                                                            padding: MediaQuery.viewInsetsOf(context),
-                                                                                            child: Container(
-                                                                                              height: MediaQuery.sizeOf(context).height * 0.8,
-                                                                                              child: CpCadServicosWidget(
-                                                                                                paramCadastro: false,
-                                                                                                paramID: varTblModelosServicosListItem.idServico,
-                                                                                              ),
+                                                                                        return Padding(
+                                                                                          padding: MediaQuery.viewInsetsOf(context),
+                                                                                          child: Container(
+                                                                                            height: MediaQuery.sizeOf(context).height * 0.8,
+                                                                                            child: CpCadServicosWidget(
+                                                                                              paramCadastro: false,
+                                                                                              paramID: varTblModelosServicosListItem.idServico,
                                                                                             ),
                                                                                           ),
                                                                                         );
@@ -6404,11 +6386,9 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                                                                                           insetPadding: EdgeInsets.zero,
                                                                                           backgroundColor: Colors.transparent,
                                                                                           alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-                                                                                          child: WebViewAware(
-                                                                                            child: CpCadServicosWidget(
-                                                                                              paramCadastro: false,
-                                                                                              paramID: varTblModelosServicosListItem.idServico,
-                                                                                            ),
+                                                                                          child: CpCadServicosWidget(
+                                                                                            paramCadastro: false,
+                                                                                            paramID: varTblModelosServicosListItem.idServico,
                                                                                           ),
                                                                                         );
                                                                                       },
@@ -6460,21 +6440,19 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                                                                                 var confirmDialogResponse = await showDialog<bool>(
                                                                                       context: context,
                                                                                       builder: (alertDialogContext) {
-                                                                                        return WebViewAware(
-                                                                                          child: AlertDialog(
-                                                                                            title: Text('Atenção!'),
-                                                                                            content: Text('Deseja excluir o serviço ${varTblModelosServicosListItem.nome}?'),
-                                                                                            actions: [
-                                                                                              TextButton(
-                                                                                                onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                                child: Text('Não'),
-                                                                                              ),
-                                                                                              TextButton(
-                                                                                                onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                                child: Text('Sim'),
-                                                                                              ),
-                                                                                            ],
-                                                                                          ),
+                                                                                        return AlertDialog(
+                                                                                          title: Text('Atenção!'),
+                                                                                          content: Text('Deseja excluir o serviço ${varTblModelosServicosListItem.nome}?'),
+                                                                                          actions: [
+                                                                                            TextButton(
+                                                                                              onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                              child: Text('Não'),
+                                                                                            ),
+                                                                                            TextButton(
+                                                                                              onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                              child: Text('Sim'),
+                                                                                            ),
+                                                                                          ],
                                                                                         );
                                                                                       },
                                                                                     ) ??
@@ -7110,22 +7088,19 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                                                                       context,
                                                                   builder:
                                                                       (alertDialogContext) {
-                                                                    return WebViewAware(
-                                                                      child:
-                                                                          AlertDialog(
-                                                                        title: Text(
-                                                                            'Atenção!'),
-                                                                        content:
-                                                                            Text('O plano ${stackViewTblAppPlanosEstabelecimentosRow?.nomePlano} que você selecionou pode ter no máximo ${FFAppState().VarTblEstabelecimentoLogado.quantProfissionaisMax.toString()}${stackViewTblAppPlanosEstabelecimentosRow?.quantProfissionaisMaxSalvo == 1 ? ' profissional.' : ' profissionais.'}${'\n'}Se precisar você poderá mudar pra um plano maior depois que concluir o cadastro.'),
-                                                                        actions: [
-                                                                          TextButton(
-                                                                            onPressed: () =>
-                                                                                Navigator.pop(alertDialogContext),
-                                                                            child:
-                                                                                Text('Ok'),
-                                                                          ),
-                                                                        ],
-                                                                      ),
+                                                                    return AlertDialog(
+                                                                      title: Text(
+                                                                          'Atenção!'),
+                                                                      content: Text(
+                                                                          'O plano ${stackViewTblAppPlanosEstabelecimentosRow?.nomePlano} que você selecionou pode ter no máximo ${FFAppState().VarTblEstabelecimentoLogado.quantProfissionaisMax.toString()}${stackViewTblAppPlanosEstabelecimentosRow?.quantProfissionaisMaxSalvo == 1 ? ' profissional.' : ' profissionais.'}${'\n'}Se precisar você poderá mudar pra um plano maior depois que concluir o cadastro.'),
+                                                                      actions: [
+                                                                        TextButton(
+                                                                          onPressed: () =>
+                                                                              Navigator.pop(alertDialogContext),
+                                                                          child:
+                                                                              Text('Ok'),
+                                                                        ),
+                                                                      ],
                                                                     );
                                                                   },
                                                                 );
@@ -7170,22 +7145,19 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                                                                       context,
                                                                   builder:
                                                                       (alertDialogContext) {
-                                                                    return WebViewAware(
-                                                                      child:
-                                                                          AlertDialog(
-                                                                        title: Text(
-                                                                            'Atenção!'),
-                                                                        content:
-                                                                            Text('Esse nome já está cadastrado'),
-                                                                        actions: [
-                                                                          TextButton(
-                                                                            onPressed: () =>
-                                                                                Navigator.pop(alertDialogContext),
-                                                                            child:
-                                                                                Text('Ok'),
-                                                                          ),
-                                                                        ],
-                                                                      ),
+                                                                    return AlertDialog(
+                                                                      title: Text(
+                                                                          'Atenção!'),
+                                                                      content: Text(
+                                                                          'Esse nome já está cadastrado'),
+                                                                      actions: [
+                                                                        TextButton(
+                                                                          onPressed: () =>
+                                                                              Navigator.pop(alertDialogContext),
+                                                                          child:
+                                                                              Text('Ok'),
+                                                                        ),
+                                                                      ],
                                                                     );
                                                                   },
                                                                 );
@@ -7203,22 +7175,19 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                                                                       context,
                                                                   builder:
                                                                       (alertDialogContext) {
-                                                                    return WebViewAware(
-                                                                      child:
-                                                                          AlertDialog(
-                                                                        title: Text(
-                                                                            'Atenção!'),
-                                                                        content:
-                                                                            Text('Selecione um serviço para o profissional'),
-                                                                        actions: [
-                                                                          TextButton(
-                                                                            onPressed: () =>
-                                                                                Navigator.pop(alertDialogContext),
-                                                                            child:
-                                                                                Text('Ok'),
-                                                                          ),
-                                                                        ],
-                                                                      ),
+                                                                    return AlertDialog(
+                                                                      title: Text(
+                                                                          'Atenção!'),
+                                                                      content: Text(
+                                                                          'Selecione um serviço para o profissional'),
+                                                                      actions: [
+                                                                        TextButton(
+                                                                          onPressed: () =>
+                                                                              Navigator.pop(alertDialogContext),
+                                                                          child:
+                                                                              Text('Ok'),
+                                                                        ),
+                                                                      ],
                                                                     );
                                                                   },
                                                                 );
@@ -7663,21 +7632,19 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                                                                               var confirmDialogResponse = await showDialog<bool>(
                                                                                     context: context,
                                                                                     builder: (alertDialogContext) {
-                                                                                      return WebViewAware(
-                                                                                        child: AlertDialog(
-                                                                                          title: Text('Atenção!'),
-                                                                                          content: Text('Deseja excluir o profissional  ${listViewHrProfissionaisTblProfissionaisRow.nome}?'),
-                                                                                          actions: [
-                                                                                            TextButton(
-                                                                                              onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                              child: Text('Não'),
-                                                                                            ),
-                                                                                            TextButton(
-                                                                                              onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                              child: Text('Sim'),
-                                                                                            ),
-                                                                                          ],
-                                                                                        ),
+                                                                                      return AlertDialog(
+                                                                                        title: Text('Atenção!'),
+                                                                                        content: Text('Deseja excluir o profissional  ${listViewHrProfissionaisTblProfissionaisRow.nome}?'),
+                                                                                        actions: [
+                                                                                          TextButton(
+                                                                                            onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                            child: Text('Não'),
+                                                                                          ),
+                                                                                          TextButton(
+                                                                                            onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                            child: Text('Sim'),
+                                                                                          ),
+                                                                                        ],
                                                                                       );
                                                                                     },
                                                                                   ) ??
@@ -7760,13 +7727,11 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                                                                                     backgroundColor: Colors.transparent,
                                                                                     context: context,
                                                                                     builder: (context) {
-                                                                                      return WebViewAware(
-                                                                                        child: Padding(
-                                                                                          padding: MediaQuery.viewInsetsOf(context),
-                                                                                          child: CpCadProfissionaisWidget(
-                                                                                            paramCadastro: false,
-                                                                                            paramIDProfissional: listViewHrProfissionaisTblProfissionaisRow.id,
-                                                                                          ),
+                                                                                      return Padding(
+                                                                                        padding: MediaQuery.viewInsetsOf(context),
+                                                                                        child: CpCadProfissionaisWidget(
+                                                                                          paramCadastro: false,
+                                                                                          paramIDProfissional: listViewHrProfissionaisTblProfissionaisRow.id,
                                                                                         ),
                                                                                       );
                                                                                     },
@@ -7780,11 +7745,9 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                                                                                         insetPadding: EdgeInsets.zero,
                                                                                         backgroundColor: Colors.transparent,
                                                                                         alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-                                                                                        child: WebViewAware(
-                                                                                          child: CpCadProfissionaisWidget(
-                                                                                            paramCadastro: false,
-                                                                                            paramIDProfissional: listViewHrProfissionaisTblProfissionaisRow.id,
-                                                                                          ),
+                                                                                        child: CpCadProfissionaisWidget(
+                                                                                          paramCadastro: false,
+                                                                                          paramIDProfissional: listViewHrProfissionaisTblProfissionaisRow.id,
                                                                                         ),
                                                                                       );
                                                                                     },
@@ -7819,21 +7782,19 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                                                                             var confirmDialogResponse = await showDialog<bool>(
                                                                                   context: context,
                                                                                   builder: (alertDialogContext) {
-                                                                                    return WebViewAware(
-                                                                                      child: AlertDialog(
-                                                                                        title: Text('Atenção!'),
-                                                                                        content: Text('Deseja excluir o profissional  ${listViewHrProfissionaisTblProfissionaisRow.nome}?'),
-                                                                                        actions: [
-                                                                                          TextButton(
-                                                                                            onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                            child: Text('Não'),
-                                                                                          ),
-                                                                                          TextButton(
-                                                                                            onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                            child: Text('Sim'),
-                                                                                          ),
-                                                                                        ],
-                                                                                      ),
+                                                                                    return AlertDialog(
+                                                                                      title: Text('Atenção!'),
+                                                                                      content: Text('Deseja excluir o profissional  ${listViewHrProfissionaisTblProfissionaisRow.nome}?'),
+                                                                                      actions: [
+                                                                                        TextButton(
+                                                                                          onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                          child: Text('Não'),
+                                                                                        ),
+                                                                                        TextButton(
+                                                                                          onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                          child: Text('Sim'),
+                                                                                        ),
+                                                                                      ],
                                                                                     );
                                                                                   },
                                                                                 ) ??
@@ -8118,12 +8079,10 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                                                                         alignment:
                                                                             AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                         child:
-                                                                            WebViewAware(
-                                                                          child:
-                                                                              CpFotoWidget(
-                                                                            paramFoto:
-                                                                                FFAppState().VarTblEstabelecimentoLogado.fotoPerfil,
-                                                                          ),
+                                                                            CpFotoWidget(
+                                                                          paramFoto: FFAppState()
+                                                                              .VarTblEstabelecimentoLogado
+                                                                              .fotoPerfil,
                                                                         ),
                                                                       );
                                                                     },
@@ -8134,20 +8093,19 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                                                                         context,
                                                                     builder:
                                                                         (alertDialogContext) {
-                                                                      return WebViewAware(
-                                                                        child:
-                                                                            AlertDialog(
-                                                                          title:
-                                                                              Text('Atenção!'),
-                                                                          content:
-                                                                              Text('Volte na tela anterior e adicione uma foto...'),
-                                                                          actions: [
-                                                                            TextButton(
-                                                                              onPressed: () => Navigator.pop(alertDialogContext),
-                                                                              child: Text('Ok'),
-                                                                            ),
-                                                                          ],
-                                                                        ),
+                                                                      return AlertDialog(
+                                                                        title: Text(
+                                                                            'Atenção!'),
+                                                                        content:
+                                                                            Text('Volte na tela anterior e adicione uma foto...'),
+                                                                        actions: [
+                                                                          TextButton(
+                                                                            onPressed: () =>
+                                                                                Navigator.pop(alertDialogContext),
+                                                                            child:
+                                                                                Text('Ok'),
+                                                                          ),
+                                                                        ],
                                                                       );
                                                                     },
                                                                   );
@@ -9088,21 +9046,18 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                                                     context: context,
                                                     builder:
                                                         (alertDialogContext) {
-                                                      return WebViewAware(
-                                                        child: AlertDialog(
-                                                          title:
-                                                              Text('Atenção!'),
-                                                          content: Text(
-                                                              'Selecione um segmento'),
-                                                          actions: [
-                                                            TextButton(
-                                                              onPressed: () =>
-                                                                  Navigator.pop(
-                                                                      alertDialogContext),
-                                                              child: Text('Ok'),
-                                                            ),
-                                                          ],
-                                                        ),
+                                                      return AlertDialog(
+                                                        title: Text('Atenção!'),
+                                                        content: Text(
+                                                            'Selecione um segmento'),
+                                                        actions: [
+                                                          TextButton(
+                                                            onPressed: () =>
+                                                                Navigator.pop(
+                                                                    alertDialogContext),
+                                                            child: Text('Ok'),
+                                                          ),
+                                                        ],
                                                       );
                                                     },
                                                   );
@@ -9144,21 +9099,18 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                                                     context: context,
                                                     builder:
                                                         (alertDialogContext) {
-                                                      return WebViewAware(
-                                                        child: AlertDialog(
-                                                          title:
-                                                              Text('Atenção!'),
-                                                          content: Text(
-                                                              'Adicione uma foto ou selecione um modelo pronto...'),
-                                                          actions: [
-                                                            TextButton(
-                                                              onPressed: () =>
-                                                                  Navigator.pop(
-                                                                      alertDialogContext),
-                                                              child: Text('Ok'),
-                                                            ),
-                                                          ],
-                                                        ),
+                                                      return AlertDialog(
+                                                        title: Text('Atenção!'),
+                                                        content: Text(
+                                                            'Adicione uma foto ou selecione um modelo pronto...'),
+                                                        actions: [
+                                                          TextButton(
+                                                            onPressed: () =>
+                                                                Navigator.pop(
+                                                                    alertDialogContext),
+                                                            child: Text('Ok'),
+                                                          ),
+                                                        ],
                                                       );
                                                     },
                                                   );
@@ -9185,26 +9137,24 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                                                           Colors.transparent,
                                                       context: context,
                                                       builder: (context) {
-                                                        return WebViewAware(
-                                                          child: Padding(
-                                                            padding: MediaQuery
-                                                                .viewInsetsOf(
-                                                                    context),
-                                                            child:
-                                                                CpDialogSnackBarWidget(
-                                                              paramMensagem:
-                                                                  'Foto perfil atualizada...',
-                                                              paramCorTexto:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .info,
-                                                              paramCorFundo:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .success,
-                                                              paramTempoMsFechar:
-                                                                  1000,
-                                                            ),
+                                                        return Padding(
+                                                          padding: MediaQuery
+                                                              .viewInsetsOf(
+                                                                  context),
+                                                          child:
+                                                              CpDialogSnackBarWidget(
+                                                            paramMensagem:
+                                                                'Foto perfil atualizada...',
+                                                            paramCorTexto:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .info,
+                                                            paramCorFundo:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .success,
+                                                            paramTempoMsFechar:
+                                                                1000,
                                                           ),
                                                         );
                                                       },
@@ -9450,21 +9400,18 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                                                     context: context,
                                                     builder:
                                                         (alertDialogContext) {
-                                                      return WebViewAware(
-                                                        child: AlertDialog(
-                                                          title:
-                                                              Text('Atenção!'),
-                                                          content: Text(
-                                                              'Adicione pelo menos um serviço'),
-                                                          actions: [
-                                                            TextButton(
-                                                              onPressed: () =>
-                                                                  Navigator.pop(
-                                                                      alertDialogContext),
-                                                              child: Text('Ok'),
-                                                            ),
-                                                          ],
-                                                        ),
+                                                      return AlertDialog(
+                                                        title: Text('Atenção!'),
+                                                        content: Text(
+                                                            'Adicione pelo menos um serviço'),
+                                                        actions: [
+                                                          TextButton(
+                                                            onPressed: () =>
+                                                                Navigator.pop(
+                                                                    alertDialogContext),
+                                                            child: Text('Ok'),
+                                                          ),
+                                                        ],
                                                       );
                                                     },
                                                   );
@@ -9501,21 +9448,18 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                                                     context: context,
                                                     builder:
                                                         (alertDialogContext) {
-                                                      return WebViewAware(
-                                                        child: AlertDialog(
-                                                          title:
-                                                              Text('Atenção!'),
-                                                          content: Text(
-                                                              'Primeiro clique em \"Adicionar Profissional\" para salvar o profissonal!'),
-                                                          actions: [
-                                                            TextButton(
-                                                              onPressed: () =>
-                                                                  Navigator.pop(
-                                                                      alertDialogContext),
-                                                              child: Text('Ok'),
-                                                            ),
-                                                          ],
-                                                        ),
+                                                      return AlertDialog(
+                                                        title: Text('Atenção!'),
+                                                        content: Text(
+                                                            'Primeiro clique em \"Adicionar Profissional\" para salvar o profissonal!'),
+                                                        actions: [
+                                                          TextButton(
+                                                            onPressed: () =>
+                                                                Navigator.pop(
+                                                                    alertDialogContext),
+                                                            child: Text('Ok'),
+                                                          ),
+                                                        ],
                                                       );
                                                     },
                                                   );
@@ -9530,21 +9474,18 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                                                     context: context,
                                                     builder:
                                                         (alertDialogContext) {
-                                                      return WebViewAware(
-                                                        child: AlertDialog(
-                                                          title:
-                                                              Text('Atenção!'),
-                                                          content: Text(
-                                                              'Adicione pelo menos um profissional'),
-                                                          actions: [
-                                                            TextButton(
-                                                              onPressed: () =>
-                                                                  Navigator.pop(
-                                                                      alertDialogContext),
-                                                              child: Text('Ok'),
-                                                            ),
-                                                          ],
-                                                        ),
+                                                      return AlertDialog(
+                                                        title: Text('Atenção!'),
+                                                        content: Text(
+                                                            'Adicione pelo menos um profissional'),
+                                                        actions: [
+                                                          TextButton(
+                                                            onPressed: () =>
+                                                                Navigator.pop(
+                                                                    alertDialogContext),
+                                                            child: Text('Ok'),
+                                                          ),
+                                                        ],
                                                       );
                                                     },
                                                   );
@@ -9770,19 +9711,16 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                                           backgroundColor: Colors.transparent,
                                           context: context,
                                           builder: (context) {
-                                            return WebViewAware(
-                                              child: Padding(
-                                                padding:
-                                                    MediaQuery.viewInsetsOf(
-                                                        context),
-                                                child: Container(
-                                                  height:
-                                                      MediaQuery.sizeOf(context)
-                                                              .height *
-                                                          0.8,
-                                                  child: CpCadServicosWidget(
-                                                    paramCadastro: true,
-                                                  ),
+                                            return Padding(
+                                              padding: MediaQuery.viewInsetsOf(
+                                                  context),
+                                              child: Container(
+                                                height:
+                                                    MediaQuery.sizeOf(context)
+                                                            .height *
+                                                        0.8,
+                                                child: CpCadServicosWidget(
+                                                  paramCadastro: true,
                                                 ),
                                               ),
                                             );
@@ -9802,10 +9740,8 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                                                       .resolve(
                                                           Directionality.of(
                                                               context)),
-                                              child: WebViewAware(
-                                                child: CpCadServicosWidget(
-                                                  paramCadastro: true,
-                                                ),
+                                              child: CpCadServicosWidget(
+                                                paramCadastro: true,
                                               ),
                                             );
                                           },

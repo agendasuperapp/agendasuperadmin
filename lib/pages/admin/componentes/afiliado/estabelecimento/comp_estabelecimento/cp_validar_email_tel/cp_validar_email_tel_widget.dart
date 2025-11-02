@@ -13,7 +13,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 import 'cp_validar_email_tel_model.dart';
 export 'cp_validar_email_tel_model.dart';
 
@@ -750,19 +749,17 @@ class _CpValidarEmailTelWidgetState extends State<CpValidarEmailTelWidget>
                                   await showDialog(
                                     context: context,
                                     builder: (alertDialogContext) {
-                                      return WebViewAware(
-                                        child: AlertDialog(
-                                          title: Text('Atenção!'),
-                                          content: Text(
-                                              'Digite o código recebido no seu E-mail'),
-                                          actions: [
-                                            TextButton(
-                                              onPressed: () => Navigator.pop(
-                                                  alertDialogContext),
-                                              child: Text('Ok'),
-                                            ),
-                                          ],
-                                        ),
+                                      return AlertDialog(
+                                        title: Text('Atenção!'),
+                                        content: Text(
+                                            'Digite o código recebido no seu E-mail'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(
+                                                alertDialogContext),
+                                            child: Text('Ok'),
+                                          ),
+                                        ],
                                       );
                                     },
                                   );
@@ -773,19 +770,17 @@ class _CpValidarEmailTelWidgetState extends State<CpValidarEmailTelWidget>
                                   await showDialog(
                                     context: context,
                                     builder: (alertDialogContext) {
-                                      return WebViewAware(
-                                        child: AlertDialog(
-                                          title: Text('Atenção!'),
-                                          content: Text(
-                                              'Código inválido, verifique se digitou corretamente.'),
-                                          actions: [
-                                            TextButton(
-                                              onPressed: () => Navigator.pop(
-                                                  alertDialogContext),
-                                              child: Text('Ok'),
-                                            ),
-                                          ],
-                                        ),
+                                      return AlertDialog(
+                                        title: Text('Atenção!'),
+                                        content: Text(
+                                            'Código inválido, verifique se digitou corretamente.'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(
+                                                alertDialogContext),
+                                            child: Text('Ok'),
+                                          ),
+                                        ],
                                       );
                                     },
                                   );
@@ -814,20 +809,17 @@ class _CpValidarEmailTelWidgetState extends State<CpValidarEmailTelWidget>
                                   backgroundColor: Colors.transparent,
                                   context: context,
                                   builder: (context) {
-                                    return WebViewAware(
-                                      child: Padding(
-                                        padding:
-                                            MediaQuery.viewInsetsOf(context),
-                                        child: CpDialogSnackBarWidget(
-                                          paramMensagem:
-                                              'E-mail verificado com sucesso...',
-                                          paramCorTexto:
-                                              FlutterFlowTheme.of(context).info,
-                                          paramCorFundo:
-                                              FlutterFlowTheme.of(context)
-                                                  .success,
-                                          paramTempoMsFechar: 1000,
-                                        ),
+                                    return Padding(
+                                      padding: MediaQuery.viewInsetsOf(context),
+                                      child: CpDialogSnackBarWidget(
+                                        paramMensagem:
+                                            'E-mail verificado com sucesso...',
+                                        paramCorTexto:
+                                            FlutterFlowTheme.of(context).info,
+                                        paramCorFundo:
+                                            FlutterFlowTheme.of(context)
+                                                .success,
+                                        paramTempoMsFechar: 1000,
                                       ),
                                     );
                                   },
@@ -838,19 +830,17 @@ class _CpValidarEmailTelWidgetState extends State<CpValidarEmailTelWidget>
                                   await showDialog(
                                     context: context,
                                     builder: (alertDialogContext) {
-                                      return WebViewAware(
-                                        child: AlertDialog(
-                                          title: Text('Atenção!'),
-                                          content: Text(
-                                              'Digite o código recebido no seu WhatsApp'),
-                                          actions: [
-                                            TextButton(
-                                              onPressed: () => Navigator.pop(
-                                                  alertDialogContext),
-                                              child: Text('Ok'),
-                                            ),
-                                          ],
-                                        ),
+                                      return AlertDialog(
+                                        title: Text('Atenção!'),
+                                        content: Text(
+                                            'Digite o código recebido no seu WhatsApp'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(
+                                                alertDialogContext),
+                                            child: Text('Ok'),
+                                          ),
+                                        ],
                                       );
                                     },
                                   );
@@ -861,19 +851,17 @@ class _CpValidarEmailTelWidgetState extends State<CpValidarEmailTelWidget>
                                   await showDialog(
                                     context: context,
                                     builder: (alertDialogContext) {
-                                      return WebViewAware(
-                                        child: AlertDialog(
-                                          title: Text('Atenção!'),
-                                          content: Text(
-                                              'Código inválido, verifique se digitou corretamente.'),
-                                          actions: [
-                                            TextButton(
-                                              onPressed: () => Navigator.pop(
-                                                  alertDialogContext),
-                                              child: Text('Ok'),
-                                            ),
-                                          ],
-                                        ),
+                                      return AlertDialog(
+                                        title: Text('Atenção!'),
+                                        content: Text(
+                                            'Código inválido, verifique se digitou corretamente.'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(
+                                                alertDialogContext),
+                                            child: Text('Ok'),
+                                          ),
+                                        ],
                                       );
                                     },
                                   );
@@ -902,20 +890,17 @@ class _CpValidarEmailTelWidgetState extends State<CpValidarEmailTelWidget>
                                   backgroundColor: Colors.transparent,
                                   context: context,
                                   builder: (context) {
-                                    return WebViewAware(
-                                      child: Padding(
-                                        padding:
-                                            MediaQuery.viewInsetsOf(context),
-                                        child: CpDialogSnackBarWidget(
-                                          paramMensagem:
-                                              'Telefone WhatsApp verificado com sucesso...',
-                                          paramCorTexto:
-                                              FlutterFlowTheme.of(context).info,
-                                          paramCorFundo:
-                                              FlutterFlowTheme.of(context)
-                                                  .success,
-                                          paramTempoMsFechar: 1000,
-                                        ),
+                                    return Padding(
+                                      padding: MediaQuery.viewInsetsOf(context),
+                                      child: CpDialogSnackBarWidget(
+                                        paramMensagem:
+                                            'Telefone WhatsApp verificado com sucesso...',
+                                        paramCorTexto:
+                                            FlutterFlowTheme.of(context).info,
+                                        paramCorFundo:
+                                            FlutterFlowTheme.of(context)
+                                                .success,
+                                        paramTempoMsFechar: 1000,
                                       ),
                                     );
                                   },

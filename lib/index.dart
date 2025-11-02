@@ -1,6 +1,4 @@
 // Export pages
-export '/pages/admin/a_sistema/home/home_page/home_page_widget.dart'
-    show HomePageWidget;
 export '/pages/calendario/pg_calendario/pg_calendario_widget.dart'
     show PgCalendarioWidget;
 export '/pages/admin/componentes/afiliado/estabelecimento/pg_estabelecimento/pg_consultar_agendamento/pg_consultar_agendamento_widget.dart'
@@ -9,7 +7,7 @@ export '/pages/admin/a_sistema/home/pg_login/pg_login_widget.dart'
     show PgLoginWidget;
 export '/pages/admin/componentes/afiliado/estabelecimento/pg_estabelecimento/pg_estabelecimento_admin/pg_estabelecimento_admin_widget.dart'
     show PgEstabelecimentoAdminWidget;
-export '/pages/admin/componentes/afiliado/estabelecimento/pg_estabelecimento/pg_dashboard/pg_dashboard_widget.dart'
+export '/pages/admin/a_sistema/home/pg_dashboard/pg_dashboard_widget.dart'
     show PgDashboardWidget;
 export '/pages/admin/componentes/afiliado/estabelecimento/pg_estabelecimento/pg_lista_profissionais/pg_lista_profissionais_widget.dart'
     show PgListaProfissionaisWidget;
@@ -73,8 +71,6 @@ export '/pages/admin/componentes/admin_sistema/paginas_admin/pg_formas_pag/pg_fo
     show PgFormasPagWidget;
 export '/pages/admin/componentes/afiliado/p_g_afiliados/pg_afiliados_cad/pg_afiliados_cad_widget.dart'
     show PgAfiliadosCadWidget;
-export '/pages/admin/componentes/afiliado/p_g_afiliados/d_e_l_e_t_e_pg_afiliado_dashboard/d_e_l_e_t_e_pg_afiliado_dashboard_widget.dart'
-    show DELETEPgAfiliadoDashboardWidget;
 export '/pages/admin/componentes/afiliado/p_g_afiliados/pg_afiliado_indicacoes/pg_afiliado_indicacoes_widget.dart'
     show PgAfiliadoIndicacoesWidget;
 export '/pages/admin/componentes/afiliado/p_g_afiliados/pg_afiliado_sub_afiliados/pg_afiliado_sub_afiliados_widget.dart'
@@ -89,10 +85,6 @@ export '/pages/admin/componentes/afiliado/p_g_afiliados/pg_afiliado_treinamento/
     show PgAfiliadoTreinamentoWidget;
 export '/pages/admin/componentes/afiliado/p_g_afiliados/pg_afiliado_google_maps/pg_afiliado_google_maps_widget.dart'
     show PgAfiliadoGoogleMapsWidget;
-export '/pages/admin/componentes/afiliado/p_g_afiliados/d_e_l_e_t_e_pg_afiliado_apresentacao/d_e_l_e_t_e_pg_afiliado_apresentacao_widget.dart'
-    show DELETEPgAfiliadoApresentacaoWidget;
-export '/pages/admin/componentes/afiliado/p_g_afiliados/d_e_l_e_t_e_pg_afiliado_ativacao/d_e_l_e_t_e_pg_afiliado_ativacao_widget.dart'
-    show DELETEPgAfiliadoAtivacaoWidget;
 export '/pages/admin/componentes/afiliado/p_g_afiliados/pg_cupom_cad/pg_cupom_cad_widget.dart'
     show PgCupomCadWidget;
 export '/pages/admin/componentes/admin_sistema/paginas_admin/pg_admin_cupons_padroes/pg_admin_cupons_padroes_widget.dart'

@@ -18,7 +18,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 import 'cp_afiliado_cupons_model.dart';
 export 'cp_afiliado_cupons_model.dart';
 
@@ -984,23 +983,20 @@ class _CpAfiliadoCuponsWidgetState extends State<CpAfiliadoCuponsWidget>
                                                               context: context,
                                                               builder:
                                                                   (alertDialogContext) {
-                                                                return WebViewAware(
-                                                                  child:
-                                                                      AlertDialog(
-                                                                    title: Text(
-                                                                        'Atenção!'),
-                                                                    content: Text(
-                                                                        'O username foi alterado, esse cupom não existe mais.'),
-                                                                    actions: [
-                                                                      TextButton(
-                                                                        onPressed:
-                                                                            () =>
-                                                                                Navigator.pop(alertDialogContext),
-                                                                        child: Text(
-                                                                            'Ok'),
-                                                                      ),
-                                                                    ],
-                                                                  ),
+                                                                return AlertDialog(
+                                                                  title: Text(
+                                                                      'Atenção!'),
+                                                                  content: Text(
+                                                                      'O username foi alterado, esse cupom não existe mais.'),
+                                                                  actions: [
+                                                                    TextButton(
+                                                                      onPressed:
+                                                                          () =>
+                                                                              Navigator.pop(alertDialogContext),
+                                                                      child: Text(
+                                                                          'Ok'),
+                                                                    ),
+                                                                  ],
                                                                 );
                                                               },
                                                             );
@@ -1013,23 +1009,20 @@ class _CpAfiliadoCuponsWidgetState extends State<CpAfiliadoCuponsWidget>
                                                               context: context,
                                                               builder:
                                                                   (alertDialogContext) {
-                                                                return WebViewAware(
-                                                                  child:
-                                                                      AlertDialog(
-                                                                    title: Text(
-                                                                        'Atenção!'),
-                                                                    content: Text(
-                                                                        'Cupom inativo não pode ser compartilhado.'),
-                                                                    actions: [
-                                                                      TextButton(
-                                                                        onPressed:
-                                                                            () =>
-                                                                                Navigator.pop(alertDialogContext),
-                                                                        child: Text(
-                                                                            'Ok'),
-                                                                      ),
-                                                                    ],
-                                                                  ),
+                                                                return AlertDialog(
+                                                                  title: Text(
+                                                                      'Atenção!'),
+                                                                  content: Text(
+                                                                      'Cupom inativo não pode ser compartilhado.'),
+                                                                  actions: [
+                                                                    TextButton(
+                                                                      onPressed:
+                                                                          () =>
+                                                                              Navigator.pop(alertDialogContext),
+                                                                      child: Text(
+                                                                          'Ok'),
+                                                                    ),
+                                                                  ],
                                                                 );
                                                               },
                                                             );
@@ -1075,23 +1068,20 @@ class _CpAfiliadoCuponsWidgetState extends State<CpAfiliadoCuponsWidget>
                                                               context: context,
                                                               builder:
                                                                   (alertDialogContext) {
-                                                                return WebViewAware(
-                                                                  child:
-                                                                      AlertDialog(
-                                                                    title: Text(
-                                                                        'Atenção!'),
-                                                                    content: Text(
-                                                                        'Clique em Adicionar para liberar esse  cupom'),
-                                                                    actions: [
-                                                                      TextButton(
-                                                                        onPressed:
-                                                                            () =>
-                                                                                Navigator.pop(alertDialogContext),
-                                                                        child: Text(
-                                                                            'Ok'),
-                                                                      ),
-                                                                    ],
-                                                                  ),
+                                                                return AlertDialog(
+                                                                  title: Text(
+                                                                      'Atenção!'),
+                                                                  content: Text(
+                                                                      'Clique em Adicionar para liberar esse  cupom'),
+                                                                  actions: [
+                                                                    TextButton(
+                                                                      onPressed:
+                                                                          () =>
+                                                                              Navigator.pop(alertDialogContext),
+                                                                      child: Text(
+                                                                          'Ok'),
+                                                                    ),
+                                                                  ],
                                                                 );
                                                               },
                                                             );
@@ -1525,22 +1515,20 @@ class _CpAfiliadoCuponsWidgetState extends State<CpAfiliadoCuponsWidget>
                                                         context: context,
                                                         builder:
                                                             (alertDialogContext) {
-                                                          return WebViewAware(
-                                                            child: AlertDialog(
-                                                              title: Text(
-                                                                  'Atenção!'),
-                                                              content: Text(
-                                                                  'O username foi alterado, esse cupom não existe mais.'),
-                                                              actions: [
-                                                                TextButton(
-                                                                  onPressed: () =>
-                                                                      Navigator.pop(
-                                                                          alertDialogContext),
-                                                                  child: Text(
-                                                                      'Ok'),
-                                                                ),
-                                                              ],
-                                                            ),
+                                                          return AlertDialog(
+                                                            title: Text(
+                                                                'Atenção!'),
+                                                            content: Text(
+                                                                'O username foi alterado, esse cupom não existe mais.'),
+                                                            actions: [
+                                                              TextButton(
+                                                                onPressed: () =>
+                                                                    Navigator.pop(
+                                                                        alertDialogContext),
+                                                                child:
+                                                                    Text('Ok'),
+                                                              ),
+                                                            ],
                                                           );
                                                         },
                                                       );
@@ -1553,22 +1541,20 @@ class _CpAfiliadoCuponsWidgetState extends State<CpAfiliadoCuponsWidget>
                                                         context: context,
                                                         builder:
                                                             (alertDialogContext) {
-                                                          return WebViewAware(
-                                                            child: AlertDialog(
-                                                              title: Text(
-                                                                  'Atenção!'),
-                                                              content: Text(
-                                                                  'Cupom inativo não pode ser compartilhado.'),
-                                                              actions: [
-                                                                TextButton(
-                                                                  onPressed: () =>
-                                                                      Navigator.pop(
-                                                                          alertDialogContext),
-                                                                  child: Text(
-                                                                      'Ok'),
-                                                                ),
-                                                              ],
-                                                            ),
+                                                          return AlertDialog(
+                                                            title: Text(
+                                                                'Atenção!'),
+                                                            content: Text(
+                                                                'Cupom inativo não pode ser compartilhado.'),
+                                                            actions: [
+                                                              TextButton(
+                                                                onPressed: () =>
+                                                                    Navigator.pop(
+                                                                        alertDialogContext),
+                                                                child:
+                                                                    Text('Ok'),
+                                                              ),
+                                                            ],
                                                           );
                                                         },
                                                       );
@@ -1613,22 +1599,20 @@ class _CpAfiliadoCuponsWidgetState extends State<CpAfiliadoCuponsWidget>
                                                         context: context,
                                                         builder:
                                                             (alertDialogContext) {
-                                                          return WebViewAware(
-                                                            child: AlertDialog(
-                                                              title: Text(
-                                                                  'Atenção!'),
-                                                              content: Text(
-                                                                  'Clique em Adicionar para liberar esse  cupom'),
-                                                              actions: [
-                                                                TextButton(
-                                                                  onPressed: () =>
-                                                                      Navigator.pop(
-                                                                          alertDialogContext),
-                                                                  child: Text(
-                                                                      'Ok'),
-                                                                ),
-                                                              ],
-                                                            ),
+                                                          return AlertDialog(
+                                                            title: Text(
+                                                                'Atenção!'),
+                                                            content: Text(
+                                                                'Clique em Adicionar para liberar esse  cupom'),
+                                                            actions: [
+                                                              TextButton(
+                                                                onPressed: () =>
+                                                                    Navigator.pop(
+                                                                        alertDialogContext),
+                                                                child:
+                                                                    Text('Ok'),
+                                                              ),
+                                                            ],
                                                           );
                                                         },
                                                       );
@@ -1664,30 +1648,27 @@ class _CpAfiliadoCuponsWidgetState extends State<CpAfiliadoCuponsWidget>
                                                                     context,
                                                                 builder:
                                                                     (alertDialogContext) {
-                                                                  return WebViewAware(
-                                                                    child:
-                                                                        AlertDialog(
-                                                                      title: Text(
-                                                                          'Atenção!'),
-                                                                      content: Text(
-                                                                          'Deseja adicionar o cupom ${'${functions.fcConverterStringMaiusculo(FFAppState().varTblAfiliado.username)}${listViewCuponsViewTblAfiliadosCuponsRow.nomeCupomPadrao}'}?'),
-                                                                      actions: [
-                                                                        TextButton(
-                                                                          onPressed: () => Navigator.pop(
-                                                                              alertDialogContext,
-                                                                              false),
-                                                                          child:
-                                                                              Text('Não'),
-                                                                        ),
-                                                                        TextButton(
-                                                                          onPressed: () => Navigator.pop(
-                                                                              alertDialogContext,
-                                                                              true),
-                                                                          child:
-                                                                              Text('Sim'),
-                                                                        ),
-                                                                      ],
-                                                                    ),
+                                                                  return AlertDialog(
+                                                                    title: Text(
+                                                                        'Atenção!'),
+                                                                    content: Text(
+                                                                        'Deseja adicionar o cupom ${'${functions.fcConverterStringMaiusculo(FFAppState().varTblAfiliado.username)}${listViewCuponsViewTblAfiliadosCuponsRow.nomeCupomPadrao}'}?'),
+                                                                    actions: [
+                                                                      TextButton(
+                                                                        onPressed: () => Navigator.pop(
+                                                                            alertDialogContext,
+                                                                            false),
+                                                                        child: Text(
+                                                                            'Não'),
+                                                                      ),
+                                                                      TextButton(
+                                                                        onPressed: () => Navigator.pop(
+                                                                            alertDialogContext,
+                                                                            true),
+                                                                        child: Text(
+                                                                            'Sim'),
+                                                                      ),
+                                                                    ],
                                                                   );
                                                                 },
                                                               ) ??
@@ -1831,30 +1812,27 @@ class _CpAfiliadoCuponsWidgetState extends State<CpAfiliadoCuponsWidget>
                                                                     context,
                                                                 builder:
                                                                     (alertDialogContext) {
-                                                                  return WebViewAware(
-                                                                    child:
-                                                                        AlertDialog(
-                                                                      title: Text(
-                                                                          'Atenção!'),
-                                                                      content: Text(
-                                                                          'Deseja inativar o cupom  ${'${functions.fcConverterStringMaiusculo(FFAppState().varTblAfiliado.username)}${listViewCuponsViewTblAfiliadosCuponsRow.nomeCupom}'}'),
-                                                                      actions: [
-                                                                        TextButton(
-                                                                          onPressed: () => Navigator.pop(
-                                                                              alertDialogContext,
-                                                                              false),
-                                                                          child:
-                                                                              Text('Não'),
-                                                                        ),
-                                                                        TextButton(
-                                                                          onPressed: () => Navigator.pop(
-                                                                              alertDialogContext,
-                                                                              true),
-                                                                          child:
-                                                                              Text('Sim'),
-                                                                        ),
-                                                                      ],
-                                                                    ),
+                                                                  return AlertDialog(
+                                                                    title: Text(
+                                                                        'Atenção!'),
+                                                                    content: Text(
+                                                                        'Deseja inativar o cupom  ${'${functions.fcConverterStringMaiusculo(FFAppState().varTblAfiliado.username)}${listViewCuponsViewTblAfiliadosCuponsRow.nomeCupom}'}'),
+                                                                    actions: [
+                                                                      TextButton(
+                                                                        onPressed: () => Navigator.pop(
+                                                                            alertDialogContext,
+                                                                            false),
+                                                                        child: Text(
+                                                                            'Não'),
+                                                                      ),
+                                                                      TextButton(
+                                                                        onPressed: () => Navigator.pop(
+                                                                            alertDialogContext,
+                                                                            true),
+                                                                        child: Text(
+                                                                            'Sim'),
+                                                                      ),
+                                                                    ],
                                                                   );
                                                                 },
                                                               ) ??
@@ -1988,30 +1966,27 @@ class _CpAfiliadoCuponsWidgetState extends State<CpAfiliadoCuponsWidget>
                                                                     context,
                                                                 builder:
                                                                     (alertDialogContext) {
-                                                                  return WebViewAware(
-                                                                    child:
-                                                                        AlertDialog(
-                                                                      title: Text(
-                                                                          'Atenção!'),
-                                                                      content: Text(
-                                                                          'Deseja Ativar o cupom  ${'${functions.fcConverterStringMaiusculo(FFAppState().varTblAfiliado.username)}${listViewCuponsViewTblAfiliadosCuponsRow.nomeCupom}'}'),
-                                                                      actions: [
-                                                                        TextButton(
-                                                                          onPressed: () => Navigator.pop(
-                                                                              alertDialogContext,
-                                                                              false),
-                                                                          child:
-                                                                              Text('Não'),
-                                                                        ),
-                                                                        TextButton(
-                                                                          onPressed: () => Navigator.pop(
-                                                                              alertDialogContext,
-                                                                              true),
-                                                                          child:
-                                                                              Text('Sim'),
-                                                                        ),
-                                                                      ],
-                                                                    ),
+                                                                  return AlertDialog(
+                                                                    title: Text(
+                                                                        'Atenção!'),
+                                                                    content: Text(
+                                                                        'Deseja Ativar o cupom  ${'${functions.fcConverterStringMaiusculo(FFAppState().varTblAfiliado.username)}${listViewCuponsViewTblAfiliadosCuponsRow.nomeCupom}'}'),
+                                                                    actions: [
+                                                                      TextButton(
+                                                                        onPressed: () => Navigator.pop(
+                                                                            alertDialogContext,
+                                                                            false),
+                                                                        child: Text(
+                                                                            'Não'),
+                                                                      ),
+                                                                      TextButton(
+                                                                        onPressed: () => Navigator.pop(
+                                                                            alertDialogContext,
+                                                                            true),
+                                                                        child: Text(
+                                                                            'Sim'),
+                                                                      ),
+                                                                    ],
                                                                   );
                                                                 },
                                                               ) ??
@@ -2188,24 +2163,21 @@ class _CpAfiliadoCuponsWidgetState extends State<CpAfiliadoCuponsWidget>
                                                                           context,
                                                                       builder:
                                                                           (alertDialogContext) {
-                                                                        return WebViewAware(
-                                                                          child:
-                                                                              AlertDialog(
-                                                                            title:
-                                                                                Text('Atenção!'),
-                                                                            content:
-                                                                                Text('Deseja inativar o cupom  ${'${functions.fcConverterStringMaiusculo(FFAppState().varTblAfiliado.username)}${listViewCuponsViewTblAfiliadosCuponsRow.nomeCupom}'}?'),
-                                                                            actions: [
-                                                                              TextButton(
-                                                                                onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                child: Text('Não'),
-                                                                              ),
-                                                                              TextButton(
-                                                                                onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                child: Text('Sim'),
-                                                                              ),
-                                                                            ],
-                                                                          ),
+                                                                        return AlertDialog(
+                                                                          title:
+                                                                              Text('Atenção!'),
+                                                                          content:
+                                                                              Text('Deseja inativar o cupom  ${'${functions.fcConverterStringMaiusculo(FFAppState().varTblAfiliado.username)}${listViewCuponsViewTblAfiliadosCuponsRow.nomeCupom}'}?'),
+                                                                          actions: [
+                                                                            TextButton(
+                                                                              onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                              child: Text('Não'),
+                                                                            ),
+                                                                            TextButton(
+                                                                              onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                              child: Text('Sim'),
+                                                                            ),
+                                                                          ],
                                                                         );
                                                                       },
                                                                     ) ??
@@ -2264,24 +2236,21 @@ class _CpAfiliadoCuponsWidgetState extends State<CpAfiliadoCuponsWidget>
                                                                           context,
                                                                       builder:
                                                                           (alertDialogContext) {
-                                                                        return WebViewAware(
-                                                                          child:
-                                                                              AlertDialog(
-                                                                            title:
-                                                                                Text('Atenção!'),
-                                                                            content:
-                                                                                Text('Deseja Ativar o cupom  ${'${functions.fcConverterStringMaiusculo(FFAppState().varTblAfiliado.username)}${listViewCuponsViewTblAfiliadosCuponsRow.nomeCupom}'}?'),
-                                                                            actions: [
-                                                                              TextButton(
-                                                                                onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                child: Text('Não'),
-                                                                              ),
-                                                                              TextButton(
-                                                                                onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                child: Text('Sim'),
-                                                                              ),
-                                                                            ],
-                                                                          ),
+                                                                        return AlertDialog(
+                                                                          title:
+                                                                              Text('Atenção!'),
+                                                                          content:
+                                                                              Text('Deseja Ativar o cupom  ${'${functions.fcConverterStringMaiusculo(FFAppState().varTblAfiliado.username)}${listViewCuponsViewTblAfiliadosCuponsRow.nomeCupom}'}?'),
+                                                                          actions: [
+                                                                            TextButton(
+                                                                              onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                              child: Text('Não'),
+                                                                            ),
+                                                                            TextButton(
+                                                                              onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                              child: Text('Sim'),
+                                                                            ),
+                                                                          ],
                                                                         );
                                                                       },
                                                                     ) ??

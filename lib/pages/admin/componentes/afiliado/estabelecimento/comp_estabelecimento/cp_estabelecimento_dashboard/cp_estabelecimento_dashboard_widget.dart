@@ -26,7 +26,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 import 'cp_estabelecimento_dashboard_model.dart';
 export 'cp_estabelecimento_dashboard_model.dart';
 
@@ -574,16 +573,14 @@ class _CpEstabelecimentoDashboardWidgetState
                                                                 .resolve(
                                                                     Directionality.of(
                                                                         context)),
-                                                        child: WebViewAware(
-                                                          child: CpFotoWidget(
-                                                            paramFoto:
-                                                                valueOrDefault<
-                                                                    String>(
-                                                              FFAppState()
-                                                                  .VarTblEstabelecimentoLogado
-                                                                  .fotoPerfil,
-                                                              'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/agendador-de-beleza-qia8mb/assets/lp37pdsm6md0/sem-imagem.jpg',
-                                                            ),
+                                                        child: CpFotoWidget(
+                                                          paramFoto:
+                                                              valueOrDefault<
+                                                                  String>(
+                                                            FFAppState()
+                                                                .VarTblEstabelecimentoLogado
+                                                                .fotoPerfil,
+                                                            'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/agendador-de-beleza-qia8mb/assets/lp37pdsm6md0/sem-imagem.jpg',
                                                           ),
                                                         ),
                                                       );
@@ -594,21 +591,18 @@ class _CpEstabelecimentoDashboardWidgetState
                                                     context: context,
                                                     builder:
                                                         (alertDialogContext) {
-                                                      return WebViewAware(
-                                                        child: AlertDialog(
-                                                          title:
-                                                              Text('Atenção!'),
-                                                          content:
-                                                              Text('Sem Foto'),
-                                                          actions: [
-                                                            TextButton(
-                                                              onPressed: () =>
-                                                                  Navigator.pop(
-                                                                      alertDialogContext),
-                                                              child: Text('Ok'),
-                                                            ),
-                                                          ],
-                                                        ),
+                                                      return AlertDialog(
+                                                        title: Text('Atenção!'),
+                                                        content:
+                                                            Text('Sem Foto'),
+                                                        actions: [
+                                                          TextButton(
+                                                            onPressed: () =>
+                                                                Navigator.pop(
+                                                                    alertDialogContext),
+                                                            child: Text('Ok'),
+                                                          ),
+                                                        ],
                                                       );
                                                     },
                                                   );
@@ -6245,10 +6239,8 @@ class _CpEstabelecimentoDashboardWidgetState
                                                                                   insetPadding: EdgeInsets.zero,
                                                                                   backgroundColor: Colors.transparent,
                                                                                   alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-                                                                                  child: WebViewAware(
-                                                                                    child: CpFotoWidget(
-                                                                                      paramFoto: varTopClientesItem.foto!,
-                                                                                    ),
+                                                                                  child: CpFotoWidget(
+                                                                                    paramFoto: varTopClientesItem.foto!,
                                                                                   ),
                                                                                 );
                                                                               },
@@ -6257,17 +6249,15 @@ class _CpEstabelecimentoDashboardWidgetState
                                                                             await showDialog(
                                                                               context: context,
                                                                               builder: (alertDialogContext) {
-                                                                                return WebViewAware(
-                                                                                  child: AlertDialog(
-                                                                                    title: Text('Atenção!'),
-                                                                                    content: Text('Sem Foto'),
-                                                                                    actions: [
-                                                                                      TextButton(
-                                                                                        onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                        child: Text('Ok'),
-                                                                                      ),
-                                                                                    ],
-                                                                                  ),
+                                                                                return AlertDialog(
+                                                                                  title: Text('Atenção!'),
+                                                                                  content: Text('Sem Foto'),
+                                                                                  actions: [
+                                                                                    TextButton(
+                                                                                      onPressed: () => Navigator.pop(alertDialogContext),
+                                                                                      child: Text('Ok'),
+                                                                                    ),
+                                                                                  ],
                                                                                 );
                                                                               },
                                                                             );
@@ -6552,10 +6542,8 @@ class _CpEstabelecimentoDashboardWidgetState
                                                                                   insetPadding: EdgeInsets.zero,
                                                                                   backgroundColor: Colors.transparent,
                                                                                   alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-                                                                                  child: WebViewAware(
-                                                                                    child: CpFotoWidget(
-                                                                                      paramFoto: varTopServicosItem.foto!,
-                                                                                    ),
+                                                                                  child: CpFotoWidget(
+                                                                                    paramFoto: varTopServicosItem.foto!,
                                                                                   ),
                                                                                 );
                                                                               },
@@ -6564,17 +6552,15 @@ class _CpEstabelecimentoDashboardWidgetState
                                                                             await showDialog(
                                                                               context: context,
                                                                               builder: (alertDialogContext) {
-                                                                                return WebViewAware(
-                                                                                  child: AlertDialog(
-                                                                                    title: Text('Atenção!'),
-                                                                                    content: Text('Sem Foto'),
-                                                                                    actions: [
-                                                                                      TextButton(
-                                                                                        onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                        child: Text('Ok'),
-                                                                                      ),
-                                                                                    ],
-                                                                                  ),
+                                                                                return AlertDialog(
+                                                                                  title: Text('Atenção!'),
+                                                                                  content: Text('Sem Foto'),
+                                                                                  actions: [
+                                                                                    TextButton(
+                                                                                      onPressed: () => Navigator.pop(alertDialogContext),
+                                                                                      child: Text('Ok'),
+                                                                                    ),
+                                                                                  ],
                                                                                 );
                                                                               },
                                                                             );
@@ -6861,10 +6847,8 @@ class _CpEstabelecimentoDashboardWidgetState
                                                                                   insetPadding: EdgeInsets.zero,
                                                                                   backgroundColor: Colors.transparent,
                                                                                   alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-                                                                                  child: WebViewAware(
-                                                                                    child: CpFotoWidget(
-                                                                                      paramFoto: varTopProfissionjaisItem.foto!,
-                                                                                    ),
+                                                                                  child: CpFotoWidget(
+                                                                                    paramFoto: varTopProfissionjaisItem.foto!,
                                                                                   ),
                                                                                 );
                                                                               },
@@ -6873,17 +6857,15 @@ class _CpEstabelecimentoDashboardWidgetState
                                                                             await showDialog(
                                                                               context: context,
                                                                               builder: (alertDialogContext) {
-                                                                                return WebViewAware(
-                                                                                  child: AlertDialog(
-                                                                                    title: Text('Atenção!'),
-                                                                                    content: Text('Sem Foto'),
-                                                                                    actions: [
-                                                                                      TextButton(
-                                                                                        onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                        child: Text('Ok'),
-                                                                                      ),
-                                                                                    ],
-                                                                                  ),
+                                                                                return AlertDialog(
+                                                                                  title: Text('Atenção!'),
+                                                                                  content: Text('Sem Foto'),
+                                                                                  actions: [
+                                                                                    TextButton(
+                                                                                      onPressed: () => Navigator.pop(alertDialogContext),
+                                                                                      child: Text('Ok'),
+                                                                                    ),
+                                                                                  ],
                                                                                 );
                                                                               },
                                                                             );
@@ -7180,10 +7162,8 @@ class _CpEstabelecimentoDashboardWidgetState
                                                                                 insetPadding: EdgeInsets.zero,
                                                                                 backgroundColor: Colors.transparent,
                                                                                 alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-                                                                                child: WebViewAware(
-                                                                                  child: CpFotoWidget(
-                                                                                    paramFoto: varTopClientesItem.foto!,
-                                                                                  ),
+                                                                                child: CpFotoWidget(
+                                                                                  paramFoto: varTopClientesItem.foto!,
                                                                                 ),
                                                                               );
                                                                             },
@@ -7194,17 +7174,15 @@ class _CpEstabelecimentoDashboardWidgetState
                                                                                 context,
                                                                             builder:
                                                                                 (alertDialogContext) {
-                                                                              return WebViewAware(
-                                                                                child: AlertDialog(
-                                                                                  title: Text('Atenção!'),
-                                                                                  content: Text('Sem Foto'),
-                                                                                  actions: [
-                                                                                    TextButton(
-                                                                                      onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                      child: Text('Ok'),
-                                                                                    ),
-                                                                                  ],
-                                                                                ),
+                                                                              return AlertDialog(
+                                                                                title: Text('Atenção!'),
+                                                                                content: Text('Sem Foto'),
+                                                                                actions: [
+                                                                                  TextButton(
+                                                                                    onPressed: () => Navigator.pop(alertDialogContext),
+                                                                                    child: Text('Ok'),
+                                                                                  ),
+                                                                                ],
                                                                               );
                                                                             },
                                                                           );
@@ -7493,10 +7471,8 @@ class _CpEstabelecimentoDashboardWidgetState
                                                                                 insetPadding: EdgeInsets.zero,
                                                                                 backgroundColor: Colors.transparent,
                                                                                 alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-                                                                                child: WebViewAware(
-                                                                                  child: CpFotoWidget(
-                                                                                    paramFoto: varTopServicosItem.foto!,
-                                                                                  ),
+                                                                                child: CpFotoWidget(
+                                                                                  paramFoto: varTopServicosItem.foto!,
                                                                                 ),
                                                                               );
                                                                             },
@@ -7507,17 +7483,15 @@ class _CpEstabelecimentoDashboardWidgetState
                                                                                 context,
                                                                             builder:
                                                                                 (alertDialogContext) {
-                                                                              return WebViewAware(
-                                                                                child: AlertDialog(
-                                                                                  title: Text('Atenção!'),
-                                                                                  content: Text('Sem Foto'),
-                                                                                  actions: [
-                                                                                    TextButton(
-                                                                                      onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                      child: Text('Ok'),
-                                                                                    ),
-                                                                                  ],
-                                                                                ),
+                                                                              return AlertDialog(
+                                                                                title: Text('Atenção!'),
+                                                                                content: Text('Sem Foto'),
+                                                                                actions: [
+                                                                                  TextButton(
+                                                                                    onPressed: () => Navigator.pop(alertDialogContext),
+                                                                                    child: Text('Ok'),
+                                                                                  ),
+                                                                                ],
                                                                               );
                                                                             },
                                                                           );
@@ -7808,10 +7782,8 @@ class _CpEstabelecimentoDashboardWidgetState
                                                                                 insetPadding: EdgeInsets.zero,
                                                                                 backgroundColor: Colors.transparent,
                                                                                 alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-                                                                                child: WebViewAware(
-                                                                                  child: CpFotoWidget(
-                                                                                    paramFoto: varTopProfissionjaisItem.foto!,
-                                                                                  ),
+                                                                                child: CpFotoWidget(
+                                                                                  paramFoto: varTopProfissionjaisItem.foto!,
                                                                                 ),
                                                                               );
                                                                             },
@@ -7822,17 +7794,15 @@ class _CpEstabelecimentoDashboardWidgetState
                                                                                 context,
                                                                             builder:
                                                                                 (alertDialogContext) {
-                                                                              return WebViewAware(
-                                                                                child: AlertDialog(
-                                                                                  title: Text('Atenção!'),
-                                                                                  content: Text('Sem Foto'),
-                                                                                  actions: [
-                                                                                    TextButton(
-                                                                                      onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                      child: Text('Ok'),
-                                                                                    ),
-                                                                                  ],
-                                                                                ),
+                                                                              return AlertDialog(
+                                                                                title: Text('Atenção!'),
+                                                                                content: Text('Sem Foto'),
+                                                                                actions: [
+                                                                                  TextButton(
+                                                                                    onPressed: () => Navigator.pop(alertDialogContext),
+                                                                                    child: Text('Ok'),
+                                                                                  ),
+                                                                                ],
                                                                               );
                                                                             },
                                                                           );
@@ -8619,14 +8589,11 @@ class _CpEstabelecimentoDashboardWidgetState
                                                                 .resolve(
                                                                     Directionality.of(
                                                                         context)),
-                                                        child: WebViewAware(
-                                                          child:
-                                                              CaAguardeWidget(
-                                                            paramMostrarAnimacao:
-                                                                false,
-                                                            paramFecharAoClicar:
-                                                                true,
-                                                          ),
+                                                        child: CaAguardeWidget(
+                                                          paramMostrarAnimacao:
+                                                              false,
+                                                          paramFecharAoClicar:
+                                                              true,
                                                         ),
                                                       );
                                                     },
@@ -8646,14 +8613,12 @@ class _CpEstabelecimentoDashboardWidgetState
                                                     useSafeArea: true,
                                                     context: context,
                                                     builder: (context) {
-                                                      return WebViewAware(
-                                                        child: Padding(
-                                                          padding: MediaQuery
-                                                              .viewInsetsOf(
-                                                                  context),
-                                                          child:
-                                                              CpAgendamentoConsultarWidget(),
-                                                        ),
+                                                      return Padding(
+                                                        padding: MediaQuery
+                                                            .viewInsetsOf(
+                                                                context),
+                                                        child:
+                                                            CpAgendamentoConsultarWidget(),
                                                       );
                                                     },
                                                   ).then((value) =>
@@ -9426,14 +9391,11 @@ class _CpEstabelecimentoDashboardWidgetState
                                                                       Directionality.of(
                                                                           context)),
                                                               child:
-                                                                  WebViewAware(
-                                                                child:
-                                                                    CaAguardeWidget(
-                                                                  paramMostrarAnimacao:
-                                                                      false,
-                                                                  paramFecharAoClicar:
-                                                                      true,
-                                                                ),
+                                                                  CaAguardeWidget(
+                                                                paramMostrarAnimacao:
+                                                                    false,
+                                                                paramFecharAoClicar:
+                                                                    true,
                                                               ),
                                                             );
                                                           },
@@ -9455,14 +9417,12 @@ class _CpEstabelecimentoDashboardWidgetState
                                                           useSafeArea: true,
                                                           context: context,
                                                           builder: (context) {
-                                                            return WebViewAware(
-                                                              child: Padding(
-                                                                padding: MediaQuery
-                                                                    .viewInsetsOf(
-                                                                        context),
-                                                                child:
-                                                                    CpAgendamentoConsultarWidget(),
-                                                              ),
+                                                            return Padding(
+                                                              padding: MediaQuery
+                                                                  .viewInsetsOf(
+                                                                      context),
+                                                              child:
+                                                                  CpAgendamentoConsultarWidget(),
                                                             );
                                                           },
                                                         ).then((value) =>
@@ -10733,14 +10693,11 @@ class _CpEstabelecimentoDashboardWidgetState
                                                                 .resolve(
                                                                     Directionality.of(
                                                                         context)),
-                                                        child: WebViewAware(
-                                                          child:
-                                                              CaAguardeWidget(
-                                                            paramMostrarAnimacao:
-                                                                false,
-                                                            paramFecharAoClicar:
-                                                                true,
-                                                          ),
+                                                        child: CaAguardeWidget(
+                                                          paramMostrarAnimacao:
+                                                              false,
+                                                          paramFecharAoClicar:
+                                                              true,
                                                         ),
                                                       );
                                                     },
@@ -10760,14 +10717,12 @@ class _CpEstabelecimentoDashboardWidgetState
                                                     useSafeArea: true,
                                                     context: context,
                                                     builder: (context) {
-                                                      return WebViewAware(
-                                                        child: Padding(
-                                                          padding: MediaQuery
-                                                              .viewInsetsOf(
-                                                                  context),
-                                                          child:
-                                                              CpAgendamentoConsultarWidget(),
-                                                        ),
+                                                      return Padding(
+                                                        padding: MediaQuery
+                                                            .viewInsetsOf(
+                                                                context),
+                                                        child:
+                                                            CpAgendamentoConsultarWidget(),
                                                       );
                                                     },
                                                   ).then((value) =>
@@ -11416,14 +11371,11 @@ class _CpEstabelecimentoDashboardWidgetState
                                                                       Directionality.of(
                                                                           context)),
                                                               child:
-                                                                  WebViewAware(
-                                                                child:
-                                                                    CaAguardeWidget(
-                                                                  paramMostrarAnimacao:
-                                                                      false,
-                                                                  paramFecharAoClicar:
-                                                                      true,
-                                                                ),
+                                                                  CaAguardeWidget(
+                                                                paramMostrarAnimacao:
+                                                                    false,
+                                                                paramFecharAoClicar:
+                                                                    true,
                                                               ),
                                                             );
                                                           },
@@ -11445,14 +11397,12 @@ class _CpEstabelecimentoDashboardWidgetState
                                                           useSafeArea: true,
                                                           context: context,
                                                           builder: (context) {
-                                                            return WebViewAware(
-                                                              child: Padding(
-                                                                padding: MediaQuery
-                                                                    .viewInsetsOf(
-                                                                        context),
-                                                                child:
-                                                                    CpAgendamentoConsultarWidget(),
-                                                              ),
+                                                            return Padding(
+                                                              padding: MediaQuery
+                                                                  .viewInsetsOf(
+                                                                      context),
+                                                              child:
+                                                                  CpAgendamentoConsultarWidget(),
                                                             );
                                                           },
                                                         ).then((value) =>
@@ -12387,18 +12337,16 @@ class _CpEstabelecimentoDashboardWidgetState
                                   await showDialog(
                                     context: context,
                                     builder: (alertDialogContext) {
-                                      return WebViewAware(
-                                        child: AlertDialog(
-                                          title: Text('Permissão'),
-                                          content: Text('null'),
-                                          actions: [
-                                            TextButton(
-                                              onPressed: () => Navigator.pop(
-                                                  alertDialogContext),
-                                              child: Text('Ok'),
-                                            ),
-                                          ],
-                                        ),
+                                      return AlertDialog(
+                                        title: Text('Permissão'),
+                                        content: Text('null'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(
+                                                alertDialogContext),
+                                            child: Text('Ok'),
+                                          ),
+                                        ],
                                       );
                                     },
                                   );
@@ -12408,19 +12356,17 @@ class _CpEstabelecimentoDashboardWidgetState
                                 await showDialog(
                                   context: context,
                                   builder: (alertDialogContext) {
-                                    return WebViewAware(
-                                      child: AlertDialog(
-                                        title: Text('Pemissão Notificação'),
-                                        content: Text(_model.resultVerifPermi!
-                                            .toString()),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () => Navigator.pop(
-                                                alertDialogContext),
-                                            child: Text('Ok'),
-                                          ),
-                                        ],
-                                      ),
+                                    return AlertDialog(
+                                      title: Text('Pemissão Notificação'),
+                                      content: Text(
+                                          _model.resultVerifPermi!.toString()),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(alertDialogContext),
+                                          child: Text('Ok'),
+                                        ),
+                                      ],
                                     );
                                   },
                                 );
@@ -12465,21 +12411,19 @@ class _CpEstabelecimentoDashboardWidgetState
                                 await showDialog(
                                   context: context,
                                   builder: (alertDialogContext) {
-                                    return WebViewAware(
-                                      child: AlertDialog(
-                                        title: Text('ID'),
-                                        content: Text(valueOrDefault<String>(
-                                          _model.resultGetIDOneSignalx,
-                                          '...',
-                                        )),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () => Navigator.pop(
-                                                alertDialogContext),
-                                            child: Text('Ok'),
-                                          ),
-                                        ],
-                                      ),
+                                    return AlertDialog(
+                                      title: Text('ID'),
+                                      content: Text(valueOrDefault<String>(
+                                        _model.resultGetIDOneSignalx,
+                                        '...',
+                                      )),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(alertDialogContext),
+                                          child: Text('Ok'),
+                                        ),
+                                      ],
                                     );
                                   },
                                 );
@@ -12526,19 +12470,17 @@ class _CpEstabelecimentoDashboardWidgetState
                                 await showDialog(
                                   context: context,
                                   builder: (alertDialogContext) {
-                                    return WebViewAware(
-                                      child: AlertDialog(
-                                        title: Text('Inicialização OneSignal'),
-                                        content: Text(_model.acResultIniOneSig!
-                                            .toString()),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () => Navigator.pop(
-                                                alertDialogContext),
-                                            child: Text('Ok'),
-                                          ),
-                                        ],
-                                      ),
+                                    return AlertDialog(
+                                      title: Text('Inicialização OneSignal'),
+                                      content: Text(
+                                          _model.acResultIniOneSig!.toString()),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(alertDialogContext),
+                                          child: Text('Ok'),
+                                        ),
+                                      ],
                                     );
                                   },
                                 );

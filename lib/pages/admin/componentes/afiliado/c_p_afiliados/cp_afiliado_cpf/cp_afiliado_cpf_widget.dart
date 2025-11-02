@@ -16,7 +16,6 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 import 'cp_afiliado_cpf_model.dart';
 export 'cp_afiliado_cpf_model.dart';
 
@@ -262,11 +261,9 @@ class _CpAfiliadoCpfWidgetState extends State<CpAfiliadoCpfWidget>
                                                     0.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
-                                            child: WebViewAware(
-                                              child: CaAguardeWidget(
-                                                paramMostrarAnimacao: true,
-                                                paramFecharAoClicar: false,
-                                              ),
+                                            child: CaAguardeWidget(
+                                              paramMostrarAnimacao: true,
+                                              paramFecharAoClicar: false,
                                             ),
                                           );
                                         },
@@ -549,13 +546,9 @@ class _CpAfiliadoCpfWidgetState extends State<CpAfiliadoCpfWidget>
                                                           .resolve(
                                                               Directionality.of(
                                                                   context)),
-                                                  child: WebViewAware(
-                                                    child: CaAguardeWidget(
-                                                      paramMostrarAnimacao:
-                                                          true,
-                                                      paramFecharAoClicar:
-                                                          false,
-                                                    ),
+                                                  child: CaAguardeWidget(
+                                                    paramMostrarAnimacao: true,
+                                                    paramFecharAoClicar: false,
                                                   ),
                                                 );
                                               },
@@ -942,18 +935,16 @@ class _CpAfiliadoCpfWidgetState extends State<CpAfiliadoCpfWidget>
                               await showDialog(
                                 context: context,
                                 builder: (alertDialogContext) {
-                                  return WebViewAware(
-                                    child: AlertDialog(
-                                      title: Text('Atenção!'),
-                                      content: Text('Informe o CPF'),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () =>
-                                              Navigator.pop(alertDialogContext),
-                                          child: Text('Ok'),
-                                        ),
-                                      ],
-                                    ),
+                                  return AlertDialog(
+                                    title: Text('Atenção!'),
+                                    content: Text('Informe o CPF'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () =>
+                                            Navigator.pop(alertDialogContext),
+                                        child: Text('Ok'),
+                                      ),
+                                    ],
                                   );
                                 },
                               );
@@ -976,18 +967,16 @@ class _CpAfiliadoCpfWidgetState extends State<CpAfiliadoCpfWidget>
                               await showDialog(
                                 context: context,
                                 builder: (alertDialogContext) {
-                                  return WebViewAware(
-                                    child: AlertDialog(
-                                      title: Text('Atenção!'),
-                                      content: Text('CPF Inválido, verifique!'),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () =>
-                                              Navigator.pop(alertDialogContext),
-                                          child: Text('Ok'),
-                                        ),
-                                      ],
-                                    ),
+                                  return AlertDialog(
+                                    title: Text('Atenção!'),
+                                    content: Text('CPF Inválido, verifique!'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () =>
+                                            Navigator.pop(alertDialogContext),
+                                        child: Text('Ok'),
+                                      ),
+                                    ],
                                   );
                                 },
                               );
@@ -1009,19 +998,17 @@ class _CpAfiliadoCpfWidgetState extends State<CpAfiliadoCpfWidget>
                               await showDialog(
                                 context: context,
                                 builder: (alertDialogContext) {
-                                  return WebViewAware(
-                                    child: AlertDialog(
-                                      title: Text('Atenção!'),
-                                      content: Text(
-                                          'O CPF do afiliado deve ser igual ao do cadastro do estabelecimento'),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () =>
-                                              Navigator.pop(alertDialogContext),
-                                          child: Text('Ok'),
-                                        ),
-                                      ],
-                                    ),
+                                  return AlertDialog(
+                                    title: Text('Atenção!'),
+                                    content: Text(
+                                        'O CPF do afiliado deve ser igual ao do cadastro do estabelecimento'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () =>
+                                            Navigator.pop(alertDialogContext),
+                                        child: Text('Ok'),
+                                      ),
+                                    ],
                                   );
                                 },
                               );
@@ -1034,19 +1021,17 @@ class _CpAfiliadoCpfWidgetState extends State<CpAfiliadoCpfWidget>
                               await showDialog(
                                 context: context,
                                 builder: (alertDialogContext) {
-                                  return WebViewAware(
-                                    child: AlertDialog(
-                                      title: Text('Atenção!'),
-                                      content: Text(
-                                          'Informe sua data de nascimento!'),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () =>
-                                              Navigator.pop(alertDialogContext),
-                                          child: Text('Ok'),
-                                        ),
-                                      ],
-                                    ),
+                                  return AlertDialog(
+                                    title: Text('Atenção!'),
+                                    content:
+                                        Text('Informe sua data de nascimento!'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () =>
+                                            Navigator.pop(alertDialogContext),
+                                        child: Text('Ok'),
+                                      ),
+                                    ],
                                   );
                                 },
                               );
@@ -1066,19 +1051,17 @@ class _CpAfiliadoCpfWidgetState extends State<CpAfiliadoCpfWidget>
                               await showDialog(
                                 context: context,
                                 builder: (alertDialogContext) {
-                                  return WebViewAware(
-                                    child: AlertDialog(
-                                      title: Text('Atenção!'),
-                                      content: Text(
-                                          'Para ser afiliado você deve ser maior de 18 anos!'),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () =>
-                                              Navigator.pop(alertDialogContext),
-                                          child: Text('Ok'),
-                                        ),
-                                      ],
-                                    ),
+                                  return AlertDialog(
+                                    title: Text('Atenção!'),
+                                    content: Text(
+                                        'Para ser afiliado você deve ser maior de 18 anos!'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () =>
+                                            Navigator.pop(alertDialogContext),
+                                        child: Text('Ok'),
+                                      ),
+                                    ],
                                   );
                                 },
                               );
@@ -1113,28 +1096,26 @@ class _CpAfiliadoCpfWidgetState extends State<CpAfiliadoCpfWidget>
                                     await showDialog<bool>(
                                           context: context,
                                           builder: (alertDialogContext) {
-                                            return WebViewAware(
-                                              child: AlertDialog(
-                                                title: Text('Atenção!'),
-                                                content: Text(
-                                                    'Os dados abaixo estão corretos?${'\n\n'}Nome: ${_model.textFieldNomeAfiliadoTextController.text}${'\n'}CPF:${_model.textFieldCPFTextController.text}${'\n'}Data Nascimento: ${_model.textFieldDtNascimentoTextController.text}'),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () =>
-                                                        Navigator.pop(
-                                                            alertDialogContext,
-                                                            false),
-                                                    child: Text('Não'),
-                                                  ),
-                                                  TextButton(
-                                                    onPressed: () =>
-                                                        Navigator.pop(
-                                                            alertDialogContext,
-                                                            true),
-                                                    child: Text('Sim'),
-                                                  ),
-                                                ],
-                                              ),
+                                            return AlertDialog(
+                                              title: Text('Atenção!'),
+                                              content: Text(
+                                                  'Os dados abaixo estão corretos?${'\n\n'}Nome: ${_model.textFieldNomeAfiliadoTextController.text}${'\n'}CPF:${_model.textFieldCPFTextController.text}${'\n'}Data Nascimento: ${_model.textFieldDtNascimentoTextController.text}'),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext,
+                                                          false),
+                                                  child: Text('Não'),
+                                                ),
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext,
+                                                          true),
+                                                  child: Text('Sim'),
+                                                ),
+                                              ],
                                             );
                                           },
                                         ) ??
@@ -1198,18 +1179,16 @@ class _CpAfiliadoCpfWidgetState extends State<CpAfiliadoCpfWidget>
                                 await showDialog(
                                   context: context,
                                   builder: (alertDialogContext) {
-                                    return WebViewAware(
-                                      child: AlertDialog(
-                                        title: Text('Atenção!'),
-                                        content: Text('CPF não localizado...'),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () => Navigator.pop(
-                                                alertDialogContext),
-                                            child: Text('Ok'),
-                                          ),
-                                        ],
-                                      ),
+                                    return AlertDialog(
+                                      title: Text('Atenção!'),
+                                      content: Text('CPF não localizado...'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(alertDialogContext),
+                                          child: Text('Ok'),
+                                        ),
+                                      ],
                                     );
                                   },
                                 );
@@ -1228,19 +1207,17 @@ class _CpAfiliadoCpfWidgetState extends State<CpAfiliadoCpfWidget>
                               await showDialog(
                                 context: context,
                                 builder: (alertDialogContext) {
-                                  return WebViewAware(
-                                    child: AlertDialog(
-                                      title: Text('Atenção!'),
-                                      content: Text(
-                                          'Data de nascimento Inválida, verifique!'),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () =>
-                                              Navigator.pop(alertDialogContext),
-                                          child: Text('Ok'),
-                                        ),
-                                      ],
-                                    ),
+                                  return AlertDialog(
+                                    title: Text('Atenção!'),
+                                    content: Text(
+                                        'Data de nascimento Inválida, verifique!'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () =>
+                                            Navigator.pop(alertDialogContext),
+                                        child: Text('Ok'),
+                                      ),
+                                    ],
                                   );
                                 },
                               );

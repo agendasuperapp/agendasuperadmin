@@ -19,7 +19,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 import 'cp_lista_estabelecimentos_admin2_model.dart';
 export 'cp_lista_estabelecimentos_admin2_model.dart';
 
@@ -2923,20 +2922,17 @@ class _CpListaEstabelecimentosAdmin2WidgetState
                                                                         Directionality.of(
                                                                             context)),
                                                                 child:
-                                                                    WebViewAware(
-                                                                  child:
-                                                                      CpListaEventosStripeWidget(
-                                                                    paramAbrirCustomDialog:
-                                                                        true,
-                                                                    paramIDEstabelecimento:
-                                                                        getJsonField(
-                                                                      varResultApiviewTblEstabelecimentosAdminItem,
-                                                                      r'''$.id''',
-                                                                    ),
-                                                                    paramContaProducao:
-                                                                        _model
-                                                                            .switchContaProducaoValue!,
+                                                                    CpListaEventosStripeWidget(
+                                                                  paramAbrirCustomDialog:
+                                                                      true,
+                                                                  paramIDEstabelecimento:
+                                                                      getJsonField(
+                                                                    varResultApiviewTblEstabelecimentosAdminItem,
+                                                                    r'''$.id''',
                                                                   ),
+                                                                  paramContaProducao:
+                                                                      _model
+                                                                          .switchContaProducaoValue!,
                                                                 ),
                                                               );
                                                             },
@@ -3051,11 +3047,9 @@ class _CpListaEstabelecimentosAdmin2WidgetState
                                                               .resolve(
                                                                   Directionality.of(
                                                                       context)),
-                                                          child: WebViewAware(
-                                                            child:
-                                                                CpProfissionaisWidget(
-                                                              paramAdmin: true,
-                                                            ),
+                                                          child:
+                                                              CpProfissionaisWidget(
+                                                            paramAdmin: true,
                                                           ),
                                                         );
                                                       },
@@ -3182,11 +3176,9 @@ class _CpListaEstabelecimentosAdmin2WidgetState
                                                               .resolve(
                                                                   Directionality.of(
                                                                       context)),
-                                                          child: WebViewAware(
-                                                            child:
-                                                                CpServicosWidget(
-                                                              paramAdmin: true,
-                                                            ),
+                                                          child:
+                                                              CpServicosWidget(
+                                                            paramAdmin: true,
                                                           ),
                                                         );
                                                       },
@@ -3313,11 +3305,9 @@ class _CpListaEstabelecimentosAdmin2WidgetState
                                                               .resolve(
                                                                   Directionality.of(
                                                                       context)),
-                                                          child: WebViewAware(
-                                                            child:
-                                                                CpAgendamentosViewAdminWidget(
-                                                              paramAdmin: true,
-                                                            ),
+                                                          child:
+                                                              CpAgendamentosViewAdminWidget(
+                                                            paramAdmin: true,
                                                           ),
                                                         );
                                                       },
@@ -3483,27 +3473,28 @@ class _CpListaEstabelecimentosAdmin2WidgetState
                                                                         context,
                                                                     builder:
                                                                         (alertDialogContext) {
-                                                                      return WebViewAware(
-                                                                        child:
-                                                                            AlertDialog(
-                                                                          title:
-                                                                              Text('Atenção!'),
-                                                                          content:
-                                                                              Text('Deseja Desbloquear/Ativar o estabelecimento ${getJsonField(
-                                                                            varResultApiviewTblEstabelecimentosAdminItem,
-                                                                            r'''$.nome''',
-                                                                          ).toString()}?'),
-                                                                          actions: [
-                                                                            TextButton(
-                                                                              onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                              child: Text('Não'),
-                                                                            ),
-                                                                            TextButton(
-                                                                              onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                              child: Text('Sim'),
-                                                                            ),
-                                                                          ],
-                                                                        ),
+                                                                      return AlertDialog(
+                                                                        title: Text(
+                                                                            'Atenção!'),
+                                                                        content:
+                                                                            Text('Deseja Desbloquear/Ativar o estabelecimento ${getJsonField(
+                                                                          varResultApiviewTblEstabelecimentosAdminItem,
+                                                                          r'''$.nome''',
+                                                                        ).toString()}?'),
+                                                                        actions: [
+                                                                          TextButton(
+                                                                            onPressed: () =>
+                                                                                Navigator.pop(alertDialogContext, false),
+                                                                            child:
+                                                                                Text('Não'),
+                                                                          ),
+                                                                          TextButton(
+                                                                            onPressed: () =>
+                                                                                Navigator.pop(alertDialogContext, true),
+                                                                            child:
+                                                                                Text('Sim'),
+                                                                          ),
+                                                                        ],
                                                                       );
                                                                     },
                                                                   ) ??
@@ -3589,27 +3580,28 @@ class _CpListaEstabelecimentosAdmin2WidgetState
                                                                         context,
                                                                     builder:
                                                                         (alertDialogContext) {
-                                                                      return WebViewAware(
-                                                                        child:
-                                                                            AlertDialog(
-                                                                          title:
-                                                                              Text('Atenção!'),
-                                                                          content:
-                                                                              Text('Deseja Bloquear/Inativar o estabelecimento ${getJsonField(
-                                                                            varResultApiviewTblEstabelecimentosAdminItem,
-                                                                            r'''$.nome''',
-                                                                          ).toString()}?'),
-                                                                          actions: [
-                                                                            TextButton(
-                                                                              onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                              child: Text('Não'),
-                                                                            ),
-                                                                            TextButton(
-                                                                              onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                              child: Text('Sim'),
-                                                                            ),
-                                                                          ],
-                                                                        ),
+                                                                      return AlertDialog(
+                                                                        title: Text(
+                                                                            'Atenção!'),
+                                                                        content:
+                                                                            Text('Deseja Bloquear/Inativar o estabelecimento ${getJsonField(
+                                                                          varResultApiviewTblEstabelecimentosAdminItem,
+                                                                          r'''$.nome''',
+                                                                        ).toString()}?'),
+                                                                        actions: [
+                                                                          TextButton(
+                                                                            onPressed: () =>
+                                                                                Navigator.pop(alertDialogContext, false),
+                                                                            child:
+                                                                                Text('Não'),
+                                                                          ),
+                                                                          TextButton(
+                                                                            onPressed: () =>
+                                                                                Navigator.pop(alertDialogContext, true),
+                                                                            child:
+                                                                                Text('Sim'),
+                                                                          ),
+                                                                        ],
                                                                       );
                                                                     },
                                                                   ) ??
@@ -3728,16 +3720,14 @@ class _CpListaEstabelecimentosAdmin2WidgetState
                                                           useSafeArea: true,
                                                           context: context,
                                                           builder: (context) {
-                                                            return WebViewAware(
-                                                              child: Padding(
-                                                                padding: MediaQuery
-                                                                    .viewInsetsOf(
-                                                                        context),
-                                                                child:
-                                                                    CpEstabelecViewAdminWidget(
-                                                                  paramAdmin:
-                                                                      true,
-                                                                ),
+                                                            return Padding(
+                                                              padding: MediaQuery
+                                                                  .viewInsetsOf(
+                                                                      context),
+                                                              child:
+                                                                  CpEstabelecViewAdminWidget(
+                                                                paramAdmin:
+                                                                    true,
                                                               ),
                                                             );
                                                           },

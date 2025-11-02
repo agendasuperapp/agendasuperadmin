@@ -10,7 +10,6 @@ import '/flutter_flow/random_data_util.dart' as random_data;
 import 'cp_login_widget.dart' show CpLoginWidget;
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 
 class CpLoginModel extends FlutterFlowModel<CpLoginWidget> {
   ///  Local state fields for this component.
@@ -190,17 +189,15 @@ class CpLoginModel extends FlutterFlowModel<CpLoginWidget> {
         await showDialog(
           context: context,
           builder: (alertDialogContext) {
-            return WebViewAware(
-              child: AlertDialog(
-                title: Text('Atenção!'),
-                content: Text('Informe o telefone'),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(alertDialogContext),
-                    child: Text('Ok'),
-                  ),
-                ],
-              ),
+            return AlertDialog(
+              title: Text('Atenção!'),
+              content: Text('Informe o telefone'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(alertDialogContext),
+                  child: Text('Ok'),
+                ),
+              ],
             );
           },
         );
@@ -211,17 +208,15 @@ class CpLoginModel extends FlutterFlowModel<CpLoginWidget> {
         await showDialog(
           context: context,
           builder: (alertDialogContext) {
-            return WebViewAware(
-              child: AlertDialog(
-                title: Text('Atenção!'),
-                content: Text('Número de telefone inválido'),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(alertDialogContext),
-                    child: Text('Ok'),
-                  ),
-                ],
-              ),
+            return AlertDialog(
+              title: Text('Atenção!'),
+              content: Text('Número de telefone inválido'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(alertDialogContext),
+                  child: Text('Ok'),
+                ),
+              ],
             );
           },
         );
@@ -231,17 +226,15 @@ class CpLoginModel extends FlutterFlowModel<CpLoginWidget> {
         await showDialog(
           context: context,
           builder: (alertDialogContext) {
-            return WebViewAware(
-              child: AlertDialog(
-                title: Text('Atençção!'),
-                content: Text('Informe a senha'),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(alertDialogContext),
-                    child: Text('Ok'),
-                  ),
-                ],
-              ),
+            return AlertDialog(
+              title: Text('Atençção!'),
+              content: Text('Informe a senha'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(alertDialogContext),
+                  child: Text('Ok'),
+                ),
+              ],
             );
           },
         );
@@ -257,17 +250,15 @@ class CpLoginModel extends FlutterFlowModel<CpLoginWidget> {
         await showDialog(
           context: context,
           builder: (alertDialogContext) {
-            return WebViewAware(
-              child: AlertDialog(
-                title: Text('Atenção!'),
-                content: Text('Número de telefone não cadastrado.'),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(alertDialogContext),
-                    child: Text('Ok'),
-                  ),
-                ],
-              ),
+            return AlertDialog(
+              title: Text('Atenção!'),
+              content: Text('Número de telefone não cadastrado.'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(alertDialogContext),
+                  child: Text('Ok'),
+                ),
+              ],
             );
           },
         );
@@ -278,17 +269,15 @@ class CpLoginModel extends FlutterFlowModel<CpLoginWidget> {
         await showDialog(
           context: context,
           builder: (alertDialogContext) {
-            return WebViewAware(
-              child: AlertDialog(
-                title: Text('Atençção!'),
-                content: Text('Informe o E-mail'),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(alertDialogContext),
-                    child: Text('Ok'),
-                  ),
-                ],
-              ),
+            return AlertDialog(
+              title: Text('Atençção!'),
+              content: Text('Informe o E-mail'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(alertDialogContext),
+                  child: Text('Ok'),
+                ),
+              ],
             );
           },
         );
@@ -300,17 +289,15 @@ class CpLoginModel extends FlutterFlowModel<CpLoginWidget> {
         await showDialog(
           context: context,
           builder: (alertDialogContext) {
-            return WebViewAware(
-              child: AlertDialog(
-                title: Text('Atenção!'),
-                content: Text('E-mail inválido'),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(alertDialogContext),
-                    child: Text('Ok'),
-                  ),
-                ],
-              ),
+            return AlertDialog(
+              title: Text('Atenção!'),
+              content: Text('E-mail inválido'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(alertDialogContext),
+                  child: Text('Ok'),
+                ),
+              ],
             );
           },
         );
@@ -320,17 +307,15 @@ class CpLoginModel extends FlutterFlowModel<CpLoginWidget> {
         await showDialog(
           context: context,
           builder: (alertDialogContext) {
-            return WebViewAware(
-              child: AlertDialog(
-                title: Text('Atençção!'),
-                content: Text('Informe a senha'),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(alertDialogContext),
-                    child: Text('Ok'),
-                  ),
-                ],
-              ),
+            return AlertDialog(
+              title: Text('Atençção!'),
+              content: Text('Informe a senha'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(alertDialogContext),
+                  child: Text('Ok'),
+                ),
+              ],
             );
           },
         );
@@ -352,17 +337,15 @@ class CpLoginModel extends FlutterFlowModel<CpLoginWidget> {
         await showDialog(
           context: context,
           builder: (alertDialogContext) {
-            return WebViewAware(
-              child: AlertDialog(
-                title: Text('Atenção!'),
-                content: Text('Informe o nome do seu Estabelecimento'),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(alertDialogContext),
-                    child: Text('Ok'),
-                  ),
-                ],
-              ),
+            return AlertDialog(
+              title: Text('Atenção!'),
+              content: Text('Informe o nome do seu Estabelecimento'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(alertDialogContext),
+                  child: Text('Ok'),
+                ),
+              ],
             );
           },
         );
@@ -372,17 +355,15 @@ class CpLoginModel extends FlutterFlowModel<CpLoginWidget> {
         await showDialog(
           context: context,
           builder: (alertDialogContext) {
-            return WebViewAware(
-              child: AlertDialog(
-                title: Text('Atenção!'),
-                content: Text('Informe o nome do Contato'),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(alertDialogContext),
-                    child: Text('Ok'),
-                  ),
-                ],
-              ),
+            return AlertDialog(
+              title: Text('Atenção!'),
+              content: Text('Informe o nome do Contato'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(alertDialogContext),
+                  child: Text('Ok'),
+                ),
+              ],
             );
           },
         );
@@ -392,18 +373,15 @@ class CpLoginModel extends FlutterFlowModel<CpLoginWidget> {
         await showDialog(
           context: context,
           builder: (alertDialogContext) {
-            return WebViewAware(
-              child: AlertDialog(
-                title: Text('Atenção!'),
-                content:
-                    Text('Informe número de telefone WhatsApp para contato'),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(alertDialogContext),
-                    child: Text('Ok'),
-                  ),
-                ],
-              ),
+            return AlertDialog(
+              title: Text('Atenção!'),
+              content: Text('Informe número de telefone WhatsApp para contato'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(alertDialogContext),
+                  child: Text('Ok'),
+                ),
+              ],
             );
           },
         );
@@ -414,17 +392,15 @@ class CpLoginModel extends FlutterFlowModel<CpLoginWidget> {
         await showDialog(
           context: context,
           builder: (alertDialogContext) {
-            return WebViewAware(
-              child: AlertDialog(
-                title: Text('Atenção!'),
-                content: Text('Número de telefone WhatsApp inválido'),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(alertDialogContext),
-                    child: Text('Ok'),
-                  ),
-                ],
-              ),
+            return AlertDialog(
+              title: Text('Atenção!'),
+              content: Text('Número de telefone WhatsApp inválido'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(alertDialogContext),
+                  child: Text('Ok'),
+                ),
+              ],
             );
           },
         );
@@ -440,18 +416,16 @@ class CpLoginModel extends FlutterFlowModel<CpLoginWidget> {
         await showDialog(
           context: context,
           builder: (alertDialogContext) {
-            return WebViewAware(
-              child: AlertDialog(
-                title: Text('Atenção!'),
-                content: Text(
-                    'O número de telefone WhatsApp ${textFieldCadTelefoneTextController.text} já está cadastrado, volte na tela anterior para fazer login'),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(alertDialogContext),
-                    child: Text('Ok'),
-                  ),
-                ],
-              ),
+            return AlertDialog(
+              title: Text('Atenção!'),
+              content: Text(
+                  'O número de telefone WhatsApp ${textFieldCadTelefoneTextController.text} já está cadastrado, volte na tela anterior para fazer login'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(alertDialogContext),
+                  child: Text('Ok'),
+                ),
+              ],
             );
           },
         );
@@ -461,17 +435,15 @@ class CpLoginModel extends FlutterFlowModel<CpLoginWidget> {
         await showDialog(
           context: context,
           builder: (alertDialogContext) {
-            return WebViewAware(
-              child: AlertDialog(
-                title: Text('Atenção!'),
-                content: Text('Informe o E-mail'),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(alertDialogContext),
-                    child: Text('Ok'),
-                  ),
-                ],
-              ),
+            return AlertDialog(
+              title: Text('Atenção!'),
+              content: Text('Informe o E-mail'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(alertDialogContext),
+                  child: Text('Ok'),
+                ),
+              ],
             );
           },
         );
@@ -483,17 +455,15 @@ class CpLoginModel extends FlutterFlowModel<CpLoginWidget> {
         await showDialog(
           context: context,
           builder: (alertDialogContext) {
-            return WebViewAware(
-              child: AlertDialog(
-                title: Text('Atenção!'),
-                content: Text('E-mail inválido'),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(alertDialogContext),
-                    child: Text('Ok'),
-                  ),
-                ],
-              ),
+            return AlertDialog(
+              title: Text('Atenção!'),
+              content: Text('E-mail inválido'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(alertDialogContext),
+                  child: Text('Ok'),
+                ),
+              ],
             );
           },
         );
@@ -510,18 +480,16 @@ class CpLoginModel extends FlutterFlowModel<CpLoginWidget> {
         await showDialog(
           context: context,
           builder: (alertDialogContext) {
-            return WebViewAware(
-              child: AlertDialog(
-                title: Text('Atenção!'),
-                content: Text(
-                    'O E-mail ${textFieldCadEmailTextController.text} já está cadastrado, volte na tela anterior para fazer login'),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(alertDialogContext),
-                    child: Text('Ok'),
-                  ),
-                ],
-              ),
+            return AlertDialog(
+              title: Text('Atenção!'),
+              content: Text(
+                  'O E-mail ${textFieldCadEmailTextController.text} já está cadastrado, volte na tela anterior para fazer login'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(alertDialogContext),
+                  child: Text('Ok'),
+                ),
+              ],
             );
           },
         );
@@ -531,17 +499,15 @@ class CpLoginModel extends FlutterFlowModel<CpLoginWidget> {
         await showDialog(
           context: context,
           builder: (alertDialogContext) {
-            return WebViewAware(
-              child: AlertDialog(
-                title: Text('Atenção!'),
-                content: Text('Informe a senha'),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(alertDialogContext),
-                    child: Text('Ok'),
-                  ),
-                ],
-              ),
+            return AlertDialog(
+              title: Text('Atenção!'),
+              content: Text('Informe a senha'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(alertDialogContext),
+                  child: Text('Ok'),
+                ),
+              ],
             );
           },
         );
@@ -552,17 +518,15 @@ class CpLoginModel extends FlutterFlowModel<CpLoginWidget> {
         await showDialog(
           context: context,
           builder: (alertDialogContext) {
-            return WebViewAware(
-              child: AlertDialog(
-                title: Text('Atenção!'),
-                content: Text('A senha deve ter pelo menos 6 dígitos'),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(alertDialogContext),
-                    child: Text('Ok'),
-                  ),
-                ],
-              ),
+            return AlertDialog(
+              title: Text('Atenção!'),
+              content: Text('A senha deve ter pelo menos 6 dígitos'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(alertDialogContext),
+                  child: Text('Ok'),
+                ),
+              ],
             );
           },
         );
@@ -572,17 +536,15 @@ class CpLoginModel extends FlutterFlowModel<CpLoginWidget> {
         await showDialog(
           context: context,
           builder: (alertDialogContext) {
-            return WebViewAware(
-              child: AlertDialog(
-                title: Text('Atenção!'),
-                content: Text('Informe a senha de confirmação'),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(alertDialogContext),
-                    child: Text('Ok'),
-                  ),
-                ],
-              ),
+            return AlertDialog(
+              title: Text('Atenção!'),
+              content: Text('Informe a senha de confirmação'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(alertDialogContext),
+                  child: Text('Ok'),
+                ),
+              ],
             );
           },
         );
@@ -593,18 +555,16 @@ class CpLoginModel extends FlutterFlowModel<CpLoginWidget> {
         await showDialog(
           context: context,
           builder: (alertDialogContext) {
-            return WebViewAware(
-              child: AlertDialog(
-                title: Text('Atenção!'),
-                content: Text(
-                    'A senha e a senha de confirmação estão diferentes, verifique'),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(alertDialogContext),
-                    child: Text('Ok'),
-                  ),
-                ],
-              ),
+            return AlertDialog(
+              title: Text('Atenção!'),
+              content: Text(
+                  'A senha e a senha de confirmação estão diferentes, verifique'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(alertDialogContext),
+                  child: Text('Ok'),
+                ),
+              ],
             );
           },
         );
@@ -616,13 +576,11 @@ class CpLoginModel extends FlutterFlowModel<CpLoginWidget> {
         enableDrag: false,
         context: context,
         builder: (context) {
-          return WebViewAware(
-            child: Padding(
-              padding: MediaQuery.viewInsetsOf(context),
-              child: CaAguardeWidget(
-                paramMostrarAnimacao: true,
-                paramFecharAoClicar: false,
-              ),
+          return Padding(
+            padding: MediaQuery.viewInsetsOf(context),
+            child: CaAguardeWidget(
+              paramMostrarAnimacao: true,
+              paramFecharAoClicar: false,
             ),
           );
         },

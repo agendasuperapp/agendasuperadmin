@@ -17,7 +17,6 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 import 'cp_afiliado_saques_model.dart';
 export 'cp_afiliado_saques_model.dart';
 
@@ -1180,19 +1179,17 @@ class _CpAfiliadoSaquesWidgetState extends State<CpAfiliadoSaquesWidget>
                                 await showDialog(
                                   context: context,
                                   builder: (alertDialogContext) {
-                                    return WebViewAware(
-                                      child: AlertDialog(
-                                        title: Text('Atenção!'),
-                                        content: Text(
-                                            'Você não tem saldo disponível para solicitar saque.'),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () => Navigator.pop(
-                                                alertDialogContext),
-                                            child: Text('Ok'),
-                                          ),
-                                        ],
-                                      ),
+                                    return AlertDialog(
+                                      title: Text('Atenção!'),
+                                      content: Text(
+                                          'Você não tem saldo disponível para solicitar saque.'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(alertDialogContext),
+                                          child: Text('Ok'),
+                                        ),
+                                      ],
                                     );
                                   },
                                 );
@@ -1220,26 +1217,22 @@ class _CpAfiliadoSaquesWidgetState extends State<CpAfiliadoSaquesWidget>
                                 await showDialog(
                                   context: context,
                                   builder: (alertDialogContext) {
-                                    return WebViewAware(
-                                      child: AlertDialog(
-                                        title: Text('Atenção!'),
-                                        content: Text(
-                                            'Hoje não é seu dia de saque.. ${'\n\n'}Seu próximo dia de saque é ${functions.fcConverterStringMaiusculo(dateTimeFormat(
-                                          "MMMMEEEEd",
-                                          FFAppState()
-                                              .varTblAfiliado
-                                              .dataSaque!,
-                                          locale: FFLocalizations.of(context)
-                                              .languageCode,
-                                        ))}'),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () => Navigator.pop(
-                                                alertDialogContext),
-                                            child: Text('Ok'),
-                                          ),
-                                        ],
-                                      ),
+                                    return AlertDialog(
+                                      title: Text('Atenção!'),
+                                      content: Text(
+                                          'Hoje não é seu dia de saque.. ${'\n\n'}Seu próximo dia de saque é ${functions.fcConverterStringMaiusculo(dateTimeFormat(
+                                        "MMMMEEEEd",
+                                        FFAppState().varTblAfiliado.dataSaque!,
+                                        locale: FFLocalizations.of(context)
+                                            .languageCode,
+                                      ))}'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(alertDialogContext),
+                                          child: Text('Ok'),
+                                        ),
+                                      ],
                                     );
                                   },
                                 );
@@ -1250,36 +1243,30 @@ class _CpAfiliadoSaquesWidgetState extends State<CpAfiliadoSaquesWidget>
                                   await showDialog<bool>(
                                         context: context,
                                         builder: (alertDialogContext) {
-                                          return WebViewAware(
-                                            child: AlertDialog(
-                                              title: Text('Atenção!'),
-                                              content: Text(
-                                                  'Deseja solicitar o saque de ${formatNumber(
-                                                FFAppState()
-                                                    .varTblAfiliadosDashboard
-                                                    .comissaoDisponivel,
-                                                formatType: FormatType.decimal,
-                                                decimalType:
-                                                    DecimalType.commaDecimal,
-                                                currency: 'R\$',
-                                              )}?'),
-                                              actions: [
-                                                TextButton(
-                                                  onPressed: () =>
-                                                      Navigator.pop(
-                                                          alertDialogContext,
-                                                          false),
-                                                  child: Text('Não'),
-                                                ),
-                                                TextButton(
-                                                  onPressed: () =>
-                                                      Navigator.pop(
-                                                          alertDialogContext,
-                                                          true),
-                                                  child: Text('Sim'),
-                                                ),
-                                              ],
-                                            ),
+                                          return AlertDialog(
+                                            title: Text('Atenção!'),
+                                            content: Text(
+                                                'Deseja solicitar o saque de ${formatNumber(
+                                              FFAppState()
+                                                  .varTblAfiliadosDashboard
+                                                  .comissaoDisponivel,
+                                              formatType: FormatType.decimal,
+                                              decimalType:
+                                                  DecimalType.commaDecimal,
+                                              currency: 'R\$',
+                                            )}?'),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext, false),
+                                                child: Text('Não'),
+                                              ),
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext, true),
+                                                child: Text('Sim'),
+                                              ),
+                                            ],
                                           );
                                         },
                                       ) ??
@@ -1296,19 +1283,17 @@ class _CpAfiliadoSaquesWidgetState extends State<CpAfiliadoSaquesWidget>
                                   await showDialog(
                                     context: context,
                                     builder: (alertDialogContext) {
-                                      return WebViewAware(
-                                        child: AlertDialog(
-                                          title: Text('Atenção!'),
-                                          content: Text(
-                                              'Saque solicitado com sucesso, o depósito será feito na sua conta em até 24 horas.'),
-                                          actions: [
-                                            TextButton(
-                                              onPressed: () => Navigator.pop(
-                                                  alertDialogContext),
-                                              child: Text('Ok'),
-                                            ),
-                                          ],
-                                        ),
+                                      return AlertDialog(
+                                        title: Text('Atenção!'),
+                                        content: Text(
+                                            'Saque solicitado com sucesso, o depósito será feito na sua conta em até 24 horas.'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(
+                                                alertDialogContext),
+                                            child: Text('Ok'),
+                                          ),
+                                        ],
                                       );
                                     },
                                   );
@@ -2306,12 +2291,9 @@ class _CpAfiliadoSaquesWidgetState extends State<CpAfiliadoSaquesWidget>
                                                                         alignment:
                                                                             AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                         child:
-                                                                            WebViewAware(
-                                                                          child:
-                                                                              CpFotoWidget(
-                                                                            paramFoto:
-                                                                                listViewTblAfiliadosSaquesRow.comprovante!,
-                                                                          ),
+                                                                            CpFotoWidget(
+                                                                          paramFoto:
+                                                                              listViewTblAfiliadosSaquesRow.comprovante!,
                                                                         ),
                                                                       );
                                                                     },
@@ -2322,20 +2304,19 @@ class _CpAfiliadoSaquesWidgetState extends State<CpAfiliadoSaquesWidget>
                                                                         context,
                                                                     builder:
                                                                         (alertDialogContext) {
-                                                                      return WebViewAware(
-                                                                        child:
-                                                                            AlertDialog(
-                                                                          title:
-                                                                              Text('Atenção!'),
-                                                                          content:
-                                                                              Text('Sem comprovante'),
-                                                                          actions: [
-                                                                            TextButton(
-                                                                              onPressed: () => Navigator.pop(alertDialogContext),
-                                                                              child: Text('Ok'),
-                                                                            ),
-                                                                          ],
-                                                                        ),
+                                                                      return AlertDialog(
+                                                                        title: Text(
+                                                                            'Atenção!'),
+                                                                        content:
+                                                                            Text('Sem comprovante'),
+                                                                        actions: [
+                                                                          TextButton(
+                                                                            onPressed: () =>
+                                                                                Navigator.pop(alertDialogContext),
+                                                                            child:
+                                                                                Text('Ok'),
+                                                                          ),
+                                                                        ],
                                                                       );
                                                                     },
                                                                   );
@@ -2431,14 +2412,11 @@ class _CpAfiliadoSaquesWidgetState extends State<CpAfiliadoSaquesWidget>
                                                                         context,
                                                                     builder:
                                                                         (context) {
-                                                                      return WebViewAware(
+                                                                      return Padding(
+                                                                        padding:
+                                                                            MediaQuery.viewInsetsOf(context),
                                                                         child:
-                                                                            Padding(
-                                                                          padding:
-                                                                              MediaQuery.viewInsetsOf(context),
-                                                                          child:
-                                                                              CpNotaFiscalWidget(),
-                                                                        ),
+                                                                            CpNotaFiscalWidget(),
                                                                       );
                                                                     },
                                                                   ).then((value) =>
@@ -2463,10 +2441,7 @@ class _CpAfiliadoSaquesWidgetState extends State<CpAfiliadoSaquesWidget>
                                                                         alignment:
                                                                             AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                         child:
-                                                                            WebViewAware(
-                                                                          child:
-                                                                              CpNotaFiscalWidget(),
-                                                                        ),
+                                                                            CpNotaFiscalWidget(),
                                                                       );
                                                                     },
                                                                   );
@@ -2609,12 +2584,9 @@ class _CpAfiliadoSaquesWidgetState extends State<CpAfiliadoSaquesWidget>
                                                                         alignment:
                                                                             AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                         child:
-                                                                            WebViewAware(
-                                                                          child:
-                                                                              CpFotoWidget(
-                                                                            paramFoto:
-                                                                                listViewTblAfiliadosSaquesRow.comprovante!,
-                                                                          ),
+                                                                            CpFotoWidget(
+                                                                          paramFoto:
+                                                                              listViewTblAfiliadosSaquesRow.comprovante!,
                                                                         ),
                                                                       );
                                                                     },
@@ -2625,20 +2597,19 @@ class _CpAfiliadoSaquesWidgetState extends State<CpAfiliadoSaquesWidget>
                                                                         context,
                                                                     builder:
                                                                         (alertDialogContext) {
-                                                                      return WebViewAware(
-                                                                        child:
-                                                                            AlertDialog(
-                                                                          title:
-                                                                              Text('Atenção!'),
-                                                                          content:
-                                                                              Text('Sem comprovante'),
-                                                                          actions: [
-                                                                            TextButton(
-                                                                              onPressed: () => Navigator.pop(alertDialogContext),
-                                                                              child: Text('Ok'),
-                                                                            ),
-                                                                          ],
-                                                                        ),
+                                                                      return AlertDialog(
+                                                                        title: Text(
+                                                                            'Atenção!'),
+                                                                        content:
+                                                                            Text('Sem comprovante'),
+                                                                        actions: [
+                                                                          TextButton(
+                                                                            onPressed: () =>
+                                                                                Navigator.pop(alertDialogContext),
+                                                                            child:
+                                                                                Text('Ok'),
+                                                                          ),
+                                                                        ],
                                                                       );
                                                                     },
                                                                   );
@@ -2686,14 +2657,11 @@ class _CpAfiliadoSaquesWidgetState extends State<CpAfiliadoSaquesWidget>
                                                                         context,
                                                                     builder:
                                                                         (context) {
-                                                                      return WebViewAware(
+                                                                      return Padding(
+                                                                        padding:
+                                                                            MediaQuery.viewInsetsOf(context),
                                                                         child:
-                                                                            Padding(
-                                                                          padding:
-                                                                              MediaQuery.viewInsetsOf(context),
-                                                                          child:
-                                                                              CpNotaFiscalWidget(),
-                                                                        ),
+                                                                            CpNotaFiscalWidget(),
                                                                       );
                                                                     },
                                                                   ).then((value) =>
@@ -2718,10 +2686,7 @@ class _CpAfiliadoSaquesWidgetState extends State<CpAfiliadoSaquesWidget>
                                                                         alignment:
                                                                             AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                         child:
-                                                                            WebViewAware(
-                                                                          child:
-                                                                              CpNotaFiscalWidget(),
-                                                                        ),
+                                                                            CpNotaFiscalWidget(),
                                                                       );
                                                                     },
                                                                   );

@@ -88,16 +88,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               appStateNotifier.loggedIn ? PgDashboardWidget() : PgLoginWidget(),
         ),
         FFRoute(
-          name: HomePageWidget.routeName,
-          path: HomePageWidget.routePath,
-          builder: (context, params) => HomePageWidget(
-            cupom: params.getParam(
-              'cupom',
-              ParamType.String,
-            ),
-          ),
-        ),
-        FFRoute(
           name: PgCalendarioWidget.routeName,
           path: PgCalendarioWidget.routePath,
           builder: (context, params) => PgCalendarioWidget(),
@@ -384,12 +374,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: DELETEPgAfiliadoDashboardWidget.routeName,
-          path: DELETEPgAfiliadoDashboardWidget.routePath,
-          requireAuth: true,
-          builder: (context, params) => DELETEPgAfiliadoDashboardWidget(),
-        ),
-        FFRoute(
           name: PgAfiliadoIndicacoesWidget.routeName,
           path: PgAfiliadoIndicacoesWidget.routePath,
           requireAuth: true,
@@ -430,18 +414,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: PgAfiliadoGoogleMapsWidget.routePath,
           requireAuth: true,
           builder: (context, params) => PgAfiliadoGoogleMapsWidget(),
-        ),
-        FFRoute(
-          name: DELETEPgAfiliadoApresentacaoWidget.routeName,
-          path: DELETEPgAfiliadoApresentacaoWidget.routePath,
-          requireAuth: true,
-          builder: (context, params) => DELETEPgAfiliadoApresentacaoWidget(),
-        ),
-        FFRoute(
-          name: DELETEPgAfiliadoAtivacaoWidget.routeName,
-          path: DELETEPgAfiliadoAtivacaoWidget.routePath,
-          requireAuth: true,
-          builder: (context, params) => DELETEPgAfiliadoAtivacaoWidget(),
         ),
         FFRoute(
           name: PgCupomCadWidget.routeName,
@@ -576,7 +548,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => PgAgendamentosDiariosWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
-      observers: [routeObserver],
     );
 
 extension NavParamExtensions on Map<String, String?> {
@@ -759,18 +730,16 @@ class FFRoute {
                 )
               : builder(context, ffParams);
           final child = appStateNotifier.loading
-              ? isWeb
-                  ? Container()
-                  : Container(
-                      color: Colors.transparent,
-                      child: Center(
-                        child: Image.asset(
-                          'assets/images/AppAfiliado_(5).png',
-                          width: 200.0,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    )
+              ? Container(
+                  color: Colors.transparent,
+                  child: Center(
+                    child: Image.asset(
+                      'assets/images/appsplashimage.png',
+                      width: MediaQuery.sizeOf(context).width * 0.7,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                )
               : page;
 
           final transitionInfo = state.transitionInfo;

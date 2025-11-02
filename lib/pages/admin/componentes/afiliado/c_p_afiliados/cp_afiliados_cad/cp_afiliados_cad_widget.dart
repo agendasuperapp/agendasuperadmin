@@ -29,7 +29,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 import 'cp_afiliados_cad_model.dart';
 export 'cp_afiliados_cad_model.dart';
 
@@ -85,7 +84,7 @@ class _CpAfiliadosCadWidgetState extends State<CpAfiliadosCadWidget>
       }
       await action_blocks.acAtualizarInicializacaoSistema(context);
       if (FFAppState().varCarregouPrimeiraPagina && !widget.paramInscricao!) {
-        context.pushNamed(DELETEPgAfiliadoDashboardWidget.routeName);
+        context.pushNamed(PgAfiliadoCpfWidget.routeName);
 
         FFAppState().varCarregouPrimeiraPagina = false;
         if ((FFAppState().varTblAfiliado.id != null) &&
@@ -107,18 +106,16 @@ class _CpAfiliadosCadWidgetState extends State<CpAfiliadosCadWidget>
         await showDialog(
           context: context,
           builder: (alertDialogContext) {
-            return WebViewAware(
-              child: AlertDialog(
-                title: Text('Atenção!'),
-                content: Text(
-                    'Complete seus dados  e salve para fazer a emissão da NF de serviço'),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(alertDialogContext),
-                    child: Text('Ok'),
-                  ),
-                ],
-              ),
+            return AlertDialog(
+              title: Text('Atenção!'),
+              content: Text(
+                  'Complete seus dados  e salve para fazer a emissão da NF de serviço'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(alertDialogContext),
+                  child: Text('Ok'),
+                ),
+              ],
             );
           },
         );
@@ -553,16 +550,14 @@ class _CpAfiliadosCadWidgetState extends State<CpAfiliadosCadWidget>
                                                             .resolve(
                                                                 Directionality.of(
                                                                     context)),
-                                                    child: WebViewAware(
-                                                      child: CpFotoWidget(
-                                                        paramFoto: _model.uploadedFileUrl_uploadDataAfliliadoPerfil !=
-                                                                    ''
-                                                            ? _model
-                                                                .uploadedFileUrl_uploadDataAfliliadoPerfil
-                                                            : FFAppState()
-                                                                .varTblAfiliado
-                                                                .fotoPerfil,
-                                                      ),
+                                                    child: CpFotoWidget(
+                                                      paramFoto: _model.uploadedFileUrl_uploadDataAfliliadoPerfil !=
+                                                                  ''
+                                                          ? _model
+                                                              .uploadedFileUrl_uploadDataAfliliadoPerfil
+                                                          : FFAppState()
+                                                              .varTblAfiliado
+                                                              .fotoPerfil,
                                                     ),
                                                   );
                                                 },
@@ -571,20 +566,18 @@ class _CpAfiliadosCadWidgetState extends State<CpAfiliadosCadWidget>
                                               await showDialog(
                                                 context: context,
                                                 builder: (alertDialogContext) {
-                                                  return WebViewAware(
-                                                    child: AlertDialog(
-                                                      title: Text('Atenção!'),
-                                                      content: Text(
-                                                          'Adicione uma foto...'),
-                                                      actions: [
-                                                        TextButton(
-                                                          onPressed: () =>
-                                                              Navigator.pop(
-                                                                  alertDialogContext),
-                                                          child: Text('Ok'),
-                                                        ),
-                                                      ],
-                                                    ),
+                                                  return AlertDialog(
+                                                    title: Text('Atenção!'),
+                                                    content: Text(
+                                                        'Adicione uma foto...'),
+                                                    actions: [
+                                                      TextButton(
+                                                        onPressed: () =>
+                                                            Navigator.pop(
+                                                                alertDialogContext),
+                                                        child: Text('Ok'),
+                                                      ),
+                                                    ],
                                                   );
                                                 },
                                               );
@@ -808,26 +801,24 @@ class _CpAfiliadosCadWidgetState extends State<CpAfiliadosCadWidget>
                                                         Colors.transparent,
                                                     context: context,
                                                     builder: (context) {
-                                                      return WebViewAware(
-                                                        child: Padding(
-                                                          padding: MediaQuery
-                                                              .viewInsetsOf(
-                                                                  context),
-                                                          child:
-                                                              CpDialogSnackBarWidget(
-                                                            paramMensagem:
-                                                                'Foto afiliado atualizada...',
-                                                            paramCorTexto:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .info,
-                                                            paramCorFundo:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .success,
-                                                            paramTempoMsFechar:
-                                                                1000,
-                                                          ),
+                                                      return Padding(
+                                                        padding: MediaQuery
+                                                            .viewInsetsOf(
+                                                                context),
+                                                        child:
+                                                            CpDialogSnackBarWidget(
+                                                          paramMensagem:
+                                                              'Foto afiliado atualizada...',
+                                                          paramCorTexto:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .info,
+                                                          paramCorFundo:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .success,
+                                                          paramTempoMsFechar:
+                                                              1000,
                                                         ),
                                                       );
                                                     },
@@ -2431,16 +2422,14 @@ class _CpAfiliadosCadWidgetState extends State<CpAfiliadosCadWidget>
                                                                   .transparent,
                                                           context: context,
                                                           builder: (context) {
-                                                            return WebViewAware(
-                                                              child: Padding(
-                                                                padding: MediaQuery
-                                                                    .viewInsetsOf(
-                                                                        context),
-                                                                child:
-                                                                    CpValidarEmailTelWidget(
-                                                                  paramEmailOuTelefone:
-                                                                      'T',
-                                                                ),
+                                                            return Padding(
+                                                              padding: MediaQuery
+                                                                  .viewInsetsOf(
+                                                                      context),
+                                                              child:
+                                                                  CpValidarEmailTelWidget(
+                                                                paramEmailOuTelefone:
+                                                                    'T',
                                                               ),
                                                             );
                                                           },
@@ -2742,16 +2731,14 @@ class _CpAfiliadosCadWidgetState extends State<CpAfiliadosCadWidget>
                                                                   .transparent,
                                                           context: context,
                                                           builder: (context) {
-                                                            return WebViewAware(
-                                                              child: Padding(
-                                                                padding: MediaQuery
-                                                                    .viewInsetsOf(
-                                                                        context),
-                                                                child:
-                                                                    CpValidarEmailTelWidget(
-                                                                  paramEmailOuTelefone:
-                                                                      'E',
-                                                                ),
+                                                            return Padding(
+                                                              padding: MediaQuery
+                                                                  .viewInsetsOf(
+                                                                      context),
+                                                              child:
+                                                                  CpValidarEmailTelWidget(
+                                                                paramEmailOuTelefone:
+                                                                    'E',
                                                               ),
                                                             );
                                                           },
@@ -3813,26 +3800,23 @@ class _CpAfiliadosCadWidgetState extends State<CpAfiliadosCadWidget>
                                                     Colors.transparent,
                                                 context: context,
                                                 builder: (context) {
-                                                  return WebViewAware(
-                                                    child: Padding(
-                                                      padding: MediaQuery
-                                                          .viewInsetsOf(
-                                                              context),
-                                                      child:
-                                                          CpDialogSnackBarWidget(
-                                                        paramMensagem:
-                                                            'CEP inválido',
-                                                        paramCorTexto:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .info,
-                                                        paramCorFundo:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .error,
-                                                        paramTempoMsFechar:
-                                                            1000,
-                                                      ),
+                                                  return Padding(
+                                                    padding:
+                                                        MediaQuery.viewInsetsOf(
+                                                            context),
+                                                    child:
+                                                        CpDialogSnackBarWidget(
+                                                      paramMensagem:
+                                                          'CEP inválido',
+                                                      paramCorTexto:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .info,
+                                                      paramCorFundo:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .error,
+                                                      paramTempoMsFechar: 1000,
                                                     ),
                                                   );
                                                 },
@@ -6009,18 +5993,16 @@ class _CpAfiliadosCadWidgetState extends State<CpAfiliadosCadWidget>
                                 await showDialog(
                                   context: context,
                                   builder: (alertDialogContext) {
-                                    return WebViewAware(
-                                      child: AlertDialog(
-                                        title: Text('Atenção!'),
-                                        content: Text('Informe seu nome'),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () => Navigator.pop(
-                                                alertDialogContext),
-                                            child: Text('Ok'),
-                                          ),
-                                        ],
-                                      ),
+                                    return AlertDialog(
+                                      title: Text('Atenção!'),
+                                      content: Text('Informe seu nome'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(alertDialogContext),
+                                          child: Text('Ok'),
+                                        ),
+                                      ],
                                     );
                                   },
                                 );
@@ -6034,19 +6016,16 @@ class _CpAfiliadosCadWidgetState extends State<CpAfiliadosCadWidget>
                                 await showDialog(
                                   context: context,
                                   builder: (alertDialogContext) {
-                                    return WebViewAware(
-                                      child: AlertDialog(
-                                        title: Text('Atenção!'),
-                                        content:
-                                            Text('Informe o nome completo'),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () => Navigator.pop(
-                                                alertDialogContext),
-                                            child: Text('Ok'),
-                                          ),
-                                        ],
-                                      ),
+                                    return AlertDialog(
+                                      title: Text('Atenção!'),
+                                      content: Text('Informe o nome completo'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(alertDialogContext),
+                                          child: Text('Ok'),
+                                        ),
+                                      ],
                                     );
                                   },
                                 );
@@ -6058,19 +6037,17 @@ class _CpAfiliadosCadWidgetState extends State<CpAfiliadosCadWidget>
                                 await showDialog(
                                   context: context,
                                   builder: (alertDialogContext) {
-                                    return WebViewAware(
-                                      child: AlertDialog(
-                                        title: Text('Atenção!'),
-                                        content: Text(
-                                            'Informe o username (Será usado compartilhar seu link de afiliado)'),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () => Navigator.pop(
-                                                alertDialogContext),
-                                            child: Text('Ok'),
-                                          ),
-                                        ],
-                                      ),
+                                    return AlertDialog(
+                                      title: Text('Atenção!'),
+                                      content: Text(
+                                          'Informe o username (Será usado compartilhar seu link de afiliado)'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(alertDialogContext),
+                                          child: Text('Ok'),
+                                        ),
+                                      ],
                                     );
                                   },
                                 );
@@ -6083,19 +6060,17 @@ class _CpAfiliadosCadWidgetState extends State<CpAfiliadosCadWidget>
                                 await showDialog(
                                   context: context,
                                   builder: (alertDialogContext) {
-                                    return WebViewAware(
-                                      child: AlertDialog(
-                                        title: Text('Atenção!'),
-                                        content: Text(
-                                            'O username deve ter pelo menos 5 caracteres'),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () => Navigator.pop(
-                                                alertDialogContext),
-                                            child: Text('Ok'),
-                                          ),
-                                        ],
-                                      ),
+                                    return AlertDialog(
+                                      title: Text('Atenção!'),
+                                      content: Text(
+                                          'O username deve ter pelo menos 5 caracteres'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(alertDialogContext),
+                                          child: Text('Ok'),
+                                        ),
+                                      ],
                                     );
                                   },
                                 );
@@ -6108,19 +6083,17 @@ class _CpAfiliadosCadWidgetState extends State<CpAfiliadosCadWidget>
                                 await showDialog(
                                   context: context,
                                   builder: (alertDialogContext) {
-                                    return WebViewAware(
-                                      child: AlertDialog(
-                                        title: Text('Atenção!'),
-                                        content: Text(
-                                            'O username deve ter no máximo 20 caracteres'),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () => Navigator.pop(
-                                                alertDialogContext),
-                                            child: Text('Ok'),
-                                          ),
-                                        ],
-                                      ),
+                                    return AlertDialog(
+                                      title: Text('Atenção!'),
+                                      content: Text(
+                                          'O username deve ter no máximo 20 caracteres'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(alertDialogContext),
+                                          child: Text('Ok'),
+                                        ),
+                                      ],
                                     );
                                   },
                                 );
@@ -6158,19 +6131,17 @@ class _CpAfiliadosCadWidgetState extends State<CpAfiliadosCadWidget>
                                 await showDialog(
                                   context: context,
                                   builder: (alertDialogContext) {
-                                    return WebViewAware(
-                                      child: AlertDialog(
-                                        title: Text('Atenção!'),
-                                        content:
-                                            Text('Informe o telefone WhatsApp'),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () => Navigator.pop(
-                                                alertDialogContext),
-                                            child: Text('Ok'),
-                                          ),
-                                        ],
-                                      ),
+                                    return AlertDialog(
+                                      title: Text('Atenção!'),
+                                      content:
+                                          Text('Informe o telefone WhatsApp'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(alertDialogContext),
+                                          child: Text('Ok'),
+                                        ),
+                                      ],
                                     );
                                   },
                                 );
@@ -6197,19 +6168,17 @@ class _CpAfiliadosCadWidgetState extends State<CpAfiliadosCadWidget>
                                 await showDialog(
                                   context: context,
                                   builder: (alertDialogContext) {
-                                    return WebViewAware(
-                                      child: AlertDialog(
-                                        title: Text('Atenção!'),
-                                        content: Text(
-                                            'Informe uma data de nascimento válida...'),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () => Navigator.pop(
-                                                alertDialogContext),
-                                            child: Text('Ok'),
-                                          ),
-                                        ],
-                                      ),
+                                    return AlertDialog(
+                                      title: Text('Atenção!'),
+                                      content: Text(
+                                          'Informe uma data de nascimento válida...'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(alertDialogContext),
+                                          child: Text('Ok'),
+                                        ),
+                                      ],
                                     );
                                   },
                                 );
@@ -6231,19 +6200,17 @@ class _CpAfiliadosCadWidgetState extends State<CpAfiliadosCadWidget>
                                 await showDialog(
                                   context: context,
                                   builder: (alertDialogContext) {
-                                    return WebViewAware(
-                                      child: AlertDialog(
-                                        title: Text('Atenção!'),
-                                        content: Text(
-                                            'Data de nascimento inválida...'),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () => Navigator.pop(
-                                                alertDialogContext),
-                                            child: Text('Ok'),
-                                          ),
-                                        ],
-                                      ),
+                                    return AlertDialog(
+                                      title: Text('Atenção!'),
+                                      content: Text(
+                                          'Data de nascimento inválida...'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(alertDialogContext),
+                                          child: Text('Ok'),
+                                        ),
+                                      ],
                                     );
                                   },
                                 );
@@ -6259,19 +6226,17 @@ class _CpAfiliadosCadWidgetState extends State<CpAfiliadosCadWidget>
                                 await showDialog(
                                   context: context,
                                   builder: (alertDialogContext) {
-                                    return WebViewAware(
-                                      child: AlertDialog(
-                                        title: Text('Atenção!'),
-                                        content: Text(
-                                            'Para ser afiliado você deve ser maior de 18 anos!'),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () => Navigator.pop(
-                                                alertDialogContext),
-                                            child: Text('Ok'),
-                                          ),
-                                        ],
-                                      ),
+                                    return AlertDialog(
+                                      title: Text('Atenção!'),
+                                      content: Text(
+                                          'Para ser afiliado você deve ser maior de 18 anos!'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(alertDialogContext),
+                                          child: Text('Ok'),
+                                        ),
+                                      ],
                                     );
                                   },
                                 );
@@ -6283,19 +6248,17 @@ class _CpAfiliadosCadWidgetState extends State<CpAfiliadosCadWidget>
                                 await showDialog(
                                   context: context,
                                   builder: (alertDialogContext) {
-                                    return WebViewAware(
-                                      child: AlertDialog(
-                                        title: Text('Atenção!'),
-                                        content: Text(
-                                            'Selecione um Tipo de Documento'),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () => Navigator.pop(
-                                                alertDialogContext),
-                                            child: Text('Ok'),
-                                          ),
-                                        ],
-                                      ),
+                                    return AlertDialog(
+                                      title: Text('Atenção!'),
+                                      content: Text(
+                                          'Selecione um Tipo de Documento'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(alertDialogContext),
+                                          child: Text('Ok'),
+                                        ),
+                                      ],
                                     );
                                   },
                                 );
@@ -6308,18 +6271,16 @@ class _CpAfiliadosCadWidgetState extends State<CpAfiliadosCadWidget>
                                 await showDialog(
                                   context: context,
                                   builder: (alertDialogContext) {
-                                    return WebViewAware(
-                                      child: AlertDialog(
-                                        title: Text('Atenção!'),
-                                        content: Text('informe seu CPF'),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () => Navigator.pop(
-                                                alertDialogContext),
-                                            child: Text('Ok'),
-                                          ),
-                                        ],
-                                      ),
+                                    return AlertDialog(
+                                      title: Text('Atenção!'),
+                                      content: Text('informe seu CPF'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(alertDialogContext),
+                                          child: Text('Ok'),
+                                        ),
+                                      ],
                                     );
                                   },
                                 );
@@ -6332,18 +6293,16 @@ class _CpAfiliadosCadWidgetState extends State<CpAfiliadosCadWidget>
                                 await showDialog(
                                   context: context,
                                   builder: (alertDialogContext) {
-                                    return WebViewAware(
-                                      child: AlertDialog(
-                                        title: Text('Atenção!'),
-                                        content: Text('CPF inválido!'),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () => Navigator.pop(
-                                                alertDialogContext),
-                                            child: Text('Ok'),
-                                          ),
-                                        ],
-                                      ),
+                                    return AlertDialog(
+                                      title: Text('Atenção!'),
+                                      content: Text('CPF inválido!'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(alertDialogContext),
+                                          child: Text('Ok'),
+                                        ),
+                                      ],
                                     );
                                   },
                                 );
@@ -6361,19 +6320,17 @@ class _CpAfiliadosCadWidgetState extends State<CpAfiliadosCadWidget>
                                 await showDialog(
                                   context: context,
                                   builder: (alertDialogContext) {
-                                    return WebViewAware(
-                                      child: AlertDialog(
-                                        title: Text('Atenção!'),
-                                        content: Text(
-                                            'O CPF do cadastro de Afiliado deve ser igual ao do cadastro de Empresa (${FFAppState().VarTblEstabelecimentoLogado.docCpfCnpj})'),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () => Navigator.pop(
-                                                alertDialogContext),
-                                            child: Text('Ok'),
-                                          ),
-                                        ],
-                                      ),
+                                    return AlertDialog(
+                                      title: Text('Atenção!'),
+                                      content: Text(
+                                          'O CPF do cadastro de Afiliado deve ser igual ao do cadastro de Empresa (${FFAppState().VarTblEstabelecimentoLogado.docCpfCnpj})'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(alertDialogContext),
+                                          child: Text('Ok'),
+                                        ),
+                                      ],
                                     );
                                   },
                                 );
@@ -6386,18 +6343,16 @@ class _CpAfiliadosCadWidgetState extends State<CpAfiliadosCadWidget>
                                 await showDialog(
                                   context: context,
                                   builder: (alertDialogContext) {
-                                    return WebViewAware(
-                                      child: AlertDialog(
-                                        title: Text('Atenção!'),
-                                        content: Text('CEP inválido'),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () => Navigator.pop(
-                                                alertDialogContext),
-                                            child: Text('Ok'),
-                                          ),
-                                        ],
-                                      ),
+                                    return AlertDialog(
+                                      title: Text('Atenção!'),
+                                      content: Text('CEP inválido'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(alertDialogContext),
+                                          child: Text('Ok'),
+                                        ),
+                                      ],
                                     );
                                   },
                                 );
@@ -6517,9 +6472,7 @@ class _CpAfiliadosCadWidgetState extends State<CpAfiliadosCadWidget>
                                             AlignmentDirectional(0.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
-                                        child: WebViewAware(
-                                          child: CpNotaFiscalWidget(),
-                                        ),
+                                        child: CpNotaFiscalWidget(),
                                       );
                                     },
                                   );

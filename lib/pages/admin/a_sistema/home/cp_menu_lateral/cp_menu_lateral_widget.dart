@@ -10,6 +10,7 @@ import '/actions/actions.dart' as action_blocks;
 import '/index.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
@@ -17,7 +18,6 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 import 'cp_menu_lateral_model.dart';
 export 'cp_menu_lateral_model.dart';
 
@@ -359,22 +359,20 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                         context: context,
                                                         builder:
                                                             (alertDialogContext) {
-                                                          return WebViewAware(
-                                                            child: AlertDialog(
-                                                              title: Text(
-                                                                  'Atenção!'),
-                                                              content: Text(
-                                                                  'Modo desenvolvedor ativado...'),
-                                                              actions: [
-                                                                TextButton(
-                                                                  onPressed: () =>
-                                                                      Navigator.pop(
-                                                                          alertDialogContext),
-                                                                  child: Text(
-                                                                      'Ok'),
-                                                                ),
-                                                              ],
-                                                            ),
+                                                          return AlertDialog(
+                                                            title: Text(
+                                                                'Atenção!'),
+                                                            content: Text(
+                                                                'Modo desenvolvedor ativado...'),
+                                                            actions: [
+                                                              TextButton(
+                                                                onPressed: () =>
+                                                                    Navigator.pop(
+                                                                        alertDialogContext),
+                                                                child:
+                                                                    Text('Ok'),
+                                                              ),
+                                                            ],
                                                           );
                                                         },
                                                       );
@@ -4116,7 +4114,7 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                       decoration: BoxDecoration(
                                                         color: () {
                                                           if (_model
-                                                              .mouseRegionDashAfiliadoHovered1) {
+                                                              .mouseRegionDashAfiliadoHovered) {
                                                             return FlutterFlowTheme
                                                                     .of(context)
                                                                 .hoverBtnLateral;
@@ -4168,22 +4166,19 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                                       context,
                                                                   builder:
                                                                       (alertDialogContext) {
-                                                                    return WebViewAware(
-                                                                      child:
-                                                                          AlertDialog(
-                                                                        title: Text(
-                                                                            'tese'),
-                                                                        content:
-                                                                            Text('Primeira Pág FALSE 1'),
-                                                                        actions: [
-                                                                          TextButton(
-                                                                            onPressed: () =>
-                                                                                Navigator.pop(alertDialogContext),
-                                                                            child:
-                                                                                Text('Ok'),
-                                                                          ),
-                                                                        ],
-                                                                      ),
+                                                                    return AlertDialog(
+                                                                      title: Text(
+                                                                          'tese'),
+                                                                      content: Text(
+                                                                          'Primeira Pág FALSE 1'),
+                                                                      actions: [
+                                                                        TextButton(
+                                                                          onPressed: () =>
+                                                                              Navigator.pop(alertDialogContext),
+                                                                          child:
+                                                                              Text('Ok'),
+                                                                        ),
+                                                                      ],
                                                                     );
                                                                   },
                                                                 );
@@ -4196,22 +4191,19 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                                       context,
                                                                   builder:
                                                                       (alertDialogContext) {
-                                                                    return WebViewAware(
-                                                                      child:
-                                                                          AlertDialog(
-                                                                        title: Text(
-                                                                            'tese'),
-                                                                        content:
-                                                                            Text('Primeira Pág FALSE 2'),
-                                                                        actions: [
-                                                                          TextButton(
-                                                                            onPressed: () =>
-                                                                                Navigator.pop(alertDialogContext),
-                                                                            child:
-                                                                                Text('Ok'),
-                                                                          ),
-                                                                        ],
-                                                                      ),
+                                                                    return AlertDialog(
+                                                                      title: Text(
+                                                                          'tese'),
+                                                                      content: Text(
+                                                                          'Primeira Pág FALSE 2'),
+                                                                      actions: [
+                                                                        TextButton(
+                                                                          onPressed: () =>
+                                                                              Navigator.pop(alertDialogContext),
+                                                                          child:
+                                                                              Text('Ok'),
+                                                                        ),
+                                                                      ],
                                                                     );
                                                                   },
                                                                 );
@@ -4224,22 +4216,19 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                                       context,
                                                                   builder:
                                                                       (alertDialogContext) {
-                                                                    return WebViewAware(
-                                                                      child:
-                                                                          AlertDialog(
-                                                                        title: Text(
-                                                                            'tese'),
-                                                                        content:
-                                                                            Text('Primeira Pág TRUE'),
-                                                                        actions: [
-                                                                          TextButton(
-                                                                            onPressed: () =>
-                                                                                Navigator.pop(alertDialogContext),
-                                                                            child:
-                                                                                Text('Ok'),
-                                                                          ),
-                                                                        ],
-                                                                      ),
+                                                                    return AlertDialog(
+                                                                      title: Text(
+                                                                          'tese'),
+                                                                      content: Text(
+                                                                          'Primeira Pág TRUE'),
+                                                                      actions: [
+                                                                        TextButton(
+                                                                          onPressed: () =>
+                                                                              Navigator.pop(alertDialogContext),
+                                                                          child:
+                                                                              Text('Ok'),
+                                                                        ),
+                                                                      ],
                                                                     );
                                                                   },
                                                                 );
@@ -4403,262 +4392,15 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                     ),
                                                     onEnter: ((event) async {
                                                       safeSetState(() => _model
-                                                              .mouseRegionDashAfiliadoHovered1 =
+                                                              .mouseRegionDashAfiliadoHovered =
                                                           true);
                                                     }),
                                                     onExit: ((event) async {
                                                       safeSetState(() => _model
-                                                              .mouseRegionDashAfiliadoHovered1 =
+                                                              .mouseRegionDashAfiliadoHovered =
                                                           false);
                                                     }),
                                                   ),
-                                                  if (((FFAppState().varIDAfiliadoLogado ==
-                                                              null) ||
-                                                          (FFAppState()
-                                                                  .varIDAfiliadoLogado ==
-                                                              0) ||
-                                                          (FFAppState()
-                                                                  .varTblAfiliado
-                                                                  .statusAfiliacao ==
-                                                              'ATIVACAO')) &&
-                                                      responsiveVisibility(
-                                                        context: context,
-                                                        phone: false,
-                                                        tablet: false,
-                                                        tabletLandscape: false,
-                                                        desktop: false,
-                                                      ))
-                                                    MouseRegion(
-                                                      opaque: false,
-                                                      cursor:
-                                                          MouseCursor.defer ??
-                                                              MouseCursor.defer,
-                                                      child: Visibility(
-                                                        visible: (FFAppState()
-                                                                    .varIDAfiliadoLogado ==
-                                                                null) ||
-                                                            (FFAppState()
-                                                                    .varIDAfiliadoLogado ==
-                                                                0) ||
-                                                            (FFAppState()
-                                                                    .varTblAfiliado
-                                                                    .statusAfiliacao ==
-                                                                'ATIVACAO'),
-                                                        child: Container(
-                                                          width:
-                                                              MediaQuery.sizeOf(
-                                                                          context)
-                                                                      .width *
-                                                                  1.0,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            color: () {
-                                                              if (_model
-                                                                  .mouseRegionAfiApresentacaoHovered1) {
-                                                                return FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .hoverBtnLateral;
-                                                              } else if (widget
-                                                                      .paramBotaoSelecionado ==
-                                                                  'AFILIADO_APRESENTACAO') {
-                                                                return FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .subMenuLatSelecionado;
-                                                              } else {
-                                                                return Colors
-                                                                    .transparent;
-                                                              }
-                                                            }(),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        12.0),
-                                                            border: Border.all(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .menuLateralBotoes,
-                                                            ),
-                                                          ),
-                                                          child: Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        4.0,
-                                                                        4.0,
-                                                                        2.0,
-                                                                        4.0),
-                                                            child: InkWell(
-                                                              splashColor: Colors
-                                                                  .transparent,
-                                                              focusColor: Colors
-                                                                  .transparent,
-                                                              hoverColor: Colors
-                                                                  .transparent,
-                                                              highlightColor:
-                                                                  Colors
-                                                                      .transparent,
-                                                              onTap: () async {
-                                                                if (FFAppState()
-                                                                        .varCarregouPrimeiraPagina ==
-                                                                    false) {
-                                                                  context.pop();
-                                                                } else {
-                                                                  FFAppState()
-                                                                          .varCarregouPrimeiraPagina =
-                                                                      false;
-                                                                }
-
-                                                                FFAppState()
-                                                                        .varGrupoBotaoSelecionado =
-                                                                    'AFILIADO';
-                                                                FFAppState()
-                                                                    .addToVarGruposBotoesAbertos(
-                                                                        'AFILIADO');
-
-                                                                context
-                                                                    .pushNamed(
-                                                                  DELETEPgAfiliadoApresentacaoWidget
-                                                                      .routeName,
-                                                                  extra: <String,
-                                                                      dynamic>{
-                                                                    kTransitionInfoKey:
-                                                                        TransitionInfo(
-                                                                      hasTransition:
-                                                                          true,
-                                                                      transitionType:
-                                                                          PageTransitionType
-                                                                              .fade,
-                                                                      duration: Duration(
-                                                                          milliseconds:
-                                                                              0),
-                                                                    ),
-                                                                  },
-                                                                );
-                                                              },
-                                                              child: Row(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .max,
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .start,
-                                                                children: [
-                                                                  if ((widget.paramBotaoSelecionado ==
-                                                                          'AFILIADO_APRESENTACAO') &&
-                                                                      responsiveVisibility(
-                                                                        context:
-                                                                            context,
-                                                                        phone:
-                                                                            false,
-                                                                        tablet:
-                                                                            false,
-                                                                        tabletLandscape:
-                                                                            false,
-                                                                        desktop:
-                                                                            false,
-                                                                      ))
-                                                                    Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          4.0,
-                                                                          0.0),
-                                                                      child:
-                                                                          Container(
-                                                                        width:
-                                                                            3.0,
-                                                                        height:
-                                                                            15.0,
-                                                                        decoration:
-                                                                            BoxDecoration(
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).txtMenuLatSelecionado,
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(15.0),
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  Row(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .max,
-                                                                    children: [
-                                                                      Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            4.0,
-                                                                            0.0),
-                                                                        child:
-                                                                            Icon(
-                                                                          Icons
-                                                                              .star_purple500,
-                                                                          color: widget.paramBotaoSelecionado == 'AFILIADO_APRESENTACAO'
-                                                                              ? FlutterFlowTheme.of(context).txtMenuLatSelecionado
-                                                                              : FlutterFlowTheme.of(context).txtMenuLateral,
-                                                                          size:
-                                                                              16.0,
-                                                                        ),
-                                                                      ),
-                                                                      Text(
-                                                                        'Apresentação Afiliação',
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .override(
-                                                                              font: GoogleFonts.readexPro(
-                                                                                fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                              ),
-                                                                              color: widget.paramBotaoSelecionado == 'AFILIADO_APRESENTACAO' ? FlutterFlowTheme.of(context).txtMenuLatSelecionado : FlutterFlowTheme.of(context).txtMenuLateral,
-                                                                              fontSize: MediaQuery.sizeOf(context).width < FFAppState().varTamanhoMinimoTelaMenuLateral.toDouble() ? 16.0 : 12.0,
-                                                                              letterSpacing: 0.0,
-                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                            ),
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                  if (responsiveVisibility(
-                                                                    context:
-                                                                        context,
-                                                                    phone:
-                                                                        false,
-                                                                    tablet:
-                                                                        false,
-                                                                    tabletLandscape:
-                                                                        false,
-                                                                    desktop:
-                                                                        false,
-                                                                  ))
-                                                                    Icon(
-                                                                      Icons
-                                                                          .keyboard_arrow_right_sharp,
-                                                                      color: widget.paramBotaoSelecionado ==
-                                                                              'EMPRESA'
-                                                                          ? FlutterFlowTheme.of(context)
-                                                                              .primary
-                                                                          : FlutterFlowTheme.of(context)
-                                                                              .secondaryText,
-                                                                      size:
-                                                                          20.0,
-                                                                    ),
-                                                                ],
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      onEnter: ((event) async {
-                                                        safeSetState(() => _model
-                                                                .mouseRegionAfiApresentacaoHovered1 =
-                                                            true);
-                                                      }),
-                                                      onExit: ((event) async {
-                                                        safeSetState(() => _model
-                                                                .mouseRegionAfiApresentacaoHovered1 =
-                                                            false);
-                                                      }),
-                                                    ),
                                                   MouseRegion(
                                                     opaque: false,
                                                     cursor: MouseCursor.defer ??
@@ -4671,7 +4413,7 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                       decoration: BoxDecoration(
                                                         color: () {
                                                           if (_model
-                                                              .mouseRegionAfiCadHovered1) {
+                                                              .mouseRegionAfiCadHovered) {
                                                             return FlutterFlowTheme
                                                                     .of(context)
                                                                 .hoverBtnLateral;
@@ -4723,22 +4465,19 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                                       context,
                                                                   builder:
                                                                       (alertDialogContext) {
-                                                                    return WebViewAware(
-                                                                      child:
-                                                                          AlertDialog(
-                                                                        title: Text(
-                                                                            'tese'),
-                                                                        content:
-                                                                            Text('Primeira Pág FALSE 1'),
-                                                                        actions: [
-                                                                          TextButton(
-                                                                            onPressed: () =>
-                                                                                Navigator.pop(alertDialogContext),
-                                                                            child:
-                                                                                Text('Ok'),
-                                                                          ),
-                                                                        ],
-                                                                      ),
+                                                                    return AlertDialog(
+                                                                      title: Text(
+                                                                          'tese'),
+                                                                      content: Text(
+                                                                          'Primeira Pág FALSE 1'),
+                                                                      actions: [
+                                                                        TextButton(
+                                                                          onPressed: () =>
+                                                                              Navigator.pop(alertDialogContext),
+                                                                          child:
+                                                                              Text('Ok'),
+                                                                        ),
+                                                                      ],
                                                                     );
                                                                   },
                                                                 );
@@ -4751,22 +4490,19 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                                       context,
                                                                   builder:
                                                                       (alertDialogContext) {
-                                                                    return WebViewAware(
-                                                                      child:
-                                                                          AlertDialog(
-                                                                        title: Text(
-                                                                            'tese'),
-                                                                        content:
-                                                                            Text('Primeira Pág FALSE 2'),
-                                                                        actions: [
-                                                                          TextButton(
-                                                                            onPressed: () =>
-                                                                                Navigator.pop(alertDialogContext),
-                                                                            child:
-                                                                                Text('Ok'),
-                                                                          ),
-                                                                        ],
-                                                                      ),
+                                                                    return AlertDialog(
+                                                                      title: Text(
+                                                                          'tese'),
+                                                                      content: Text(
+                                                                          'Primeira Pág FALSE 2'),
+                                                                      actions: [
+                                                                        TextButton(
+                                                                          onPressed: () =>
+                                                                              Navigator.pop(alertDialogContext),
+                                                                          child:
+                                                                              Text('Ok'),
+                                                                        ),
+                                                                      ],
                                                                     );
                                                                   },
                                                                 );
@@ -4779,22 +4515,19 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                                       context,
                                                                   builder:
                                                                       (alertDialogContext) {
-                                                                    return WebViewAware(
-                                                                      child:
-                                                                          AlertDialog(
-                                                                        title: Text(
-                                                                            'tese'),
-                                                                        content:
-                                                                            Text('Primeira Pág TRUE'),
-                                                                        actions: [
-                                                                          TextButton(
-                                                                            onPressed: () =>
-                                                                                Navigator.pop(alertDialogContext),
-                                                                            child:
-                                                                                Text('Ok'),
-                                                                          ),
-                                                                        ],
-                                                                      ),
+                                                                    return AlertDialog(
+                                                                      title: Text(
+                                                                          'tese'),
+                                                                      content: Text(
+                                                                          'Primeira Pág TRUE'),
+                                                                      actions: [
+                                                                        TextButton(
+                                                                          onPressed: () =>
+                                                                              Navigator.pop(alertDialogContext),
+                                                                          child:
+                                                                              Text('Ok'),
+                                                                        ),
+                                                                      ],
                                                                     );
                                                                   },
                                                                 );
@@ -4983,262 +4716,15 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                     ),
                                                     onEnter: ((event) async {
                                                       safeSetState(() => _model
-                                                              .mouseRegionAfiCadHovered1 =
+                                                              .mouseRegionAfiCadHovered =
                                                           true);
                                                     }),
                                                     onExit: ((event) async {
                                                       safeSetState(() => _model
-                                                              .mouseRegionAfiCadHovered1 =
+                                                              .mouseRegionAfiCadHovered =
                                                           false);
                                                     }),
                                                   ),
-                                                  if (((FFAppState().varIDAfiliadoLogado !=
-                                                              null) &&
-                                                          (FFAppState()
-                                                                  .varIDAfiliadoLogado >
-                                                              0) &&
-                                                          (FFAppState()
-                                                                  .varTblAfiliado
-                                                                  .statusAfiliacao ==
-                                                              'ATIVACAO')) &&
-                                                      responsiveVisibility(
-                                                        context: context,
-                                                        phone: false,
-                                                        tablet: false,
-                                                        tabletLandscape: false,
-                                                        desktop: false,
-                                                      ))
-                                                    MouseRegion(
-                                                      opaque: false,
-                                                      cursor:
-                                                          MouseCursor.defer ??
-                                                              MouseCursor.defer,
-                                                      child: Visibility(
-                                                        visible: (FFAppState()
-                                                                    .varIDAfiliadoLogado !=
-                                                                null) &&
-                                                            (FFAppState()
-                                                                    .varIDAfiliadoLogado >
-                                                                0) &&
-                                                            (FFAppState()
-                                                                    .varTblAfiliado
-                                                                    .statusAfiliacao ==
-                                                                'ATIVACAO'),
-                                                        child: Container(
-                                                          width:
-                                                              MediaQuery.sizeOf(
-                                                                          context)
-                                                                      .width *
-                                                                  1.0,
-                                                          decoration:
-                                                              BoxDecoration(
-                                                            color: () {
-                                                              if (_model
-                                                                  .mouseRegionAfiAtivacaoHovered1) {
-                                                                return FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .hoverBtnLateral;
-                                                              } else if (widget
-                                                                      .paramBotaoSelecionado ==
-                                                                  'AFILIADO_PG_PLANO') {
-                                                                return FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .subMenuLatSelecionado;
-                                                              } else {
-                                                                return Colors
-                                                                    .transparent;
-                                                              }
-                                                            }(),
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        12.0),
-                                                            border: Border.all(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .menuLateralBotoes,
-                                                            ),
-                                                          ),
-                                                          child: Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        4.0,
-                                                                        4.0,
-                                                                        2.0,
-                                                                        4.0),
-                                                            child: InkWell(
-                                                              splashColor: Colors
-                                                                  .transparent,
-                                                              focusColor: Colors
-                                                                  .transparent,
-                                                              hoverColor: Colors
-                                                                  .transparent,
-                                                              highlightColor:
-                                                                  Colors
-                                                                      .transparent,
-                                                              onTap: () async {
-                                                                if (FFAppState()
-                                                                        .varCarregouPrimeiraPagina ==
-                                                                    false) {
-                                                                  context.pop();
-                                                                } else {
-                                                                  FFAppState()
-                                                                          .varCarregouPrimeiraPagina =
-                                                                      false;
-                                                                }
-
-                                                                FFAppState()
-                                                                        .varGrupoBotaoSelecionado =
-                                                                    'AFILIADO';
-                                                                FFAppState()
-                                                                    .addToVarGruposBotoesAbertos(
-                                                                        'AFILIADO');
-
-                                                                context
-                                                                    .pushNamed(
-                                                                  DELETEPgAfiliadoAtivacaoWidget
-                                                                      .routeName,
-                                                                  extra: <String,
-                                                                      dynamic>{
-                                                                    kTransitionInfoKey:
-                                                                        TransitionInfo(
-                                                                      hasTransition:
-                                                                          true,
-                                                                      transitionType:
-                                                                          PageTransitionType
-                                                                              .fade,
-                                                                      duration: Duration(
-                                                                          milliseconds:
-                                                                              0),
-                                                                    ),
-                                                                  },
-                                                                );
-                                                              },
-                                                              child: Row(
-                                                                mainAxisSize:
-                                                                    MainAxisSize
-                                                                        .max,
-                                                                mainAxisAlignment:
-                                                                    MainAxisAlignment
-                                                                        .start,
-                                                                children: [
-                                                                  if ((widget.paramBotaoSelecionado ==
-                                                                          'AFILIADO_PG_PLANO') &&
-                                                                      responsiveVisibility(
-                                                                        context:
-                                                                            context,
-                                                                        phone:
-                                                                            false,
-                                                                        tablet:
-                                                                            false,
-                                                                        tabletLandscape:
-                                                                            false,
-                                                                        desktop:
-                                                                            false,
-                                                                      ))
-                                                                    Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          4.0,
-                                                                          0.0),
-                                                                      child:
-                                                                          Container(
-                                                                        width:
-                                                                            3.0,
-                                                                        height:
-                                                                            15.0,
-                                                                        decoration:
-                                                                            BoxDecoration(
-                                                                          color:
-                                                                              FlutterFlowTheme.of(context).txtMenuLatSelecionado,
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(15.0),
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  Row(
-                                                                    mainAxisSize:
-                                                                        MainAxisSize
-                                                                            .max,
-                                                                    children: [
-                                                                      Padding(
-                                                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            4.0,
-                                                                            0.0),
-                                                                        child:
-                                                                            Icon(
-                                                                          Icons
-                                                                              .check_circle_outlined,
-                                                                          color: widget.paramBotaoSelecionado == 'AFILIADO_PG_PLANO'
-                                                                              ? FlutterFlowTheme.of(context).txtMenuLatSelecionado
-                                                                              : FlutterFlowTheme.of(context).txtMenuLateral,
-                                                                          size:
-                                                                              16.0,
-                                                                        ),
-                                                                      ),
-                                                                      Text(
-                                                                        'Ativção da Afiliação',
-                                                                        style: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .override(
-                                                                              font: GoogleFonts.readexPro(
-                                                                                fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                              ),
-                                                                              color: widget.paramBotaoSelecionado == 'AFILIADO_PG_PLANO' ? FlutterFlowTheme.of(context).txtMenuLatSelecionado : FlutterFlowTheme.of(context).txtMenuLateral,
-                                                                              fontSize: MediaQuery.sizeOf(context).width < FFAppState().varTamanhoMinimoTelaMenuLateral.toDouble() ? 16.0 : 12.0,
-                                                                              letterSpacing: 0.0,
-                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                            ),
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                  if (responsiveVisibility(
-                                                                    context:
-                                                                        context,
-                                                                    phone:
-                                                                        false,
-                                                                    tablet:
-                                                                        false,
-                                                                    tabletLandscape:
-                                                                        false,
-                                                                    desktop:
-                                                                        false,
-                                                                  ))
-                                                                    Icon(
-                                                                      Icons
-                                                                          .keyboard_arrow_right_sharp,
-                                                                      color: widget.paramBotaoSelecionado ==
-                                                                              'EMPRESA'
-                                                                          ? FlutterFlowTheme.of(context)
-                                                                              .primary
-                                                                          : FlutterFlowTheme.of(context)
-                                                                              .secondaryText,
-                                                                      size:
-                                                                          20.0,
-                                                                    ),
-                                                                ],
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                      onEnter: ((event) async {
-                                                        safeSetState(() => _model
-                                                                .mouseRegionAfiAtivacaoHovered1 =
-                                                            true);
-                                                      }),
-                                                      onExit: ((event) async {
-                                                        safeSetState(() => _model
-                                                                .mouseRegionAfiAtivacaoHovered1 =
-                                                            false);
-                                                      }),
-                                                    ),
                                                   if ((FFAppState()
                                                               .varIDAfiliadoLogado !=
                                                           null) &&
@@ -5268,7 +4754,7 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                             BoxDecoration(
                                                           color: () {
                                                             if (_model
-                                                                .mouseRegionAfiTreinamentoHovered1) {
+                                                                .mouseRegionAfiTreinamentoHovered) {
                                                               return FlutterFlowTheme
                                                                       .of(context)
                                                                   .hoverBtnLateral;
@@ -5470,12 +4956,12 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                       ),
                                                       onEnter: ((event) async {
                                                         safeSetState(() => _model
-                                                                .mouseRegionAfiTreinamentoHovered1 =
+                                                                .mouseRegionAfiTreinamentoHovered =
                                                             true);
                                                       }),
                                                       onExit: ((event) async {
                                                         safeSetState(() => _model
-                                                                .mouseRegionAfiTreinamentoHovered1 =
+                                                                .mouseRegionAfiTreinamentoHovered =
                                                             false);
                                                       }),
                                                     ),
@@ -5504,7 +4990,7 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                                 BoxDecoration(
                                                               color: () {
                                                                 if (_model
-                                                                    .mouseRegionAfiIndicacoesHovered1) {
+                                                                    .mouseRegionAfiIndicacoesHovered) {
                                                                   return FlutterFlowTheme.of(
                                                                           context)
                                                                       .hoverBtnLateral;
@@ -5700,13 +5186,13 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                           onEnter:
                                                               ((event) async {
                                                             safeSetState(() =>
-                                                                _model.mouseRegionAfiIndicacoesHovered1 =
+                                                                _model.mouseRegionAfiIndicacoesHovered =
                                                                     true);
                                                           }),
                                                           onExit:
                                                               ((event) async {
                                                             safeSetState(() =>
-                                                                _model.mouseRegionAfiIndicacoesHovered1 =
+                                                                _model.mouseRegionAfiIndicacoesHovered =
                                                                     false);
                                                           }),
                                                         ),
@@ -5725,7 +5211,7 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                                 BoxDecoration(
                                                               color: () {
                                                                 if (_model
-                                                                    .mouseRegionAfiSubAfiHovered1) {
+                                                                    .mouseRegionAfiSubAfiHovered) {
                                                                   return FlutterFlowTheme.of(
                                                                           context)
                                                                       .hoverBtnLateral;
@@ -5919,13 +5405,13 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                           onEnter:
                                                               ((event) async {
                                                             safeSetState(() =>
-                                                                _model.mouseRegionAfiSubAfiHovered1 =
+                                                                _model.mouseRegionAfiSubAfiHovered =
                                                                     true);
                                                           }),
                                                           onExit:
                                                               ((event) async {
                                                             safeSetState(() =>
-                                                                _model.mouseRegionAfiSubAfiHovered1 =
+                                                                _model.mouseRegionAfiSubAfiHovered =
                                                                     false);
                                                           }),
                                                         ),
@@ -5944,7 +5430,7 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                                 BoxDecoration(
                                                               color: () {
                                                                 if (_model
-                                                                    .mouseRegionAfiComisDiariasHovered1) {
+                                                                    .mouseRegionAfiComisDiariasHovered) {
                                                                   return FlutterFlowTheme.of(
                                                                           context)
                                                                       .hoverBtnLateral;
@@ -6138,13 +5624,13 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                           onEnter:
                                                               ((event) async {
                                                             safeSetState(() =>
-                                                                _model.mouseRegionAfiComisDiariasHovered1 =
+                                                                _model.mouseRegionAfiComisDiariasHovered =
                                                                     true);
                                                           }),
                                                           onExit:
                                                               ((event) async {
                                                             safeSetState(() =>
-                                                                _model.mouseRegionAfiComisDiariasHovered1 =
+                                                                _model.mouseRegionAfiComisDiariasHovered =
                                                                     false);
                                                           }),
                                                         ),
@@ -6163,7 +5649,7 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                                 BoxDecoration(
                                                               color: () {
                                                                 if (_model
-                                                                    .mouseRegionAfiComisMensaisHovered1) {
+                                                                    .mouseRegionAfiComisMensaisHovered) {
                                                                   return FlutterFlowTheme.of(
                                                                           context)
                                                                       .hoverBtnLateral;
@@ -6357,13 +5843,13 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                           onEnter:
                                                               ((event) async {
                                                             safeSetState(() =>
-                                                                _model.mouseRegionAfiComisMensaisHovered1 =
+                                                                _model.mouseRegionAfiComisMensaisHovered =
                                                                     true);
                                                           }),
                                                           onExit:
                                                               ((event) async {
                                                             safeSetState(() =>
-                                                                _model.mouseRegionAfiComisMensaisHovered1 =
+                                                                _model.mouseRegionAfiComisMensaisHovered =
                                                                     false);
                                                           }),
                                                         ),
@@ -6382,7 +5868,7 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                                 BoxDecoration(
                                                               color: () {
                                                                 if (_model
-                                                                    .mouseRegionAfiAtividadesHovered1) {
+                                                                    .mouseRegionAfiAtividadesHovered) {
                                                                   return FlutterFlowTheme.of(
                                                                           context)
                                                                       .hoverBtnLateral;
@@ -6576,13 +6062,13 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                           onEnter:
                                                               ((event) async {
                                                             safeSetState(() =>
-                                                                _model.mouseRegionAfiAtividadesHovered1 =
+                                                                _model.mouseRegionAfiAtividadesHovered =
                                                                     true);
                                                           }),
                                                           onExit:
                                                               ((event) async {
                                                             safeSetState(() =>
-                                                                _model.mouseRegionAfiAtividadesHovered1 =
+                                                                _model.mouseRegionAfiAtividadesHovered =
                                                                     false);
                                                           }),
                                                         ),
@@ -6601,7 +6087,7 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                                 BoxDecoration(
                                                               color: () {
                                                                 if (_model
-                                                                    .mouseRegionCuponsHovered1) {
+                                                                    .mouseRegionCuponsHovered) {
                                                                   return FlutterFlowTheme.of(
                                                                           context)
                                                                       .hoverBtnLateral;
@@ -6795,13 +6281,13 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                           onEnter:
                                                               ((event) async {
                                                             safeSetState(() =>
-                                                                _model.mouseRegionCuponsHovered1 =
+                                                                _model.mouseRegionCuponsHovered =
                                                                     true);
                                                           }),
                                                           onExit:
                                                               ((event) async {
                                                             safeSetState(() =>
-                                                                _model.mouseRegionCuponsHovered1 =
+                                                                _model.mouseRegionCuponsHovered =
                                                                     false);
                                                           }),
                                                         ),
@@ -6820,7 +6306,7 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                                 BoxDecoration(
                                                               color: () {
                                                                 if (_model
-                                                                    .mouseRegionAfiSaquesHovered1) {
+                                                                    .mouseRegionAfiSaquesHovered) {
                                                                   return FlutterFlowTheme.of(
                                                                           context)
                                                                       .hoverBtnLateral;
@@ -7014,13 +6500,13 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                           onEnter:
                                                               ((event) async {
                                                             safeSetState(() =>
-                                                                _model.mouseRegionAfiSaquesHovered1 =
+                                                                _model.mouseRegionAfiSaquesHovered =
                                                                     true);
                                                           }),
                                                           onExit:
                                                               ((event) async {
                                                             safeSetState(() =>
-                                                                _model.mouseRegionAfiSaquesHovered1 =
+                                                                _model.mouseRegionAfiSaquesHovered =
                                                                     false);
                                                           }),
                                                         ),
@@ -7039,7 +6525,7 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                                 BoxDecoration(
                                                               color: () {
                                                                 if (_model
-                                                                    .mouseRegionAfiPlanoHovered1) {
+                                                                    .mouseRegionAfiPlanoHovered) {
                                                                   return FlutterFlowTheme.of(
                                                                           context)
                                                                       .hoverBtnLateral;
@@ -7233,13 +6719,13 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                           onEnter:
                                                               ((event) async {
                                                             safeSetState(() =>
-                                                                _model.mouseRegionAfiPlanoHovered1 =
+                                                                _model.mouseRegionAfiPlanoHovered =
                                                                     true);
                                                           }),
                                                           onExit:
                                                               ((event) async {
                                                             safeSetState(() =>
-                                                                _model.mouseRegionAfiPlanoHovered1 =
+                                                                _model.mouseRegionAfiPlanoHovered =
                                                                     false);
                                                           }),
                                                         ),
@@ -7266,7 +6752,7 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                                   BoxDecoration(
                                                                 color: () {
                                                                   if (_model
-                                                                      .mouseRegionAfiEmpGoogleHovered1) {
+                                                                      .mouseRegionAfiEmpGoogleHovered) {
                                                                     return FlutterFlowTheme.of(
                                                                             context)
                                                                         .hoverBtnLateral;
@@ -7453,13 +6939,13 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                           onEnter:
                                                               ((event) async {
                                                             safeSetState(() =>
-                                                                _model.mouseRegionAfiEmpGoogleHovered1 =
+                                                                _model.mouseRegionAfiEmpGoogleHovered =
                                                                     true);
                                                           }),
                                                           onExit:
                                                               ((event) async {
                                                             safeSetState(() =>
-                                                                _model.mouseRegionAfiEmpGoogleHovered1 =
+                                                                _model.mouseRegionAfiEmpGoogleHovered =
                                                                     false);
                                                           }),
                                                         ),
@@ -7560,2621 +7046,6 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                             : FlutterFlowTheme
                                                                     .of(context)
                                                                 .colorBordaSubgrupos,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              if (((FFAppState()
-                                                              .varGrupoBotaoSelecionado ==
-                                                          'AFILIADO') ||
-                                                      (FFAppState()
-                                                              .varGruposBotoesAbertos
-                                                              .where((e) =>
-                                                                  e ==
-                                                                  'AFILIADO')
-                                                              .toList()
-                                                              .length >
-                                                          0)) &&
-                                                  responsiveVisibility(
-                                                    context: context,
-                                                    phone: false,
-                                                    tablet: false,
-                                                    tabletLandscape: false,
-                                                    desktop: false,
-                                                  ))
-                                                Padding(
-                                                  padding: EdgeInsetsDirectional
-                                                      .fromSTEB(
-                                                          0.0, 0.0, 0.0, 8.0),
-                                                  child: Container(
-                                                    decoration: BoxDecoration(
-                                                      gradient: LinearGradient(
-                                                        colors: [
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .colorGradient1,
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .colorGradient2
-                                                        ],
-                                                        stops: [0.0, 1.0],
-                                                        begin:
-                                                            AlignmentDirectional(
-                                                                0.0, -1.0),
-                                                        end:
-                                                            AlignmentDirectional(
-                                                                0, 1.0),
-                                                      ),
-                                                      borderRadius:
-                                                          BorderRadius.only(
-                                                        bottomLeft:
-                                                            Radius.circular(
-                                                                12.0),
-                                                        bottomRight:
-                                                            Radius.circular(
-                                                                12.0),
-                                                        topLeft:
-                                                            Radius.circular(
-                                                                0.0),
-                                                        topRight:
-                                                            Radius.circular(
-                                                                0.0),
-                                                      ),
-                                                      border: Border.all(
-                                                        color: FFAppState()
-                                                                    .varGrupoBotaoSelecionado ==
-                                                                'AFILIADO'
-                                                            ? FlutterFlowTheme
-                                                                    .of(context)
-                                                                .menuLatSelecionado
-                                                            : FlutterFlowTheme
-                                                                    .of(context)
-                                                                .colorBordaSubgrupos,
-                                                      ),
-                                                    ),
-                                                    child: Padding(
-                                                      padding:
-                                                          EdgeInsets.all(8.0),
-                                                      child: Column(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        children: [
-                                                          if ((FFAppState()
-                                                                      .varIDAfiliadoLogado !=
-                                                                  null) &&
-                                                              (FFAppState()
-                                                                      .varIDAfiliadoLogado >
-                                                                  0) &&
-                                                              (FFAppState()
-                                                                      .varTblAfiliado
-                                                                      .statusAfiliacao ==
-                                                                  'ATIVA'))
-                                                            MouseRegion(
-                                                              opaque: false,
-                                                              cursor: MouseCursor
-                                                                      .defer ??
-                                                                  MouseCursor
-                                                                      .defer,
-                                                              child: Visibility(
-                                                                visible: (FFAppState()
-                                                                            .varIDAfiliadoLogado !=
-                                                                        null) &&
-                                                                    (FFAppState()
-                                                                            .varIDAfiliadoLogado >
-                                                                        0) &&
-                                                                    (FFAppState()
-                                                                            .varTblAfiliado
-                                                                            .statusAfiliacao ==
-                                                                        'ATIVA'),
-                                                                child:
-                                                                    Container(
-                                                                  width: MediaQuery.sizeOf(
-                                                                              context)
-                                                                          .width *
-                                                                      1.0,
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    color: () {
-                                                                      if (_model
-                                                                          .mouseRegionDashAfiliadoHovered2) {
-                                                                        return FlutterFlowTheme.of(context)
-                                                                            .hoverBtnLateral;
-                                                                      } else if (widget
-                                                                              .paramBotaoSelecionado ==
-                                                                          'AFILIADO_DASHBOARD') {
-                                                                        return FlutterFlowTheme.of(context)
-                                                                            .subMenuLatSelecionado;
-                                                                      } else {
-                                                                        return Colors
-                                                                            .transparent;
-                                                                      }
-                                                                    }(),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            8.0),
-                                                                    border:
-                                                                        Border
-                                                                            .all(
-                                                                      color: Colors
-                                                                          .transparent,
-                                                                    ),
-                                                                  ),
-                                                                  child:
-                                                                      Padding(
-                                                                    padding: EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            4.0,
-                                                                            2.0,
-                                                                            2.0,
-                                                                            2.0),
-                                                                    child:
-                                                                        InkWell(
-                                                                      splashColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      focusColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      hoverColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      highlightColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      onTap:
-                                                                          () async {
-                                                                        if (FFAppState().varCarregouPrimeiraPagina ==
-                                                                            false) {
-                                                                          context
-                                                                              .pop();
-                                                                        } else {
-                                                                          FFAppState().varCarregouPrimeiraPagina =
-                                                                              false;
-                                                                        }
-
-                                                                        FFAppState().varGrupoBotaoSelecionado =
-                                                                            'AFILIADO';
-                                                                        FFAppState()
-                                                                            .addToVarGruposBotoesAbertos('AFILIADO');
-
-                                                                        context
-                                                                            .pushNamed(
-                                                                          DELETEPgAfiliadoDashboardWidget
-                                                                              .routeName,
-                                                                          extra: <String,
-                                                                              dynamic>{
-                                                                            kTransitionInfoKey:
-                                                                                TransitionInfo(
-                                                                              hasTransition: true,
-                                                                              transitionType: PageTransitionType.fade,
-                                                                              duration: Duration(milliseconds: 0),
-                                                                            ),
-                                                                          },
-                                                                        );
-                                                                      },
-                                                                      child:
-                                                                          Row(
-                                                                        mainAxisSize:
-                                                                            MainAxisSize.max,
-                                                                        mainAxisAlignment:
-                                                                            MainAxisAlignment.spaceBetween,
-                                                                        children: [
-                                                                          Row(
-                                                                            mainAxisSize:
-                                                                                MainAxisSize.max,
-                                                                            children: [
-                                                                              if ((widget.paramBotaoSelecionado == 'AFILIADO_DASHBOARD') &&
-                                                                                  responsiveVisibility(
-                                                                                    context: context,
-                                                                                    phone: false,
-                                                                                    tablet: false,
-                                                                                    tabletLandscape: false,
-                                                                                    desktop: false,
-                                                                                  ))
-                                                                                Padding(
-                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 4.0, 0.0),
-                                                                                  child: Container(
-                                                                                    width: 3.0,
-                                                                                    height: 15.0,
-                                                                                    decoration: BoxDecoration(
-                                                                                      color: FlutterFlowTheme.of(context).txtMenuLatSelecionado,
-                                                                                      borderRadius: BorderRadius.circular(15.0),
-                                                                                    ),
-                                                                                  ),
-                                                                                ),
-                                                                              Padding(
-                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 4.0, 0.0),
-                                                                                child: Icon(
-                                                                                  Icons.auto_graph,
-                                                                                  color: widget.paramBotaoSelecionado == 'AFILIADO_DASHBOARD' ? FlutterFlowTheme.of(context).txtMenuLatSelecionado : FlutterFlowTheme.of(context).txtMenuLateral,
-                                                                                  size: 16.0,
-                                                                                ),
-                                                                              ),
-                                                                              Text(
-                                                                                'Dashboard',
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      font: GoogleFonts.readexPro(
-                                                                                        fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                        fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                      ),
-                                                                                      color: widget.paramBotaoSelecionado == 'AFILIADO_DASHBOARD' ? FlutterFlowTheme.of(context).txtMenuLatSelecionado : FlutterFlowTheme.of(context).txtMenuLateral,
-                                                                                      fontSize: MediaQuery.sizeOf(context).width < FFAppState().varTamanhoMinimoTelaMenuLateral.toDouble() ? 16.0 : 12.0,
-                                                                                      letterSpacing: 0.0,
-                                                                                      fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                      fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                    ),
-                                                                              ),
-                                                                            ],
-                                                                          ),
-                                                                          if (responsiveVisibility(
-                                                                            context:
-                                                                                context,
-                                                                            phone:
-                                                                                false,
-                                                                            tablet:
-                                                                                false,
-                                                                            tabletLandscape:
-                                                                                false,
-                                                                            desktop:
-                                                                                false,
-                                                                          ))
-                                                                            Icon(
-                                                                              Icons.keyboard_arrow_right_sharp,
-                                                                              color: widget.paramBotaoSelecionado == 'EMPRESA' ? FlutterFlowTheme.of(context).primary : FlutterFlowTheme.of(context).secondaryText,
-                                                                              size: 20.0,
-                                                                            ),
-                                                                        ],
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                              onEnter:
-                                                                  ((event) async {
-                                                                safeSetState(() =>
-                                                                    _model.mouseRegionDashAfiliadoHovered2 =
-                                                                        true);
-                                                              }),
-                                                              onExit:
-                                                                  ((event) async {
-                                                                safeSetState(() =>
-                                                                    _model.mouseRegionDashAfiliadoHovered2 =
-                                                                        false);
-                                                              }),
-                                                            ),
-                                                          if ((FFAppState()
-                                                                      .varIDAfiliadoLogado ==
-                                                                  null) ||
-                                                              (FFAppState()
-                                                                      .varIDAfiliadoLogado ==
-                                                                  0) ||
-                                                              (FFAppState()
-                                                                      .varTblAfiliado
-                                                                      .statusAfiliacao ==
-                                                                  'ATIVACAO'))
-                                                            MouseRegion(
-                                                              opaque: false,
-                                                              cursor: MouseCursor
-                                                                      .defer ??
-                                                                  MouseCursor
-                                                                      .defer,
-                                                              child: Visibility(
-                                                                visible: (FFAppState()
-                                                                            .varIDAfiliadoLogado ==
-                                                                        null) ||
-                                                                    (FFAppState()
-                                                                            .varIDAfiliadoLogado ==
-                                                                        0) ||
-                                                                    (FFAppState()
-                                                                            .varTblAfiliado
-                                                                            .statusAfiliacao ==
-                                                                        'ATIVACAO'),
-                                                                child:
-                                                                    Container(
-                                                                  width: MediaQuery.sizeOf(
-                                                                              context)
-                                                                          .width *
-                                                                      1.0,
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    color: () {
-                                                                      if (_model
-                                                                          .mouseRegionAfiApresentacaoHovered2) {
-                                                                        return FlutterFlowTheme.of(context)
-                                                                            .hoverBtnLateral;
-                                                                      } else if (widget
-                                                                              .paramBotaoSelecionado ==
-                                                                          'AFILIADO_APRESENTACAO') {
-                                                                        return FlutterFlowTheme.of(context)
-                                                                            .subMenuLatSelecionado;
-                                                                      } else {
-                                                                        return Colors
-                                                                            .transparent;
-                                                                      }
-                                                                    }(),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            8.0),
-                                                                    border:
-                                                                        Border
-                                                                            .all(
-                                                                      color: Colors
-                                                                          .transparent,
-                                                                    ),
-                                                                  ),
-                                                                  child:
-                                                                      Padding(
-                                                                    padding: EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            4.0,
-                                                                            2.0,
-                                                                            2.0,
-                                                                            2.0),
-                                                                    child:
-                                                                        InkWell(
-                                                                      splashColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      focusColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      hoverColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      highlightColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      onTap:
-                                                                          () async {
-                                                                        if (FFAppState().varCarregouPrimeiraPagina ==
-                                                                            false) {
-                                                                          context
-                                                                              .pop();
-                                                                        } else {
-                                                                          FFAppState().varCarregouPrimeiraPagina =
-                                                                              false;
-                                                                        }
-
-                                                                        FFAppState().varGrupoBotaoSelecionado =
-                                                                            'AFILIADO';
-                                                                        FFAppState()
-                                                                            .addToVarGruposBotoesAbertos('AFILIADO');
-
-                                                                        context
-                                                                            .pushNamed(
-                                                                          DELETEPgAfiliadoApresentacaoWidget
-                                                                              .routeName,
-                                                                          extra: <String,
-                                                                              dynamic>{
-                                                                            kTransitionInfoKey:
-                                                                                TransitionInfo(
-                                                                              hasTransition: true,
-                                                                              transitionType: PageTransitionType.fade,
-                                                                              duration: Duration(milliseconds: 0),
-                                                                            ),
-                                                                          },
-                                                                        );
-                                                                      },
-                                                                      child:
-                                                                          Row(
-                                                                        mainAxisSize:
-                                                                            MainAxisSize.max,
-                                                                        mainAxisAlignment:
-                                                                            MainAxisAlignment.start,
-                                                                        children: [
-                                                                          if ((widget.paramBotaoSelecionado == 'AFILIADO_APRESENTACAO') &&
-                                                                              responsiveVisibility(
-                                                                                context: context,
-                                                                                phone: false,
-                                                                                tablet: false,
-                                                                                tabletLandscape: false,
-                                                                                desktop: false,
-                                                                              ))
-                                                                            Padding(
-                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 4.0, 0.0),
-                                                                              child: Container(
-                                                                                width: 3.0,
-                                                                                height: 15.0,
-                                                                                decoration: BoxDecoration(
-                                                                                  color: FlutterFlowTheme.of(context).txtMenuLatSelecionado,
-                                                                                  borderRadius: BorderRadius.circular(15.0),
-                                                                                ),
-                                                                              ),
-                                                                            ),
-                                                                          Row(
-                                                                            mainAxisSize:
-                                                                                MainAxisSize.max,
-                                                                            children: [
-                                                                              Padding(
-                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 4.0, 0.0),
-                                                                                child: Icon(
-                                                                                  Icons.star_purple500,
-                                                                                  color: widget.paramBotaoSelecionado == 'AFILIADO_APRESENTACAO' ? FlutterFlowTheme.of(context).txtMenuLatSelecionado : FlutterFlowTheme.of(context).txtMenuLateral,
-                                                                                  size: 16.0,
-                                                                                ),
-                                                                              ),
-                                                                              Text(
-                                                                                'Apresentação Afiliação',
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      font: GoogleFonts.readexPro(
-                                                                                        fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                        fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                      ),
-                                                                                      color: widget.paramBotaoSelecionado == 'AFILIADO_APRESENTACAO' ? FlutterFlowTheme.of(context).txtMenuLatSelecionado : FlutterFlowTheme.of(context).txtMenuLateral,
-                                                                                      fontSize: MediaQuery.sizeOf(context).width < FFAppState().varTamanhoMinimoTelaMenuLateral.toDouble() ? 16.0 : 12.0,
-                                                                                      letterSpacing: 0.0,
-                                                                                      fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                      fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                    ),
-                                                                              ),
-                                                                            ],
-                                                                          ),
-                                                                          if (responsiveVisibility(
-                                                                            context:
-                                                                                context,
-                                                                            phone:
-                                                                                false,
-                                                                            tablet:
-                                                                                false,
-                                                                            tabletLandscape:
-                                                                                false,
-                                                                            desktop:
-                                                                                false,
-                                                                          ))
-                                                                            Icon(
-                                                                              Icons.keyboard_arrow_right_sharp,
-                                                                              color: widget.paramBotaoSelecionado == 'EMPRESA' ? FlutterFlowTheme.of(context).primary : FlutterFlowTheme.of(context).secondaryText,
-                                                                              size: 20.0,
-                                                                            ),
-                                                                        ],
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                              onEnter:
-                                                                  ((event) async {
-                                                                safeSetState(() =>
-                                                                    _model.mouseRegionAfiApresentacaoHovered2 =
-                                                                        true);
-                                                              }),
-                                                              onExit:
-                                                                  ((event) async {
-                                                                safeSetState(() =>
-                                                                    _model.mouseRegionAfiApresentacaoHovered2 =
-                                                                        false);
-                                                              }),
-                                                            ),
-                                                          if ((FFAppState()
-                                                                      .varIDAfiliadoLogado !=
-                                                                  null) &&
-                                                              (FFAppState()
-                                                                      .varIDAfiliadoLogado >
-                                                                  0) &&
-                                                              (FFAppState()
-                                                                      .varTblAfiliado
-                                                                      .statusAfiliacao !=
-                                                                  'ATIVACAO'))
-                                                            MouseRegion(
-                                                              opaque: false,
-                                                              cursor: MouseCursor
-                                                                      .defer ??
-                                                                  MouseCursor
-                                                                      .defer,
-                                                              child: Visibility(
-                                                                visible: (FFAppState()
-                                                                            .varIDAfiliadoLogado !=
-                                                                        null) &&
-                                                                    (FFAppState()
-                                                                            .varIDAfiliadoLogado >
-                                                                        0) &&
-                                                                    (FFAppState()
-                                                                            .varTblAfiliado
-                                                                            .statusAfiliacao !=
-                                                                        'ATIVACAO'),
-                                                                child:
-                                                                    Container(
-                                                                  width: MediaQuery.sizeOf(
-                                                                              context)
-                                                                          .width *
-                                                                      1.0,
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    color: () {
-                                                                      if (_model
-                                                                          .mouseRegionAfiCadHovered2) {
-                                                                        return FlutterFlowTheme.of(context)
-                                                                            .hoverBtnLateral;
-                                                                      } else if (widget
-                                                                              .paramBotaoSelecionado ==
-                                                                          'AFILIADO_CAD') {
-                                                                        return FlutterFlowTheme.of(context)
-                                                                            .subMenuLatSelecionado;
-                                                                      } else {
-                                                                        return Colors
-                                                                            .transparent;
-                                                                      }
-                                                                    }(),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            8.0),
-                                                                    border:
-                                                                        Border
-                                                                            .all(
-                                                                      color: Colors
-                                                                          .transparent,
-                                                                    ),
-                                                                  ),
-                                                                  child:
-                                                                      Padding(
-                                                                    padding: EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            4.0,
-                                                                            2.0,
-                                                                            2.0,
-                                                                            2.0),
-                                                                    child:
-                                                                        InkWell(
-                                                                      splashColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      focusColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      hoverColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      highlightColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      onTap:
-                                                                          () async {
-                                                                        if (FFAppState().varCarregouPrimeiraPagina ==
-                                                                            false) {
-                                                                          context
-                                                                              .pop();
-                                                                        } else {
-                                                                          FFAppState().varCarregouPrimeiraPagina =
-                                                                              false;
-                                                                        }
-
-                                                                        FFAppState().varGrupoBotaoSelecionado =
-                                                                            'AFILIADO';
-                                                                        FFAppState()
-                                                                            .addToVarGruposBotoesAbertos('AFILIADO');
-
-                                                                        context
-                                                                            .pushNamed(
-                                                                          PgAfiliadosCadWidget
-                                                                              .routeName,
-                                                                          extra: <String,
-                                                                              dynamic>{
-                                                                            kTransitionInfoKey:
-                                                                                TransitionInfo(
-                                                                              hasTransition: true,
-                                                                              transitionType: PageTransitionType.fade,
-                                                                              duration: Duration(milliseconds: 0),
-                                                                            ),
-                                                                          },
-                                                                        );
-                                                                      },
-                                                                      child:
-                                                                          Row(
-                                                                        mainAxisSize:
-                                                                            MainAxisSize.max,
-                                                                        mainAxisAlignment:
-                                                                            MainAxisAlignment.start,
-                                                                        children: [
-                                                                          if ((widget.paramBotaoSelecionado == 'AFILIADO_CAD') &&
-                                                                              responsiveVisibility(
-                                                                                context: context,
-                                                                                phone: false,
-                                                                                tablet: false,
-                                                                                tabletLandscape: false,
-                                                                                desktop: false,
-                                                                              ))
-                                                                            Padding(
-                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 4.0, 0.0),
-                                                                              child: Container(
-                                                                                width: 3.0,
-                                                                                height: 15.0,
-                                                                                decoration: BoxDecoration(
-                                                                                  color: FlutterFlowTheme.of(context).txtMenuLatSelecionado,
-                                                                                  borderRadius: BorderRadius.circular(15.0),
-                                                                                ),
-                                                                              ),
-                                                                            ),
-                                                                          Row(
-                                                                            mainAxisSize:
-                                                                                MainAxisSize.max,
-                                                                            children: [
-                                                                              Padding(
-                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 4.0, 0.0),
-                                                                                child: Icon(
-                                                                                  Icons.person_3_outlined,
-                                                                                  color: widget.paramBotaoSelecionado == 'AFILIADO_CAD' ? FlutterFlowTheme.of(context).txtMenuLatSelecionado : FlutterFlowTheme.of(context).txtMenuLateral,
-                                                                                  size: 16.0,
-                                                                                ),
-                                                                              ),
-                                                                              Text(
-                                                                                'Cadastro Afiliado',
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      font: GoogleFonts.readexPro(
-                                                                                        fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                        fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                      ),
-                                                                                      color: widget.paramBotaoSelecionado == 'AFILIADO_CAD' ? FlutterFlowTheme.of(context).txtMenuLatSelecionado : FlutterFlowTheme.of(context).txtMenuLateral,
-                                                                                      fontSize: MediaQuery.sizeOf(context).width < FFAppState().varTamanhoMinimoTelaMenuLateral.toDouble() ? 16.0 : 12.0,
-                                                                                      letterSpacing: 0.0,
-                                                                                      fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                      fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                    ),
-                                                                              ),
-                                                                            ],
-                                                                          ),
-                                                                          if (responsiveVisibility(
-                                                                            context:
-                                                                                context,
-                                                                            phone:
-                                                                                false,
-                                                                            tablet:
-                                                                                false,
-                                                                            tabletLandscape:
-                                                                                false,
-                                                                            desktop:
-                                                                                false,
-                                                                          ))
-                                                                            Icon(
-                                                                              Icons.keyboard_arrow_right_sharp,
-                                                                              color: widget.paramBotaoSelecionado == 'EMPRESA' ? FlutterFlowTheme.of(context).primary : FlutterFlowTheme.of(context).secondaryText,
-                                                                              size: 20.0,
-                                                                            ),
-                                                                        ],
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                              onEnter:
-                                                                  ((event) async {
-                                                                safeSetState(() =>
-                                                                    _model.mouseRegionAfiCadHovered2 =
-                                                                        true);
-                                                              }),
-                                                              onExit:
-                                                                  ((event) async {
-                                                                safeSetState(() =>
-                                                                    _model.mouseRegionAfiCadHovered2 =
-                                                                        false);
-                                                              }),
-                                                            ),
-                                                          if ((FFAppState()
-                                                                      .varIDAfiliadoLogado !=
-                                                                  null) &&
-                                                              (FFAppState()
-                                                                      .varIDAfiliadoLogado >
-                                                                  0) &&
-                                                              (FFAppState()
-                                                                      .varTblAfiliado
-                                                                      .statusAfiliacao ==
-                                                                  'ATIVACAO'))
-                                                            MouseRegion(
-                                                              opaque: false,
-                                                              cursor: MouseCursor
-                                                                      .defer ??
-                                                                  MouseCursor
-                                                                      .defer,
-                                                              child: Visibility(
-                                                                visible: (FFAppState()
-                                                                            .varIDAfiliadoLogado !=
-                                                                        null) &&
-                                                                    (FFAppState()
-                                                                            .varIDAfiliadoLogado >
-                                                                        0) &&
-                                                                    (FFAppState()
-                                                                            .varTblAfiliado
-                                                                            .statusAfiliacao ==
-                                                                        'ATIVACAO'),
-                                                                child:
-                                                                    Container(
-                                                                  width: MediaQuery.sizeOf(
-                                                                              context)
-                                                                          .width *
-                                                                      1.0,
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    color: () {
-                                                                      if (_model
-                                                                          .mouseRegionAfiAtivacaoHovered2) {
-                                                                        return FlutterFlowTheme.of(context)
-                                                                            .hoverBtnLateral;
-                                                                      } else if (widget
-                                                                              .paramBotaoSelecionado ==
-                                                                          'AFILIADO_PG_PLANO') {
-                                                                        return FlutterFlowTheme.of(context)
-                                                                            .subMenuLatSelecionado;
-                                                                      } else {
-                                                                        return Colors
-                                                                            .transparent;
-                                                                      }
-                                                                    }(),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            8.0),
-                                                                    border:
-                                                                        Border
-                                                                            .all(
-                                                                      color: Colors
-                                                                          .transparent,
-                                                                    ),
-                                                                  ),
-                                                                  child:
-                                                                      Padding(
-                                                                    padding: EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            4.0,
-                                                                            2.0,
-                                                                            2.0,
-                                                                            2.0),
-                                                                    child:
-                                                                        InkWell(
-                                                                      splashColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      focusColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      hoverColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      highlightColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      onTap:
-                                                                          () async {
-                                                                        if (FFAppState().varCarregouPrimeiraPagina ==
-                                                                            false) {
-                                                                          context
-                                                                              .pop();
-                                                                        } else {
-                                                                          FFAppState().varCarregouPrimeiraPagina =
-                                                                              false;
-                                                                        }
-
-                                                                        FFAppState().varGrupoBotaoSelecionado =
-                                                                            'AFILIADO';
-                                                                        FFAppState()
-                                                                            .addToVarGruposBotoesAbertos('AFILIADO');
-
-                                                                        context
-                                                                            .pushNamed(
-                                                                          DELETEPgAfiliadoAtivacaoWidget
-                                                                              .routeName,
-                                                                          extra: <String,
-                                                                              dynamic>{
-                                                                            kTransitionInfoKey:
-                                                                                TransitionInfo(
-                                                                              hasTransition: true,
-                                                                              transitionType: PageTransitionType.fade,
-                                                                              duration: Duration(milliseconds: 0),
-                                                                            ),
-                                                                          },
-                                                                        );
-                                                                      },
-                                                                      child:
-                                                                          Row(
-                                                                        mainAxisSize:
-                                                                            MainAxisSize.max,
-                                                                        mainAxisAlignment:
-                                                                            MainAxisAlignment.start,
-                                                                        children: [
-                                                                          if ((widget.paramBotaoSelecionado == 'AFILIADO_PG_PLANO') &&
-                                                                              responsiveVisibility(
-                                                                                context: context,
-                                                                                phone: false,
-                                                                                tablet: false,
-                                                                                tabletLandscape: false,
-                                                                                desktop: false,
-                                                                              ))
-                                                                            Padding(
-                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 4.0, 0.0),
-                                                                              child: Container(
-                                                                                width: 3.0,
-                                                                                height: 15.0,
-                                                                                decoration: BoxDecoration(
-                                                                                  color: FlutterFlowTheme.of(context).txtMenuLatSelecionado,
-                                                                                  borderRadius: BorderRadius.circular(15.0),
-                                                                                ),
-                                                                              ),
-                                                                            ),
-                                                                          Row(
-                                                                            mainAxisSize:
-                                                                                MainAxisSize.max,
-                                                                            children: [
-                                                                              Padding(
-                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 4.0, 0.0),
-                                                                                child: Icon(
-                                                                                  Icons.check_circle_outlined,
-                                                                                  color: widget.paramBotaoSelecionado == 'AFILIADO_PG_PLANO' ? FlutterFlowTheme.of(context).txtMenuLatSelecionado : FlutterFlowTheme.of(context).txtMenuLateral,
-                                                                                  size: 16.0,
-                                                                                ),
-                                                                              ),
-                                                                              Text(
-                                                                                'Ativção da Afiliação',
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      font: GoogleFonts.readexPro(
-                                                                                        fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                        fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                      ),
-                                                                                      color: widget.paramBotaoSelecionado == 'AFILIADO_PG_PLANO' ? FlutterFlowTheme.of(context).txtMenuLatSelecionado : FlutterFlowTheme.of(context).txtMenuLateral,
-                                                                                      fontSize: MediaQuery.sizeOf(context).width < FFAppState().varTamanhoMinimoTelaMenuLateral.toDouble() ? 16.0 : 12.0,
-                                                                                      letterSpacing: 0.0,
-                                                                                      fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                      fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                    ),
-                                                                              ),
-                                                                            ],
-                                                                          ),
-                                                                          if (responsiveVisibility(
-                                                                            context:
-                                                                                context,
-                                                                            phone:
-                                                                                false,
-                                                                            tablet:
-                                                                                false,
-                                                                            tabletLandscape:
-                                                                                false,
-                                                                            desktop:
-                                                                                false,
-                                                                          ))
-                                                                            Icon(
-                                                                              Icons.keyboard_arrow_right_sharp,
-                                                                              color: widget.paramBotaoSelecionado == 'EMPRESA' ? FlutterFlowTheme.of(context).primary : FlutterFlowTheme.of(context).secondaryText,
-                                                                              size: 20.0,
-                                                                            ),
-                                                                        ],
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                              onEnter:
-                                                                  ((event) async {
-                                                                safeSetState(() =>
-                                                                    _model.mouseRegionAfiAtivacaoHovered2 =
-                                                                        true);
-                                                              }),
-                                                              onExit:
-                                                                  ((event) async {
-                                                                safeSetState(() =>
-                                                                    _model.mouseRegionAfiAtivacaoHovered2 =
-                                                                        false);
-                                                              }),
-                                                            ),
-                                                          if ((FFAppState()
-                                                                      .varIDAfiliadoLogado !=
-                                                                  null) &&
-                                                              (FFAppState()
-                                                                      .varIDAfiliadoLogado >
-                                                                  0) &&
-                                                              (FFAppState()
-                                                                      .varTblAfiliado
-                                                                      .statusAfiliacao ==
-                                                                  'TREINAMENTO'))
-                                                            MouseRegion(
-                                                              opaque: false,
-                                                              cursor: MouseCursor
-                                                                      .defer ??
-                                                                  MouseCursor
-                                                                      .defer,
-                                                              child: Visibility(
-                                                                visible: (FFAppState()
-                                                                            .varIDAfiliadoLogado !=
-                                                                        null) &&
-                                                                    (FFAppState()
-                                                                            .varIDAfiliadoLogado >
-                                                                        0) &&
-                                                                    (FFAppState()
-                                                                            .varTblAfiliado
-                                                                            .statusAfiliacao ==
-                                                                        'TREINAMENTO'),
-                                                                child:
-                                                                    Container(
-                                                                  width: MediaQuery.sizeOf(
-                                                                              context)
-                                                                          .width *
-                                                                      1.0,
-                                                                  decoration:
-                                                                      BoxDecoration(
-                                                                    color: () {
-                                                                      if (_model
-                                                                          .mouseRegionAfiTreinamentoHovered2) {
-                                                                        return FlutterFlowTheme.of(context)
-                                                                            .hoverBtnLateral;
-                                                                      } else if (widget
-                                                                              .paramBotaoSelecionado ==
-                                                                          'AFILIADO_TREINAMENTO') {
-                                                                        return FlutterFlowTheme.of(context)
-                                                                            .subMenuLatSelecionado;
-                                                                      } else {
-                                                                        return Colors
-                                                                            .transparent;
-                                                                      }
-                                                                    }(),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            8.0),
-                                                                    border:
-                                                                        Border
-                                                                            .all(
-                                                                      color: Colors
-                                                                          .transparent,
-                                                                    ),
-                                                                  ),
-                                                                  child:
-                                                                      Padding(
-                                                                    padding: EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            4.0,
-                                                                            2.0,
-                                                                            2.0,
-                                                                            2.0),
-                                                                    child:
-                                                                        InkWell(
-                                                                      splashColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      focusColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      hoverColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      highlightColor:
-                                                                          Colors
-                                                                              .transparent,
-                                                                      onTap:
-                                                                          () async {
-                                                                        if (FFAppState().varCarregouPrimeiraPagina ==
-                                                                            false) {
-                                                                          context
-                                                                              .pop();
-                                                                        } else {
-                                                                          FFAppState().varCarregouPrimeiraPagina =
-                                                                              false;
-                                                                        }
-
-                                                                        FFAppState().varGrupoBotaoSelecionado =
-                                                                            'AFILIADO';
-                                                                        FFAppState()
-                                                                            .addToVarGruposBotoesAbertos('AFILIADO');
-
-                                                                        context
-                                                                            .pushNamed(
-                                                                          PgAfiliadoTreinamentoWidget
-                                                                              .routeName,
-                                                                          extra: <String,
-                                                                              dynamic>{
-                                                                            kTransitionInfoKey:
-                                                                                TransitionInfo(
-                                                                              hasTransition: true,
-                                                                              transitionType: PageTransitionType.fade,
-                                                                              duration: Duration(milliseconds: 0),
-                                                                            ),
-                                                                          },
-                                                                        );
-                                                                      },
-                                                                      child:
-                                                                          Row(
-                                                                        mainAxisSize:
-                                                                            MainAxisSize.max,
-                                                                        mainAxisAlignment:
-                                                                            MainAxisAlignment.start,
-                                                                        children: [
-                                                                          if ((widget.paramBotaoSelecionado == 'AFILIADO_TREINAMENTO') &&
-                                                                              responsiveVisibility(
-                                                                                context: context,
-                                                                                phone: false,
-                                                                                tablet: false,
-                                                                                tabletLandscape: false,
-                                                                                desktop: false,
-                                                                              ))
-                                                                            Padding(
-                                                                              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 4.0, 0.0),
-                                                                              child: Container(
-                                                                                width: 3.0,
-                                                                                height: 15.0,
-                                                                                decoration: BoxDecoration(
-                                                                                  color: FlutterFlowTheme.of(context).txtMenuLatSelecionado,
-                                                                                  borderRadius: BorderRadius.circular(15.0),
-                                                                                ),
-                                                                              ),
-                                                                            ),
-                                                                          Row(
-                                                                            mainAxisSize:
-                                                                                MainAxisSize.max,
-                                                                            children: [
-                                                                              Padding(
-                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 4.0, 0.0),
-                                                                                child: Icon(
-                                                                                  Icons.model_training,
-                                                                                  color: widget.paramBotaoSelecionado == 'AFILIADO_TREINAMENTO' ? FlutterFlowTheme.of(context).txtMenuLatSelecionado : FlutterFlowTheme.of(context).txtMenuLateral,
-                                                                                  size: 16.0,
-                                                                                ),
-                                                                              ),
-                                                                              Text(
-                                                                                'Treinamento',
-                                                                                style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                      font: GoogleFonts.readexPro(
-                                                                                        fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                        fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                      ),
-                                                                                      color: widget.paramBotaoSelecionado == 'AFILIADO_TREINAMENTO' ? FlutterFlowTheme.of(context).txtMenuLatSelecionado : FlutterFlowTheme.of(context).txtMenuLateral,
-                                                                                      fontSize: MediaQuery.sizeOf(context).width < FFAppState().varTamanhoMinimoTelaMenuLateral.toDouble() ? 16.0 : 12.0,
-                                                                                      letterSpacing: 0.0,
-                                                                                      fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                      fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                    ),
-                                                                              ),
-                                                                            ],
-                                                                          ),
-                                                                          if (responsiveVisibility(
-                                                                            context:
-                                                                                context,
-                                                                            phone:
-                                                                                false,
-                                                                            tablet:
-                                                                                false,
-                                                                            tabletLandscape:
-                                                                                false,
-                                                                            desktop:
-                                                                                false,
-                                                                          ))
-                                                                            Icon(
-                                                                              Icons.keyboard_arrow_right_sharp,
-                                                                              color: widget.paramBotaoSelecionado == 'SERVICOS' ? FlutterFlowTheme.of(context).primary : FlutterFlowTheme.of(context).secondaryText,
-                                                                              size: 20.0,
-                                                                            ),
-                                                                        ],
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                              onEnter:
-                                                                  ((event) async {
-                                                                safeSetState(() =>
-                                                                    _model.mouseRegionAfiTreinamentoHovered2 =
-                                                                        true);
-                                                              }),
-                                                              onExit:
-                                                                  ((event) async {
-                                                                safeSetState(() =>
-                                                                    _model.mouseRegionAfiTreinamentoHovered2 =
-                                                                        false);
-                                                              }),
-                                                            ),
-                                                          if ((FFAppState()
-                                                                      .varIDAfiliadoLogado !=
-                                                                  null) &&
-                                                              (FFAppState()
-                                                                      .varIDAfiliadoLogado >
-                                                                  0) &&
-                                                              (FFAppState()
-                                                                      .varTblAfiliado
-                                                                      .statusAfiliacao ==
-                                                                  'ATIVA'))
-                                                            Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              children: [
-                                                                MouseRegion(
-                                                                  opaque: false,
-                                                                  cursor: MouseCursor
-                                                                          .defer ??
-                                                                      MouseCursor
-                                                                          .defer,
-                                                                  child:
-                                                                      Container(
-                                                                    width: MediaQuery.sizeOf(context)
-                                                                            .width *
-                                                                        1.0,
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      color:
-                                                                          () {
-                                                                        if (_model
-                                                                            .mouseRegionAfiIndicacoesHovered2) {
-                                                                          return FlutterFlowTheme.of(context)
-                                                                              .hoverBtnLateral;
-                                                                        } else if (widget.paramBotaoSelecionado ==
-                                                                            'AFILIADO_INDICACOES') {
-                                                                          return FlutterFlowTheme.of(context)
-                                                                              .subMenuLatSelecionado;
-                                                                        } else {
-                                                                          return Colors
-                                                                              .transparent;
-                                                                        }
-                                                                      }(),
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              8.0),
-                                                                      border:
-                                                                          Border
-                                                                              .all(
-                                                                        color: Colors
-                                                                            .transparent,
-                                                                      ),
-                                                                    ),
-                                                                    child:
-                                                                        Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                                                          4.0,
-                                                                          2.0,
-                                                                          2.0,
-                                                                          2.0),
-                                                                      child:
-                                                                          InkWell(
-                                                                        splashColor:
-                                                                            Colors.transparent,
-                                                                        focusColor:
-                                                                            Colors.transparent,
-                                                                        hoverColor:
-                                                                            Colors.transparent,
-                                                                        highlightColor:
-                                                                            Colors.transparent,
-                                                                        onTap:
-                                                                            () async {
-                                                                          if (FFAppState().varCarregouPrimeiraPagina ==
-                                                                              false) {
-                                                                            context.pop();
-                                                                          } else {
-                                                                            FFAppState().varCarregouPrimeiraPagina =
-                                                                                false;
-                                                                          }
-
-                                                                          FFAppState().varGrupoBotaoSelecionado =
-                                                                              'AFILIADO';
-                                                                          FFAppState()
-                                                                              .addToVarGruposBotoesAbertos('AFILIADO');
-
-                                                                          context
-                                                                              .pushNamed(
-                                                                            PgAfiliadoIndicacoesWidget.routeName,
-                                                                            extra: <String,
-                                                                                dynamic>{
-                                                                              kTransitionInfoKey: TransitionInfo(
-                                                                                hasTransition: true,
-                                                                                transitionType: PageTransitionType.fade,
-                                                                                duration: Duration(milliseconds: 0),
-                                                                              ),
-                                                                            },
-                                                                          );
-                                                                        },
-                                                                        child:
-                                                                            Row(
-                                                                          mainAxisSize:
-                                                                              MainAxisSize.max,
-                                                                          mainAxisAlignment:
-                                                                              MainAxisAlignment.start,
-                                                                          children: [
-                                                                            if ((widget.paramBotaoSelecionado == 'AFILIADO_INDICACOES') &&
-                                                                                responsiveVisibility(
-                                                                                  context: context,
-                                                                                  phone: false,
-                                                                                  tablet: false,
-                                                                                  tabletLandscape: false,
-                                                                                  desktop: false,
-                                                                                ))
-                                                                              Padding(
-                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 4.0, 0.0),
-                                                                                child: Container(
-                                                                                  width: 3.0,
-                                                                                  height: 15.0,
-                                                                                  decoration: BoxDecoration(
-                                                                                    color: FlutterFlowTheme.of(context).txtMenuLatSelecionado,
-                                                                                    borderRadius: BorderRadius.circular(15.0),
-                                                                                  ),
-                                                                                ),
-                                                                              ),
-                                                                            Flexible(
-                                                                              child: Padding(
-                                                                                padding: EdgeInsetsDirectional.fromSTEB(4.0, 2.0, 2.0, 2.0),
-                                                                                child: Row(
-                                                                                  mainAxisSize: MainAxisSize.max,
-                                                                                  children: [
-                                                                                    Padding(
-                                                                                      padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 4.0, 0.0),
-                                                                                      child: Icon(
-                                                                                        Icons.reduce_capacity,
-                                                                                        color: widget.paramBotaoSelecionado == 'AFILIADO_INDICACOES' ? FlutterFlowTheme.of(context).txtMenuLatSelecionado : FlutterFlowTheme.of(context).txtMenuLateral,
-                                                                                        size: 16.0,
-                                                                                      ),
-                                                                                    ),
-                                                                                    Flexible(
-                                                                                      child: Text(
-                                                                                        'Indicações',
-                                                                                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                              font: GoogleFonts.readexPro(
-                                                                                                fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                                fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                              ),
-                                                                                              color: widget.paramBotaoSelecionado == 'AFILIADO_INDICACOES' ? FlutterFlowTheme.of(context).txtMenuLatSelecionado : FlutterFlowTheme.of(context).txtMenuLateral,
-                                                                                              fontSize: MediaQuery.sizeOf(context).width < FFAppState().varTamanhoMinimoTelaMenuLateral.toDouble() ? 16.0 : 12.0,
-                                                                                              letterSpacing: 0.0,
-                                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                            ),
-                                                                                      ),
-                                                                                    ),
-                                                                                  ],
-                                                                                ),
-                                                                              ),
-                                                                            ),
-                                                                            if (responsiveVisibility(
-                                                                              context: context,
-                                                                              phone: false,
-                                                                              tablet: false,
-                                                                              tabletLandscape: false,
-                                                                              desktop: false,
-                                                                            ))
-                                                                              Icon(
-                                                                                Icons.keyboard_arrow_right_sharp,
-                                                                                color: widget.paramBotaoSelecionado == 'SERVICOS' ? FlutterFlowTheme.of(context).primary : FlutterFlowTheme.of(context).secondaryText,
-                                                                                size: 20.0,
-                                                                              ),
-                                                                          ],
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                  onEnter:
-                                                                      ((event) async {
-                                                                    safeSetState(() =>
-                                                                        _model.mouseRegionAfiIndicacoesHovered2 =
-                                                                            true);
-                                                                  }),
-                                                                  onExit:
-                                                                      ((event) async {
-                                                                    safeSetState(() =>
-                                                                        _model.mouseRegionAfiIndicacoesHovered2 =
-                                                                            false);
-                                                                  }),
-                                                                ),
-                                                                MouseRegion(
-                                                                  opaque: false,
-                                                                  cursor: MouseCursor
-                                                                          .defer ??
-                                                                      MouseCursor
-                                                                          .defer,
-                                                                  child:
-                                                                      Container(
-                                                                    width: MediaQuery.sizeOf(context)
-                                                                            .width *
-                                                                        1.0,
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      color:
-                                                                          () {
-                                                                        if (_model
-                                                                            .mouseRegionAfiSubAfiHovered2) {
-                                                                          return FlutterFlowTheme.of(context)
-                                                                              .hoverBtnLateral;
-                                                                        } else if (widget.paramBotaoSelecionado ==
-                                                                            'AFILIADO_SUB') {
-                                                                          return FlutterFlowTheme.of(context)
-                                                                              .subMenuLatSelecionado;
-                                                                        } else {
-                                                                          return Colors
-                                                                              .transparent;
-                                                                        }
-                                                                      }(),
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              8.0),
-                                                                      border:
-                                                                          Border
-                                                                              .all(
-                                                                        color: Colors
-                                                                            .transparent,
-                                                                      ),
-                                                                    ),
-                                                                    child:
-                                                                        Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                                                          4.0,
-                                                                          2.0,
-                                                                          2.0,
-                                                                          2.0),
-                                                                      child:
-                                                                          InkWell(
-                                                                        splashColor:
-                                                                            Colors.transparent,
-                                                                        focusColor:
-                                                                            Colors.transparent,
-                                                                        hoverColor:
-                                                                            Colors.transparent,
-                                                                        highlightColor:
-                                                                            Colors.transparent,
-                                                                        onTap:
-                                                                            () async {
-                                                                          if (FFAppState().varCarregouPrimeiraPagina ==
-                                                                              false) {
-                                                                            context.pop();
-                                                                          } else {
-                                                                            FFAppState().varCarregouPrimeiraPagina =
-                                                                                false;
-                                                                          }
-
-                                                                          FFAppState().varGrupoBotaoSelecionado =
-                                                                              'AFILIADO';
-                                                                          FFAppState()
-                                                                              .addToVarGruposBotoesAbertos('AFILIADO');
-
-                                                                          context
-                                                                              .pushNamed(
-                                                                            PgAfiliadoSubAfiliadosWidget.routeName,
-                                                                            extra: <String,
-                                                                                dynamic>{
-                                                                              kTransitionInfoKey: TransitionInfo(
-                                                                                hasTransition: true,
-                                                                                transitionType: PageTransitionType.fade,
-                                                                                duration: Duration(milliseconds: 0),
-                                                                              ),
-                                                                            },
-                                                                          );
-                                                                        },
-                                                                        child:
-                                                                            Row(
-                                                                          mainAxisSize:
-                                                                              MainAxisSize.max,
-                                                                          mainAxisAlignment:
-                                                                              MainAxisAlignment.start,
-                                                                          children: [
-                                                                            if ((widget.paramBotaoSelecionado == 'AFILIADO_SUB') &&
-                                                                                responsiveVisibility(
-                                                                                  context: context,
-                                                                                  phone: false,
-                                                                                  tablet: false,
-                                                                                  tabletLandscape: false,
-                                                                                  desktop: false,
-                                                                                ))
-                                                                              Padding(
-                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 4.0, 0.0),
-                                                                                child: Container(
-                                                                                  width: 3.0,
-                                                                                  height: 15.0,
-                                                                                  decoration: BoxDecoration(
-                                                                                    color: FlutterFlowTheme.of(context).txtMenuLatSelecionado,
-                                                                                    borderRadius: BorderRadius.circular(15.0),
-                                                                                  ),
-                                                                                ),
-                                                                              ),
-                                                                            Row(
-                                                                              mainAxisSize: MainAxisSize.max,
-                                                                              children: [
-                                                                                Padding(
-                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 4.0, 0.0),
-                                                                                  child: Icon(
-                                                                                    Icons.supervised_user_circle_outlined,
-                                                                                    color: widget.paramBotaoSelecionado == 'AFILIADO_SUB' ? FlutterFlowTheme.of(context).txtMenuLatSelecionado : FlutterFlowTheme.of(context).txtMenuLateral,
-                                                                                    size: 16.0,
-                                                                                  ),
-                                                                                ),
-                                                                                Text(
-                                                                                  'Sub Afiliados',
-                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                        font: GoogleFonts.readexPro(
-                                                                                          fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                          fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                        ),
-                                                                                        color: widget.paramBotaoSelecionado == 'AFILIADO_SUB' ? FlutterFlowTheme.of(context).txtMenuLatSelecionado : FlutterFlowTheme.of(context).txtMenuLateral,
-                                                                                        fontSize: MediaQuery.sizeOf(context).width < FFAppState().varTamanhoMinimoTelaMenuLateral.toDouble() ? 16.0 : 12.0,
-                                                                                        letterSpacing: 0.0,
-                                                                                        fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                        fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                      ),
-                                                                                ),
-                                                                              ],
-                                                                            ),
-                                                                            if (responsiveVisibility(
-                                                                              context: context,
-                                                                              phone: false,
-                                                                              tablet: false,
-                                                                              tabletLandscape: false,
-                                                                              desktop: false,
-                                                                            ))
-                                                                              Icon(
-                                                                                Icons.keyboard_arrow_right_sharp,
-                                                                                color: widget.paramBotaoSelecionado == 'SERVICOS' ? FlutterFlowTheme.of(context).primary : FlutterFlowTheme.of(context).secondaryText,
-                                                                                size: 20.0,
-                                                                              ),
-                                                                          ],
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                  onEnter:
-                                                                      ((event) async {
-                                                                    safeSetState(() =>
-                                                                        _model.mouseRegionAfiSubAfiHovered2 =
-                                                                            true);
-                                                                  }),
-                                                                  onExit:
-                                                                      ((event) async {
-                                                                    safeSetState(() =>
-                                                                        _model.mouseRegionAfiSubAfiHovered2 =
-                                                                            false);
-                                                                  }),
-                                                                ),
-                                                                MouseRegion(
-                                                                  opaque: false,
-                                                                  cursor: MouseCursor
-                                                                          .defer ??
-                                                                      MouseCursor
-                                                                          .defer,
-                                                                  child:
-                                                                      Container(
-                                                                    width: MediaQuery.sizeOf(context)
-                                                                            .width *
-                                                                        1.0,
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      color:
-                                                                          () {
-                                                                        if (_model
-                                                                            .mouseRegionAfiComisDiariasHovered2) {
-                                                                          return FlutterFlowTheme.of(context)
-                                                                              .hoverBtnLateral;
-                                                                        } else if (widget.paramBotaoSelecionado ==
-                                                                            'AFILIADO_COMISSOES') {
-                                                                          return FlutterFlowTheme.of(context)
-                                                                              .subMenuLatSelecionado;
-                                                                        } else {
-                                                                          return Colors
-                                                                              .transparent;
-                                                                        }
-                                                                      }(),
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              8.0),
-                                                                      border:
-                                                                          Border
-                                                                              .all(
-                                                                        color: Colors
-                                                                            .transparent,
-                                                                      ),
-                                                                    ),
-                                                                    child:
-                                                                        Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                                                          4.0,
-                                                                          2.0,
-                                                                          2.0,
-                                                                          2.0),
-                                                                      child:
-                                                                          InkWell(
-                                                                        splashColor:
-                                                                            Colors.transparent,
-                                                                        focusColor:
-                                                                            Colors.transparent,
-                                                                        hoverColor:
-                                                                            Colors.transparent,
-                                                                        highlightColor:
-                                                                            Colors.transparent,
-                                                                        onTap:
-                                                                            () async {
-                                                                          if (FFAppState().varCarregouPrimeiraPagina ==
-                                                                              false) {
-                                                                            context.pop();
-                                                                          } else {
-                                                                            FFAppState().varCarregouPrimeiraPagina =
-                                                                                false;
-                                                                          }
-
-                                                                          FFAppState().varGrupoBotaoSelecionado =
-                                                                              'AFILIADO';
-                                                                          FFAppState()
-                                                                              .addToVarGruposBotoesAbertos('AFILIADO');
-
-                                                                          context
-                                                                              .pushNamed(
-                                                                            PgAfiliadoComissoesWidget.routeName,
-                                                                            extra: <String,
-                                                                                dynamic>{
-                                                                              kTransitionInfoKey: TransitionInfo(
-                                                                                hasTransition: true,
-                                                                                transitionType: PageTransitionType.fade,
-                                                                                duration: Duration(milliseconds: 0),
-                                                                              ),
-                                                                            },
-                                                                          );
-                                                                        },
-                                                                        child:
-                                                                            Row(
-                                                                          mainAxisSize:
-                                                                              MainAxisSize.max,
-                                                                          mainAxisAlignment:
-                                                                              MainAxisAlignment.start,
-                                                                          children: [
-                                                                            if ((widget.paramBotaoSelecionado == 'AFILIADO_COMISSOES') &&
-                                                                                responsiveVisibility(
-                                                                                  context: context,
-                                                                                  phone: false,
-                                                                                  tablet: false,
-                                                                                  tabletLandscape: false,
-                                                                                  desktop: false,
-                                                                                ))
-                                                                              Padding(
-                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 4.0, 0.0),
-                                                                                child: Container(
-                                                                                  width: 3.0,
-                                                                                  height: 15.0,
-                                                                                  decoration: BoxDecoration(
-                                                                                    color: FlutterFlowTheme.of(context).txtMenuLatSelecionado,
-                                                                                    borderRadius: BorderRadius.circular(15.0),
-                                                                                  ),
-                                                                                ),
-                                                                              ),
-                                                                            Row(
-                                                                              mainAxisSize: MainAxisSize.max,
-                                                                              children: [
-                                                                                Padding(
-                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 4.0, 0.0),
-                                                                                  child: Icon(
-                                                                                    Icons.monetization_on_outlined,
-                                                                                    color: widget.paramBotaoSelecionado == 'AFILIADO_COMISSOES' ? FlutterFlowTheme.of(context).txtMenuLatSelecionado : FlutterFlowTheme.of(context).txtMenuLateral,
-                                                                                    size: 16.0,
-                                                                                  ),
-                                                                                ),
-                                                                                Text(
-                                                                                  'Comissões Diárias',
-                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                        font: GoogleFonts.readexPro(
-                                                                                          fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                          fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                        ),
-                                                                                        color: widget.paramBotaoSelecionado == 'AFILIADO_COMISSOES' ? FlutterFlowTheme.of(context).txtMenuLatSelecionado : FlutterFlowTheme.of(context).txtMenuLateral,
-                                                                                        fontSize: MediaQuery.sizeOf(context).width < FFAppState().varTamanhoMinimoTelaMenuLateral.toDouble() ? 16.0 : 12.0,
-                                                                                        letterSpacing: 0.0,
-                                                                                        fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                        fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                      ),
-                                                                                ),
-                                                                              ],
-                                                                            ),
-                                                                            if (responsiveVisibility(
-                                                                              context: context,
-                                                                              phone: false,
-                                                                              tablet: false,
-                                                                              tabletLandscape: false,
-                                                                              desktop: false,
-                                                                            ))
-                                                                              Icon(
-                                                                                Icons.keyboard_arrow_right_sharp,
-                                                                                color: widget.paramBotaoSelecionado == 'PROFISSIONAIS' ? FlutterFlowTheme.of(context).primary : FlutterFlowTheme.of(context).secondaryText,
-                                                                                size: 20.0,
-                                                                              ),
-                                                                          ],
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                  onEnter:
-                                                                      ((event) async {
-                                                                    safeSetState(() =>
-                                                                        _model.mouseRegionAfiComisDiariasHovered2 =
-                                                                            true);
-                                                                  }),
-                                                                  onExit:
-                                                                      ((event) async {
-                                                                    safeSetState(() =>
-                                                                        _model.mouseRegionAfiComisDiariasHovered2 =
-                                                                            false);
-                                                                  }),
-                                                                ),
-                                                                MouseRegion(
-                                                                  opaque: false,
-                                                                  cursor: MouseCursor
-                                                                          .defer ??
-                                                                      MouseCursor
-                                                                          .defer,
-                                                                  child:
-                                                                      Container(
-                                                                    width: MediaQuery.sizeOf(context)
-                                                                            .width *
-                                                                        1.0,
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      color:
-                                                                          () {
-                                                                        if (_model
-                                                                            .mouseRegionAfiComisMensaisHovered2) {
-                                                                          return FlutterFlowTheme.of(context)
-                                                                              .hoverBtnLateral;
-                                                                        } else if (widget.paramBotaoSelecionado ==
-                                                                            'AFILIADO_COMISSOES_MENSAIS') {
-                                                                          return FlutterFlowTheme.of(context)
-                                                                              .subMenuLatSelecionado;
-                                                                        } else {
-                                                                          return Colors
-                                                                              .transparent;
-                                                                        }
-                                                                      }(),
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              8.0),
-                                                                      border:
-                                                                          Border
-                                                                              .all(
-                                                                        color: Colors
-                                                                            .transparent,
-                                                                      ),
-                                                                    ),
-                                                                    child:
-                                                                        Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                                                          4.0,
-                                                                          2.0,
-                                                                          2.0,
-                                                                          2.0),
-                                                                      child:
-                                                                          InkWell(
-                                                                        splashColor:
-                                                                            Colors.transparent,
-                                                                        focusColor:
-                                                                            Colors.transparent,
-                                                                        hoverColor:
-                                                                            Colors.transparent,
-                                                                        highlightColor:
-                                                                            Colors.transparent,
-                                                                        onTap:
-                                                                            () async {
-                                                                          if (FFAppState().varCarregouPrimeiraPagina ==
-                                                                              false) {
-                                                                            context.pop();
-                                                                          } else {
-                                                                            FFAppState().varCarregouPrimeiraPagina =
-                                                                                false;
-                                                                          }
-
-                                                                          FFAppState().varGrupoBotaoSelecionado =
-                                                                              'AFILIADO';
-                                                                          FFAppState()
-                                                                              .addToVarGruposBotoesAbertos('AFILIADO');
-
-                                                                          context
-                                                                              .pushNamed(
-                                                                            PgAfiliadoComissoesMensaisWidget.routeName,
-                                                                            extra: <String,
-                                                                                dynamic>{
-                                                                              kTransitionInfoKey: TransitionInfo(
-                                                                                hasTransition: true,
-                                                                                transitionType: PageTransitionType.fade,
-                                                                                duration: Duration(milliseconds: 0),
-                                                                              ),
-                                                                            },
-                                                                          );
-                                                                        },
-                                                                        child:
-                                                                            Row(
-                                                                          mainAxisSize:
-                                                                              MainAxisSize.max,
-                                                                          mainAxisAlignment:
-                                                                              MainAxisAlignment.start,
-                                                                          children: [
-                                                                            if ((widget.paramBotaoSelecionado == 'AFILIADO_COMISSOES_MENSAIS') &&
-                                                                                responsiveVisibility(
-                                                                                  context: context,
-                                                                                  phone: false,
-                                                                                  tablet: false,
-                                                                                  tabletLandscape: false,
-                                                                                  desktop: false,
-                                                                                ))
-                                                                              Padding(
-                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 4.0, 0.0),
-                                                                                child: Container(
-                                                                                  width: 3.0,
-                                                                                  height: 15.0,
-                                                                                  decoration: BoxDecoration(
-                                                                                    color: FlutterFlowTheme.of(context).txtMenuLatSelecionado,
-                                                                                    borderRadius: BorderRadius.circular(15.0),
-                                                                                  ),
-                                                                                ),
-                                                                              ),
-                                                                            Row(
-                                                                              mainAxisSize: MainAxisSize.max,
-                                                                              children: [
-                                                                                Padding(
-                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 4.0, 0.0),
-                                                                                  child: Icon(
-                                                                                    Icons.calendar_month,
-                                                                                    color: widget.paramBotaoSelecionado == 'AFILIADO_COMISSOES_MENSAIS' ? FlutterFlowTheme.of(context).txtMenuLatSelecionado : FlutterFlowTheme.of(context).txtMenuLateral,
-                                                                                    size: 16.0,
-                                                                                  ),
-                                                                                ),
-                                                                                Text(
-                                                                                  'Comissões Mensais',
-                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                        font: GoogleFonts.readexPro(
-                                                                                          fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                          fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                        ),
-                                                                                        color: widget.paramBotaoSelecionado == 'AFILIADO_COMISSOES_MENSAIS' ? FlutterFlowTheme.of(context).txtMenuLatSelecionado : FlutterFlowTheme.of(context).txtMenuLateral,
-                                                                                        fontSize: MediaQuery.sizeOf(context).width < FFAppState().varTamanhoMinimoTelaMenuLateral.toDouble() ? 16.0 : 12.0,
-                                                                                        letterSpacing: 0.0,
-                                                                                        fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                        fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                      ),
-                                                                                ),
-                                                                              ],
-                                                                            ),
-                                                                            if (responsiveVisibility(
-                                                                              context: context,
-                                                                              phone: false,
-                                                                              tablet: false,
-                                                                              tabletLandscape: false,
-                                                                              desktop: false,
-                                                                            ))
-                                                                              Icon(
-                                                                                Icons.keyboard_arrow_right_sharp,
-                                                                                color: widget.paramBotaoSelecionado == 'PROFISSIONAIS' ? FlutterFlowTheme.of(context).primary : FlutterFlowTheme.of(context).secondaryText,
-                                                                                size: 20.0,
-                                                                              ),
-                                                                          ],
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                  onEnter:
-                                                                      ((event) async {
-                                                                    safeSetState(() =>
-                                                                        _model.mouseRegionAfiComisMensaisHovered2 =
-                                                                            true);
-                                                                  }),
-                                                                  onExit:
-                                                                      ((event) async {
-                                                                    safeSetState(() =>
-                                                                        _model.mouseRegionAfiComisMensaisHovered2 =
-                                                                            false);
-                                                                  }),
-                                                                ),
-                                                                MouseRegion(
-                                                                  opaque: false,
-                                                                  cursor: MouseCursor
-                                                                          .defer ??
-                                                                      MouseCursor
-                                                                          .defer,
-                                                                  child:
-                                                                      Container(
-                                                                    width: MediaQuery.sizeOf(context)
-                                                                            .width *
-                                                                        1.0,
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      color:
-                                                                          () {
-                                                                        if (_model
-                                                                            .mouseRegionAfiAtividadesHovered2) {
-                                                                          return FlutterFlowTheme.of(context)
-                                                                              .hoverBtnLateral;
-                                                                        } else if (widget.paramBotaoSelecionado ==
-                                                                            'AFILIADO_ATIVIDADES') {
-                                                                          return FlutterFlowTheme.of(context)
-                                                                              .subMenuLatSelecionado;
-                                                                        } else {
-                                                                          return Colors
-                                                                              .transparent;
-                                                                        }
-                                                                      }(),
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              8.0),
-                                                                      border:
-                                                                          Border
-                                                                              .all(
-                                                                        color: Colors
-                                                                            .transparent,
-                                                                      ),
-                                                                    ),
-                                                                    child:
-                                                                        Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                                                          4.0,
-                                                                          2.0,
-                                                                          2.0,
-                                                                          2.0),
-                                                                      child:
-                                                                          InkWell(
-                                                                        splashColor:
-                                                                            Colors.transparent,
-                                                                        focusColor:
-                                                                            Colors.transparent,
-                                                                        hoverColor:
-                                                                            Colors.transparent,
-                                                                        highlightColor:
-                                                                            Colors.transparent,
-                                                                        onTap:
-                                                                            () async {
-                                                                          if (FFAppState().varCarregouPrimeiraPagina ==
-                                                                              false) {
-                                                                            context.pop();
-                                                                          } else {
-                                                                            FFAppState().varCarregouPrimeiraPagina =
-                                                                                false;
-                                                                          }
-
-                                                                          FFAppState().varGrupoBotaoSelecionado =
-                                                                              'AFILIADO';
-                                                                          FFAppState()
-                                                                              .addToVarGruposBotoesAbertos('AFILIADO');
-
-                                                                          context
-                                                                              .pushNamed(
-                                                                            PgAfiliadoAtividadesWidget.routeName,
-                                                                            extra: <String,
-                                                                                dynamic>{
-                                                                              kTransitionInfoKey: TransitionInfo(
-                                                                                hasTransition: true,
-                                                                                transitionType: PageTransitionType.fade,
-                                                                                duration: Duration(milliseconds: 0),
-                                                                              ),
-                                                                            },
-                                                                          );
-                                                                        },
-                                                                        child:
-                                                                            Row(
-                                                                          mainAxisSize:
-                                                                              MainAxisSize.max,
-                                                                          mainAxisAlignment:
-                                                                              MainAxisAlignment.start,
-                                                                          children: [
-                                                                            if ((widget.paramBotaoSelecionado == 'AFILIADO_ATIVIDADES') &&
-                                                                                responsiveVisibility(
-                                                                                  context: context,
-                                                                                  phone: false,
-                                                                                  tablet: false,
-                                                                                  tabletLandscape: false,
-                                                                                  desktop: false,
-                                                                                ))
-                                                                              Padding(
-                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 4.0, 0.0),
-                                                                                child: Container(
-                                                                                  width: 3.0,
-                                                                                  height: 15.0,
-                                                                                  decoration: BoxDecoration(
-                                                                                    color: FlutterFlowTheme.of(context).txtMenuLatSelecionado,
-                                                                                    borderRadius: BorderRadius.circular(15.0),
-                                                                                  ),
-                                                                                ),
-                                                                              ),
-                                                                            Row(
-                                                                              mainAxisSize: MainAxisSize.max,
-                                                                              children: [
-                                                                                Padding(
-                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 4.0, 0.0),
-                                                                                  child: Icon(
-                                                                                    Icons.article_outlined,
-                                                                                    color: widget.paramBotaoSelecionado == 'AFILIADO_ATIVIDADES' ? FlutterFlowTheme.of(context).txtMenuLatSelecionado : FlutterFlowTheme.of(context).txtMenuLateral,
-                                                                                    size: 16.0,
-                                                                                  ),
-                                                                                ),
-                                                                                Text(
-                                                                                  'Atividades',
-                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                        font: GoogleFonts.readexPro(
-                                                                                          fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                          fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                        ),
-                                                                                        color: widget.paramBotaoSelecionado == 'AFILIADO_ATIVIDADES' ? FlutterFlowTheme.of(context).txtMenuLatSelecionado : FlutterFlowTheme.of(context).txtMenuLateral,
-                                                                                        fontSize: MediaQuery.sizeOf(context).width < FFAppState().varTamanhoMinimoTelaMenuLateral.toDouble() ? 16.0 : 12.0,
-                                                                                        letterSpacing: 0.0,
-                                                                                        fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                        fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                      ),
-                                                                                ),
-                                                                              ],
-                                                                            ),
-                                                                            if (responsiveVisibility(
-                                                                              context: context,
-                                                                              phone: false,
-                                                                              tablet: false,
-                                                                              tabletLandscape: false,
-                                                                              desktop: false,
-                                                                            ))
-                                                                              Icon(
-                                                                                Icons.keyboard_arrow_right_sharp,
-                                                                                color: widget.paramBotaoSelecionado == 'PROFISSIONAIS' ? FlutterFlowTheme.of(context).primary : FlutterFlowTheme.of(context).secondaryText,
-                                                                                size: 20.0,
-                                                                              ),
-                                                                          ],
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                  onEnter:
-                                                                      ((event) async {
-                                                                    safeSetState(() =>
-                                                                        _model.mouseRegionAfiAtividadesHovered2 =
-                                                                            true);
-                                                                  }),
-                                                                  onExit:
-                                                                      ((event) async {
-                                                                    safeSetState(() =>
-                                                                        _model.mouseRegionAfiAtividadesHovered2 =
-                                                                            false);
-                                                                  }),
-                                                                ),
-                                                                MouseRegion(
-                                                                  opaque: false,
-                                                                  cursor: MouseCursor
-                                                                          .defer ??
-                                                                      MouseCursor
-                                                                          .defer,
-                                                                  child:
-                                                                      Container(
-                                                                    width: MediaQuery.sizeOf(context)
-                                                                            .width *
-                                                                        1.0,
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      color:
-                                                                          () {
-                                                                        if (_model
-                                                                            .mouseRegionCuponsHovered2) {
-                                                                          return FlutterFlowTheme.of(context)
-                                                                              .hoverBtnLateral;
-                                                                        } else if (widget.paramBotaoSelecionado ==
-                                                                            'AFILIADO_CUPONS') {
-                                                                          return FlutterFlowTheme.of(context)
-                                                                              .subMenuLatSelecionado;
-                                                                        } else {
-                                                                          return Colors
-                                                                              .transparent;
-                                                                        }
-                                                                      }(),
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              8.0),
-                                                                      border:
-                                                                          Border
-                                                                              .all(
-                                                                        color: Colors
-                                                                            .transparent,
-                                                                      ),
-                                                                    ),
-                                                                    child:
-                                                                        Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                                                          4.0,
-                                                                          2.0,
-                                                                          2.0,
-                                                                          2.0),
-                                                                      child:
-                                                                          InkWell(
-                                                                        splashColor:
-                                                                            Colors.transparent,
-                                                                        focusColor:
-                                                                            Colors.transparent,
-                                                                        hoverColor:
-                                                                            Colors.transparent,
-                                                                        highlightColor:
-                                                                            Colors.transparent,
-                                                                        onTap:
-                                                                            () async {
-                                                                          if (FFAppState().varCarregouPrimeiraPagina ==
-                                                                              false) {
-                                                                            context.pop();
-                                                                          } else {
-                                                                            FFAppState().varCarregouPrimeiraPagina =
-                                                                                false;
-                                                                          }
-
-                                                                          FFAppState().varGrupoBotaoSelecionado =
-                                                                              'AFILIADO';
-                                                                          FFAppState()
-                                                                              .addToVarGruposBotoesAbertos('AFILIADO');
-
-                                                                          context
-                                                                              .pushNamed(
-                                                                            PgAfiliadoCuponsWidget.routeName,
-                                                                            extra: <String,
-                                                                                dynamic>{
-                                                                              kTransitionInfoKey: TransitionInfo(
-                                                                                hasTransition: true,
-                                                                                transitionType: PageTransitionType.fade,
-                                                                                duration: Duration(milliseconds: 0),
-                                                                              ),
-                                                                            },
-                                                                          );
-                                                                        },
-                                                                        child:
-                                                                            Row(
-                                                                          mainAxisSize:
-                                                                              MainAxisSize.max,
-                                                                          mainAxisAlignment:
-                                                                              MainAxisAlignment.start,
-                                                                          children: [
-                                                                            if ((widget.paramBotaoSelecionado == 'AFILIADO_CUPONS') &&
-                                                                                responsiveVisibility(
-                                                                                  context: context,
-                                                                                  phone: false,
-                                                                                  tablet: false,
-                                                                                  tabletLandscape: false,
-                                                                                  desktop: false,
-                                                                                ))
-                                                                              Padding(
-                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 4.0, 0.0),
-                                                                                child: Container(
-                                                                                  width: 3.0,
-                                                                                  height: 15.0,
-                                                                                  decoration: BoxDecoration(
-                                                                                    color: FlutterFlowTheme.of(context).txtMenuLatSelecionado,
-                                                                                    borderRadius: BorderRadius.circular(15.0),
-                                                                                  ),
-                                                                                ),
-                                                                              ),
-                                                                            Row(
-                                                                              mainAxisSize: MainAxisSize.max,
-                                                                              children: [
-                                                                                Padding(
-                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 4.0, 0.0),
-                                                                                  child: Icon(
-                                                                                    Icons.local_offer_outlined,
-                                                                                    color: widget.paramBotaoSelecionado == 'AFILIADO_CUPONS' ? FlutterFlowTheme.of(context).txtMenuLatSelecionado : FlutterFlowTheme.of(context).txtMenuLateral,
-                                                                                    size: 16.0,
-                                                                                  ),
-                                                                                ),
-                                                                                Text(
-                                                                                  'Cupons e Links',
-                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                        font: GoogleFonts.readexPro(
-                                                                                          fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                          fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                        ),
-                                                                                        color: widget.paramBotaoSelecionado == 'AFILIADO_CUPONS' ? FlutterFlowTheme.of(context).txtMenuLatSelecionado : FlutterFlowTheme.of(context).txtMenuLateral,
-                                                                                        fontSize: MediaQuery.sizeOf(context).width < FFAppState().varTamanhoMinimoTelaMenuLateral.toDouble() ? 16.0 : 12.0,
-                                                                                        letterSpacing: 0.0,
-                                                                                        fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                        fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                      ),
-                                                                                ),
-                                                                              ],
-                                                                            ),
-                                                                            if (responsiveVisibility(
-                                                                              context: context,
-                                                                              phone: false,
-                                                                              tablet: false,
-                                                                              tabletLandscape: false,
-                                                                              desktop: false,
-                                                                            ))
-                                                                              Icon(
-                                                                                Icons.keyboard_arrow_right_sharp,
-                                                                                color: widget.paramBotaoSelecionado == 'SERVICOS' ? FlutterFlowTheme.of(context).primary : FlutterFlowTheme.of(context).secondaryText,
-                                                                                size: 20.0,
-                                                                              ),
-                                                                          ],
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                  onEnter:
-                                                                      ((event) async {
-                                                                    safeSetState(() =>
-                                                                        _model.mouseRegionCuponsHovered2 =
-                                                                            true);
-                                                                  }),
-                                                                  onExit:
-                                                                      ((event) async {
-                                                                    safeSetState(() =>
-                                                                        _model.mouseRegionCuponsHovered2 =
-                                                                            false);
-                                                                  }),
-                                                                ),
-                                                                MouseRegion(
-                                                                  opaque: false,
-                                                                  cursor: MouseCursor
-                                                                          .defer ??
-                                                                      MouseCursor
-                                                                          .defer,
-                                                                  child:
-                                                                      Container(
-                                                                    width: MediaQuery.sizeOf(context)
-                                                                            .width *
-                                                                        1.0,
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      color:
-                                                                          () {
-                                                                        if (_model
-                                                                            .mouseRegionAfiSaquesHovered2) {
-                                                                          return FlutterFlowTheme.of(context)
-                                                                              .hoverBtnLateral;
-                                                                        } else if (widget.paramBotaoSelecionado ==
-                                                                            'AFILIADO_SAQUES') {
-                                                                          return FlutterFlowTheme.of(context)
-                                                                              .subMenuLatSelecionado;
-                                                                        } else {
-                                                                          return Colors
-                                                                              .transparent;
-                                                                        }
-                                                                      }(),
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              8.0),
-                                                                      border:
-                                                                          Border
-                                                                              .all(
-                                                                        color: Colors
-                                                                            .transparent,
-                                                                      ),
-                                                                    ),
-                                                                    child:
-                                                                        Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                                                          4.0,
-                                                                          2.0,
-                                                                          2.0,
-                                                                          2.0),
-                                                                      child:
-                                                                          InkWell(
-                                                                        splashColor:
-                                                                            Colors.transparent,
-                                                                        focusColor:
-                                                                            Colors.transparent,
-                                                                        hoverColor:
-                                                                            Colors.transparent,
-                                                                        highlightColor:
-                                                                            Colors.transparent,
-                                                                        onTap:
-                                                                            () async {
-                                                                          if (FFAppState().varCarregouPrimeiraPagina ==
-                                                                              false) {
-                                                                            context.pop();
-                                                                          } else {
-                                                                            FFAppState().varCarregouPrimeiraPagina =
-                                                                                false;
-                                                                          }
-
-                                                                          FFAppState().varGrupoBotaoSelecionado =
-                                                                              'AFILIADO';
-                                                                          FFAppState()
-                                                                              .addToVarGruposBotoesAbertos('AFILIADO');
-
-                                                                          context
-                                                                              .pushNamed(
-                                                                            PgAfiliadoSaquesWidget.routeName,
-                                                                            extra: <String,
-                                                                                dynamic>{
-                                                                              kTransitionInfoKey: TransitionInfo(
-                                                                                hasTransition: true,
-                                                                                transitionType: PageTransitionType.fade,
-                                                                                duration: Duration(milliseconds: 0),
-                                                                              ),
-                                                                            },
-                                                                          );
-                                                                        },
-                                                                        child:
-                                                                            Row(
-                                                                          mainAxisSize:
-                                                                              MainAxisSize.max,
-                                                                          mainAxisAlignment:
-                                                                              MainAxisAlignment.start,
-                                                                          children: [
-                                                                            if ((widget.paramBotaoSelecionado == 'AFILIADO_SAQUES') &&
-                                                                                responsiveVisibility(
-                                                                                  context: context,
-                                                                                  phone: false,
-                                                                                  tablet: false,
-                                                                                  tabletLandscape: false,
-                                                                                  desktop: false,
-                                                                                ))
-                                                                              Padding(
-                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 4.0, 0.0),
-                                                                                child: Container(
-                                                                                  width: 3.0,
-                                                                                  height: 15.0,
-                                                                                  decoration: BoxDecoration(
-                                                                                    color: FlutterFlowTheme.of(context).txtMenuLatSelecionado,
-                                                                                    borderRadius: BorderRadius.circular(15.0),
-                                                                                  ),
-                                                                                ),
-                                                                              ),
-                                                                            Row(
-                                                                              mainAxisSize: MainAxisSize.max,
-                                                                              children: [
-                                                                                Padding(
-                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 4.0, 0.0),
-                                                                                  child: Icon(
-                                                                                    Icons.save_alt,
-                                                                                    color: widget.paramBotaoSelecionado == 'AFILIADO_SAQUES' ? FlutterFlowTheme.of(context).txtMenuLatSelecionado : FlutterFlowTheme.of(context).txtMenuLateral,
-                                                                                    size: 16.0,
-                                                                                  ),
-                                                                                ),
-                                                                                Text(
-                                                                                  'Saques',
-                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                        font: GoogleFonts.readexPro(
-                                                                                          fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                          fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                        ),
-                                                                                        color: widget.paramBotaoSelecionado == 'AFILIADO_SAQUES' ? FlutterFlowTheme.of(context).txtMenuLatSelecionado : FlutterFlowTheme.of(context).txtMenuLateral,
-                                                                                        fontSize: MediaQuery.sizeOf(context).width < FFAppState().varTamanhoMinimoTelaMenuLateral.toDouble() ? 16.0 : 12.0,
-                                                                                        letterSpacing: 0.0,
-                                                                                        fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                        fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                      ),
-                                                                                ),
-                                                                              ],
-                                                                            ),
-                                                                            if (responsiveVisibility(
-                                                                              context: context,
-                                                                              phone: false,
-                                                                              tablet: false,
-                                                                              tabletLandscape: false,
-                                                                              desktop: false,
-                                                                            ))
-                                                                              Icon(
-                                                                                Icons.keyboard_arrow_right_sharp,
-                                                                                color: widget.paramBotaoSelecionado == 'PROFISSIONAIS' ? FlutterFlowTheme.of(context).primary : FlutterFlowTheme.of(context).secondaryText,
-                                                                                size: 20.0,
-                                                                              ),
-                                                                          ],
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                  onEnter:
-                                                                      ((event) async {
-                                                                    safeSetState(() =>
-                                                                        _model.mouseRegionAfiSaquesHovered2 =
-                                                                            true);
-                                                                  }),
-                                                                  onExit:
-                                                                      ((event) async {
-                                                                    safeSetState(() =>
-                                                                        _model.mouseRegionAfiSaquesHovered2 =
-                                                                            false);
-                                                                  }),
-                                                                ),
-                                                                MouseRegion(
-                                                                  opaque: false,
-                                                                  cursor: MouseCursor
-                                                                          .defer ??
-                                                                      MouseCursor
-                                                                          .defer,
-                                                                  child:
-                                                                      Container(
-                                                                    width: MediaQuery.sizeOf(context)
-                                                                            .width *
-                                                                        1.0,
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      color:
-                                                                          () {
-                                                                        if (_model
-                                                                            .mouseRegionAfiPlanoHovered2) {
-                                                                          return FlutterFlowTheme.of(context)
-                                                                              .hoverBtnLateral;
-                                                                        } else if (widget.paramBotaoSelecionado ==
-                                                                            'AFILIADO_PLANO') {
-                                                                          return FlutterFlowTheme.of(context)
-                                                                              .subMenuLatSelecionado;
-                                                                        } else {
-                                                                          return Colors
-                                                                              .transparent;
-                                                                        }
-                                                                      }(),
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              8.0),
-                                                                      border:
-                                                                          Border
-                                                                              .all(
-                                                                        color: Colors
-                                                                            .transparent,
-                                                                      ),
-                                                                    ),
-                                                                    child:
-                                                                        Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                                                          4.0,
-                                                                          2.0,
-                                                                          2.0,
-                                                                          2.0),
-                                                                      child:
-                                                                          InkWell(
-                                                                        splashColor:
-                                                                            Colors.transparent,
-                                                                        focusColor:
-                                                                            Colors.transparent,
-                                                                        hoverColor:
-                                                                            Colors.transparent,
-                                                                        highlightColor:
-                                                                            Colors.transparent,
-                                                                        onTap:
-                                                                            () async {
-                                                                          if (FFAppState().varCarregouPrimeiraPagina ==
-                                                                              false) {
-                                                                            context.pop();
-                                                                          } else {
-                                                                            FFAppState().varCarregouPrimeiraPagina =
-                                                                                false;
-                                                                          }
-
-                                                                          FFAppState().varGrupoBotaoSelecionado =
-                                                                              'AFILIADO';
-                                                                          FFAppState()
-                                                                              .addToVarGruposBotoesAbertos('AFILIADO');
-
-                                                                          context
-                                                                              .pushNamed(
-                                                                            PgAfiliadoPlanoWidget.routeName,
-                                                                            extra: <String,
-                                                                                dynamic>{
-                                                                              kTransitionInfoKey: TransitionInfo(
-                                                                                hasTransition: true,
-                                                                                transitionType: PageTransitionType.fade,
-                                                                                duration: Duration(milliseconds: 0),
-                                                                              ),
-                                                                            },
-                                                                          );
-                                                                        },
-                                                                        child:
-                                                                            Row(
-                                                                          mainAxisSize:
-                                                                              MainAxisSize.max,
-                                                                          mainAxisAlignment:
-                                                                              MainAxisAlignment.start,
-                                                                          children: [
-                                                                            if ((widget.paramBotaoSelecionado == 'AFILIADO_PLANO') &&
-                                                                                responsiveVisibility(
-                                                                                  context: context,
-                                                                                  phone: false,
-                                                                                  tablet: false,
-                                                                                  tabletLandscape: false,
-                                                                                  desktop: false,
-                                                                                ))
-                                                                              Padding(
-                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 4.0, 0.0),
-                                                                                child: Container(
-                                                                                  width: 3.0,
-                                                                                  height: 15.0,
-                                                                                  decoration: BoxDecoration(
-                                                                                    color: FlutterFlowTheme.of(context).txtMenuLatSelecionado,
-                                                                                    borderRadius: BorderRadius.circular(15.0),
-                                                                                  ),
-                                                                                ),
-                                                                              ),
-                                                                            Row(
-                                                                              mainAxisSize: MainAxisSize.max,
-                                                                              children: [
-                                                                                Padding(
-                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 4.0, 0.0),
-                                                                                  child: FaIcon(
-                                                                                    FontAwesomeIcons.crown,
-                                                                                    color: widget.paramBotaoSelecionado == 'AFILIADO_PLANO' ? FlutterFlowTheme.of(context).txtMenuLatSelecionado : FlutterFlowTheme.of(context).txtMenuLateral,
-                                                                                    size: 16.0,
-                                                                                  ),
-                                                                                ),
-                                                                                Text(
-                                                                                  'Plano Afiliação',
-                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                        font: GoogleFonts.readexPro(
-                                                                                          fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                          fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                        ),
-                                                                                        color: widget.paramBotaoSelecionado == 'AFILIADO_PLANO' ? FlutterFlowTheme.of(context).txtMenuLatSelecionado : FlutterFlowTheme.of(context).txtMenuLateral,
-                                                                                        fontSize: MediaQuery.sizeOf(context).width < FFAppState().varTamanhoMinimoTelaMenuLateral.toDouble() ? 16.0 : 12.0,
-                                                                                        letterSpacing: 0.0,
-                                                                                        fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                        fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                      ),
-                                                                                ),
-                                                                              ],
-                                                                            ),
-                                                                            if (responsiveVisibility(
-                                                                              context: context,
-                                                                              phone: false,
-                                                                              tablet: false,
-                                                                              tabletLandscape: false,
-                                                                              desktop: false,
-                                                                            ))
-                                                                              Icon(
-                                                                                Icons.keyboard_arrow_right_sharp,
-                                                                                color: widget.paramBotaoSelecionado == 'SERVICOS' ? FlutterFlowTheme.of(context).primary : FlutterFlowTheme.of(context).secondaryText,
-                                                                                size: 20.0,
-                                                                              ),
-                                                                          ],
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                  onEnter:
-                                                                      ((event) async {
-                                                                    safeSetState(() =>
-                                                                        _model.mouseRegionAfiPlanoHovered2 =
-                                                                            true);
-                                                                  }),
-                                                                  onExit:
-                                                                      ((event) async {
-                                                                    safeSetState(() =>
-                                                                        _model.mouseRegionAfiPlanoHovered2 =
-                                                                            false);
-                                                                  }),
-                                                                ),
-                                                                MouseRegion(
-                                                                  opaque: false,
-                                                                  cursor: MouseCursor
-                                                                          .defer ??
-                                                                      MouseCursor
-                                                                          .defer,
-                                                                  child:
-                                                                      Container(
-                                                                    width: MediaQuery.sizeOf(context)
-                                                                            .width *
-                                                                        1.0,
-                                                                    decoration:
-                                                                        BoxDecoration(
-                                                                      color:
-                                                                          () {
-                                                                        if (_model
-                                                                            .mouseRegionAfiEmpGoogleHovered2) {
-                                                                          return FlutterFlowTheme.of(context)
-                                                                              .hoverBtnLateral;
-                                                                        } else if (widget.paramBotaoSelecionado ==
-                                                                            'AFILIADO_GOOGLE') {
-                                                                          return FlutterFlowTheme.of(context)
-                                                                              .subMenuLatSelecionado;
-                                                                        } else {
-                                                                          return Colors
-                                                                              .transparent;
-                                                                        }
-                                                                      }(),
-                                                                      borderRadius:
-                                                                          BorderRadius.circular(
-                                                                              8.0),
-                                                                      border:
-                                                                          Border
-                                                                              .all(
-                                                                        color: Colors
-                                                                            .transparent,
-                                                                      ),
-                                                                    ),
-                                                                    child:
-                                                                        Padding(
-                                                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                                                          4.0,
-                                                                          2.0,
-                                                                          2.0,
-                                                                          2.0),
-                                                                      child:
-                                                                          InkWell(
-                                                                        splashColor:
-                                                                            Colors.transparent,
-                                                                        focusColor:
-                                                                            Colors.transparent,
-                                                                        hoverColor:
-                                                                            Colors.transparent,
-                                                                        highlightColor:
-                                                                            Colors.transparent,
-                                                                        onTap:
-                                                                            () async {
-                                                                          if (FFAppState().varCarregouPrimeiraPagina ==
-                                                                              false) {
-                                                                            context.pop();
-                                                                          } else {
-                                                                            FFAppState().varCarregouPrimeiraPagina =
-                                                                                false;
-                                                                          }
-
-                                                                          FFAppState().varGrupoBotaoSelecionado =
-                                                                              'AFILIADO';
-                                                                          FFAppState()
-                                                                              .addToVarGruposBotoesAbertos('AFILIADO');
-
-                                                                          context
-                                                                              .pushNamed(
-                                                                            PgAfiliadoGoogleMapsWidget.routeName,
-                                                                            extra: <String,
-                                                                                dynamic>{
-                                                                              kTransitionInfoKey: TransitionInfo(
-                                                                                hasTransition: true,
-                                                                                transitionType: PageTransitionType.fade,
-                                                                                duration: Duration(milliseconds: 0),
-                                                                              ),
-                                                                            },
-                                                                          );
-                                                                        },
-                                                                        child:
-                                                                            Row(
-                                                                          mainAxisSize:
-                                                                              MainAxisSize.max,
-                                                                          mainAxisAlignment:
-                                                                              MainAxisAlignment.start,
-                                                                          children: [
-                                                                            if ((widget.paramBotaoSelecionado == 'AFILIADO_GOOGLE') &&
-                                                                                responsiveVisibility(
-                                                                                  context: context,
-                                                                                  phone: false,
-                                                                                  tablet: false,
-                                                                                  tabletLandscape: false,
-                                                                                  desktop: false,
-                                                                                ))
-                                                                              Padding(
-                                                                                padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 4.0, 0.0),
-                                                                                child: Container(
-                                                                                  width: 3.0,
-                                                                                  height: 15.0,
-                                                                                  decoration: BoxDecoration(
-                                                                                    color: FlutterFlowTheme.of(context).txtMenuLatSelecionado,
-                                                                                    borderRadius: BorderRadius.circular(15.0),
-                                                                                  ),
-                                                                                ),
-                                                                              ),
-                                                                            Row(
-                                                                              mainAxisSize: MainAxisSize.max,
-                                                                              children: [
-                                                                                Padding(
-                                                                                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 4.0, 0.0),
-                                                                                  child: Icon(
-                                                                                    Icons.location_on_outlined,
-                                                                                    color: widget.paramBotaoSelecionado == 'AFILIADO_GOOGLE' ? FlutterFlowTheme.of(context).txtMenuLatSelecionado : FlutterFlowTheme.of(context).txtMenuLateral,
-                                                                                    size: 16.0,
-                                                                                  ),
-                                                                                ),
-                                                                                Text(
-                                                                                  'Empresas Google',
-                                                                                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                                                                                        font: GoogleFonts.readexPro(
-                                                                                          fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                          fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                        ),
-                                                                                        color: widget.paramBotaoSelecionado == 'AFILIADO_GOOGLE' ? FlutterFlowTheme.of(context).txtMenuLatSelecionado : FlutterFlowTheme.of(context).txtMenuLateral,
-                                                                                        fontSize: MediaQuery.sizeOf(context).width < FFAppState().varTamanhoMinimoTelaMenuLateral.toDouble() ? 16.0 : 12.0,
-                                                                                        letterSpacing: 0.0,
-                                                                                        fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
-                                                                                        fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                                                                                      ),
-                                                                                ),
-                                                                              ],
-                                                                            ),
-                                                                            if (responsiveVisibility(
-                                                                              context: context,
-                                                                              phone: false,
-                                                                              tablet: false,
-                                                                              tabletLandscape: false,
-                                                                              desktop: false,
-                                                                            ))
-                                                                              Icon(
-                                                                                Icons.keyboard_arrow_right_sharp,
-                                                                                color: widget.paramBotaoSelecionado == 'SERVICOS' ? FlutterFlowTheme.of(context).primary : FlutterFlowTheme.of(context).secondaryText,
-                                                                                size: 20.0,
-                                                                              ),
-                                                                          ],
-                                                                        ),
-                                                                      ),
-                                                                    ),
-                                                                  ),
-                                                                  onEnter:
-                                                                      ((event) async {
-                                                                    safeSetState(() =>
-                                                                        _model.mouseRegionAfiEmpGoogleHovered2 =
-                                                                            true);
-                                                                  }),
-                                                                  onExit:
-                                                                      ((event) async {
-                                                                    safeSetState(() =>
-                                                                        _model.mouseRegionAfiEmpGoogleHovered2 =
-                                                                            false);
-                                                                  }),
-                                                                ),
-                                                              ].divide(SizedBox(
-                                                                  height: 2.0)),
-                                                            ),
-                                                        ].divide(SizedBox(
-                                                            height: 2.0)),
                                                       ),
                                                     ),
                                                   ),
@@ -14979,19 +11850,16 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                                           alignment:
                                                                               AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                           child:
-                                                                              WebViewAware(
-                                                                            child:
-                                                                                CpFotoWidget(
-                                                                              paramFoto: FFAppState().varIDAPPAfiliado == 1
-                                                                                  ? valueOrDefault<String>(
-                                                                                      FFAppState().VarTblEstabelecimentoLogado.fotoPerfil,
-                                                                                      'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/agendador-de-beleza-qia8mb/assets/lp37pdsm6md0/sem-imagem.jpg',
-                                                                                    )
-                                                                                  : valueOrDefault<String>(
-                                                                                      FFAppState().varTblAfiliado.fotoPerfil,
-                                                                                      'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/agendador-de-beleza-qia8mb/assets/lp37pdsm6md0/sem-imagem.jpg',
-                                                                                    ),
-                                                                            ),
+                                                                              CpFotoWidget(
+                                                                            paramFoto: FFAppState().varIDAPPAfiliado == 1
+                                                                                ? valueOrDefault<String>(
+                                                                                    FFAppState().VarTblEstabelecimentoLogado.fotoPerfil,
+                                                                                    'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/agendador-de-beleza-qia8mb/assets/lp37pdsm6md0/sem-imagem.jpg',
+                                                                                  )
+                                                                                : valueOrDefault<String>(
+                                                                                    FFAppState().varTblAfiliado.fotoPerfil,
+                                                                                    'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/agendador-de-beleza-qia8mb/assets/lp37pdsm6md0/sem-imagem.jpg',
+                                                                                  ),
                                                                           ),
                                                                         );
                                                                       },
@@ -15002,20 +11870,17 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                                           context,
                                                                       builder:
                                                                           (alertDialogContext) {
-                                                                        return WebViewAware(
-                                                                          child:
-                                                                              AlertDialog(
-                                                                            title:
-                                                                                Text('Atenção!'),
-                                                                            content:
-                                                                                Text('Sem Foto'),
-                                                                            actions: [
-                                                                              TextButton(
-                                                                                onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                child: Text('Ok'),
-                                                                              ),
-                                                                            ],
-                                                                          ),
+                                                                        return AlertDialog(
+                                                                          title:
+                                                                              Text('Atenção!'),
+                                                                          content:
+                                                                              Text('Sem Foto'),
+                                                                          actions: [
+                                                                            TextButton(
+                                                                              onPressed: () => Navigator.pop(alertDialogContext),
+                                                                              child: Text('Ok'),
+                                                                            ),
+                                                                          ],
                                                                         );
                                                                       },
                                                                     );
@@ -15096,23 +11961,20 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                             context: context,
                                                             builder:
                                                                 (alertDialogContext) {
-                                                              return WebViewAware(
-                                                                child:
-                                                                    AlertDialog(
-                                                                  title: Text(
-                                                                      'Atenção!'),
-                                                                  content: Text(
-                                                                      'Modo desenvolvedor ativado...'),
-                                                                  actions: [
-                                                                    TextButton(
-                                                                      onPressed:
-                                                                          () =>
-                                                                              Navigator.pop(alertDialogContext),
-                                                                      child: Text(
-                                                                          'Ok'),
-                                                                    ),
-                                                                  ],
-                                                                ),
+                                                              return AlertDialog(
+                                                                title: Text(
+                                                                    'Atenção!'),
+                                                                content: Text(
+                                                                    'Modo desenvolvedor ativado...'),
+                                                                actions: [
+                                                                  TextButton(
+                                                                    onPressed: () =>
+                                                                        Navigator.pop(
+                                                                            alertDialogContext),
+                                                                    child: Text(
+                                                                        'Ok'),
+                                                                  ),
+                                                                ],
                                                               );
                                                             },
                                                           );
@@ -15316,14 +12178,11 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                                           context,
                                                                       builder:
                                                                           (context) {
-                                                                        return WebViewAware(
+                                                                        return Padding(
+                                                                          padding:
+                                                                              MediaQuery.viewInsetsOf(context),
                                                                           child:
-                                                                              Padding(
-                                                                            padding:
-                                                                                MediaQuery.viewInsetsOf(context),
-                                                                            child:
-                                                                                CpNotificacaoWidget(),
-                                                                          ),
+                                                                              CpNotificacaoWidget(),
                                                                         );
                                                                       },
                                                                     ).then((value) =>
@@ -15345,10 +12204,7 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                                           alignment:
                                                                               AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                           child:
-                                                                              WebViewAware(
-                                                                            child:
-                                                                                CpNotificacaoWidget(),
-                                                                          ),
+                                                                              CpNotificacaoWidget(),
                                                                         );
                                                                       },
                                                                     );
@@ -15523,10 +12379,8 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                                             alignment:
                                                                                 AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                             child:
-                                                                                WebViewAware(
-                                                                              child: CpFotoWidget(
-                                                                                paramFoto: FFAppState().VarTblEstabelecimentoLogado.fotoPerfil,
-                                                                              ),
+                                                                                CpFotoWidget(
+                                                                              paramFoto: FFAppState().VarTblEstabelecimentoLogado.fotoPerfil,
                                                                             ),
                                                                           );
                                                                         },
@@ -15537,18 +12391,17 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                                             context,
                                                                         builder:
                                                                             (alertDialogContext) {
-                                                                          return WebViewAware(
-                                                                            child:
-                                                                                AlertDialog(
-                                                                              title: Text('Atenção!'),
-                                                                              content: Text('Sem Foto'),
-                                                                              actions: [
-                                                                                TextButton(
-                                                                                  onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                  child: Text('Ok'),
-                                                                                ),
-                                                                              ],
-                                                                            ),
+                                                                          return AlertDialog(
+                                                                            title:
+                                                                                Text('Atenção!'),
+                                                                            content:
+                                                                                Text('Sem Foto'),
+                                                                            actions: [
+                                                                              TextButton(
+                                                                                onPressed: () => Navigator.pop(alertDialogContext),
+                                                                                child: Text('Ok'),
+                                                                              ),
+                                                                            ],
                                                                           );
                                                                         },
                                                                       );
@@ -15634,18 +12487,17 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                                             context,
                                                                         builder:
                                                                             (alertDialogContext) {
-                                                                          return WebViewAware(
-                                                                            child:
-                                                                                AlertDialog(
-                                                                              title: Text('Atenção!'),
-                                                                              content: Text('Modo desenvolvedor ativado...'),
-                                                                              actions: [
-                                                                                TextButton(
-                                                                                  onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                  child: Text('Ok'),
-                                                                                ),
-                                                                              ],
-                                                                            ),
+                                                                          return AlertDialog(
+                                                                            title:
+                                                                                Text('Atenção!'),
+                                                                            content:
+                                                                                Text('Modo desenvolvedor ativado...'),
+                                                                            actions: [
+                                                                              TextButton(
+                                                                                onPressed: () => Navigator.pop(alertDialogContext),
+                                                                                child: Text('Ok'),
+                                                                              ),
+                                                                            ],
                                                                           );
                                                                         },
                                                                       );
@@ -16374,6 +13226,126 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                       .mouseRegionSairHovered =
                                                   false);
                                             }),
+                                          ),
+                                        ),
+                                      if (kDebugMode)
+                                        AnimatedContainer(
+                                          duration: Duration(milliseconds: 200),
+                                          curve: Curves.easeInOut,
+                                          width: double.infinity,
+                                          height: 44.0,
+                                          decoration: BoxDecoration(
+                                            color: Color(0x4D9489F5),
+                                            borderRadius:
+                                                BorderRadius.circular(12.0),
+                                            shape: BoxShape.rectangle,
+                                          ),
+                                          child: Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    8.0, 0.0, 6.0, 0.0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.max,
+                                              children: [
+                                                Icon(
+                                                  Icons.notifications_rounded,
+                                                  color: Color(0xFF6F61EF),
+                                                  size: 24.0,
+                                                ),
+                                                Expanded(
+                                                  child: Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(12.0, 0.0,
+                                                                0.0, 0.0),
+                                                    child: Text(
+                                                      'Notifications',
+                                                      style: FlutterFlowTheme
+                                                              .of(context)
+                                                          .bodyMedium
+                                                          .override(
+                                                            font: GoogleFonts
+                                                                .plusJakartaSans(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
+                                                              fontStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontStyle,
+                                                            ),
+                                                            color: Color(
+                                                                0xFF15161E),
+                                                            fontSize: 14.0,
+                                                            letterSpacing: 0.0,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                            fontStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontStyle,
+                                                          ),
+                                                    ),
+                                                  ),
+                                                ),
+                                                Container(
+                                                  height: 32.0,
+                                                  decoration: BoxDecoration(
+                                                    color: Color(0xFF6F61EF),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8.0),
+                                                  ),
+                                                  child: Align(
+                                                    alignment:
+                                                        AlignmentDirectional(
+                                                            0.0, 0.0),
+                                                    child: Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  8.0,
+                                                                  4.0,
+                                                                  8.0,
+                                                                  4.0),
+                                                      child: Text(
+                                                        '12',
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .bodyMedium
+                                                            .override(
+                                                              font: GoogleFonts
+                                                                  .plusJakartaSans(
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
+                                                                fontStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontStyle,
+                                                              ),
+                                                              color:
+                                                                  Colors.white,
+                                                              fontSize: 14.0,
+                                                              letterSpacing:
+                                                                  0.0,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
+                                                              fontStyle:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontStyle,
+                                                            ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         ),
                                     ].divide(SizedBox(height: 8.0)),

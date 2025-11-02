@@ -10,7 +10,6 @@ import '/index.dart';
 import 'cp_afiliados_cad_widget.dart' show CpAfiliadosCadWidget;
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 
 class CpAfiliadosCadModel extends FlutterFlowModel<CpAfiliadosCadWidget> {
   ///  Local state fields for this component.
@@ -402,18 +401,16 @@ class CpAfiliadosCadModel extends FlutterFlowModel<CpAfiliadosCadWidget> {
       await showDialog(
         context: context,
         builder: (alertDialogContext) {
-          return WebViewAware(
-            child: AlertDialog(
-              title: Text('Atenção!'),
-              content: Text(
-                  'Informe o username (Será usado compartilhar seu link de afiliado)'),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(alertDialogContext),
-                  child: Text('Ok'),
-                ),
-              ],
-            ),
+          return AlertDialog(
+            title: Text('Atenção!'),
+            content: Text(
+                'Informe o username (Será usado compartilhar seu link de afiliado)'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
           );
         },
       );
@@ -423,17 +420,15 @@ class CpAfiliadosCadModel extends FlutterFlowModel<CpAfiliadosCadWidget> {
       await showDialog(
         context: context,
         builder: (alertDialogContext) {
-          return WebViewAware(
-            child: AlertDialog(
-              title: Text('Atenção!'),
-              content: Text('O username deve ter pelo menos 5 caracteres'),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(alertDialogContext),
-                  child: Text('Ok'),
-                ),
-              ],
-            ),
+          return AlertDialog(
+            title: Text('Atenção!'),
+            content: Text('O username deve ter pelo menos 5 caracteres'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
           );
         },
       );
@@ -444,17 +439,15 @@ class CpAfiliadosCadModel extends FlutterFlowModel<CpAfiliadosCadWidget> {
       await showDialog(
         context: context,
         builder: (alertDialogContext) {
-          return WebViewAware(
-            child: AlertDialog(
-              title: Text('Atenção!'),
-              content: Text('O username deve ter no máximo 20 caracteres'),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(alertDialogContext),
-                  child: Text('Ok'),
-                ),
-              ],
-            ),
+          return AlertDialog(
+            title: Text('Atenção!'),
+            content: Text('O username deve ter no máximo 20 caracteres'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
           );
         },
       );
@@ -481,22 +474,20 @@ class CpAfiliadosCadModel extends FlutterFlowModel<CpAfiliadosCadWidget> {
     var confirmDialogResponse = await showDialog<bool>(
           context: context,
           builder: (alertDialogContext) {
-            return WebViewAware(
-              child: AlertDialog(
-                title: Text('Atenção!'),
-                content: Text(
-                    'Deseja  salvar o novo username ${textFieldUsernameTextController.text}?'),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(alertDialogContext, false),
-                    child: Text('Não'),
-                  ),
-                  TextButton(
-                    onPressed: () => Navigator.pop(alertDialogContext, true),
-                    child: Text('Sim'),
-                  ),
-                ],
-              ),
+            return AlertDialog(
+              title: Text('Atenção!'),
+              content: Text(
+                  'Deseja  salvar o novo username ${textFieldUsernameTextController.text}?'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(alertDialogContext, false),
+                  child: Text('Não'),
+                ),
+                TextButton(
+                  onPressed: () => Navigator.pop(alertDialogContext, true),
+                  child: Text('Sim'),
+                ),
+              ],
             );
           },
         ) ??
@@ -518,18 +509,16 @@ class CpAfiliadosCadModel extends FlutterFlowModel<CpAfiliadosCadWidget> {
     await showDialog(
       context: context,
       builder: (alertDialogContext) {
-        return WebViewAware(
-          child: AlertDialog(
-            title: Text('Atenção!'),
-            content: Text(
-                'Novo  Username salvo com sucesso, você será direcionado para página de cupons para liberar novos cupons.'),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(alertDialogContext),
-                child: Text('Ok'),
-              ),
-            ],
-          ),
+        return AlertDialog(
+          title: Text('Atenção!'),
+          content: Text(
+              'Novo  Username salvo com sucesso, você será direcionado para página de cupons para liberar novos cupons.'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(alertDialogContext),
+              child: Text('Ok'),
+            ),
+          ],
         );
       },
     );

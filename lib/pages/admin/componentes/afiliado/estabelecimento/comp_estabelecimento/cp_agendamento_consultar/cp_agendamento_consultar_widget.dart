@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 import 'cp_agendamento_consultar_model.dart';
 export 'cp_agendamento_consultar_model.dart';
 
@@ -1003,28 +1002,26 @@ class _CpAgendamentoConsultarWidgetState
                                     await showDialog<bool>(
                                           context: context,
                                           builder: (alertDialogContext) {
-                                            return WebViewAware(
-                                              child: AlertDialog(
-                                                title: Text('Atenção!'),
-                                                content: Text(
-                                                    'Deseja APROVAR o agendamento?'),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () =>
-                                                        Navigator.pop(
-                                                            alertDialogContext,
-                                                            false),
-                                                    child: Text('Não'),
-                                                  ),
-                                                  TextButton(
-                                                    onPressed: () =>
-                                                        Navigator.pop(
-                                                            alertDialogContext,
-                                                            true),
-                                                    child: Text('Sim'),
-                                                  ),
-                                                ],
-                                              ),
+                                            return AlertDialog(
+                                              title: Text('Atenção!'),
+                                              content: Text(
+                                                  'Deseja APROVAR o agendamento?'),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext,
+                                                          false),
+                                                  child: Text('Não'),
+                                                ),
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext,
+                                                          true),
+                                                  child: Text('Sim'),
+                                                ),
+                                              ],
                                             );
                                           },
                                         ) ??
@@ -1219,28 +1216,26 @@ class _CpAgendamentoConsultarWidgetState
                                     await showDialog<bool>(
                                           context: context,
                                           builder: (alertDialogContext) {
-                                            return WebViewAware(
-                                              child: AlertDialog(
-                                                title: Text('Atenção!'),
-                                                content: Text(
-                                                    'Deseja FINALIZAR o agendamento, o serviço foi concluído?'),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () =>
-                                                        Navigator.pop(
-                                                            alertDialogContext,
-                                                            false),
-                                                    child: Text('Não'),
-                                                  ),
-                                                  TextButton(
-                                                    onPressed: () =>
-                                                        Navigator.pop(
-                                                            alertDialogContext,
-                                                            true),
-                                                    child: Text('Sim'),
-                                                  ),
-                                                ],
-                                              ),
+                                            return AlertDialog(
+                                              title: Text('Atenção!'),
+                                              content: Text(
+                                                  'Deseja FINALIZAR o agendamento, o serviço foi concluído?'),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext,
+                                                          false),
+                                                  child: Text('Não'),
+                                                ),
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext,
+                                                          true),
+                                                  child: Text('Sim'),
+                                                ),
+                                              ],
                                             );
                                           },
                                         ) ??
@@ -1358,28 +1353,26 @@ class _CpAgendamentoConsultarWidgetState
                                     await showDialog<bool>(
                                           context: context,
                                           builder: (alertDialogContext) {
-                                            return WebViewAware(
-                                              child: AlertDialog(
-                                                title: Text('Atenção!'),
-                                                content: Text(
-                                                    'Deseja CANCELAR o agendamento?'),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () =>
-                                                        Navigator.pop(
-                                                            alertDialogContext,
-                                                            false),
-                                                    child: Text('Não'),
-                                                  ),
-                                                  TextButton(
-                                                    onPressed: () =>
-                                                        Navigator.pop(
-                                                            alertDialogContext,
-                                                            true),
-                                                    child: Text('Sim'),
-                                                  ),
-                                                ],
-                                              ),
+                                            return AlertDialog(
+                                              title: Text('Atenção!'),
+                                              content: Text(
+                                                  'Deseja CANCELAR o agendamento?'),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext,
+                                                          false),
+                                                  child: Text('Não'),
+                                                ),
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext,
+                                                          true),
+                                                  child: Text('Sim'),
+                                                ),
+                                              ],
                                             );
                                           },
                                         ) ??

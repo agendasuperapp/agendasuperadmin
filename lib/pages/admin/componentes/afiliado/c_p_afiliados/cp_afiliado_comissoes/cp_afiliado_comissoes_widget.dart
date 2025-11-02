@@ -10,7 +10,6 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 import 'cp_afiliado_comissoes_model.dart';
 export 'cp_afiliado_comissoes_model.dart';
 
@@ -1504,22 +1503,20 @@ class _CpAfiliadoComissoesWidgetState extends State<CpAfiliadoComissoesWidget>
                                                                     context,
                                                                 builder:
                                                                     (alertDialogContext) {
-                                                                  return WebViewAware(
-                                                                    child:
-                                                                        AlertDialog(
-                                                                      title: Text(
-                                                                          'Atenção!'),
-                                                                      content: Text(
-                                                                          'Cadastro em andamento, aguarde...'),
-                                                                      actions: [
-                                                                        TextButton(
-                                                                          onPressed: () =>
-                                                                              Navigator.pop(alertDialogContext),
-                                                                          child:
-                                                                              Text('Ok'),
-                                                                        ),
-                                                                      ],
-                                                                    ),
+                                                                  return AlertDialog(
+                                                                    title: Text(
+                                                                        'Atenção!'),
+                                                                    content: Text(
+                                                                        'Cadastro em andamento, aguarde...'),
+                                                                    actions: [
+                                                                      TextButton(
+                                                                        onPressed:
+                                                                            () =>
+                                                                                Navigator.pop(alertDialogContext),
+                                                                        child: Text(
+                                                                            'Ok'),
+                                                                      ),
+                                                                    ],
                                                                   );
                                                                 },
                                                               );
@@ -2290,23 +2287,20 @@ class _CpAfiliadoComissoesWidgetState extends State<CpAfiliadoComissoesWidget>
                                                               context: context,
                                                               builder:
                                                                   (alertDialogContext) {
-                                                                return WebViewAware(
-                                                                  child:
-                                                                      AlertDialog(
-                                                                    title: Text(
-                                                                        'Atenção!'),
-                                                                    content: Text(
-                                                                        'Cadastro em andamento, aguarde...'),
-                                                                    actions: [
-                                                                      TextButton(
-                                                                        onPressed:
-                                                                            () =>
-                                                                                Navigator.pop(alertDialogContext),
-                                                                        child: Text(
-                                                                            'Ok'),
-                                                                      ),
-                                                                    ],
-                                                                  ),
+                                                                return AlertDialog(
+                                                                  title: Text(
+                                                                      'Atenção!'),
+                                                                  content: Text(
+                                                                      'Cadastro em andamento, aguarde...'),
+                                                                  actions: [
+                                                                    TextButton(
+                                                                      onPressed:
+                                                                          () =>
+                                                                              Navigator.pop(alertDialogContext),
+                                                                      child: Text(
+                                                                          'Ok'),
+                                                                    ),
+                                                                  ],
                                                                 );
                                                               },
                                                             );

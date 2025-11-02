@@ -14,7 +14,6 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 import 'cp_agendamentos_diarios_model.dart';
 export 'cp_agendamentos_diarios_model.dart';
 
@@ -931,11 +930,9 @@ class _CpAgendamentosDiariosWidgetState
                                                         0.0, 0.0)
                                                     .resolve(Directionality.of(
                                                         context)),
-                                                child: WebViewAware(
-                                                  child: CaAguardeWidget(
-                                                    paramMostrarAnimacao: false,
-                                                    paramFecharAoClicar: true,
-                                                  ),
+                                                child: CaAguardeWidget(
+                                                  paramMostrarAnimacao: false,
+                                                  paramFecharAoClicar: true,
                                                 ),
                                               );
                                             },
@@ -953,14 +950,12 @@ class _CpAgendamentosDiariosWidgetState
                                             useSafeArea: true,
                                             context: context,
                                             builder: (context) {
-                                              return WebViewAware(
-                                                child: Padding(
-                                                  padding:
-                                                      MediaQuery.viewInsetsOf(
-                                                          context),
-                                                  child:
-                                                      CpAgendamentoConsultarWidget(),
-                                                ),
+                                              return Padding(
+                                                padding:
+                                                    MediaQuery.viewInsetsOf(
+                                                        context),
+                                                child:
+                                                    CpAgendamentoConsultarWidget(),
                                               );
                                             },
                                           ).then(
@@ -1641,11 +1636,9 @@ class _CpAgendamentosDiariosWidgetState
                                                   0.0, 0.0)
                                               .resolve(
                                                   Directionality.of(context)),
-                                          child: WebViewAware(
-                                            child: CaAguardeWidget(
-                                              paramMostrarAnimacao: false,
-                                              paramFecharAoClicar: true,
-                                            ),
+                                          child: CaAguardeWidget(
+                                            paramMostrarAnimacao: false,
+                                            paramFecharAoClicar: true,
                                           ),
                                         );
                                       },
@@ -1662,13 +1655,10 @@ class _CpAgendamentosDiariosWidgetState
                                       useSafeArea: true,
                                       context: context,
                                       builder: (context) {
-                                        return WebViewAware(
-                                          child: Padding(
-                                            padding: MediaQuery.viewInsetsOf(
-                                                context),
-                                            child:
-                                                CpAgendamentoConsultarWidget(),
-                                          ),
+                                        return Padding(
+                                          padding:
+                                              MediaQuery.viewInsetsOf(context),
+                                          child: CpAgendamentoConsultarWidget(),
                                         );
                                       },
                                     ).then((value) => safeSetState(() {}));

@@ -45,61 +45,29 @@ class CpMenuLateralModel extends FlutterFlowModel<CpMenuLateralWidget> {
   // State field(s) for MouseRegionAfiliados widget.
   bool mouseRegionAfiliadosHovered = false;
   // State field(s) for MouseRegionDashAfiliado widget.
-  bool mouseRegionDashAfiliadoHovered1 = false;
-  // State field(s) for MouseRegionAfiApresentacao widget.
-  bool mouseRegionAfiApresentacaoHovered1 = false;
+  bool mouseRegionDashAfiliadoHovered = false;
   // State field(s) for MouseRegionAfiCad widget.
-  bool mouseRegionAfiCadHovered1 = false;
-  // State field(s) for MouseRegionAfiAtivacao widget.
-  bool mouseRegionAfiAtivacaoHovered1 = false;
+  bool mouseRegionAfiCadHovered = false;
   // State field(s) for MouseRegionAfiTreinamento widget.
-  bool mouseRegionAfiTreinamentoHovered1 = false;
+  bool mouseRegionAfiTreinamentoHovered = false;
   // State field(s) for MouseRegionAfiIndicacoes widget.
-  bool mouseRegionAfiIndicacoesHovered1 = false;
+  bool mouseRegionAfiIndicacoesHovered = false;
   // State field(s) for MouseRegionAfiSubAfi widget.
-  bool mouseRegionAfiSubAfiHovered1 = false;
+  bool mouseRegionAfiSubAfiHovered = false;
   // State field(s) for MouseRegionAfiComisDiarias widget.
-  bool mouseRegionAfiComisDiariasHovered1 = false;
+  bool mouseRegionAfiComisDiariasHovered = false;
   // State field(s) for MouseRegionAfiComisMensais widget.
-  bool mouseRegionAfiComisMensaisHovered1 = false;
+  bool mouseRegionAfiComisMensaisHovered = false;
   // State field(s) for MouseRegionAfiAtividades widget.
-  bool mouseRegionAfiAtividadesHovered1 = false;
+  bool mouseRegionAfiAtividadesHovered = false;
   // State field(s) for MouseRegionCupons widget.
-  bool mouseRegionCuponsHovered1 = false;
+  bool mouseRegionCuponsHovered = false;
   // State field(s) for MouseRegionAfiSaques widget.
-  bool mouseRegionAfiSaquesHovered1 = false;
+  bool mouseRegionAfiSaquesHovered = false;
   // State field(s) for MouseRegionAfiPlano widget.
-  bool mouseRegionAfiPlanoHovered1 = false;
+  bool mouseRegionAfiPlanoHovered = false;
   // State field(s) for MouseRegionAfiEmpGoogle widget.
-  bool mouseRegionAfiEmpGoogleHovered1 = false;
-  // State field(s) for MouseRegionDashAfiliado widget.
-  bool mouseRegionDashAfiliadoHovered2 = false;
-  // State field(s) for MouseRegionAfiApresentacao widget.
-  bool mouseRegionAfiApresentacaoHovered2 = false;
-  // State field(s) for MouseRegionAfiCad widget.
-  bool mouseRegionAfiCadHovered2 = false;
-  // State field(s) for MouseRegionAfiAtivacao widget.
-  bool mouseRegionAfiAtivacaoHovered2 = false;
-  // State field(s) for MouseRegionAfiTreinamento widget.
-  bool mouseRegionAfiTreinamentoHovered2 = false;
-  // State field(s) for MouseRegionAfiIndicacoes widget.
-  bool mouseRegionAfiIndicacoesHovered2 = false;
-  // State field(s) for MouseRegionAfiSubAfi widget.
-  bool mouseRegionAfiSubAfiHovered2 = false;
-  // State field(s) for MouseRegionAfiComisDiarias widget.
-  bool mouseRegionAfiComisDiariasHovered2 = false;
-  // State field(s) for MouseRegionAfiComisMensais widget.
-  bool mouseRegionAfiComisMensaisHovered2 = false;
-  // State field(s) for MouseRegionAfiAtividades widget.
-  bool mouseRegionAfiAtividadesHovered2 = false;
-  // State field(s) for MouseRegionCupons widget.
-  bool mouseRegionCuponsHovered2 = false;
-  // State field(s) for MouseRegionAfiSaques widget.
-  bool mouseRegionAfiSaquesHovered2 = false;
-  // State field(s) for MouseRegionAfiPlano widget.
-  bool mouseRegionAfiPlanoHovered2 = false;
-  // State field(s) for MouseRegionAfiEmpGoogle widget.
-  bool mouseRegionAfiEmpGoogleHovered2 = false;
+  bool mouseRegionAfiEmpGoogleHovered = false;
   // State field(s) for MouseRegionAdmin widget.
   bool mouseRegionAdminHovered = false;
   // State field(s) for MouseRegionAdminEmpresas widget.

@@ -18,7 +18,6 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 import 'cp_lista_temas_blackground_model.dart';
 export 'cp_lista_temas_blackground_model.dart';
 
@@ -365,13 +364,10 @@ class _CpListaTemasBlackgroundWidgetState
                                                                 .resolve(
                                                                     Directionality.of(
                                                                         context)),
-                                                            child: WebViewAware(
-                                                              child:
-                                                                  CpFotoWidget(
-                                                                paramFoto:
-                                                                    staggeredViewTblAppTemasBlackgroundRow
-                                                                        .fotoLightMode!,
-                                                              ),
+                                                            child: CpFotoWidget(
+                                                              paramFoto:
+                                                                  staggeredViewTblAppTemasBlackgroundRow
+                                                                      .fotoLightMode!,
                                                             ),
                                                           );
                                                         },
@@ -381,22 +377,20 @@ class _CpListaTemasBlackgroundWidgetState
                                                         context: context,
                                                         builder:
                                                             (alertDialogContext) {
-                                                          return WebViewAware(
-                                                            child: AlertDialog(
-                                                              title: Text(
-                                                                  'Atenção!'),
-                                                              content: Text(
-                                                                  'Sem foto'),
-                                                              actions: [
-                                                                TextButton(
-                                                                  onPressed: () =>
-                                                                      Navigator.pop(
-                                                                          alertDialogContext),
-                                                                  child: Text(
-                                                                      'Ok'),
-                                                                ),
-                                                              ],
-                                                            ),
+                                                          return AlertDialog(
+                                                            title: Text(
+                                                                'Atenção!'),
+                                                            content: Text(
+                                                                'Sem foto'),
+                                                            actions: [
+                                                              TextButton(
+                                                                onPressed: () =>
+                                                                    Navigator.pop(
+                                                                        alertDialogContext),
+                                                                child:
+                                                                    Text('Ok'),
+                                                              ),
+                                                            ],
                                                           );
                                                         },
                                                       );
@@ -619,14 +613,11 @@ class _CpListaTemasBlackgroundWidgetState
                                                                       Directionality.of(
                                                                           context)),
                                                               child:
-                                                                  WebViewAware(
-                                                                child:
-                                                                    CaAguardeWidget(
-                                                                  paramMostrarAnimacao:
-                                                                      false,
-                                                                  paramFecharAoClicar:
-                                                                      false,
-                                                                ),
+                                                                  CaAguardeWidget(
+                                                                paramMostrarAnimacao:
+                                                                    false,
+                                                                paramFecharAoClicar:
+                                                                    false,
                                                               ),
                                                             );
                                                           },
@@ -648,18 +639,16 @@ class _CpListaTemasBlackgroundWidgetState
                                                           useSafeArea: true,
                                                           context: context,
                                                           builder: (context) {
-                                                            return WebViewAware(
-                                                              child: Padding(
-                                                                padding: MediaQuery
-                                                                    .viewInsetsOf(
-                                                                        context),
-                                                                child:
-                                                                    CpCadTemasBlackgroundxWidget(
-                                                                  paramCadastro:
-                                                                      false,
-                                                                  paramRowTblTemasBlackground:
-                                                                      staggeredViewTblAppTemasBlackgroundRow,
-                                                                ),
+                                                            return Padding(
+                                                              padding: MediaQuery
+                                                                  .viewInsetsOf(
+                                                                      context),
+                                                              child:
+                                                                  CpCadTemasBlackgroundxWidget(
+                                                                paramCadastro:
+                                                                    false,
+                                                                paramRowTblTemasBlackground:
+                                                                    staggeredViewTblAppTemasBlackgroundRow,
                                                               ),
                                                             );
                                                           },
@@ -722,13 +711,10 @@ class _CpListaTemasBlackgroundWidgetState
                                                                       Directionality.of(
                                                                           context)),
                                                               child:
-                                                                  WebViewAware(
-                                                                child:
-                                                                    CpFotoWidget(
-                                                                  paramFoto:
-                                                                      staggeredViewTblAppTemasBlackgroundRow
-                                                                          .fotoLightMode!,
-                                                                ),
+                                                                  CpFotoWidget(
+                                                                paramFoto:
+                                                                    staggeredViewTblAppTemasBlackgroundRow
+                                                                        .fotoLightMode!,
                                                               ),
                                                             );
                                                           },
@@ -738,23 +724,20 @@ class _CpListaTemasBlackgroundWidgetState
                                                           context: context,
                                                           builder:
                                                               (alertDialogContext) {
-                                                            return WebViewAware(
-                                                              child:
-                                                                  AlertDialog(
-                                                                title: Text(
-                                                                    'Atenção!'),
-                                                                content: Text(
-                                                                    'Sem foto'),
-                                                                actions: [
-                                                                  TextButton(
-                                                                    onPressed: () =>
-                                                                        Navigator.pop(
-                                                                            alertDialogContext),
-                                                                    child: Text(
-                                                                        'Ok'),
-                                                                  ),
-                                                                ],
-                                                              ),
+                                                            return AlertDialog(
+                                                              title: Text(
+                                                                  'Atenção!'),
+                                                              content: Text(
+                                                                  'Sem foto'),
+                                                              actions: [
+                                                                TextButton(
+                                                                  onPressed: () =>
+                                                                      Navigator.pop(
+                                                                          alertDialogContext),
+                                                                  child: Text(
+                                                                      'Ok'),
+                                                                ),
+                                                              ],
                                                             );
                                                           },
                                                         );
@@ -1007,10 +990,8 @@ class _CpListaTemasBlackgroundWidgetState
                                 backgroundColor: Colors.transparent,
                                 alignment: AlignmentDirectional(0.0, 0.0)
                                     .resolve(Directionality.of(context)),
-                                child: WebViewAware(
-                                  child: CaAguardeWidget(
-                                    paramMostrarAnimacao: false,
-                                  ),
+                                child: CaAguardeWidget(
+                                  paramMostrarAnimacao: false,
                                 ),
                               );
                             },
@@ -1026,12 +1007,10 @@ class _CpListaTemasBlackgroundWidgetState
                             useSafeArea: true,
                             context: context,
                             builder: (context) {
-                              return WebViewAware(
-                                child: Padding(
-                                  padding: MediaQuery.viewInsetsOf(context),
-                                  child: CpCadTemasBlackgroundxWidget(
-                                    paramCadastro: true,
-                                  ),
+                              return Padding(
+                                padding: MediaQuery.viewInsetsOf(context),
+                                child: CpCadTemasBlackgroundxWidget(
+                                  paramCadastro: true,
                                 ),
                               );
                             },

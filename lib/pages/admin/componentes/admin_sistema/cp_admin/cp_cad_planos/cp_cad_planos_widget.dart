@@ -18,7 +18,6 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 import 'cp_cad_planos_model.dart';
 export 'cp_cad_planos_model.dart';
 
@@ -1218,10 +1217,8 @@ class _CpCadPlanosWidgetState extends State<CpCadPlanosWidget>
                                                                                       insetPadding: EdgeInsets.zero,
                                                                                       backgroundColor: Colors.transparent,
                                                                                       alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-                                                                                      child: WebViewAware(
-                                                                                        child: CaAguardeWidget(
-                                                                                          paramMostrarAnimacao: false,
-                                                                                        ),
+                                                                                      child: CaAguardeWidget(
+                                                                                        paramMostrarAnimacao: false,
                                                                                       ),
                                                                                     );
                                                                                   },
@@ -1237,14 +1234,12 @@ class _CpCadPlanosWidgetState extends State<CpCadPlanosWidget>
                                                                                   useSafeArea: true,
                                                                                   context: context,
                                                                                   builder: (context) {
-                                                                                    return WebViewAware(
-                                                                                      child: Padding(
-                                                                                        padding: MediaQuery.viewInsetsOf(context),
-                                                                                        child: CpCadPlanosPrecosWidget(
-                                                                                          paramCadastro: false,
-                                                                                          paramRowTblAppPlanos: columnPlanosPrecosViewTblAppPlanosRow,
-                                                                                          paramIDAfiliadoApp: columnPlanosPrecosViewTblAppPlanosRow.idAfiliadoApp,
-                                                                                        ),
+                                                                                    return Padding(
+                                                                                      padding: MediaQuery.viewInsetsOf(context),
+                                                                                      child: CpCadPlanosPrecosWidget(
+                                                                                        paramCadastro: false,
+                                                                                        paramRowTblAppPlanos: columnPlanosPrecosViewTblAppPlanosRow,
+                                                                                        paramIDAfiliadoApp: columnPlanosPrecosViewTblAppPlanosRow.idAfiliadoApp,
                                                                                       ),
                                                                                     );
                                                                                   },
@@ -1425,21 +1420,19 @@ class _CpCadPlanosWidgetState extends State<CpCadPlanosWidget>
                                                                                               var confirmDialogResponse = await showDialog<bool>(
                                                                                                     context: context,
                                                                                                     builder: (alertDialogContext) {
-                                                                                                      return WebViewAware(
-                                                                                                        child: AlertDialog(
-                                                                                                          title: Text('Atenção!'),
-                                                                                                          content: Text('Deseja INATIVAR o plano ${columnPlanosPrecosViewTblAppPlanosRow.nomePlano}?'),
-                                                                                                          actions: [
-                                                                                                            TextButton(
-                                                                                                              onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                                              child: Text('Não'),
-                                                                                                            ),
-                                                                                                            TextButton(
-                                                                                                              onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                                              child: Text('Sim'),
-                                                                                                            ),
-                                                                                                          ],
-                                                                                                        ),
+                                                                                                      return AlertDialog(
+                                                                                                        title: Text('Atenção!'),
+                                                                                                        content: Text('Deseja INATIVAR o plano ${columnPlanosPrecosViewTblAppPlanosRow.nomePlano}?'),
+                                                                                                        actions: [
+                                                                                                          TextButton(
+                                                                                                            onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                                            child: Text('Não'),
+                                                                                                          ),
+                                                                                                          TextButton(
+                                                                                                            onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                                            child: Text('Sim'),
+                                                                                                          ),
+                                                                                                        ],
                                                                                                       );
                                                                                                     },
                                                                                                   ) ??
@@ -1477,21 +1470,19 @@ class _CpCadPlanosWidgetState extends State<CpCadPlanosWidget>
                                                                                               var confirmDialogResponse = await showDialog<bool>(
                                                                                                     context: context,
                                                                                                     builder: (alertDialogContext) {
-                                                                                                      return WebViewAware(
-                                                                                                        child: AlertDialog(
-                                                                                                          title: Text('Atenção!'),
-                                                                                                          content: Text('Deseja ATIVAR o plano ${columnPlanosPrecosViewTblAppPlanosRow.nomePlano}?'),
-                                                                                                          actions: [
-                                                                                                            TextButton(
-                                                                                                              onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                                              child: Text('Não'),
-                                                                                                            ),
-                                                                                                            TextButton(
-                                                                                                              onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                                              child: Text('Sim'),
-                                                                                                            ),
-                                                                                                          ],
-                                                                                                        ),
+                                                                                                      return AlertDialog(
+                                                                                                        title: Text('Atenção!'),
+                                                                                                        content: Text('Deseja ATIVAR o plano ${columnPlanosPrecosViewTblAppPlanosRow.nomePlano}?'),
+                                                                                                        actions: [
+                                                                                                          TextButton(
+                                                                                                            onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                                            child: Text('Não'),
+                                                                                                          ),
+                                                                                                          TextButton(
+                                                                                                            onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                                            child: Text('Sim'),
+                                                                                                          ),
+                                                                                                        ],
                                                                                                       );
                                                                                                     },
                                                                                                   ) ??
@@ -1847,10 +1838,8 @@ class _CpCadPlanosWidgetState extends State<CpCadPlanosWidget>
                                                                                       insetPadding: EdgeInsets.zero,
                                                                                       backgroundColor: Colors.transparent,
                                                                                       alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-                                                                                      child: WebViewAware(
-                                                                                        child: CaAguardeWidget(
-                                                                                          paramMostrarAnimacao: false,
-                                                                                        ),
+                                                                                      child: CaAguardeWidget(
+                                                                                        paramMostrarAnimacao: false,
                                                                                       ),
                                                                                     );
                                                                                   },
@@ -1866,14 +1855,12 @@ class _CpCadPlanosWidgetState extends State<CpCadPlanosWidget>
                                                                                   useSafeArea: true,
                                                                                   context: context,
                                                                                   builder: (context) {
-                                                                                    return WebViewAware(
-                                                                                      child: Padding(
-                                                                                        padding: MediaQuery.viewInsetsOf(context),
-                                                                                        child: CpCadPlanosPrecosWidget(
-                                                                                          paramCadastro: false,
-                                                                                          paramRowTblAppPlanos: columnPlanosPrecosViewTblAppPlanosRow,
-                                                                                          paramIDAfiliadoApp: columnPlanosPrecosViewTblAppPlanosRow.idAfiliadoApp,
-                                                                                        ),
+                                                                                    return Padding(
+                                                                                      padding: MediaQuery.viewInsetsOf(context),
+                                                                                      child: CpCadPlanosPrecosWidget(
+                                                                                        paramCadastro: false,
+                                                                                        paramRowTblAppPlanos: columnPlanosPrecosViewTblAppPlanosRow,
+                                                                                        paramIDAfiliadoApp: columnPlanosPrecosViewTblAppPlanosRow.idAfiliadoApp,
                                                                                       ),
                                                                                     );
                                                                                   },
@@ -2106,21 +2093,19 @@ class _CpCadPlanosWidgetState extends State<CpCadPlanosWidget>
                                                                                               var confirmDialogResponse = await showDialog<bool>(
                                                                                                     context: context,
                                                                                                     builder: (alertDialogContext) {
-                                                                                                      return WebViewAware(
-                                                                                                        child: AlertDialog(
-                                                                                                          title: Text('Atenção!'),
-                                                                                                          content: Text('Deseja INATIVAR o plano ${columnPlanosPrecosViewTblAppPlanosRow.nomePlano}?'),
-                                                                                                          actions: [
-                                                                                                            TextButton(
-                                                                                                              onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                                              child: Text('Não'),
-                                                                                                            ),
-                                                                                                            TextButton(
-                                                                                                              onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                                              child: Text('Sim'),
-                                                                                                            ),
-                                                                                                          ],
-                                                                                                        ),
+                                                                                                      return AlertDialog(
+                                                                                                        title: Text('Atenção!'),
+                                                                                                        content: Text('Deseja INATIVAR o plano ${columnPlanosPrecosViewTblAppPlanosRow.nomePlano}?'),
+                                                                                                        actions: [
+                                                                                                          TextButton(
+                                                                                                            onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                                            child: Text('Não'),
+                                                                                                          ),
+                                                                                                          TextButton(
+                                                                                                            onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                                            child: Text('Sim'),
+                                                                                                          ),
+                                                                                                        ],
                                                                                                       );
                                                                                                     },
                                                                                                   ) ??
@@ -2158,21 +2143,19 @@ class _CpCadPlanosWidgetState extends State<CpCadPlanosWidget>
                                                                                               var confirmDialogResponse = await showDialog<bool>(
                                                                                                     context: context,
                                                                                                     builder: (alertDialogContext) {
-                                                                                                      return WebViewAware(
-                                                                                                        child: AlertDialog(
-                                                                                                          title: Text('Atenção!'),
-                                                                                                          content: Text('Deseja ATIVAR o plano ${columnPlanosPrecosViewTblAppPlanosRow.nomePlano}?'),
-                                                                                                          actions: [
-                                                                                                            TextButton(
-                                                                                                              onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                                              child: Text('Não'),
-                                                                                                            ),
-                                                                                                            TextButton(
-                                                                                                              onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                                              child: Text('Sim'),
-                                                                                                            ),
-                                                                                                          ],
-                                                                                                        ),
+                                                                                                      return AlertDialog(
+                                                                                                        title: Text('Atenção!'),
+                                                                                                        content: Text('Deseja ATIVAR o plano ${columnPlanosPrecosViewTblAppPlanosRow.nomePlano}?'),
+                                                                                                        actions: [
+                                                                                                          TextButton(
+                                                                                                            onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                                            child: Text('Não'),
+                                                                                                          ),
+                                                                                                          TextButton(
+                                                                                                            onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                                            child: Text('Sim'),
+                                                                                                          ),
+                                                                                                        ],
                                                                                                       );
                                                                                                     },
                                                                                                   ) ??
@@ -2429,11 +2412,9 @@ class _CpCadPlanosWidgetState extends State<CpCadPlanosWidget>
                                                                           alignment:
                                                                               AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                           child:
-                                                                              WebViewAware(
-                                                                            child:
-                                                                                CaAguardeWidget(
-                                                                              paramMostrarAnimacao: false,
-                                                                            ),
+                                                                              CaAguardeWidget(
+                                                                            paramMostrarAnimacao:
+                                                                                false,
                                                                           ),
                                                                         );
                                                                       },
@@ -2459,16 +2440,15 @@ class _CpCadPlanosWidgetState extends State<CpCadPlanosWidget>
                                                                           context,
                                                                       builder:
                                                                           (context) {
-                                                                        return WebViewAware(
+                                                                        return Padding(
+                                                                          padding:
+                                                                              MediaQuery.viewInsetsOf(context),
                                                                           child:
-                                                                              Padding(
-                                                                            padding:
-                                                                                MediaQuery.viewInsetsOf(context),
-                                                                            child:
-                                                                                CpCadPlanosNomesWidget(
-                                                                              paramCadastro: false,
-                                                                              paramRowTblPlanosNomes: columnPlanosNomesViewTblAppPlanosNomesRow,
-                                                                            ),
+                                                                              CpCadPlanosNomesWidget(
+                                                                            paramCadastro:
+                                                                                false,
+                                                                            paramRowTblPlanosNomes:
+                                                                                columnPlanosNomesViewTblAppPlanosNomesRow,
                                                                           ),
                                                                         );
                                                                       },
@@ -2622,21 +2602,19 @@ class _CpCadPlanosWidgetState extends State<CpCadPlanosWidget>
                                                                                 var confirmDialogResponse = await showDialog<bool>(
                                                                                       context: context,
                                                                                       builder: (alertDialogContext) {
-                                                                                        return WebViewAware(
-                                                                                          child: AlertDialog(
-                                                                                            title: Text('Atenção!'),
-                                                                                            content: Text('Deseja INATIVAR o nome ${columnPlanosNomesViewTblAppPlanosNomesRow.nome}? (Todos os planos que usam esse nome serão inativados)'),
-                                                                                            actions: [
-                                                                                              TextButton(
-                                                                                                onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                                child: Text('Não'),
-                                                                                              ),
-                                                                                              TextButton(
-                                                                                                onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                                child: Text('Sim'),
-                                                                                              ),
-                                                                                            ],
-                                                                                          ),
+                                                                                        return AlertDialog(
+                                                                                          title: Text('Atenção!'),
+                                                                                          content: Text('Deseja INATIVAR o nome ${columnPlanosNomesViewTblAppPlanosNomesRow.nome}? (Todos os planos que usam esse nome serão inativados)'),
+                                                                                          actions: [
+                                                                                            TextButton(
+                                                                                              onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                              child: Text('Não'),
+                                                                                            ),
+                                                                                            TextButton(
+                                                                                              onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                              child: Text('Sim'),
+                                                                                            ),
+                                                                                          ],
                                                                                         );
                                                                                       },
                                                                                     ) ??
@@ -2689,21 +2667,19 @@ class _CpCadPlanosWidgetState extends State<CpCadPlanosWidget>
                                                                                 var confirmDialogResponse = await showDialog<bool>(
                                                                                       context: context,
                                                                                       builder: (alertDialogContext) {
-                                                                                        return WebViewAware(
-                                                                                          child: AlertDialog(
-                                                                                            title: Text('Atenção!'),
-                                                                                            content: Text('Deseja ATIVAR o nome ${columnPlanosNomesViewTblAppPlanosNomesRow.nome}? (Todos os planos que usam esse nome serão ativados)'),
-                                                                                            actions: [
-                                                                                              TextButton(
-                                                                                                onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                                child: Text('Não'),
-                                                                                              ),
-                                                                                              TextButton(
-                                                                                                onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                                child: Text('Sim'),
-                                                                                              ),
-                                                                                            ],
-                                                                                          ),
+                                                                                        return AlertDialog(
+                                                                                          title: Text('Atenção!'),
+                                                                                          content: Text('Deseja ATIVAR o nome ${columnPlanosNomesViewTblAppPlanosNomesRow.nome}? (Todos os planos que usam esse nome serão ativados)'),
+                                                                                          actions: [
+                                                                                            TextButton(
+                                                                                              onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                              child: Text('Não'),
+                                                                                            ),
+                                                                                            TextButton(
+                                                                                              onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                              child: Text('Sim'),
+                                                                                            ),
+                                                                                          ],
                                                                                         );
                                                                                       },
                                                                                     ) ??
@@ -2942,12 +2918,9 @@ class _CpCadPlanosWidgetState extends State<CpCadPlanosWidget>
                                                                         Directionality.of(
                                                                             context)),
                                                                 child:
-                                                                    WebViewAware(
-                                                                  child:
-                                                                      CaAguardeWidget(
-                                                                    paramMostrarAnimacao:
-                                                                        false,
-                                                                  ),
+                                                                    CaAguardeWidget(
+                                                                  paramMostrarAnimacao:
+                                                                      false,
                                                                 ),
                                                               );
                                                             },
@@ -2969,18 +2942,16 @@ class _CpCadPlanosWidgetState extends State<CpCadPlanosWidget>
                                                             useSafeArea: true,
                                                             context: context,
                                                             builder: (context) {
-                                                              return WebViewAware(
-                                                                child: Padding(
-                                                                  padding: MediaQuery
-                                                                      .viewInsetsOf(
-                                                                          context),
-                                                                  child:
-                                                                      CpCadPlanosPeriodosWidget(
-                                                                    paramCadastro:
-                                                                        false,
-                                                                    paramRowTblPlanoPeriodos:
-                                                                        columnPlanosPeriodosTblPlanosPeriodosRow,
-                                                                  ),
+                                                              return Padding(
+                                                                padding: MediaQuery
+                                                                    .viewInsetsOf(
+                                                                        context),
+                                                                child:
+                                                                    CpCadPlanosPeriodosWidget(
+                                                                  paramCadastro:
+                                                                      false,
+                                                                  paramRowTblPlanoPeriodos:
+                                                                      columnPlanosPeriodosTblPlanosPeriodosRow,
                                                                 ),
                                                               );
                                                             },
@@ -3140,21 +3111,19 @@ class _CpCadPlanosWidgetState extends State<CpCadPlanosWidget>
                                                                         var confirmDialogResponse = await showDialog<bool>(
                                                                               context: context,
                                                                               builder: (alertDialogContext) {
-                                                                                return WebViewAware(
-                                                                                  child: AlertDialog(
-                                                                                    title: Text('Atenção!'),
-                                                                                    content: Text('Deseja INATIVAR o período ${columnPlanosPeriodosTblPlanosPeriodosRow.nome}? (Todos os planos que usam esse período serão inativados)'),
-                                                                                    actions: [
-                                                                                      TextButton(
-                                                                                        onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                        child: Text('Não'),
-                                                                                      ),
-                                                                                      TextButton(
-                                                                                        onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                        child: Text('Sim'),
-                                                                                      ),
-                                                                                    ],
-                                                                                  ),
+                                                                                return AlertDialog(
+                                                                                  title: Text('Atenção!'),
+                                                                                  content: Text('Deseja INATIVAR o período ${columnPlanosPeriodosTblPlanosPeriodosRow.nome}? (Todos os planos que usam esse período serão inativados)'),
+                                                                                  actions: [
+                                                                                    TextButton(
+                                                                                      onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                      child: Text('Não'),
+                                                                                    ),
+                                                                                    TextButton(
+                                                                                      onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                      child: Text('Sim'),
+                                                                                    ),
+                                                                                  ],
                                                                                 );
                                                                               },
                                                                             ) ??
@@ -3227,21 +3196,19 @@ class _CpCadPlanosWidgetState extends State<CpCadPlanosWidget>
                                                                         var confirmDialogResponse = await showDialog<bool>(
                                                                               context: context,
                                                                               builder: (alertDialogContext) {
-                                                                                return WebViewAware(
-                                                                                  child: AlertDialog(
-                                                                                    title: Text('Atenção!'),
-                                                                                    content: Text('Deseja ATIVAR o período ${columnPlanosPeriodosTblPlanosPeriodosRow.nome}? (Todos os planos que usam esse período serão ativados)'),
-                                                                                    actions: [
-                                                                                      TextButton(
-                                                                                        onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                        child: Text('Não'),
-                                                                                      ),
-                                                                                      TextButton(
-                                                                                        onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                        child: Text('Sim'),
-                                                                                      ),
-                                                                                    ],
-                                                                                  ),
+                                                                                return AlertDialog(
+                                                                                  title: Text('Atenção!'),
+                                                                                  content: Text('Deseja ATIVAR o período ${columnPlanosPeriodosTblPlanosPeriodosRow.nome}? (Todos os planos que usam esse período serão ativados)'),
+                                                                                  actions: [
+                                                                                    TextButton(
+                                                                                      onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                      child: Text('Não'),
+                                                                                    ),
+                                                                                    TextButton(
+                                                                                      onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                      child: Text('Sim'),
+                                                                                    ),
+                                                                                  ],
                                                                                 );
                                                                               },
                                                                             ) ??
@@ -3375,10 +3342,8 @@ class _CpCadPlanosWidgetState extends State<CpCadPlanosWidget>
                                   backgroundColor: Colors.transparent,
                                   alignment: AlignmentDirectional(0.0, 0.0)
                                       .resolve(Directionality.of(context)),
-                                  child: WebViewAware(
-                                    child: CaAguardeWidget(
-                                      paramMostrarAnimacao: false,
-                                    ),
+                                  child: CaAguardeWidget(
+                                    paramMostrarAnimacao: false,
                                   ),
                                 );
                               },
@@ -3417,10 +3382,8 @@ class _CpCadPlanosWidgetState extends State<CpCadPlanosWidget>
                                   backgroundColor: Colors.transparent,
                                   alignment: AlignmentDirectional(0.0, 0.0)
                                       .resolve(Directionality.of(context)),
-                                  child: WebViewAware(
-                                    child: CaAguardeWidget(
-                                      paramMostrarAnimacao: false,
-                                    ),
+                                  child: CaAguardeWidget(
+                                    paramMostrarAnimacao: false,
                                   ),
                                 );
                               },
@@ -3457,10 +3420,8 @@ class _CpCadPlanosWidgetState extends State<CpCadPlanosWidget>
                                   backgroundColor: Colors.transparent,
                                   alignment: AlignmentDirectional(0.0, 0.0)
                                       .resolve(Directionality.of(context)),
-                                  child: WebViewAware(
-                                    child: CaAguardeWidget(
-                                      paramMostrarAnimacao: false,
-                                    ),
+                                  child: CaAguardeWidget(
+                                    paramMostrarAnimacao: false,
                                   ),
                                 );
                               },
@@ -3479,15 +3440,13 @@ class _CpCadPlanosWidgetState extends State<CpCadPlanosWidget>
                               useSafeArea: true,
                               context: context,
                               builder: (context) {
-                                return WebViewAware(
-                                  child: Padding(
-                                    padding: MediaQuery.viewInsetsOf(context),
-                                    child: CpCadPlanosPrecosWidget(
-                                      paramCadastro: true,
-                                      paramIDAfiliadoApp: valueOrDefault<int>(
-                                        _model.dropDownAplicativo1Value,
-                                        0,
-                                      ),
+                                return Padding(
+                                  padding: MediaQuery.viewInsetsOf(context),
+                                  child: CpCadPlanosPrecosWidget(
+                                    paramCadastro: true,
+                                    paramIDAfiliadoApp: valueOrDefault<int>(
+                                      _model.dropDownAplicativo1Value,
+                                      0,
                                     ),
                                   ),
                                 );
@@ -3506,12 +3465,10 @@ class _CpCadPlanosWidgetState extends State<CpCadPlanosWidget>
                               useSafeArea: true,
                               context: context,
                               builder: (context) {
-                                return WebViewAware(
-                                  child: Padding(
-                                    padding: MediaQuery.viewInsetsOf(context),
-                                    child: CpCadPlanosNomesWidget(
-                                      paramCadastro: true,
-                                    ),
+                                return Padding(
+                                  padding: MediaQuery.viewInsetsOf(context),
+                                  child: CpCadPlanosNomesWidget(
+                                    paramCadastro: true,
                                   ),
                                 );
                               },
@@ -3527,12 +3484,10 @@ class _CpCadPlanosWidgetState extends State<CpCadPlanosWidget>
                               useSafeArea: true,
                               context: context,
                               builder: (context) {
-                                return WebViewAware(
-                                  child: Padding(
-                                    padding: MediaQuery.viewInsetsOf(context),
-                                    child: CpCadPlanosPeriodosWidget(
-                                      paramCadastro: true,
-                                    ),
+                                return Padding(
+                                  padding: MediaQuery.viewInsetsOf(context),
+                                  child: CpCadPlanosPeriodosWidget(
+                                    paramCadastro: true,
                                   ),
                                 );
                               },

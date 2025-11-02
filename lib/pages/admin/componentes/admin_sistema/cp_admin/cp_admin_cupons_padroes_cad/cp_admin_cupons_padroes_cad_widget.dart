@@ -16,7 +16,6 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 import 'cp_admin_cupons_padroes_cad_model.dart';
 export 'cp_admin_cupons_padroes_cad_model.dart';
 
@@ -1002,21 +1001,18 @@ class _CpAdminCuponsPadroesCadWidgetState
                                                     context: context,
                                                     builder:
                                                         (alertDialogContext) {
-                                                      return WebViewAware(
-                                                        child: AlertDialog(
-                                                          title:
-                                                              Text('Atenção!'),
-                                                          content: Text(
-                                                              'Limite máximo de 366 dias'),
-                                                          actions: [
-                                                            TextButton(
-                                                              onPressed: () =>
-                                                                  Navigator.pop(
-                                                                      alertDialogContext),
-                                                              child: Text('Ok'),
-                                                            ),
-                                                          ],
-                                                        ),
+                                                      return AlertDialog(
+                                                        title: Text('Atenção!'),
+                                                        content: Text(
+                                                            'Limite máximo de 366 dias'),
+                                                        actions: [
+                                                          TextButton(
+                                                            onPressed: () =>
+                                                                Navigator.pop(
+                                                                    alertDialogContext),
+                                                            child: Text('Ok'),
+                                                          ),
+                                                        ],
                                                       );
                                                     },
                                                   );
@@ -1034,21 +1030,18 @@ class _CpAdminCuponsPadroesCadWidgetState
                                                     context: context,
                                                     builder:
                                                         (alertDialogContext) {
-                                                      return WebViewAware(
-                                                        child: AlertDialog(
-                                                          title:
-                                                              Text('Atenção!'),
-                                                          content: Text(
-                                                              'Limite máximo de 12 Mêses'),
-                                                          actions: [
-                                                            TextButton(
-                                                              onPressed: () =>
-                                                                  Navigator.pop(
-                                                                      alertDialogContext),
-                                                              child: Text('Ok'),
-                                                            ),
-                                                          ],
-                                                        ),
+                                                      return AlertDialog(
+                                                        title: Text('Atenção!'),
+                                                        content: Text(
+                                                            'Limite máximo de 12 Mêses'),
+                                                        actions: [
+                                                          TextButton(
+                                                            onPressed: () =>
+                                                                Navigator.pop(
+                                                                    alertDialogContext),
+                                                            child: Text('Ok'),
+                                                          ),
+                                                        ],
                                                       );
                                                     },
                                                   );
@@ -1604,23 +1597,20 @@ class _CpAdminCuponsPadroesCadWidgetState
                                                           context: context,
                                                           builder:
                                                               (alertDialogContext) {
-                                                            return WebViewAware(
-                                                              child:
-                                                                  AlertDialog(
-                                                                title: Text(
-                                                                    'Atenção!'),
-                                                                content: Text(
-                                                                    'Cupom usado não pode ser alterado, você pderá editar apenas a Data de Validade e Situação Ativo/Inativo.'),
-                                                                actions: [
-                                                                  TextButton(
-                                                                    onPressed: () =>
-                                                                        Navigator.pop(
-                                                                            alertDialogContext),
-                                                                    child: Text(
-                                                                        'Ok'),
-                                                                  ),
-                                                                ],
-                                                              ),
+                                                            return AlertDialog(
+                                                              title: Text(
+                                                                  'Atenção!'),
+                                                              content: Text(
+                                                                  'Cupom usado não pode ser alterado, você pderá editar apenas a Data de Validade e Situação Ativo/Inativo.'),
+                                                              actions: [
+                                                                TextButton(
+                                                                  onPressed: () =>
+                                                                      Navigator.pop(
+                                                                          alertDialogContext),
+                                                                  child: Text(
+                                                                      'Ok'),
+                                                                ),
+                                                              ],
                                                             );
                                                           },
                                                         );
@@ -1970,20 +1960,19 @@ class _CpAdminCuponsPadroesCadWidgetState
                                                                         context,
                                                                     builder:
                                                                         (alertDialogContext) {
-                                                                      return WebViewAware(
-                                                                        child:
-                                                                            AlertDialog(
-                                                                          title:
-                                                                              Text('Atenção!'),
-                                                                          content:
-                                                                              Text('Cupom usado não pode ser alterado, você pderá editar apenas a Data de Validade e Situação Ativo/Inativo.'),
-                                                                          actions: [
-                                                                            TextButton(
-                                                                              onPressed: () => Navigator.pop(alertDialogContext),
-                                                                              child: Text('Ok'),
-                                                                            ),
-                                                                          ],
-                                                                        ),
+                                                                      return AlertDialog(
+                                                                        title: Text(
+                                                                            'Atenção!'),
+                                                                        content:
+                                                                            Text('Cupom usado não pode ser alterado, você pderá editar apenas a Data de Validade e Situação Ativo/Inativo.'),
+                                                                        actions: [
+                                                                          TextButton(
+                                                                            onPressed: () =>
+                                                                                Navigator.pop(alertDialogContext),
+                                                                            child:
+                                                                                Text('Ok'),
+                                                                          ),
+                                                                        ],
                                                                       );
                                                                     },
                                                                   );
@@ -2301,20 +2290,18 @@ class _CpAdminCuponsPadroesCadWidgetState
                                             await showDialog(
                                               context: context,
                                               builder: (alertDialogContext) {
-                                                return WebViewAware(
-                                                  child: AlertDialog(
-                                                    title: Text('Atenção!'),
-                                                    content: Text(
-                                                        'Cupom usado não pode ser alterado, você pderá editar apenas a Data de Validade e Situação Ativo/Inativo.'),
-                                                    actions: [
-                                                      TextButton(
-                                                        onPressed: () =>
-                                                            Navigator.pop(
-                                                                alertDialogContext),
-                                                        child: Text('Ok'),
-                                                      ),
-                                                    ],
-                                                  ),
+                                                return AlertDialog(
+                                                  title: Text('Atenção!'),
+                                                  content: Text(
+                                                      'Cupom usado não pode ser alterado, você pderá editar apenas a Data de Validade e Situação Ativo/Inativo.'),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext),
+                                                      child: Text('Ok'),
+                                                    ),
+                                                  ],
                                                 );
                                               },
                                             );
@@ -2713,18 +2700,16 @@ class _CpAdminCuponsPadroesCadWidgetState
                               await showDialog(
                                 context: context,
                                 builder: (alertDialogContext) {
-                                  return WebViewAware(
-                                    child: AlertDialog(
-                                      title: Text('Atenção!'),
-                                      content: Text('Data inválida, verifique'),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () =>
-                                              Navigator.pop(alertDialogContext),
-                                          child: Text('Ok'),
-                                        ),
-                                      ],
-                                    ),
+                                  return AlertDialog(
+                                    title: Text('Atenção!'),
+                                    content: Text('Data inválida, verifique'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () =>
+                                            Navigator.pop(alertDialogContext),
+                                        child: Text('Ok'),
+                                      ),
+                                    ],
                                   );
                                 },
                               );
@@ -2737,19 +2722,17 @@ class _CpAdminCuponsPadroesCadWidgetState
                               await showDialog(
                                 context: context,
                                 builder: (alertDialogContext) {
-                                  return WebViewAware(
-                                    child: AlertDialog(
-                                      title: Text('Atenção!'),
-                                      content: Text(
-                                          'A data de validade deve ser maior que hoje'),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () =>
-                                              Navigator.pop(alertDialogContext),
-                                          child: Text('Ok'),
-                                        ),
-                                      ],
-                                    ),
+                                  return AlertDialog(
+                                    title: Text('Atenção!'),
+                                    content: Text(
+                                        'A data de validade deve ser maior que hoje'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () =>
+                                            Navigator.pop(alertDialogContext),
+                                        child: Text('Ok'),
+                                      ),
+                                    ],
                                   );
                                 },
                               );
@@ -2761,19 +2744,16 @@ class _CpAdminCuponsPadroesCadWidgetState
                               await showDialog(
                                 context: context,
                                 builder: (alertDialogContext) {
-                                  return WebViewAware(
-                                    child: AlertDialog(
-                                      title: Text('Atenção!'),
-                                      content:
-                                          Text('Limite máximo de 366 dias'),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () =>
-                                              Navigator.pop(alertDialogContext),
-                                          child: Text('Ok'),
-                                        ),
-                                      ],
-                                    ),
+                                  return AlertDialog(
+                                    title: Text('Atenção!'),
+                                    content: Text('Limite máximo de 366 dias'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () =>
+                                            Navigator.pop(alertDialogContext),
+                                        child: Text('Ok'),
+                                      ),
+                                    ],
                                   );
                                 },
                               );
@@ -2788,18 +2768,16 @@ class _CpAdminCuponsPadroesCadWidgetState
                               await showDialog(
                                 context: context,
                                 builder: (alertDialogContext) {
-                                  return WebViewAware(
-                                    child: AlertDialog(
-                                      title: Text('Atenção!'),
-                                      content: Text('Limite máximo de 1 Mês'),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () =>
-                                              Navigator.pop(alertDialogContext),
-                                          child: Text('Ok'),
-                                        ),
-                                      ],
-                                    ),
+                                  return AlertDialog(
+                                    title: Text('Atenção!'),
+                                    content: Text('Limite máximo de 1 Mês'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () =>
+                                            Navigator.pop(alertDialogContext),
+                                        child: Text('Ok'),
+                                      ),
+                                    ],
                                   );
                                 },
                               );
@@ -2833,19 +2811,17 @@ class _CpAdminCuponsPadroesCadWidgetState
                               await showDialog(
                                 context: context,
                                 builder: (alertDialogContext) {
-                                  return WebViewAware(
-                                    child: AlertDialog(
-                                      title: Text('Atenção!'),
-                                      content: Text(
-                                          'Esse nome já está cadastrado em outro cupom...'),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () =>
-                                              Navigator.pop(alertDialogContext),
-                                          child: Text('Ok'),
-                                        ),
-                                      ],
-                                    ),
+                                  return AlertDialog(
+                                    title: Text('Atenção!'),
+                                    content: Text(
+                                        'Esse nome já está cadastrado em outro cupom...'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () =>
+                                            Navigator.pop(alertDialogContext),
+                                        child: Text('Ok'),
+                                      ),
+                                    ],
                                   );
                                 },
                               );

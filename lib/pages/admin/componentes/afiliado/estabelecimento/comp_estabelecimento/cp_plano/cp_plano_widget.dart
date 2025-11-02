@@ -5,8 +5,6 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/pages/admin/a_sistema/home/cp_sem_cadastro/cp_sem_cadastro_widget.dart';
-import '/pages/admin/componentes/afiliado/estabelecimento/comp_estabelecimento/d_e_l_e_t_e_cp_estabelecimento_historico_pg/d_e_l_e_t_e_cp_estabelecimento_historico_pg_widget.dart';
-import '/pages/admin/componentes/afiliado/estabelecimento/comp_estabelecimento/d_e_l_e_t_e_cp_estabelecimento_plano_renovar2/d_e_l_e_t_e_cp_estabelecimento_plano_renovar2_widget.dart';
 import 'dart:async';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
@@ -18,7 +16,6 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 import 'cp_plano_model.dart';
 export 'cp_plano_model.dart';
 
@@ -1893,193 +1890,6 @@ class _CpPlanoWidgetState extends State<CpPlanoWidget>
                                                           ),
                                                         ),
                                                       ),
-                                                    if (responsiveVisibility(
-                                                      context: context,
-                                                      phone: false,
-                                                      tablet: false,
-                                                      tabletLandscape: false,
-                                                      desktop: false,
-                                                    ))
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(
-                                                                    0.0,
-                                                                    20.0,
-                                                                    0.0,
-                                                                    0.0),
-                                                        child: Wrap(
-                                                          spacing: 8.0,
-                                                          runSpacing: 8.0,
-                                                          alignment:
-                                                              WrapAlignment
-                                                                  .start,
-                                                          crossAxisAlignment:
-                                                              WrapCrossAlignment
-                                                                  .center,
-                                                          direction:
-                                                              Axis.horizontal,
-                                                          runAlignment:
-                                                              WrapAlignment
-                                                                  .center,
-                                                          verticalDirection:
-                                                              VerticalDirection
-                                                                  .down,
-                                                          clipBehavior:
-                                                              Clip.none,
-                                                          children: [
-                                                            if (((containerDadosViewTblAppPlanosEstabelecimentosRow
-                                                                            .statusAssinatura !=
-                                                                        'PERIODO TESTE') &&
-                                                                    (containerDadosViewTblAppPlanosEstabelecimentosRow.stripeSubscriptionId !=
-                                                                            null &&
-                                                                        containerDadosViewTblAppPlanosEstabelecimentosRow.stripeSubscriptionId !=
-                                                                            '')) &&
-                                                                responsiveVisibility(
-                                                                  context:
-                                                                      context,
-                                                                  phone: false,
-                                                                  tablet: false,
-                                                                  tabletLandscape:
-                                                                      false,
-                                                                  desktop:
-                                                                      false,
-                                                                ))
-                                                              Builder(
-                                                                builder:
-                                                                    (context) =>
-                                                                        FFButtonWidget(
-                                                                  onPressed:
-                                                                      () async {
-                                                                    if (MediaQuery.sizeOf(context)
-                                                                            .width <=
-                                                                        FFAppState()
-                                                                            .varTamanhoMinimoTelaMenuLateral
-                                                                            .toDouble()) {
-                                                                      await showModalBottomSheet(
-                                                                        isScrollControlled:
-                                                                            true,
-                                                                        backgroundColor:
-                                                                            FlutterFlowTheme.of(context).customFundoShowComponentes,
-                                                                        context:
-                                                                            context,
-                                                                        builder:
-                                                                            (context) {
-                                                                          return WebViewAware(
-                                                                            child:
-                                                                                Padding(
-                                                                              padding: MediaQuery.viewInsetsOf(context),
-                                                                              child: DELETECpEstabelecimentoHistoricoPgWidget(
-                                                                                paramSubscriptionID: valueOrDefault<String>(
-                                                                                  containerDadosViewTblAppPlanosEstabelecimentosRow.stripeSubscriptionId,
-                                                                                  'sem',
-                                                                                ),
-                                                                              ),
-                                                                            ),
-                                                                          );
-                                                                        },
-                                                                      ).then((value) =>
-                                                                          safeSetState(
-                                                                              () {}));
-                                                                    } else {
-                                                                      await showDialog(
-                                                                        barrierColor:
-                                                                            FlutterFlowTheme.of(context).customFundoShowComponentes,
-                                                                        context:
-                                                                            context,
-                                                                        builder:
-                                                                            (dialogContext) {
-                                                                          return Dialog(
-                                                                            elevation:
-                                                                                0,
-                                                                            insetPadding:
-                                                                                EdgeInsets.zero,
-                                                                            backgroundColor:
-                                                                                Colors.transparent,
-                                                                            alignment:
-                                                                                AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-                                                                            child:
-                                                                                WebViewAware(
-                                                                              child: DELETECpEstabelecimentoHistoricoPgWidget(
-                                                                                paramSubscriptionID: valueOrDefault<String>(
-                                                                                  containerDadosViewTblAppPlanosEstabelecimentosRow.stripeSubscriptionId,
-                                                                                  'sem',
-                                                                                ),
-                                                                              ),
-                                                                            ),
-                                                                          );
-                                                                        },
-                                                                      );
-                                                                    }
-                                                                  },
-                                                                  text:
-                                                                      'Histórico Pagamentos',
-                                                                  icon: Icon(
-                                                                    Icons
-                                                                        .history_sharp,
-                                                                    size: 24.0,
-                                                                  ),
-                                                                  options:
-                                                                      FFButtonOptions(
-                                                                    width: MediaQuery.sizeOf(context).width <
-                                                                            kBreakpointSmall
-                                                                        ? MediaQuery.sizeOf(context)
-                                                                            .width
-                                                                        : 200.0,
-                                                                    height:
-                                                                        35.0,
-                                                                    padding: EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            16.0,
-                                                                            0.0,
-                                                                            16.0,
-                                                                            0.0),
-                                                                    iconPadding:
-                                                                        EdgeInsetsDirectional.fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .primary,
-                                                                    textStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .titleSmall
-                                                                        .override(
-                                                                          font:
-                                                                              GoogleFonts.readexPro(
-                                                                            fontWeight:
-                                                                                FlutterFlowTheme.of(context).titleSmall.fontWeight,
-                                                                            fontStyle:
-                                                                                FlutterFlowTheme.of(context).titleSmall.fontStyle,
-                                                                          ),
-                                                                          color:
-                                                                              Colors.white,
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          fontWeight: FlutterFlowTheme.of(context)
-                                                                              .titleSmall
-                                                                              .fontWeight,
-                                                                          fontStyle: FlutterFlowTheme.of(context)
-                                                                              .titleSmall
-                                                                              .fontStyle,
-                                                                        ),
-                                                                    borderSide:
-                                                                        BorderSide(
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .alternate,
-                                                                    ),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            8.0),
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                          ],
-                                                        ),
-                                                      ),
                                                     if (containerDadosViewTblAppPlanosEstabelecimentosRow
                                                             .planoAtivo! &&
                                                         !containerDadosViewTblAppPlanosEstabelecimentosRow
@@ -2129,129 +1939,88 @@ class _CpPlanoWidgetState extends State<CpPlanoWidget>
                                                                   desktop:
                                                                       false,
                                                                 ))
-                                                              Builder(
-                                                                builder: (context) =>
-                                                                    FFButtonWidget(
-                                                                  onPressed:
-                                                                      () async {
-                                                                    if (((containerDadosViewTblAppPlanosEstabelecimentosRow.stripeStatus ==
-                                                                                'complete') ||
-                                                                            (containerDadosViewTblAppPlanosEstabelecimentosRow.stripeStatus == null ||
-                                                                                containerDadosViewTblAppPlanosEstabelecimentosRow.stripeStatus ==
-                                                                                    '')) &&
-                                                                        (containerDadosViewTblAppPlanosEstabelecimentosRow.stripeStatusPg ==
-                                                                            'unpaid') &&
-                                                                        (containerDadosViewTblAppPlanosEstabelecimentosRow.stripeUrl !=
-                                                                                null &&
-                                                                            containerDadosViewTblAppPlanosEstabelecimentosRow.stripeUrl !=
-                                                                                '')) {
-                                                                      if (isWeb) {
-                                                                        await actions
-                                                                            .caWebRedirectToUrl(
-                                                                          containerDadosViewTblAppPlanosEstabelecimentosRow
-                                                                              .stripeUrl!,
-                                                                        );
-                                                                      } else {
-                                                                        await launchURL(
-                                                                            containerDadosViewTblAppPlanosEstabelecimentosRow.stripeUrl!);
-                                                                      }
-
-                                                                      return;
+                                                              FFButtonWidget(
+                                                                onPressed:
+                                                                    () async {
+                                                                  if (((containerDadosViewTblAppPlanosEstabelecimentosRow.stripeStatus ==
+                                                                              'complete') ||
+                                                                          (containerDadosViewTblAppPlanosEstabelecimentosRow.stripeStatus == null ||
+                                                                              containerDadosViewTblAppPlanosEstabelecimentosRow.stripeStatus ==
+                                                                                  '')) &&
+                                                                      (containerDadosViewTblAppPlanosEstabelecimentosRow
+                                                                              .stripeStatusPg ==
+                                                                          'unpaid') &&
+                                                                      (containerDadosViewTblAppPlanosEstabelecimentosRow.stripeUrl !=
+                                                                              null &&
+                                                                          containerDadosViewTblAppPlanosEstabelecimentosRow.stripeUrl !=
+                                                                              '')) {
+                                                                    if (isWeb) {
+                                                                      await actions
+                                                                          .caWebRedirectToUrl(
+                                                                        containerDadosViewTblAppPlanosEstabelecimentosRow
+                                                                            .stripeUrl!,
+                                                                      );
                                                                     } else {
-                                                                      await action_blocks
-                                                                          .acAtualizarPlanos(
-                                                                        context,
-                                                                        paramIDAfiliadoApp:
-                                                                            1,
-                                                                      );
-                                                                      await showDialog(
-                                                                        barrierColor:
-                                                                            FlutterFlowTheme.of(context).customFundoShowComponentes,
-                                                                        context:
-                                                                            context,
-                                                                        builder:
-                                                                            (dialogContext) {
-                                                                          return Dialog(
-                                                                            elevation:
-                                                                                0,
-                                                                            insetPadding:
-                                                                                EdgeInsets.zero,
-                                                                            backgroundColor:
-                                                                                Colors.transparent,
-                                                                            alignment:
-                                                                                AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-                                                                            child:
-                                                                                WebViewAware(
-                                                                              child: DELETECpEstabelecimentoPlanoRenovar2Widget(
-                                                                                paramRenovacao: true,
-                                                                                paramAssinatura: containerDadosViewTblAppPlanosEstabelecimentosRow.assinatura!,
-                                                                                paramDiasTry: '0',
-                                                                                paramDownUp: '',
-                                                                                paramTblAppPlanoEstab: containerDadosViewTblAppPlanosEstabelecimentosRow,
-                                                                                paramTipo: 'ESTAB',
-                                                                              ),
-                                                                            ),
-                                                                          );
-                                                                        },
-                                                                      );
-
-                                                                      safeSetState(() =>
-                                                                          _model.requestCompleter =
-                                                                              null);
-                                                                      await _model
-                                                                          .waitForRequestCompleted();
+                                                                      await launchURL(
+                                                                          containerDadosViewTblAppPlanosEstabelecimentosRow
+                                                                              .stripeUrl!);
                                                                     }
-                                                                  },
-                                                                  text: containerDadosViewTblAppPlanosEstabelecimentosRow
-                                                                          .planoAtivo!
-                                                                      ? 'Pagar plano'
-                                                                      : 'Reativar plano',
-                                                                  icon: Icon(
-                                                                    Icons
-                                                                        .monetization_on_outlined,
-                                                                    size: 36.0,
-                                                                  ),
-                                                                  options:
-                                                                      FFButtonOptions(
-                                                                    width: MediaQuery.sizeOf(context).width <
-                                                                            kBreakpointSmall
-                                                                        ? MediaQuery.sizeOf(context)
-                                                                            .width
-                                                                        : 200.0,
-                                                                    height:
-                                                                        50.0,
-                                                                    padding: EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            4.0,
-                                                                            0.0,
-                                                                            4.0,
-                                                                            0.0),
-                                                                    iconPadding:
-                                                                        EdgeInsetsDirectional.fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .success,
-                                                                    textStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .titleSmall
-                                                                        .override(
-                                                                          font:
-                                                                              GoogleFonts.readexPro(
-                                                                            fontWeight:
-                                                                                FlutterFlowTheme.of(context).titleSmall.fontWeight,
-                                                                            fontStyle:
-                                                                                FlutterFlowTheme.of(context).titleSmall.fontStyle,
-                                                                          ),
-                                                                          color:
-                                                                              Colors.white,
-                                                                          fontSize:
-                                                                              24.0,
-                                                                          letterSpacing:
-                                                                              0.0,
+
+                                                                    return;
+                                                                  } else {
+                                                                    await action_blocks
+                                                                        .acAtualizarPlanos(
+                                                                      context,
+                                                                      paramIDAfiliadoApp:
+                                                                          1,
+                                                                    );
+                                                                    safeSetState(() =>
+                                                                        _model.requestCompleter =
+                                                                            null);
+                                                                    await _model
+                                                                        .waitForRequestCompleted();
+                                                                  }
+                                                                },
+                                                                text: containerDadosViewTblAppPlanosEstabelecimentosRow
+                                                                        .planoAtivo!
+                                                                    ? 'Pagar plano'
+                                                                    : 'Reativar plano',
+                                                                icon: Icon(
+                                                                  Icons
+                                                                      .monetization_on_outlined,
+                                                                  size: 36.0,
+                                                                ),
+                                                                options:
+                                                                    FFButtonOptions(
+                                                                  width: MediaQuery.sizeOf(context)
+                                                                              .width <
+                                                                          kBreakpointSmall
+                                                                      ? MediaQuery.sizeOf(
+                                                                              context)
+                                                                          .width
+                                                                      : 200.0,
+                                                                  height: 50.0,
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          4.0,
+                                                                          0.0,
+                                                                          4.0,
+                                                                          0.0),
+                                                                  iconPadding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .success,
+                                                                  textStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleSmall
+                                                                      .override(
+                                                                        font: GoogleFonts
+                                                                            .readexPro(
                                                                           fontWeight: FlutterFlowTheme.of(context)
                                                                               .titleSmall
                                                                               .fontWeight,
@@ -2259,22 +2028,35 @@ class _CpPlanoWidgetState extends State<CpPlanoWidget>
                                                                               .titleSmall
                                                                               .fontStyle,
                                                                         ),
-                                                                    elevation:
-                                                                        0.0,
-                                                                    borderSide:
-                                                                        BorderSide(
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .alternate,
-                                                                    ),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            8.0),
+                                                                        color: Colors
+                                                                            .white,
+                                                                        fontSize:
+                                                                            24.0,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        fontWeight: FlutterFlowTheme.of(context)
+                                                                            .titleSmall
+                                                                            .fontWeight,
+                                                                        fontStyle: FlutterFlowTheme.of(context)
+                                                                            .titleSmall
+                                                                            .fontStyle,
+                                                                      ),
+                                                                  elevation:
+                                                                      0.0,
+                                                                  borderSide:
+                                                                      BorderSide(
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .alternate,
                                                                   ),
-                                                                ).animateOnPageLoad(
-                                                                        animationsMap[
-                                                                            'buttonOnPageLoadAnimation1']!),
-                                                              ),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              8.0),
+                                                                ),
+                                                              ).animateOnPageLoad(
+                                                                  animationsMap[
+                                                                      'buttonOnPageLoadAnimation1']!),
                                                             if ((containerDadosViewTblAppPlanosEstabelecimentosRow
                                                                         .statusPagamento ==
                                                                     'AG. CARTAO') &&
@@ -2284,123 +2066,83 @@ class _CpPlanoWidgetState extends State<CpPlanoWidget>
                                                                 (containerDadosViewTblAppPlanosEstabelecimentosRow
                                                                         .assinatura ==
                                                                     true))
-                                                              Builder(
-                                                                builder:
-                                                                    (context) =>
-                                                                        FFButtonWidget(
-                                                                  onPressed:
-                                                                      () async {
-                                                                    if (((containerDadosViewTblAppPlanosEstabelecimentosRow.stripeStatus ==
-                                                                                'complete') ||
-                                                                            (containerDadosViewTblAppPlanosEstabelecimentosRow.stripeStatus == null ||
-                                                                                containerDadosViewTblAppPlanosEstabelecimentosRow.stripeStatus ==
-                                                                                    '')) &&
-                                                                        (containerDadosViewTblAppPlanosEstabelecimentosRow.stripeStatusPg ==
-                                                                            'unpaid') &&
-                                                                        (containerDadosViewTblAppPlanosEstabelecimentosRow.stripeUrl !=
-                                                                                null &&
-                                                                            containerDadosViewTblAppPlanosEstabelecimentosRow.stripeUrl !=
-                                                                                '')) {
-                                                                      if (isWeb) {
-                                                                        await actions
-                                                                            .caWebRedirectToUrl(
-                                                                          containerDadosViewTblAppPlanosEstabelecimentosRow
-                                                                              .stripeUrl!,
-                                                                        );
-                                                                      } else {
-                                                                        await launchURL(
-                                                                            containerDadosViewTblAppPlanosEstabelecimentosRow.stripeUrl!);
-                                                                      }
-
-                                                                      return;
+                                                              FFButtonWidget(
+                                                                onPressed:
+                                                                    () async {
+                                                                  if (((containerDadosViewTblAppPlanosEstabelecimentosRow.stripeStatus ==
+                                                                              'complete') ||
+                                                                          (containerDadosViewTblAppPlanosEstabelecimentosRow.stripeStatus == null ||
+                                                                              containerDadosViewTblAppPlanosEstabelecimentosRow.stripeStatus ==
+                                                                                  '')) &&
+                                                                      (containerDadosViewTblAppPlanosEstabelecimentosRow
+                                                                              .stripeStatusPg ==
+                                                                          'unpaid') &&
+                                                                      (containerDadosViewTblAppPlanosEstabelecimentosRow.stripeUrl !=
+                                                                              null &&
+                                                                          containerDadosViewTblAppPlanosEstabelecimentosRow.stripeUrl !=
+                                                                              '')) {
+                                                                    if (isWeb) {
+                                                                      await actions
+                                                                          .caWebRedirectToUrl(
+                                                                        containerDadosViewTblAppPlanosEstabelecimentosRow
+                                                                            .stripeUrl!,
+                                                                      );
                                                                     } else {
-                                                                      await action_blocks
-                                                                          .acAtualizarPlanos(
-                                                                        context,
-                                                                        paramIDAfiliadoApp:
-                                                                            1,
-                                                                      );
-                                                                      await showDialog(
-                                                                        barrierColor:
-                                                                            FlutterFlowTheme.of(context).customFundoShowComponentes,
-                                                                        context:
-                                                                            context,
-                                                                        builder:
-                                                                            (dialogContext) {
-                                                                          return Dialog(
-                                                                            elevation:
-                                                                                0,
-                                                                            insetPadding:
-                                                                                EdgeInsets.zero,
-                                                                            backgroundColor:
-                                                                                Colors.transparent,
-                                                                            alignment:
-                                                                                AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-                                                                            child:
-                                                                                WebViewAware(
-                                                                              child: DELETECpEstabelecimentoPlanoRenovar2Widget(
-                                                                                paramRenovacao: true,
-                                                                                paramAssinatura: containerDadosViewTblAppPlanosEstabelecimentosRow.assinatura!,
-                                                                                paramDiasTry: '0',
-                                                                                paramDownUp: '',
-                                                                                paramTblAppPlanoEstab: containerDadosViewTblAppPlanosEstabelecimentosRow,
-                                                                                paramTipo: 'ESTAB',
-                                                                              ),
-                                                                            ),
-                                                                          );
-                                                                        },
-                                                                      );
-
-                                                                      safeSetState(() =>
-                                                                          _model.requestCompleter =
-                                                                              null);
-                                                                      await _model
-                                                                          .waitForRequestCompleted();
+                                                                      await launchURL(
+                                                                          containerDadosViewTblAppPlanosEstabelecimentosRow
+                                                                              .stripeUrl!);
                                                                     }
-                                                                  },
-                                                                  text:
-                                                                      'Inserir Cartão',
-                                                                  icon: Icon(
-                                                                    Icons
-                                                                        .add_card_outlined,
-                                                                    size: 24.0,
-                                                                  ),
-                                                                  options:
-                                                                      FFButtonOptions(
-                                                                    width: MediaQuery.sizeOf(context).width <
-                                                                            kBreakpointSmall
-                                                                        ? MediaQuery.sizeOf(context)
-                                                                            .width
-                                                                        : 300.0,
-                                                                    padding:
-                                                                        EdgeInsets.all(
-                                                                            16.0),
-                                                                    iconPadding:
-                                                                        EdgeInsetsDirectional.fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .success,
-                                                                    textStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .titleSmall
-                                                                        .override(
-                                                                          font:
-                                                                              GoogleFonts.readexPro(
-                                                                            fontWeight:
-                                                                                FlutterFlowTheme.of(context).titleSmall.fontWeight,
-                                                                            fontStyle:
-                                                                                FlutterFlowTheme.of(context).titleSmall.fontStyle,
-                                                                          ),
-                                                                          color:
-                                                                              Colors.white,
-                                                                          fontSize:
-                                                                              18.0,
-                                                                          letterSpacing:
-                                                                              0.0,
+
+                                                                    return;
+                                                                  } else {
+                                                                    await action_blocks
+                                                                        .acAtualizarPlanos(
+                                                                      context,
+                                                                      paramIDAfiliadoApp:
+                                                                          1,
+                                                                    );
+                                                                    safeSetState(() =>
+                                                                        _model.requestCompleter =
+                                                                            null);
+                                                                    await _model
+                                                                        .waitForRequestCompleted();
+                                                                  }
+                                                                },
+                                                                text:
+                                                                    'Inserir Cartão',
+                                                                icon: Icon(
+                                                                  Icons
+                                                                      .add_card_outlined,
+                                                                  size: 24.0,
+                                                                ),
+                                                                options:
+                                                                    FFButtonOptions(
+                                                                  width: MediaQuery.sizeOf(context)
+                                                                              .width <
+                                                                          kBreakpointSmall
+                                                                      ? MediaQuery.sizeOf(
+                                                                              context)
+                                                                          .width
+                                                                      : 300.0,
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .all(
+                                                                              16.0),
+                                                                  iconPadding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .success,
+                                                                  textStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleSmall
+                                                                      .override(
+                                                                        font: GoogleFonts
+                                                                            .readexPro(
                                                                           fontWeight: FlutterFlowTheme.of(context)
                                                                               .titleSmall
                                                                               .fontWeight,
@@ -2408,16 +2150,29 @@ class _CpPlanoWidgetState extends State<CpPlanoWidget>
                                                                               .titleSmall
                                                                               .fontStyle,
                                                                         ),
-                                                                    borderSide:
-                                                                        BorderSide(
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .alternate,
-                                                                    ),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            8.0),
+                                                                        color: Colors
+                                                                            .white,
+                                                                        fontSize:
+                                                                            18.0,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        fontWeight: FlutterFlowTheme.of(context)
+                                                                            .titleSmall
+                                                                            .fontWeight,
+                                                                        fontStyle: FlutterFlowTheme.of(context)
+                                                                            .titleSmall
+                                                                            .fontStyle,
+                                                                      ),
+                                                                  borderSide:
+                                                                      BorderSide(
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .alternate,
                                                                   ),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              8.0),
                                                                 ),
                                                               ),
                                                             if ((containerDadosViewTblAppPlanosEstabelecimentosRow
@@ -2429,198 +2184,9 @@ class _CpPlanoWidgetState extends State<CpPlanoWidget>
                                                                 (containerDadosViewTblAppPlanosEstabelecimentosRow
                                                                         .assinatura ==
                                                                     false))
-                                                              Builder(
-                                                                builder:
-                                                                    (context) =>
-                                                                        FFButtonWidget(
-                                                                  onPressed:
-                                                                      () async {
-                                                                    safeSetState(() =>
-                                                                        _model.requestCompleter =
-                                                                            null);
-                                                                    await _model
-                                                                        .waitForRequestCompleted();
-                                                                    await action_blocks
-                                                                        .acAtualizarPlanos(
-                                                                      context,
-                                                                      paramIDAfiliadoApp:
-                                                                          1,
-                                                                    );
-                                                                    await showDialog(
-                                                                      context:
-                                                                          context,
-                                                                      builder:
-                                                                          (dialogContext) {
-                                                                        return Dialog(
-                                                                          elevation:
-                                                                              0,
-                                                                          insetPadding:
-                                                                              EdgeInsets.zero,
-                                                                          backgroundColor:
-                                                                              Colors.transparent,
-                                                                          alignment:
-                                                                              AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-                                                                          child:
-                                                                              WebViewAware(
-                                                                            child:
-                                                                                DELETECpEstabelecimentoPlanoRenovar2Widget(
-                                                                              paramRenovacao: true,
-                                                                              paramAssinatura: false,
-                                                                              paramDiasTry: '0',
-                                                                              paramDownUp: '',
-                                                                              paramTblAppPlanoEstab: containerDadosViewTblAppPlanosEstabelecimentosRow,
-                                                                              paramTipo: 'ESTAB',
-                                                                            ),
-                                                                          ),
-                                                                        );
-                                                                      },
-                                                                    );
-
-                                                                    safeSetState(() =>
-                                                                        _model.requestCompleter =
-                                                                            null);
-                                                                    await _model
-                                                                        .waitForRequestCompleted();
-                                                                  },
-                                                                  text:
-                                                                      'Renovar Plano',
-                                                                  icon: Icon(
-                                                                    Icons.paid,
-                                                                    size: 24.0,
-                                                                  ),
-                                                                  options:
-                                                                      FFButtonOptions(
-                                                                    width: MediaQuery.sizeOf(context).width <
-                                                                            kBreakpointSmall
-                                                                        ? MediaQuery.sizeOf(context)
-                                                                            .width
-                                                                        : 200.0,
-                                                                    padding:
-                                                                        EdgeInsets.all(
-                                                                            16.0),
-                                                                    iconPadding:
-                                                                        EdgeInsetsDirectional.fromSTEB(
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .success,
-                                                                    textStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .titleSmall
-                                                                        .override(
-                                                                          font:
-                                                                              GoogleFonts.readexPro(
-                                                                            fontWeight:
-                                                                                FlutterFlowTheme.of(context).titleSmall.fontWeight,
-                                                                            fontStyle:
-                                                                                FlutterFlowTheme.of(context).titleSmall.fontStyle,
-                                                                          ),
-                                                                          color:
-                                                                              Colors.white,
-                                                                          letterSpacing:
-                                                                              0.0,
-                                                                          fontWeight: FlutterFlowTheme.of(context)
-                                                                              .titleSmall
-                                                                              .fontWeight,
-                                                                          fontStyle: FlutterFlowTheme.of(context)
-                                                                              .titleSmall
-                                                                              .fontStyle,
-                                                                        ),
-                                                                    borderSide:
-                                                                        BorderSide(
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .alternate,
-                                                                    ),
-                                                                    borderRadius:
-                                                                        BorderRadius.circular(
-                                                                            8.0),
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                            if (((containerDadosViewTblAppPlanosEstabelecimentosRow
-                                                                            .statusPagamento ==
-                                                                        'PAGO') ||
-                                                                    (containerDadosViewTblAppPlanosEstabelecimentosRow
-                                                                            .trialPeriod ==
-                                                                        true)) &&
-                                                                responsiveVisibility(
-                                                                  context:
-                                                                      context,
-                                                                  phone: false,
-                                                                  tablet: false,
-                                                                  tabletLandscape:
-                                                                      false,
-                                                                  desktop:
-                                                                      false,
-                                                                ))
                                                               FFButtonWidget(
                                                                 onPressed:
                                                                     () async {
-                                                                  if (((containerDadosViewTblAppPlanosEstabelecimentosRow.statusPagamento == 'ALTEROU PLANO') ||
-                                                                          (containerDadosViewTblAppPlanosEstabelecimentosRow.upgradeDowngrade ==
-                                                                              'UP') ||
-                                                                          (containerDadosViewTblAppPlanosEstabelecimentosRow.upgradeDowngrade ==
-                                                                              'DOWN')) &&
-                                                                      (containerDadosViewTblAppPlanosEstabelecimentosRow
-                                                                              .statusPagamento !=
-                                                                          'PERIODO TESTE')) {
-                                                                    await showDialog(
-                                                                      context:
-                                                                          context,
-                                                                      builder:
-                                                                          (alertDialogContext) {
-                                                                        return WebViewAware(
-                                                                          child:
-                                                                              AlertDialog(
-                                                                            title:
-                                                                                Text('Atenção!'),
-                                                                            content:
-                                                                                Text('Você já fez alteração de plano, aguarde até a renovação para alterar novamente ou entre em contato com o suporte.'),
-                                                                            actions: [
-                                                                              TextButton(
-                                                                                onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                child: Text('Ok'),
-                                                                              ),
-                                                                            ],
-                                                                          ),
-                                                                        );
-                                                                      },
-                                                                    );
-                                                                    return;
-                                                                  }
-                                                                  var confirmDialogResponse =
-                                                                      await showDialog<
-                                                                              bool>(
-                                                                            context:
-                                                                                context,
-                                                                            builder:
-                                                                                (alertDialogContext) {
-                                                                              return WebViewAware(
-                                                                                child: AlertDialog(
-                                                                                  title: Text('Atenção!'),
-                                                                                  content: Text('Deseja alterar o plano? ${'\n\n'}${containerDadosViewTblAppPlanosEstabelecimentosRow.statusPagamento == 'PERIODO TESTE' ? '' : 'ATENÇÃO! O plano só pode ser alterado uma vez por mês'}'),
-                                                                                  actions: [
-                                                                                    TextButton(
-                                                                                      onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                      child: Text('Não'),
-                                                                                    ),
-                                                                                    TextButton(
-                                                                                      onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                      child: Text('Sim'),
-                                                                                    ),
-                                                                                  ],
-                                                                                ),
-                                                                              );
-                                                                            },
-                                                                          ) ??
-                                                                          false;
-                                                                  if (!confirmDialogResponse) {
-                                                                    return;
-                                                                  }
                                                                   safeSetState(() =>
                                                                       _model.requestCompleter =
                                                                           null);
@@ -2632,44 +2198,6 @@ class _CpPlanoWidgetState extends State<CpPlanoWidget>
                                                                     paramIDAfiliadoApp:
                                                                         1,
                                                                   );
-                                                                  await showModalBottomSheet(
-                                                                    isScrollControlled:
-                                                                        true,
-                                                                    backgroundColor:
-                                                                        Colors
-                                                                            .transparent,
-                                                                    context:
-                                                                        context,
-                                                                    builder:
-                                                                        (context) {
-                                                                      return WebViewAware(
-                                                                        child:
-                                                                            Padding(
-                                                                          padding:
-                                                                              MediaQuery.viewInsetsOf(context),
-                                                                          child:
-                                                                              DELETECpEstabelecimentoPlanoRenovar2Widget(
-                                                                            paramRenovacao:
-                                                                                true,
-                                                                            paramAssinatura:
-                                                                                containerDadosViewTblAppPlanosEstabelecimentosRow.assinatura!,
-                                                                            paramDiasTry:
-                                                                                functions.fcSomarNumeros(functions.fcDiferencaDiasEntreDatas(getCurrentTimestamp, containerDadosViewTblAppPlanosEstabelecimentosRow.dataFinal!), 1).toString(),
-                                                                            paramDownUp: containerDadosViewTblAppPlanosEstabelecimentosRow.assinatura!
-                                                                                ? 'true'
-                                                                                : '',
-                                                                            paramTblAppPlanoEstab:
-                                                                                containerDadosViewTblAppPlanosEstabelecimentosRow,
-                                                                            paramTipo:
-                                                                                'ESTAB',
-                                                                          ),
-                                                                        ),
-                                                                      );
-                                                                    },
-                                                                  ).then((value) =>
-                                                                      safeSetState(
-                                                                          () {}));
-
                                                                   safeSetState(() =>
                                                                       _model.requestCompleter =
                                                                           null);
@@ -2677,10 +2205,9 @@ class _CpPlanoWidgetState extends State<CpPlanoWidget>
                                                                       .waitForRequestCompleted();
                                                                 },
                                                                 text:
-                                                                    'Alterar Plano',
+                                                                    'Renovar Plano',
                                                                 icon: Icon(
-                                                                  Icons
-                                                                      .edit_square,
+                                                                  Icons.paid,
                                                                   size: 24.0,
                                                                 ),
                                                                 options:
@@ -2692,13 +2219,10 @@ class _CpPlanoWidgetState extends State<CpPlanoWidget>
                                                                               context)
                                                                           .width
                                                                       : 200.0,
-                                                                  height: 35.0,
-                                                                  padding: EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          16.0,
-                                                                          0.0,
-                                                                          16.0,
-                                                                          0.0),
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .all(
+                                                                              16.0),
                                                                   iconPadding: EdgeInsetsDirectional
                                                                       .fromSTEB(
                                                                           0.0,
@@ -2707,7 +2231,7 @@ class _CpPlanoWidgetState extends State<CpPlanoWidget>
                                                                           0.0),
                                                                   color: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .tertiary,
+                                                                      .success,
                                                                   textStyle: FlutterFlowTheme.of(
                                                                           context)
                                                                       .titleSmall
@@ -2732,115 +2256,12 @@ class _CpPlanoWidgetState extends State<CpPlanoWidget>
                                                                             .titleSmall
                                                                             .fontStyle,
                                                                       ),
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              8.0),
-                                                                ),
-                                                              ),
-                                                            if (((containerDadosViewTblAppPlanosEstabelecimentosRow
-                                                                            .statusPagamento ==
-                                                                        'PAGO') ||
-                                                                    (containerDadosViewTblAppPlanosEstabelecimentosRow
-                                                                            .trialPeriod ==
-                                                                        true)) &&
-                                                                responsiveVisibility(
-                                                                  context:
-                                                                      context,
-                                                                  phone: false,
-                                                                  tablet: false,
-                                                                  tabletLandscape:
-                                                                      false,
-                                                                  desktop:
-                                                                      false,
-                                                                ))
-                                                              FFButtonWidget(
-                                                                onPressed:
-                                                                    () async {
-                                                                  var _shouldSetState =
-                                                                      false;
-                                                                  _model.resultStripePortalUrl2 =
-                                                                      await action_blocks
-                                                                          .acStripePortalURL(
-                                                                    context,
-                                                                    paramCustomerID:
-                                                                        containerDadosViewTblAppPlanosEstabelecimentosRow
-                                                                            .stripeCustomerId,
-                                                                  );
-                                                                  _shouldSetState =
-                                                                      true;
-                                                                  if (_model
-                                                                          .resultStripePortalUrl2 ==
-                                                                      'false') {
-                                                                    if (_shouldSetState)
-                                                                      safeSetState(
-                                                                          () {});
-                                                                    return;
-                                                                  }
-                                                                  await actions
-                                                                      .caWebRedirectToUrl(
-                                                                    '${_model.resultStripePortalUrl2}/subscriptions/${containerDadosViewTblAppPlanosEstabelecimentosRow.stripeSubscriptionId}/update',
-                                                                  );
-                                                                  if (_shouldSetState)
-                                                                    safeSetState(
-                                                                        () {});
-                                                                },
-                                                                text:
-                                                                    'Alterar Plano',
-                                                                icon: Icon(
-                                                                  Icons
-                                                                      .edit_square,
-                                                                  size: 24.0,
-                                                                ),
-                                                                options:
-                                                                    FFButtonOptions(
-                                                                  width: MediaQuery.sizeOf(context)
-                                                                              .width <
-                                                                          kBreakpointSmall
-                                                                      ? MediaQuery.sizeOf(
-                                                                              context)
-                                                                          .width
-                                                                      : 200.0,
-                                                                  height: 35.0,
-                                                                  padding: EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          16.0,
-                                                                          0.0,
-                                                                          16.0,
-                                                                          0.0),
-                                                                  iconPadding: EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .tertiary,
-                                                                  textStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleSmall
-                                                                      .override(
-                                                                        font: GoogleFonts
-                                                                            .readexPro(
-                                                                          fontWeight: FlutterFlowTheme.of(context)
-                                                                              .titleSmall
-                                                                              .fontWeight,
-                                                                          fontStyle: FlutterFlowTheme.of(context)
-                                                                              .titleSmall
-                                                                              .fontStyle,
-                                                                        ),
-                                                                        color: Colors
-                                                                            .white,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        fontWeight: FlutterFlowTheme.of(context)
-                                                                            .titleSmall
-                                                                            .fontWeight,
-                                                                        fontStyle: FlutterFlowTheme.of(context)
-                                                                            .titleSmall
-                                                                            .fontStyle,
-                                                                      ),
+                                                                  borderSide:
+                                                                      BorderSide(
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .alternate,
+                                                                  ),
                                                                   borderRadius:
                                                                       BorderRadius
                                                                           .circular(
@@ -2879,21 +2300,19 @@ class _CpPlanoWidgetState extends State<CpPlanoWidget>
                                                                                 context,
                                                                             builder:
                                                                                 (alertDialogContext) {
-                                                                              return WebViewAware(
-                                                                                child: AlertDialog(
-                                                                                  title: Text('Atenção!'),
-                                                                                  content: Text('Deseja cancelar a assinatura?'),
-                                                                                  actions: [
-                                                                                    TextButton(
-                                                                                      onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                      child: Text('Não'),
-                                                                                    ),
-                                                                                    TextButton(
-                                                                                      onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                      child: Text('Sim'),
-                                                                                    ),
-                                                                                  ],
-                                                                                ),
+                                                                              return AlertDialog(
+                                                                                title: Text('Atenção!'),
+                                                                                content: Text('Deseja cancelar a assinatura?'),
+                                                                                actions: [
+                                                                                  TextButton(
+                                                                                    onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                    child: Text('Não'),
+                                                                                  ),
+                                                                                  TextButton(
+                                                                                    onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                    child: Text('Sim'),
+                                                                                  ),
+                                                                                ],
                                                                               );
                                                                             },
                                                                           ) ??
@@ -2961,20 +2380,17 @@ class _CpPlanoWidgetState extends State<CpPlanoWidget>
                                                                           context,
                                                                       builder:
                                                                           (alertDialogContext) {
-                                                                        return WebViewAware(
-                                                                          child:
-                                                                              AlertDialog(
-                                                                            title:
-                                                                                Text('Atenção!'),
-                                                                            content:
-                                                                                Text('Assinatura cancelada...'),
-                                                                            actions: [
-                                                                              TextButton(
-                                                                                onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                child: Text('Ok'),
-                                                                              ),
-                                                                            ],
-                                                                          ),
+                                                                        return AlertDialog(
+                                                                          title:
+                                                                              Text('Atenção!'),
+                                                                          content:
+                                                                              Text('Assinatura cancelada...'),
+                                                                          actions: [
+                                                                            TextButton(
+                                                                              onPressed: () => Navigator.pop(alertDialogContext),
+                                                                              child: Text('Ok'),
+                                                                            ),
+                                                                          ],
                                                                         );
                                                                       },
                                                                     );
@@ -3068,21 +2484,19 @@ class _CpPlanoWidgetState extends State<CpPlanoWidget>
                                                                                 context,
                                                                             builder:
                                                                                 (alertDialogContext) {
-                                                                              return WebViewAware(
-                                                                                child: AlertDialog(
-                                                                                  title: Text('Atenção!'),
-                                                                                  content: Text('Deseja cancelar o plano?'),
-                                                                                  actions: [
-                                                                                    TextButton(
-                                                                                      onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                      child: Text('Não'),
-                                                                                    ),
-                                                                                    TextButton(
-                                                                                      onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                      child: Text('Sim'),
-                                                                                    ),
-                                                                                  ],
-                                                                                ),
+                                                                              return AlertDialog(
+                                                                                title: Text('Atenção!'),
+                                                                                content: Text('Deseja cancelar o plano?'),
+                                                                                actions: [
+                                                                                  TextButton(
+                                                                                    onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                    child: Text('Não'),
+                                                                                  ),
+                                                                                  TextButton(
+                                                                                    onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                    child: Text('Sim'),
+                                                                                  ),
+                                                                                ],
                                                                               );
                                                                             },
                                                                           ) ??
@@ -3150,20 +2564,17 @@ class _CpPlanoWidgetState extends State<CpPlanoWidget>
                                                                           context,
                                                                       builder:
                                                                           (alertDialogContext) {
-                                                                        return WebViewAware(
-                                                                          child:
-                                                                              AlertDialog(
-                                                                            title:
-                                                                                Text('Atenção!'),
-                                                                            content:
-                                                                                Text('Cancelando com sucesso...'),
-                                                                            actions: [
-                                                                              TextButton(
-                                                                                onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                child: Text('Ok'),
-                                                                              ),
-                                                                            ],
-                                                                          ),
+                                                                        return AlertDialog(
+                                                                          title:
+                                                                              Text('Atenção!'),
+                                                                          content:
+                                                                              Text('Cancelando com sucesso...'),
+                                                                          actions: [
+                                                                            TextButton(
+                                                                              onPressed: () => Navigator.pop(alertDialogContext),
+                                                                              child: Text('Ok'),
+                                                                            ),
+                                                                          ],
                                                                         );
                                                                       },
                                                                     );
@@ -3424,20 +2835,17 @@ class _CpPlanoWidgetState extends State<CpPlanoWidget>
                                                                           context,
                                                                       builder:
                                                                           (alertDialogContext) {
-                                                                        return WebViewAware(
-                                                                          child:
-                                                                              AlertDialog(
-                                                                            title:
-                                                                                Text('Atenção!'),
-                                                                            content:
-                                                                                Text('Cancelamento desfeito com sucesso, obrigado por containuar conosco.'),
-                                                                            actions: [
-                                                                              TextButton(
-                                                                                onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                child: Text('Ok'),
-                                                                              ),
-                                                                            ],
-                                                                          ),
+                                                                        return AlertDialog(
+                                                                          title:
+                                                                              Text('Atenção!'),
+                                                                          content:
+                                                                              Text('Cancelamento desfeito com sucesso, obrigado por containuar conosco.'),
+                                                                          actions: [
+                                                                            TextButton(
+                                                                              onPressed: () => Navigator.pop(alertDialogContext),
+                                                                              child: Text('Ok'),
+                                                                            ),
+                                                                          ],
                                                                         );
                                                                       },
                                                                     );

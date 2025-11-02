@@ -7,6 +7,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/upload_data.dart';
 import '/pages/admin/a_sistema/home/cp_foto/cp_foto_widget.dart';
+import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
 import '/flutter_flow/custom_functions.dart' as functions;
 import '/flutter_flow/random_data_util.dart' as random_data;
@@ -20,7 +21,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 import 'cp_login_model.dart';
 export 'cp_login_model.dart';
 
@@ -65,6 +65,11 @@ class _CpLoginWidgetState extends State<CpLoginWidget>
               duration: Duration(milliseconds: 0),
             ),
           },
+        );
+      } else {
+        await action_blocks.acAtualizarInicializacaoSistema(
+          context,
+          paramNaoAtualizarTabelas: false,
         );
       }
     });
@@ -473,19 +478,17 @@ class _CpLoginWidgetState extends State<CpLoginWidget>
                                   await showDialog(
                                     context: context,
                                     builder: (alertDialogContext) {
-                                      return WebViewAware(
-                                        child: AlertDialog(
-                                          title: Text('Atenção!'),
-                                          content: Text(
-                                              'Modo desenvolvedor ativado...'),
-                                          actions: [
-                                            TextButton(
-                                              onPressed: () => Navigator.pop(
-                                                  alertDialogContext),
-                                              child: Text('Ok'),
-                                            ),
-                                          ],
-                                        ),
+                                      return AlertDialog(
+                                        title: Text('Atenção!'),
+                                        content: Text(
+                                            'Modo desenvolvedor ativado...'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(
+                                                alertDialogContext),
+                                            child: Text('Ok'),
+                                          ),
+                                        ],
                                       );
                                     },
                                   );
@@ -1428,25 +1431,23 @@ class _CpLoginWidgetState extends State<CpLoginWidget>
                                         await showDialog(
                                           context: context,
                                           builder: (alertDialogContext) {
-                                            return WebViewAware(
-                                              child: AlertDialog(
-                                                title: Text('teste'),
-                                                content: Text('1'),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () =>
-                                                        Navigator.pop(
-                                                            alertDialogContext),
-                                                    child: Text('Ok'),
-                                                  ),
-                                                ],
-                                              ),
+                                            return AlertDialog(
+                                              title: Text('teste'),
+                                              content: Text('1'),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext),
+                                                  child: Text('Ok'),
+                                                ),
+                                              ],
                                             );
                                           },
                                         );
                                       }
 
-                                      context.pushNamedAuth(
+                                      context.goNamedAuth(
                                         PgDashboardWidget.routeName,
                                         context.mounted,
                                         extra: <String, dynamic>{
@@ -1463,19 +1464,17 @@ class _CpLoginWidgetState extends State<CpLoginWidget>
                                         await showDialog(
                                           context: context,
                                           builder: (alertDialogContext) {
-                                            return WebViewAware(
-                                              child: AlertDialog(
-                                                title: Text('teste'),
-                                                content: Text('2'),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () =>
-                                                        Navigator.pop(
-                                                            alertDialogContext),
-                                                    child: Text('Ok'),
-                                                  ),
-                                                ],
-                                              ),
+                                            return AlertDialog(
+                                              title: Text('teste'),
+                                              content: Text('2'),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext),
+                                                  child: Text('Ok'),
+                                                ),
+                                              ],
                                             );
                                           },
                                         );
@@ -1591,11 +1590,9 @@ class _CpLoginWidgetState extends State<CpLoginWidget>
                                                               .resolve(
                                                                   Directionality.of(
                                                                       context)),
-                                                          child: WebViewAware(
-                                                            child: CpFotoWidget(
-                                                              paramFoto: _model
-                                                                  .uploadedFileUrl_uploadDataClientesCad,
-                                                            ),
+                                                          child: CpFotoWidget(
+                                                            paramFoto: _model
+                                                                .uploadedFileUrl_uploadDataClientesCad,
                                                           ),
                                                         );
                                                       },
@@ -1605,22 +1602,19 @@ class _CpLoginWidgetState extends State<CpLoginWidget>
                                                       context: context,
                                                       builder:
                                                           (alertDialogContext) {
-                                                        return WebViewAware(
-                                                          child: AlertDialog(
-                                                            title: Text(
-                                                                'Atenção!'),
-                                                            content: Text(
-                                                                'Adicione uma foto de perfil...'),
-                                                            actions: [
-                                                              TextButton(
-                                                                onPressed: () =>
-                                                                    Navigator.pop(
-                                                                        alertDialogContext),
-                                                                child:
-                                                                    Text('Ok'),
-                                                              ),
-                                                            ],
-                                                          ),
+                                                        return AlertDialog(
+                                                          title:
+                                                              Text('Atenção!'),
+                                                          content: Text(
+                                                              'Adicione uma foto de perfil...'),
+                                                          actions: [
+                                                            TextButton(
+                                                              onPressed: () =>
+                                                                  Navigator.pop(
+                                                                      alertDialogContext),
+                                                              child: Text('Ok'),
+                                                            ),
+                                                          ],
                                                         );
                                                       },
                                                     );
@@ -4630,20 +4624,18 @@ class _CpLoginWidgetState extends State<CpLoginWidget>
                                           await showDialog(
                                             context: context,
                                             builder: (alertDialogContext) {
-                                              return WebViewAware(
-                                                child: AlertDialog(
-                                                  title: Text('Atenção!'),
-                                                  content: Text(
-                                                      'Informe seu telefone WhatsApp cadastrado no sistema'),
-                                                  actions: [
-                                                    TextButton(
-                                                      onPressed: () =>
-                                                          Navigator.pop(
-                                                              alertDialogContext),
-                                                      child: Text('Ok'),
-                                                    ),
-                                                  ],
-                                                ),
+                                              return AlertDialog(
+                                                title: Text('Atenção!'),
+                                                content: Text(
+                                                    'Informe seu telefone WhatsApp cadastrado no sistema'),
+                                                actions: [
+                                                  TextButton(
+                                                    onPressed: () =>
+                                                        Navigator.pop(
+                                                            alertDialogContext),
+                                                    child: Text('Ok'),
+                                                  ),
+                                                ],
                                               );
                                             },
                                           );
@@ -4658,20 +4650,18 @@ class _CpLoginWidgetState extends State<CpLoginWidget>
                                           await showDialog(
                                             context: context,
                                             builder: (alertDialogContext) {
-                                              return WebViewAware(
-                                                child: AlertDialog(
-                                                  title: Text('Atenção!'),
-                                                  content: Text(
-                                                      'Número telefone inválido.'),
-                                                  actions: [
-                                                    TextButton(
-                                                      onPressed: () =>
-                                                          Navigator.pop(
-                                                              alertDialogContext),
-                                                      child: Text('Ok'),
-                                                    ),
-                                                  ],
-                                                ),
+                                              return AlertDialog(
+                                                title: Text('Atenção!'),
+                                                content: Text(
+                                                    'Número telefone inválido.'),
+                                                actions: [
+                                                  TextButton(
+                                                    onPressed: () =>
+                                                        Navigator.pop(
+                                                            alertDialogContext),
+                                                    child: Text('Ok'),
+                                                  ),
+                                                ],
                                               );
                                             },
                                           );
@@ -4694,20 +4684,18 @@ class _CpLoginWidgetState extends State<CpLoginWidget>
                                           await showDialog(
                                             context: context,
                                             builder: (alertDialogContext) {
-                                              return WebViewAware(
-                                                child: AlertDialog(
-                                                  title: Text('Atenção!'),
-                                                  content: Text(
-                                                      'Número de telefone não localizado, verifique se digitou corretamente.'),
-                                                  actions: [
-                                                    TextButton(
-                                                      onPressed: () =>
-                                                          Navigator.pop(
-                                                              alertDialogContext),
-                                                      child: Text('Ok'),
-                                                    ),
-                                                  ],
-                                                ),
+                                              return AlertDialog(
+                                                title: Text('Atenção!'),
+                                                content: Text(
+                                                    'Número de telefone não localizado, verifique se digitou corretamente.'),
+                                                actions: [
+                                                  TextButton(
+                                                    onPressed: () =>
+                                                        Navigator.pop(
+                                                            alertDialogContext),
+                                                    child: Text('Ok'),
+                                                  ),
+                                                ],
                                               );
                                             },
                                           );
@@ -4727,20 +4715,18 @@ class _CpLoginWidgetState extends State<CpLoginWidget>
                                           await showDialog(
                                             context: context,
                                             builder: (alertDialogContext) {
-                                              return WebViewAware(
-                                                child: AlertDialog(
-                                                  title: Text('teste'),
-                                                  content: Text(_model
-                                                      .varCodValidacaoWhatsEmail!),
-                                                  actions: [
-                                                    TextButton(
-                                                      onPressed: () =>
-                                                          Navigator.pop(
-                                                              alertDialogContext),
-                                                      child: Text('Ok'),
-                                                    ),
-                                                  ],
-                                                ),
+                                              return AlertDialog(
+                                                title: Text('teste'),
+                                                content: Text(_model
+                                                    .varCodValidacaoWhatsEmail!),
+                                                actions: [
+                                                  TextButton(
+                                                    onPressed: () =>
+                                                        Navigator.pop(
+                                                            alertDialogContext),
+                                                    child: Text('Ok'),
+                                                  ),
+                                                ],
                                               );
                                             },
                                           );
@@ -4752,20 +4738,18 @@ class _CpLoginWidgetState extends State<CpLoginWidget>
                                           await showDialog(
                                             context: context,
                                             builder: (alertDialogContext) {
-                                              return WebViewAware(
-                                                child: AlertDialog(
-                                                  title: Text('Atenção!'),
-                                                  content: Text(
-                                                      'Informe seu E-mail cadastrado no sistema'),
-                                                  actions: [
-                                                    TextButton(
-                                                      onPressed: () =>
-                                                          Navigator.pop(
-                                                              alertDialogContext),
-                                                      child: Text('Ok'),
-                                                    ),
-                                                  ],
-                                                ),
+                                              return AlertDialog(
+                                                title: Text('Atenção!'),
+                                                content: Text(
+                                                    'Informe seu E-mail cadastrado no sistema'),
+                                                actions: [
+                                                  TextButton(
+                                                    onPressed: () =>
+                                                        Navigator.pop(
+                                                            alertDialogContext),
+                                                    child: Text('Ok'),
+                                                  ),
+                                                ],
                                               );
                                             },
                                           );
@@ -4780,20 +4764,18 @@ class _CpLoginWidgetState extends State<CpLoginWidget>
                                           await showDialog(
                                             context: context,
                                             builder: (alertDialogContext) {
-                                              return WebViewAware(
-                                                child: AlertDialog(
-                                                  title: Text('Atenção!'),
-                                                  content:
-                                                      Text('E-mail inválido.'),
-                                                  actions: [
-                                                    TextButton(
-                                                      onPressed: () =>
-                                                          Navigator.pop(
-                                                              alertDialogContext),
-                                                      child: Text('Ok'),
-                                                    ),
-                                                  ],
-                                                ),
+                                              return AlertDialog(
+                                                title: Text('Atenção!'),
+                                                content:
+                                                    Text('E-mail inválido.'),
+                                                actions: [
+                                                  TextButton(
+                                                    onPressed: () =>
+                                                        Navigator.pop(
+                                                            alertDialogContext),
+                                                    child: Text('Ok'),
+                                                  ),
+                                                ],
                                               );
                                             },
                                           );
@@ -4812,20 +4794,18 @@ class _CpLoginWidgetState extends State<CpLoginWidget>
                                           await showDialog(
                                             context: context,
                                             builder: (alertDialogContext) {
-                                              return WebViewAware(
-                                                child: AlertDialog(
-                                                  title: Text('Atenção!'),
-                                                  content: Text(
-                                                      'E-mail não localizado, verifique se digitou corretamente.'),
-                                                  actions: [
-                                                    TextButton(
-                                                      onPressed: () =>
-                                                          Navigator.pop(
-                                                              alertDialogContext),
-                                                      child: Text('Ok'),
-                                                    ),
-                                                  ],
-                                                ),
+                                              return AlertDialog(
+                                                title: Text('Atenção!'),
+                                                content: Text(
+                                                    'E-mail não localizado, verifique se digitou corretamente.'),
+                                                actions: [
+                                                  TextButton(
+                                                    onPressed: () =>
+                                                        Navigator.pop(
+                                                            alertDialogContext),
+                                                    child: Text('Ok'),
+                                                  ),
+                                                ],
                                               );
                                             },
                                           );
@@ -4845,20 +4825,18 @@ class _CpLoginWidgetState extends State<CpLoginWidget>
                                           await showDialog(
                                             context: context,
                                             builder: (alertDialogContext) {
-                                              return WebViewAware(
-                                                child: AlertDialog(
-                                                  title: Text('teste'),
-                                                  content: Text(_model
-                                                      .varCodValidacaoWhatsEmail!),
-                                                  actions: [
-                                                    TextButton(
-                                                      onPressed: () =>
-                                                          Navigator.pop(
-                                                              alertDialogContext),
-                                                      child: Text('Ok'),
-                                                    ),
-                                                  ],
-                                                ),
+                                              return AlertDialog(
+                                                title: Text('teste'),
+                                                content: Text(_model
+                                                    .varCodValidacaoWhatsEmail!),
+                                                actions: [
+                                                  TextButton(
+                                                    onPressed: () =>
+                                                        Navigator.pop(
+                                                            alertDialogContext),
+                                                    child: Text('Ok'),
+                                                  ),
+                                                ],
                                               );
                                             },
                                           );
@@ -4956,20 +4934,18 @@ class _CpLoginWidgetState extends State<CpLoginWidget>
                                         await showDialog(
                                           context: context,
                                           builder: (alertDialogContext) {
-                                            return WebViewAware(
-                                              child: AlertDialog(
-                                                title: Text('Atenção!'),
-                                                content: Text(
-                                                    'Digite o código de verificação que foi enviado no seu e-mail'),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () =>
-                                                        Navigator.pop(
-                                                            alertDialogContext),
-                                                    child: Text('Ok'),
-                                                  ),
-                                                ],
-                                              ),
+                                            return AlertDialog(
+                                              title: Text('Atenção!'),
+                                              content: Text(
+                                                  'Digite o código de verificação que foi enviado no seu e-mail'),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext),
+                                                  child: Text('Ok'),
+                                                ),
+                                              ],
                                             );
                                           },
                                         );
@@ -4982,20 +4958,18 @@ class _CpLoginWidgetState extends State<CpLoginWidget>
                                         await showDialog(
                                           context: context,
                                           builder: (alertDialogContext) {
-                                            return WebViewAware(
-                                              child: AlertDialog(
-                                                title: Text('Atenção!'),
-                                                content: Text(
-                                                    'Código de verificação inválido, verifique...'),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () =>
-                                                        Navigator.pop(
-                                                            alertDialogContext),
-                                                    child: Text('Ok'),
-                                                  ),
-                                                ],
-                                              ),
+                                            return AlertDialog(
+                                              title: Text('Atenção!'),
+                                              content: Text(
+                                                  'Código de verificação inválido, verifique...'),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext),
+                                                  child: Text('Ok'),
+                                                ),
+                                              ],
                                             );
                                           },
                                         );
@@ -5007,20 +4981,18 @@ class _CpLoginWidgetState extends State<CpLoginWidget>
                                         await showDialog(
                                           context: context,
                                           builder: (alertDialogContext) {
-                                            return WebViewAware(
-                                              child: AlertDialog(
-                                                title: Text('Atenção!'),
-                                                content: Text(
-                                                    'Digite sua nova senha'),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () =>
-                                                        Navigator.pop(
-                                                            alertDialogContext),
-                                                    child: Text('Ok'),
-                                                  ),
-                                                ],
-                                              ),
+                                            return AlertDialog(
+                                              title: Text('Atenção!'),
+                                              content:
+                                                  Text('Digite sua nova senha'),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext),
+                                                  child: Text('Ok'),
+                                                ),
+                                              ],
                                             );
                                           },
                                         );
@@ -5033,20 +5005,18 @@ class _CpLoginWidgetState extends State<CpLoginWidget>
                                         await showDialog(
                                           context: context,
                                           builder: (alertDialogContext) {
-                                            return WebViewAware(
-                                              child: AlertDialog(
-                                                title: Text('Atenção!'),
-                                                content: Text(
-                                                    'A senha deve ter pelo menos 6 dígitos'),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () =>
-                                                        Navigator.pop(
-                                                            alertDialogContext),
-                                                    child: Text('Ok'),
-                                                  ),
-                                                ],
-                                              ),
+                                            return AlertDialog(
+                                              title: Text('Atenção!'),
+                                              content: Text(
+                                                  'A senha deve ter pelo menos 6 dígitos'),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext),
+                                                  child: Text('Ok'),
+                                                ),
+                                              ],
                                             );
                                           },
                                         );
@@ -5058,20 +5028,18 @@ class _CpLoginWidgetState extends State<CpLoginWidget>
                                         await showDialog(
                                           context: context,
                                           builder: (alertDialogContext) {
-                                            return WebViewAware(
-                                              child: AlertDialog(
-                                                title: Text('Atenção!'),
-                                                content: Text(
-                                                    'Digite a confirmação da sua nova senha'),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () =>
-                                                        Navigator.pop(
-                                                            alertDialogContext),
-                                                    child: Text('Ok'),
-                                                  ),
-                                                ],
-                                              ),
+                                            return AlertDialog(
+                                              title: Text('Atenção!'),
+                                              content: Text(
+                                                  'Digite a confirmação da sua nova senha'),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext),
+                                                  child: Text('Ok'),
+                                                ),
+                                              ],
                                             );
                                           },
                                         );
@@ -5085,20 +5053,18 @@ class _CpLoginWidgetState extends State<CpLoginWidget>
                                         await showDialog(
                                           context: context,
                                           builder: (alertDialogContext) {
-                                            return WebViewAware(
-                                              child: AlertDialog(
-                                                title: Text('Atenção!'),
-                                                content: Text(
-                                                    'A senha de confirmação está diferente da nova senha'),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () =>
-                                                        Navigator.pop(
-                                                            alertDialogContext),
-                                                    child: Text('Ok'),
-                                                  ),
-                                                ],
-                                              ),
+                                            return AlertDialog(
+                                              title: Text('Atenção!'),
+                                              content: Text(
+                                                  'A senha de confirmação está diferente da nova senha'),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext),
+                                                  child: Text('Ok'),
+                                                ),
+                                              ],
                                             );
                                           },
                                         );
@@ -5108,28 +5074,26 @@ class _CpLoginWidgetState extends State<CpLoginWidget>
                                           await showDialog<bool>(
                                                 context: context,
                                                 builder: (alertDialogContext) {
-                                                  return WebViewAware(
-                                                    child: AlertDialog(
-                                                      title: Text('Atenção!'),
-                                                      content: Text(
-                                                          'Deseja salvar a nova senha?'),
-                                                      actions: [
-                                                        TextButton(
-                                                          onPressed: () =>
-                                                              Navigator.pop(
-                                                                  alertDialogContext,
-                                                                  false),
-                                                          child: Text('Não'),
-                                                        ),
-                                                        TextButton(
-                                                          onPressed: () =>
-                                                              Navigator.pop(
-                                                                  alertDialogContext,
-                                                                  true),
-                                                          child: Text('Sim'),
-                                                        ),
-                                                      ],
-                                                    ),
+                                                  return AlertDialog(
+                                                    title: Text('Atenção!'),
+                                                    content: Text(
+                                                        'Deseja salvar a nova senha?'),
+                                                    actions: [
+                                                      TextButton(
+                                                        onPressed: () =>
+                                                            Navigator.pop(
+                                                                alertDialogContext,
+                                                                false),
+                                                        child: Text('Não'),
+                                                      ),
+                                                      TextButton(
+                                                        onPressed: () =>
+                                                            Navigator.pop(
+                                                                alertDialogContext,
+                                                                true),
+                                                        child: Text('Sim'),
+                                                      ),
+                                                    ],
                                                   );
                                                 },
                                               ) ??

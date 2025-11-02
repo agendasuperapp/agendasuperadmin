@@ -4,7 +4,6 @@ import 'dart:async';
 import '/actions/actions.dart' as action_blocks;
 import 'cp_plano_widget.dart' show CpPlanoWidget;
 import 'package:flutter/material.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 
 class CpPlanoModel extends FlutterFlowModel<CpPlanoWidget> {
   ///  Local state fields for this component.
@@ -32,8 +31,6 @@ class CpPlanoModel extends FlutterFlowModel<CpPlanoWidget> {
   ///  State fields for stateful widgets in this component.
 
   Completer<List<ViewTblAppPlanosEstabelecimentosRow>>? requestCompleter;
-  // Stores action output result for [Action Block - acStripePortalURL] action in ButtonAlterarPlano2 widget.
-  String? resultStripePortalUrl2;
   // Stores action output result for [Action Block - acDesfazerCancelamento] action in ButtonRenovar widget.
   bool? resultDesfazerCanc;
   // Stores action output result for [Action Block - acStripePortalURL] action in Button widget.
@@ -59,22 +56,20 @@ class CpPlanoModel extends FlutterFlowModel<CpPlanoWidget> {
     var confirmDialogResponse = await showDialog<bool>(
           context: context,
           builder: (alertDialogContext) {
-            return WebViewAware(
-              child: AlertDialog(
-                title: Text('Atenção!'),
-                content: Text(
-                    'Deseja desfazer o cancelamento e continuar com a assinatura?'),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(alertDialogContext, false),
-                    child: Text('Não'),
-                  ),
-                  TextButton(
-                    onPressed: () => Navigator.pop(alertDialogContext, true),
-                    child: Text('Sim'),
-                  ),
-                ],
-              ),
+            return AlertDialog(
+              title: Text('Atenção!'),
+              content: Text(
+                  'Deseja desfazer o cancelamento e continuar com a assinatura?'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(alertDialogContext, false),
+                  child: Text('Não'),
+                ),
+                TextButton(
+                  onPressed: () => Navigator.pop(alertDialogContext, true),
+                  child: Text('Sim'),
+                ),
+              ],
             );
           },
         ) ??

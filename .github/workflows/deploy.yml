@@ -148,59 +148,36 @@ jobs:
             -d "{\"versao\": \"${VERSION}\", \"descricao\": \"${DESC}\", \"id_app\": ${APP_ID}, \"status\": \"${STATUS}\", \"sistema_op\": \"WEB\"}"
 
       # 1️⃣3️⃣ Configurar keystore para assinatura do APK
-      - name: 🔐 Configurar assinatura Android (keystore)
-        run: |
-          set -e
-          echo "🔐 Gerando key.properties e configurando assinatura..."
-
-          # Armazena secrets em variáveis shell
-          KEYSTORE_B64="${{ secrets.ANDROID_KEYSTORE_B64 }}"
-          STORE_PASS="${{ secrets.KEYSTORE_PASSWORD }}"
-          KEY_PASS="${{ secrets.KEY_PASSWORD }}"
-          KEY_ALIAS="${{ secrets.KEY_ALIAS }}"
-
-          # Recria o arquivo JKS a partir do Base64
-          echo "$KEYSTORE_B64" | base64 -d > android/app/upload-keystore.jks
-
-          # Cria o arquivo key.properties sem blocos problemáticos
-          echo "storePassword=$STORE_PASS" > android/key.properties
-          echo "keyPassword=$KEY_PASS" >> android/key.properties
-          echo "keyAlias=$KEY_ALIAS" >> android/key.properties
-          echo "storeFile=upload-keystore.jks" >> android/key.properties
-
-          echo "✅ key.properties criado com sucesso"
-
           # Adiciona a configuração no build.gradle, caso ainda não exista
           if ! grep -q "key.properties" android/app/build.gradle; then
             echo "🧩 Adicionando configuração de assinatura ao build.gradle..."
-            cat <<'GRAD' >> android/app/build.gradle
-
-def keystoreProperties = new Properties()
-def keystorePropertiesFile = rootProject.file("android/key.properties")
-if (keystorePropertiesFile.exists()) {
-    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
-}
-
-android {
-    signingConfigs {
-        release {
-            if (keystorePropertiesFile.exists()) {
-                storeFile file(keystoreProperties['storeFile'])
-                storePassword keystoreProperties['storePassword']
-                keyAlias keystoreProperties['keyAlias']
-                keyPassword keystoreProperties['keyPassword']
-            }
-        }
-    }
-    buildTypes {
-        release {
-            signingConfig signingConfigs.release
-        }
-    }
-}
-GRAD
+            {
+              echo ""
+              echo "def keystoreProperties = new Properties()"
+              echo "def keystorePropertiesFile = rootProject.file(\"android/key.properties\")"
+              echo "if (keystorePropertiesFile.exists()) {"
+              echo "    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))"
+              echo "}"
+              echo ""
+              echo "android {"
+              echo "    signingConfigs {"
+              echo "        release {"
+              echo "            if (keystorePropertiesFile.exists()) {"
+              echo "                storeFile file(keystoreProperties['storeFile'])"
+              echo "                storePassword keystoreProperties['storePassword']"
+              echo "                keyAlias keystoreProperties['keyAlias']"
+              echo "                keyPassword keystoreProperties['keyPassword']"
+              echo "            }"
+              echo "        }"
+              echo "    }"
+              echo "    buildTypes {"
+              echo "        release {"
+              echo "            signingConfig signingConfigs.release"
+              echo "        }"
+              echo "    }"
+              echo "}"
+            } >> android/app/build.gradle
           fi
-
       
       # 1️⃣4️⃣ Aplicar ícones e applicationId
       - name: 🧱 Aplicar ícones e ID Android

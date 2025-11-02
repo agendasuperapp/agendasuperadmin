@@ -30,6 +30,28 @@ jobs:
           flutter --version
           dart --version
 
+      # 3️⃣-B Personalizar nome do app e varIDAfiliadoApp antes do build web/apk
+      - name: 🧠 Personalizar lib/app_state.dart e nome do app
+        run: |
+          echo "⚙️ Aplicando personalizações de identificação do app..."
+
+          case "${{ matrix.target.name }}" in
+            "agendasuper")
+              APPNAME="Agenda Super"
+              IDAFILIADOAPP="1"
+              ;;
+            "rendarecorrente")
+              APPNAME="APP Afiliado"
+              IDAFILIADOAPP="3"
+              ;;
+          esac
+
+          echo "🛠️ Substituindo textos nos arquivos fonte..."
+          sed -i "s/91234567890/${IDAFILIADOAPP}/g" lib/app_state.dart || true
+
+          echo "✅ app_state.dart atualizado com ID=${IDAFILIADOAPP} (${APPNAME})"
+          
+
       # 4️⃣ Faz o build web (modo release)
       - name: 🏗️ Build Web (modo release)
         run: |
@@ -123,7 +145,6 @@ jobs:
           sed -i "s/NomePageTitle/${APPNAME}/g" "${TEMP_DIR}/main.dart.js"
           sed -i "s/91234567890/${IDAFILIADOAPP}/g" "${TEMP_DIR}/main.dart.js"
           sed -i "s/const appVersion = \".*\";/const appVersion = \"${VERSION}\";/g" "${TEMP_DIR}/index.html"
-          sed -i "s/91234567890/${IDAFILIADOAPP}/g" "${TEMP_DIR}/lib/app_state.dart"
 
           BUILD_DATE=$(date '+%Y-%m-%d %H:%M:%S')
           LOG_FILE="${TEMP_DIR}/${SITE}_${VERSION}.txt"

@@ -157,7 +157,7 @@ jobs:
           echo "${{ secrets.ANDROID_KEYSTORE_B64 }}" | base64 -d > android/app/upload-keystore.jks
 
           # Cria o arquivo key.properties
-          cat > android/key.properties <<EOF
+          cat > android/key.properties <<'EOF'
 storePassword=${{ secrets.KEYSTORE_PASSWORD }}
 keyPassword=${{ secrets.KEY_PASSWORD }}
 keyAlias=${{ secrets.KEY_ALIAS }}

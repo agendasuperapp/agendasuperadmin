@@ -161,6 +161,46 @@ jobs:
           flutter-version: '3.35.7'
           channel: 'stable'
 
+          
+      # 1️⃣1️⃣-B3 Personalizar nome, ícones e imagens do APK
+      - name: 🧠 Personalizar nome, ícones e imagens do APK
+        run: |
+          echo "⚙️ Iniciando personalização do APK..."
+
+          case "${{ matrix.target.name }}" in
+            "agendasuper")
+              APPNAME="Agenda Super"
+              ICON_PATH=".github/overlays/icons/agendasuper"
+              ASSETS_PATH=".github/overlays/icons/agendasuper/assets_images"
+              ;;
+            "rendarecorrente")
+              APPNAME="APP Afiliado"
+              ICON_PATH=".github/overlays/icons/rendarecorrente"
+              ASSETS_PATH=".github/overlays/icons/rendarecorrente/assets_images"
+              ;;
+          esac
+
+          echo "🧩 Atualizando nome do app Android para: ${APPNAME}"
+          sed -i "s/android:label=\"[^\"]*\"/android:label=\"${APPNAME}\"/" android/app/src/main/AndroidManifest.xml
+
+          echo "🖼️ Substituindo ícones de aplicativo..."
+          for size in mipmap-mdpi mipmap-hdpi mipmap-xhdpi mipmap-xxhdpi mipmap-xxxhdpi; do
+            mkdir -p android/app/src/main/res/$size
+            if [ -f "${ICON_PATH}/ic_launcher.png" ]; then
+              cp -f "${ICON_PATH}/ic_launcher.png" android/app/src/main/res/$size/ic_launcher.png
+            fi
+          done
+
+          echo "📦 Substituindo imagens personalizadas em assets/images..."
+          if [ -d "${ASSETS_PATH}" ]; then
+            rsync -av --exclude ".git" "${ASSETS_PATH}/" "assets/images/"
+            echo "✅ Imagens personalizadas aplicadas com sucesso!"
+          else
+            echo "⚠️ Nenhuma pasta personalizada encontrada em ${ASSETS_PATH}, pulando..."
+          fi
+
+          echo "✅ Nome, ícones e imagens personalizadas aplicadas com sucesso!"
+
 
       # 1️⃣1️⃣-C Gerar o APK Android (modo release)
       - name: 🤖 Gerar APK Android (modo release)
@@ -191,7 +231,7 @@ jobs:
           lftp -u "${{ secrets[ matrix.target.ftp_user ] }}","${{ secrets[ matrix.target.ftp_pass ] }}" "ftp://${{ secrets[ matrix.target.ftp_server ] }}" -e "
             set ftp:ssl-allow no;
             mkdir -p ${{ secrets[ matrix.target.ftp_dir ] }}/apk;
-            put -O ${{ secrets[ matrix.target.ftp_dir ] }}/apk/ ${APK_FILE};
+            put ${APK_FILE} -o ${{ secrets[ matrix.target.ftp_dir ] }}/${APK_REMOTE_PATH};
             bye
           "
           echo "✅ APK enviado para Hostinger: /public_html/${APK_REMOTE_PATH}"          

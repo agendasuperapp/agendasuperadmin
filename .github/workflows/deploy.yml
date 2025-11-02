@@ -153,8 +153,10 @@ jobs:
           set -e
           echo "🔐 Gerando key.properties e configurando assinatura..."
 
+          # Recria o arquivo JKS a partir do Base64
           echo "${{ secrets.ANDROID_KEYSTORE_B64 }}" | base64 -d > android/app/upload-keystore.jks
 
+          # Cria o arquivo key.properties
           cat > android/key.properties <<EOF
           storePassword=${{ secrets.KEYSTORE_PASSWORD }}
           keyPassword=${{ secrets.KEY_PASSWORD }}
@@ -164,6 +166,7 @@ jobs:
 
           echo "✅ key.properties criado com sucesso"
 
+          # Adiciona a configuração no build.gradle, caso ainda não exista
           if ! grep -q "key.properties" android/app/build.gradle; then
             echo "🧩 Adicionando configuração de assinatura ao build.gradle..."
             cat <<'GRAD' >> android/app/build.gradle

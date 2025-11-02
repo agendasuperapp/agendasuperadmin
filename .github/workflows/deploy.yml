@@ -162,11 +162,11 @@ jobs:
           # Recria o arquivo JKS a partir do Base64
           echo "$KEYSTORE_B64" | base64 -d > android/app/upload-keystore.jks
 
-          # Cria o arquivo key.properties
-          cat > android/key.properties <<EOF
-storePassword=$STORE_PASS
-keyPassword=$KEY_PASS
-keyAlias=$KEY_ALIAS
+          # Cria o arquivo key.properties (usando bloco literal seguro)
+          cat > android/key.properties <<'EOF'
+storePassword='$STORE_PASS'
+keyPassword='$KEY_PASS'
+keyAlias='$KEY_ALIAS'
 storeFile=upload-keystore.jks
 EOF
 

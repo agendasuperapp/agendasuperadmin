@@ -30,10 +30,10 @@ jobs:
           flutter --version
           dart --version
 
-      # 3️⃣-B Personalizar nome do app e varIDAfiliadoApp antes do build web/apk
-      - name: 🧠 Personalizar lib/app_state.dart e nome do app
+      # 3️⃣-B Personalizar lib/app_state.dart antes dos builds
+      - name: 🧠 Personalizar lib/app_state.dart com IDAFILIADOAPP
         run: |
-          echo "⚙️ Aplicando personalizações de identificação do app..."
+          echo "⚙️ Aplicando personalização em lib/app_state.dart..."
 
           case "${{ matrix.target.name }}" in
             "agendasuper")
@@ -46,12 +46,21 @@ jobs:
               ;;
           esac
 
-          echo "🛠️ Substituindo textos nos arquivos fonte..."
-          sed -i "s/NomePageTitle/${APPNAME}/g" lib/app_state.dart || true
+          echo "🔢 IDAFILIADOAPP definido como ${IDAFILIADOAPP}"
+          echo "📋 Fazendo backup de lib/app_state.dart..."
+          cp lib/app_state.dart lib/app_state_backup.dart || true
+
+          echo "🧩 Substituindo 91234567890 por ${IDAFILIADOAPP}..."
           perl -pi -e "s/91234567890/${IDAFILIADOAPP}/g" lib/app_state.dart
 
-          echo "✅ app_state.dart atualizado com ID=${IDAFILIADOAPP} (${APPNAME})"
-         
+          echo "✅ lib/app_state.dart atualizado com sucesso!"
+          grep -m 1 "_varIDAPPAfiliado" lib/app_state.dart || true
+
+         if [ -z "$IDAFILIADOAPP" ]; then
+         echo "❌ ERRO: IDAFILIADOAPP não definido!"
+         exit 1
+         fi
+    
 
       # 4️⃣ Faz o build web (modo release)
       - name: 🏗️ Build Web (modo release)

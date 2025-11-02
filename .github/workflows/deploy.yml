@@ -123,6 +123,7 @@ jobs:
           sed -i "s/NomePageTitle/${APPNAME}/g" "${TEMP_DIR}/main.dart.js"
           sed -i "s/91234567890/${IDAFILIADOAPP}/g" "${TEMP_DIR}/main.dart.js"
           sed -i "s/const appVersion = \".*\";/const appVersion = \"${VERSION}\";/g" "${TEMP_DIR}/index.html"
+          sed -i "s/91234567890/${IDAFILIADOAPP}/g" "${TEMP_DIR}/lib/app_state.dart"
 
           BUILD_DATE=$(date '+%Y-%m-%d %H:%M:%S')
           LOG_FILE="${TEMP_DIR}/${SITE}_${VERSION}.txt"
@@ -200,6 +201,21 @@ jobs:
           fi
 
           echo "✅ Nome, ícones e imagens personalizadas aplicadas com sucesso!"
+
+      # 1️⃣1️⃣-B4 Personalizar applicationId (único para cada app Android)
+      - name: 🧱 Ajustar applicationId exclusivo
+        run: |
+          echo "⚙️ Ajustando applicationId..."
+          case "${{ matrix.target.name }}" in
+            "agendasuper")
+              APP_ID_ANDROID="com.adminagendasuper.app"
+              ;;
+            "rendarecorrente")
+              APP_ID_ANDROID="com.adminrendarecorrente.app"
+              ;;
+          esac
+          sed -i "s/applicationId \".*\"/applicationId \"${APP_ID_ANDROID}\"/" android/app/build.gradle
+          echo "✅ applicationId atualizado para ${APP_ID_ANDROID}"
 
 
       # 1️⃣1️⃣-C Gerar o APK Android (modo release)

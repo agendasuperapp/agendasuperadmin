@@ -183,6 +183,14 @@ jobs:
             } >> android/app/build.gradle
           fi
 
+      # ⚙️ 1️⃣3️⃣.5 Aplicar custom codes overlay (somente para APK)
+      - name: 🔄 Aplicar custom codes (overlay) para build APK
+        run: |
+          echo "🔄 Copiando códigos de .github/overlays/custom_codes/ para lib/custom_code/actions/..."
+          mkdir -p lib/custom_code/actions
+          cp -r .github/overlays/custom_codes/* lib/custom_code/actions/
+          echo "✅ Overlay aplicado com sucesso (somente para APK build)"
+
       # 1️⃣4️⃣ Ajustar applicationId
       - name: 🧱 Ajustar applicationId
         run: |

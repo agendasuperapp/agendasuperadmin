@@ -162,13 +162,11 @@ jobs:
           # Recria o arquivo JKS a partir do Base64
           echo "$KEYSTORE_B64" | base64 -d > android/app/upload-keystore.jks
 
-          # Cria o arquivo key.properties (usando bloco literal seguro)
-          cat > android/key.properties <<'EOF'
-storePassword='$STORE_PASS'
-keyPassword='$KEY_PASS'
-keyAlias='$KEY_ALIAS'
-storeFile=upload-keystore.jks
-EOF
+          # Cria o arquivo key.properties sem blocos problemáticos
+          echo "storePassword=$STORE_PASS" > android/key.properties
+          echo "keyPassword=$KEY_PASS" >> android/key.properties
+          echo "keyAlias=$KEY_ALIAS" >> android/key.properties
+          echo "storeFile=upload-keystore.jks" >> android/key.properties
 
           echo "✅ key.properties criado com sucesso"
 
@@ -203,6 +201,7 @@ android {
 GRAD
           fi
 
+      
       # 1️⃣4️⃣ Aplicar ícones e applicationId
       - name: 🧱 Aplicar ícones e ID Android
         run: |

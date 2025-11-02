@@ -153,14 +153,20 @@ jobs:
           set -e
           echo "🔐 Gerando key.properties e configurando assinatura..."
 
+          # Armazena secrets em variáveis shell
+          KEYSTORE_B64="${{ secrets.ANDROID_KEYSTORE_B64 }}"
+          STORE_PASS="${{ secrets.KEYSTORE_PASSWORD }}"
+          KEY_PASS="${{ secrets.KEY_PASSWORD }}"
+          KEY_ALIAS="${{ secrets.KEY_ALIAS }}"
+
           # Recria o arquivo JKS a partir do Base64
-          echo "${{ secrets.ANDROID_KEYSTORE_B64 }}" | base64 -d > android/app/upload-keystore.jks
+          echo "$KEYSTORE_B64" | base64 -d > android/app/upload-keystore.jks
 
           # Cria o arquivo key.properties
-          cat > android/key.properties <<'EOF'
-storePassword=${{ secrets.KEYSTORE_PASSWORD }}
-keyPassword=${{ secrets.KEY_PASSWORD }}
-keyAlias=${{ secrets.KEY_ALIAS }}
+          cat > android/key.properties <<EOF
+storePassword=$STORE_PASS
+keyPassword=$KEY_PASS
+keyAlias=$KEY_ALIAS
 storeFile=upload-keystore.jks
 EOF
 

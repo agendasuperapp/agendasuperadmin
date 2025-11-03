@@ -83,7 +83,15 @@ class _CpAgendamentoHistoricoWidgetState
           }(),
         ),
         decoration: BoxDecoration(
-          color: FlutterFlowTheme.of(context).primaryBackground,
+          gradient: LinearGradient(
+            colors: [
+              FlutterFlowTheme.of(context).colorGradPage1,
+              FlutterFlowTheme.of(context).colorGradPage2
+            ],
+            stops: [0.0, 1.0],
+            begin: AlignmentDirectional(0.0, -1.0),
+            end: AlignmentDirectional(0, 1.0),
+          ),
           borderRadius: BorderRadius.only(
             bottomLeft: Radius.circular(valueOrDefault<double>(
               () {

@@ -338,23 +338,14 @@ class _CpConfiguracoesWidgetState extends State<CpConfiguracoesWidget>
             width: MediaQuery.sizeOf(context).width * 1.0,
             height: MediaQuery.sizeOf(context).height * 1.0,
             decoration: BoxDecoration(
-              color: FlutterFlowTheme.of(context).secondaryBackground,
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: Image.network(
-                  () {
-                    if (Theme.of(context).brightness == Brightness.dark) {
-                      return 'sem foto, usar a cor do container';
-                    } else if (_model.varImagemBlacground != null &&
-                        _model.varImagemBlacground != '') {
-                      return _model.varImagemBlacground!;
-                    } else {
-                      return FFAppState()
-                          .VarTblEstabelecimentoLogado
-                          .fotoLightMode;
-                    }
-                  }(),
-                ).image,
+              gradient: LinearGradient(
+                colors: [
+                  FlutterFlowTheme.of(context).colorGradPage1,
+                  FlutterFlowTheme.of(context).colorGradPage2
+                ],
+                stops: [0.0, 1.0],
+                begin: AlignmentDirectional(0.0, -1.0),
+                end: AlignmentDirectional(0, 1.0),
               ),
             ),
             child: Align(

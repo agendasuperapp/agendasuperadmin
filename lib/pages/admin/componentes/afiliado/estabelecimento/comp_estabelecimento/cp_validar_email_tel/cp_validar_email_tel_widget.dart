@@ -156,7 +156,15 @@ class _CpValidarEmailTelWidgetState extends State<CpValidarEmailTelWidget>
               maxWidth: 550.0,
             ),
             decoration: BoxDecoration(
-              color: FlutterFlowTheme.of(context).secondaryBackground,
+              gradient: LinearGradient(
+                colors: [
+                  FlutterFlowTheme.of(context).colorGradPage1,
+                  FlutterFlowTheme.of(context).colorGradient2
+                ],
+                stops: [0.0, 1.0],
+                begin: AlignmentDirectional(0.0, -1.0),
+                end: AlignmentDirectional(0, 1.0),
+              ),
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(valueOrDefault<double>(
                   () {

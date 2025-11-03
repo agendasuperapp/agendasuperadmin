@@ -154,8 +154,6 @@ class _PgAfiliadoComissoesMensaisWidgetState
                     Expanded(
                       child: Container(
                         decoration: BoxDecoration(
-                          color:
-                              FlutterFlowTheme.of(context).secondaryBackground,
                           image: DecorationImage(
                             fit: BoxFit.cover,
                             image: Image.network(
@@ -165,6 +163,15 @@ class _PgAfiliadoComissoesMensaisWidgetState
                                       .VarTblEstabelecimentoLogado
                                       .fotoLightMode,
                             ).image,
+                          ),
+                          gradient: LinearGradient(
+                            colors: [
+                              FlutterFlowTheme.of(context).colorGradPage1,
+                              FlutterFlowTheme.of(context).colorGradPage2
+                            ],
+                            stops: [0.0, 1.0],
+                            begin: AlignmentDirectional(0.0, -1.0),
+                            end: AlignmentDirectional(0, 1.0),
                           ),
                         ),
                         child: Column(

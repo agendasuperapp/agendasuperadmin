@@ -201,14 +201,14 @@ class _CpCadPlanosPrecosWidgetState extends State<CpCadPlanosPrecosWidget>
               maxHeight: 1000.0,
             ),
             decoration: BoxDecoration(
-              color: FlutterFlowTheme.of(context).secondaryBackground,
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: Image.network(
-                  Theme.of(context).brightness == Brightness.dark
-                      ? 'sem foto, usar a cor do container'
-                      : FFAppState().VarTblEstabelecimentoLogado.fotoLightMode,
-                ).image,
+              gradient: LinearGradient(
+                colors: [
+                  FlutterFlowTheme.of(context).colorGradient1,
+                  FlutterFlowTheme.of(context).colorGradient2
+                ],
+                stops: [0.0, 1.0],
+                begin: AlignmentDirectional(0.0, -1.0),
+                end: AlignmentDirectional(0, 1.0),
               ),
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(valueOrDefault<double>(

@@ -33,7 +33,7 @@ class _PgLoginWidgetState extends State<PgLoginWidget> {
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      await showModalBottomSheet(
+      showModalBottomSheet(
         isScrollControlled: true,
         backgroundColor: Colors.transparent,
         isDismissible: false,

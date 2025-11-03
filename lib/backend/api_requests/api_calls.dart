@@ -929,6 +929,8 @@ class SupabaseGroup {
       ViewtblestabelecimentosadminCall();
   static ViewtblpagamentosstripelogCall viewtblpagamentosstripelogCall =
       ViewtblpagamentosstripelogCall();
+  static UserLoginCall userLoginCall = UserLoginCall();
+  static UserLogoutCall userLogoutCall = UserLogoutCall();
 }
 
 class UpdateUserCall {
@@ -1086,6 +1088,93 @@ class ViewtblpagamentosstripelogCall {
           .map((x) => castToType<int>(x))
           .withoutNulls
           .toList();
+}
+
+class UserLoginCall {
+  Future<ApiCallResponse> call({
+    String? email = '',
+    String? password = '',
+    String? token =
+        'eyJhbGciOiJIUzI1NiIsImtpZCI6IkZLdFM5emVrUExJOUxSMkQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2h6bWl4dXZybnpweXByaWFnZWN2LnN1cGFiYXNlLmNvL2F1dGgvdjEiLCJzdWIiOiIxYTM5ZDFlNS0wMGM1LTRkZDYtYjRhNy0zOTA2YzBjMzNkZGUiLCJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNzUyNjkxNjEyLCJpYXQiOjE3NTI2ODgwMTIsImVtYWlsIjoiaGVyc29hcmVzMTJAZ21haWwuY29tIiwicGhvbmUiOiIiLCJhcHBfbWV0YWRhdGEiOnsicHJvdmlkZXIiOiJlbWFpbCIsInByb3ZpZGVycyI6WyJlbWFpbCIsImdvb2dsZSJdfSwidXNlcl9tZXRhZGF0YSI6eyJhdmF0YXJfdXJsIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jS1g1YjVZaElvWHA4NVNudWVUWDFId3JSeXRaWHNtVVM5cm5lRklrR010T1B6MUs4RktzZz1zOTYtYyIsImVtYWlsIjoiaGVyc29hcmVzMTJAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZ1bGxfbmFtZSI6Ikhlcm9uIFNvYXJlcyIsImlzcyI6Imh0dHBzOi8vYWNjb3VudHMuZ29vZ2xlLmNvbSIsIm5hbWUiOiJIZXJvbiBTb2FyZXMiLCJwaG9uZV92ZXJpZmllZCI6ZmFsc2UsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NLWDViNVloSW9YcDg1U251ZVRYMUh3clJ5dFpYc21VUzlybmVGSWtHTXRPUHoxSzhGS3NnPXM5Ni1jIiwicHJvdmlkZXJfaWQiOiIxMDYyNDQwNDg3MjI3NjY3MzU0MDciLCJzdWIiOiIxMDYyNDQwNDg3MjI3NjY3MzU0MDcifSwicm9sZSI6ImF1dGhlbnRpY2F0ZWQiLCJhYWwiOiJhYWwxIiwiYW1yIjpbeyJtZXRob2QiOiJwYXNzd29yZCIsInRpbWVzdGFtcCI6MTc1MjY4ODAxMn1dLCJzZXNzaW9uX2lkIjoiYjUxZWU1NWEtNWFiMi00ZDg2LWI1MGEtYzU0NzJkOGMzNjg3IiwiaXNfYW5vbnltb3VzIjpmYWxzZX0.k0sC9IvKbsDcPaclcXTo5suj6_WfKKIEpdM9RPzDb2E',
+  }) async {
+    final baseUrl = SupabaseGroup.getBaseUrl(
+      token: token,
+    );
+
+    final ffApiRequestBody = '''
+{
+  "email": "${escapeStringForJson(email)}",
+  "password": "${escapeStringForJson(password)}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'User login',
+      apiUrl: '${baseUrl}/auth/v1/token?grant_type=password',
+      callType: ApiCallType.POST,
+      headers: {
+        'apikey':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh6bWl4dXZybnpweXByaWFnZWN2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjQ5NjkzMTQsImV4cCI6MjA0MDU0NTMxNH0.VHtjYivpM8c9RLmKimwRiLgnb8zqGrZ88Q8vpVLZcZ0',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ${token}',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+
+  String? errorcode(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.error_code''',
+      ));
+  int? code(dynamic response) => castToType<int>(getJsonField(
+        response,
+        r'''$.code''',
+      ));
+  String? msg(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.msg''',
+      ));
+  String? accesstoken(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.access_token''',
+      ));
+}
+
+class UserLogoutCall {
+  Future<ApiCallResponse> call({
+    String? token =
+        'eyJhbGciOiJIUzI1NiIsImtpZCI6IkZLdFM5emVrUExJOUxSMkQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2h6bWl4dXZybnpweXByaWFnZWN2LnN1cGFiYXNlLmNvL2F1dGgvdjEiLCJzdWIiOiIxYTM5ZDFlNS0wMGM1LTRkZDYtYjRhNy0zOTA2YzBjMzNkZGUiLCJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNzUyNjkxNjEyLCJpYXQiOjE3NTI2ODgwMTIsImVtYWlsIjoiaGVyc29hcmVzMTJAZ21haWwuY29tIiwicGhvbmUiOiIiLCJhcHBfbWV0YWRhdGEiOnsicHJvdmlkZXIiOiJlbWFpbCIsInByb3ZpZGVycyI6WyJlbWFpbCIsImdvb2dsZSJdfSwidXNlcl9tZXRhZGF0YSI6eyJhdmF0YXJfdXJsIjoiaHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jS1g1YjVZaElvWHA4NVNudWVUWDFId3JSeXRaWHNtVVM5cm5lRklrR010T1B6MUs4RktzZz1zOTYtYyIsImVtYWlsIjoiaGVyc29hcmVzMTJAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZ1bGxfbmFtZSI6Ikhlcm9uIFNvYXJlcyIsImlzcyI6Imh0dHBzOi8vYWNjb3VudHMuZ29vZ2xlLmNvbSIsIm5hbWUiOiJIZXJvbiBTb2FyZXMiLCJwaG9uZV92ZXJpZmllZCI6ZmFsc2UsInBpY3R1cmUiOiJodHRwczovL2xoMy5nb29nbGV1c2VyY29udGVudC5jb20vYS9BQ2c4b2NLWDViNVloSW9YcDg1U251ZVRYMUh3clJ5dFpYc21VUzlybmVGSWtHTXRPUHoxSzhGS3NnPXM5Ni1jIiwicHJvdmlkZXJfaWQiOiIxMDYyNDQwNDg3MjI3NjY3MzU0MDciLCJzdWIiOiIxMDYyNDQwNDg3MjI3NjY3MzU0MDcifSwicm9sZSI6ImF1dGhlbnRpY2F0ZWQiLCJhYWwiOiJhYWwxIiwiYW1yIjpbeyJtZXRob2QiOiJwYXNzd29yZCIsInRpbWVzdGFtcCI6MTc1MjY4ODAxMn1dLCJzZXNzaW9uX2lkIjoiYjUxZWU1NWEtNWFiMi00ZDg2LWI1MGEtYzU0NzJkOGMzNjg3IiwiaXNfYW5vbnltb3VzIjpmYWxzZX0.k0sC9IvKbsDcPaclcXTo5suj6_WfKKIEpdM9RPzDb2E',
+  }) async {
+    final baseUrl = SupabaseGroup.getBaseUrl(
+      token: token,
+    );
+
+    return ApiManager.instance.makeApiCall(
+      callName: 'User logout',
+      apiUrl: '${baseUrl}/auth/v1/logout',
+      callType: ApiCallType.POST,
+      headers: {
+        'apikey':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh6bWl4dXZybnpweXByaWFnZWN2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjQ5NjkzMTQsImV4cCI6MjA0MDU0NTMxNH0.VHtjYivpM8c9RLmKimwRiLgnb8zqGrZ88Q8vpVLZcZ0',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ${token}',
+      },
+      params: {},
+      bodyType: BodyType.NONE,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
 }
 
 /// End Supabase Group Code

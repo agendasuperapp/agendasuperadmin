@@ -179,6 +179,20 @@ jobs:
             }1' android/app/build.gradle > android/app/build.gradle.tmp && mv android/app/build.gradle.tmp android/app/build.gradle
           fi
 
+        # 1️⃣7️⃣ Ícones e ID
+      - name: 🎨 Personalizar ícones e assets
+        run: |
+          sed -i "s/applicationId \".*\"/applicationId \"${{ env.APP_ID_ANDROID }}\"/" android/app/build.gradle
+          ICON_PATH=".github/overlays/icons/${{ matrix.target.name }}/ic_launcher.png"
+          ASSETS_PATH=".github/overlays/icons/${{ matrix.target.name }}/assets_images"
+          for dir in android/app/src/main/res/mipmap-*; do
+            cp "$ICON_PATH" "$dir/ic_launcher.png" || true
+          done
+          if [ -d "$ASSETS_PATH" ]; then
+            mkdir -p assets/images
+            cp -r "$ASSETS_PATH/"* assets/images/ || true
+          fi
+
       # 1️⃣7️⃣½ Corrigir nome do app no AndroidManifest.xml
       - name: 📝 Corrigir nome do app no AndroidManifest.xml
         run: |

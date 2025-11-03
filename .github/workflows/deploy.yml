@@ -203,7 +203,8 @@ jobs:
           echo "🏗️ Iniciando build otimizado ARM64..."
           flutter build apk --release --target-platform android-arm64 --split-per-abi
           VERSION=${{ env.VERSION }}
-          FINAL_APK="build/app/outputs/flutter-apk/${{ env.APPNAME }}_${VERSION}_arm64.apk"
+          SAFE_APPNAME=$(echo "${{ env.APPNAME }}" | tr ' ' '_')
+          FINAL_APK="build/app/outputs/flutter-apk/${SAFE_APPNAME}_${VERSION}_arm64.apk"
           mv build/app/outputs/flutter-apk/app-arm64-v8a-release.apk "$FINAL_APK"
           echo "✅ APK final: $FINAL_APK"
           ls -lh build/app/outputs/flutter-apk/
@@ -212,8 +213,9 @@ jobs:
       - name: 🧠 Otimizar APK com zipalign e AAPT2
         run: |
           VERSION=${{ env.VERSION }}
-          FINAL_APK="build/app/outputs/flutter-apk/${{ env.APPNAME }}_${VERSION}_arm64.apk"
-          OPT_APK="build/app/outputs/flutter-apk/${{ env.APPNAME }}_${VERSION}_opt.apk"
+          SAFE_APPNAME=$(echo "${{ env.APPNAME }}" | tr ' ' '_')
+          FINAL_APK="build/app/outputs/flutter-apk/${SAFE_APPNAME}_${VERSION}_arm64.apk"
+          OPT_APK="build/app/outputs/flutter-apk/${SAFE_APPNAME}_${VERSION}_opt.apk"
           zipalign -f -v 4 "$FINAL_APK" "$OPT_APK"
           mv "$OPT_APK" "$FINAL_APK"
           echo "✅ APK otimizado e alinhado!"
@@ -222,14 +224,25 @@ jobs:
       - name: ☁️ Enviar APK para Hostinger
         run: |
           VERSION=${{ env.VERSION }}
-          APK_FILE="build/app/outputs/flutter-apk/${{ env.APPNAME }}_${VERSION}_arm64.apk"
-          APK_REMOTE_PATH="apk/${{ env.APPNAME }}_${VERSION}_arm64.apk"
+          SAFE_APPNAME=$(echo "${{ env.APPNAME }}" | tr ' ' '_' )
+          APK_FILE="build/app/outputs/flutter-apk/${SAFE_APPNAME}_${VERSION}_arm64.apk"
+          APK_REMOTE_PATH="apk/${SAFE_APPNAME}_${VERSION}_arm64.apk"
+
+          if [ ! -f "$APK_FILE" ]; then
+            echo "❌ Arquivo APK não encontrado: $APK_FILE"
+            ls -lh build/app/outputs/flutter-apk/
+            exit 1
+          fi
+
+          echo "📤 Enviando ${APK_FILE} → ${APK_REMOTE_PATH}"
           lftp -u "${{ secrets[ matrix.target.ftp_user ] }}","${{ secrets[ matrix.target.ftp_pass ] }}" "ftp://${{ secrets[ matrix.target.ftp_server ] }}" -e "
             set ftp:ssl-allow no;
             mkdir -p ${{ secrets[ matrix.target.ftp_dir ] }}/apk;
-            put ${APK_FILE} -o ${{ secrets[ matrix.target.ftp_dir ] }}/${APK_REMOTE_PATH};
+            cd ${{ secrets[ matrix.target.ftp_dir ] }}/apk;
+            put \"$APK_FILE\" -o \"$APK_REMOTE_PATH\";
             bye
           "
+          echo "✅ Upload APK concluído com sucesso!"
 
       # 2️⃣1️⃣ Supabase APK
       - name: 💾 Registrar versão APK no Supabase

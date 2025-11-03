@@ -163,14 +163,19 @@ jobs:
           mkdir -p lib/custom_code/actions
           cp -r .github/overlays/custom_codes/* lib/custom_code/actions/
 
-      # 1️⃣6️⃣ Ícones e app ID
-      - name: 🎨 Personalizar ícones e applicationId
+      # 1️⃣6️⃣ Ícones e app ID e assets
+      - name: 🎨 Personalizar ícones e applicationId e assets
         run: |
           sed -i "s/applicationId \".*\"/applicationId \"${{ env.APP_ID_ANDROID }}\"/" android/app/build.gradle
           ICON_PATH=".github/overlays/icons/${{ matrix.target.name }}/ic_launcher.png"
+          ASSETS_PATH=".github/overlays/icons/${{ matrix.target.name }}/assets_images"
           for dir in android/app/src/main/res/mipmap-*; do
             cp "$ICON_PATH" "$dir/ic_launcher.png" || true
           done
+          if [ -d "$ASSETS_PATH" ]; then
+            mkdir -p assets/images
+            cp -r "$ASSETS_PATH/"* assets/images/ || true
+          fi
 
       # 1️⃣7️⃣ Corrigir nome no Manifest
       - name: 📝 Corrigir nome no AndroidManifest.xml

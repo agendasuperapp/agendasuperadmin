@@ -178,27 +178,28 @@ jobs:
           mkdir -p lib/custom_code/actions
           cp -r .github/overlays/custom_codes/* lib/custom_code/actions/
 
-# 1️⃣6️⃣ Otimizar build.gradle (minify + shrink)
-- name: 🧩 Ativar minify e shrinkResources se ausentes
-  run: |
-    echo "🔧 Verificando bloco release no build.gradle..."
-    if grep -q "buildTypes" android/app/build.gradle; then
-      if ! grep -q "minifyEnabled true" android/app/build.gradle; then
-        echo "🧠 Ativando minifyEnabled e shrinkResources corretamente..."
+      # 1️⃣6️⃣ Otimizar build.gradle (minify + shrink)
+      - name: 🧩 Ativar minify e shrinkResources se ausentes
+        run: |
+          echo "🔧 Verificando bloco release no build.gradle..."
+          if grep -q "buildTypes" android/app/build.gradle; then
+          if ! grep -q "minifyEnabled true" android/app/build.gradle; then
+            echo "🧠 Ativando minifyEnabled e shrinkResources corretamente..."
         # insere após a linha 'release {' dentro de buildTypes
-        awk '/release[[:space:]]*\{/ {
-              print;
-              print "        minifyEnabled true";
-              print "        shrinkResources true";
-              print "        useProguard false";
-              next
-            }1' android/app/build.gradle > android/app/build.gradle.tmp && mv android/app/build.gradle.tmp android/app/build.gradle
+          awk '/release[[:space:]]*\{/ {
+          print;
+          print "        minifyEnabled true";
+          print "        shrinkResources true";
+          print "        useProguard false";
+          next
+        }1' android/app/build.gradle > android/app/build.gradle.tmp && mv android/app/build.gradle.tmp android/app/build.gradle
       else
         echo "✅ minifyEnabled já configurado, nenhuma modificação feita."
       fi
     else
       echo "⚠️ buildTypes não encontrado, sem alterações."
     fi
+
 
 
       # 1️⃣7️⃣ Ajustar applicationId e ícones

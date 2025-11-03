@@ -221,7 +221,13 @@ jobs:
             -H "Content-Type: application/json" \
             -d "{\"versao\": \"${{ env.VERSION }}\", \"descricao\": \"${DESC}\", \"id_app\": ${APP_ID}, \"status\": \"OK\", \"sistema_op\": \"APK\"}"
 
-      # 2️⃣1️⃣ Notificação por e-mail
+      # 2️⃣1️⃣ Obter data formatada
+      - name: 🕒 Obter data formatada
+        run: |
+          CURRENT_DATE=$(date '+%d/%m/%Y %H:%M:%S')
+          echo "CURRENT_DATE=$CURRENT_DATE" >> $GITHUB_ENV
+
+      # 2️⃣2️⃣ Enviar e-mail de conclusão
       - name: ✉️ Enviar e-mail de conclusão
         uses: dawidd6/action-send-mail@v3
         with:
@@ -234,9 +240,10 @@ jobs:
           to: "hersoares12@gmail.com, contatoagendasuper@gmail.com, gerenciavendasdigitais2@gmail.com"
           from: "Deploy Automático <${{ secrets.MAIL_USER }}>"
           body: |
-            ✅ Deploy concluído para APP ${{ matrix.target.name }}
-            🌐 Versão: ${{ env.VERSION }}
-            📅 Data: $(date '+%d/%m/%Y %H:%M:%S')
-            🔧 Status: ${{ job.status }}
-            🌎 Site: ${{ env.SITE }}
-            📦 Aplicativo: ${{ env.APPNAME }}
+            ✅ Deploy concluído para APP **${{ matrix.target.name }}**
+            🌐 Versão: **${{ env.VERSION }}**
+            📅 Data: **${{ env.CURRENT_DATE }}**
+            🔧 Status: **${{ job.status }}**
+            🌎 Site: **${{ env.SITE }}**
+            📦 Aplicativo: **${{ env.APPNAME }}**
+

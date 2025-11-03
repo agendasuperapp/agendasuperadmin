@@ -63,7 +63,7 @@ jobs:
           flutter pub get
           mkdir -p temp/${{ matrix.target.name }}
 
-      # 6️⃣ Variáveis
+      # 6️⃣ Variáveis globais
       - name: 🧠 Definir variáveis globais
         run: |
           case "${{ matrix.target.name }}" in
@@ -116,7 +116,7 @@ jobs:
           sed -i "s/const appVersion = \".*\";/const appVersion = \"${VERSION}\";/g" "${TEMP_DIR}/index.html"
           echo "VERSION=${VERSION}" >> $GITHUB_ENV
 
-      # 1️⃣2️⃣ FTP (Web)
+      # 1️⃣2️⃣ FTP Web
       - name: 🚀 Publicar site via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
@@ -132,7 +132,7 @@ jobs:
           dangerous-clean-slate: false
           sync-mode: update
 
-      # 1️⃣3️⃣ Supabase WEB
+      # 1️⃣3️⃣ Registrar versão WEB
       - name: 💾 Registrar versão WEB no Supabase
         run: |
           DESC="${{ github.event.head_commit.message }}"
@@ -145,7 +145,7 @@ jobs:
             -H "Content-Type: application/json" \
             -d "{\"versao\": \"${{ env.VERSION }}\", \"descricao\": \"${DESC}\", \"id_app\": ${APP_ID}, \"status\": \"OK\", \"sistema_op\": \"WEB\"}"
 
-      # 1️⃣4️⃣ Assinatura
+      # 1️⃣4️⃣ Configurar assinatura
       - name: 🔐 Configurar assinatura Android
         run: |
           echo "${{ secrets.ANDROID_KEYSTORE_B64 }}" | base64 -d > android/app/upload-keystore.jks
@@ -156,13 +156,13 @@ jobs:
             echo "storeFile=upload-keystore.jks"
           } > android/key.properties
 
-      # 1️⃣5️⃣ Custom Codes (APK)
+      # 1️⃣5️⃣ Custom Codes
       - name: 🔄 Aplicar custom codes overlay
         run: |
           mkdir -p lib/custom_code/actions
           cp -r .github/overlays/custom_codes/* lib/custom_code/actions/
 
-      # 1️⃣6️⃣ minify + shrink corrigido
+      # 1️⃣6️⃣ minify + shrink
       - name: 🧩 Ativar minify e shrinkResources
         run: |
           echo "🔧 Otimizando buildTypes.release..."
@@ -205,16 +205,18 @@ jobs:
           echo "✅ APK final: $FINAL_APK"
           ls -lh build/app/outputs/flutter-apk/
 
-      # 1️⃣9️⃣ ZipAlign
+      # 1️⃣9️⃣ ZipAlign (corrigido)
       - name: 🧠 Otimizar APK com zipalign
         run: |
           VERSION=${{ env.VERSION }}
           SAFE_APPNAME=$(echo "${{ env.APPNAME }}" | tr ' ' '_' )
           FINAL_APK="build/app/outputs/flutter-apk/${SAFE_APPNAME}_${VERSION}_arm64.apk"
-          zipalign -f -v 4 "$FINAL_APK" "$FINAL_APK"
-          echo "✅ APK otimizado e alinhado!"
+          ALIGNED_APK="build/app/outputs/flutter-apk/${SAFE_APPNAME}_${VERSION}_aligned.apk"
+          zipalign -f -v 4 "$FINAL_APK" "$ALIGNED_APK"
+          mv "$ALIGNED_APK" "$FINAL_APK"
+          echo "✅ APK alinhado e otimizado!"
 
-      # 2️⃣0️⃣ Upload FTP (sem aspas no put)
+      # 2️⃣0️⃣ Upload FTP
       - name: ☁️ Enviar APK para Hostinger
         run: |
           VERSION=${{ env.VERSION }}
@@ -238,7 +240,7 @@ jobs:
           "
           echo "✅ Upload APK concluído com sucesso!"
 
-      # 2️⃣1️⃣ Supabase APK
+      # 2️⃣1️⃣ Registrar versão APK
       - name: 💾 Registrar versão APK no Supabase
         run: |
           DESC="${{ github.event.head_commit.message }}"

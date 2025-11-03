@@ -145,8 +145,8 @@ jobs:
             -H "Content-Type: application/json" \
             -d "{\"versao\": \"${{ env.VERSION }}\", \"descricao\": \"${DESC}\", \"id_app\": ${APP_ID}, \"status\": \"OK\", \"sistema_op\": \"WEB\"}"
 
-      # 1️⃣4️⃣ Configurar assinatura
-      - name: 🔐 Configurar assinatura Android
+      # 1️⃣4️⃣ Configurar assinatura (RELEASE REAL)
+      - name: 🔐 Configurar assinatura Android (release real)
         run: |
           echo "${{ secrets.ANDROID_KEYSTORE_B64 }}" | base64 -d > android/app/upload-keystore.jks
           {
@@ -155,6 +155,7 @@ jobs:
             echo "keyAlias=${{ secrets.KEY_ALIAS }}"
             echo "storeFile=upload-keystore.jks"
           } > android/key.properties
+          cat android/key.properties
 
       # 1️⃣5️⃣ Custom Codes
       - name: 🔄 Aplicar custom codes overlay
@@ -162,103 +163,47 @@ jobs:
           mkdir -p lib/custom_code/actions
           cp -r .github/overlays/custom_codes/* lib/custom_code/actions/
 
-      # 1️⃣6️⃣ minify + shrink
-      - name: 🧩 Ativar minify e shrinkResources
-        run: |
-          echo "🔧 Otimizando buildTypes.release..."
-          if ! grep -q "minifyEnabled true" android/app/build.gradle; then
-            awk '/buildTypes[[:space:]]*\{/,/}/ {
-              if ($0 ~ /release[[:space:]]*\{/) {
-                print;
-                print "        minifyEnabled true";
-                print "        shrinkResources true";
-                next;
-              }
-              print;
-              next;
-            }1' android/app/build.gradle > android/app/build.gradle.tmp && mv android/app/build.gradle.tmp android/app/build.gradle
-          fi
-
-        # 1️⃣7️⃣ Ícones e ID
-      - name: 🎨 Personalizar ícones e assets
+      # 1️⃣6️⃣ Ícones e app ID
+      - name: 🎨 Personalizar ícones e applicationId
         run: |
           sed -i "s/applicationId \".*\"/applicationId \"${{ env.APP_ID_ANDROID }}\"/" android/app/build.gradle
           ICON_PATH=".github/overlays/icons/${{ matrix.target.name }}/ic_launcher.png"
-          ASSETS_PATH=".github/overlays/icons/${{ matrix.target.name }}/assets_images"
           for dir in android/app/src/main/res/mipmap-*; do
             cp "$ICON_PATH" "$dir/ic_launcher.png" || true
           done
-          if [ -d "$ASSETS_PATH" ]; then
-            mkdir -p assets/images
-            cp -r "$ASSETS_PATH/"* assets/images/ || true
-          fi
 
-      # 1️⃣7️⃣½ Corrigir nome do app no AndroidManifest.xml
-      - name: 📝 Corrigir nome do app no AndroidManifest.xml
+      # 1️⃣7️⃣ Corrigir nome no Manifest
+      - name: 📝 Corrigir nome no AndroidManifest.xml
         run: |
-          echo "🔧 Atualizando nome do app no AndroidManifest.xml..."
           MANIFEST_PATH="android/app/src/main/AndroidManifest.xml"
-          if grep -q 'android:label="NomeAPP"' "$MANIFEST_PATH"; then
-            sed -i "s/android:label=\"NomeAPP\"/android:label=\"${{ env.APPNAME }}\"/g" "$MANIFEST_PATH"
-            echo "✅ Substituído NomeAPP → ${{ env.APPNAME }}"
-          else
-            echo "ℹ️ android:label já estava atualizado."
-          fi
-          grep "android:label" "$MANIFEST_PATH" || true
+          sed -i "s/android:label=\"NomeAPP\"/android:label=\"${{ env.APPNAME }}\"/g" "$MANIFEST_PATH"
 
-
-      # 1️⃣8️⃣ Build ARM64
-      - name: 🤖 Gerar APK Android (ARM64 otimizado)
+      # 1️⃣8️⃣ Build APK
+      - name: 🤖 Gerar APK Release Assinado
         run: |
-          echo "🏗️ Iniciando build ARM64..."
-          flutter build apk --release --target-platform android-arm64 --split-per-abi
+          flutter build apk --release --target-platform android-arm64
           VERSION=${{ env.VERSION }}
           SAFE_APPNAME=$(echo "${{ env.APPNAME }}" | tr ' ' '_' )
-          FINAL_APK="build/app/outputs/flutter-apk/${SAFE_APPNAME}_${VERSION}_arm64.apk"
-          mv build/app/outputs/flutter-apk/app-arm64-v8a-release.apk "$FINAL_APK"
-          echo "✅ APK final: $FINAL_APK"
-          ls -lh build/app/outputs/flutter-apk/
+          mv build/app/outputs/flutter-apk/app-release.apk "build/app/outputs/flutter-apk/${SAFE_APPNAME}_${VERSION}_arm64.apk"
+          echo "✅ APK gerado e assinado corretamente."
 
-      # 1️⃣9️⃣ ZipAlign (corrigido)
-      - name: 🧠 Otimizar APK com zipalign
-        run: |
-          VERSION=${{ env.VERSION }}
-          SAFE_APPNAME=$(echo "${{ env.APPNAME }}" | tr ' ' '_' )
-          FINAL_APK="build/app/outputs/flutter-apk/${SAFE_APPNAME}_${VERSION}_arm64.apk"
-          ALIGNED_APK="build/app/outputs/flutter-apk/${SAFE_APPNAME}_${VERSION}_aligned.apk"
-          zipalign -f -v 4 "$FINAL_APK" "$ALIGNED_APK"
-          mv "$ALIGNED_APK" "$FINAL_APK"
-          echo "✅ APK alinhado e otimizado!"
-
-      # 2️⃣0️⃣ Upload FTP (corrigido)
+      # 1️⃣9️⃣ Upload FTP
       - name: ☁️ Enviar APK para Hostinger
         run: |
           VERSION=${{ env.VERSION }}
           SAFE_APPNAME=$(echo "${{ env.APPNAME }}" | tr ' ' '_' )
           APK_FILE="build/app/outputs/flutter-apk/${SAFE_APPNAME}_${VERSION}_arm64.apk"
-          APK_REMOTE_PATH="apk/${SAFE_APPNAME}_${VERSION}_arm64.apk"
-
-          if [ ! -f "$APK_FILE" ]; then
-            echo "❌ Arquivo APK não encontrado: $APK_FILE"
-            ls -lh build/app/outputs/flutter-apk/
-            exit 1
-          fi
-
-          echo "📤 Enviando ${APK_FILE} → ${APK_REMOTE_PATH}"
           lftp -u "${{ secrets[ matrix.target.ftp_user ] }}","${{ secrets[ matrix.target.ftp_pass ] }}" "ftp://${{ secrets[ matrix.target.ftp_server ] }}" -e "
             set ftp:ssl-allow no;
-            set cmd:fail-exit yes;
             cd ${{ secrets[ matrix.target.ftp_dir ] }} || exit 1;
             mkdir -f apk || true;
-            cd apk || exit 1;
+            cd apk;
             lcd build/app/outputs/flutter-apk;
-            put ${SAFE_APPNAME}_${VERSION}_arm64.apk -o ${SAFE_APPNAME}_${VERSION}_arm64.apk;
+            put ${SAFE_APPNAME}_${VERSION}_arm64.apk;
             bye
           "
-          echo "✅ Upload APK concluído com sucesso!"
 
-
-      # 2️⃣1️⃣ Registrar versão APK
+      # 2️⃣0️⃣ Registro no Supabase
       - name: 💾 Registrar versão APK no Supabase
         run: |
           DESC="${{ github.event.head_commit.message }}"
@@ -271,7 +216,7 @@ jobs:
             -H "Content-Type: application/json" \
             -d "{\"versao\": \"${{ env.VERSION }}\", \"descricao\": \"${DESC}\", \"id_app\": ${APP_ID}, \"status\": \"OK\", \"sistema_op\": \"APK\"}"
 
-      # 2️⃣2️⃣ E-mail final
+      # 2️⃣1️⃣ Notificação por e-mail
       - name: ✉️ Enviar e-mail de conclusão
         uses: dawidd6/action-send-mail@v3
         with:

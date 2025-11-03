@@ -200,53 +200,47 @@ jobs:
       - name: 🎨 Personalizar ícones e assets (APK)
         run: |
           echo "🎨 Substituindo ícones e assets para ${{ matrix.target.name }}"
-
           ICON_PATH=".github/overlays/icons/${{ matrix.target.name }}/ic_launcher.png"
           ASSETS_PATH=".github/overlays/icons/${{ matrix.target.name }}/assets_images"
-
           if [ -f "$ICON_PATH" ]; then
-            echo "🖼️ Copiando ícones para todas as pastas mipmap..."
             for dir in android/app/src/main/res/mipmap-*; do
               cp "$ICON_PATH" "$dir/ic_launcher.png" || true
             done
-          else
-            echo "⚠️ Nenhum ícone encontrado em $ICON_PATH"
           fi
-
           if [ -d "$ASSETS_PATH" ]; then
-            echo "🗂️ Substituindo imagens da pasta assets/images..."
             mkdir -p assets/images
             cp -r "$ASSETS_PATH/"* assets/images/ || true
-          else
-            echo "⚠️ Nenhuma pasta encontrada em $ASSETS_PATH"
           fi
-
           echo "✅ Personalização de ícones e assets concluída!"
 
       # 1️⃣5️⃣ Build APK (release)
       - name: 🤖 Gerar APK Android (modo release)
         run: |
           flutter build apk --release
-
-          # Renomear APK final com nome e versão
           VERSION=${{ env.VERSION }}
           FINAL_APK="build/app/outputs/flutter-apk/${{ matrix.target.name }}_${VERSION}.apk"
           mv build/app/outputs/flutter-apk/app-release.apk "$FINAL_APK"
           echo "✅ APK final gerado: $FINAL_APK"
           ls -lh build/app/outputs/flutter-apk/
 
-
       # 1️⃣6️⃣ Enviar APK para hospedagem
       - name: ☁️ Enviar APK para Hostinger
         run: |
-          APK_FILE="build/app/outputs/flutter-apk/app-release.apk"
-          APK_REMOTE_PATH="apk/${{ matrix.target.name }}_${{ env.VERSION }}.apk"
+          VERSION=${{ env.VERSION }}
+          APK_FILE="build/app/outputs/flutter-apk/${{ matrix.target.name }}_${VERSION}.apk"
+          APK_REMOTE_PATH="apk/${{ matrix.target.name }}_${VERSION}.apk"
+          if [ ! -f "$APK_FILE" ]; then
+            echo "❌ APK não encontrado em $APK_FILE"
+            exit 1
+          fi
           lftp -u "${{ secrets[ matrix.target.ftp_user ] }}","${{ secrets[ matrix.target.ftp_pass ] }}" "ftp://${{ secrets[ matrix.target.ftp_server ] }}" -e "
             set ftp:ssl-allow no;
-            mkdir -p ${{ secrets[ matrix.target.ftp_dir ] }}/apk;
-            put ${APK_FILE} -o ${{ secrets[ matrix.target.ftp_dir ] }}/${APK_REMOTE_PATH};
+            mkdir ${{ secrets[ matrix.target.ftp_dir ] }}/apk || true;
+            cd ${{ secrets[ matrix.target.ftp_dir ] }}/apk;
+            put ${APK_FILE} -o ${APK_REMOTE_PATH};
             bye
           "
+          echo "✅ Upload APK concluído com sucesso!"
 
       # 1️⃣7️⃣ Registrar versão no Supabase (APK)
       - name: 💾 Registrar versão APK no Supabase

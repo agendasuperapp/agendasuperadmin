@@ -803,6 +803,7 @@ Future acAtualizarInicializacaoSistema(
   BuildContext context, {
   bool? paramNaoAtualizarTabelas,
 }) async {
+  List<ViewTblAfiliadoAppsRow>? queryConsUrlApk;
   bool? resultVerificarConex;
   List<String>? customDeviceInfo;
   String? resultgetLoadedAppVersionIni;
@@ -811,6 +812,15 @@ Future acAtualizarInicializacaoSistema(
   if (kDebugMode || FFAppState().VarEmDesenvolvimento) {
     FFAppState().varIDAPPAfiliado = 1;
     FFAppState().update(() {});
+  }
+  if (FFAppState().varUrlApk == '') {
+    queryConsUrlApk = await ViewTblAfiliadoAppsTable().queryRows(
+      queryFn: (q) => q.eqOrNull(
+        'id',
+        FFAppState().varIDAPPAfiliado,
+      ),
+    );
+    FFAppState().varUrlApk = queryConsUrlApk.firstOrNull!.urlApk!;
   }
   if ((FFAppState().varCarregouPrimeiraPagina == true) &&
       loggedIn &&

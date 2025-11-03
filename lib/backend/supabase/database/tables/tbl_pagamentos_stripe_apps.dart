@@ -40,8 +40,8 @@ class TblPagamentosStripeAppsRow extends SupabaseDataRow {
   bool? get planoAtivo => getField<bool>('plano_ativo');
   set planoAtivo(bool? value) => setField<bool>('plano_ativo', value);
 
-  int get idAfiliadoIndicador => getField<int>('id_afiliado_indicador')!;
-  set idAfiliadoIndicador(int value) =>
+  int? get idAfiliadoIndicador => getField<int>('id_afiliado_indicador');
+  set idAfiliadoIndicador(int? value) =>
       setField<int>('id_afiliado_indicador', value);
 
   bool get renovacao => getField<bool>('renovacao')!;

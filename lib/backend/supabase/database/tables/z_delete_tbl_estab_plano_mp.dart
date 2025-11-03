@@ -1,19 +1,20 @@
 import '../database.dart';
 
-class TblEstabPlanoMpTable extends SupabaseTable<TblEstabPlanoMpRow> {
+class ZDeleteTblEstabPlanoMpTable
+    extends SupabaseTable<ZDeleteTblEstabPlanoMpRow> {
   @override
-  String get tableName => 'tbl_estab_plano_mp';
+  String get tableName => 'z_delete_tbl_estab_plano_mp';
 
   @override
-  TblEstabPlanoMpRow createRow(Map<String, dynamic> data) =>
-      TblEstabPlanoMpRow(data);
+  ZDeleteTblEstabPlanoMpRow createRow(Map<String, dynamic> data) =>
+      ZDeleteTblEstabPlanoMpRow(data);
 }
 
-class TblEstabPlanoMpRow extends SupabaseDataRow {
-  TblEstabPlanoMpRow(Map<String, dynamic> data) : super(data);
+class ZDeleteTblEstabPlanoMpRow extends SupabaseDataRow {
+  ZDeleteTblEstabPlanoMpRow(Map<String, dynamic> data) : super(data);
 
   @override
-  SupabaseTable get table => TblEstabPlanoMpTable();
+  SupabaseTable get table => ZDeleteTblEstabPlanoMpTable();
 
   int get id => getField<int>('id')!;
   set id(int value) => setField<int>('id', value);

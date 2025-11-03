@@ -1,20 +1,20 @@
 import '../database.dart';
 
-class TblEstabPlanoAssinaturaTable
-    extends SupabaseTable<TblEstabPlanoAssinaturaRow> {
+class ZDeleteTblEstabPlanoAssinaturaTable
+    extends SupabaseTable<ZDeleteTblEstabPlanoAssinaturaRow> {
   @override
-  String get tableName => 'tbl_estab_plano_assinatura';
+  String get tableName => 'z_delete_tbl_estab_plano_assinatura';
 
   @override
-  TblEstabPlanoAssinaturaRow createRow(Map<String, dynamic> data) =>
-      TblEstabPlanoAssinaturaRow(data);
+  ZDeleteTblEstabPlanoAssinaturaRow createRow(Map<String, dynamic> data) =>
+      ZDeleteTblEstabPlanoAssinaturaRow(data);
 }
 
-class TblEstabPlanoAssinaturaRow extends SupabaseDataRow {
-  TblEstabPlanoAssinaturaRow(Map<String, dynamic> data) : super(data);
+class ZDeleteTblEstabPlanoAssinaturaRow extends SupabaseDataRow {
+  ZDeleteTblEstabPlanoAssinaturaRow(Map<String, dynamic> data) : super(data);
 
   @override
-  SupabaseTable get table => TblEstabPlanoAssinaturaTable();
+  SupabaseTable get table => ZDeleteTblEstabPlanoAssinaturaTable();
 
   int get id => getField<int>('id')!;
   set id(int value) => setField<int>('id', value);

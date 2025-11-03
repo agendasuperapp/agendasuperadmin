@@ -22,13 +22,13 @@ class TblAfiliadosAtivDashRow extends SupabaseDataRow {
   set dataCadastro(DateTime value) =>
       setField<DateTime>('data_cadastro', value);
 
-  String get userIdAfiliadoIndicador =>
-      getField<String>('user_id_afiliado_indicador')!;
-  set userIdAfiliadoIndicador(String value) =>
+  String? get userIdAfiliadoIndicador =>
+      getField<String>('user_id_afiliado_indicador');
+  set userIdAfiliadoIndicador(String? value) =>
       setField<String>('user_id_afiliado_indicador', value);
 
-  int get idAfiliadoIndicador => getField<int>('id_afiliado_indicador')!;
-  set idAfiliadoIndicador(int value) =>
+  int? get idAfiliadoIndicador => getField<int>('id_afiliado_indicador');
+  set idAfiliadoIndicador(int? value) =>
       setField<int>('id_afiliado_indicador', value);
 
   int get idEstabelecimento => getField<int>('id_estabelecimento')!;

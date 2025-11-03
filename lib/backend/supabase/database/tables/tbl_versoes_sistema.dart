@@ -22,8 +22,8 @@ class TblVersoesSistemaRow extends SupabaseDataRow {
   set dataCadastro(DateTime value) =>
       setField<DateTime>('data_cadastro', value);
 
-  String get aplicativo => getField<String>('aplicativo')!;
-  set aplicativo(String value) => setField<String>('aplicativo', value);
+  String? get aplicativo => getField<String>('aplicativo');
+  set aplicativo(String? value) => setField<String>('aplicativo', value);
 
   String get versao => getField<String>('versao')!;
   set versao(String value) => setField<String>('versao', value);
@@ -45,4 +45,19 @@ class TblVersoesSistemaRow extends SupabaseDataRow {
   bool get mostrarBtnAtzIos => getField<bool>('mostrar_btn_atz_ios')!;
   set mostrarBtnAtzIos(bool value) =>
       setField<bool>('mostrar_btn_atz_ios', value);
+
+  int? get idAfiliadoApp => getField<int>('id_afiliado_app');
+  set idAfiliadoApp(int? value) => setField<int>('id_afiliado_app', value);
+
+  String? get status => getField<String>('status');
+  set status(String? value) => setField<String>('status', value);
+
+  int? get idApp => getField<int>('id_app');
+  set idApp(int? value) => setField<int>('id_app', value);
+
+  String? get sistemaOp => getField<String>('sistema_op');
+  set sistemaOp(String? value) => setField<String>('sistema_op', value);
+
+  String? get nomeApk => getField<String>('nome_apk');
+  set nomeApk(String? value) => setField<String>('nome_apk', value);
 }

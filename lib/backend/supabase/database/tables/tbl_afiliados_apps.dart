@@ -74,4 +74,7 @@ class TblAfiliadosAppsRow extends SupabaseDataRow {
 
   String? get siteLandpage => getField<String>('site_landpage');
   set siteLandpage(String? value) => setField<String>('site_landpage', value);
+
+  String? get nomeApk => getField<String>('nome_apk');
+  set nomeApk(String? value) => setField<String>('nome_apk', value);
 }

@@ -1,19 +1,20 @@
 import '../database.dart';
 
-class TblPagamentosStripeTable extends SupabaseTable<TblPagamentosStripeRow> {
+class ZDeleteTblPagamentosStripeTable
+    extends SupabaseTable<ZDeleteTblPagamentosStripeRow> {
   @override
-  String get tableName => 'tbl_pagamentos_stripe';
+  String get tableName => 'z_delete_tbl_pagamentos_stripe';
 
   @override
-  TblPagamentosStripeRow createRow(Map<String, dynamic> data) =>
-      TblPagamentosStripeRow(data);
+  ZDeleteTblPagamentosStripeRow createRow(Map<String, dynamic> data) =>
+      ZDeleteTblPagamentosStripeRow(data);
 }
 
-class TblPagamentosStripeRow extends SupabaseDataRow {
-  TblPagamentosStripeRow(Map<String, dynamic> data) : super(data);
+class ZDeleteTblPagamentosStripeRow extends SupabaseDataRow {
+  ZDeleteTblPagamentosStripeRow(Map<String, dynamic> data) : super(data);
 
   @override
-  SupabaseTable get table => TblPagamentosStripeTable();
+  SupabaseTable get table => ZDeleteTblPagamentosStripeTable();
 
   int get id => getField<int>('id')!;
   set id(int value) => setField<int>('id', value);

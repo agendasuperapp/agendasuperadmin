@@ -469,6 +469,9 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                                   .secondary,
                                                         ),
                                                       );
+                                                      await launchURL(
+                                                          FFAppState()
+                                                              .varUrlApk);
                                                     },
                                                     child: Text(
                                                       'Versão: ${FFAppState().VarVersaoSistema}',

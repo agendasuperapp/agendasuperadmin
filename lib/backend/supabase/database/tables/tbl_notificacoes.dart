@@ -92,4 +92,7 @@ class TblNotificacoesRow extends SupabaseDataRow {
 
   String get destino => getField<String>('destino')!;
   set destino(String value) => setField<String>('destino', value);
+
+  int? get idConfig => getField<int>('id_config');
+  set idConfig(int? value) => setField<int>('id_config', value);
 }

@@ -116,7 +116,7 @@ class FFAppState extends ChangeNotifier {
 
   late FlutterSecureStorage secureStorage;
 
-  String _VarVersaoSistema = '4.1.30';
+  String _VarVersaoSistema = '4.1.32';
   String get VarVersaoSistema => _VarVersaoSistema;
   set VarVersaoSistema(String value) {
     _VarVersaoSistema = value;
@@ -1125,6 +1125,12 @@ class FFAppState extends ChangeNotifier {
 
   void deleteVarTextoConcluirCad() {
     secureStorage.delete(key: 'ff_varTextoConcluirCad');
+  }
+
+  String _varUrlApk = '';
+  String get varUrlApk => _varUrlApk;
+  set varUrlApk(String value) {
+    _varUrlApk = value;
   }
 }
 

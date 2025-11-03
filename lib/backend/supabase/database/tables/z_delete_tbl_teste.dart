@@ -1,18 +1,19 @@
 import '../database.dart';
 
-class TblTesteTable extends SupabaseTable<TblTesteRow> {
+class ZDeleteTblTesteTable extends SupabaseTable<ZDeleteTblTesteRow> {
   @override
-  String get tableName => 'tbl_teste';
+  String get tableName => 'z_delete_tbl_teste';
 
   @override
-  TblTesteRow createRow(Map<String, dynamic> data) => TblTesteRow(data);
+  ZDeleteTblTesteRow createRow(Map<String, dynamic> data) =>
+      ZDeleteTblTesteRow(data);
 }
 
-class TblTesteRow extends SupabaseDataRow {
-  TblTesteRow(Map<String, dynamic> data) : super(data);
+class ZDeleteTblTesteRow extends SupabaseDataRow {
+  ZDeleteTblTesteRow(Map<String, dynamic> data) : super(data);
 
   @override
-  SupabaseTable get table => TblTesteTable();
+  SupabaseTable get table => ZDeleteTblTesteTable();
 
   int get id => getField<int>('id')!;
   set id(int value) => setField<int>('id', value);

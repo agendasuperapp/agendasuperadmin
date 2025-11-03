@@ -29,4 +29,10 @@ class ViewTblAfiliadoAppsRow extends SupabaseDataRow {
 
   String? get siteLandpage => getField<String>('site_landpage');
   set siteLandpage(String? value) => setField<String>('site_landpage', value);
+
+  String? get nomeApk => getField<String>('nome_apk');
+  set nomeApk(String? value) => setField<String>('nome_apk', value);
+
+  String? get urlApk => getField<String>('url_apk');
+  set urlApk(String? value) => setField<String>('url_apk', value);
 }

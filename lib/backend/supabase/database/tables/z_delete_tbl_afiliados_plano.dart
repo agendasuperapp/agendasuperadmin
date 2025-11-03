@@ -1,20 +1,20 @@
 import '../database.dart';
 
-class TblEstabelecimentoPlanoDeleteTable
-    extends SupabaseTable<TblEstabelecimentoPlanoDeleteRow> {
+class ZDeleteTblAfiliadosPlanoTable
+    extends SupabaseTable<ZDeleteTblAfiliadosPlanoRow> {
   @override
-  String get tableName => 'tbl_estabelecimento_plano_delete';
+  String get tableName => 'z_delete_tbl_afiliados_plano';
 
   @override
-  TblEstabelecimentoPlanoDeleteRow createRow(Map<String, dynamic> data) =>
-      TblEstabelecimentoPlanoDeleteRow(data);
+  ZDeleteTblAfiliadosPlanoRow createRow(Map<String, dynamic> data) =>
+      ZDeleteTblAfiliadosPlanoRow(data);
 }
 
-class TblEstabelecimentoPlanoDeleteRow extends SupabaseDataRow {
-  TblEstabelecimentoPlanoDeleteRow(Map<String, dynamic> data) : super(data);
+class ZDeleteTblAfiliadosPlanoRow extends SupabaseDataRow {
+  ZDeleteTblAfiliadosPlanoRow(Map<String, dynamic> data) : super(data);
 
   @override
-  SupabaseTable get table => TblEstabelecimentoPlanoDeleteTable();
+  SupabaseTable get table => ZDeleteTblAfiliadosPlanoTable();
 
   int get id => getField<int>('id')!;
   set id(int value) => setField<int>('id', value);
@@ -27,8 +27,8 @@ class TblEstabelecimentoPlanoDeleteRow extends SupabaseDataRow {
   set idEstabelecimento(int value) =>
       setField<int>('id_estabelecimento', value);
 
-  int get idPlanoPreco => getField<int>('id_plano_preco')!;
-  set idPlanoPreco(int value) => setField<int>('id_plano_preco', value);
+  int? get idPlanoPreco => getField<int>('id_plano_preco');
+  set idPlanoPreco(int? value) => setField<int>('id_plano_preco', value);
 
   DateTime? get dataInicial => getField<DateTime>('data_inicial');
   set dataInicial(DateTime? value) => setField<DateTime>('data_inicial', value);
@@ -84,30 +84,8 @@ class TblEstabelecimentoPlanoDeleteRow extends SupabaseDataRow {
   set dataPagamento(DateTime? value) =>
       setField<DateTime>('data_pagamento', value);
 
-  int? get quantProfissionaisMin => getField<int>('quant_profissionais_min');
-  set quantProfissionaisMin(int? value) =>
-      setField<int>('quant_profissionais_min', value);
-
-  int? get quantProfissionaisMax => getField<int>('quant_profissionais_max');
-  set quantProfissionaisMax(int? value) =>
-      setField<int>('quant_profissionais_max', value);
-
-  int? get quantAgendamentosMax => getField<int>('quant_agendamentos_max');
-  set quantAgendamentosMax(int? value) =>
-      setField<int>('quant_agendamentos_max', value);
-
   bool? get planoAtivo => getField<bool>('plano_ativo');
   set planoAtivo(bool? value) => setField<bool>('plano_ativo', value);
-
-  int? get quantProfissionaisUsados =>
-      getField<int>('quant_profissionais_usados');
-  set quantProfissionaisUsados(int? value) =>
-      setField<int>('quant_profissionais_usados', value);
-
-  int? get quantAgendamentosUsados =>
-      getField<int>('quant_agendamentos_usados');
-  set quantAgendamentosUsados(int? value) =>
-      setField<int>('quant_agendamentos_usados', value);
 
   int? get tempo => getField<int>('tempo');
   set tempo(int? value) => setField<int>('tempo', value);
@@ -120,72 +98,15 @@ class TblEstabelecimentoPlanoDeleteRow extends SupabaseDataRow {
   set porcentagemDesconto(double? value) =>
       setField<double>('porcentagem_desconto', value);
 
-  String? get cardUltimosDigitos => getField<String>('card_ultimos_digitos');
-  set cardUltimosDigitos(String? value) =>
-      setField<String>('card_ultimos_digitos', value);
-
-  String? get cardBandeira => getField<String>('card_bandeira');
-  set cardBandeira(String? value) => setField<String>('card_bandeira', value);
-
-  String? get cardNome => getField<String>('card_nome');
-  set cardNome(String? value) => setField<String>('card_nome', value);
-
-  String? get cardTipoDoc => getField<String>('card_tipo_doc');
-  set cardTipoDoc(String? value) => setField<String>('card_tipo_doc', value);
-
-  String? get cardNumDoc => getField<String>('card_num_doc');
-  set cardNumDoc(String? value) => setField<String>('card_num_doc', value);
-
-  int? get cardParcelas => getField<int>('card_parcelas');
-  set cardParcelas(int? value) => setField<int>('card_parcelas', value);
-
-  double? get cardTaxa => getField<double>('card_taxa');
-  set cardTaxa(double? value) => setField<double>('card_taxa', value);
-
-  String? get cardTipoCartao => getField<String>('card_tipo_cartao');
-  set cardTipoCartao(String? value) =>
-      setField<String>('card_tipo_cartao', value);
-
-  String? get cardStatusPag => getField<String>('card_status_pag');
-  set cardStatusPag(String? value) =>
-      setField<String>('card_status_pag', value);
-
-  String? get cardStatusDetalhe => getField<String>('card_status_detalhe');
-  set cardStatusDetalhe(String? value) =>
-      setField<String>('card_status_detalhe', value);
-
   String? get idPagamentoBanco => getField<String>('id_pagamento_banco');
   set idPagamentoBanco(String? value) =>
       setField<String>('id_pagamento_banco', value);
 
-  String? get xIdempotencyKey => getField<String>('x-idempotency_key');
-  set xIdempotencyKey(String? value) =>
-      setField<String>('x-idempotency_key', value);
-
-  String? get urlPix => getField<String>('url_pix');
-  set urlPix(String? value) => setField<String>('url_pix', value);
-
-  String? get qrCode => getField<String>('qr_code');
-  set qrCode(String? value) => setField<String>('qr_code', value);
-
-  String? get nomeBancoRecebedor => getField<String>('nome_banco_recebedor');
-  set nomeBancoRecebedor(String? value) =>
-      setField<String>('nome_banco_recebedor', value);
-
-  String? get pixTransactionId => getField<String>('pix_transaction_id');
-  set pixTransactionId(String? value) =>
-      setField<String>('pix_transaction_id', value);
-
-  String? get externalReference => getField<String>('external_reference');
-  set externalReference(String? value) =>
-      setField<String>('external_reference', value);
-
   String get userId => getField<String>('user_id')!;
   set userId(String value) => setField<String>('user_id', value);
 
-  int get idAfiliadoIndicador => getField<int>('id_afiliado_indicador')!;
-  set idAfiliadoIndicador(int value) =>
-      setField<int>('id_afiliado_indicador', value);
+  int get idAfiliado => getField<int>('id_afiliado')!;
+  set idAfiliado(int value) => setField<int>('id_afiliado', value);
 
   bool get renovacao => getField<bool>('renovacao')!;
   set renovacao(bool value) => setField<bool>('renovacao', value);
@@ -200,11 +121,11 @@ class TblEstabelecimentoPlanoDeleteRow extends SupabaseDataRow {
   set stripeStatusPg(String? value) =>
       setField<String>('stripe_status_pg', value);
 
-  bool get gerarCheckout => getField<bool>('gerar_checkout')!;
-  set gerarCheckout(bool value) => setField<bool>('gerar_checkout', value);
+  bool? get gerarCheckout => getField<bool>('gerar_checkout');
+  set gerarCheckout(bool? value) => setField<bool>('gerar_checkout', value);
 
-  bool get assinatura => getField<bool>('assinatura')!;
-  set assinatura(bool value) => setField<bool>('assinatura', value);
+  bool? get assinatura => getField<bool>('assinatura');
+  set assinatura(bool? value) => setField<bool>('assinatura', value);
 
   int? get idPlanoProduto => getField<int>('id_plano_produto');
   set idPlanoProduto(int? value) => setField<int>('id_plano_produto', value);
@@ -279,9 +200,10 @@ class TblEstabelecimentoPlanoDeleteRow extends SupabaseDataRow {
   bool get contaTeste => getField<bool>('conta_teste')!;
   set contaTeste(bool value) => setField<bool>('conta_teste', value);
 
-  String get tipo => getField<String>('tipo')!;
-  set tipo(String value) => setField<String>('tipo', value);
+  int? get idAfiliadoIndicador => getField<int>('id_afiliado_indicador');
+  set idAfiliadoIndicador(int? value) =>
+      setField<int>('id_afiliado_indicador', value);
 
-  String get uuid => getField<String>('uuid')!;
-  set uuid(String value) => setField<String>('uuid', value);
+  String? get tipo => getField<String>('tipo');
+  set tipo(String? value) => setField<String>('tipo', value);
 }

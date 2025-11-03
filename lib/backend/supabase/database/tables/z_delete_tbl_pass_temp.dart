@@ -1,18 +1,19 @@
 import '../database.dart';
 
-class TblPassTempTable extends SupabaseTable<TblPassTempRow> {
+class ZDeleteTblPassTempTable extends SupabaseTable<ZDeleteTblPassTempRow> {
   @override
-  String get tableName => 'tbl_pass_temp';
+  String get tableName => 'z_delete_tbl_pass_temp';
 
   @override
-  TblPassTempRow createRow(Map<String, dynamic> data) => TblPassTempRow(data);
+  ZDeleteTblPassTempRow createRow(Map<String, dynamic> data) =>
+      ZDeleteTblPassTempRow(data);
 }
 
-class TblPassTempRow extends SupabaseDataRow {
-  TblPassTempRow(Map<String, dynamic> data) : super(data);
+class ZDeleteTblPassTempRow extends SupabaseDataRow {
+  ZDeleteTblPassTempRow(Map<String, dynamic> data) : super(data);
 
   @override
-  SupabaseTable get table => TblPassTempTable();
+  SupabaseTable get table => ZDeleteTblPassTempTable();
 
   int get id => getField<int>('id')!;
   set id(int value) => setField<int>('id', value);

@@ -233,8 +233,8 @@ class TblEstabelecimentoRow extends SupabaseDataRow {
   int? get idPlanoPreco => getField<int>('id_plano_preco');
   set idPlanoPreco(int? value) => setField<int>('id_plano_preco', value);
 
-  int get idAfiliadoIndicador => getField<int>('id_afiliado_indicador')!;
-  set idAfiliadoIndicador(int value) =>
+  int? get idAfiliadoIndicador => getField<int>('id_afiliado_indicador');
+  set idAfiliadoIndicador(int? value) =>
       setField<int>('id_afiliado_indicador', value);
 
   DateTime get dataUltimaAtualizacao =>
@@ -267,9 +267,9 @@ class TblEstabelecimentoRow extends SupabaseDataRow {
   set dataUltimaAtualizacaoAgend(DateTime value) =>
       setField<DateTime>('data_ultima_atualizacao_agend', value);
 
-  String get userIdAfiliadoIndicador =>
-      getField<String>('user_id_afiliado_indicador')!;
-  set userIdAfiliadoIndicador(String value) =>
+  String? get userIdAfiliadoIndicador =>
+      getField<String>('user_id_afiliado_indicador');
+  set userIdAfiliadoIndicador(String? value) =>
       setField<String>('user_id_afiliado_indicador', value);
 
   int? get idCliente => getField<int>('id_cliente');

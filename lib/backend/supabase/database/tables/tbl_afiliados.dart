@@ -108,13 +108,13 @@ class TblAfiliadosRow extends SupabaseDataRow {
   bool get nfEmitida => getField<bool>('nf_emitida')!;
   set nfEmitida(bool value) => setField<bool>('nf_emitida', value);
 
-  int get idAfiliadoIndicador => getField<int>('id_afiliado_indicador')!;
-  set idAfiliadoIndicador(int value) =>
+  int? get idAfiliadoIndicador => getField<int>('id_afiliado_indicador');
+  set idAfiliadoIndicador(int? value) =>
       setField<int>('id_afiliado_indicador', value);
 
-  String get userIdAfiliadoIndicador =>
-      getField<String>('user_id_afiliado_indicador')!;
-  set userIdAfiliadoIndicador(String value) =>
+  String? get userIdAfiliadoIndicador =>
+      getField<String>('user_id_afiliado_indicador');
+  set userIdAfiliadoIndicador(String? value) =>
       setField<String>('user_id_afiliado_indicador', value);
 
   DateTime get dataBaseSaque => getField<DateTime>('data_base_saque')!;

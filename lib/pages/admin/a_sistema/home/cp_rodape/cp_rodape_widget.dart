@@ -1310,7 +1310,7 @@ class _CpRodapeWidgetState extends State<CpRodapeWidget> {
                           'iOS') &&
                       (FFAppState().VarTblDispositivoInformacoes.pwa ==
                           true)) ||
-                  (isAndroid && isiOS))
+                  (isAndroid || isiOS))
                 Container(
                   width: MediaQuery.sizeOf(context).width * 1.0,
                   height: valueOrDefault<double>(

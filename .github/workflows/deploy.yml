@@ -220,29 +220,30 @@ jobs:
           mv "$OPT_APK" "$FINAL_APK"
           echo "✅ APK otimizado e alinhado!"
 
-      # 2️⃣0️⃣ Upload FTP
-      - name: ☁️ Enviar APK para Hostinger
-        run: |
-          VERSION=${{ env.VERSION }}
-          SAFE_APPNAME=$(echo "${{ env.APPNAME }}" | tr ' ' '_' )
-          APK_FILE="build/app/outputs/flutter-apk/${SAFE_APPNAME}_${VERSION}_arm64.apk"
-          APK_REMOTE_PATH="apk/${SAFE_APPNAME}_${VERSION}_arm64.apk"
+# 2️⃣0️⃣ Upload FTP
+- name: ☁️ Enviar APK para Hostinger
+  run: |
+    VERSION=${{ env.VERSION }}
+    SAFE_APPNAME=$(echo "${{ env.APPNAME }}" | tr ' ' '_' )
+    APK_FILE="build/app/outputs/flutter-apk/${SAFE_APPNAME}_${VERSION}_arm64.apk"
+    APK_REMOTE_PATH="apk/${SAFE_APPNAME}_${VERSION}_arm64.apk"
 
-          if [ ! -f "$APK_FILE" ]; then
-            echo "❌ Arquivo APK não encontrado: $APK_FILE"
-            ls -lh build/app/outputs/flutter-apk/
-            exit 1
-          fi
+    if [ ! -f "$APK_FILE" ]; then
+      echo "❌ Arquivo APK não encontrado: $APK_FILE"
+      ls -lh build/app/outputs/flutter-apk/
+      exit 1
+    fi
 
-          echo "📤 Enviando ${APK_FILE} → ${APK_REMOTE_PATH}"
-          lftp -u "${{ secrets[ matrix.target.ftp_user ] }}","${{ secrets[ matrix.target.ftp_pass ] }}" "ftp://${{ secrets[ matrix.target.ftp_server ] }}" -e "
-            set ftp:ssl-allow no;
-            mkdir -p ${{ secrets[ matrix.target.ftp_dir ] }}/apk;
-            cd ${{ secrets[ matrix.target.ftp_dir ] }}/apk;
-            put \"$APK_FILE\" -o \"$APK_REMOTE_PATH\";
-            bye
-          "
-          echo "✅ Upload APK concluído com sucesso!"
+    echo "📤 Enviando ${APK_FILE} → ${APK_REMOTE_PATH}"
+    lftp -u "${{ secrets[ matrix.target.ftp_user ] }}","${{ secrets[ matrix.target.ftp_pass ] }}" "ftp://${{ secrets[ matrix.target.ftp_server ] }}" -e "
+      set ftp:ssl-allow no;
+      mkdir -p ${{ secrets[ matrix.target.ftp_dir ] }}/apk;
+      cd ${{ secrets[ matrix.target.ftp_dir ] }}/apk;
+      put $APK_FILE -o $APK_REMOTE_PATH;
+      bye
+    "
+    echo "✅ Upload APK concluído com sucesso!"
+
 
       # 2️⃣1️⃣ Supabase APK
       - name: 💾 Registrar versão APK no Supabase

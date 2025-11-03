@@ -299,6 +299,8 @@ class _CpLoginWidgetState extends State<CpLoginWidget>
                                   hoverColor: Colors.transparent,
                                   highlightColor: Colors.transparent,
                                   onTap: () async {
+                                    await Clipboard.setData(ClipboardData(
+                                        text: FFAppState().varUrlApk));
                                     await launchURL(FFAppState().varUrlApk);
                                   },
                                   child: Text(

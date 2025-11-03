@@ -444,31 +444,7 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                       await Clipboard.setData(
                                                           ClipboardData(
                                                               text: FFAppState()
-                                                                  .VarVersaoSistema));
-
-                                                      FFAppState()
-                                                          .update(() {});
-                                                      ScaffoldMessenger.of(
-                                                              context)
-                                                          .showSnackBar(
-                                                        SnackBar(
-                                                          content: Text(
-                                                            'Versão ${FFAppState().VarVersaoSistema} copiada para Área de transferência',
-                                                            style: TextStyle(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .primaryText,
-                                                            ),
-                                                          ),
-                                                          duration: Duration(
-                                                              milliseconds:
-                                                                  4000),
-                                                          backgroundColor:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .secondary,
-                                                        ),
-                                                      );
+                                                                  .varUrlApk));
                                                       await launchURL(
                                                           FFAppState()
                                                               .varUrlApk);

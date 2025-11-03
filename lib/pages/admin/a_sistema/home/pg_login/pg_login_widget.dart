@@ -32,27 +32,7 @@ class _PgLoginWidgetState extends State<PgLoginWidget> {
     _model = createModel(context, () => PgLoginModel());
 
     // On page load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      await showModalBottomSheet(
-        isScrollControlled: true,
-        backgroundColor: Colors.transparent,
-        isDismissible: false,
-        enableDrag: false,
-        context: context,
-        builder: (context) {
-          return GestureDetector(
-            onTap: () {
-              FocusScope.of(context).unfocus();
-              FocusManager.instance.primaryFocus?.unfocus();
-            },
-            child: Padding(
-              padding: MediaQuery.viewInsetsOf(context),
-              child: CpLoginWidget(),
-            ),
-          );
-        },
-      ).then((value) => safeSetState(() {}));
-    });
+    SchedulerBinding.instance.addPostFrameCallback((_) async {});
 
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }

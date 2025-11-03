@@ -215,11 +215,14 @@ jobs:
           APP_ID=0
           if [[ "${{ matrix.target.name }}" == "agendasuper" ]]; then APP_ID=2; fi
           if [[ "${{ matrix.target.name }}" == "rendarecorrente" ]]; then APP_ID=3; fi
+          SAFE_APPNAME=$(echo "${{ env.APPNAME }}" | tr ' ' '_' )
+          VERSION=${{ env.VERSION }}
           curl -X POST "${{ secrets.SUPABASE_URL }}/rest/v1/tbl_versoes_sistema" \
             -H "apikey: ${{ secrets.SUPABASE_ANON_KEY }}" \
             -H "Authorization: Bearer ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}" \
             -H "Content-Type: application/json" \
-            -d "{\"versao\": \"${{ env.VERSION }}\", \"descricao\": \"${DESC}\", \"id_app\": ${APP_ID}, \"status\": \"OK\", \"sistema_op\": \"APK\", \"nome_apk\": \"${{ env.APPNAME }}_${{ env.VERSION }}_arm64.apk\"}"
+            -d "{\"versao\": \"${VERSION}\", \"descricao\": \"${DESC}\", \"id_app\": ${APP_ID}, \"status\": \"OK\", \"sistema_op\": \"APK\", \"nome_apk\": \"${SAFE_APPNAME}_${VERSION}_arm64.apk\"}"
+
 
       # 21️⃣ Obter data formatada
       - name: 21️⃣ 🕒 Obter data formatada

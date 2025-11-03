@@ -27,12 +27,12 @@ jobs:
             ftp_dir: FTP_DIR_AFI
 
     steps:
-      # 1️⃣ Clonar repositório
+      # 1️⃣ Clonar código
       - name: 📥 Clonar repositório
         uses: actions/checkout@v4
 
-      # 2️⃣ Cache inteligente Flutter e Gradle
-      - name: ⚡️ Restaurar cache Flutter e Gradle
+      # 2️⃣ Cache inteligente
+      - name: ⚡ Restaurar cache Flutter e Gradle
         uses: actions/cache@v4
         with:
           path: |
@@ -51,11 +51,11 @@ jobs:
           flutter-version: '3.35.7'
           channel: 'stable'
 
-      # 4️⃣ Instalar utilitários
+      # 4️⃣ Dependências
       - name: ⚙️ Instalar utilitários necessários
         run: |
           sudo apt-get update
-          sudo apt-get install -y jq rsync curl lftp
+          sudo apt-get install -y jq rsync curl lftp zipalign apksigner
 
       # 5️⃣ Preparar ambiente
       - name: 🧹 Preparar ambiente
@@ -63,7 +63,7 @@ jobs:
           flutter pub get
           mkdir -p temp/${{ matrix.target.name }}
 
-      # 6️⃣ Definir variáveis globais
+      # 6️⃣ Variáveis
       - name: 🧠 Definir variáveis globais
         run: |
           case "${{ matrix.target.name }}" in
@@ -85,13 +85,13 @@ jobs:
           echo "SITE=$SITE" >> $GITHUB_ENV
           echo "APP_ID_ANDROID=$APP_ID_ANDROID" >> $GITHUB_ENV
 
-      # 7️⃣ Personalizar app_state.dart
+      # 7️⃣ app_state.dart
       - name: ✏️ Personalizar lib/app_state.dart
         run: |
           cp lib/app_state.dart lib/app_state_backup.dart || true
           perl -pi -e "s/91234567890/${{ env.IDAFILIADOAPP }}/g" lib/app_state.dart
 
-      # 8️⃣ Personalizar main.dart
+      # 8️⃣ main.dart
       - name: ✏️ Personalizar lib/main.dart
         run: |
           perl -pi -e "s/NomePageTitle/${{ env.APPNAME }}/g" lib/main.dart
@@ -101,13 +101,13 @@ jobs:
         run: |
           flutter build web --release
 
-      # 🔟 Aplicar overlay Web
+      # 🔟 Overlay Web
       - name: 🧩 Aplicar overlay personalizado (web)
         run: |
           rsync -av --delete build/web/ temp/${{ matrix.target.name }}/
           rsync -av --exclude ".git" "${{ matrix.target.overlay }}/" "temp/${{ matrix.target.name }}/"
 
-      # 1️⃣1️⃣ Personalizar build web
+      # 1️⃣1️⃣ Personalizar web
       - name: 🧠 Personalizar main.dart.js e index.html
         run: |
           TEMP_DIR="temp/${{ matrix.target.name }}"
@@ -118,7 +118,7 @@ jobs:
           sed -i "s/const appVersion = \".*\";/const appVersion = \"${VERSION}\";/g" "${TEMP_DIR}/index.html"
           echo "VERSION=${VERSION}" >> $GITHUB_ENV
 
-      # 1️⃣2️⃣ Publicar via FTP (Web)
+      # 1️⃣2️⃣ FTP (Web)
       - name: 🚀 Publicar site via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
@@ -133,13 +133,11 @@ jobs:
           server-dir: ${{ secrets[ matrix.target.ftp_dir ] }}
           dangerous-clean-slate: false
           sync-mode: update
-          log-level: verbose
 
-      # 1️⃣3️⃣ Registrar versão WEB no Supabase
+      # 1️⃣3️⃣ Supabase WEB
       - name: 💾 Registrar versão WEB no Supabase
         run: |
           DESC="${{ github.event.head_commit.message }}"
-          STATUS="${{ job.status }}"
           APP_ID=0
           if [[ "${{ matrix.target.name }}" == "agendasuper" ]]; then APP_ID=2; fi
           if [[ "${{ matrix.target.name }}" == "rendarecorrente" ]]; then APP_ID=3; fi
@@ -147,12 +145,11 @@ jobs:
             -H "apikey: ${{ secrets.SUPABASE_ANON_KEY }}" \
             -H "Authorization: Bearer ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}" \
             -H "Content-Type: application/json" \
-            -d "{\"versao\": \"${{ env.VERSION }}\", \"descricao\": \"${DESC}\", \"id_app\": ${APP_ID}, \"status\": \"${STATUS}\", \"sistema_op\": \"WEB\"}"
+            -d "{\"versao\": \"${{ env.VERSION }}\", \"descricao\": \"${DESC}\", \"id_app\": ${APP_ID}, \"status\": \"OK\", \"sistema_op\": \"WEB\"}"
 
-      # 1️⃣4️⃣ Configurar assinatura Android (keystore)
-      - name: 🔐 Configurar assinatura Android (keystore)
+      # 1️⃣4️⃣ Assinatura
+      - name: 🔐 Configurar assinatura Android
         run: |
-          echo "🔐 Configurando assinatura..."
           echo "${{ secrets.ANDROID_KEYSTORE_B64 }}" | base64 -d > android/app/upload-keystore.jks
           {
             echo "storePassword=${{ secrets.KEYSTORE_PASSWORD }}"
@@ -161,40 +158,33 @@ jobs:
             echo "storeFile=upload-keystore.jks"
           } > android/key.properties
 
-      # 1️⃣5️⃣ Aplicar custom codes (somente APK)
+      # 1️⃣5️⃣ Custom Codes (APK)
       - name: 🔄 Aplicar custom codes overlay
         run: |
-          echo "🔄 Aplicando .github/overlays/custom_codes/"
           mkdir -p lib/custom_code/actions
           cp -r .github/overlays/custom_codes/* lib/custom_code/actions/
 
-      # 1️⃣6️⃣ Otimizar build.gradle (minify + shrink corrigido)
+      # 1️⃣6️⃣ minify + shrink corrigido
       - name: 🧩 Ativar minify e shrinkResources (somente no buildTypes.release)
         run: |
           echo "🔧 Corrigindo otimização dentro do bloco buildTypes.release..."
           if grep -q "buildTypes" android/app/build.gradle; then
             if ! grep -q "minifyEnabled true" android/app/build.gradle; then
-              echo "🧠 Inserindo minifyEnabled corretamente dentro do buildTypes.release..."
               awk '/buildTypes[[:space:]]*\{/,/}/ {
                 if ($0 ~ /release[[:space:]]*\{/) {
                   print;
                   print "        minifyEnabled true";
                   print "        shrinkResources true";
-                  print "        useProguard false";
                   next;
                 }
                 print;
                 next;
               }1' android/app/build.gradle > android/app/build.gradle.tmp && mv android/app/build.gradle.tmp android/app/build.gradle
-            else
-              echo "✅ minifyEnabled já configurado, nenhuma modificação feita."
             fi
-          else
-            echo "⚠️ Nenhum bloco buildTypes encontrado — sem modificações."
           fi
 
-      # 1️⃣7️⃣ Ajustar applicationId e ícones
-      - name: 🎨 Ajustar ícones e applicationId
+      # 1️⃣7️⃣ Ícones e applicationId
+      - name: 🎨 Personalizar ícones e assets
         run: |
           sed -i "s/applicationId \".*\"/applicationId \"${{ env.APP_ID_ANDROID }}\"/" android/app/build.gradle
           ICON_PATH=".github/overlays/icons/${{ matrix.target.name }}/ic_launcher.png"
@@ -207,18 +197,28 @@ jobs:
             cp -r "$ASSETS_PATH/"* assets/images/ || true
           fi
 
-      # 1️⃣8️⃣ Build APK otimizado
+      # 1️⃣8️⃣ Build otimizado ARM64
       - name: 🤖 Gerar APK Android (arm64 otimizado)
         run: |
           echo "🏗️ Iniciando build otimizado ARM64..."
           flutter build apk --release --target-platform android-arm64 --split-per-abi
           VERSION=${{ env.VERSION }}
-          APK_OUT="build/app/outputs/flutter-apk/${{ env.APPNAME }}_${VERSION}_arm64.apk"
-          mv build/app/outputs/flutter-apk/app-arm64-v8a-release.apk "$APK_OUT"
-          echo "✅ APK final: $APK_OUT"
+          FINAL_APK="build/app/outputs/flutter-apk/${{ env.APPNAME }}_${VERSION}_arm64.apk"
+          mv build/app/outputs/flutter-apk/app-arm64-v8a-release.apk "$FINAL_APK"
+          echo "✅ APK final: $FINAL_APK"
           ls -lh build/app/outputs/flutter-apk/
 
-      # 1️⃣9️⃣ Enviar APK ao Hostinger
+      # 1️⃣9️⃣ ZipAlign + Optimize
+      - name: 🧠 Otimizar APK com zipalign e AAPT2
+        run: |
+          VERSION=${{ env.VERSION }}
+          FINAL_APK="build/app/outputs/flutter-apk/${{ env.APPNAME }}_${VERSION}_arm64.apk"
+          OPT_APK="build/app/outputs/flutter-apk/${{ env.APPNAME }}_${VERSION}_opt.apk"
+          zipalign -f -v 4 "$FINAL_APK" "$OPT_APK"
+          mv "$OPT_APK" "$FINAL_APK"
+          echo "✅ APK otimizado e alinhado!"
+
+      # 2️⃣0️⃣ Upload FTP
       - name: ☁️ Enviar APK para Hostinger
         run: |
           VERSION=${{ env.VERSION }}
@@ -231,11 +231,10 @@ jobs:
             bye
           "
 
-      # 2️⃣0️⃣ Registrar versão APK no Supabase
+      # 2️⃣1️⃣ Supabase APK
       - name: 💾 Registrar versão APK no Supabase
         run: |
           DESC="${{ github.event.head_commit.message }}"
-          STATUS="${{ job.status }}"
           APP_ID=0
           if [[ "${{ matrix.target.name }}" == "agendasuper" ]]; then APP_ID=2; fi
           if [[ "${{ matrix.target.name }}" == "rendarecorrente" ]]; then APP_ID=3; fi
@@ -243,10 +242,10 @@ jobs:
             -H "apikey: ${{ secrets.SUPABASE_ANON_KEY }}" \
             -H "Authorization: Bearer ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}" \
             -H "Content-Type: application/json" \
-            -d "{\"versao\": \"${{ env.VERSION }}\", \"descricao\": \"${DESC}\", \"id_app\": ${APP_ID}, \"status\": \"${STATUS}\", \"sistema_op\": \"APK\"}"
+            -d "{\"versao\": \"${{ env.VERSION }}\", \"descricao\": \"${DESC}\", \"id_app\": ${APP_ID}, \"status\": \"OK\", \"sistema_op\": \"APK\"}"
 
-      # 2️⃣1️⃣ Enviar e-mail final
-      - name: ✉️ Enviar e-mail final
+      # 2️⃣2️⃣ E-mail final
+      - name: ✉️ Enviar e-mail de conclusão
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: smtp.gmail.com

@@ -216,7 +216,7 @@ jobs:
           mv "$ALIGNED_APK" "$FINAL_APK"
           echo "✅ APK alinhado e otimizado!"
 
-      # 2️⃣0️⃣ Upload FTP
+      # 2️⃣0️⃣ Upload FTP (corrigido)
       - name: ☁️ Enviar APK para Hostinger
         run: |
           VERSION=${{ env.VERSION }}
@@ -233,12 +233,16 @@ jobs:
           echo "📤 Enviando ${APK_FILE} → ${APK_REMOTE_PATH}"
           lftp -u "${{ secrets[ matrix.target.ftp_user ] }}","${{ secrets[ matrix.target.ftp_pass ] }}" "ftp://${{ secrets[ matrix.target.ftp_server ] }}" -e "
             set ftp:ssl-allow no;
-            mkdir -p ${{ secrets[ matrix.target.ftp_dir ] }}/apk;
-            cd ${{ secrets[ matrix.target.ftp_dir ] }}/apk;
-            put $APK_FILE -o $APK_REMOTE_PATH;
+            set cmd:fail-exit yes;
+            cd ${{ secrets[ matrix.target.ftp_dir ] }} || exit 1;
+            mkdir -f apk || true;
+            cd apk || exit 1;
+            lcd build/app/outputs/flutter-apk;
+            put ${SAFE_APPNAME}_${VERSION}_arm64.apk -o ${SAFE_APPNAME}_${VERSION}_arm64.apk;
             bye
           "
           echo "✅ Upload APK concluído com sucesso!"
+
 
       # 2️⃣1️⃣ Registrar versão APK
       - name: 💾 Registrar versão APK no Supabase

@@ -31,7 +31,7 @@ jobs:
       - name: 📥 Clonar repositório
         uses: actions/checkout@v4
 
-      # 2️⃣ Cache inteligente para Flutter/Gradle/Pub
+      # 2️⃣ Cache inteligente Flutter e Gradle
       - name: ⚡️ Restaurar cache Flutter e Gradle
         uses: actions/cache@v4
         with:
@@ -57,18 +57,9 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y jq rsync curl lftp
 
-      # 5️⃣ Preparar ambiente (limpeza apenas se versão mudou)
+      # 5️⃣ Preparar ambiente
       - name: 🧹 Preparar ambiente
         run: |
-          VERSION_LOCAL=$(jq -r '.version // "none"' temp/${{ matrix.target.name }}/version.json 2>/dev/null || echo "none")
-          VERSION_REMOTE=$(git log -1 --pretty=format:"%H" || echo "none")
-          echo "🧾 Versão local: $VERSION_LOCAL / Commit: $VERSION_REMOTE"
-          if [ "$VERSION_LOCAL" != "$VERSION_REMOTE" ]; then
-            echo "🧹 Limpando cache antigo e preparando novo build..."
-            flutter clean
-          else
-            echo "⚡️ Versão inalterada — reutilizando cache existente."
-          fi
           flutter pub get
           mkdir -p temp/${{ matrix.target.name }}
 
@@ -94,30 +85,29 @@ jobs:
           echo "SITE=$SITE" >> $GITHUB_ENV
           echo "APP_ID_ANDROID=$APP_ID_ANDROID" >> $GITHUB_ENV
 
-      # 7️⃣ Personalizar lib/app_state.dart
+      # 7️⃣ Personalizar app_state.dart
       - name: ✏️ Personalizar lib/app_state.dart
         run: |
           cp lib/app_state.dart lib/app_state_backup.dart || true
           perl -pi -e "s/91234567890/${{ env.IDAFILIADOAPP }}/g" lib/app_state.dart
 
-      # 8️⃣ Personalizar lib/main.dart
+      # 8️⃣ Personalizar main.dart
       - name: ✏️ Personalizar lib/main.dart
         run: |
           perl -pi -e "s/NomePageTitle/${{ env.APPNAME }}/g" lib/main.dart
 
-      # 9️⃣ Build Web (release)
-      - name: 🏗️ Build Web (modo release)
+      # 9️⃣ Build Web
+      - name: 🏗️ Build Web (release)
         run: |
-          echo "🚀 Iniciando build web..."
           flutter build web --release
 
-      # 🔟 Aplicar overlay web
+      # 🔟 Aplicar overlay Web
       - name: 🧩 Aplicar overlay personalizado (web)
         run: |
           rsync -av --delete build/web/ temp/${{ matrix.target.name }}/
           rsync -av --exclude ".git" "${{ matrix.target.overlay }}/" "temp/${{ matrix.target.name }}/"
 
-      # 1️⃣1️⃣ Personalizar arquivos do Web Build
+      # 1️⃣1️⃣ Personalizar build web
       - name: 🧠 Personalizar main.dart.js e index.html
         run: |
           TEMP_DIR="temp/${{ matrix.target.name }}"
@@ -171,7 +161,7 @@ jobs:
             echo "storeFile=upload-keystore.jks"
           } > android/key.properties
 
-      # ⚙️ 1️⃣5️⃣ Aplicar custom codes (somente APK)
+      # 1️⃣5️⃣ Aplicar custom codes (somente APK)
       - name: 🔄 Aplicar custom codes overlay
         run: |
           echo "🔄 Aplicando .github/overlays/custom_codes/"
@@ -183,24 +173,21 @@ jobs:
         run: |
           echo "🔧 Verificando bloco release no build.gradle..."
           if grep -q "buildTypes" android/app/build.gradle; then
-          if ! grep -q "minifyEnabled true" android/app/build.gradle; then
-            echo "🧠 Ativando minifyEnabled e shrinkResources corretamente..."
-        # insere após a linha 'release {' dentro de buildTypes
-          awk '/release[[:space:]]*\{/ {
-          print;
-          print "        minifyEnabled true";
-          print "        shrinkResources true";
-          print "        useProguard false";
-          next
-        }1' android/app/build.gradle > android/app/build.gradle.tmp && mv android/app/build.gradle.tmp android/app/build.gradle
-      else
-        echo "✅ minifyEnabled já configurado, nenhuma modificação feita."
-      fi
-    else
-      echo "⚠️ buildTypes não encontrado, sem alterações."
-    fi
-
-
+            if ! grep -q "minifyEnabled true" android/app/build.gradle; then
+              echo "🧠 Ativando minifyEnabled e shrinkResources corretamente..."
+              awk '/release[[:space:]]*\{/ {
+                print;
+                print "        minifyEnabled true";
+                print "        shrinkResources true";
+                print "        useProguard false";
+                next
+              }1' android/app/build.gradle > android/app/build.gradle.tmp && mv android/app/build.gradle.tmp android/app/build.gradle
+            else
+              echo "✅ minifyEnabled já configurado, nenhuma modificação feita."
+            fi
+          else
+            echo "⚠️ buildTypes não encontrado, sem alterações."
+          fi
 
       # 1️⃣7️⃣ Ajustar applicationId e ícones
       - name: 🎨 Ajustar ícones e applicationId
@@ -254,7 +241,7 @@ jobs:
             -H "Content-Type: application/json" \
             -d "{\"versao\": \"${{ env.VERSION }}\", \"descricao\": \"${DESC}\", \"id_app\": ${APP_ID}, \"status\": \"${STATUS}\", \"sistema_op\": \"APK\"}"
 
-      # 2️⃣1️⃣ Enviar e-mail final de conclusão
+      # 2️⃣1️⃣ Enviar e-mail final
       - name: ✉️ Enviar e-mail final
         uses: dawidd6/action-send-mail@v3
         with:

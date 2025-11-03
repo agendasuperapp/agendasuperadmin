@@ -186,7 +186,7 @@ class CpLoginModel extends FlutterFlowModel<CpLoginWidget> {
           builder: (alertDialogContext) {
             return AlertDialog(
               title: Text('Atenção '),
-              content: Text('Falah ano login, verifique seu E-mail e senha '),
+              content: Text('Falha no login, verifique seu E-mail e senha '),
               actions: [
                 TextButton(
                   onPressed: () => Navigator.pop(alertDialogContext),

@@ -1306,11 +1306,22 @@ class _CpRodapeWidgetState extends State<CpRodapeWidget> {
                   ].divide(SizedBox(width: 2.0)),
                 ),
               ),
-              if ((FFAppState().VarTblDispositivoInformacoes.osName == 'iOS') &&
-                  (FFAppState().VarTblDispositivoInformacoes.pwa == true))
+              if (((FFAppState().VarTblDispositivoInformacoes.osName ==
+                          'iOS') &&
+                      (FFAppState().VarTblDispositivoInformacoes.pwa ==
+                          true)) ||
+                  (isAndroid && isiOS))
                 Container(
                   width: MediaQuery.sizeOf(context).width * 1.0,
-                  height: 20.0,
+                  height: valueOrDefault<double>(
+                    (FFAppState().VarTblDispositivoInformacoes.osName ==
+                                'iOS') &&
+                            (FFAppState().VarTblDispositivoInformacoes.pwa ==
+                                true)
+                        ? 20.0
+                        : 50.0,
+                    20.0,
+                  ),
                   decoration: BoxDecoration(),
                 ),
             ],

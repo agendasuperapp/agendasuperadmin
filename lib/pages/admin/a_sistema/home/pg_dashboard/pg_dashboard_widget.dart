@@ -62,154 +62,150 @@ class _PgDashboardWidgetState extends State<PgDashboardWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        body: SafeArea(
-          top: true,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Stack(
-                    alignment: AlignmentDirectional(-1.0, -1.0),
-                    children: [
-                      wrapWithModel(
-                        model: _model.cpCabecalhoPaginaModel,
-                        updateCallback: () => safeSetState(() {}),
-                        child: CpCabecalhoPaginaWidget(),
-                      ),
-                      if ((MediaQuery.sizeOf(context).width <
-                              FFAppState()
-                                  .varTamanhoMinimoTelaMenuLateral
-                                  .toDouble()) &&
-                          responsiveVisibility(
-                            context: context,
-                            phone: false,
-                            tablet: false,
-                            tabletLandscape: false,
-                            desktop: false,
-                          ))
-                        Align(
-                          alignment: AlignmentDirectional(0.0, 0.0),
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
+        body: Column(
+          mainAxisSize: MainAxisSize.max,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Stack(
+                  alignment: AlignmentDirectional(-1.0, -1.0),
+                  children: [
+                    wrapWithModel(
+                      model: _model.cpCabecalhoPaginaModel,
+                      updateCallback: () => safeSetState(() {}),
+                      child: CpCabecalhoPaginaWidget(),
+                    ),
+                    if ((MediaQuery.sizeOf(context).width <
+                            FFAppState()
+                                .varTamanhoMinimoTelaMenuLateral
+                                .toDouble()) &&
+                        responsiveVisibility(
+                          context: context,
+                          phone: false,
+                          tablet: false,
+                          tabletLandscape: false,
+                          desktop: false,
+                        ))
+                      Align(
+                        alignment: AlignmentDirectional(0.0, 0.0),
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0,
+                              valueOrDefault<double>(
+                                isAndroid || FFAppState().VarEmDesenvolvimento
+                                    ? 50.0
+                                    : 0.0,
                                 0.0,
-                                valueOrDefault<double>(
-                                  isAndroid || FFAppState().VarEmDesenvolvimento
-                                      ? 50.0
-                                      : 0.0,
-                                  0.0,
-                                ),
-                                0.0,
-                                0.0),
-                            child: InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                scaffoldKey.currentState!.openDrawer();
-                              },
-                              child: Container(
-                                height: 50.0,
-                                decoration: BoxDecoration(),
-                                alignment: AlignmentDirectional(0.0, 0.0),
-                                child: Padding(
-                                  padding: EdgeInsets.all(8.0),
-                                  child: Icon(
-                                    Icons.menu,
-                                    color: FlutterFlowTheme.of(context)
-                                        .colorIconMenu,
-                                    size: 24.0,
-                                  ),
+                              ),
+                              0.0,
+                              0.0),
+                          child: InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              scaffoldKey.currentState!.openDrawer();
+                            },
+                            child: Container(
+                              height: 50.0,
+                              decoration: BoxDecoration(),
+                              alignment: AlignmentDirectional(0.0, 0.0),
+                              child: Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: Icon(
+                                  Icons.menu,
+                                  color: FlutterFlowTheme.of(context)
+                                      .colorIconMenu,
+                                  size: 24.0,
                                 ),
                               ),
                             ),
                           ),
                         ),
-                    ],
-                  ),
-                ],
-              ),
-              Flexible(
-                child: Align(
-                  alignment: AlignmentDirectional(-1.0, 0.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      if ((MediaQuery.sizeOf(context).width >
-                              FFAppState()
-                                  .varTamanhoMinimoTelaMenuLateral
-                                  .toDouble()) &&
-                          responsiveVisibility(
-                            context: context,
-                            phone: false,
-                          ))
-                        wrapWithModel(
-                          model: _model.cpMenuLateralModel,
-                          updateCallback: () => safeSetState(() {}),
-                          child: CpMenuLateralWidget(
-                            paramBotaoSelecionado: 'DASHBOARD',
-                            paramGrupoBotao: 'DASHBOARD',
-                          ),
-                        ),
-                      Expanded(
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                            image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: Image.network(
-                                Theme.of(context).brightness == Brightness.dark
-                                    ? 'SEM FOTO USAR COR CONTAINER'
-                                    : FFAppState()
-                                        .VarTblEstabelecimentoLogado
-                                        .fotoLightMode,
-                              ).image,
-                            ),
-                          ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              if (FFAppState().varIDAPPAfiliado == 1)
-                                Flexible(
-                                  child: wrapWithModel(
-                                    model:
-                                        _model.cpEstabelecimentoDashboardModel,
-                                    updateCallback: () => safeSetState(() {}),
-                                    child: CpEstabelecimentoDashboardWidget(),
-                                  ),
-                                ),
-                              if (FFAppState().varIDAPPAfiliado == 3)
-                                Flexible(
-                                  child: wrapWithModel(
-                                    model: _model.cpAfiliadoDashboardModel,
-                                    updateCallback: () => safeSetState(() {}),
-                                    child: CpAfiliadoDashboardWidget(),
-                                  ),
-                                ),
-                            ],
-                          ),
+                      ),
+                  ],
+                ),
+              ],
+            ),
+            Flexible(
+              child: Align(
+                alignment: AlignmentDirectional(-1.0, 0.0),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    if ((MediaQuery.sizeOf(context).width >
+                            FFAppState()
+                                .varTamanhoMinimoTelaMenuLateral
+                                .toDouble()) &&
+                        responsiveVisibility(
+                          context: context,
+                          phone: false,
+                        ))
+                      wrapWithModel(
+                        model: _model.cpMenuLateralModel,
+                        updateCallback: () => safeSetState(() {}),
+                        child: CpMenuLateralWidget(
+                          paramBotaoSelecionado: 'DASHBOARD',
+                          paramGrupoBotao: 'DASHBOARD',
                         ),
                       ),
-                    ],
-                  ),
+                    Expanded(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                          image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: Image.network(
+                              Theme.of(context).brightness == Brightness.dark
+                                  ? 'SEM FOTO USAR COR CONTAINER'
+                                  : FFAppState()
+                                      .VarTblEstabelecimentoLogado
+                                      .fotoLightMode,
+                            ).image,
+                          ),
+                        ),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            if (FFAppState().varIDAPPAfiliado == 1)
+                              Flexible(
+                                child: wrapWithModel(
+                                  model: _model.cpEstabelecimentoDashboardModel,
+                                  updateCallback: () => safeSetState(() {}),
+                                  child: CpEstabelecimentoDashboardWidget(),
+                                ),
+                              ),
+                            if (FFAppState().varIDAPPAfiliado == 3)
+                              Flexible(
+                                child: wrapWithModel(
+                                  model: _model.cpAfiliadoDashboardModel,
+                                  updateCallback: () => safeSetState(() {}),
+                                  child: CpAfiliadoDashboardWidget(),
+                                ),
+                              ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              if (MediaQuery.sizeOf(context).width <=
-                  FFAppState().varTamanhoMinimoTelaMenuLateral.toDouble())
-                wrapWithModel(
-                  model: _model.cpRodapeModel,
-                  updateCallback: () => safeSetState(() {}),
-                  child: CpRodapeWidget(
-                    paramBotaoSelecionado: 'DASHBOARD',
-                  ),
+            ),
+            if (MediaQuery.sizeOf(context).width <=
+                FFAppState().varTamanhoMinimoTelaMenuLateral.toDouble())
+              wrapWithModel(
+                model: _model.cpRodapeModel,
+                updateCallback: () => safeSetState(() {}),
+                child: CpRodapeWidget(
+                  paramBotaoSelecionado: 'DASHBOARD',
                 ),
-            ],
-          ),
+              ),
+          ],
         ),
       ),
     );

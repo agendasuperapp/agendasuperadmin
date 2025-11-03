@@ -107,62 +107,8 @@ class _CpCabecalhoPaginaWidgetState extends State<CpCabecalhoPaginaWidget>
                 ))
               Container(
                 width: 100.0,
-                height: 50.0,
+                height: 30.0,
                 decoration: BoxDecoration(),
-              ),
-            if (responsiveVisibility(
-              context: context,
-              phone: false,
-              tablet: false,
-              tabletLandscape: false,
-              desktop: false,
-            ))
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Container(
-                    width: 50.0,
-                    height: 50.0,
-                    clipBehavior: Clip.antiAlias,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                    ),
-                    child: Image.asset(
-                      'assets/images/1432676_Admin.png',
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  Text(
-                    'Agenda Super - Admin',
-                    style: FlutterFlowTheme.of(context).bodyMedium.override(
-                          font: GoogleFonts.readexPro(
-                            fontWeight: FontWeight.bold,
-                            fontStyle: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .fontStyle,
-                          ),
-                          color: FlutterFlowTheme.of(context).info,
-                          fontSize: () {
-                            if (MediaQuery.sizeOf(context).width <
-                                kBreakpointSmall) {
-                              return 20.0;
-                            } else if (MediaQuery.sizeOf(context).width <
-                                kBreakpointMedium) {
-                              return 30.0;
-                            } else if (MediaQuery.sizeOf(context).width <
-                                kBreakpointLarge) {
-                              return 30.0;
-                            } else {
-                              return 25.0;
-                            }
-                          }(),
-                          letterSpacing: 0.0,
-                          fontWeight: FontWeight.bold,
-                          fontStyle:
-                              FlutterFlowTheme.of(context).bodyMedium.fontStyle,
-                        ),
-                  ),
-                ].divide(SizedBox(width: 8.0)),
               ),
             Padding(
               padding: EdgeInsets.all(12.0),

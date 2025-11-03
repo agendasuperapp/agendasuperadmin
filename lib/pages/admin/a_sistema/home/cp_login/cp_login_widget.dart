@@ -910,48 +910,6 @@ class _CpLoginWidgetState extends State<CpLoginWidget>
                                               prefixIcon: Icon(
                                                 Icons.email_outlined,
                                               ),
-                                              suffixIcon: _model
-                                                      .textFieldEntrarEmailTextController!
-                                                      .text
-                                                      .isNotEmpty
-                                                  ? InkWell(
-                                                      onTap: () async {
-                                                        _model
-                                                            .textFieldEntrarEmailTextController
-                                                            ?.clear();
-                                                        if (_model.textFieldEntrarEmailTextController
-                                                                    .text ==
-                                                                '') {
-                                                          _model.varEmailInvalido =
-                                                              false;
-                                                          safeSetState(() {});
-                                                        }
-                                                        if (functions.fcVerificarEmailValido(
-                                                                _model
-                                                                    .textFieldEntrarEmailTextController
-                                                                    .text) ==
-                                                            false) {
-                                                          _model.varEmailInvalido =
-                                                              true;
-                                                          safeSetState(() {});
-                                                        } else {
-                                                          _model.varEmailInvalido =
-                                                              false;
-                                                          safeSetState(() {});
-                                                        }
-
-                                                        safeSetState(() {});
-                                                      },
-                                                      child: Icon(
-                                                        Icons.clear,
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondaryText,
-                                                        size: 22,
-                                                      ),
-                                                    )
-                                                  : null,
                                             ),
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium
@@ -1026,6 +984,15 @@ class _CpLoginWidgetState extends State<CpLoginWidget>
                                             .textFieldEntrarSenhaTextController,
                                         focusNode: _model
                                             .textFieldEntrarSenhaFocusNode,
+                                        onFieldSubmitted: (_) async {
+                                          if (_model.formKey.currentState ==
+                                                  null ||
+                                              !_model.formKey.currentState!
+                                                  .validate()) {
+                                            return;
+                                          }
+                                          await _model.acbFazerLogin(context);
+                                        },
                                         autofocus: false,
                                         textInputAction: TextInputAction.go,
                                         obscureText: !_model

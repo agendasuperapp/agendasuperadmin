@@ -52,16 +52,14 @@ android {
         checkReleaseBuilds false
     }
 
-   defaultConfig {
-       // Identificador único do app (ID de pacote Android)
-       // ⚠️ IMPORTANTE: mantenha igual ao que está no workflow para evitar conflitos
-        applicationId "com.adminagendasupertwo.app"
-        minSdkVersion flutter.minSdkVersion
+    defaultConfig {
+        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
+        applicationId "com.mycompany.agendasuperadmin"
+        minSdkVersion 23
         targetSdkVersion 35
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
-}
-
+    }
 
    signingConfigs {
        release {

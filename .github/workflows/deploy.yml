@@ -145,8 +145,8 @@ jobs:
             -H "Content-Type: application/json" \
             -d "{\"versao\": \"${{ env.VERSION }}\", \"descricao\": \"${DESC}\", \"id_app\": ${APP_ID}, \"status\": \"OK\", \"sistema_op\": \"WEB\"}"
 
-      # 14️⃣ Configurar assinatura Android
-      - name: 14️⃣ 🔐 Configurar assinatura Android (release real)
+      # 14️⃣ Configurar assinatura Android (keystore oficial)
+      - name: 14️⃣ 🔐 Configurar assinatura Android (keystore oficial)
         run: |
           echo "${{ secrets.ANDROID_KEYSTORE_B64 }}" | base64 -d > android/app/upload-keystore.jks
           {
@@ -155,6 +155,7 @@ jobs:
             echo "keyAlias=${{ secrets.KEY_ALIAS }}"
             echo "storeFile=upload-keystore.jks"
           } > android/key.properties
+          echo "✅ Arquivos de assinatura configurados com sucesso"
           cat android/key.properties
 
       # 15️⃣ Aplicar custom codes overlay
@@ -222,7 +223,6 @@ jobs:
             -H "Authorization: Bearer ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}" \
             -H "Content-Type: application/json" \
             -d "{\"versao\": \"${VERSION}\", \"descricao\": \"${DESC}\", \"id_app\": ${APP_ID}, \"status\": \"OK\", \"sistema_op\": \"APK\", \"nome_apk\": \"${SAFE_APPNAME}_${VERSION}_arm64.apk\"}"
-
 
       # 21️⃣ Obter data formatada
       - name: 21️⃣ 🕒 Obter data formatada

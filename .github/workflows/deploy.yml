@@ -210,6 +210,20 @@ jobs:
           echo "🧩 Validando se o arquivo foi sobrescrito corretamente..."
           grep "namespace" android/app/build.gradle || echo "⚠️ namespace não encontrado"
 
+      # 17️⃣¾ Atualizar applicationId dinamicamente conforme o app
+      - name: 17️⃣¾ 🧠 Atualizar applicationId no build.gradle
+        run: |
+          echo "🛠 Atualizando applicationId conforme o target atual..."
+          case "${{ matrix.target.name }}" in
+            "agendasuper")
+              sed -i 's/applicationId ".*"/applicationId "com.adminagendasupertwo.app"/' android/app/build.gradle
+              ;;
+            "rendarecorrente")
+              sed -i 's/applicationId ".*"/applicationId "com.adminrendarecorrentetwo.app"/' android/app/build.gradle
+              ;;
+          esac
+          echo "✅ applicationId atualizado com sucesso!"
+          grep "applicationId" android/app/build.gradle
 
 
       # 18️⃣ Gerar APK Release

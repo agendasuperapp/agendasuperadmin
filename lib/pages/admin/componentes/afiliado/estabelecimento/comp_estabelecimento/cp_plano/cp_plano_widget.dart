@@ -286,7 +286,19 @@ class _CpPlanoWidgetState extends State<CpPlanoWidget>
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: EdgeInsets.all(24.0),
+                      padding: EdgeInsetsDirectional.fromSTEB(
+                          16.0,
+                          valueOrDefault<double>(
+                            MediaQuery.sizeOf(context).width <=
+                                    FFAppState()
+                                        .varTamanhoMinimoTelaMenuLateral
+                                        .toDouble()
+                                ? 0.0
+                                : 16.0,
+                            0.0,
+                          ),
+                          16.0,
+                          0.0),
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -358,7 +370,7 @@ class _CpPlanoWidgetState extends State<CpPlanoWidget>
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.all(24.0),
+                      padding: EdgeInsets.all(16.0),
                       child: SingleChildScrollView(
                         child: Column(
                           mainAxisSize: MainAxisSize.max,

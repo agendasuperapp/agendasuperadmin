@@ -351,7 +351,7 @@ class _CpConfiguracoesWidgetState extends State<CpConfiguracoesWidget>
             child: Align(
               alignment: AlignmentDirectional(0.0, -1.0),
               child: Padding(
-                padding: EdgeInsets.all(8.0),
+                padding: EdgeInsets.all(16.0),
                 child: SingleChildScrollView(
                   child: Column(
                     mainAxisSize: MainAxisSize.min,

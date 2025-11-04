@@ -12,7 +12,6 @@ import '/index.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -193,9 +192,8 @@ class _CpCabecalhoPaginaWidgetState extends State<CpCabecalhoPaginaWidget>
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
-                          await Clipboard.setData(
-                              ClipboardData(text: FFAppState().varUrlApk));
-                          await launchURL(FFAppState().varUrlApk);
+                          await action_blocks
+                              .acConsultarAtualizacaoSistema(context);
                         },
                         child: Text(
                           FFAppState().VarVersaoSistema,

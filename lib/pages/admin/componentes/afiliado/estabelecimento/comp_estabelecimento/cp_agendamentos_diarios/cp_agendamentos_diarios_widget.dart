@@ -133,7 +133,17 @@ class _CpAgendamentosDiariosWidgetState
           ),
         ),
         child: Padding(
-          padding: EdgeInsets.all(16.0),
+          padding: EdgeInsetsDirectional.fromSTEB(
+              16.0,
+              valueOrDefault<double>(
+                MediaQuery.sizeOf(context).width <=
+                        FFAppState().varTamanhoMinimoTelaMenuLateral.toDouble()
+                    ? 0.0
+                    : 16.0,
+                0.0,
+              ),
+              16.0,
+              0.0),
           child: RefreshIndicator(
             onRefresh: () async {
               if (MediaQuery.sizeOf(context).width < kBreakpointSmall) {

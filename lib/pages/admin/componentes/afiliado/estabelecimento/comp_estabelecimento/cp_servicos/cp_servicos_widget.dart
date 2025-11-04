@@ -166,15 +166,27 @@ class _CpServicosWidgetState extends State<CpServicosWidget>
             Align(
               alignment: AlignmentDirectional(0.0, -1.0),
               child: Padding(
-                padding: EdgeInsets.all(4.0),
+                padding: EdgeInsetsDirectional.fromSTEB(
+                    16.0,
+                    valueOrDefault<double>(
+                      MediaQuery.sizeOf(context).width <=
+                              FFAppState()
+                                  .varTamanhoMinimoTelaMenuLateral
+                                  .toDouble()
+                          ? 0.0
+                          : 16.0,
+                      0.0,
+                    ),
+                    16.0,
+                    16.0),
                 child: SingleChildScrollView(
                   controller: _model.columnController,
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            16.0, 16.0, 16.0, 16.0),
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 16.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -592,277 +604,307 @@ class _CpServicosWidgetState extends State<CpServicosWidget>
                       ),
                       Align(
                         alignment: AlignmentDirectional(0.0, -1.0),
-                        child: Padding(
-                          padding: EdgeInsets.all(valueOrDefault<double>(
-                            MediaQuery.sizeOf(context).width < kBreakpointSmall
-                                ? 8.0
-                                : 16.0,
-                            0.0,
-                          )),
-                          child: FutureBuilder<List<TblCadServicosRow>>(
-                            future: (_model.requestCompleter ??= Completer<
-                                    List<TblCadServicosRow>>()
-                                  ..complete(TblCadServicosTable().queryRows(
-                                    queryFn: (q) => q
-                                        .eqOrNull(
-                                          'id_estabelecimento',
-                                          FFAppState()
-                                              .VarIDEstabelecimentoLogado,
-                                        )
-                                        .eqOrNull(
-                                          'situacao',
-                                          _model.varSituacaoCadastro,
-                                        )
-                                        .order('id'),
-                                  )))
-                                .future,
-                            builder: (context, snapshot) {
-                              // Customize what your widget looks like when it's loading.
-                              if (!snapshot.hasData) {
-                                return Center(
-                                  child: SizedBox(
-                                    width: 50.0,
-                                    height: 50.0,
-                                    child: CircularProgressIndicator(
-                                      valueColor: AlwaysStoppedAnimation<Color>(
-                                        FlutterFlowTheme.of(context).primary,
-                                      ),
+                        child: FutureBuilder<List<TblCadServicosRow>>(
+                          future: (_model.requestCompleter ??=
+                                  Completer<List<TblCadServicosRow>>()
+                                    ..complete(TblCadServicosTable().queryRows(
+                                      queryFn: (q) => q
+                                          .eqOrNull(
+                                            'id_estabelecimento',
+                                            FFAppState()
+                                                .VarIDEstabelecimentoLogado,
+                                          )
+                                          .eqOrNull(
+                                            'situacao',
+                                            _model.varSituacaoCadastro,
+                                          )
+                                          .order('id'),
+                                    )))
+                              .future,
+                          builder: (context, snapshot) {
+                            // Customize what your widget looks like when it's loading.
+                            if (!snapshot.hasData) {
+                              return Center(
+                                child: SizedBox(
+                                  width: 50.0,
+                                  height: 50.0,
+                                  child: CircularProgressIndicator(
+                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                      FlutterFlowTheme.of(context).primary,
                                     ),
                                   ),
-                                );
-                              }
-                              List<TblCadServicosRow>
-                                  listViewTblCadServicosRowList =
-                                  snapshot.data!;
+                                ),
+                              );
+                            }
+                            List<TblCadServicosRow>
+                                listViewTblCadServicosRowList = snapshot.data!;
 
-                              if (listViewTblCadServicosRowList.isEmpty) {
-                                return CpSemCadastroWidget();
-                              }
+                            if (listViewTblCadServicosRowList.isEmpty) {
+                              return CpSemCadastroWidget();
+                            }
 
-                              return ListView.separated(
-                                padding: EdgeInsets.zero,
-                                primary: false,
-                                shrinkWrap: true,
-                                scrollDirection: Axis.vertical,
-                                itemCount: listViewTblCadServicosRowList.length,
-                                separatorBuilder: (_, __) =>
-                                    SizedBox(height: 8.0),
-                                itemBuilder: (context, listViewIndex) {
-                                  final listViewTblCadServicosRow =
-                                      listViewTblCadServicosRowList[
-                                          listViewIndex];
-                                  return Container(
-                                    width: 100.0,
-                                    decoration: BoxDecoration(
+                            return ListView.separated(
+                              padding: EdgeInsets.zero,
+                              primary: false,
+                              shrinkWrap: true,
+                              scrollDirection: Axis.vertical,
+                              itemCount: listViewTblCadServicosRowList.length,
+                              separatorBuilder: (_, __) =>
+                                  SizedBox(height: 8.0),
+                              itemBuilder: (context, listViewIndex) {
+                                final listViewTblCadServicosRow =
+                                    listViewTblCadServicosRowList[
+                                        listViewIndex];
+                                return Container(
+                                  width: 100.0,
+                                  decoration: BoxDecoration(
+                                    color: listViewTblCadServicosRow.situacao!
+                                        ? FlutterFlowTheme.of(context)
+                                            .cCFundoContainesDados
+                                        : Color(0x19FF5963),
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    border: Border.all(
                                       color: listViewTblCadServicosRow.situacao!
                                           ? FlutterFlowTheme.of(context)
-                                              .cCFundoContainesDados
-                                          : Color(0x19FF5963),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                      border: Border.all(
-                                        color:
-                                            listViewTblCadServicosRow.situacao!
-                                                ? FlutterFlowTheme.of(context)
-                                                    .alternate
-                                                : FlutterFlowTheme.of(context)
-                                                    .error,
-                                        width: 1.0,
-                                      ),
+                                              .alternate
+                                          : FlutterFlowTheme.of(context).error,
+                                      width: 1.0,
                                     ),
-                                    child: Builder(
-                                      builder: (context) => InkWell(
-                                        splashColor: Colors.transparent,
-                                        focusColor: Colors.transparent,
-                                        hoverColor: Colors.transparent,
-                                        highlightColor: Colors.transparent,
-                                        onTap: () async {
-                                          if (FFAppState()
-                                              .VarAbrirJanelasWebAndroid) {
-                                            context.pushNamed(
-                                              PgCadServicosWidget.routeName,
-                                              queryParameters: {
-                                                'paramCadastro': serializeParam(
-                                                  false,
-                                                  ParamType.bool,
-                                                ),
-                                                'paramIDServico':
-                                                    serializeParam(
-                                                  listViewTblCadServicosRow.id,
-                                                  ParamType.int,
-                                                ),
-                                              }.withoutNulls,
-                                              extra: <String, dynamic>{
-                                                kTransitionInfoKey:
-                                                    TransitionInfo(
-                                                  hasTransition: true,
-                                                  transitionType:
-                                                      PageTransitionType
-                                                          .bottomToTop,
-                                                  duration: Duration(
-                                                      milliseconds: 500),
-                                                ),
-                                              },
-                                            );
+                                  ),
+                                  child: Builder(
+                                    builder: (context) => InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        if (FFAppState()
+                                            .VarAbrirJanelasWebAndroid) {
+                                          context.pushNamed(
+                                            PgCadServicosWidget.routeName,
+                                            queryParameters: {
+                                              'paramCadastro': serializeParam(
+                                                false,
+                                                ParamType.bool,
+                                              ),
+                                              'paramIDServico': serializeParam(
+                                                listViewTblCadServicosRow.id,
+                                                ParamType.int,
+                                              ),
+                                            }.withoutNulls,
+                                            extra: <String, dynamic>{
+                                              kTransitionInfoKey:
+                                                  TransitionInfo(
+                                                hasTransition: true,
+                                                transitionType:
+                                                    PageTransitionType
+                                                        .bottomToTop,
+                                                duration:
+                                                    Duration(milliseconds: 500),
+                                              ),
+                                            },
+                                          );
 
-                                            await showDialog(
-                                              barrierColor: Colors.transparent,
-                                              context: context,
-                                              builder: (dialogContext) {
-                                                return Dialog(
-                                                  elevation: 0,
-                                                  insetPadding: EdgeInsets.zero,
-                                                  backgroundColor:
-                                                      Colors.transparent,
-                                                  alignment:
-                                                      AlignmentDirectional(
-                                                              0.0, 0.0)
-                                                          .resolve(
-                                                              Directionality.of(
-                                                                  context)),
-                                                  child: CaAguardeWidget(
-                                                    paramMostrarAnimacao: false,
-                                                  ),
-                                                );
-                                              },
-                                            );
+                                          await showDialog(
+                                            barrierColor: Colors.transparent,
+                                            context: context,
+                                            builder: (dialogContext) {
+                                              return Dialog(
+                                                elevation: 0,
+                                                insetPadding: EdgeInsets.zero,
+                                                backgroundColor:
+                                                    Colors.transparent,
+                                                alignment: AlignmentDirectional(
+                                                        0.0, 0.0)
+                                                    .resolve(Directionality.of(
+                                                        context)),
+                                                child: CaAguardeWidget(
+                                                  paramMostrarAnimacao: false,
+                                                ),
+                                              );
+                                            },
+                                          );
 
-                                            safeSetState(() =>
-                                                _model.requestCompleter = null);
-                                            await _model
-                                                .waitForRequestCompleted();
-                                          } else {
-                                            await showModalBottomSheet(
-                                              isScrollControlled: true,
-                                              backgroundColor:
-                                                  Colors.transparent,
-                                              enableDrag: false,
-                                              useSafeArea: true,
-                                              context: context,
-                                              builder: (context) {
-                                                return Padding(
-                                                  padding:
-                                                      MediaQuery.viewInsetsOf(
-                                                          context),
-                                                  child: CpCadServicosWidget(
-                                                    paramCadastro: false,
-                                                    paramID:
-                                                        listViewTblCadServicosRow
-                                                            .id,
-                                                  ),
-                                                );
-                                              },
-                                            ).then(
-                                                (value) => safeSetState(() {}));
+                                          safeSetState(() =>
+                                              _model.requestCompleter = null);
+                                          await _model
+                                              .waitForRequestCompleted();
+                                        } else {
+                                          await showModalBottomSheet(
+                                            isScrollControlled: true,
+                                            backgroundColor: Colors.transparent,
+                                            enableDrag: false,
+                                            useSafeArea: true,
+                                            context: context,
+                                            builder: (context) {
+                                              return Padding(
+                                                padding:
+                                                    MediaQuery.viewInsetsOf(
+                                                        context),
+                                                child: CpCadServicosWidget(
+                                                  paramCadastro: false,
+                                                  paramID:
+                                                      listViewTblCadServicosRow
+                                                          .id,
+                                                ),
+                                              );
+                                            },
+                                          ).then(
+                                              (value) => safeSetState(() {}));
 
-                                            safeSetState(() =>
-                                                _model.requestCompleter = null);
-                                            await _model
-                                                .waitForRequestCompleted();
-                                          }
-                                        },
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            Builder(
-                                              builder: (context) => Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        2.0, 2.0, 0.0, 2.0),
-                                                child: InkWell(
-                                                  splashColor:
-                                                      Colors.transparent,
-                                                  focusColor:
-                                                      Colors.transparent,
-                                                  hoverColor:
-                                                      Colors.transparent,
-                                                  highlightColor:
-                                                      Colors.transparent,
-                                                  onTap: () async {
-                                                    if (listViewTblCadServicosRow
-                                                                .foto !=
-                                                            null &&
-                                                        listViewTblCadServicosRow
-                                                                .foto !=
-                                                            '') {
-                                                      await showDialog(
-                                                        barrierColor:
-                                                            Color(0xD714181B),
-                                                        context: context,
-                                                        builder:
-                                                            (dialogContext) {
-                                                          return Dialog(
-                                                            elevation: 0,
-                                                            insetPadding:
-                                                                EdgeInsets.zero,
-                                                            backgroundColor:
-                                                                Colors
-                                                                    .transparent,
-                                                            alignment: AlignmentDirectional(
-                                                                    0.0, 0.0)
-                                                                .resolve(
-                                                                    Directionality.of(
-                                                                        context)),
-                                                            child: CpFotoWidget(
-                                                              paramFoto:
-                                                                  listViewTblCadServicosRow
-                                                                      .foto!,
+                                          safeSetState(() =>
+                                              _model.requestCompleter = null);
+                                          await _model
+                                              .waitForRequestCompleted();
+                                        }
+                                      },
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          Builder(
+                                            builder: (context) => Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(2.0, 2.0, 0.0, 2.0),
+                                              child: InkWell(
+                                                splashColor: Colors.transparent,
+                                                focusColor: Colors.transparent,
+                                                hoverColor: Colors.transparent,
+                                                highlightColor:
+                                                    Colors.transparent,
+                                                onTap: () async {
+                                                  if (listViewTblCadServicosRow
+                                                              .foto !=
+                                                          null &&
+                                                      listViewTblCadServicosRow
+                                                              .foto !=
+                                                          '') {
+                                                    await showDialog(
+                                                      barrierColor:
+                                                          Color(0xD714181B),
+                                                      context: context,
+                                                      builder: (dialogContext) {
+                                                        return Dialog(
+                                                          elevation: 0,
+                                                          insetPadding:
+                                                              EdgeInsets.zero,
+                                                          backgroundColor:
+                                                              Colors
+                                                                  .transparent,
+                                                          alignment: AlignmentDirectional(
+                                                                  0.0, 0.0)
+                                                              .resolve(
+                                                                  Directionality.of(
+                                                                      context)),
+                                                          child: CpFotoWidget(
+                                                            paramFoto:
+                                                                listViewTblCadServicosRow
+                                                                    .foto!,
+                                                          ),
+                                                        );
+                                                      },
+                                                    );
+                                                  } else {
+                                                    await showDialog(
+                                                      context: context,
+                                                      builder:
+                                                          (alertDialogContext) {
+                                                        return AlertDialog(
+                                                          title:
+                                                              Text('Atenção!'),
+                                                          content: Text(
+                                                              'Profissional sem foto de perfil...'),
+                                                          actions: [
+                                                            TextButton(
+                                                              onPressed: () =>
+                                                                  Navigator.pop(
+                                                                      alertDialogContext),
+                                                              child: Text('Ok'),
                                                             ),
-                                                          );
-                                                        },
-                                                      );
-                                                    } else {
-                                                      await showDialog(
-                                                        context: context,
-                                                        builder:
-                                                            (alertDialogContext) {
-                                                          return AlertDialog(
-                                                            title: Text(
-                                                                'Atenção!'),
-                                                            content: Text(
-                                                                'Profissional sem foto de perfil...'),
-                                                            actions: [
-                                                              TextButton(
-                                                                onPressed: () =>
-                                                                    Navigator.pop(
-                                                                        alertDialogContext),
-                                                                child:
-                                                                    Text('Ok'),
-                                                              ),
-                                                            ],
-                                                          );
-                                                        },
-                                                      );
-                                                    }
-                                                  },
-                                                  child: ClipRRect(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8.0),
-                                                    child: Image.network(
-                                                      valueOrDefault<String>(
-                                                        listViewTblCadServicosRow
-                                                            .foto,
-                                                        'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/agendador-de-beleza-qia8mb/assets/0re14cv09a0l/sem-foto.gif',
-                                                      ),
-                                                      width: 100.0,
-                                                      height: 100.0,
-                                                      fit: BoxFit.cover,
+                                                          ],
+                                                        );
+                                                      },
+                                                    );
+                                                  }
+                                                },
+                                                child: ClipRRect(
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          8.0),
+                                                  child: Image.network(
+                                                    valueOrDefault<String>(
+                                                      listViewTblCadServicosRow
+                                                          .foto,
+                                                      'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/agendador-de-beleza-qia8mb/assets/0re14cv09a0l/sem-foto.gif',
                                                     ),
+                                                    width: 100.0,
+                                                    height: 100.0,
+                                                    fit: BoxFit.cover,
                                                   ),
                                                 ),
                                               ),
                                             ),
-                                            Flexible(
-                                              child: Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        8.0, 4.0, 8.0, 4.0),
-                                                child: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
+                                          ),
+                                          Flexible(
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional
+                                                  .fromSTEB(8.0, 4.0, 8.0, 4.0),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(0.0, 0.0,
+                                                                0.0, 8.0),
+                                                    child: Text(
+                                                      valueOrDefault<String>(
+                                                        listViewTblCadServicosRow
+                                                            .nome,
+                                                        '...',
+                                                      ),
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                font: GoogleFonts
+                                                                    .readexPro(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontStyle,
+                                                                ),
+                                                                color: listViewTblCadServicosRow.situacao!
+                                                                    ? FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryText
+                                                                    : FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .error,
+                                                                fontSize: 18.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                fontStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontStyle,
+                                                              ),
+                                                    ),
+                                                  ),
+                                                  if (valueOrDefault<String>(
+                                                        listViewTblCadServicosRow
+                                                            .descricao,
+                                                        '...',
+                                                      ) !=
+                                                      '')
                                                     Padding(
                                                       padding:
                                                           EdgeInsetsDirectional
@@ -874,65 +916,142 @@ class _CpServicosWidgetState extends State<CpServicosWidget>
                                                       child: Text(
                                                         valueOrDefault<String>(
                                                           listViewTblCadServicosRow
-                                                              .nome,
-                                                          '...',
+                                                              .descricao,
+                                                          ' ...',
                                                         ),
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .bodyMedium
-                                                            .override(
-                                                              font: GoogleFonts
-                                                                  .readexPro(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  font: GoogleFonts
+                                                                      .readexPro(
+                                                                    fontWeight: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .fontWeight,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .fontStyle,
+                                                                  ),
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryText,
+                                                                  fontSize:
+                                                                      12.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontStyle,
+                                                                ),
+                                                      ),
+                                                    ),
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Icon(
+                                                        Icons.monetization_on,
+                                                        color: listViewTblCadServicosRow
+                                                                .valorSobConsulta
+                                                            ? FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primary
+                                                            : FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryText,
+                                                        size: 18.0,
+                                                      ),
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    8.0,
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0),
+                                                        child: Text(
+                                                          listViewTblCadServicosRow
+                                                                  .valorSobConsulta
+                                                              ? 'Valor sob consulta'
+                                                              : formatNumber(
+                                                                  listViewTblCadServicosRow
+                                                                      .valor!,
+                                                                  formatType:
+                                                                      FormatType
+                                                                          .decimal,
+                                                                  decimalType:
+                                                                      DecimalType
+                                                                          .commaDecimal,
+                                                                  currency:
+                                                                      'R\$',
+                                                                ),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                font: GoogleFonts
+                                                                    .readexPro(
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontStyle,
+                                                                ),
+                                                                color: listViewTblCadServicosRow.valorSobConsulta
+                                                                    ? FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primary
+                                                                    : FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryText,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontWeight,
                                                                 fontStyle: FlutterFlowTheme.of(
                                                                         context)
                                                                     .bodyMedium
                                                                     .fontStyle,
                                                               ),
-                                                              color: listViewTblCadServicosRow.situacao!
-                                                                  ? FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryText
-                                                                  : FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .error,
-                                                              fontSize: 18.0,
-                                                              letterSpacing:
-                                                                  0.0,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w600,
-                                                              fontStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .fontStyle,
-                                                            ),
+                                                        ),
                                                       ),
-                                                    ),
-                                                    if (valueOrDefault<String>(
-                                                          listViewTblCadServicosRow
-                                                              .descricao,
-                                                          '...',
-                                                        ) !=
-                                                        '')
+                                                    ],
+                                                  ),
+                                                  Row(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Icon(
+                                                        Icons.access_time,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryText,
+                                                        size: 18.0,
+                                                      ),
                                                       Padding(
                                                         padding:
                                                             EdgeInsetsDirectional
                                                                 .fromSTEB(
+                                                                    8.0,
                                                                     0.0,
                                                                     0.0,
-                                                                    0.0,
-                                                                    8.0),
+                                                                    0.0),
                                                         child: Text(
-                                                          valueOrDefault<
-                                                              String>(
-                                                            listViewTblCadServicosRow
-                                                                .descricao,
-                                                            ' ...',
-                                                          ),
+                                                          '${listViewTblCadServicosRow.tempoMinutos?.toString()} minutos',
                                                           style: FlutterFlowTheme
                                                                   .of(context)
                                                               .bodyMedium
@@ -951,7 +1070,6 @@ class _CpServicosWidgetState extends State<CpServicosWidget>
                                                                 color: FlutterFlowTheme.of(
                                                                         context)
                                                                     .secondaryText,
-                                                                fontSize: 12.0,
                                                                 letterSpacing:
                                                                     0.0,
                                                                 fontWeight: FlutterFlowTheme.of(
@@ -965,165 +1083,34 @@ class _CpServicosWidgetState extends State<CpServicosWidget>
                                                               ),
                                                         ),
                                                       ),
-                                                    Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      children: [
-                                                        Icon(
-                                                          Icons.monetization_on,
-                                                          color: listViewTblCadServicosRow
-                                                                  .valorSobConsulta
-                                                              ? FlutterFlowTheme
-                                                                      .of(
-                                                                          context)
-                                                                  .primary
-                                                              : FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondaryText,
-                                                          size: 18.0,
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      8.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0),
-                                                          child: Text(
-                                                            listViewTblCadServicosRow
-                                                                    .valorSobConsulta
-                                                                ? 'Valor sob consulta'
-                                                                : formatNumber(
-                                                                    listViewTblCadServicosRow
-                                                                        .valor!,
-                                                                    formatType:
-                                                                        FormatType
-                                                                            .decimal,
-                                                                    decimalType:
-                                                                        DecimalType
-                                                                            .commaDecimal,
-                                                                    currency:
-                                                                        'R\$',
-                                                                  ),
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  font: GoogleFonts
-                                                                      .readexPro(
-                                                                    fontWeight: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .fontWeight,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .fontStyle,
-                                                                  ),
-                                                                  color: listViewTblCadServicosRow.valorSobConsulta
-                                                                      ? FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .primary
-                                                                      : FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .secondaryText,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .fontStyle,
-                                                                ),
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      children: [
-                                                        Icon(
-                                                          Icons.access_time,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryText,
-                                                          size: 18.0,
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      8.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0),
-                                                          child: Text(
-                                                            '${listViewTblCadServicosRow.tempoMinutos?.toString()} minutos',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  font: GoogleFonts
-                                                                      .readexPro(
-                                                                    fontWeight: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .fontWeight,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .fontStyle,
-                                                                  ),
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryText,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .fontStyle,
-                                                                ),
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ],
-                                                ),
+                                                    ],
+                                                  ),
+                                                ],
                                               ),
                                             ),
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      0.0, 0.0, 16.0, 0.0),
-                                              child: Icon(
-                                                Icons.edit,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .secondaryText,
-                                                size: 30.0,
-                                              ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 16.0, 0.0),
+                                            child: Icon(
+                                              Icons.edit,
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .secondaryText,
+                                              size: 30.0,
                                             ),
-                                          ],
-                                        ),
+                                          ),
+                                        ],
                                       ),
                                     ),
-                                  ).animateOnPageLoad(animationsMap[
-                                      'containerOnPageLoadAnimation']!);
-                                },
-                                controller: _model.listViewController,
-                              );
-                            },
-                          ),
+                                  ),
+                                ).animateOnPageLoad(animationsMap[
+                                    'containerOnPageLoadAnimation']!);
+                              },
+                              controller: _model.listViewController,
+                            );
+                          },
                         ),
                       ),
                       Container(

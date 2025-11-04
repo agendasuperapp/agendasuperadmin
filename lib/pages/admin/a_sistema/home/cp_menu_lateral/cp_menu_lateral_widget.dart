@@ -441,13 +441,9 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                     highlightColor:
                                                         Colors.transparent,
                                                     onTap: () async {
-                                                      await Clipboard.setData(
-                                                          ClipboardData(
-                                                              text: FFAppState()
-                                                                  .varUrlApk));
-                                                      await launchURL(
-                                                          FFAppState()
-                                                              .varUrlApk);
+                                                      await action_blocks
+                                                          .acConsultarAtualizacaoSistema(
+                                                              context);
                                                     },
                                                     child: Text(
                                                       'Versão: ${FFAppState().VarVersaoSistema}',

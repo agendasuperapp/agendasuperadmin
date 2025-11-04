@@ -425,8 +425,19 @@ class _CpEstabelecimentoDashboardWidgetState
                   ),
                   decoration: BoxDecoration(),
                   child: Padding(
-                    padding:
-                        EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 0.0),
+                    padding: EdgeInsetsDirectional.fromSTEB(
+                        16.0,
+                        valueOrDefault<double>(
+                          MediaQuery.sizeOf(context).width <=
+                                  FFAppState()
+                                      .varTamanhoMinimoTelaMenuLateral
+                                      .toDouble()
+                              ? 0.0
+                              : 16.0,
+                          0.0,
+                        ),
+                        16.0,
+                        0.0),
                     child: Flex(
                       direction: () {
                         if (MediaQuery.sizeOf(context).width <

@@ -54,13 +54,10 @@ class _PgLoginWidgetState extends State<PgLoginWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-        body: SafeArea(
-          top: true,
-          child: wrapWithModel(
-            model: _model.cpLoginModel,
-            updateCallback: () => safeSetState(() {}),
-            child: CpLoginWidget(),
-          ),
+        body: wrapWithModel(
+          model: _model.cpLoginModel,
+          updateCallback: () => safeSetState(() {}),
+          child: CpLoginWidget(),
         ),
       ),
     );

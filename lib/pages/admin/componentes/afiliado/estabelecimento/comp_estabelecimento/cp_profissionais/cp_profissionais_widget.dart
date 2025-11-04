@@ -224,7 +224,19 @@ class _CpProfissionaisWidgetState extends State<CpProfissionaisWidget>
             return Stack(
               children: [
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(4.0, 0.0, 4.0, 4.0),
+                  padding: EdgeInsetsDirectional.fromSTEB(
+                      16.0,
+                      valueOrDefault<double>(
+                        MediaQuery.sizeOf(context).width <=
+                                FFAppState()
+                                    .varTamanhoMinimoTelaMenuLateral
+                                    .toDouble()
+                            ? 0.0
+                            : 16.0,
+                        0.0,
+                      ),
+                      16.0,
+                      16.0),
                   child: SingleChildScrollView(
                     controller: _model.columnController,
                     child: Column(
@@ -233,7 +245,7 @@ class _CpProfissionaisWidgetState extends State<CpProfissionaisWidget>
                       children: [
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
-                              16.0, 16.0, 16.0, 16.0),
+                              0.0, 0.0, 0.0, 16.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,

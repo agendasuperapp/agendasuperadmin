@@ -59,88 +59,85 @@ class _PgHomeAssistenteCadWidgetState extends State<PgHomeAssistenteCadWidget> {
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-        body: SafeArea(
-          top: true,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisSize: MainAxisSize.max,
-                children: [
-                  Stack(
-                    alignment: AlignmentDirectional(-1.0, -1.0),
-                    children: [
+        body: Column(
+          mainAxisSize: MainAxisSize.max,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Stack(
+                  alignment: AlignmentDirectional(-1.0, -1.0),
+                  children: [
+                    wrapWithModel(
+                      model: _model.cpCabecalhoPaginaModel,
+                      updateCallback: () => safeSetState(() {}),
+                      child: CpCabecalhoPaginaWidget(),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            Flexible(
+              child: Align(
+                alignment: AlignmentDirectional(-1.0, 0.0),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    if ((MediaQuery.sizeOf(context).width >
+                            FFAppState()
+                                .varTamanhoMinimoTelaMenuLateral
+                                .toDouble()) &&
+                        responsiveVisibility(
+                          context: context,
+                          phone: false,
+                        ))
                       wrapWithModel(
-                        model: _model.cpCabecalhoPaginaModel,
+                        model: _model.cpMenuLateralModel,
                         updateCallback: () => safeSetState(() {}),
-                        child: CpCabecalhoPaginaWidget(),
+                        child: CpMenuLateralWidget(
+                          paramBotaoSelecionado: 'ASSISTENTE_CAD',
+                          paramGrupoBotao: 'ASSISTENTE_CAD',
+                          paramElpacamentoTop: false,
+                        ),
                       ),
-                    ],
-                  ),
-                ],
-              ),
-              Flexible(
-                child: Align(
-                  alignment: AlignmentDirectional(-1.0, 0.0),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      if ((MediaQuery.sizeOf(context).width >
-                              FFAppState()
-                                  .varTamanhoMinimoTelaMenuLateral
-                                  .toDouble()) &&
-                          responsiveVisibility(
-                            context: context,
-                            phone: false,
-                          ))
-                        wrapWithModel(
-                          model: _model.cpMenuLateralModel,
+                    Expanded(
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                          image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: Image.network(
+                              Theme.of(context).brightness == Brightness.dark
+                                  ? 'SEM FOTO USAR COR CONTAINER'
+                                  : FFAppState()
+                                      .VarTblEstabelecimentoLogado
+                                      .fotoLightMode,
+                            ).image,
+                          ),
+                        ),
+                        child: wrapWithModel(
+                          model: _model.cpHomeAssistenteCadModel,
                           updateCallback: () => safeSetState(() {}),
-                          child: CpMenuLateralWidget(
-                            paramBotaoSelecionado: 'ASSISTENTE_CAD',
-                            paramGrupoBotao: 'ASSISTENTE_CAD',
-                            paramElpacamentoTop: false,
-                          ),
-                        ),
-                      Expanded(
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: FlutterFlowTheme.of(context)
-                                .secondaryBackground,
-                            image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: Image.network(
-                                Theme.of(context).brightness == Brightness.dark
-                                    ? 'SEM FOTO USAR COR CONTAINER'
-                                    : FFAppState()
-                                        .VarTblEstabelecimentoLogado
-                                        .fotoLightMode,
-                              ).image,
-                            ),
-                          ),
-                          child: wrapWithModel(
-                            model: _model.cpHomeAssistenteCadModel,
-                            updateCallback: () => safeSetState(() {}),
-                            child: CpHomeAssistenteCadWidget(),
-                          ),
+                          child: CpHomeAssistenteCadWidget(),
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-              if (MediaQuery.sizeOf(context).width <=
-                  FFAppState().varTamanhoMinimoTelaMenuLateral.toDouble())
-                wrapWithModel(
-                  model: _model.cpRodapeModel,
-                  updateCallback: () => safeSetState(() {}),
-                  child: CpRodapeWidget(
-                    paramBotaoSelecionado: 'ASSISTENTE_CAD',
-                  ),
+            ),
+            if (MediaQuery.sizeOf(context).width <=
+                FFAppState().varTamanhoMinimoTelaMenuLateral.toDouble())
+              wrapWithModel(
+                model: _model.cpRodapeModel,
+                updateCallback: () => safeSetState(() {}),
+                child: CpRodapeWidget(
+                  paramBotaoSelecionado: 'ASSISTENTE_CAD',
                 ),
-            ],
-          ),
+              ),
+          ],
         ),
       ),
     );

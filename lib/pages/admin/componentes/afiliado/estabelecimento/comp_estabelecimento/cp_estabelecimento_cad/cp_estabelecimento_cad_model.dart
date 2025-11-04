@@ -110,6 +110,8 @@ class CpEstabelecimentoCadModel
   final formKey1 = GlobalKey<FormState>();
   // Stores action output result for [Backend Call - Query Rows] action in cp_estabelecimento_cad widget.
   List<ViewTblEstabelecimentosRow>? queryConsEstabelecimentoLogado;
+  // State field(s) for Column widget.
+  ScrollController? columnController1;
   // State field(s) for TabBar widget.
   TabController? tabBarController;
   int get tabBarCurrentIndex =>
@@ -117,8 +119,6 @@ class CpEstabelecimentoCadModel
   int get tabBarPreviousIndex =>
       tabBarController != null ? tabBarController!.previousIndex : 0;
 
-  // State field(s) for ColumnEmpresa widget.
-  ScrollController? columnEmpresaScrollController;
   bool isDataUploading_uploadDataEstabelecimentoCapa = false;
   FFUploadedFile uploadedLocalFile_uploadDataEstabelecimentoCapa =
       FFUploadedFile(bytes: Uint8List.fromList([]), originalFilename: '');
@@ -332,7 +332,7 @@ class CpEstabelecimentoCadModel
   bool? acSairSistemaResultEmp;
   Completer<List<TblHorariosFuncionamentoRow>>? requestCompleter2;
   // State field(s) for Column widget.
-  ScrollController? columnController;
+  ScrollController? columnController2;
   // State field(s) for ColumnHorariosFunc widget.
   ScrollController? columnHorariosFuncScrollController;
   // State field(s) for ListViewHrFuncionamento widget.
@@ -401,13 +401,13 @@ class CpEstabelecimentoCadModel
 
   @override
   void initState(BuildContext context) {
-    columnEmpresaScrollController = ScrollController();
+    columnController1 = ScrollController();
     rowModelosBannersScrollController = ScrollController();
     rowFotosBannersScrollController = ScrollController();
     textFieldCPFTextControllerValidator = _textFieldCPFTextControllerValidator;
     textFieldDtNascimentoTextControllerValidator =
         _textFieldDtNascimentoTextControllerValidator;
-    columnController = ScrollController();
+    columnController2 = ScrollController();
     columnHorariosFuncScrollController = ScrollController();
     listViewHrFuncionamentoScrollController = ScrollController();
     columnWhatsAppScrollController = ScrollController();
@@ -416,8 +416,8 @@ class CpEstabelecimentoCadModel
 
   @override
   void dispose() {
+    columnController1?.dispose();
     tabBarController?.dispose();
-    columnEmpresaScrollController?.dispose();
     textFieldTamanhoTelaFocusNode?.dispose();
     textFieldTamanhoTelaTextController?.dispose();
 
@@ -483,7 +483,7 @@ class CpEstabelecimentoCadModel
     textFieldEstadoFocusNode?.dispose();
     textFieldEstadoTextController?.dispose();
 
-    columnController?.dispose();
+    columnController2?.dispose();
     columnHorariosFuncScrollController?.dispose();
     listViewHrFuncionamentoScrollController?.dispose();
     textFieldInstagramFocusNode?.dispose();

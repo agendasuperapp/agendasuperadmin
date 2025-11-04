@@ -125,7 +125,7 @@ class CpLoginModel extends FlutterFlowModel<CpLoginWidget> {
       FFAppState().varAPPOneSignalInicializado = false;
       await Future.delayed(
         Duration(
-          milliseconds: 1000,
+          milliseconds: 50,
         ),
       );
       if (FFAppState().VarEmDesenvolvimento) {

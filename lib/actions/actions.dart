@@ -3958,20 +3958,20 @@ Future<bool> acOneSignalAPPInicializarNotificacoes(BuildContext context) async {
       FFAppState().varAPPIDOneSignal = resultGetOneSignalUserID!;
       FFAppState().varAPPOneSignalInicializado = true;
       FFAppState().update(() {});
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(
-            'Notificações atualizadas...',
-            style: TextStyle(
-              color: FlutterFlowTheme.of(context).info,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          duration: Duration(milliseconds: 1000),
-          backgroundColor: FlutterFlowTheme.of(context).secondary,
-        ),
-      );
       if (FFAppState().VarEmDesenvolvimento) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              'Notificações atualizadas...',
+              style: TextStyle(
+                color: FlutterFlowTheme.of(context).info,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            duration: Duration(milliseconds: 1000),
+            backgroundColor: FlutterFlowTheme.of(context).secondary,
+          ),
+        );
         unawaited(
           () async {
             await showDialog(

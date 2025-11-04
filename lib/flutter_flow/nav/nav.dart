@@ -9,6 +9,7 @@ import '/backend/supabase/supabase.dart';
 
 import '/auth/base_auth_user_provider.dart';
 
+import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 
 import '/index.dart';
@@ -730,16 +731,18 @@ class FFRoute {
                 )
               : builder(context, ffParams);
           final child = appStateNotifier.loading
-              ? Container(
-                  color: Colors.transparent,
-                  child: Center(
-                    child: Image.asset(
-                      'assets/images/appsplashimage.png',
-                      width: MediaQuery.sizeOf(context).width * 0.7,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                )
+              ? isWeb
+                  ? Container()
+                  : Container(
+                      color: FlutterFlowTheme.of(context).primaryText,
+                      child: Center(
+                        child: Image.asset(
+                          'assets/images/appsplashimage.png',
+                          width: 300.0,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    )
               : page;
 
           final transitionInfo = state.transitionInfo;

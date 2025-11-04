@@ -148,15 +148,24 @@ jobs:
       # 14️⃣ Configurar assinatura Android (keystore oficial)
       - name: 14️⃣ 🔐 Configurar assinatura Android (keystore oficial)
         run: |
+          # Garante que o diretório android/app existe
+          mkdir -p android/app
+
+          # Recria o arquivo .jks a partir do Base64 armazenado no Secret
           echo "${{ secrets.ANDROID_KEYSTORE_B64 }}" | base64 -d > android/app/upload-keystore.jks
+
+          # Cria o arquivo key.properties com o mesmo formato usado localmente
+          # OBS: "storeFile" precisa apontar para app/upload-keystore.jks (não apenas upload-keystore.jks)
           {
             echo "storePassword=${{ secrets.KEYSTORE_PASSWORD }}"
             echo "keyPassword=${{ secrets.KEY_PASSWORD }}"
             echo "keyAlias=${{ secrets.KEY_ALIAS }}"
-            echo "storeFile=upload-keystore.jks"
+            echo "storeFile=app/upload-keystore.jks"
           } > android/key.properties
-          echo "✅ Arquivos de assinatura configurados com sucesso"
+
+          echo "✅ Keystore configurado com sucesso:"
           cat android/key.properties
+
 
       # 15️⃣ Aplicar custom codes overlay
       - name: 15️⃣ 🔄 Aplicar custom codes overlay

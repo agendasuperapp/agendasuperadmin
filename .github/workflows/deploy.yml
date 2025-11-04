@@ -193,6 +193,15 @@ jobs:
           MANIFEST_PATH="android/app/src/main/AndroidManifest.xml"
           sed -i "s/android:label=\"NomeAPP\"/android:label=\"${{ env.APPNAME }}\"/g" "$MANIFEST_PATH"
 
+      # 17️⃣½ Substituir build.gradle modificado antes do build
+      - name: 17️⃣½ 🧱 Substituir build.gradle modificado (overlay de assinatura)
+        run: |
+          echo "🔁 Substituindo build.gradle padrão pelo customizado..."
+          cp -f .github/overlays/build/build.gradle android/app/build.gradle
+          echo "✅ Substituição concluída. Conteúdo atual:"
+          head -n 20 android/app/build.gradle
+
+
       # 18️⃣ Gerar APK Release
       - name: 18️⃣ 🤖 Gerar APK Release Assinado
         run: |

@@ -529,6 +529,8 @@ class _CpCadModelosBannersWidgetState extends State<CpCadModelosBannersWidget> {
                                                 height: m.dimensions?.height,
                                                 width: m.dimensions?.width,
                                                 blurHash: m.blurHash,
+                                                originalFilename:
+                                                    m.originalFilename,
                                               ))
                                           .toList();
 
@@ -895,7 +897,8 @@ class _CpCadModelosBannersWidgetState extends State<CpCadModelosBannersWidget> {
                                       false;
                                   _model.uploadedLocalFile_uploadDataBanner =
                                       FFUploadedFile(
-                                          bytes: Uint8List.fromList([]));
+                                          bytes: Uint8List.fromList([]),
+                                          originalFilename: '');
                                   _model.uploadedFileUrl_uploadDataBanner = '';
                                 });
 

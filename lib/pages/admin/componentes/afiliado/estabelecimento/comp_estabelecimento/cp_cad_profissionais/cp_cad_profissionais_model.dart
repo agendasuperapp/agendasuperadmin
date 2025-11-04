@@ -85,7 +85,7 @@ class CpCadProfissionaisModel
 
   bool isDataUploading_uploadDataProfissionais = false;
   FFUploadedFile uploadedLocalFile_uploadDataProfissionais =
-      FFUploadedFile(bytes: Uint8List.fromList([]));
+      FFUploadedFile(bytes: Uint8List.fromList([]), originalFilename: '');
   String uploadedFileUrl_uploadDataProfissionais = '';
 
   // State field(s) for TextFieldNome widget.

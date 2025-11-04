@@ -227,6 +227,7 @@ class _CpCadServicosWidgetState extends State<CpCadServicosWidget> {
                                   height: m.dimensions?.height,
                                   width: m.dimensions?.width,
                                   blurHash: m.blurHash,
+                                  originalFilename: m.originalFilename,
                                 ))
                             .toList();
 
@@ -811,7 +812,9 @@ class _CpCadServicosWidgetState extends State<CpCadServicosWidget> {
                         safeSetState(() {
                           _model.isDataUploading_uploadDataFoto = false;
                           _model.uploadedLocalFile_uploadDataFoto =
-                              FFUploadedFile(bytes: Uint8List.fromList([]));
+                              FFUploadedFile(
+                                  bytes: Uint8List.fromList([]),
+                                  originalFilename: '');
                           _model.uploadedFileUrl_uploadDataFoto = '';
                         });
 
@@ -1023,7 +1026,9 @@ class _CpCadServicosWidgetState extends State<CpCadServicosWidget> {
                         safeSetState(() {
                           _model.isDataUploading_uploadDataFoto = false;
                           _model.uploadedLocalFile_uploadDataFoto =
-                              FFUploadedFile(bytes: Uint8List.fromList([]));
+                              FFUploadedFile(
+                                  bytes: Uint8List.fromList([]),
+                                  originalFilename: '');
                           _model.uploadedFileUrl_uploadDataFoto = '';
                         });
 

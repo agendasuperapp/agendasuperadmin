@@ -30,12 +30,12 @@ class CpCadTemasBlackgroundxModel
   String? Function(BuildContext, String?)? textControllerValidator;
   bool isDataUploading_uploadDataLigth = false;
   FFUploadedFile uploadedLocalFile_uploadDataLigth =
-      FFUploadedFile(bytes: Uint8List.fromList([]));
+      FFUploadedFile(bytes: Uint8List.fromList([]), originalFilename: '');
   String uploadedFileUrl_uploadDataLigth = '';
 
   bool isDataUploading_uploadDataDark = false;
   FFUploadedFile uploadedLocalFile_uploadDataDark =
-      FFUploadedFile(bytes: Uint8List.fromList([]));
+      FFUploadedFile(bytes: Uint8List.fromList([]), originalFilename: '');
   String uploadedFileUrl_uploadDataDark = '';
 
   @override

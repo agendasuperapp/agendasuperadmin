@@ -121,7 +121,7 @@ class CpEstabelecimentoCadModel
   ScrollController? columnEmpresaScrollController;
   bool isDataUploading_uploadDataEstabelecimentoCapa = false;
   FFUploadedFile uploadedLocalFile_uploadDataEstabelecimentoCapa =
-      FFUploadedFile(bytes: Uint8List.fromList([]));
+      FFUploadedFile(bytes: Uint8List.fromList([]), originalFilename: '');
   String uploadedFileUrl_uploadDataEstabelecimentoCapa = '';
 
   // State field(s) for TextFieldTamanhoTela widget.
@@ -146,7 +146,7 @@ class CpEstabelecimentoCadModel
   List<TblEstabelecimentoBannersRow>? queryConBannersAdd;
   bool isDataUploading_uploadDataEstabelecimentoBanners = false;
   FFUploadedFile uploadedLocalFile_uploadDataEstabelecimentoBanners =
-      FFUploadedFile(bytes: Uint8List.fromList([]));
+      FFUploadedFile(bytes: Uint8List.fromList([]), originalFilename: '');
   String uploadedFileUrl_uploadDataEstabelecimentoBanners = '';
 
   Completer<List<TblEstabelecimentoBannersRow>>? requestCompleter3;
@@ -157,12 +157,12 @@ class CpEstabelecimentoCadModel
   List<TblEstabelecimentoBannersRow>? queryConBannersDel;
   bool isDataUploading_uploadDataEstabelecimentoBannersEdit = false;
   FFUploadedFile uploadedLocalFile_uploadDataEstabelecimentoBannersEdit =
-      FFUploadedFile(bytes: Uint8List.fromList([]));
+      FFUploadedFile(bytes: Uint8List.fromList([]), originalFilename: '');
   String uploadedFileUrl_uploadDataEstabelecimentoBannersEdit = '';
 
   bool isDataUploading_uploadDataEstabelecimentoPerfil1 = false;
   FFUploadedFile uploadedLocalFile_uploadDataEstabelecimentoPerfil1 =
-      FFUploadedFile(bytes: Uint8List.fromList([]));
+      FFUploadedFile(bytes: Uint8List.fromList([]), originalFilename: '');
   String uploadedFileUrl_uploadDataEstabelecimentoPerfil1 = '';
 
   // State field(s) for TextFieldNomeEmpresa widget.

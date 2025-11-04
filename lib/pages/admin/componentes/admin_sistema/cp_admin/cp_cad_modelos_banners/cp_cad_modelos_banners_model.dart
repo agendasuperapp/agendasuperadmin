@@ -22,7 +22,7 @@ class CpCadModelosBannersModel
   String? Function(BuildContext, String?)? textController2Validator;
   bool isDataUploading_uploadDataBanner = false;
   FFUploadedFile uploadedLocalFile_uploadDataBanner =
-      FFUploadedFile(bytes: Uint8List.fromList([]));
+      FFUploadedFile(bytes: Uint8List.fromList([]), originalFilename: '');
   String uploadedFileUrl_uploadDataBanner = '';
 
   @override

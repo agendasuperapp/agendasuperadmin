@@ -13,7 +13,7 @@ class CpAdminPagSaquesComprovanteModel
 
   bool isDataUploading_uploadDataComprovantePG = false;
   FFUploadedFile uploadedLocalFile_uploadDataComprovantePG =
-      FFUploadedFile(bytes: Uint8List.fromList([]));
+      FFUploadedFile(bytes: Uint8List.fromList([]), originalFilename: '');
   String uploadedFileUrl_uploadDataComprovantePG = '';
 
   @override

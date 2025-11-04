@@ -105,7 +105,7 @@ class CpAfiliadosCadModel extends FlutterFlowModel<CpAfiliadosCadWidget> {
   late CpAfiliadoAvisoCadastroModel cpAfiliadoAvisoCadastroModel;
   bool isDataUploading_uploadDataAfliliadoPerfil = false;
   FFUploadedFile uploadedLocalFile_uploadDataAfliliadoPerfil =
-      FFUploadedFile(bytes: Uint8List.fromList([]));
+      FFUploadedFile(bytes: Uint8List.fromList([]), originalFilename: '');
   String uploadedFileUrl_uploadDataAfliliadoPerfil = '';
 
   // State field(s) for TextFieldNomeAfiliado widget.

@@ -742,6 +742,8 @@ class _CpCadProfissionaisWidgetState extends State<CpCadProfissionaisWidget>
                                                                               ?.width,
                                                                           blurHash:
                                                                               m.blurHash,
+                                                                          originalFilename:
+                                                                              m.originalFilename,
                                                                         ))
                                                                     .toList();
 
@@ -3298,7 +3300,9 @@ class _CpCadProfissionaisWidgetState extends State<CpCadProfissionaisWidget>
                                                                   FFUploadedFile(
                                                                       bytes: Uint8List
                                                                           .fromList(
-                                                                              []));
+                                                                              []),
+                                                                      originalFilename:
+                                                                          '');
                                                               _model.uploadedFileUrl_uploadDataProfissionais =
                                                                   '';
                                                             });

@@ -386,7 +386,8 @@ class _CpAdminPagSaquesComprovanteWidgetState
                                     false;
                                 _model.uploadedLocalFile_uploadDataComprovantePG =
                                     FFUploadedFile(
-                                        bytes: Uint8List.fromList([]));
+                                        bytes: Uint8List.fromList([]),
+                                        originalFilename: '');
                                 _model.uploadedFileUrl_uploadDataComprovantePG =
                                     '';
                               });
@@ -416,6 +417,8 @@ class _CpAdminPagSaquesComprovanteWidgetState
                                             height: m.dimensions?.height,
                                             width: m.dimensions?.width,
                                             blurHash: m.blurHash,
+                                            originalFilename:
+                                                m.originalFilename,
                                           ))
                                       .toList();
 

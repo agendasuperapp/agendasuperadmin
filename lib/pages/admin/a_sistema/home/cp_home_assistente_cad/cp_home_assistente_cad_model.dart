@@ -97,7 +97,7 @@ class CpHomeAssistenteCadModel
   ScrollController? columnFotoPerfilScrollController;
   bool isDataUploading_uploadDataEstabelecimentoPerfilAssist = false;
   FFUploadedFile uploadedLocalFile_uploadDataEstabelecimentoPerfilAssist =
-      FFUploadedFile(bytes: Uint8List.fromList([]));
+      FFUploadedFile(bytes: Uint8List.fromList([]), originalFilename: '');
   String uploadedFileUrl_uploadDataEstabelecimentoPerfilAssist = '';
 
   // State field(s) for StaggeredViewFotosPerfis widget.
@@ -245,7 +245,7 @@ class CpHomeAssistenteCadModel
   ScrollController? listViewHrProfissionaisScrollController;
   bool isDataUploading_uploadDataProfissionaisAss = false;
   FFUploadedFile uploadedLocalFile_uploadDataProfissionaisAss =
-      FFUploadedFile(bytes: Uint8List.fromList([]));
+      FFUploadedFile(bytes: Uint8List.fromList([]), originalFilename: '');
   String uploadedFileUrl_uploadDataProfissionaisAss = '';
 
   // State field(s) for Column widget.

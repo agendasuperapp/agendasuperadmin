@@ -684,6 +684,8 @@ class _CpCadModelosFotosWidgetState extends State<CpCadModelosFotosWidget> {
                                                   height: m.dimensions?.height,
                                                   width: m.dimensions?.width,
                                                   blurHash: m.blurHash,
+                                                  originalFilename:
+                                                      m.originalFilename,
                                                 ))
                                             .toList();
 
@@ -994,7 +996,8 @@ class _CpCadModelosFotosWidgetState extends State<CpCadModelosFotosWidget> {
                                       false;
                                   _model.uploadedLocalFile_uploadDataModeloFoto =
                                       FFUploadedFile(
-                                          bytes: Uint8List.fromList([]));
+                                          bytes: Uint8List.fromList([]),
+                                          originalFilename: '');
                                   _model.uploadedFileUrl_uploadDataModeloFoto =
                                       '';
                                 });

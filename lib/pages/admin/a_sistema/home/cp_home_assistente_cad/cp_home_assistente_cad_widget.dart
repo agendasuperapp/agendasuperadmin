@@ -1745,6 +1745,8 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                                                                               ?.width,
                                                                           blurHash:
                                                                               m.blurHash,
+                                                                          originalFilename:
+                                                                              m.originalFilename,
                                                                         ))
                                                                     .toList();
 
@@ -1950,9 +1952,11 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                                                                         () {
                                                                       _model.isDataUploading_uploadDataEstabelecimentoPerfilAssist =
                                                                           false;
-                                                                      _model.uploadedLocalFile_uploadDataEstabelecimentoPerfilAssist =
-                                                                          FFUploadedFile(
-                                                                              bytes: Uint8List.fromList([]));
+                                                                      _model.uploadedLocalFile_uploadDataEstabelecimentoPerfilAssist = FFUploadedFile(
+                                                                          bytes:
+                                                                              Uint8List.fromList([]),
+                                                                          originalFilename:
+                                                                              '');
                                                                       _model.uploadedFileUrl_uploadDataEstabelecimentoPerfilAssist =
                                                                           '';
                                                                     });
@@ -7461,7 +7465,7 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                                                                               () async {
                                                                             safeSetState(() {
                                                                               _model.isDataUploading_uploadDataProfissionaisAss = false;
-                                                                              _model.uploadedLocalFile_uploadDataProfissionaisAss = FFUploadedFile(bytes: Uint8List.fromList([]));
+                                                                              _model.uploadedLocalFile_uploadDataProfissionaisAss = FFUploadedFile(bytes: Uint8List.fromList([]), originalFilename: '');
                                                                               _model.uploadedFileUrl_uploadDataProfissionaisAss = '';
                                                                             });
 
@@ -7488,6 +7492,7 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                                                                                           height: m.dimensions?.height,
                                                                                           width: m.dimensions?.width,
                                                                                           blurHash: m.blurHash,
+                                                                                          originalFilename: m.originalFilename,
                                                                                         ))
                                                                                     .toList();
 

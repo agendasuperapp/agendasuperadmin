@@ -21,7 +21,7 @@ class CpCadServicosModel extends FlutterFlowModel<CpCadServicosWidget> {
   List<TblCadServicosRow>? queryTblCaadServicos;
   bool isDataUploading_uploadDataFoto = false;
   FFUploadedFile uploadedLocalFile_uploadDataFoto =
-      FFUploadedFile(bytes: Uint8List.fromList([]));
+      FFUploadedFile(bytes: Uint8List.fromList([]), originalFilename: '');
   String uploadedFileUrl_uploadDataFoto = '';
 
   // State field(s) for TextFieldNome widget.

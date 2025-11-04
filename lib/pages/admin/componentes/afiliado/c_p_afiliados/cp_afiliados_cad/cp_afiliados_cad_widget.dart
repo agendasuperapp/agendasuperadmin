@@ -680,7 +680,8 @@ class _CpAfiliadosCadWidgetState extends State<CpAfiliadosCadWidget>
                                                     FFUploadedFile(
                                                         bytes:
                                                             Uint8List.fromList(
-                                                                []));
+                                                                []),
+                                                        originalFilename: '');
                                                 _model.uploadedFileUrl_uploadDataAfliliadoPerfil =
                                                     '';
                                               });
@@ -732,6 +733,8 @@ class _CpAfiliadosCadWidgetState extends State<CpAfiliadosCadWidget>
                                                                     ?.width,
                                                                 blurHash:
                                                                     m.blurHash,
+                                                                originalFilename:
+                                                                    m.originalFilename,
                                                               ))
                                                           .toList();
 

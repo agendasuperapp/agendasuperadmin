@@ -362,6 +362,8 @@ class _CpCadTemasBlackgroundxWidgetState
                                                   height: m.dimensions?.height,
                                                   width: m.dimensions?.width,
                                                   blurHash: m.blurHash,
+                                                  originalFilename:
+                                                      m.originalFilename,
                                                 ))
                                             .toList();
 
@@ -859,6 +861,8 @@ class _CpCadTemasBlackgroundxWidgetState
                                                         m.dimensions?.height,
                                                     width: m.dimensions?.width,
                                                     blurHash: m.blurHash,
+                                                    originalFilename:
+                                                        m.originalFilename,
                                                   ))
                                               .toList();
 
@@ -1221,7 +1225,8 @@ class _CpCadTemasBlackgroundxWidgetState
                                 _model.isDataUploading_uploadDataDark = false;
                                 _model.uploadedLocalFile_uploadDataDark =
                                     FFUploadedFile(
-                                        bytes: Uint8List.fromList([]));
+                                        bytes: Uint8List.fromList([]),
+                                        originalFilename: '');
                                 _model.uploadedFileUrl_uploadDataDark = '';
                               });
 
@@ -1229,7 +1234,8 @@ class _CpCadTemasBlackgroundxWidgetState
                                 _model.isDataUploading_uploadDataLigth = false;
                                 _model.uploadedLocalFile_uploadDataLigth =
                                     FFUploadedFile(
-                                        bytes: Uint8List.fromList([]));
+                                        bytes: Uint8List.fromList([]),
+                                        originalFilename: '');
                                 _model.uploadedFileUrl_uploadDataLigth = '';
                               });
 

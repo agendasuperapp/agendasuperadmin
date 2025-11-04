@@ -1236,6 +1236,7 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                               height: m.dimensions?.height,
                                                                               width: m.dimensions?.width,
                                                                               blurHash: m.blurHash,
+                                                                              originalFilename: m.originalFilename,
                                                                             ))
                                                                         .toList();
 
@@ -2372,7 +2373,7 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                                     var _shouldSetState = false;
                                                                                     safeSetState(() {
                                                                                       _model.isDataUploading_uploadDataEstabelecimentoBanners = false;
-                                                                                      _model.uploadedLocalFile_uploadDataEstabelecimentoBanners = FFUploadedFile(bytes: Uint8List.fromList([]));
+                                                                                      _model.uploadedLocalFile_uploadDataEstabelecimentoBanners = FFUploadedFile(bytes: Uint8List.fromList([]), originalFilename: '');
                                                                                       _model.uploadedFileUrl_uploadDataEstabelecimentoBanners = '';
                                                                                     });
 
@@ -2426,6 +2427,7 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                                                   height: m.dimensions?.height,
                                                                                                   width: m.dimensions?.width,
                                                                                                   blurHash: m.blurHash,
+                                                                                                  originalFilename: m.originalFilename,
                                                                                                 ))
                                                                                             .toList();
 
@@ -2938,7 +2940,7 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                                                               onTap: () async {
                                                                                                                 safeSetState(() {
                                                                                                                   _model.isDataUploading_uploadDataEstabelecimentoBannersEdit = false;
-                                                                                                                  _model.uploadedLocalFile_uploadDataEstabelecimentoBannersEdit = FFUploadedFile(bytes: Uint8List.fromList([]));
+                                                                                                                  _model.uploadedLocalFile_uploadDataEstabelecimentoBannersEdit = FFUploadedFile(bytes: Uint8List.fromList([]), originalFilename: '');
                                                                                                                   _model.uploadedFileUrl_uploadDataEstabelecimentoBannersEdit = '';
                                                                                                                 });
 
@@ -2961,6 +2963,7 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                                                                               height: m.dimensions?.height,
                                                                                                                               width: m.dimensions?.width,
                                                                                                                               blurHash: m.blurHash,
+                                                                                                                              originalFilename: m.originalFilename,
                                                                                                                             ))
                                                                                                                         .toList();
 
@@ -3338,7 +3341,7 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                                 () async {
                                                                               safeSetState(() {
                                                                                 _model.isDataUploading_uploadDataEstabelecimentoPerfil1 = false;
-                                                                                _model.uploadedLocalFile_uploadDataEstabelecimentoPerfil1 = FFUploadedFile(bytes: Uint8List.fromList([]));
+                                                                                _model.uploadedLocalFile_uploadDataEstabelecimentoPerfil1 = FFUploadedFile(bytes: Uint8List.fromList([]), originalFilename: '');
                                                                                 _model.uploadedFileUrl_uploadDataEstabelecimentoPerfil1 = '';
                                                                               });
 
@@ -3366,6 +3369,7 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                                             height: m.dimensions?.height,
                                                                                             width: m.dimensions?.width,
                                                                                             blurHash: m.blurHash,
+                                                                                            originalFilename: m.originalFilename,
                                                                                           ))
                                                                                       .toList();
 

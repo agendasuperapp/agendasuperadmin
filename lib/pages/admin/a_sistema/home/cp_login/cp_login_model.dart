@@ -1,6 +1,6 @@
 import '/auth/supabase_auth/auth_util.dart';
-import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_util.dart';
+import '/custom_code/actions/index.dart' as actions;
 import '/index.dart';
 import 'cp_login_widget.dart' show CpLoginWidget;
 import 'package:flutter/material.dart';
@@ -95,31 +95,43 @@ class CpLoginModel extends FlutterFlowModel<CpLoginWidget> {
 
   /// Action blocks.
   Future acbFazerLogin(BuildContext context) async {
-    ApiCallResponse? apiResultLogin;
+    bool? resultLoginMultSession;
 
-    apiResultLogin = await SupabaseGroup.userLoginCall.call(
-      email: textFieldEntrarEmailTextController.text,
-      password: textFieldEntrarSenhaTextController.text,
+    resultLoginMultSession = await actions.loginMultiSession(
+      textFieldEntrarEmailTextController.text,
+      textFieldEntrarSenhaTextController.text,
     );
-
-    if ((apiResultLogin.succeeded ?? true)) {
-      await SupabaseGroup.userLogoutCall.call(
-        token: SupabaseGroup.userLoginCall.accesstoken(
-          (apiResultLogin.jsonBody ?? ''),
-        ),
+    await showDialog(
+      context: context,
+      builder: (alertDialogContext) {
+        return AlertDialog(
+          title: Text('teste'),
+          content: Text('1'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(alertDialogContext),
+              child: Text('Ok'),
+            ),
+          ],
+        );
+      },
+    );
+    if (resultLoginMultSession) {
+      await showDialog(
+        context: context,
+        builder: (alertDialogContext) {
+          return AlertDialog(
+            title: Text('teste'),
+            content: Text(currentJwtToken),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          );
+        },
       );
-
-      GoRouter.of(context).prepareAuthEvent();
-
-      final user = await authManager.signInWithEmail(
-        context,
-        textFieldEntrarEmailTextController.text,
-        textFieldEntrarSenhaTextController.text,
-      );
-      if (user == null) {
-        return;
-      }
-
       FFAppState().varCarregouPrimeiraPagina = true;
       FFAppState().varAPPNotificacoesAtivas = true;
       FFAppState().varAPPOneSignalInicializado = false;
@@ -128,27 +140,9 @@ class CpLoginModel extends FlutterFlowModel<CpLoginWidget> {
           milliseconds: 50,
         ),
       );
-      if (FFAppState().VarEmDesenvolvimento) {
-        await showDialog(
-          context: context,
-          builder: (alertDialogContext) {
-            return AlertDialog(
-              title: Text('teste'),
-              content: Text('1'),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(alertDialogContext),
-                  child: Text('Ok'),
-                ),
-              ],
-            );
-          },
-        );
-      }
 
-      context.goNamedAuth(
+      context.goNamed(
         PgDashboardWidget.routeName,
-        context.mounted,
         extra: <String, dynamic>{
           kTransitionInfoKey: TransitionInfo(
             hasTransition: true,
@@ -157,65 +151,22 @@ class CpLoginModel extends FlutterFlowModel<CpLoginWidget> {
           ),
         },
       );
-
-      if (FFAppState().VarEmDesenvolvimento) {
-        await showDialog(
-          context: context,
-          builder: (alertDialogContext) {
-            return AlertDialog(
-              title: Text('teste'),
-              content: Text('2'),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(alertDialogContext),
-                  child: Text('Ok'),
-                ),
-              ],
-            );
-          },
-        );
-      }
-      return;
     } else {
-      if (SupabaseGroup.userLoginCall.errorcode(
-            (apiResultLogin.jsonBody ?? ''),
-          ) ==
-          'invalid_credentials') {
-        await showDialog(
-          context: context,
-          builder: (alertDialogContext) {
-            return AlertDialog(
-              title: Text('Atenção '),
-              content: Text('Falha no login, verifique seu E-mail e senha '),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(alertDialogContext),
-                  child: Text('Ok'),
-                ),
-              ],
-            );
-          },
-        );
-      } else {
-        await showDialog(
-          context: context,
-          builder: (alertDialogContext) {
-            return AlertDialog(
-              title: Text('Atenção '),
-              content: Text('Falha no login: ${SupabaseGroup.userLoginCall.msg(
-                (apiResultLogin?.jsonBody ?? ''),
-              )}'),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(alertDialogContext),
-                  child: Text('Ok'),
-                ),
-              ],
-            );
-          },
-        );
-      }
-
+      await showDialog(
+        context: context,
+        builder: (alertDialogContext) {
+          return AlertDialog(
+            title: Text('Atenção '),
+            content: Text('Falha no login, verifique seu E-mail e senha '),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          );
+        },
+      );
       return;
     }
   }

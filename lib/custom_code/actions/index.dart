@@ -25,3 +25,4 @@ export 'ca_web_one_signal_get_local_storage_data.dart'
 export 'ca_web_get_loaded_app_version.dart' show caWebGetLoadedAppVersion;
 export 'ca_web_force_reload_no_cache.dart' show caWebForceReloadNoCache;
 export 'ca_web_redirect_to_url.dart' show caWebRedirectToUrl;
+export 'login_multi_session.dart' show loginMultiSession;

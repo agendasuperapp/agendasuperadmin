@@ -4332,5 +4332,14 @@ Future acConsultarAtualizacaoSistema(BuildContext context) async {
   );
   await Clipboard.setData(
       ClipboardData(text: queryConsUrlApk.firstOrNull!.urlApk!));
-  await launchURL(queryConsUrlApk.firstOrNull!.urlApk!);
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: Text(
+        'Link download copiado para área de transferência',
+        style: TextStyle(),
+      ),
+      duration: Duration(milliseconds: 4000),
+      backgroundColor: FlutterFlowTheme.of(context).secondary,
+    ),
+  );
 }

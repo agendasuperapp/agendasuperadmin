@@ -885,7 +885,7 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                                           child: Column(
                                             mainAxisSize: MainAxisSize.min,
                                             mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
+                                                MainAxisAlignment.start,
                                             children: [
                                               Row(
                                                 mainAxisSize: MainAxisSize.max,
@@ -7483,7 +7483,7 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                                                             EdgeInsets.all(4.0),
                                                         child: Column(
                                                           mainAxisSize:
-                                                              MainAxisSize.max,
+                                                              MainAxisSize.min,
                                                           children: [
                                                             Align(
                                                               alignment:

@@ -996,6 +996,11 @@ class _CpNotificacaoWidgetState extends State<CpNotificacaoWidget>
                                     context.pushNamed(
                                         PgEstabelecimentoPlanoWidget.routeName);
                                   }
+                                  if (listViewViewTblNotificacoesRow.tipo ==
+                                      'NOVAVERSAOAPK') {
+                                    await action_blocks
+                                        .acConsultarAtualizacaoSistema(context);
+                                  }
                                 },
                                 child: Container(
                                   decoration: BoxDecoration(
@@ -1206,8 +1211,16 @@ class _CpNotificacaoWidgetState extends State<CpNotificacaoWidget>
                                           ),
                                         ),
                                       ),
-                                      if (listViewViewTblNotificacoesRow.tipo ==
-                                          'NOVAVERSAOAPK')
+                                      if ((listViewViewTblNotificacoesRow
+                                                  .tipo ==
+                                              'NOVAVERSAOAPK') &&
+                                          responsiveVisibility(
+                                            context: context,
+                                            phone: false,
+                                            tablet: false,
+                                            tabletLandscape: false,
+                                            desktop: false,
+                                          ))
                                         Align(
                                           alignment:
                                               AlignmentDirectional(0.0, -1.0),

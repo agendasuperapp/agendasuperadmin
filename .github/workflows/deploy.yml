@@ -228,8 +228,9 @@ jobs:
           flutter pub get
           flutter build apk --release --target-platform android-arm64
 
-          # 🔹 Extrai versão real do arquivo version.json (igual web)
-          VERSION=$(jq -r '.version' build/web/version.json)
+          # 🔹 Extrai versão real do pubspec.yaml (campo version:)
+          VERSION=$(grep '^version:' pubspec.yaml | awk '{print $2}' | cut -d'+' -f1)
+          echo "📦 Versão detectada: ${VERSION}"
           echo "VERSION=${VERSION}" >> $GITHUB_ENV
 
           # 🔹 Substitui espaços por "_"

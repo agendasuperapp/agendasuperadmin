@@ -662,9 +662,10 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
         ),
         child: SafeArea(
           child: Container(
+            height: MediaQuery.sizeOf(context).height * 1.0,
             decoration: BoxDecoration(),
             child: Column(
-              mainAxisSize: MainAxisSize.max,
+              mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [

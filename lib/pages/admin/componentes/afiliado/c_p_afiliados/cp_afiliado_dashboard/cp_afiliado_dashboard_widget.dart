@@ -391,6 +391,7 @@ class _CpAfiliadoDashboardWidgetState extends State<CpAfiliadoDashboardWidget>
       ),
       child: SafeArea(
         child: Container(
+          height: MediaQuery.sizeOf(context).height * 1.0,
           decoration: BoxDecoration(),
           child: RefreshIndicator(
             onRefresh: () async {

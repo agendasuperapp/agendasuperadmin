@@ -850,40 +850,51 @@ class _CpCabecalhoPaginaWidgetState extends State<CpCabecalhoPaginaWidget>
 
                           safeSetState(() {});
                         },
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            if (MediaQuery.sizeOf(context).width > 600.0)
-                              Text(
-                                'Sair',
-                                style: FlutterFlowTheme.of(context)
-                                    .bodyMedium
-                                    .override(
-                                      font: GoogleFonts.readexPro(
-                                        fontWeight: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontWeight,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .fontStyle,
-                                      ),
-                                      color: FlutterFlowTheme.of(context).error,
-                                      fontSize: 14.0,
-                                      letterSpacing: 0.0,
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .fontStyle,
-                                    ),
-                              ),
-                            Icon(
-                              Icons.exit_to_app,
-                              color: FlutterFlowTheme.of(context).error,
-                              size: 20.0,
+                        child: Container(
+                          decoration: BoxDecoration(),
+                          child: Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                if (MediaQuery.sizeOf(context).width > 600.0)
+                                  Text(
+                                    'Sair',
+                                    style: FlutterFlowTheme.of(context)
+                                        .bodyMedium
+                                        .override(
+                                          font: GoogleFonts.readexPro(
+                                            fontWeight:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .fontWeight,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodyMedium
+                                                    .fontStyle,
+                                          ),
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
+                                          fontSize: 14.0,
+                                          letterSpacing: 0.0,
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontStyle,
+                                        ),
+                                  ),
+                                Icon(
+                                  Icons.exit_to_app,
+                                  color: FlutterFlowTheme.of(context).error,
+                                  size: 20.0,
+                                ),
+                              ].divide(SizedBox(width: 4.0)),
                             ),
-                          ].divide(SizedBox(width: 4.0)),
+                          ),
                         ),
                       ),
                     ].divide(SizedBox(width: 12.0)),

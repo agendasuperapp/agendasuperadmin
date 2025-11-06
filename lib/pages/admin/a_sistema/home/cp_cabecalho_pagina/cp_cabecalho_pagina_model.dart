@@ -13,7 +13,7 @@ class CpCabecalhoPaginaModel extends FlutterFlowModel<CpCabecalhoPaginaWidget> {
   ///  State fields for stateful widgets in this component.
 
   Stream<List<TblNotificacoesQuantRow>>? containerNotificacaoSupabaseStream;
-  // Stores action output result for [Action Block - acSairSistema] action in RowSair widget.
+  // Stores action output result for [Action Block - acSairSistema] action in Container widget.
   bool? acSairSistemaResultCab3;
   // Stores action output result for [Backend Call - Query Rows] action in Button widget.
   List<ViewTblAppPlanosEstabelecimentosRow>? queryPlanosEstab;

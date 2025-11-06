@@ -3101,96 +3101,69 @@ Future<String> acConsAfiliadoDaschboard(
         (apiResultConsAfidash.jsonBody ?? ''),
       ) ==
       'False') {
-    await showDialog(
-      context: context,
-      builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content: Text('Erro ao consultar Dashborad${'\n\n'}Código: False'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
-        );
-      },
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          'Erro ao consultar Dashborad${'\n\n'}Código: False',
+          style: TextStyle(),
+        ),
+        duration: Duration(milliseconds: 4000),
+        backgroundColor: FlutterFlowTheme.of(context).error,
+      ),
     );
     return 'False';
   } else if (FunctionsServerSupabaseGroup.fcafiliadodashboardCall.result(
         (apiResultConsAfidash.jsonBody ?? ''),
       ) ==
       'PARVAZ') {
-    await showDialog(
-      context: context,
-      builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content: Text('Erro ao consultar Dashborad${'\n\n'}Código: PARVAZ'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
-        );
-      },
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          'Erro ao consultar Dashborad${'\n\n'}Código: PARVAZ',
+          style: TextStyle(),
+        ),
+        duration: Duration(milliseconds: 4000),
+        backgroundColor: FlutterFlowTheme.of(context).error,
+      ),
     );
     return 'PARVAZ';
   } else if (FunctionsServerSupabaseGroup.fcafiliadodashboardCall.result(
         (apiResultConsAfidash.jsonBody ?? ''),
       ) ==
       'TOKINV') {
-    await showDialog(
-      context: context,
-      builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content: Text('Erro ao consultar Dashborad${'\n\n'}Código: TOKINV'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
-        );
-      },
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          'Erro ao consultar Dashborad${'\n\n'}Código: TOKINV',
+          style: TextStyle(),
+        ),
+        duration: Duration(milliseconds: 4000),
+        backgroundColor: FlutterFlowTheme.of(context).error,
+      ),
     );
     return 'TOKINV';
   } else if (!(apiResultConsAfidash.succeeded ?? true)) {
-    await showDialog(
-      context: context,
-      builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content:
-              Text('Erro ao consultar Dashborad${'\n\n'}Código: Sucess False'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
-        );
-      },
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          'Erro ao consultar Dashborad${'\n\n'}Código: Sucess False',
+          style: TextStyle(),
+        ),
+        duration: Duration(milliseconds: 4000),
+        backgroundColor: FlutterFlowTheme.of(context).error,
+      ),
     );
     return 'ERRO';
   } else {
-    await showDialog(
-      context: context,
-      builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content: Text(
-              'Erro ao consultar Dashborad${'\n\n'}Código: Indefinido ${(apiResultConsAfidash?.bodyText ?? '')}'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
-        );
-      },
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          'Erro ao consultar Dashborad${'\n\n'}Código: Indefinido ${(apiResultConsAfidash.bodyText ?? '')}',
+          style: TextStyle(),
+        ),
+        duration: Duration(milliseconds: 4000),
+        backgroundColor: FlutterFlowTheme.of(context).error,
+      ),
     );
     return 'ERRO';
   }
@@ -3810,96 +3783,73 @@ Future<String> acConsEstabDashboard(BuildContext context) async {
         (apiResultConsEstabdash.jsonBody ?? ''),
       ) ==
       'False') {
-    await showDialog(
-      context: context,
-      builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content: Text('Erro ao consultar Dashborad${'\n\n'}Código: False'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
-        );
-      },
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          'Erro ao consultar Dashborad${'\n\n'}Código: False',
+          style: TextStyle(
+            height: 40.0,
+          ),
+        ),
+        duration: Duration(milliseconds: 4000),
+        backgroundColor: FlutterFlowTheme.of(context).error,
+      ),
     );
     return 'False';
   } else if (FunctionsServerSupabaseGroup.fcestabelecimentodashboardCall.result(
         (apiResultConsEstabdash.jsonBody ?? ''),
       ) ==
       'PARVAZ') {
-    await showDialog(
-      context: context,
-      builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content: Text('Erro ao consultar Dashborad${'\n\n'}Código: PARVAZ'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
-        );
-      },
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          'Erro ao consultar Dashborad${'\n\n'}Código: PARVAZ',
+          style: TextStyle(
+            height: 40.0,
+          ),
+        ),
+        duration: Duration(milliseconds: 4000),
+        backgroundColor: FlutterFlowTheme.of(context).error,
+      ),
     );
     return 'PARVAZ';
   } else if (FunctionsServerSupabaseGroup.fcestabelecimentodashboardCall.result(
         (apiResultConsEstabdash.jsonBody ?? ''),
       ) ==
       'TOKINV') {
-    await showDialog(
-      context: context,
-      builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content: Text('Erro ao consultar Dashborad${'\n\n'}Código: TOKINV'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
-        );
-      },
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          'Erro ao consultar Dashborad${'\n\n'}Código: TOKINV',
+          style: TextStyle(),
+        ),
+        duration: Duration(milliseconds: 4000),
+        backgroundColor: FlutterFlowTheme.of(context).error,
+      ),
     );
     return 'TOKINV';
   } else if (!(apiResultConsEstabdash.succeeded ?? true)) {
-    await showDialog(
-      context: context,
-      builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content:
-              Text('Erro ao consultar Dashborad${'\n\n'}Código: Sucess False'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
-        );
-      },
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          'Erro ao consultar Dashborad${'\n\n'}Código: Sucess False',
+          style: TextStyle(),
+        ),
+        duration: Duration(milliseconds: 4000),
+        backgroundColor: FlutterFlowTheme.of(context).error,
+      ),
     );
     return 'ERRO';
   } else {
-    await showDialog(
-      context: context,
-      builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content: Text(
-              'Erro ao consultar Dashborad${'\n\n'}Código: Indefinido ${(apiResultConsEstabdash?.bodyText ?? '')}'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
-        );
-      },
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          'Erro ao consultar Dashborad${'\n\n'}Código: Indefinido ${(apiResultConsEstabdash.bodyText ?? '')}',
+          style: TextStyle(),
+        ),
+        duration: Duration(milliseconds: 4000),
+        backgroundColor: FlutterFlowTheme.of(context).error,
+      ),
     );
     return 'ERRO';
   }

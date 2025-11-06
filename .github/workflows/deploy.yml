@@ -1,4 +1,4 @@
-name: 🌐 Build & Deploy (Web + APK Otimizado)
+name: 🌐 Build & Deploy (Web + APK Otimizado Paralelo)
 
 on:
   push:
@@ -6,7 +6,11 @@ on:
       - flutterflow
 
 jobs:
-  deploy:
+  # ============================================================
+  # 1️⃣ BUILD & DEPLOY WEB
+  # ============================================================
+  deploy_web:
+    name: 🌎 1️⃣ Deploy Web
     runs-on: ubuntu-latest
 
     strategy:
@@ -27,118 +31,79 @@ jobs:
             ftp_dir: FTP_DIR_AFI
 
     steps:
-      # 1️⃣ Clonar repositório
-      - name: 1️⃣ 📥 Clonar repositório
+      - name: 1.1 📥 Clonar repositório
         uses: actions/checkout@v4
 
-      # 2️⃣ Restaurar cache Flutter e Gradle
-      - name: 2️⃣ ⚡ Restaurar cache Flutter e Gradle
+      - name: 1.2 ⚡ Restaurar cache Flutter/Gradle
         uses: actions/cache@v4
         with:
           path: |
             ~/.pub-cache
             ~/.gradle/caches
             ~/.gradle/wrapper
-            build
+            .dart_tool
           key: ${{ runner.os }}-flutter-${{ hashFiles('pubspec.yaml') }}
           restore-keys: |
             ${{ runner.os }}-flutter-
 
-      # 3️⃣ Instalar Flutter
-      - name: 3️⃣ 🧰 Instalar Flutter
+      - name: 1.3 🧰 Instalar Flutter
         uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.35.7'
           channel: 'stable'
 
-      # 4️⃣ Instalar dependências do sistema
-      - name: 4️⃣ ⚙️ Instalar utilitários necessários
+      - name: 1.4 ⚙️ Instalar utilitários do sistema
         run: |
-          sudo apt-get update
-          sudo apt-get install -y jq rsync curl lftp zipalign apksigner
+          sudo apt-get update -qq
+          sudo apt-get install -y jq rsync curl lftp gzip
 
-      # 5️⃣ Preparar ambiente
-      - name: 5️⃣ 🧹 Preparar ambiente
-        run: |
-          flutter pub get
-          mkdir -p temp/${{ matrix.target.name }}
-
-      # 6️⃣ Definir variáveis globais
-      - name: 6️⃣ 🧠 Definir variáveis globais
+      - name: 1.5 🧠 Definir variáveis globais
         run: |
           case "${{ matrix.target.name }}" in
             "agendasuper")
               APPNAME="Agenda Super"
               IDAFILIADOAPP="1"
               SITE="app.agendasuper.com.br"
-              APP_ID_ANDROID="com.adminagendasupertwo.app"
               ;;
             "rendarecorrente")
               APPNAME="APP Afiliado"
               IDAFILIADOAPP="3"
               SITE="painel.rendarecorrente.app"
-              APP_ID_ANDROID="com.adminrendarecorrentetwo.app"
               ;;
           esac
           echo "APPNAME=$APPNAME" >> $GITHUB_ENV
           echo "IDAFILIADOAPP=$IDAFILIADOAPP" >> $GITHUB_ENV
           echo "SITE=$SITE" >> $GITHUB_ENV
-          echo "APP_ID_ANDROID=$APP_ID_ANDROID" >> $GITHUB_ENV
 
-      # 6️⃣½ Atualizar nome do app no pubspec.yaml (identificador Dart válido)
-      - name: 6️⃣½ ✏️ Atualizar nome do app no pubspec.yaml
+      - name: 1.6 ✏️ Atualizar nome no pubspec.yaml
         run: |
-          echo "📝 Atualizando nome do app no pubspec.yaml..."
-
-          # Converte APPNAME para identificador Dart (minúsculo e sem espaços/acentos)
           SAFE_NAME=$(echo "${{ env.APPNAME }}" | tr '[:upper:]' '[:lower:]' | tr ' ' '_' | sed 's/[^a-z0-9_]//g')
+          sed -i "s/^name:.*/name: ${SAFE_NAME}/" pubspec.yaml
+          echo "✅ Nome atualizado: ${SAFE_NAME}"
 
-          echo "📦 Nome seguro gerado: ${SAFE_NAME}"
-
-          if grep -q "^name:" pubspec.yaml; then
-            sed -i "s/^name:.*/name: ${SAFE_NAME}/" pubspec.yaml
-            echo "✅ Nome do app atualizado no pubspec.yaml: ${SAFE_NAME}"
-          else
-            echo "⚠️ Campo 'name:' não encontrado no pubspec.yaml."
-          fi
-
-          echo "🔍 Primeiras linhas do pubspec.yaml:"
-          head -n 5 pubspec.yaml
-      
-
-      # 7️⃣ Personalizar app_state.dart
-      - name: 7️⃣ ✏️ Personalizar lib/app_state.dart
+      - name: 1.7 🧩 Build Web (otimizado)
         run: |
-          cp lib/app_state.dart lib/app_state_backup.dart || true
-          perl -pi -e "s/91234567890/${{ env.IDAFILIADOAPP }}/g" lib/app_state.dart
+          flutter pub get
+          flutter build web --release --dart2js-optimization=O4
+          echo "✅ Build web concluído!"
 
-      # 8️⃣ Personalizar main.dart
-      - name: 8️⃣ ✏️ Personalizar lib/main.dart
+      - name: 1.8 🗜️ Comprimir arquivos Web (gzip)
         run: |
-          perl -pi -e "s/NomePageTitle/${{ env.APPNAME }}/g" lib/main.dart
+          find build/web -type f \( -name "*.js" -o -name "*.html" -o -name "*.css" \) -exec gzip -9 -k {} \;
+          echo "✅ Arquivos web comprimidos com gzip."
 
-      # 9️⃣ Build Web (release)
-      - name: 9️⃣ 🏗️ Build Web (release)
-        run: flutter build web --release
-
-      # 🔟 Aplicar overlay (web)
-      - name: 🔟 🧩 Aplicar overlay personalizado (web)
+      - name: 1.9 🧱 Aplicar overlay e personalização
         run: |
+          mkdir -p temp/${{ matrix.target.name }}
           rsync -av --delete build/web/ temp/${{ matrix.target.name }}/
           rsync -av --exclude ".git" "${{ matrix.target.overlay }}/" "temp/${{ matrix.target.name }}/"
-
-      # 11️⃣ Personalizar main.dart.js e index.html
-      - name: 11️⃣ 🧠 Personalizar main.dart.js e index.html
-        run: |
           TEMP_DIR="temp/${{ matrix.target.name }}"
           VERSION=$(jq -r '.version' "${TEMP_DIR}/version.json")
-          sed -i "s/NomePageTitle/${{ env.APPNAME }}/g" "${TEMP_DIR}/main.dart.js"
           sed -i "s/91234567890/${{ env.IDAFILIADOAPP }}/g" "${TEMP_DIR}/main.dart.js"
-          sed -i "s/const appVersion = \".*\";/const appVersion = \"${VERSION}\";/g" "${TEMP_DIR}/index.html"
+          sed -i "s/NomePageTitle/${{ env.APPNAME }}/g" "${TEMP_DIR}/main.dart.js"
           echo "VERSION=${VERSION}" >> $GITHUB_ENV
 
-      # 12️⃣ Publicar site via FTP
-      - name: 12️⃣ 🚀 Publicar site via FTP
+      - name: 1.10 🚀 Publicar site via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets[ matrix.target.ftp_server ] }}
@@ -146,15 +111,13 @@ jobs:
           password: ${{ secrets[ matrix.target.ftp_pass ] }}
           protocol: ftp
           port: 21
-          timeout: 1200
-          retries: 5
           local-dir: temp/${{ matrix.target.name }}/
           server-dir: ${{ secrets[ matrix.target.ftp_dir ] }}
-          dangerous-clean-slate: false
           sync-mode: update
+          timeout: 1200
+          retries: 5
 
-      # 13️⃣ Registrar versão WEB no Supabase
-      - name: 13️⃣ 💾 Registrar versão WEB no Supabase
+      - name: 1.11 💾 Registrar versão WEB no Supabase
         run: |
           DESC="${{ github.event.head_commit.message }}"
           APP_ID=0
@@ -166,17 +129,64 @@ jobs:
             -H "Content-Type: application/json" \
             -d "{\"versao\": \"${{ env.VERSION }}\", \"descricao\": \"${DESC}\", \"id_app\": ${APP_ID}, \"status\": \"OK\", \"sistema_op\": \"WEB\"}"
 
-      # 14️⃣ Configurar assinatura Android (keystore oficial)
-      - name: 14️⃣ 🔐 Configurar assinatura Android (keystore oficial)
+  # ============================================================
+  # 2️⃣ BUILD & DEPLOY ANDROID
+  # ============================================================
+  deploy_apk:
+    name: 🤖 2️⃣ Deploy APK
+    runs-on: ubuntu-latest
+    needs: deploy_web   # Roda em paralelo, mas garante que o web finalize primeiro
+
+    strategy:
+      matrix:
+        target:
+          - name: agendasuper
+            app_id: com.adminagendasupertwo.app
+            ftp_server: FTP_SERVER_ADMIN
+            ftp_user: FTP_USER_ADMIN
+            ftp_pass: FTP_PASS_ADMIN
+            ftp_dir: FTP_DIR_ADMIN
+            afiliado: 1
+            app_label: "Agenda Super"
+
+          - name: rendarecorrente
+            app_id: com.adminrendarecorrentetwo.app
+            ftp_server: FTP_SERVER_AFI
+            ftp_user: FTP_USER_AFI
+            ftp_pass: FTP_PASS_AFI
+            ftp_dir: FTP_DIR_AFI
+            afiliado: 3
+            app_label: "APP Afiliado"
+
+    steps:
+      - name: 2.1 📥 Clonar repositório
+        uses: actions/checkout@v4
+
+      - name: 2.2 ⚡ Restaurar cache Flutter/Gradle
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.pub-cache
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+            .dart_tool
+          key: ${{ runner.os }}-flutter-${{ hashFiles('pubspec.yaml') }}
+
+      - name: 2.3 🧰 Instalar Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.35.7'
+          channel: 'stable'
+
+      - name: 2.4 ⚙️ Instalar utilitários Android
         run: |
-          echo "🔧 Configurando keystore oficial..."
+          sudo apt-get update -qq
+          sudo apt-get install -y jq rsync curl lftp zipalign apksigner
 
+      - name: 2.5 🔐 Configurar Keystore
+        run: |
           mkdir -p android/app
-
-          # Recria o arquivo .jks a partir do Base64 armazenado no Secret
           echo "${{ secrets.ANDROID_KEYSTORE_B64 }}" | base64 -d > android/app/upload-keystore.jks
-
-          # Cria o key.properties com caminho absoluto correto
           {
             echo "storePassword=${{ secrets.KEYSTORE_PASSWORD }}"
             echo "keyPassword=${{ secrets.KEY_PASSWORD }}"
@@ -184,117 +194,66 @@ jobs:
             echo "storeFile=${{ github.workspace }}/android/app/upload-keystore.jks"
           } > android/key.properties
 
-          echo "✅ Keystore configurado:"
-          cat android/key.properties
+      - name: 2.6 🧠 Definir variáveis de ambiente
+        run: |
+          echo "APPNAME=${{ matrix.target.app_label }}" >> $GITHUB_ENV
+          echo "APP_ID_ANDROID=${{ matrix.target.app_id }}" >> $GITHUB_ENV
+          echo "IDAFILIADOAPP=${{ matrix.target.afiliado }}" >> $GITHUB_ENV
 
+      - name: 2.7 ✏️ Personalizar app_state.dart e main.dart
+        run: |
+          perl -pi -e "s/91234567890/${{ env.IDAFILIADOAPP }}/g" lib/app_state.dart
+          perl -pi -e "s/NomePageTitle/${{ env.APPNAME }}/g" lib/main.dart
 
-      # 15️⃣ Aplicar custom codes overlay
-      - name: 15️⃣ 🔄 Aplicar custom codes overlay
+      - name: 2.8 🧱 Substituir build.gradle modificado
+        run: |
+          cp -f .github/overlays/build/build.gradle android/app/build.gradle
+          sed -i "s/applicationId \".*\"/applicationId \"${{ env.APP_ID_ANDROID }}\"/" android/app/build.gradle
+
+      - name: 2.9 🧩 Aplicar overlays de ícones e códigos
         run: |
           mkdir -p lib/custom_code/actions
-          cp -r .github/overlays/custom_codes/* lib/custom_code/actions/
-
-      # 16️⃣ Personalizar ícones, ID e assets
-      - name: 16️⃣ 🎨 Personalizar ícones e applicationId e assets
-        run: |
-          sed -i "s/applicationId \".*\"/applicationId \"${{ env.APP_ID_ANDROID }}\"/" android/app/build.gradle
+          cp -r .github/overlays/custom_codes/* lib/custom_code/actions/ || true
           ICON_PATH=".github/overlays/icons/${{ matrix.target.name }}/ic_launcher.png"
-          ASSETS_PATH=".github/overlays/icons/${{ matrix.target.name }}/assets_images"
           for dir in android/app/src/main/res/mipmap-*; do
             cp "$ICON_PATH" "$dir/ic_launcher.png" || true
           done
-          if [ -d "$ASSETS_PATH" ]; then
-            mkdir -p assets/images
-            cp -r "$ASSETS_PATH/"* assets/images/ || true
-          fi
 
-      # 17️⃣ Corrigir nome no Manifest
-      - name: 17️⃣ 📝 Corrigir nome no AndroidManifest.xml
+      - name: 2.10 🤖 Gerar APK Release (otimizado)
         run: |
-          MANIFEST_PATH="android/app/src/main/AndroidManifest.xml"
-          sed -i "s/android:label=\"NomeAPP\"/android:label=\"${{ env.APPNAME }}\"/g" "$MANIFEST_PATH"
-
-      # 17️⃣½ Substituir build.gradle modificado (overlay de assinatura)
-      - name: 17️⃣½ 🧱 Substituir build.gradle modificado (overlay de assinatura)
-        run: |
-          echo "🔁 Substituindo build.gradle padrão pelo customizado..."
-          rm -f android/app/build.gradle || true
-          cp -f .github/overlays/build/build.gradle android/app/build.gradle
-
-          echo "🧹 Limpando cache Gradle para evitar uso do arquivo antigo..."
-          rm -rf ~/.gradle/caches/
-          rm -rf build/
-
-          echo "✅ Substituição concluída. Primeiras linhas do arquivo ativo:"
-          head -n 25 android/app/build.gradle
-
-          echo "🧩 Validando se o arquivo foi sobrescrito corretamente..."
-          grep "namespace" android/app/build.gradle || echo "⚠️ namespace não encontrado"
-
-      # 17️⃣¾ Atualizar applicationId dinamicamente conforme o app
-      - name: 17️⃣¾ 🧠 Atualizar applicationId no build.gradle
-        run: |
-          echo "🛠 Atualizando applicationId conforme o target atual..."
-          case "${{ matrix.target.name }}" in
-            "agendasuper")
-              sed -i 's/applicationId ".*"/applicationId "com.adminagendasupertwo.app"/' android/app/build.gradle
-              ;;
-            "rendarecorrente")
-              sed -i 's/applicationId ".*"/applicationId "com.adminrendarecorrentetwo.app"/' android/app/build.gradle
-              ;;
-          esac
-          echo "✅ applicationId atualizado com sucesso!"
-          grep "applicationId" android/app/build.gradle
-
-
-      # 18️⃣ Gerar APK Release
-      - name: 18️⃣ 🤖 Gerar APK Release Assinado
-        run: |
+          flutter pub get
           flutter build apk --release --target-platform android-arm64
-          VERSION=${{ env.VERSION }}
-          SAFE_APPNAME=$(echo "${{ env.APPNAME }}" | tr ' ' '_' )
-          mv build/app/outputs/flutter-apk/app-release.apk "build/app/outputs/flutter-apk/${SAFE_APPNAME}_${VERSION}_arm64.apk"
-          echo "✅ APK gerado e assinado corretamente."
+          zipalign -p 4 build/app/outputs/flutter-apk/app-release.apk build/app/outputs/flutter-apk/app-aligned.apk
+          mv build/app/outputs/flutter-apk/app-aligned.apk "build/app/outputs/flutter-apk/${{ matrix.target.app_label | replace(' ', '_') }}_arm64.apk"
 
-      # 19️⃣ Upload do APK via FTP
-      - name: 19️⃣ ☁️ Enviar APK para Hostinger
+      - name: 2.11 ☁️ Upload do APK via FTP
         run: |
-          VERSION=${{ env.VERSION }}
           SAFE_APPNAME=$(echo "${{ env.APPNAME }}" | tr ' ' '_' )
-          APK_FILE="build/app/outputs/flutter-apk/${SAFE_APPNAME}_${VERSION}_arm64.apk"
           lftp -u "${{ secrets[ matrix.target.ftp_user ] }}","${{ secrets[ matrix.target.ftp_pass ] }}" "ftp://${{ secrets[ matrix.target.ftp_server ] }}" -e "
             set ftp:ssl-allow no;
-            cd ${{ secrets[ matrix.target.ftp_dir ] }} || exit 1;
+            cd ${{ secrets[ matrix.target.ftp_dir ] }};
             mkdir -f apk || true;
             cd apk;
             lcd build/app/outputs/flutter-apk;
-            put ${SAFE_APPNAME}_${VERSION}_arm64.apk;
+            put ${SAFE_APPNAME}_arm64.apk;
             bye
           "
 
-      # 20️⃣ Registrar versão APK no Supabase
-      - name: 20️⃣ 💾 Registrar versão APK no Supabase
+      - name: 2.12 💾 Registrar versão APK no Supabase
         run: |
           DESC="${{ github.event.head_commit.message }}"
           APP_ID=0
           if [[ "${{ matrix.target.name }}" == "agendasuper" ]]; then APP_ID=2; fi
           if [[ "${{ matrix.target.name }}" == "rendarecorrente" ]]; then APP_ID=3; fi
           SAFE_APPNAME=$(echo "${{ env.APPNAME }}" | tr ' ' '_' )
-          VERSION=${{ env.VERSION }}
+          VERSION="v$(date +%y.%m.%d.%H%M)"
           curl -X POST "${{ secrets.SUPABASE_URL }}/rest/v1/tbl_versoes_sistema" \
             -H "apikey: ${{ secrets.SUPABASE_ANON_KEY }}" \
             -H "Authorization: Bearer ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}" \
             -H "Content-Type: application/json" \
             -d "{\"versao\": \"${VERSION}\", \"descricao\": \"${DESC}\", \"id_app\": ${APP_ID}, \"status\": \"OK\", \"sistema_op\": \"APK\", \"nome_apk\": \"${SAFE_APPNAME}_${VERSION}_arm64.apk\"}"
 
-      # 21️⃣ Obter data formatada
-      - name: 21️⃣ 🕒 Obter data formatada
-        run: |
-          CURRENT_DATE=$(date '+%d/%m/%Y %H:%M:%S')
-          echo "CURRENT_DATE=$CURRENT_DATE" >> $GITHUB_ENV
-
-      # 22️⃣ Enviar e-mail de conclusão
-      - name: 22️⃣ ✉️ Enviar e-mail de conclusão
+      - name: 2.13 ✉️ Enviar e-mail de conclusão
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: smtp.gmail.com
@@ -302,13 +261,10 @@ jobs:
           secure: true
           username: ${{ secrets.MAIL_USER }}
           password: ${{ secrets.MAIL_PASS }}
-          subject: "🚀 Deploy concluído ${{ matrix.target.name }} v${{ env.VERSION }}"
+          subject: "✅ Deploy concluído ${{ matrix.target.name }}"
           to: "hersoares12@gmail.com, contatoagendasuper@gmail.com, gerenciavendasdigitais2@gmail.com"
-          from: "Deploy Automático <${{ secrets.MAIL_USER }}>"
+          from: "Deploy Automático <${{ secrets.MAIL_USER }}> "
           body: |
-            ✅ Deploy concluído para APP **${{ matrix.target.name }}**
-            🌐 Versão: **${{ env.VERSION }}**
-            📅 Data: **${{ env.CURRENT_DATE }}**
-            🔧 Status: **${{ job.status }}**
-            🌎 Site: **${{ env.SITE }}**
-            📦 Aplicativo: **${{ env.APPNAME }}**
+            🌎 APP: **${{ env.APPNAME }}**
+            📦 APK e Site publicados com sucesso.
+            📅 Data: $(date '+%d/%m/%Y %H:%M:%S')

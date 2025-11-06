@@ -83,9 +83,13 @@ jobs:
 
       - name: 1.7 🧩 Build Web (otimizado)
         run: |
+          echo "🧹 Limpando caches Flutter e .dart_tool antigos..."
+          rm -rf .dart_tool build pubspec.lock || true
+
           flutter pub get
           flutter build web --release --dart2js-optimization=O4
           echo "✅ Build web concluído!"
+
 
       - name: 1.8 🗜️ Comprimir arquivos Web (gzip)
         run: |

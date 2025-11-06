@@ -224,28 +224,36 @@ jobs:
           flutter pub get
           flutter build apk --release --target-platform android-arm64
 
+          # 🔹 Extrai versão real do arquivo version.json (igual web)
+          VERSION=$(jq -r '.version' build/web/version.json)
+          echo "VERSION=${VERSION}" >> $GITHUB_ENV
+
+          # 🔹 Substitui espaços por "_"
+          SAFE_APPNAME=$(echo "${{ env.APPNAME }}" | tr ' ' '_' )
+
           # 🔹 Alinhar e renomear APK
           zipalign -p 4 build/app/outputs/flutter-apk/app-release.apk build/app/outputs/flutter-apk/app-aligned.apk
+          mv build/app/outputs/flutter-apk/app-aligned.apk "build/app/outputs/flutter-apk/${SAFE_APPNAME}_${VERSION}_arm64.apk"
 
-          # 🔹 Substitui espaços por "_" (compatível com bash)
-          SAFE_APPNAME=$(echo "${{ matrix.target.app_label }}" | tr ' ' '_' )
-
-          mv build/app/outputs/flutter-apk/app-aligned.apk "build/app/outputs/flutter-apk/${SAFE_APPNAME}_arm64.apk"
-          echo "✅ APK otimizado gerado: ${SAFE_APPNAME}_arm64.apk"
-
+          echo "✅ APK otimizado gerado: ${SAFE_APPNAME}_${VERSION}_arm64.apk"
 
       - name: 2.11 ☁️ Upload do APK via FTP
         run: |
+          VERSION=${{ env.VERSION }}
           SAFE_APPNAME=$(echo "${{ env.APPNAME }}" | tr ' ' '_' )
+          APK_FILE="${SAFE_APPNAME}_${VERSION}_arm64.apk"
+
+          echo "📤 Enviando ${APK_FILE} via FTP..."
           lftp -u "${{ secrets[ matrix.target.ftp_user ] }}","${{ secrets[ matrix.target.ftp_pass ] }}" "ftp://${{ secrets[ matrix.target.ftp_server ] }}" -e "
             set ftp:ssl-allow no;
             cd ${{ secrets[ matrix.target.ftp_dir ] }};
             mkdir -f apk || true;
             cd apk;
             lcd build/app/outputs/flutter-apk;
-            put ${SAFE_APPNAME}_arm64.apk;
+            put ${APK_FILE};
             bye
           "
+          echo "✅ Upload concluído para Hostinger: ${APK_FILE}"
 
       - name: 2.12 💾 Registrar versão APK no Supabase
         run: |
@@ -254,7 +262,10 @@ jobs:
           if [[ "${{ matrix.target.name }}" == "agendasuper" ]]; then APP_ID=2; fi
           if [[ "${{ matrix.target.name }}" == "rendarecorrente" ]]; then APP_ID=3; fi
           SAFE_APPNAME=$(echo "${{ env.APPNAME }}" | tr ' ' '_' )
-          VERSION="v$(date +%y.%m.%d.%H%M)"
+          VERSION=${{ env.VERSION }}
+
+          echo "💾 Registrando no Supabase: ${SAFE_APPNAME}_${VERSION}_arm64.apk"
+
           curl -X POST "${{ secrets.SUPABASE_URL }}/rest/v1/tbl_versoes_sistema" \
             -H "apikey: ${{ secrets.SUPABASE_ANON_KEY }}" \
             -H "Authorization: Bearer ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}" \

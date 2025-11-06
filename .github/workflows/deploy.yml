@@ -85,18 +85,26 @@ jobs:
           echo "SITE=$SITE" >> $GITHUB_ENV
           echo "APP_ID_ANDROID=$APP_ID_ANDROID" >> $GITHUB_ENV
 
-      # 6️⃣½ Atualizar nome do app no pubspec.yaml
+      # 6️⃣½ Atualizar nome do app no pubspec.yaml (identificador Dart válido)
       - name: 6️⃣½ ✏️ Atualizar nome do app no pubspec.yaml
         run: |
           echo "📝 Atualizando nome do app no pubspec.yaml..."
-          if grep -q "agenda_super_admin_e_afiliados" pubspec.yaml; then
-            sed -i "s/agenda_super_admin_e_afiliados/${{ env.APPNAME }}/g" pubspec.yaml
-            echo "✅ Nome do app atualizado para: ${{ env.APPNAME }}"
+
+          # Converte APPNAME para identificador Dart (minúsculo e sem espaços/acentos)
+          SAFE_NAME=$(echo "${{ env.APPNAME }}" | tr '[:upper:]' '[:lower:]' | tr ' ' '_' | sed 's/[^a-z0-9_]//g')
+
+          echo "📦 Nome seguro gerado: ${SAFE_NAME}"
+
+          if grep -q "^name:" pubspec.yaml; then
+            sed -i "s/^name:.*/name: ${SAFE_NAME}/" pubspec.yaml
+            echo "✅ Nome do app atualizado no pubspec.yaml: ${SAFE_NAME}"
           else
-            echo "⚠️ Texto 'agenda_super_admin_e_afiliados' não encontrado no pubspec.yaml."
+            echo "⚠️ Campo 'name:' não encontrado no pubspec.yaml."
           fi
-          echo "🔍 Verificando primeira linha do pubspec.yaml:"
-          head -n 5 pubspec.yaml          
+
+          echo "🔍 Primeiras linhas do pubspec.yaml:"
+          head -n 5 pubspec.yaml
+      
 
       # 7️⃣ Personalizar app_state.dart
       - name: 7️⃣ ✏️ Personalizar lib/app_state.dart

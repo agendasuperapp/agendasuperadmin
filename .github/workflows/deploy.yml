@@ -1,4 +1,4 @@
-name: 🌐 Build & Deploy (Web + APK Otimizado e Compatível)
+name: 🌐 Build & Deploy (Web + APK Otimizado)
 
 on:
   push:
@@ -51,10 +51,10 @@ jobs:
           flutter-version: '3.35.7'
           channel: 'stable'
 
-      # 4️⃣ Instalar utilitários necessários
+      # 4️⃣ Instalar dependências do sistema
       - name: 4️⃣ ⚙️ Instalar utilitários necessários
         run: |
-          sudo apt-get update
+          sudo apt-get update -qq
           sudo apt-get install -y jq rsync curl lftp zipalign apksigner
 
       # 5️⃣ Preparar ambiente
@@ -85,6 +85,20 @@ jobs:
           echo "SITE=$SITE" >> $GITHUB_ENV
           echo "APP_ID_ANDROID=$APP_ID_ANDROID" >> $GITHUB_ENV
 
+      # 6️⃣½ Atualizar nome do app no pubspec.yaml (identificador Dart válido)
+      - name: 6️⃣½ ✏️ Atualizar nome do app no pubspec.yaml
+        run: |
+          echo "📝 Atualizando nome do app no pubspec.yaml..."
+          SAFE_NAME=$(echo "${{ env.APPNAME }}" | tr '[:upper:]' '[:lower:]' | tr ' ' '_' | sed 's/[^a-z0-9_]//g')
+          echo "📦 Nome seguro gerado: ${SAFE_NAME}"
+          if grep -q "^name:" pubspec.yaml; then
+            sed -i "s/^name:.*/name: ${SAFE_NAME}/" pubspec.yaml
+            echo "✅ Nome do app atualizado no pubspec.yaml: ${SAFE_NAME}"
+          else
+            echo "⚠️ Campo 'name:' não encontrado no pubspec.yaml."
+          fi
+          head -n 5 pubspec.yaml
+
       # 7️⃣ Personalizar app_state.dart
       - name: 7️⃣ ✏️ Personalizar lib/app_state.dart
         run: |
@@ -110,7 +124,7 @@ jobs:
       - name: 11️⃣ 🧠 Personalizar main.dart.js e index.html
         run: |
           TEMP_DIR="temp/${{ matrix.target.name }}"
-          VERSION=$(jq -r '.version' "${TEMP_DIR}/version.json" || echo "4.1.0")
+          VERSION=$(jq -r '.version' "${TEMP_DIR}/version.json" || echo "1.0.0")
           sed -i "s/NomePageTitle/${{ env.APPNAME }}/g" "${TEMP_DIR}/main.dart.js"
           sed -i "s/91234567890/${{ env.IDAFILIADOAPP }}/g" "${TEMP_DIR}/main.dart.js"
           sed -i "s/const appVersion = \".*\";/const appVersion = \"${VERSION}\";/g" "${TEMP_DIR}/index.html"
@@ -139,13 +153,13 @@ jobs:
           APP_ID=0
           if [[ "${{ matrix.target.name }}" == "agendasuper" ]]; then APP_ID=2; fi
           if [[ "${{ matrix.target.name }}" == "rendarecorrente" ]]; then APP_ID=3; fi
-          curl -X POST "${{ secrets.SUPABASE_URL }}/rest/v1/tbl_versoes_sistema" \
+          curl -s -X POST "${{ secrets.SUPABASE_URL }}/rest/v1/tbl_versoes_sistema" \
             -H "apikey: ${{ secrets.SUPABASE_ANON_KEY }}" \
             -H "Authorization: Bearer ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}" \
             -H "Content-Type: application/json" \
             -d "{\"versao\": \"${{ env.VERSION }}\", \"descricao\": \"${DESC}\", \"id_app\": ${APP_ID}, \"status\": \"OK\", \"sistema_op\": \"WEB\"}"
 
-      # 14️⃣ Configurar assinatura Android
+      # 14️⃣ Configurar assinatura Android (keystore oficial)
       - name: 14️⃣ 🔐 Configurar assinatura Android
         run: |
           mkdir -p android/app
@@ -163,46 +177,66 @@ jobs:
           mkdir -p lib/custom_code/actions
           cp -r .github/overlays/custom_codes/* lib/custom_code/actions/
 
-      # 16️⃣ Personalizar ícones e IDs
-      - name: 16️⃣ 🎨 Aplicar ícones e IDs corretos
+      # 16️⃣ Personalizar ícones, ID e assets
+      - name: 16️⃣ 🎨 Personalizar ícones, ID e assets
         run: |
-          sed -i "s/^namespace .*/namespace \"${{ env.APP_ID_ANDROID }}\"/" android/app/build.gradle
+          echo "🧩 Aplicando ícones e assets personalizados..."
           sed -i "s/applicationId \".*\"/applicationId \"${{ env.APP_ID_ANDROID }}\"/" android/app/build.gradle
           ICON_PATH=".github/overlays/icons/${{ matrix.target.name }}/ic_launcher.png"
+          ASSETS_PATH=".github/overlays/icons/${{ matrix.target.name }}/assets_images"
+
           for dir in android/app/src/main/res/mipmap-*; do
-            cp "$ICON_PATH" "$dir/ic_launcher.png" || true
+            cp "$ICON_PATH" "$dir/ic_launcher.png" || echo "⚠️ Falha ao copiar ícone em $dir"
           done
+
+          if [ -d "$ASSETS_PATH" ]; then
+            mkdir -p assets/images
+            rsync -av --ignore-missing-args "$ASSETS_PATH/"* assets/images/ || true
+            echo "✅ Assets copiados."
+          else
+            echo "⚠️ Nenhum assets_images encontrado para ${{ matrix.target.name }}"
+          fi
 
       # 17️⃣ Corrigir nome no Manifest
       - name: 17️⃣ 📝 Corrigir nome no AndroidManifest.xml
         run: |
-          MANIFEST_PATH="android/app/src/main/AndroidManifest.xml"
-          sed -i "s/android:label=\"[^\"]*\"/android:label=\"${{ env.APPNAME }}\"/" "$MANIFEST_PATH"
+          sed -i "s/android:label=\"NomeAPP\"/android:label=\"${{ env.APPNAME }}\"/" android/app/src/main/AndroidManifest.xml
 
-      # 18️⃣ Substituir build.gradle customizado
-      - name: 18️⃣ 🧱 Substituir build.gradle customizado
+      # 17️⃣½ Substituir build.gradle modificado (overlay de assinatura)
+      - name: 17️⃣½ 🧱 Substituir build.gradle modificado (overlay de assinatura)
         run: |
           cp -f .github/overlays/build/build.gradle android/app/build.gradle
+          grep "namespace" android/app/build.gradle || echo "⚠️ namespace não encontrado"
+
+      # 17️⃣¾ Atualizar applicationId dinamicamente conforme o app
+      - name: 17️⃣¾ 🧠 Atualizar applicationId
+        run: |
+          case "${{ matrix.target.name }}" in
+            "agendasuper")
+              sed -i 's/applicationId ".*"/applicationId "com.adminagendasupertwo.app"/' android/app/build.gradle
+              ;;
+            "rendarecorrente")
+              sed -i 's/applicationId ".*"/applicationId "com.adminrendarecorrentetwo.app"/' android/app/build.gradle
+              ;;
+          esac
           grep "applicationId" android/app/build.gradle
 
-      # 19️⃣ Gerar APK Release
-      - name: 19️⃣ 🤖 Gerar APK Release Assinado
+      # 18️⃣ Gerar APK Release
+      - name: 18️⃣ 🤖 Gerar APK Release Assinado
         run: |
           flutter build apk --release --target-platform android-arm64
           VERSION=${{ env.VERSION }}
           SAFE_APPNAME=$(echo "${{ env.APPNAME }}" | tr ' ' '_' )
-          APK_PATH="build/app/outputs/flutter-apk/${SAFE_APPNAME}_${VERSION}_arm64.apk"
-          mv build/app/outputs/flutter-apk/app-release.apk "$APK_PATH"
-          echo "APK_PATH=$APK_PATH" >> $GITHUB_ENV
+          mv build/app/outputs/flutter-apk/app-release.apk "build/app/outputs/flutter-apk/${SAFE_APPNAME}_${VERSION}_arm64.apk"
 
-      # 20️⃣ Upload do APK via FTP
-      - name: 20️⃣ ☁️ Enviar APK para Hostinger
+      # 19️⃣ Upload do APK via FTP
+      - name: 19️⃣ ☁️ Enviar APK para Hostinger
         run: |
           VERSION=${{ env.VERSION }}
           SAFE_APPNAME=$(echo "${{ env.APPNAME }}" | tr ' ' '_' )
           lftp -u "${{ secrets[ matrix.target.ftp_user ] }}","${{ secrets[ matrix.target.ftp_pass ] }}" "ftp://${{ secrets[ matrix.target.ftp_server ] }}" -e "
             set ftp:ssl-allow no;
-            cd ${{ secrets[ matrix.target.ftp_dir ] }};
+            cd ${{ secrets[ matrix.target.ftp_dir ] }} || exit 1;
             mkdir -f apk || true;
             cd apk;
             lcd build/app/outputs/flutter-apk;
@@ -210,8 +244,8 @@ jobs:
             bye
           "
 
-      # 21️⃣ Registrar versão APK no Supabase
-      - name: 21️⃣ 💾 Registrar versão APK no Supabase
+      # 20️⃣ Registrar versão APK no Supabase
+      - name: 20️⃣ 💾 Registrar versão APK no Supabase
         run: |
           DESC="${{ github.event.head_commit.message }}"
           APP_ID=0
@@ -219,11 +253,19 @@ jobs:
           if [[ "${{ matrix.target.name }}" == "rendarecorrente" ]]; then APP_ID=3; fi
           SAFE_APPNAME=$(echo "${{ env.APPNAME }}" | tr ' ' '_' )
           VERSION=${{ env.VERSION }}
-          curl -X POST "${{ secrets.SUPABASE_URL }}/rest/v1/tbl_versoes_sistema" \
+          curl -s -X POST "${{ secrets.SUPABASE_URL }}/rest/v1/tbl_versoes_sistema" \
             -H "apikey: ${{ secrets.SUPABASE_ANON_KEY }}" \
             -H "Authorization: Bearer ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}" \
             -H "Content-Type: application/json" \
             -d "{\"versao\": \"${VERSION}\", \"descricao\": \"${DESC}\", \"id_app\": ${APP_ID}, \"status\": \"OK\", \"sistema_op\": \"APK\", \"nome_apk\": \"${SAFE_APPNAME}_${VERSION}_arm64.apk\"}"
+
+      # 21️⃣ Obter data formatada
+      - name: 21️⃣ 🕒 Obter data formatada
+        id: date
+        run: |
+          CURRENT_DATE=$(date '+%d/%m/%Y %H:%M:%S')
+          echo "CURRENT_DATE=$CURRENT_DATE" >> $GITHUB_ENV
+          echo "Data formatada: $CURRENT_DATE"
 
       # 22️⃣ Enviar e-mail de conclusão
       - name: 22️⃣ ✉️ Enviar e-mail de conclusão
@@ -238,8 +280,9 @@ jobs:
           to: "hersoares12@gmail.com, contatoagendasuper@gmail.com, gerenciavendasdigitais2@gmail.com"
           from: "Deploy Automático <${{ secrets.MAIL_USER }}>"
           body: |
-            ✅ Deploy concluído para **${{ matrix.target.name }}**
+            ✅ Deploy concluído para APP **${{ matrix.target.name }}**
             🌐 Versão: **${{ env.VERSION }}**
-            📦 App: **${{ env.APPNAME }}**
+            📅 Data: **${{ env.CURRENT_DATE }}**
+            🔧 Status: **Sucesso**
             🌎 Site: **${{ env.SITE }}**
-            📅 Data: $(date '+%d/%m/%Y %H:%M:%S')
+            📦 Aplicativo: **${{ env.APPNAME }}**

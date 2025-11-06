@@ -85,6 +85,19 @@ jobs:
           echo "SITE=$SITE" >> $GITHUB_ENV
           echo "APP_ID_ANDROID=$APP_ID_ANDROID" >> $GITHUB_ENV
 
+      # 6️⃣½ Atualizar nome do app no pubspec.yaml
+      - name: 6️⃣½ ✏️ Atualizar nome do app no pubspec.yaml
+        run: |
+          echo "📝 Atualizando nome do app no pubspec.yaml..."
+          if grep -q "agenda_super_admin_e_afiliados" pubspec.yaml; then
+            sed -i "s/agenda_super_admin_e_afiliados/${{ env.APPNAME }}/g" pubspec.yaml
+            echo "✅ Nome do app atualizado para: ${{ env.APPNAME }}"
+          else
+            echo "⚠️ Texto 'agenda_super_admin_e_afiliados' não encontrado no pubspec.yaml."
+          fi
+          echo "🔍 Verificando primeira linha do pubspec.yaml:"
+          head -n 5 pubspec.yaml          
+
       # 7️⃣ Personalizar app_state.dart
       - name: 7️⃣ ✏️ Personalizar lib/app_state.dart
         run: |

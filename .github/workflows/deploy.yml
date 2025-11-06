@@ -223,8 +223,16 @@ jobs:
         run: |
           flutter pub get
           flutter build apk --release --target-platform android-arm64
+
+          # 🔹 Alinhar e renomear APK
           zipalign -p 4 build/app/outputs/flutter-apk/app-release.apk build/app/outputs/flutter-apk/app-aligned.apk
-          mv build/app/outputs/flutter-apk/app-aligned.apk "build/app/outputs/flutter-apk/${{ matrix.target.app_label | replace(' ', '_') }}_arm64.apk"
+
+          # 🔹 Substitui espaços por "_" (compatível com bash)
+          SAFE_APPNAME=$(echo "${{ matrix.target.app_label }}" | tr ' ' '_' )
+
+          mv build/app/outputs/flutter-apk/app-aligned.apk "build/app/outputs/flutter-apk/${SAFE_APPNAME}_arm64.apk"
+          echo "✅ APK otimizado gerado: ${SAFE_APPNAME}_arm64.apk"
+
 
       - name: 2.11 ☁️ Upload do APK via FTP
         run: |

@@ -87,12 +87,12 @@ class CpEstabelecimentoDashboardModel
 
   // Stores action output result for [Action Block - acConsEstabDashboard] action in cp_estabelecimento_dashboard widget.
   String? acReulstConsEstabDashboard;
-  Completer<List<ViewTblAgendamentoCarrinhoRow>>? requestCompleter4;
-  Completer<List<ViewTblAgendamentosRow>>? requestCompleter3;
+  Completer<List<ViewTblAgendamentoCarrinhoRow>>? requestCompleter2;
+  Completer<List<ViewTblAgendamentosRow>>? requestCompleter1;
   // Stores action output result for [Action Block - acConsEstabDashboard] action in Column widget.
   String? acReulstConsEstabDashboard2;
-  Completer<List<ViewTblAgendamentosRow>>? requestCompleter1;
-  Completer<List<ViewTblAgendamentoCarrinhoRow>>? requestCompleter2;
+  Completer<List<ViewTblAgendamentosRow>>? requestCompleter4;
+  Completer<List<ViewTblAgendamentoCarrinhoRow>>? requestCompleter3;
   // Stores action output result for [Custom Action - caAPPOneSignalverifyNotificationPermission] action in Button widget.
   bool? resultVerifPermi;
   // Stores action output result for [Custom Action - caAPPOneSignalgetUserId] action in Button widget.
@@ -198,6 +198,36 @@ class CpEstabelecimentoDashboardModel
   }
 
   /// Additional helper methods.
+  Future waitForRequestCompleted2({
+    double minWait = 0,
+    double maxWait = double.infinity,
+  }) async {
+    final stopwatch = Stopwatch()..start();
+    while (true) {
+      await Future.delayed(Duration(milliseconds: 50));
+      final timeElapsed = stopwatch.elapsedMilliseconds;
+      final requestComplete = requestCompleter2?.isCompleted ?? false;
+      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
+        break;
+      }
+    }
+  }
+
+  Future waitForRequestCompleted1({
+    double minWait = 0,
+    double maxWait = double.infinity,
+  }) async {
+    final stopwatch = Stopwatch()..start();
+    while (true) {
+      await Future.delayed(Duration(milliseconds: 50));
+      final timeElapsed = stopwatch.elapsedMilliseconds;
+      final requestComplete = requestCompleter1?.isCompleted ?? false;
+      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
+        break;
+      }
+    }
+  }
+
   Future waitForRequestCompleted4({
     double minWait = 0,
     double maxWait = double.infinity,
@@ -222,36 +252,6 @@ class CpEstabelecimentoDashboardModel
       await Future.delayed(Duration(milliseconds: 50));
       final timeElapsed = stopwatch.elapsedMilliseconds;
       final requestComplete = requestCompleter3?.isCompleted ?? false;
-      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
-        break;
-      }
-    }
-  }
-
-  Future waitForRequestCompleted1({
-    double minWait = 0,
-    double maxWait = double.infinity,
-  }) async {
-    final stopwatch = Stopwatch()..start();
-    while (true) {
-      await Future.delayed(Duration(milliseconds: 50));
-      final timeElapsed = stopwatch.elapsedMilliseconds;
-      final requestComplete = requestCompleter1?.isCompleted ?? false;
-      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
-        break;
-      }
-    }
-  }
-
-  Future waitForRequestCompleted2({
-    double minWait = 0,
-    double maxWait = double.infinity,
-  }) async {
-    final stopwatch = Stopwatch()..start();
-    while (true) {
-      await Future.delayed(Duration(milliseconds: 50));
-      final timeElapsed = stopwatch.elapsedMilliseconds;
-      final requestComplete = requestCompleter2?.isCompleted ?? false;
       if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
         break;
       }

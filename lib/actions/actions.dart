@@ -809,6 +809,7 @@ Future acAtualizarInicializacaoSistema(
   String? resultgetLoadedAppVersionIni;
   bool? resultisRunningAsPWAIni;
 
+  await actions.setFullscreenMode();
   if (kDebugMode || FFAppState().VarEmDesenvolvimento) {
     FFAppState().varIDAPPAfiliado = 1;
     FFAppState().update(() {});

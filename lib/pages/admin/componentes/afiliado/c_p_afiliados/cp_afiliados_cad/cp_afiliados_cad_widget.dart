@@ -388,15 +388,17 @@ class _CpAfiliadosCadWidgetState extends State<CpAfiliadosCadWidget>
                   Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(
                         0.0,
-                        valueOrDefault<double>(
-                          MediaQuery.sizeOf(context).width <=
-                                  FFAppState()
-                                      .varTamanhoMinimoTelaMenuLateral
-                                      .toDouble()
-                              ? 0.0
-                              : 16.0,
-                          0.0,
-                        ),
+                        MediaQuery.sizeOf(context).width <=
+                                FFAppState()
+                                    .varTamanhoMinimoTelaMenuLateral
+                                    .toDouble()
+                            ? valueOrDefault<double>(
+                                FFAppState()
+                                    .varLayoutMargemPgTopMibile
+                                    .toDouble(),
+                                16.0,
+                              )
+                            : 16.0,
                         0.0,
                         16.0),
                     child: Row(
@@ -610,6 +612,8 @@ class _CpAfiliadosCadWidgetState extends State<CpAfiliadosCadWidget>
                                       87.0, 0.0, 87.0, 0.0),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Row(
                                         mainAxisSize: MainAxisSize.min,
@@ -624,7 +628,7 @@ class _CpAfiliadosCadWidgetState extends State<CpAfiliadosCadWidget>
                                                 FFAppState()
                                                     .varTblAfiliado
                                                     .nome,
-                                                textAlign: TextAlign.center,
+                                                textAlign: TextAlign.start,
                                                 maxLines: 2,
                                                 style: FlutterFlowTheme.of(
                                                         context)
@@ -644,7 +648,12 @@ class _CpAfiliadosCadWidgetState extends State<CpAfiliadosCadWidget>
                                                           FlutterFlowTheme.of(
                                                                   context)
                                                               .secondaryText,
-                                                      fontSize: 16.0,
+                                                      fontSize: MediaQuery.sizeOf(
+                                                                      context)
+                                                                  .width <
+                                                              kBreakpointSmall
+                                                          ? 14.0
+                                                          : 16.0,
                                                       letterSpacing: 0.0,
                                                       fontWeight:
                                                           FontWeight.bold,

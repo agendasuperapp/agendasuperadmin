@@ -151,15 +151,17 @@ class _CpAfiliadoAtividadesWidgetState
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(
                             0.0,
-                            valueOrDefault<double>(
-                              MediaQuery.sizeOf(context).width <=
-                                      FFAppState()
-                                          .varTamanhoMinimoTelaMenuLateral
-                                          .toDouble()
-                                  ? 0.0
-                                  : 16.0,
-                              0.0,
-                            ),
+                            MediaQuery.sizeOf(context).width <=
+                                    FFAppState()
+                                        .varTamanhoMinimoTelaMenuLateral
+                                        .toDouble()
+                                ? valueOrDefault<double>(
+                                    FFAppState()
+                                        .varLayoutMargemPgTopMibile
+                                        .toDouble(),
+                                    16.0,
+                                  )
+                                : 16.0,
                             0.0,
                             16.0),
                         child: Row(
@@ -475,13 +477,10 @@ class _CpAfiliadoAtividadesWidgetState
                                     child: Container(
                                       width: 100.0,
                                       decoration: BoxDecoration(
-                                        color: Colors.transparent,
+                                        color: FlutterFlowTheme.of(context)
+                                            .cCFundoContainesDados,
                                         borderRadius:
                                             BorderRadius.circular(8.0),
-                                        border: Border.all(
-                                          color: FlutterFlowTheme.of(context)
-                                              .alternate,
-                                        ),
                                       ),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
@@ -1005,13 +1004,10 @@ class _CpAfiliadoAtividadesWidgetState
                                     child: Container(
                                       width: 100.0,
                                       decoration: BoxDecoration(
-                                        color: Colors.transparent,
+                                        color: FlutterFlowTheme.of(context)
+                                            .cCFundoContainesDados,
                                         borderRadius:
                                             BorderRadius.circular(8.0),
-                                        border: Border.all(
-                                          color: FlutterFlowTheme.of(context)
-                                              .alternate,
-                                        ),
                                       ),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,

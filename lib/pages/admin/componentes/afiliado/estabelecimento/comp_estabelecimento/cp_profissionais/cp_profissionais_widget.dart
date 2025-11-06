@@ -226,15 +226,17 @@ class _CpProfissionaisWidgetState extends State<CpProfissionaisWidget>
                 Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(
                       16.0,
-                      valueOrDefault<double>(
-                        MediaQuery.sizeOf(context).width <=
-                                FFAppState()
-                                    .varTamanhoMinimoTelaMenuLateral
-                                    .toDouble()
-                            ? 0.0
-                            : 16.0,
-                        0.0,
-                      ),
+                      MediaQuery.sizeOf(context).width <=
+                              FFAppState()
+                                  .varTamanhoMinimoTelaMenuLateral
+                                  .toDouble()
+                          ? valueOrDefault<double>(
+                              FFAppState()
+                                  .varLayoutMargemPgTopMibile
+                                  .toDouble(),
+                              16.0,
+                            )
+                          : 16.0,
                       16.0,
                       16.0),
                   child: SingleChildScrollView(
@@ -661,12 +663,13 @@ class _CpProfissionaisWidgetState extends State<CpProfissionaisWidget>
                                         : Color(0x19FF5963),
                                     borderRadius: BorderRadius.circular(8.0),
                                     border: Border.all(
-                                      color:
-                                          listViewTblProfissionaisRow.situacao!
-                                              ? FlutterFlowTheme.of(context)
-                                                  .alternate
-                                              : FlutterFlowTheme.of(context)
-                                                  .error,
+                                      color: valueOrDefault<Color>(
+                                        listViewTblProfissionaisRow.situacao!
+                                            ? Colors.transparent
+                                            : FlutterFlowTheme.of(context)
+                                                .error,
+                                        Colors.transparent,
+                                      ),
                                       width: 1.0,
                                     ),
                                   ),

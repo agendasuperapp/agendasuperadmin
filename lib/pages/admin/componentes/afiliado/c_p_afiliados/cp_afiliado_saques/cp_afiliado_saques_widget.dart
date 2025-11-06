@@ -183,15 +183,17 @@ class _CpAfiliadoSaquesWidgetState extends State<CpAfiliadoSaquesWidget>
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(
                             0.0,
-                            valueOrDefault<double>(
-                              MediaQuery.sizeOf(context).width <=
-                                      FFAppState()
-                                          .varTamanhoMinimoTelaMenuLateral
-                                          .toDouble()
-                                  ? 0.0
-                                  : 16.0,
-                              0.0,
-                            ),
+                            MediaQuery.sizeOf(context).width <=
+                                    FFAppState()
+                                        .varTamanhoMinimoTelaMenuLateral
+                                        .toDouble()
+                                ? valueOrDefault<double>(
+                                    FFAppState()
+                                        .varLayoutMargemPgTopMibile
+                                        .toDouble(),
+                                    16.0,
+                                  )
+                                : 16.0,
                             0.0,
                             16.0),
                         child: Row(

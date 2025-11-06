@@ -204,15 +204,17 @@ class _CpAfiliadoSubIndicacoesWidgetState
                       Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(
                             0.0,
-                            valueOrDefault<double>(
-                              MediaQuery.sizeOf(context).width <=
-                                      FFAppState()
-                                          .varTamanhoMinimoTelaMenuLateral
-                                          .toDouble()
-                                  ? 0.0
-                                  : 16.0,
-                              0.0,
-                            ),
+                            MediaQuery.sizeOf(context).width <=
+                                    FFAppState()
+                                        .varTamanhoMinimoTelaMenuLateral
+                                        .toDouble()
+                                ? valueOrDefault<double>(
+                                    FFAppState()
+                                        .varLayoutMargemPgTopMibile
+                                        .toDouble(),
+                                    16.0,
+                                  )
+                                : 16.0,
                             0.0,
                             16.0),
                         child: Row(
@@ -318,10 +320,12 @@ class _CpAfiliadoSubIndicacoesWidgetState
                                       await _model.waitForRequestCompleted1();
                                     },
                                     child: Container(
-                                      width: 100.0,
                                       height:
                                           MediaQuery.sizeOf(context).height *
                                               1.0,
+                                      constraints: BoxConstraints(
+                                        minWidth: 30.0,
+                                      ),
                                       decoration: BoxDecoration(
                                         color: _model.varSituacaoCadastro
                                             ? Colors.white
@@ -335,56 +339,67 @@ class _CpAfiliadoSubIndicacoesWidgetState
                                               : Colors.transparent,
                                         ),
                                       ),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Icon(
-                                            Icons.check_circle_outline_rounded,
-                                            color: _model.varSituacaoCadastro
-                                                ? FlutterFlowTheme.of(context)
-                                                    .success
-                                                : Color(0xFF57636C),
-                                            size: 16.0,
-                                          ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    4.0, 0.0, 0.0, 0.0),
-                                            child: Text(
-                                              'Ativos',
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    font: GoogleFonts.outfit(
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontStyle,
-                                                    ),
-                                                    color: _model
-                                                            .varSituacaoCadastro
-                                                        ? FlutterFlowTheme.of(
-                                                                context)
-                                                            .success
-                                                        : Color(0xFF57636C),
-                                                    fontSize: 14.0,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.w500,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .fontStyle,
-                                                  ),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            4.0, 0.0, 4.0, 0.0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Icon(
+                                              Icons
+                                                  .check_circle_outline_rounded,
+                                              color: _model.varSituacaoCadastro
+                                                  ? FlutterFlowTheme.of(context)
+                                                      .success
+                                                  : Color(0xFF57636C),
+                                              size: 16.0,
                                             ),
-                                          ),
-                                        ],
+                                            if (responsiveVisibility(
+                                              context: context,
+                                              phone: false,
+                                            ))
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        4.0, 0.0, 0.0, 0.0),
+                                                child: Text(
+                                                  'Ativos',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        font:
+                                                            GoogleFonts.outfit(
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontStyle,
+                                                        ),
+                                                        color: _model
+                                                                .varSituacaoCadastro
+                                                            ? FlutterFlowTheme
+                                                                    .of(context)
+                                                                .success
+                                                            : Color(0xFF57636C),
+                                                        fontSize: 14.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontStyle,
+                                                      ),
+                                                ),
+                                              ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -412,10 +427,12 @@ class _CpAfiliadoSubIndicacoesWidgetState
                                       await _model.waitForRequestCompleted1();
                                     },
                                     child: Container(
-                                      width: 100.0,
                                       height:
                                           MediaQuery.sizeOf(context).height *
                                               1.0,
+                                      constraints: BoxConstraints(
+                                        minWidth: 30.0,
+                                      ),
                                       decoration: BoxDecoration(
                                         color: !_model.varSituacaoCadastro
                                             ? Colors.white
@@ -429,56 +446,65 @@ class _CpAfiliadoSubIndicacoesWidgetState
                                               : Colors.transparent,
                                         ),
                                       ),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Icon(
-                                            Icons.block,
-                                            color: !_model.varSituacaoCadastro
-                                                ? FlutterFlowTheme.of(context)
-                                                    .error
-                                                : Color(0xFF57636C),
-                                            size: 16.0,
-                                          ),
-                                          Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    4.0, 0.0, 0.0, 0.0),
-                                            child: Text(
-                                              'Inativos',
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .bodyMedium
-                                                  .override(
-                                                    font: GoogleFonts.outfit(
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .fontStyle,
-                                                    ),
-                                                    color:
-                                                        !_model.varSituacaoCadastro
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            4.0, 0.0, 4.0, 0.0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Icon(
+                                              Icons.block,
+                                              color: !_model.varSituacaoCadastro
+                                                  ? FlutterFlowTheme.of(context)
+                                                      .error
+                                                  : Color(0xFF57636C),
+                                              size: 16.0,
+                                            ),
+                                            if (responsiveVisibility(
+                                              context: context,
+                                              phone: false,
+                                            ))
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        4.0, 0.0, 0.0, 0.0),
+                                                child: Text(
+                                                  'Inativos',
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        font:
+                                                            GoogleFonts.outfit(
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontStyle,
+                                                        ),
+                                                        color: !_model.varSituacaoCadastro
                                                             ? FlutterFlowTheme
                                                                     .of(context)
                                                                 .error
                                                             : Color(0xFF57636C),
-                                                    fontSize: 14.0,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.w500,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .bodyMedium
-                                                            .fontStyle,
-                                                  ),
-                                            ),
-                                          ),
-                                        ],
+                                                        fontSize: 14.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontStyle,
+                                                      ),
+                                                ),
+                                              ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ).animateOnActionTrigger(
@@ -871,8 +897,7 @@ class _CpAfiliadoSubIndicacoesWidgetState
                                         border: Border.all(
                                           color: listViewPCViewTblAfiliadosRow
                                                   .situacao!
-                                              ? FlutterFlowTheme.of(context)
-                                                  .alternate
+                                              ? Colors.transparent
                                               : FlutterFlowTheme.of(context)
                                                   .error,
                                         ),

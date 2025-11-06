@@ -665,7 +665,7 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
           decoration: BoxDecoration(),
           child: Column(
             mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               if (isAndroid &&
@@ -683,6 +683,7 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                 ),
               Flexible(
                 child: Container(
+                  height: MediaQuery.sizeOf(context).height * 1.0,
                   constraints: BoxConstraints(
                     maxWidth: MediaQuery.sizeOf(context).width <
                             FFAppState()
@@ -690,12 +691,20 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                                 .toDouble()
                         ? MediaQuery.sizeOf(context).width
                         : 900.0,
-                    maxHeight: MediaQuery.sizeOf(context).width <
-                            FFAppState()
-                                .varTamanhoMinimoTelaMenuLateral
-                                .toDouble()
-                        ? (MediaQuery.sizeOf(context).height * 1.0)
-                        : 800.0,
+                    maxHeight: () {
+                      if (FFAppState()
+                          .VarTblEstabelecimentoLogado
+                          .assistenteCadConcluido) {
+                        return (MediaQuery.sizeOf(context).height * 1.0);
+                      } else if (MediaQuery.sizeOf(context).width <
+                          FFAppState()
+                              .varTamanhoMinimoTelaMenuLateral
+                              .toDouble()) {
+                        return (MediaQuery.sizeOf(context).height * 1.0);
+                      } else {
+                        return 800.0;
+                      }
+                    }(),
                   ),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8.0),
@@ -755,7 +764,16 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                         children: [
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 8.0, 0.0, 0.0),
+                                0.0,
+                                valueOrDefault<double>(
+                                  MediaQuery.sizeOf(context).width <
+                                          kBreakpointSmall
+                                      ? 8.0
+                                      : 16.0,
+                                  0.0,
+                                ),
+                                0.0,
+                                0.0),
                             child: Container(
                               width: double.infinity,
                               child: Stack(
@@ -893,7 +911,17 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                                         child: Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  16.0, 16.0, 16.0, 0.0),
+                                                  16.0,
+                                                  valueOrDefault<double>(
+                                                    MediaQuery.sizeOf(context)
+                                                                .width <
+                                                            kBreakpointSmall
+                                                        ? 16.0
+                                                        : 24.0,
+                                                    0.0,
+                                                  ),
+                                                  16.0,
+                                                  0.0),
                                           child: SingleChildScrollView(
                                             controller:
                                                 _model.columnController1,
@@ -1493,7 +1521,17 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                                         child: Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  16.0, 16.0, 16.0, 0.0),
+                                                  16.0,
+                                                  valueOrDefault<double>(
+                                                    MediaQuery.sizeOf(context)
+                                                                .width <
+                                                            kBreakpointSmall
+                                                        ? 16.0
+                                                        : 24.0,
+                                                    0.0,
+                                                  ),
+                                                  16.0,
+                                                  0.0),
                                           child: SingleChildScrollView(
                                             controller: _model
                                                 .columnFotoPerfilScrollController,
@@ -2079,7 +2117,17 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                                         child: Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  16.0, 16.0, 16.0, 0.0),
+                                                  16.0,
+                                                  valueOrDefault<double>(
+                                                    MediaQuery.sizeOf(context)
+                                                                .width <
+                                                            kBreakpointSmall
+                                                        ? 16.0
+                                                        : 24.0,
+                                                    0.0,
+                                                  ),
+                                                  16.0,
+                                                  0.0),
                                           child: SingleChildScrollView(
                                             controller:
                                                 _model.columnScrollController,
@@ -2486,7 +2534,17 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                                         child: Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  16.0, 16.0, 16.0, 0.0),
+                                                  16.0,
+                                                  valueOrDefault<double>(
+                                                    MediaQuery.sizeOf(context)
+                                                                .width <
+                                                            kBreakpointSmall
+                                                        ? 16.0
+                                                        : 24.0,
+                                                    0.0,
+                                                  ),
+                                                  16.0,
+                                                  0.0),
                                           child: SingleChildScrollView(
                                             controller: _model
                                                 .columnFormPagComodEndScrollController,
@@ -2776,7 +2834,7 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                                                                           .check_box_outlined,
                                                                       color: FlutterFlowTheme.of(
                                                                               context)
-                                                                          .secondary,
+                                                                          .success,
                                                                       size:
                                                                           18.0,
                                                                     ),
@@ -2928,7 +2986,7 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                                                                           .check_box_outlined,
                                                                       color: FlutterFlowTheme.of(
                                                                               context)
-                                                                          .secondary,
+                                                                          .success,
                                                                       size:
                                                                           18.0,
                                                                     ),
@@ -3081,7 +3139,7 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                                                                           .check_box_outlined,
                                                                       color: FlutterFlowTheme.of(
                                                                               context)
-                                                                          .secondary,
+                                                                          .success,
                                                                       size:
                                                                           18.0,
                                                                     ),
@@ -3234,7 +3292,7 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                                                                           .check_box_outlined,
                                                                       color: FlutterFlowTheme.of(
                                                                               context)
-                                                                          .secondary,
+                                                                          .success,
                                                                       size:
                                                                           18.0,
                                                                     ),
@@ -3485,7 +3543,7 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                                                                           .check_box_outlined,
                                                                       color: FlutterFlowTheme.of(
                                                                               context)
-                                                                          .secondary,
+                                                                          .success,
                                                                       size:
                                                                           18.0,
                                                                     ),
@@ -3638,7 +3696,7 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                                                                           .check_box_outlined,
                                                                       color: FlutterFlowTheme.of(
                                                                               context)
-                                                                          .secondary,
+                                                                          .success,
                                                                       size:
                                                                           18.0,
                                                                     ),
@@ -3790,7 +3848,7 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                                                                           .check_box_outlined,
                                                                       color: FlutterFlowTheme.of(
                                                                               context)
-                                                                          .secondary,
+                                                                          .success,
                                                                       size:
                                                                           18.0,
                                                                     ),
@@ -3943,7 +4001,7 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                                                                           .check_box_outlined,
                                                                       color: FlutterFlowTheme.of(
                                                                               context)
-                                                                          .secondary,
+                                                                          .success,
                                                                       size:
                                                                           18.0,
                                                                     ),
@@ -4096,7 +4154,7 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                                                                           .check_box_outlined,
                                                                       color: FlutterFlowTheme.of(
                                                                               context)
-                                                                          .secondary,
+                                                                          .success,
                                                                       size:
                                                                           18.0,
                                                                     ),
@@ -4249,7 +4307,7 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                                                                           .check_box_outlined,
                                                                       color: FlutterFlowTheme.of(
                                                                               context)
-                                                                          .secondary,
+                                                                          .success,
                                                                       size:
                                                                           18.0,
                                                                     ),
@@ -5873,7 +5931,17 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                                         child: Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  16.0, 16.0, 16.0, 0.0),
+                                                  16.0,
+                                                  valueOrDefault<double>(
+                                                    MediaQuery.sizeOf(context)
+                                                                .width <
+                                                            kBreakpointSmall
+                                                        ? 16.0
+                                                        : 24.0,
+                                                    0.0,
+                                                  ),
+                                                  16.0,
+                                                  0.0),
                                           child: SingleChildScrollView(
                                             controller:
                                                 _model.columnController2,
@@ -6239,7 +6307,17 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                                         child: Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  16.0, 16.0, 16.0, 0.0),
+                                                  16.0,
+                                                  valueOrDefault<double>(
+                                                    MediaQuery.sizeOf(context)
+                                                                .width <
+                                                            kBreakpointSmall
+                                                        ? 16.0
+                                                        : 24.0,
+                                                    0.0,
+                                                  ),
+                                                  16.0,
+                                                  0.0),
                                           child: SingleChildScrollView(
                                             controller:
                                                 _model.columnController3,
@@ -6950,7 +7028,17 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                                         child: Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  16.0, 16.0, 16.0, 0.0),
+                                                  16.0,
+                                                  valueOrDefault<double>(
+                                                    MediaQuery.sizeOf(context)
+                                                                .width <
+                                                            kBreakpointSmall
+                                                        ? 16.0
+                                                        : 24.0,
+                                                    0.0,
+                                                  ),
+                                                  16.0,
+                                                  0.0),
                                           child: SingleChildScrollView(
                                             controller:
                                                 _model.columnController4,
@@ -8412,7 +8500,17 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                                         child: Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  16.0, 16.0, 16.0, 0.0),
+                                                  16.0,
+                                                  valueOrDefault<double>(
+                                                    MediaQuery.sizeOf(context)
+                                                                .width <
+                                                            kBreakpointSmall
+                                                        ? 16.0
+                                                        : 24.0,
+                                                    0.0,
+                                                  ),
+                                                  16.0,
+                                                  0.0),
                                           child: SingleChildScrollView(
                                             controller:
                                                 _model.columnController5,
@@ -9424,763 +9522,810 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                           Align(
                             alignment: AlignmentDirectional(0.0, 1.0),
                             child: Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  16.0,
-                                  0.0,
-                                  16.0,
-                                  valueOrDefault<double>(
-                                    MediaQuery.sizeOf(context).width >
-                                            FFAppState()
-                                                .varTamanhoMinimoTelaMenuLateral
-                                                .toDouble()
-                                        ? 16.0
-                                        : 4.0,
-                                    0.0,
-                                  )),
-                              child: InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {},
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    if (!(isWeb
-                                        ? MediaQuery.viewInsetsOf(context)
-                                                .bottom >
-                                            0
-                                        : _isKeyboardVisible))
-                                      Opacity(
-                                        opacity: _model.pageViewCurrentIndex > 0
-                                            ? 1.0
-                                            : 0.0,
-                                        child: FFButtonWidget(
-                                          onPressed: () async {
-                                            await _model.pageViewController
-                                                ?.previousPage(
-                                              duration:
-                                                  Duration(milliseconds: 300),
-                                              curve: Curves.ease,
-                                            );
+                              padding: EdgeInsets.all(valueOrDefault<double>(
+                                MediaQuery.sizeOf(context).width >
+                                        valueOrDefault<double>(
+                                          FFAppState()
+                                              .varTamanhoMinimoTelaMenuLateral
+                                              .toDouble(),
+                                          1000.0,
+                                        )
+                                    ? 16.0
+                                    : 16.0,
+                                0.0,
+                              )),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Color(0x41000000),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.all(8.0),
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {},
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        if (!(isWeb
+                                            ? MediaQuery.viewInsetsOf(context)
+                                                    .bottom >
+                                                0
+                                            : _isKeyboardVisible))
+                                          Opacity(
+                                            opacity:
+                                                _model.pageViewCurrentIndex > 0
+                                                    ? 1.0
+                                                    : 0.0,
+                                            child: FFButtonWidget(
+                                              onPressed: () async {
+                                                await _model.pageViewController
+                                                    ?.previousPage(
+                                                  duration: Duration(
+                                                      milliseconds: 300),
+                                                  curve: Curves.ease,
+                                                );
 
-                                            safeSetState(() {});
-                                          },
-                                          text: 'Anterior',
-                                          icon: Icon(
-                                            Icons.chevron_left_sharp,
-                                            size: 15.0,
-                                          ),
-                                          options: FFButtonOptions(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    16.0, 0.0, 16.0, 0.0),
-                                            iconAlignment: IconAlignment.start,
-                                            iconPadding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    0.0, 0.0, 0.0, 0.0),
-                                            color: FlutterFlowTheme.of(context)
-                                                .success,
-                                            textStyle: FlutterFlowTheme.of(
-                                                    context)
-                                                .titleSmall
-                                                .override(
-                                                  font: GoogleFonts.readexPro(
-                                                    fontWeight:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .titleSmall
-                                                            .fontWeight,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .titleSmall
-                                                            .fontStyle,
-                                                  ),
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryText,
-                                                  fontSize:
-                                                      MediaQuery.sizeOf(context)
+                                                safeSetState(() {});
+                                              },
+                                              text: 'Anterior',
+                                              icon: Icon(
+                                                Icons.chevron_left_sharp,
+                                                size: 15.0,
+                                              ),
+                                              options: FFButtonOptions(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        16.0, 0.0, 16.0, 0.0),
+                                                iconAlignment:
+                                                    IconAlignment.start,
+                                                iconPadding:
+                                                    EdgeInsetsDirectional
+                                                        .fromSTEB(
+                                                            0.0, 0.0, 0.0, 0.0),
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .success,
+                                                textStyle: FlutterFlowTheme.of(
+                                                        context)
+                                                    .titleSmall
+                                                    .override(
+                                                      font:
+                                                          GoogleFonts.readexPro(
+                                                        fontWeight:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleSmall
+                                                                .fontWeight,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleSmall
+                                                                .fontStyle,
+                                                      ),
+                                                      color:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .primaryText,
+                                                      fontSize: MediaQuery.sizeOf(
+                                                                      context)
                                                                   .width <
                                                               kBreakpointSmall
                                                           ? 12.0
                                                           : 16.0,
-                                                  letterSpacing: 0.0,
-                                                  fontWeight:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleSmall
-                                                          .fontWeight,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .titleSmall
-                                                          .fontStyle,
-                                                ),
-                                            elevation: 0.0,
-                                            borderRadius:
-                                                BorderRadius.circular(8.0),
-                                          ),
-                                          showLoadingIndicator: false,
-                                        ),
-                                      ),
-                                    Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      children: [
-                                        if ((_model.pageViewCurrentIndex < 8) &&
-                                            !(isWeb
-                                                ? MediaQuery.viewInsetsOf(
-                                                            context)
-                                                        .bottom >
-                                                    0
-                                                : _isKeyboardVisible))
-                                          FFButtonWidget(
-                                            onPressed: () async {
-                                              var _shouldSetState = false;
-                                              if (_model.pageViewCurrentIndex ==
-                                                  0) {
-                                                if ((_model.varIDSegmentoSelecionado <=
-                                                        0) ||
-                                                    (_model.varIDSegmentoSelecionado ==
-                                                        8)) {
-                                                  await showDialog(
-                                                    context: context,
-                                                    builder:
-                                                        (alertDialogContext) {
-                                                      return AlertDialog(
-                                                        title: Text('Atenção!'),
-                                                        content: Text(
-                                                            'Selecione um segmento'),
-                                                        actions: [
-                                                          TextButton(
-                                                            onPressed: () =>
-                                                                Navigator.pop(
-                                                                    alertDialogContext),
-                                                            child: Text('Ok'),
-                                                          ),
-                                                        ],
-                                                      );
-                                                    },
-                                                  );
-                                                  if (_shouldSetState)
-                                                    safeSetState(() {});
-                                                  return;
-                                                }
-                                                await TblEstabelecimentoTable()
-                                                    .update(
-                                                  data: {
-                                                    'id_segmento': _model
-                                                        .varIDSegmentoSelecionado,
-                                                  },
-                                                  matchingRows: (rows) =>
-                                                      rows.eqOrNull(
-                                                    'id',
-                                                    FFAppState()
-                                                        .VarIDEstabelecimentoLogado,
-                                                  ),
-                                                );
-                                                FFAppState()
-                                                    .updateVarTblEstabelecimentoLogadoStruct(
-                                                  (e) => e
-                                                    ..idSegmento = _model
-                                                        .varIDSegmentoSelecionado,
-                                                );
-                                              } else if (_model
-                                                      .pageViewCurrentIndex ==
-                                                  1) {
-                                                if ((_model.uploadedFileUrl_uploadDataEstabelecimentoPerfilAssist ==
-                                                            '') &&
-                                                    (_model.varFotoPerfilSelecionada ==
-                                                        '0') &&
-                                                    (FFAppState()
-                                                                .VarTblEstabelecimentoLogado
-                                                                .fotoPerfil ==
-                                                            '')) {
-                                                  await showDialog(
-                                                    context: context,
-                                                    builder:
-                                                        (alertDialogContext) {
-                                                      return AlertDialog(
-                                                        title: Text('Atenção!'),
-                                                        content: Text(
-                                                            'Adicione uma foto ou selecione um modelo pronto...'),
-                                                        actions: [
-                                                          TextButton(
-                                                            onPressed: () =>
-                                                                Navigator.pop(
-                                                                    alertDialogContext),
-                                                            child: Text('Ok'),
-                                                          ),
-                                                        ],
-                                                      );
-                                                    },
-                                                  );
-                                                  if (_shouldSetState)
-                                                    safeSetState(() {});
-                                                  return;
-                                                }
-                                                if (_model.uploadedFileUrl_uploadDataEstabelecimentoPerfilAssist !=
-                                                        '') {
-                                                  if (_model.varUrlFotoTemp !=
-                                                      _model
-                                                          .uploadedFileUrl_uploadDataEstabelecimentoPerfilAssist) {
-                                                    if (_model.varUrlFotoTemp !=
-                                                            null &&
-                                                        _model.varUrlFotoTemp !=
-                                                            '') {
-                                                      await deleteSupabaseFileFromPublicUrl(
-                                                          _model
-                                                              .varUrlFotoTemp!);
-                                                    }
-                                                    showModalBottomSheet(
-                                                      isScrollControlled: true,
-                                                      backgroundColor:
-                                                          Colors.transparent,
-                                                      context: context,
-                                                      builder: (context) {
-                                                        return Padding(
-                                                          padding: MediaQuery
-                                                              .viewInsetsOf(
-                                                                  context),
-                                                          child:
-                                                              CpDialogSnackBarWidget(
-                                                            paramMensagem:
-                                                                'Foto perfil atualizada...',
-                                                            paramCorTexto:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .info,
-                                                            paramCorFundo:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .success,
-                                                            paramTempoMsFechar:
-                                                                1000,
-                                                          ),
-                                                        );
-                                                      },
-                                                    ).then((value) =>
-                                                        safeSetState(() {}));
-                                                  }
-                                                }
-                                                if ((_model.uploadedFileUrl_uploadDataEstabelecimentoPerfilAssist !=
-                                                            '') ||
-                                                    (_model.varFotoPerfilSelecionada !=
-                                                        '0')) {
-                                                  await TblEstabelecimentoTable()
-                                                      .update(
-                                                    data: {
-                                                      'foto_perfil': () {
-                                                        if (_model.uploadedFileUrl_uploadDataEstabelecimentoPerfilAssist !=
-                                                                '') {
-                                                          return _model
-                                                              .uploadedFileUrl_uploadDataEstabelecimentoPerfilAssist;
-                                                        } else if (_model
-                                                                .varFotoPerfilSelecionada !=
-                                                            '0') {
-                                                          return _model
-                                                              .varFotoPerfilSelecionada;
-                                                        } else {
-                                                          return null;
-                                                        }
-                                                      }(),
-                                                    },
-                                                    matchingRows: (rows) =>
-                                                        rows.eqOrNull(
-                                                      'id',
-                                                      FFAppState()
-                                                          .VarIDEstabelecimentoLogado,
+                                                      letterSpacing: 0.0,
+                                                      fontWeight:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleSmall
+                                                              .fontWeight,
+                                                      fontStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .titleSmall
+                                                              .fontStyle,
                                                     ),
-                                                  );
-                                                  _shouldSetState = true;
-                                                  FFAppState()
-                                                      .updateVarTblEstabelecimentoLogadoStruct(
-                                                    (e) => e
-                                                      ..fotoPerfil = () {
-                                                        if (_model.uploadedFileUrl_uploadDataEstabelecimentoPerfilAssist !=
-                                                                '') {
-                                                          return _model
-                                                              .uploadedFileUrl_uploadDataEstabelecimentoPerfilAssist;
-                                                        } else if (_model
-                                                                .varFotoPerfilSelecionada !=
-                                                            '0') {
-                                                          return _model
-                                                              .varFotoPerfilSelecionada;
-                                                        } else {
-                                                          return null;
-                                                        }
-                                                      }(),
-                                                  );
-                                                  FFAppState().update(() {});
-                                                }
-                                              } else if (_model
-                                                      .pageViewCurrentIndex ==
-                                                  2) {
-                                                await TblEstabelecimentoTable()
-                                                    .update(
-                                                  data: {
-                                                    'id_tema': _model
-                                                        .varIDTemaSelecionado,
-                                                  },
-                                                  matchingRows: (rows) =>
-                                                      rows.eqOrNull(
-                                                    'id',
-                                                    FFAppState()
-                                                        .VarIDEstabelecimentoLogado,
-                                                  ),
-                                                );
-                                                FFAppState()
-                                                    .updateVarTblEstabelecimentoLogadoStruct(
-                                                  (e) => e
-                                                    ..fotoLightMode = _model
-                                                        .varFotoLightModeTemaSelecionado
-                                                    ..fotoDarkMod = _model
-                                                        .varFotoDarkModeTemaSelecionado,
-                                                );
-                                                FFAppState().update(() {});
-                                              } else if (_model
-                                                      .pageViewCurrentIndex ==
-                                                  3) {
-                                                if (_model
-                                                    .varInformarEndereco) {
-                                                  _model.resultValidarEndereco =
-                                                      true;
-                                                  if (_model.formKey1
-                                                              .currentState ==
-                                                          null ||
-                                                      !_model.formKey1
-                                                          .currentState!
-                                                          .validate()) {
-                                                    _model.resultValidarEndereco =
-                                                        false;
-                                                  }
-                                                  _shouldSetState = true;
+                                                elevation: 0.0,
+                                                borderRadius:
+                                                    BorderRadius.circular(8.0),
+                                              ),
+                                              showLoadingIndicator: false,
+                                            ),
+                                          ),
+                                        Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            if ((_model.pageViewCurrentIndex <
+                                                    8) &&
+                                                !(isWeb
+                                                    ? MediaQuery.viewInsetsOf(
+                                                                context)
+                                                            .bottom >
+                                                        0
+                                                    : _isKeyboardVisible))
+                                              FFButtonWidget(
+                                                onPressed: () async {
+                                                  var _shouldSetState = false;
                                                   if (_model
-                                                          .resultValidarEndereco ==
-                                                      false) {
-                                                    await _model
-                                                        .columnFormPagComodEndScrollController
-                                                        ?.animateTo(
-                                                      _model
-                                                          .columnFormPagComodEndScrollController!
-                                                          .position
-                                                          .maxScrollExtent,
-                                                      duration: Duration(
-                                                          milliseconds: 100),
-                                                      curve: Curves.ease,
-                                                    );
-                                                    if (_shouldSetState)
-                                                      safeSetState(() {});
-                                                    return;
-                                                  }
-                                                }
-                                                await TblEstabelecimentoTable()
-                                                    .update(
-                                                  data: {
-                                                    'cep': _model
-                                                                .varInformarEndereco &&
-                                                            !_model
-                                                                .varCEPInvalido
-                                                        ? _model
-                                                            .textFieldCEPTextController
-                                                            .text
-                                                        : '',
-                                                    'rua': _model
-                                                                .varInformarEndereco &&
-                                                            !_model
-                                                                .varCEPInvalido
-                                                        ? _model
-                                                            .textFieldRuaTextController
-                                                            .text
-                                                        : '',
-                                                    'numero': _model
-                                                                .varInformarEndereco &&
-                                                            !_model
-                                                                .varCEPInvalido
-                                                        ? _model
-                                                            .textFieldNumeroTextController
-                                                            .text
-                                                        : '',
-                                                    'bairro': _model
-                                                                .varInformarEndereco &&
-                                                            !_model
-                                                                .varCEPInvalido
-                                                        ? _model
-                                                            .textFieldBairroTextController
-                                                            .text
-                                                        : '',
-                                                    'complemento': _model
-                                                                .varInformarEndereco &&
-                                                            !_model
-                                                                .varCEPInvalido
-                                                        ? _model
-                                                            .textFieldComplementoTextController
-                                                            .text
-                                                        : '',
-                                                    'uf': () {
-                                                      if (_model
-                                                              .varInformarEndereco &&
-                                                          !_model
-                                                              .varCEPInvalido &&
-                                                          (_model.apiResulViaCep
-                                                                  ?.succeeded ??
-                                                              true) &&
-                                                          (ViaCepCall.uf(
-                                                                    (_model.apiResulViaCep
-                                                                            ?.jsonBody ??
-                                                                        ''),
-                                                                  ) !=
-                                                                  null &&
-                                                              ViaCepCall.uf(
-                                                                    (_model.apiResulViaCep
-                                                                            ?.jsonBody ??
-                                                                        ''),
-                                                                  ) !=
-                                                                  '')) {
-                                                        return ViaCepCall.uf(
-                                                          (_model.apiResulViaCep
-                                                                  ?.jsonBody ??
-                                                              ''),
-                                                        );
-                                                      } else if (_model
-                                                              .varInformarEndereco &&
-                                                          (FFAppState()
-                                                                      .VarTblEstabelecimentoLogado
-                                                                      .uf !=
-                                                                  '')) {
-                                                        return FFAppState()
-                                                            .VarTblEstabelecimentoLogado
-                                                            .uf;
-                                                      } else {
-                                                        return null;
-                                                      }
-                                                    }(),
-                                                    'cidade': _model
-                                                                .varInformarEndereco &&
-                                                            !_model
-                                                                .varCEPInvalido
-                                                        ? _model
-                                                            .textFieldCidadeTextController
-                                                            .text
-                                                        : '',
-                                                    'formas_pagamento': FFAppState()
-                                                        .VarTblEstabelecimentoLogado
-                                                        .formasPagamento,
-                                                    'comodidades': FFAppState()
-                                                        .VarTblEstabelecimentoLogado
-                                                        .comodidades,
-                                                  },
-                                                  matchingRows: (rows) =>
-                                                      rows.eqOrNull(
-                                                    'id',
-                                                    FFAppState()
-                                                        .VarIDEstabelecimentoLogado,
-                                                  ),
-                                                );
-                                                _shouldSetState = true;
-                                              } else if (_model
-                                                      .pageViewCurrentIndex ==
-                                                  4) {
-                                              } else if (_model
-                                                      .pageViewCurrentIndex ==
-                                                  5) {
-                                                _model.queryConsServ =
-                                                    await TblCadServicosTable()
-                                                        .queryRows(
-                                                  queryFn: (q) => q.eqOrNull(
-                                                    'id_estabelecimento',
-                                                    FFAppState()
-                                                        .VarIDEstabelecimentoLogado,
-                                                  ),
-                                                );
-                                                _shouldSetState = true;
-                                                if (_model.queryConsServ
-                                                        ?.length ==
-                                                    0) {
-                                                  await showDialog(
-                                                    context: context,
-                                                    builder:
-                                                        (alertDialogContext) {
-                                                      return AlertDialog(
-                                                        title: Text('Atenção!'),
-                                                        content: Text(
-                                                            'Adicione pelo menos um serviço'),
-                                                        actions: [
-                                                          TextButton(
-                                                            onPressed: () =>
-                                                                Navigator.pop(
-                                                                    alertDialogContext),
-                                                            child: Text('Ok'),
-                                                          ),
-                                                        ],
+                                                          .pageViewCurrentIndex ==
+                                                      0) {
+                                                    if ((_model.varIDSegmentoSelecionado <=
+                                                            0) ||
+                                                        (_model.varIDSegmentoSelecionado ==
+                                                            8)) {
+                                                      await showDialog(
+                                                        context: context,
+                                                        builder:
+                                                            (alertDialogContext) {
+                                                          return AlertDialog(
+                                                            title: Text(
+                                                                'Atenção!'),
+                                                            content: Text(
+                                                                'Selecione um segmento'),
+                                                            actions: [
+                                                              TextButton(
+                                                                onPressed: () =>
+                                                                    Navigator.pop(
+                                                                        alertDialogContext),
+                                                                child:
+                                                                    Text('Ok'),
+                                                              ),
+                                                            ],
+                                                          );
+                                                        },
                                                       );
-                                                    },
-                                                  );
-                                                  if (_shouldSetState)
-                                                    safeSetState(() {});
-                                                  return;
-                                                }
-                                              } else if (_model
-                                                      .pageViewCurrentIndex ==
-                                                  6) {
-                                                _model.queryConsPlano =
-                                                    await ViewTblAppPlanosEstabelecimentosTable()
-                                                        .queryRows(
-                                                  queryFn: (q) => q
-                                                      .eqOrNull(
+                                                      if (_shouldSetState)
+                                                        safeSetState(() {});
+                                                      return;
+                                                    }
+                                                    await TblEstabelecimentoTable()
+                                                        .update(
+                                                      data: {
+                                                        'id_segmento': _model
+                                                            .varIDSegmentoSelecionado,
+                                                      },
+                                                      matchingRows: (rows) =>
+                                                          rows.eqOrNull(
+                                                        'id',
+                                                        FFAppState()
+                                                            .VarIDEstabelecimentoLogado,
+                                                      ),
+                                                    );
+                                                    FFAppState()
+                                                        .updateVarTblEstabelecimentoLogadoStruct(
+                                                      (e) => e
+                                                        ..idSegmento = _model
+                                                            .varIDSegmentoSelecionado,
+                                                    );
+                                                  } else if (_model
+                                                          .pageViewCurrentIndex ==
+                                                      1) {
+                                                    if ((_model.uploadedFileUrl_uploadDataEstabelecimentoPerfilAssist ==
+                                                                '') &&
+                                                        (_model.varFotoPerfilSelecionada ==
+                                                            '0') &&
+                                                        (FFAppState()
+                                                                    .VarTblEstabelecimentoLogado
+                                                                    .fotoPerfil ==
+                                                                '')) {
+                                                      await showDialog(
+                                                        context: context,
+                                                        builder:
+                                                            (alertDialogContext) {
+                                                          return AlertDialog(
+                                                            title: Text(
+                                                                'Atenção!'),
+                                                            content: Text(
+                                                                'Adicione uma foto ou selecione um modelo pronto...'),
+                                                            actions: [
+                                                              TextButton(
+                                                                onPressed: () =>
+                                                                    Navigator.pop(
+                                                                        alertDialogContext),
+                                                                child:
+                                                                    Text('Ok'),
+                                                              ),
+                                                            ],
+                                                          );
+                                                        },
+                                                      );
+                                                      if (_shouldSetState)
+                                                        safeSetState(() {});
+                                                      return;
+                                                    }
+                                                    if (_model.uploadedFileUrl_uploadDataEstabelecimentoPerfilAssist !=
+                                                            '') {
+                                                      if (_model
+                                                              .varUrlFotoTemp !=
+                                                          _model
+                                                              .uploadedFileUrl_uploadDataEstabelecimentoPerfilAssist) {
+                                                        if (_model.varUrlFotoTemp !=
+                                                                null &&
+                                                            _model.varUrlFotoTemp !=
+                                                                '') {
+                                                          await deleteSupabaseFileFromPublicUrl(
+                                                              _model
+                                                                  .varUrlFotoTemp!);
+                                                        }
+                                                        showModalBottomSheet(
+                                                          isScrollControlled:
+                                                              true,
+                                                          backgroundColor:
+                                                              Colors
+                                                                  .transparent,
+                                                          context: context,
+                                                          builder: (context) {
+                                                            return Padding(
+                                                              padding: MediaQuery
+                                                                  .viewInsetsOf(
+                                                                      context),
+                                                              child:
+                                                                  CpDialogSnackBarWidget(
+                                                                paramMensagem:
+                                                                    'Foto perfil atualizada...',
+                                                                paramCorTexto:
+                                                                    FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .info,
+                                                                paramCorFundo:
+                                                                    FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .success,
+                                                                paramTempoMsFechar:
+                                                                    1000,
+                                                              ),
+                                                            );
+                                                          },
+                                                        ).then((value) =>
+                                                            safeSetState(
+                                                                () {}));
+                                                      }
+                                                    }
+                                                    if ((_model.uploadedFileUrl_uploadDataEstabelecimentoPerfilAssist !=
+                                                                '') ||
+                                                        (_model.varFotoPerfilSelecionada !=
+                                                            '0')) {
+                                                      await TblEstabelecimentoTable()
+                                                          .update(
+                                                        data: {
+                                                          'foto_perfil': () {
+                                                            if (_model.uploadedFileUrl_uploadDataEstabelecimentoPerfilAssist !=
+                                                                    '') {
+                                                              return _model
+                                                                  .uploadedFileUrl_uploadDataEstabelecimentoPerfilAssist;
+                                                            } else if (_model
+                                                                    .varFotoPerfilSelecionada !=
+                                                                '0') {
+                                                              return _model
+                                                                  .varFotoPerfilSelecionada;
+                                                            } else {
+                                                              return null;
+                                                            }
+                                                          }(),
+                                                        },
+                                                        matchingRows: (rows) =>
+                                                            rows.eqOrNull(
+                                                          'id',
+                                                          FFAppState()
+                                                              .VarIDEstabelecimentoLogado,
+                                                        ),
+                                                      );
+                                                      _shouldSetState = true;
+                                                      FFAppState()
+                                                          .updateVarTblEstabelecimentoLogadoStruct(
+                                                        (e) => e
+                                                          ..fotoPerfil = () {
+                                                            if (_model.uploadedFileUrl_uploadDataEstabelecimentoPerfilAssist !=
+                                                                    '') {
+                                                              return _model
+                                                                  .uploadedFileUrl_uploadDataEstabelecimentoPerfilAssist;
+                                                            } else if (_model
+                                                                    .varFotoPerfilSelecionada !=
+                                                                '0') {
+                                                              return _model
+                                                                  .varFotoPerfilSelecionada;
+                                                            } else {
+                                                              return null;
+                                                            }
+                                                          }(),
+                                                      );
+                                                      FFAppState()
+                                                          .update(() {});
+                                                    }
+                                                  } else if (_model
+                                                          .pageViewCurrentIndex ==
+                                                      2) {
+                                                    await TblEstabelecimentoTable()
+                                                        .update(
+                                                      data: {
+                                                        'id_tema': _model
+                                                            .varIDTemaSelecionado,
+                                                      },
+                                                      matchingRows: (rows) =>
+                                                          rows.eqOrNull(
+                                                        'id',
+                                                        FFAppState()
+                                                            .VarIDEstabelecimentoLogado,
+                                                      ),
+                                                    );
+                                                    FFAppState()
+                                                        .updateVarTblEstabelecimentoLogadoStruct(
+                                                      (e) => e
+                                                        ..fotoLightMode = _model
+                                                            .varFotoLightModeTemaSelecionado
+                                                        ..fotoDarkMod = _model
+                                                            .varFotoDarkModeTemaSelecionado,
+                                                    );
+                                                    FFAppState().update(() {});
+                                                  } else if (_model
+                                                          .pageViewCurrentIndex ==
+                                                      3) {
+                                                    if (_model
+                                                        .varInformarEndereco) {
+                                                      _model.resultValidarEndereco =
+                                                          true;
+                                                      if (_model.formKey1
+                                                                  .currentState ==
+                                                              null ||
+                                                          !_model.formKey1
+                                                              .currentState!
+                                                              .validate()) {
+                                                        _model.resultValidarEndereco =
+                                                            false;
+                                                      }
+                                                      _shouldSetState = true;
+                                                      if (_model
+                                                              .resultValidarEndereco ==
+                                                          false) {
+                                                        await _model
+                                                            .columnFormPagComodEndScrollController
+                                                            ?.animateTo(
+                                                          _model
+                                                              .columnFormPagComodEndScrollController!
+                                                              .position
+                                                              .maxScrollExtent,
+                                                          duration: Duration(
+                                                              milliseconds:
+                                                                  100),
+                                                          curve: Curves.ease,
+                                                        );
+                                                        if (_shouldSetState)
+                                                          safeSetState(() {});
+                                                        return;
+                                                      }
+                                                    }
+                                                    await TblEstabelecimentoTable()
+                                                        .update(
+                                                      data: {
+                                                        'cep': _model
+                                                                    .varInformarEndereco &&
+                                                                !_model
+                                                                    .varCEPInvalido
+                                                            ? _model
+                                                                .textFieldCEPTextController
+                                                                .text
+                                                            : '',
+                                                        'rua': _model
+                                                                    .varInformarEndereco &&
+                                                                !_model
+                                                                    .varCEPInvalido
+                                                            ? _model
+                                                                .textFieldRuaTextController
+                                                                .text
+                                                            : '',
+                                                        'numero': _model
+                                                                    .varInformarEndereco &&
+                                                                !_model
+                                                                    .varCEPInvalido
+                                                            ? _model
+                                                                .textFieldNumeroTextController
+                                                                .text
+                                                            : '',
+                                                        'bairro': _model
+                                                                    .varInformarEndereco &&
+                                                                !_model
+                                                                    .varCEPInvalido
+                                                            ? _model
+                                                                .textFieldBairroTextController
+                                                                .text
+                                                            : '',
+                                                        'complemento': _model
+                                                                    .varInformarEndereco &&
+                                                                !_model
+                                                                    .varCEPInvalido
+                                                            ? _model
+                                                                .textFieldComplementoTextController
+                                                                .text
+                                                            : '',
+                                                        'uf': () {
+                                                          if (_model
+                                                                  .varInformarEndereco &&
+                                                              !_model
+                                                                  .varCEPInvalido &&
+                                                              (_model.apiResulViaCep
+                                                                      ?.succeeded ??
+                                                                  true) &&
+                                                              (ViaCepCall.uf(
+                                                                        (_model.apiResulViaCep?.jsonBody ??
+                                                                            ''),
+                                                                      ) !=
+                                                                      null &&
+                                                                  ViaCepCall.uf(
+                                                                        (_model.apiResulViaCep?.jsonBody ??
+                                                                            ''),
+                                                                      ) !=
+                                                                      '')) {
+                                                            return ViaCepCall
+                                                                .uf(
+                                                              (_model.apiResulViaCep
+                                                                      ?.jsonBody ??
+                                                                  ''),
+                                                            );
+                                                          } else if (_model
+                                                                  .varInformarEndereco &&
+                                                              (FFAppState()
+                                                                          .VarTblEstabelecimentoLogado
+                                                                          .uf !=
+                                                                      '')) {
+                                                            return FFAppState()
+                                                                .VarTblEstabelecimentoLogado
+                                                                .uf;
+                                                          } else {
+                                                            return null;
+                                                          }
+                                                        }(),
+                                                        'cidade': _model
+                                                                    .varInformarEndereco &&
+                                                                !_model
+                                                                    .varCEPInvalido
+                                                            ? _model
+                                                                .textFieldCidadeTextController
+                                                                .text
+                                                            : '',
+                                                        'formas_pagamento':
+                                                            FFAppState()
+                                                                .VarTblEstabelecimentoLogado
+                                                                .formasPagamento,
+                                                        'comodidades': FFAppState()
+                                                            .VarTblEstabelecimentoLogado
+                                                            .comodidades,
+                                                      },
+                                                      matchingRows: (rows) =>
+                                                          rows.eqOrNull(
+                                                        'id',
+                                                        FFAppState()
+                                                            .VarIDEstabelecimentoLogado,
+                                                      ),
+                                                    );
+                                                    _shouldSetState = true;
+                                                  } else if (_model
+                                                          .pageViewCurrentIndex ==
+                                                      4) {
+                                                  } else if (_model
+                                                          .pageViewCurrentIndex ==
+                                                      5) {
+                                                    _model.queryConsServ =
+                                                        await TblCadServicosTable()
+                                                            .queryRows(
+                                                      queryFn: (q) =>
+                                                          q.eqOrNull(
                                                         'id_estabelecimento',
                                                         FFAppState()
                                                             .VarIDEstabelecimentoLogado,
-                                                      )
-                                                      .eqOrNull(
-                                                        'plano_ativo',
-                                                        true,
                                                       ),
-                                                );
-                                                _shouldSetState = true;
-                                                if ((_model.textNomeProfissionalTextController
-                                                                .text !=
-                                                            '') &&
-                                                    (stackViewTblAppPlanosEstabelecimentosRow!
-                                                            .quantProfissionaisCad! <
-                                                        stackViewTblAppPlanosEstabelecimentosRow
-                                                            .quantProfissionaisMaxSalvo!)) {
-                                                  await showDialog(
-                                                    context: context,
-                                                    builder:
-                                                        (alertDialogContext) {
-                                                      return AlertDialog(
-                                                        title: Text('Atenção!'),
-                                                        content: Text(
-                                                            'Primeiro clique em \"Adicionar Profissional\" para salvar o profissonal!'),
-                                                        actions: [
-                                                          TextButton(
-                                                            onPressed: () =>
-                                                                Navigator.pop(
-                                                                    alertDialogContext),
-                                                            child: Text('Ok'),
-                                                          ),
-                                                        ],
+                                                    );
+                                                    _shouldSetState = true;
+                                                    if (_model.queryConsServ
+                                                            ?.length ==
+                                                        0) {
+                                                      await showDialog(
+                                                        context: context,
+                                                        builder:
+                                                            (alertDialogContext) {
+                                                          return AlertDialog(
+                                                            title: Text(
+                                                                'Atenção!'),
+                                                            content: Text(
+                                                                'Adicione pelo menos um serviço'),
+                                                            actions: [
+                                                              TextButton(
+                                                                onPressed: () =>
+                                                                    Navigator.pop(
+                                                                        alertDialogContext),
+                                                                child:
+                                                                    Text('Ok'),
+                                                              ),
+                                                            ],
+                                                          );
+                                                        },
                                                       );
-                                                    },
-                                                  );
-                                                  if (_shouldSetState)
-                                                    safeSetState(() {});
-                                                  return;
-                                                }
-                                                if (stackViewTblAppPlanosEstabelecimentosRow
-                                                        ?.quantProfissionaisCad ==
-                                                    0) {
-                                                  await showDialog(
-                                                    context: context,
-                                                    builder:
-                                                        (alertDialogContext) {
-                                                      return AlertDialog(
-                                                        title: Text('Atenção!'),
-                                                        content: Text(
-                                                            'Adicione pelo menos um profissional'),
-                                                        actions: [
-                                                          TextButton(
-                                                            onPressed: () =>
-                                                                Navigator.pop(
-                                                                    alertDialogContext),
-                                                            child: Text('Ok'),
+                                                      if (_shouldSetState)
+                                                        safeSetState(() {});
+                                                      return;
+                                                    }
+                                                  } else if (_model
+                                                          .pageViewCurrentIndex ==
+                                                      6) {
+                                                    _model.queryConsPlano =
+                                                        await ViewTblAppPlanosEstabelecimentosTable()
+                                                            .queryRows(
+                                                      queryFn: (q) => q
+                                                          .eqOrNull(
+                                                            'id_estabelecimento',
+                                                            FFAppState()
+                                                                .VarIDEstabelecimentoLogado,
+                                                          )
+                                                          .eqOrNull(
+                                                            'plano_ativo',
+                                                            true,
                                                           ),
-                                                        ],
+                                                    );
+                                                    _shouldSetState = true;
+                                                    if ((_model.textNomeProfissionalTextController
+                                                                    .text !=
+                                                                '') &&
+                                                        (stackViewTblAppPlanosEstabelecimentosRow!
+                                                                .quantProfissionaisCad! <
+                                                            stackViewTblAppPlanosEstabelecimentosRow
+                                                                .quantProfissionaisMaxSalvo!)) {
+                                                      await showDialog(
+                                                        context: context,
+                                                        builder:
+                                                            (alertDialogContext) {
+                                                          return AlertDialog(
+                                                            title: Text(
+                                                                'Atenção!'),
+                                                            content: Text(
+                                                                'Primeiro clique em \"Adicionar Profissional\" para salvar o profissonal!'),
+                                                            actions: [
+                                                              TextButton(
+                                                                onPressed: () =>
+                                                                    Navigator.pop(
+                                                                        alertDialogContext),
+                                                                child:
+                                                                    Text('Ok'),
+                                                              ),
+                                                            ],
+                                                          );
+                                                        },
                                                       );
-                                                    },
+                                                      if (_shouldSetState)
+                                                        safeSetState(() {});
+                                                      return;
+                                                    }
+                                                    if (stackViewTblAppPlanosEstabelecimentosRow
+                                                            ?.quantProfissionaisCad ==
+                                                        0) {
+                                                      await showDialog(
+                                                        context: context,
+                                                        builder:
+                                                            (alertDialogContext) {
+                                                          return AlertDialog(
+                                                            title: Text(
+                                                                'Atenção!'),
+                                                            content: Text(
+                                                                'Adicione pelo menos um profissional'),
+                                                            actions: [
+                                                              TextButton(
+                                                                onPressed: () =>
+                                                                    Navigator.pop(
+                                                                        alertDialogContext),
+                                                                child:
+                                                                    Text('Ok'),
+                                                              ),
+                                                            ],
+                                                          );
+                                                        },
+                                                      );
+                                                      if (_shouldSetState)
+                                                        safeSetState(() {});
+                                                      return;
+                                                    }
+                                                  } else if (_model
+                                                          .pageViewCurrentIndex ==
+                                                      7) {
+                                                    if (_model.formKey3
+                                                                .currentState ==
+                                                            null ||
+                                                        !_model.formKey3
+                                                            .currentState!
+                                                            .validate()) {
+                                                      return;
+                                                    }
+                                                    _model.acResultContinuarTelaInfo1 =
+                                                        await _model
+                                                            .acContinuarTelaInfo(
+                                                                context);
+                                                    _shouldSetState = true;
+                                                    if (!_model
+                                                        .acResultContinuarTelaInfo1!) {
+                                                      if (_shouldSetState)
+                                                        safeSetState(() {});
+                                                      return;
+                                                    }
+                                                    if (FFAppState()
+                                                        .VarTblEstabelecimentoLogado
+                                                        .assistenteCadConcluido) {
+                                                      await action_blocks
+                                                          .acAtualizarEstabelecimentoLogado(
+                                                              context);
+                                                    }
+                                                  } else if (_model
+                                                          .pageViewCurrentIndex ==
+                                                      8) {}
+
+                                                  await _model
+                                                      .pageViewController
+                                                      ?.nextPage(
+                                                    duration: Duration(
+                                                        milliseconds: 300),
+                                                    curve: Curves.ease,
                                                   );
+
+                                                  safeSetState(() {});
                                                   if (_shouldSetState)
                                                     safeSetState(() {});
-                                                  return;
-                                                }
-                                              } else if (_model
-                                                      .pageViewCurrentIndex ==
-                                                  7) {
-                                                if (_model.formKey3
-                                                            .currentState ==
-                                                        null ||
-                                                    !_model
-                                                        .formKey3.currentState!
-                                                        .validate()) {
-                                                  return;
-                                                }
-                                                _model.acResultContinuarTelaInfo1 =
-                                                    await _model
-                                                        .acContinuarTelaInfo(
-                                                            context);
-                                                _shouldSetState = true;
-                                                if (!_model
-                                                    .acResultContinuarTelaInfo1!) {
-                                                  if (_shouldSetState)
-                                                    safeSetState(() {});
-                                                  return;
-                                                }
-                                                if (FFAppState()
+                                                },
+                                                text: 'Próximo',
+                                                icon: Icon(
+                                                  Icons.navigate_next,
+                                                  size: 15.0,
+                                                ),
+                                                options: FFButtonOptions(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          16.0, 0.0, 16.0, 0.0),
+                                                  iconAlignment:
+                                                      IconAlignment.end,
+                                                  iconPadding:
+                                                      EdgeInsetsDirectional
+                                                          .fromSTEB(0.0, 0.0,
+                                                              0.0, 0.0),
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .success,
+                                                  textStyle: FlutterFlowTheme
+                                                          .of(context)
+                                                      .titleSmall
+                                                      .override(
+                                                        font: GoogleFonts
+                                                            .readexPro(
+                                                          fontWeight:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleSmall
+                                                                  .fontWeight,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleSmall
+                                                                  .fontStyle,
+                                                        ),
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .primaryText,
+                                                        fontSize: MediaQuery.sizeOf(
+                                                                        context)
+                                                                    .width <
+                                                                kBreakpointSmall
+                                                            ? 12.0
+                                                            : 16.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleSmall
+                                                                .fontWeight,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleSmall
+                                                                .fontStyle,
+                                                      ),
+                                                  elevation: 0.0,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          8.0),
+                                                ),
+                                                showLoadingIndicator: false,
+                                              ),
+                                            if ((_model.pageViewCurrentIndex ==
+                                                    8) &&
+                                                !(isWeb
+                                                    ? MediaQuery.viewInsetsOf(
+                                                                context)
+                                                            .bottom >
+                                                        0
+                                                    : _isKeyboardVisible) &&
+                                                !FFAppState()
                                                     .VarTblEstabelecimentoLogado
-                                                    .assistenteCadConcluido) {
-                                                  await action_blocks
-                                                      .acAtualizarEstabelecimentoLogado(
+                                                    .assistenteCadConcluido)
+                                              FFButtonWidget(
+                                                onPressed: () async {
+                                                  await _model
+                                                      .acConcluirAssistente(
                                                           context);
-                                                }
-                                              } else if (_model
-                                                      .pageViewCurrentIndex ==
-                                                  8) {}
-
-                                              await _model.pageViewController
-                                                  ?.nextPage(
-                                                duration:
-                                                    Duration(milliseconds: 300),
-                                                curve: Curves.ease,
-                                              );
-
-                                              safeSetState(() {});
-                                              if (_shouldSetState)
-                                                safeSetState(() {});
-                                            },
-                                            text: 'Próximo',
-                                            icon: Icon(
-                                              Icons.navigate_next,
-                                              size: 15.0,
-                                            ),
-                                            options: FFButtonOptions(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      16.0, 0.0, 16.0, 0.0),
-                                              iconAlignment: IconAlignment.end,
-                                              iconPadding: EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                              color:
-                                                  FlutterFlowTheme.of(context)
+                                                },
+                                                text: 'Concluir',
+                                                icon: Icon(
+                                                  Icons.check_sharp,
+                                                  size: 15.0,
+                                                ),
+                                                options: FFButtonOptions(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          16.0, 0.0, 16.0, 0.0),
+                                                  iconAlignment:
+                                                      IconAlignment.end,
+                                                  iconPadding:
+                                                      EdgeInsetsDirectional
+                                                          .fromSTEB(0.0, 0.0,
+                                                              0.0, 0.0),
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
                                                       .success,
-                                              textStyle: FlutterFlowTheme.of(
-                                                      context)
-                                                  .titleSmall
-                                                  .override(
-                                                    font: GoogleFonts.readexPro(
-                                                      fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .titleSmall
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .titleSmall
-                                                              .fontStyle,
-                                                    ),
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryText,
-                                                    fontSize: MediaQuery.sizeOf(
+                                                  textStyle: FlutterFlowTheme
+                                                          .of(context)
+                                                      .titleSmall
+                                                      .override(
+                                                        font: GoogleFonts
+                                                            .readexPro(
+                                                          fontWeight:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleSmall
+                                                                  .fontWeight,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleSmall
+                                                                  .fontStyle,
+                                                        ),
+                                                        color:
+                                                            FlutterFlowTheme.of(
                                                                     context)
-                                                                .width <
-                                                            kBreakpointSmall
-                                                        ? 12.0
-                                                        : 16.0,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .titleSmall
-                                                            .fontWeight,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .titleSmall
-                                                            .fontStyle,
-                                                  ),
-                                              elevation: 0.0,
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
-                                            ),
-                                            showLoadingIndicator: false,
-                                          ),
-                                        if ((_model.pageViewCurrentIndex ==
-                                                8) &&
-                                            !(isWeb
-                                                ? MediaQuery.viewInsetsOf(
-                                                            context)
-                                                        .bottom >
-                                                    0
-                                                : _isKeyboardVisible) &&
-                                            !FFAppState()
-                                                .VarTblEstabelecimentoLogado
-                                                .assistenteCadConcluido)
-                                          FFButtonWidget(
-                                            onPressed: () async {
-                                              await _model.acConcluirAssistente(
-                                                  context);
-                                            },
-                                            text: 'Concluir',
-                                            icon: Icon(
-                                              Icons.check_sharp,
-                                              size: 15.0,
-                                            ),
-                                            options: FFButtonOptions(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(
-                                                      16.0, 0.0, 16.0, 0.0),
-                                              iconAlignment: IconAlignment.end,
-                                              iconPadding: EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 0.0, 0.0, 0.0),
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .success,
-                                              textStyle: FlutterFlowTheme.of(
-                                                      context)
-                                                  .titleSmall
-                                                  .override(
-                                                    font: GoogleFonts.readexPro(
-                                                      fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .titleSmall
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .titleSmall
-                                                              .fontStyle,
-                                                    ),
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .primaryText,
-                                                    fontSize: MediaQuery.sizeOf(
+                                                                .primaryText,
+                                                        fontSize: MediaQuery.sizeOf(
+                                                                        context)
+                                                                    .width <
+                                                                kBreakpointSmall
+                                                            ? 12.0
+                                                            : 16.0,
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FlutterFlowTheme.of(
                                                                     context)
-                                                                .width <
-                                                            kBreakpointSmall
-                                                        ? 12.0
-                                                        : 16.0,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .titleSmall
-                                                            .fontWeight,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .titleSmall
-                                                            .fontStyle,
-                                                  ),
-                                              elevation: 0.0,
-                                              borderRadius:
-                                                  BorderRadius.circular(8.0),
+                                                                .titleSmall
+                                                                .fontWeight,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .titleSmall
+                                                                .fontStyle,
+                                                      ),
+                                                  elevation: 0.0,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          8.0),
+                                                ),
+                                                showLoadingIndicator: false,
+                                              ),
+                                            Container(
+                                              width: 1.0,
+                                              height: 30.0,
+                                              decoration: BoxDecoration(),
                                             ),
-                                            showLoadingIndicator: false,
-                                          ),
-                                        Container(
-                                          width: 1.0,
-                                          height: 40.0,
-                                          decoration: BoxDecoration(),
+                                          ],
                                         ),
                                       ],
                                     ),
-                                  ],
+                                  ),
                                 ),
                               ),
                             ),
@@ -10191,7 +10336,7 @@ class _CpHomeAssistenteCadWidgetState extends State<CpHomeAssistenteCadWidget>
                               child: Builder(
                                 builder: (context) => Padding(
                                   padding: EdgeInsetsDirectional.fromSTEB(
-                                      0.0, 0.0, 0.0, 45.0),
+                                      0.0, 0.0, 0.0, 65.0),
                                   child: InkWell(
                                     splashColor: Colors.transparent,
                                     focusColor: Colors.transparent,

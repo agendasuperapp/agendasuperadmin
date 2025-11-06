@@ -231,15 +231,17 @@ class _CpAfiliadoIndicacoesWidgetState extends State<CpAfiliadoIndicacoesWidget>
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0,
-                                valueOrDefault<double>(
-                                  MediaQuery.sizeOf(context).width <=
-                                          FFAppState()
-                                              .varTamanhoMinimoTelaMenuLateral
-                                              .toDouble()
-                                      ? 0.0
-                                      : 16.0,
-                                  0.0,
-                                ),
+                                MediaQuery.sizeOf(context).width <=
+                                        FFAppState()
+                                            .varTamanhoMinimoTelaMenuLateral
+                                            .toDouble()
+                                    ? valueOrDefault<double>(
+                                        FFAppState()
+                                            .varLayoutMargemPgTopMibile
+                                            .toDouble(),
+                                        16.0,
+                                      )
+                                    : 16.0,
                                 0.0,
                                 16.0),
                             child: Row(
@@ -735,10 +737,9 @@ class _CpAfiliadoIndicacoesWidgetState extends State<CpAfiliadoIndicacoesWidget>
                                                   BorderRadius.circular(8.0),
                                               border: Border.all(
                                                 color:
-                                                    listViewPCViewTblAfiliadosEstabelecimentosRow.situacao!
-                                                        ? FlutterFlowTheme.of(
-                                                                context)
-                                                            .alternate
+                                                    listViewPCViewTblAfiliadosEstabelecimentosRow
+                                                            .situacao!
+                                                        ? Colors.transparent
                                                         : FlutterFlowTheme.of(
                                                                 context)
                                                             .error,
@@ -1304,10 +1305,9 @@ class _CpAfiliadoIndicacoesWidgetState extends State<CpAfiliadoIndicacoesWidget>
                                                 BorderRadius.circular(8.0),
                                             border: Border.all(
                                               color:
-                                                  listViewCelViewTblEstabelecimentosRow.situacao!
-                                                      ? FlutterFlowTheme.of(
-                                                              context)
-                                                          .alternate
+                                                  listViewCelViewTblEstabelecimentosRow
+                                                          .situacao!
+                                                      ? Colors.transparent
                                                       : FlutterFlowTheme.of(
                                                               context)
                                                           .error,

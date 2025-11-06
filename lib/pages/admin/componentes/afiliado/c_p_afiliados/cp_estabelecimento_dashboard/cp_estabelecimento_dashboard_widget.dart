@@ -427,15 +427,17 @@ class _CpEstabelecimentoDashboardWidgetState
                   child: Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(
                         16.0,
-                        valueOrDefault<double>(
-                          MediaQuery.sizeOf(context).width <=
-                                  FFAppState()
-                                      .varTamanhoMinimoTelaMenuLateral
-                                      .toDouble()
-                              ? 0.0
-                              : 16.0,
-                          0.0,
-                        ),
+                        MediaQuery.sizeOf(context).width <=
+                                FFAppState()
+                                    .varTamanhoMinimoTelaMenuLateral
+                                    .toDouble()
+                            ? valueOrDefault<double>(
+                                FFAppState()
+                                    .varLayoutMargemPgTopMibile
+                                    .toDouble(),
+                                16.0,
+                              )
+                            : 16.0,
                         16.0,
                         0.0),
                     child: Flex(
@@ -518,7 +520,9 @@ class _CpEstabelecimentoDashboardWidgetState
                             ),
                           ),
                         ),
-                        Flexible(
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              0.0, 8.0, 0.0, 0.0),
                           child: Container(
                             constraints: BoxConstraints(
                               maxWidth: MediaQuery.sizeOf(context).width <
@@ -744,7 +748,7 @@ class _CpEstabelecimentoDashboardWidgetState
                                                 .override(
                                                   font: GoogleFonts
                                                       .plusJakartaSans(
-                                                    fontWeight: FontWeight.w600,
+                                                    fontWeight: FontWeight.bold,
                                                     fontStyle:
                                                         FlutterFlowTheme.of(
                                                                 context)
@@ -754,14 +758,9 @@ class _CpEstabelecimentoDashboardWidgetState
                                                   color: FlutterFlowTheme.of(
                                                           context)
                                                       .secondaryText,
-                                                  fontSize:
-                                                      MediaQuery.sizeOf(context)
-                                                                  .width <
-                                                              kBreakpointSmall
-                                                          ? 12.0
-                                                          : 14.0,
+                                                  fontSize: 14.0,
                                                   letterSpacing: 0.0,
-                                                  fontWeight: FontWeight.w600,
+                                                  fontWeight: FontWeight.bold,
                                                   fontStyle:
                                                       FlutterFlowTheme.of(
                                                               context)
@@ -926,8 +925,7 @@ class _CpEstabelecimentoDashboardWidgetState
                                           borderRadius:
                                               BorderRadius.circular(8.0),
                                           border: Border.all(
-                                            color: FlutterFlowTheme.of(context)
-                                                .alternate,
+                                            color: Colors.transparent,
                                             width: 1.0,
                                           ),
                                         ),
@@ -2784,8 +2782,7 @@ class _CpEstabelecimentoDashboardWidgetState
                                           borderRadius:
                                               BorderRadius.circular(8.0),
                                           border: Border.all(
-                                            color: FlutterFlowTheme.of(context)
-                                                .alternate,
+                                            color: Colors.transparent,
                                             width: 1.0,
                                           ),
                                         ),
@@ -2929,8 +2926,7 @@ class _CpEstabelecimentoDashboardWidgetState
                                           borderRadius:
                                               BorderRadius.circular(8.0),
                                           border: Border.all(
-                                            color: FlutterFlowTheme.of(context)
-                                                .alternate,
+                                            color: Colors.transparent,
                                             width: 1.0,
                                           ),
                                         ),

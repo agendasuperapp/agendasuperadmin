@@ -510,15 +510,15 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(
                   16.0,
-                  valueOrDefault<double>(
-                    MediaQuery.sizeOf(context).width <=
-                            FFAppState()
-                                .varTamanhoMinimoTelaMenuLateral
-                                .toDouble()
-                        ? 0.0
-                        : 16.0,
-                    0.0,
-                  ),
+                  MediaQuery.sizeOf(context).width <=
+                          FFAppState()
+                              .varTamanhoMinimoTelaMenuLateral
+                              .toDouble()
+                      ? valueOrDefault<double>(
+                          FFAppState().varLayoutMargemPgTopMibile.toDouble(),
+                          16.0,
+                        )
+                      : 16.0,
                   16.0,
                   16.0),
               child: Row(
@@ -532,26 +532,54 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            'Cadastro de Empresa',
-                            style: FlutterFlowTheme.of(context)
-                                .headlineMedium
-                                .override(
-                                  font: GoogleFonts.outfit(
+                          InkWell(
+                            splashColor: Colors.transparent,
+                            focusColor: Colors.transparent,
+                            hoverColor: Colors.transparent,
+                            highlightColor: Colors.transparent,
+                            onTap: () async {
+                              if (FFAppState().VarEmDesenvolvimento) {
+                                await showDialog(
+                                  context: context,
+                                  builder: (alertDialogContext) {
+                                    return AlertDialog(
+                                      title: Text('Teste'),
+                                      content: Text(FFAppState()
+                                          .VarIDEstabelecimentoLogado
+                                          .toString()),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(alertDialogContext),
+                                          child: Text('Ok'),
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              }
+                            },
+                            child: Text(
+                              'Cadastro de Empresa',
+                              style: FlutterFlowTheme.of(context)
+                                  .headlineMedium
+                                  .override(
+                                    font: GoogleFonts.outfit(
+                                      fontWeight: FontWeight.w500,
+                                      fontStyle: FlutterFlowTheme.of(context)
+                                          .headlineMedium
+                                          .fontStyle,
+                                    ),
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                    fontSize: 24.0,
+                                    letterSpacing: 0.0,
                                     fontWeight: FontWeight.w500,
                                     fontStyle: FlutterFlowTheme.of(context)
                                         .headlineMedium
                                         .fontStyle,
                                   ),
-                                  color: FlutterFlowTheme.of(context)
-                                      .secondaryText,
-                                  fontSize: 24.0,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.w500,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .headlineMedium
-                                      .fontStyle,
-                                ),
+                            ),
                           ),
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
@@ -588,8 +616,7 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
             if ((FFAppState().VarTblEstabelecimentoLogado.idEstabelecimento !=
                     null) &&
                 (FFAppState().VarTblEstabelecimentoLogado.idEstabelecimento >
-                    0) &&
-                (FFAppState().varCarregouPrimeiraPagina == false))
+                    0))
               Container(
                 constraints: BoxConstraints(
                   maxWidth: 9999.0,
@@ -9521,20 +9548,12 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                   return Container(
                                                                     decoration:
                                                                         BoxDecoration(
-                                                                      color: FFAppState().VarTblEstabelecimentoLogado.idTema == 1
-                                                                          ? FlutterFlowTheme.of(context)
-                                                                              .secondaryBackground
-                                                                          : Color(
-                                                                              0x00000000),
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .cCFundoContainesDados,
                                                                       borderRadius:
                                                                           BorderRadius.circular(
                                                                               8.0),
-                                                                      border:
-                                                                          Border
-                                                                              .all(
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .alternate,
-                                                                      ),
                                                                     ),
                                                                     child:
                                                                         Padding(

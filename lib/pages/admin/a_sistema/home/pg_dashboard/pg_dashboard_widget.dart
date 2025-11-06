@@ -4,7 +4,7 @@ import '/pages/admin/a_sistema/home/cp_cabecalho_pagina/cp_cabecalho_pagina_widg
 import '/pages/admin/a_sistema/home/cp_menu_lateral/cp_menu_lateral_widget.dart';
 import '/pages/admin/a_sistema/home/cp_rodape/cp_rodape_widget.dart';
 import '/pages/admin/componentes/afiliado/c_p_afiliados/cp_afiliado_dashboard/cp_afiliado_dashboard_widget.dart';
-import '/pages/admin/componentes/afiliado/estabelecimento/comp_estabelecimento/cp_estabelecimento_dashboard/cp_estabelecimento_dashboard_widget.dart';
+import '/pages/admin/componentes/afiliado/c_p_afiliados/cp_estabelecimento_dashboard/cp_estabelecimento_dashboard_widget.dart';
 import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';

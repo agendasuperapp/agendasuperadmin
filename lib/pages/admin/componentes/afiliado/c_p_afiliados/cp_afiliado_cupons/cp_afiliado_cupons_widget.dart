@@ -218,15 +218,17 @@ class _CpAfiliadoCuponsWidgetState extends State<CpAfiliadoCuponsWidget>
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
                               0.0,
-                              valueOrDefault<double>(
-                                MediaQuery.sizeOf(context).width <=
-                                        FFAppState()
-                                            .varTamanhoMinimoTelaMenuLateral
-                                            .toDouble()
-                                    ? 0.0
-                                    : 16.0,
-                                0.0,
-                              ),
+                              MediaQuery.sizeOf(context).width <=
+                                      FFAppState()
+                                          .varTamanhoMinimoTelaMenuLateral
+                                          .toDouble()
+                                  ? valueOrDefault<double>(
+                                      FFAppState()
+                                          .varLayoutMargemPgTopMibile
+                                          .toDouble(),
+                                      16.0,
+                                    )
+                                  : 16.0,
                               0.0,
                               16.0),
                           child: Row(
@@ -875,20 +877,13 @@ class _CpAfiliadoCuponsWidgetState extends State<CpAfiliadoCuponsWidget>
                                             listViewCuponsIndex];
                                     return Container(
                                       width: 100.0,
+                                      constraints: BoxConstraints(
+                                        maxWidth: 9999.0,
+                                        maxHeight: 9999.0,
+                                      ),
                                       decoration: BoxDecoration(
-                                        color: (listViewCuponsViewTblAfiliadosCuponsRow
-                                                            .nomeCupom !=
-                                                        null &&
-                                                    listViewCuponsViewTblAfiliadosCuponsRow
-                                                            .nomeCupom !=
-                                                        '') &&
-                                                (!listViewCuponsViewTblAfiliadosCuponsRow
-                                                        .situacaoCupom! ||
-                                                    listViewCuponsViewTblAfiliadosCuponsRow
-                                                        .excluido!)
-                                            ? Color(0x19FF5963)
-                                            : FlutterFlowTheme.of(context)
-                                                .cCFundoContainesDados,
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryBackground,
                                         borderRadius:
                                             BorderRadius.circular(8.0),
                                         border: Border.all(
@@ -904,146 +899,776 @@ class _CpAfiliadoCuponsWidgetState extends State<CpAfiliadoCuponsWidget>
                                                           .excluido!)
                                               ? FlutterFlowTheme.of(context)
                                                   .error
-                                              : FlutterFlowTheme.of(context)
-                                                  .alternate,
+                                              : Colors.transparent,
                                           width: 1.0,
                                         ),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            0.0, 0.0, 4.0, 0.0),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
+                                        padding: EdgeInsets.all(8.0),
+                                        child: Flex(
+                                          direction: (MediaQuery.sizeOf(context)
+                                                          .width <=
+                                                      valueOrDefault<double>(
+                                                        FFAppState()
+                                                            .varTamanhoMinimoTelaMenuLateral
+                                                            .toDouble(),
+                                                        1000.0,
+                                                      )
+                                                  ? false
+                                                  : true)
+                                              ? Axis.horizontal
+                                              : Axis.vertical,
+                                          mainAxisSize: MainAxisSize.min,
                                           children: [
-                                            if (responsiveVisibility(
-                                              context: context,
-                                              phone: false,
-                                            ))
-                                              Padding(
-                                                padding: EdgeInsets.all(8.0),
-                                                child: Container(
-                                                  decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8.0),
-                                                    border: Border.all(
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondaryText,
-                                                    ),
-                                                  ),
-                                                  child: Padding(
-                                                    padding:
-                                                        EdgeInsets.all(8.0),
-                                                    child: Icon(
-                                                      Icons.sell_outlined,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondaryText,
-                                                      size: 36.0,
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
                                             Flexible(
                                               child: Padding(
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(
-                                                        4.0, 4.0, 8.0, 4.0),
-                                                child: Column(
+                                                        0.0, 0.0, 4.0, 0.0),
+                                                child: Row(
                                                   mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
+                                                      MainAxisSize.min,
                                                   children: [
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  8.0),
-                                                      child: InkWell(
-                                                        splashColor:
-                                                            Colors.transparent,
-                                                        focusColor:
-                                                            Colors.transparent,
-                                                        hoverColor:
-                                                            Colors.transparent,
-                                                        highlightColor:
-                                                            Colors.transparent,
-                                                        onTap: () async {
-                                                          if (listViewCuponsViewTblAfiliadosCuponsRow
-                                                                  .excluido ==
-                                                              true) {
-                                                            await showDialog(
-                                                              context: context,
-                                                              builder:
-                                                                  (alertDialogContext) {
-                                                                return AlertDialog(
-                                                                  title: Text(
-                                                                      'Atenção!'),
-                                                                  content: Text(
-                                                                      'O username foi alterado, esse cupom não existe mais.'),
-                                                                  actions: [
-                                                                    TextButton(
-                                                                      onPressed:
-                                                                          () =>
-                                                                              Navigator.pop(alertDialogContext),
-                                                                      child: Text(
-                                                                          'Ok'),
+                                                    if (responsiveVisibility(
+                                                      context: context,
+                                                      phone: false,
+                                                    ))
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsets.all(8.0),
+                                                        child: Container(
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        8.0),
+                                                            border: Border.all(
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .secondaryText,
+                                                            ),
+                                                          ),
+                                                          child: Padding(
+                                                            padding:
+                                                                EdgeInsets.all(
+                                                                    8.0),
+                                                            child: Icon(
+                                                              Icons
+                                                                  .sell_outlined,
+                                                              color: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .secondaryText,
+                                                              size: 36.0,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    Expanded(
+                                                      child: Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    0.0,
+                                                                    0.0,
+                                                                    8.0),
+                                                        child: Column(
+                                                          mainAxisSize:
+                                                              MainAxisSize.min,
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Padding(
+                                                              padding:
+                                                                  EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          8.0),
+                                                              child: InkWell(
+                                                                splashColor: Colors
+                                                                    .transparent,
+                                                                focusColor: Colors
+                                                                    .transparent,
+                                                                hoverColor: Colors
+                                                                    .transparent,
+                                                                highlightColor:
+                                                                    Colors
+                                                                        .transparent,
+                                                                onTap:
+                                                                    () async {
+                                                                  if (listViewCuponsViewTblAfiliadosCuponsRow
+                                                                          .excluido ==
+                                                                      true) {
+                                                                    await showDialog(
+                                                                      context:
+                                                                          context,
+                                                                      builder:
+                                                                          (alertDialogContext) {
+                                                                        return AlertDialog(
+                                                                          title:
+                                                                              Text('Atenção!'),
+                                                                          content:
+                                                                              Text('O username foi alterado, esse cupom não existe mais.'),
+                                                                          actions: [
+                                                                            TextButton(
+                                                                              onPressed: () => Navigator.pop(alertDialogContext),
+                                                                              child: Text('Ok'),
+                                                                            ),
+                                                                          ],
+                                                                        );
+                                                                      },
+                                                                    );
+                                                                    return;
+                                                                  }
+                                                                  if (listViewCuponsViewTblAfiliadosCuponsRow
+                                                                          .situacaoCupom ==
+                                                                      false) {
+                                                                    await showDialog(
+                                                                      context:
+                                                                          context,
+                                                                      builder:
+                                                                          (alertDialogContext) {
+                                                                        return AlertDialog(
+                                                                          title:
+                                                                              Text('Atenção!'),
+                                                                          content:
+                                                                              Text('Cupom inativo não pode ser compartilhado.'),
+                                                                          actions: [
+                                                                            TextButton(
+                                                                              onPressed: () => Navigator.pop(alertDialogContext),
+                                                                              child: Text('Ok'),
+                                                                            ),
+                                                                          ],
+                                                                        );
+                                                                      },
+                                                                    );
+                                                                    return;
+                                                                  }
+                                                                  if (listViewCuponsViewTblAfiliadosCuponsRow
+                                                                              .nomeCupom !=
+                                                                          null &&
+                                                                      listViewCuponsViewTblAfiliadosCuponsRow
+                                                                              .nomeCupom !=
+                                                                          '') {
+                                                                    await Clipboard.setData(
+                                                                        ClipboardData(
+                                                                            text:
+                                                                                listViewCuponsViewTblAfiliadosCuponsRow.nomeCupom!));
+                                                                    ScaffoldMessenger.of(
+                                                                            context)
+                                                                        .showSnackBar(
+                                                                      SnackBar(
+                                                                        content:
+                                                                            Text(
+                                                                          'Cupom ${listViewCuponsViewTblAfiliadosCuponsRow.nomeCupom} copiado com sucesso...',
+                                                                          style:
+                                                                              TextStyle(
+                                                                            color:
+                                                                                FlutterFlowTheme.of(context).secondaryBackground,
+                                                                            fontWeight:
+                                                                                FontWeight.bold,
+                                                                          ),
+                                                                        ),
+                                                                        duration:
+                                                                            Duration(milliseconds: 1500),
+                                                                        backgroundColor:
+                                                                            FlutterFlowTheme.of(context).secondary,
+                                                                      ),
+                                                                    );
+                                                                  } else {
+                                                                    await showDialog(
+                                                                      context:
+                                                                          context,
+                                                                      builder:
+                                                                          (alertDialogContext) {
+                                                                        return AlertDialog(
+                                                                          title:
+                                                                              Text('Atenção!'),
+                                                                          content:
+                                                                              Text('Clique em Adicionar para liberar esse  cupom'),
+                                                                          actions: [
+                                                                            TextButton(
+                                                                              onPressed: () => Navigator.pop(alertDialogContext),
+                                                                              child: Text('Ok'),
+                                                                            ),
+                                                                          ],
+                                                                        );
+                                                                      },
+                                                                    );
+                                                                    return;
+                                                                  }
+                                                                },
+                                                                child: Wrap(
+                                                                  spacing: 0.0,
+                                                                  runSpacing:
+                                                                      0.0,
+                                                                  alignment:
+                                                                      WrapAlignment
+                                                                          .start,
+                                                                  crossAxisAlignment:
+                                                                      WrapCrossAlignment
+                                                                          .start,
+                                                                  direction: Axis
+                                                                      .horizontal,
+                                                                  runAlignment:
+                                                                      WrapAlignment
+                                                                          .start,
+                                                                  verticalDirection:
+                                                                      VerticalDirection
+                                                                          .down,
+                                                                  clipBehavior:
+                                                                      Clip.none,
+                                                                  children: [
+                                                                    Text(
+                                                                      valueOrDefault<
+                                                                          String>(
+                                                                        listViewCuponsViewTblAfiliadosCuponsRow.nomeCupom != null &&
+                                                                                listViewCuponsViewTblAfiliadosCuponsRow.nomeCupom != ''
+                                                                            ? listViewCuponsViewTblAfiliadosCuponsRow.nomeCupom
+                                                                            : '${functions.fcConverterStringMaiusculo(FFAppState().varTblAfiliado.username)}${listViewCuponsViewTblAfiliadosCuponsRow.nomeCupomPadrao}',
+                                                                        '...',
+                                                                      ),
+                                                                      style: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .override(
+                                                                            font:
+                                                                                GoogleFonts.readexPro(
+                                                                              fontWeight: FontWeight.w600,
+                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                            ),
+                                                                            color: (listViewCuponsViewTblAfiliadosCuponsRow.situacaoCupom == false) || (listViewCuponsViewTblAfiliadosCuponsRow.nomeCupom == null || listViewCuponsViewTblAfiliadosCuponsRow.nomeCupom == '')
+                                                                                ? FlutterFlowTheme.of(context).error
+                                                                                : FlutterFlowTheme.of(context).secondaryText,
+                                                                            fontSize:
+                                                                                () {
+                                                                              if (MediaQuery.sizeOf(context).width < kBreakpointSmall) {
+                                                                                return 14.0;
+                                                                              } else if (MediaQuery.sizeOf(context).width < kBreakpointMedium) {
+                                                                                return 16.0;
+                                                                              } else {
+                                                                                return 18.0;
+                                                                              }
+                                                                            }(),
+                                                                            letterSpacing:
+                                                                                0.0,
+                                                                            fontWeight:
+                                                                                FontWeight.w600,
+                                                                            fontStyle:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                          ),
                                                                     ),
+                                                                    if ((listViewCuponsViewTblAfiliadosCuponsRow.nomeCupom !=
+                                                                                null &&
+                                                                            listViewCuponsViewTblAfiliadosCuponsRow.nomeCupom !=
+                                                                                '') &&
+                                                                        (listViewCuponsViewTblAfiliadosCuponsRow.situacaoCupom ==
+                                                                            true))
+                                                                      Padding(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            4.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            Icon(
+                                                                          Icons
+                                                                              .content_copy,
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).secondaryText,
+                                                                          size:
+                                                                              20.0,
+                                                                        ),
+                                                                      ),
+                                                                    if (listViewCuponsViewTblAfiliadosCuponsRow
+                                                                            .principal ??
+                                                                        true)
+                                                                      Padding(
+                                                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                                                            4.0,
+                                                                            0.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                        child:
+                                                                            Text(
+                                                                          MediaQuery.sizeOf(context).width < kBreakpointSmall
+                                                                              ? '(Padrão)'
+                                                                              : '(Cupom Padrão)',
+                                                                          style: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .override(
+                                                                                font: GoogleFonts.readexPro(
+                                                                                  fontWeight: FontWeight.w600,
+                                                                                  fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                                ),
+                                                                                color: FlutterFlowTheme.of(context).success,
+                                                                                fontSize: () {
+                                                                                  if (MediaQuery.sizeOf(context).width < kBreakpointSmall) {
+                                                                                    return 14.0;
+                                                                                  } else if (MediaQuery.sizeOf(context).width < kBreakpointMedium) {
+                                                                                    return 16.0;
+                                                                                  } else {
+                                                                                    return 18.0;
+                                                                                  }
+                                                                                }(),
+                                                                                letterSpacing: 0.0,
+                                                                                fontWeight: FontWeight.w600,
+                                                                                fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                              ),
+                                                                        ),
+                                                                      ),
                                                                   ],
-                                                                );
-                                                              },
-                                                            );
-                                                            return;
-                                                          }
-                                                          if (listViewCuponsViewTblAfiliadosCuponsRow
-                                                                  .situacaoCupom ==
-                                                              false) {
-                                                            await showDialog(
-                                                              context: context,
-                                                              builder:
-                                                                  (alertDialogContext) {
-                                                                return AlertDialog(
-                                                                  title: Text(
-                                                                      'Atenção!'),
-                                                                  content: Text(
-                                                                      'Cupom inativo não pode ser compartilhado.'),
-                                                                  actions: [
-                                                                    TextButton(
-                                                                      onPressed:
-                                                                          () =>
-                                                                              Navigator.pop(alertDialogContext),
-                                                                      child: Text(
-                                                                          'Ok'),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            if (functions.fcCountCaracteres(
+                                                                    listViewCuponsViewTblAfiliadosCuponsRow
+                                                                        .descricao!) >
+                                                                0)
+                                                              Row(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .max,
+                                                                children: [
+                                                                  Flexible(
+                                                                    child:
+                                                                        Padding(
+                                                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          8.0),
+                                                                      child:
+                                                                          Text(
+                                                                        valueOrDefault<
+                                                                            String>(
+                                                                          listViewCuponsViewTblAfiliadosCuponsRow
+                                                                              .descricao,
+                                                                          '...',
+                                                                        ),
+                                                                        style: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .override(
+                                                                              font: GoogleFonts.readexPro(
+                                                                                fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                                fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                              ),
+                                                                              color: FlutterFlowTheme.of(context).secondaryText,
+                                                                              fontSize: 14.0,
+                                                                              letterSpacing: 0.0,
+                                                                              fontWeight: FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                              fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                            ),
+                                                                      ),
                                                                     ),
-                                                                  ],
-                                                                );
-                                                              },
-                                                            );
-                                                            return;
-                                                          }
-                                                          if (listViewCuponsViewTblAfiliadosCuponsRow
-                                                                      .nomeCupom !=
-                                                                  null &&
-                                                              listViewCuponsViewTblAfiliadosCuponsRow
-                                                                      .nomeCupom !=
-                                                                  '') {
-                                                            await Clipboard.setData(
-                                                                ClipboardData(
-                                                                    text: listViewCuponsViewTblAfiliadosCuponsRow
-                                                                        .nomeCupom!));
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            Row(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              children: [
+                                                                Icon(
+                                                                  Icons
+                                                                      .date_range,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryText,
+                                                                  size: 18.0,
+                                                                ),
+                                                                Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          8.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child: Text(
+                                                                    'VALIDADE: ${dateTimeFormat(
+                                                                      "dd/MM/y",
+                                                                      listViewCuponsViewTblAfiliadosCuponsRow
+                                                                          .validade,
+                                                                      locale: FFLocalizations.of(
+                                                                              context)
+                                                                          .languageCode,
+                                                                    )}',
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .override(
+                                                                          font:
+                                                                              GoogleFonts.readexPro(
+                                                                            fontWeight:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                            fontStyle:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                          ),
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).secondaryText,
+                                                                          letterSpacing:
+                                                                              0.0,
+                                                                          fontWeight: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .fontWeight,
+                                                                          fontStyle: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .fontStyle,
+                                                                        ),
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                            Row(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              children: [
+                                                                Icon(
+                                                                  Icons
+                                                                      .percent_sharp,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryText,
+                                                                  size: 18.0,
+                                                                ),
+                                                                Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          8.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child: Text(
+                                                                    '${MediaQuery.sizeOf(context).width < kBreakpointSmall ? 'TIPO: ' : 'TIPO DE CUPOM: '} ${listViewCuponsViewTblAfiliadosCuponsRow.tipoCupom == 'DESCONTO' ? 'DESCONTO ${listViewCuponsViewTblAfiliadosCuponsRow.percDesconto?.toString()}%' : '${listViewCuponsViewTblAfiliadosCuponsRow.tempo?.toString()}${listViewCuponsViewTblAfiliadosCuponsRow.tipoCupom == 'MES' ? (listViewCuponsViewTblAfiliadosCuponsRow.tempo == 1 ? ' MES' : ' MESES') : (listViewCuponsViewTblAfiliadosCuponsRow.tempo == 1 ? ' DIA' : ' DIAS')}'}',
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .override(
+                                                                          font:
+                                                                              GoogleFonts.readexPro(
+                                                                            fontWeight:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                            fontStyle:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                          ),
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).secondaryText,
+                                                                          letterSpacing:
+                                                                              0.0,
+                                                                          fontWeight: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .fontWeight,
+                                                                          fontStyle: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .fontStyle,
+                                                                        ),
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                            Row(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .max,
+                                                              children: [
+                                                                Icon(
+                                                                  Icons
+                                                                      .numbers_sharp,
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryText,
+                                                                  size: 18.0,
+                                                                ),
+                                                                Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          8.0,
+                                                                          0.0,
+                                                                          0.0,
+                                                                          0.0),
+                                                                  child: Text(
+                                                                    'QUANT. USADOS: ${listViewCuponsViewTblAfiliadosCuponsRow.quantUsado?.toString()}',
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .override(
+                                                                          font:
+                                                                              GoogleFonts.readexPro(
+                                                                            fontWeight:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontWeight,
+                                                                            fontStyle:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                          ),
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).secondaryText,
+                                                                          letterSpacing:
+                                                                              0.0,
+                                                                          fontWeight: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .fontWeight,
+                                                                          fontStyle: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .fontStyle,
+                                                                        ),
+                                                                  ),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                            Container(
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(12.0),
+                                                border: Border.all(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryBackground,
+                                                ),
+                                              ),
+                                              child: Padding(
+                                                padding: EdgeInsets.all(8.0),
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    if (((listViewCuponsViewTblAfiliadosCuponsRow
+                                                                        .nomeCupom !=
+                                                                    null &&
+                                                                listViewCuponsViewTblAfiliadosCuponsRow
+                                                                        .nomeCupom !=
+                                                                    '') &&
+                                                            listViewCuponsViewTblAfiliadosCuponsRow
+                                                                .situacaoCupom!) &&
+                                                        responsiveVisibility(
+                                                          context: context,
+                                                          phone: false,
+                                                        ))
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    0.0,
+                                                                    16.0,
+                                                                    0.0),
+                                                        child: InkWell(
+                                                          splashColor: Colors
+                                                              .transparent,
+                                                          focusColor: Colors
+                                                              .transparent,
+                                                          hoverColor: Colors
+                                                              .transparent,
+                                                          highlightColor: Colors
+                                                              .transparent,
+                                                          onTap: () async {
+                                                            if (listViewCuponsViewTblAfiliadosCuponsRow
+                                                                    .excluido ==
+                                                                true) {
+                                                              await showDialog(
+                                                                context:
+                                                                    context,
+                                                                builder:
+                                                                    (alertDialogContext) {
+                                                                  return AlertDialog(
+                                                                    title: Text(
+                                                                        'Atenção!'),
+                                                                    content: Text(
+                                                                        'O username foi alterado, esse cupom não existe mais.'),
+                                                                    actions: [
+                                                                      TextButton(
+                                                                        onPressed:
+                                                                            () =>
+                                                                                Navigator.pop(alertDialogContext),
+                                                                        child: Text(
+                                                                            'Ok'),
+                                                                      ),
+                                                                    ],
+                                                                  );
+                                                                },
+                                                              );
+                                                              return;
+                                                            }
+                                                            if (listViewCuponsViewTblAfiliadosCuponsRow
+                                                                    .situacaoCupom ==
+                                                                false) {
+                                                              await showDialog(
+                                                                context:
+                                                                    context,
+                                                                builder:
+                                                                    (alertDialogContext) {
+                                                                  return AlertDialog(
+                                                                    title: Text(
+                                                                        'Atenção!'),
+                                                                    content: Text(
+                                                                        'Cupom inativo não pode ser compartilhado.'),
+                                                                    actions: [
+                                                                      TextButton(
+                                                                        onPressed:
+                                                                            () =>
+                                                                                Navigator.pop(alertDialogContext),
+                                                                        child: Text(
+                                                                            'Ok'),
+                                                                      ),
+                                                                    ],
+                                                                  );
+                                                                },
+                                                              );
+                                                              return;
+                                                            }
+                                                            if (listViewCuponsViewTblAfiliadosCuponsRow
+                                                                        .nomeCupom !=
+                                                                    null &&
+                                                                listViewCuponsViewTblAfiliadosCuponsRow
+                                                                        .nomeCupom !=
+                                                                    '') {
+                                                              await Clipboard.setData(
+                                                                  ClipboardData(
+                                                                      text:
+                                                                          '${_model.queryConsAfiliadoApps?.where((e) => e.id == _model.dropDownAplicativoValue).toList().firstOrNull?.site}/${listViewCuponsViewTblAfiliadosCuponsRow.nomeCupom}'));
+                                                              ScaffoldMessenger
+                                                                      .of(context)
+                                                                  .showSnackBar(
+                                                                SnackBar(
+                                                                  content: Text(
+                                                                    'Link de cupom ${listViewCuponsViewTblAfiliadosCuponsRow.nomeCupom} copiado com sucesso...',
+                                                                    style:
+                                                                        TextStyle(
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .secondaryBackground,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                    ),
+                                                                  ),
+                                                                  duration: Duration(
+                                                                      milliseconds:
+                                                                          1500),
+                                                                  backgroundColor:
+                                                                      FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .secondary,
+                                                                ),
+                                                              );
+                                                            } else {
+                                                              await showDialog(
+                                                                context:
+                                                                    context,
+                                                                builder:
+                                                                    (alertDialogContext) {
+                                                                  return AlertDialog(
+                                                                    title: Text(
+                                                                        'Atenção!'),
+                                                                    content: Text(
+                                                                        'Clique em Adicionar para liberar esse  cupom'),
+                                                                    actions: [
+                                                                      TextButton(
+                                                                        onPressed:
+                                                                            () =>
+                                                                                Navigator.pop(alertDialogContext),
+                                                                        child: Text(
+                                                                            'Ok'),
+                                                                      ),
+                                                                    ],
+                                                                  );
+                                                                },
+                                                              );
+                                                              return;
+                                                            }
+                                                          },
+                                                          child: Icon(
+                                                            Icons.link,
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .secondaryText,
+                                                            size: 30.0,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    if (listViewCuponsViewTblAfiliadosCuponsRow
+                                                                .nomeCupom ==
+                                                            null ||
+                                                        listViewCuponsViewTblAfiliadosCuponsRow
+                                                                .nomeCupom ==
+                                                            '')
+                                                      FFButtonWidget(
+                                                        onPressed: () async {
+                                                          var confirmDialogResponse =
+                                                              await showDialog<
+                                                                      bool>(
+                                                                    context:
+                                                                        context,
+                                                                    builder:
+                                                                        (alertDialogContext) {
+                                                                      return AlertDialog(
+                                                                        title: Text(
+                                                                            'Atenção!'),
+                                                                        content:
+                                                                            Text('Deseja adicionar o cupom ${'${functions.fcConverterStringMaiusculo(FFAppState().varTblAfiliado.username)}${listViewCuponsViewTblAfiliadosCuponsRow.nomeCupomPadrao}'}?'),
+                                                                        actions: [
+                                                                          TextButton(
+                                                                            onPressed: () =>
+                                                                                Navigator.pop(alertDialogContext, false),
+                                                                            child:
+                                                                                Text('Não'),
+                                                                          ),
+                                                                          TextButton(
+                                                                            onPressed: () =>
+                                                                                Navigator.pop(alertDialogContext, true),
+                                                                            child:
+                                                                                Text('Sim'),
+                                                                          ),
+                                                                        ],
+                                                                      );
+                                                                    },
+                                                                  ) ??
+                                                                  false;
+                                                          if (confirmDialogResponse) {
+                                                            await TblAfiliadosCuponsLibTable()
+                                                                .insert({
+                                                              'id_afiliado':
+                                                                  FFAppState()
+                                                                      .varIDAfiliadoLogado,
+                                                              'id_estabelecimento':
+                                                                  FFAppState()
+                                                                      .VarIDEstabelecimentoLogado,
+                                                              'user_id':
+                                                                  currentUserUid,
+                                                              'nome':
+                                                                  '${functions.fcConverterStringMaiusculo(FFAppState().varTblAfiliado.username)}${listViewCuponsViewTblAfiliadosCuponsRow.nomeCupomPadrao}',
+                                                              'situacao': true,
+                                                              'id_cupom_padrao':
+                                                                  listViewCuponsViewTblAfiliadosCuponsRow
+                                                                      .idCupomPadrao,
+                                                              'username':
+                                                                  FFAppState()
+                                                                      .varTblAfiliado
+                                                                      .username,
+                                                              'id_afiliado_app':
+                                                                  _model
+                                                                      .varIDAfiliadoSelecionado,
+                                                            });
                                                             ScaffoldMessenger
                                                                     .of(context)
                                                                 .showSnackBar(
                                                               SnackBar(
                                                                 content: Text(
-                                                                  'Cupom ${listViewCuponsViewTblAfiliadosCuponsRow.nomeCupom} copiado com sucesso...',
+                                                                  'Cupom liberado com sucesso!',
                                                                   style:
                                                                       TextStyle(
                                                                     color: FlutterFlowTheme.of(
@@ -1051,7 +1676,7 @@ class _CpAfiliadoCuponsWidgetState extends State<CpAfiliadoCuponsWidget>
                                                                         .secondaryBackground,
                                                                     fontWeight:
                                                                         FontWeight
-                                                                            .bold,
+                                                                            .w600,
                                                                   ),
                                                                 ),
                                                                 duration: Duration(
@@ -1063,1088 +1688,108 @@ class _CpAfiliadoCuponsWidgetState extends State<CpAfiliadoCuponsWidget>
                                                                         .secondary,
                                                               ),
                                                             );
-                                                          } else {
-                                                            await showDialog(
-                                                              context: context,
-                                                              builder:
-                                                                  (alertDialogContext) {
-                                                                return AlertDialog(
-                                                                  title: Text(
-                                                                      'Atenção!'),
-                                                                  content: Text(
-                                                                      'Clique em Adicionar para liberar esse  cupom'),
-                                                                  actions: [
-                                                                    TextButton(
-                                                                      onPressed:
-                                                                          () =>
-                                                                              Navigator.pop(alertDialogContext),
-                                                                      child: Text(
-                                                                          'Ok'),
-                                                                    ),
-                                                                  ],
-                                                                );
-                                                              },
-                                                            );
-                                                            return;
+                                                            safeSetState(() =>
+                                                                _model.requestCompleter =
+                                                                    null);
+                                                            await _model
+                                                                .waitForRequestCompleted();
                                                           }
                                                         },
-                                                        child: Wrap(
-                                                          spacing: 0.0,
-                                                          runSpacing: 0.0,
-                                                          alignment:
-                                                              WrapAlignment
-                                                                  .start,
-                                                          crossAxisAlignment:
-                                                              WrapCrossAlignment
-                                                                  .start,
-                                                          direction:
-                                                              Axis.horizontal,
-                                                          runAlignment:
-                                                              WrapAlignment
-                                                                  .start,
-                                                          verticalDirection:
-                                                              VerticalDirection
-                                                                  .down,
-                                                          clipBehavior:
-                                                              Clip.none,
-                                                          children: [
-                                                            Text(
-                                                              valueOrDefault<
-                                                                  String>(
-                                                                listViewCuponsViewTblAfiliadosCuponsRow.nomeCupom !=
-                                                                            null &&
-                                                                        listViewCuponsViewTblAfiliadosCuponsRow.nomeCupom !=
-                                                                            ''
-                                                                    ? listViewCuponsViewTblAfiliadosCuponsRow
-                                                                        .nomeCupom
-                                                                    : '${functions.fcConverterStringMaiusculo(FFAppState().varTblAfiliado.username)}${listViewCuponsViewTblAfiliadosCuponsRow.nomeCupomPadrao}',
-                                                                '...',
-                                                              ),
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
+                                                        text: 'Adicionar',
+                                                        icon: Icon(
+                                                          Icons.add,
+                                                          size: 15.0,
+                                                        ),
+                                                        options:
+                                                            FFButtonOptions(
+                                                          height: 40.0,
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      16.0,
+                                                                      0.0,
+                                                                      16.0,
+                                                                      0.0),
+                                                          iconPadding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primary,
+                                                          textStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .titleSmall
                                                                   .override(
                                                                     font: GoogleFonts
                                                                         .readexPro(
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w600,
-                                                                      fontStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .fontStyle,
-                                                                    ),
-                                                                    color: (listViewCuponsViewTblAfiliadosCuponsRow.situacaoCupom ==
-                                                                                false) ||
-                                                                            (listViewCuponsViewTblAfiliadosCuponsRow.nomeCupom == null ||
-                                                                                listViewCuponsViewTblAfiliadosCuponsRow.nomeCupom ==
-                                                                                    '')
-                                                                        ? FlutterFlowTheme.of(context)
-                                                                            .error
-                                                                        : FlutterFlowTheme.of(context)
-                                                                            .secondaryText,
-                                                                    fontSize:
-                                                                        () {
-                                                                      if (MediaQuery.sizeOf(context)
-                                                                              .width <
-                                                                          kBreakpointSmall) {
-                                                                        return 14.0;
-                                                                      } else if (MediaQuery.sizeOf(context)
-                                                                              .width <
-                                                                          kBreakpointMedium) {
-                                                                        return 16.0;
-                                                                      } else {
-                                                                        return 18.0;
-                                                                      }
-                                                                    }(),
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w600,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .fontStyle,
-                                                                  ),
-                                                            ),
-                                                            if ((listViewCuponsViewTblAfiliadosCuponsRow
-                                                                            .nomeCupom !=
-                                                                        null &&
-                                                                    listViewCuponsViewTblAfiliadosCuponsRow
-                                                                            .nomeCupom !=
-                                                                        '') &&
-                                                                (listViewCuponsViewTblAfiliadosCuponsRow
-                                                                        .situacaoCupom ==
-                                                                    true))
-                                                              Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            4.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                child: Icon(
-                                                                  Icons
-                                                                      .content_copy,
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryText,
-                                                                  size: 20.0,
-                                                                ),
-                                                              ),
-                                                            if (listViewCuponsViewTblAfiliadosCuponsRow
-                                                                    .principal ??
-                                                                true)
-                                                              Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            4.0,
-                                                                            0.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                child: Text(
-                                                                  MediaQuery.sizeOf(context)
-                                                                              .width <
-                                                                          kBreakpointSmall
-                                                                      ? '(Padrão)'
-                                                                      : '(Cupom Padrão)',
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        font: GoogleFonts
-                                                                            .readexPro(
-                                                                          fontWeight:
-                                                                              FontWeight.w600,
-                                                                          fontStyle: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
-                                                                              .fontStyle,
-                                                                        ),
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .success,
-                                                                        fontSize:
-                                                                            () {
-                                                                          if (MediaQuery.sizeOf(context).width <
-                                                                              kBreakpointSmall) {
-                                                                            return 14.0;
-                                                                          } else if (MediaQuery.sizeOf(context).width <
-                                                                              kBreakpointMedium) {
-                                                                            return 16.0;
-                                                                          } else {
-                                                                            return 18.0;
-                                                                          }
-                                                                        }(),
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        fontWeight:
-                                                                            FontWeight.w600,
-                                                                        fontStyle: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .fontStyle,
-                                                                      ),
-                                                                ),
-                                                              ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    if (functions.fcCountCaracteres(
-                                                            listViewCuponsViewTblAfiliadosCuponsRow
-                                                                .descricao!) >
-                                                        0)
-                                                      Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        children: [
-                                                          Flexible(
-                                                            child: Padding(
-                                                              padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          0.0,
-                                                                          0.0,
-                                                                          8.0),
-                                                              child: Text(
-                                                                valueOrDefault<
-                                                                    String>(
-                                                                  listViewCuponsViewTblAfiliadosCuponsRow
-                                                                      .descricao,
-                                                                  '...',
-                                                                ),
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      font: GoogleFonts
-                                                                          .readexPro(
-                                                                        fontWeight: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .fontWeight,
-                                                                        fontStyle: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .fontStyle,
-                                                                      ),
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .secondaryText,
-                                                                      fontSize:
-                                                                          14.0,
-                                                                      letterSpacing:
-                                                                          0.0,
                                                                       fontWeight: FlutterFlowTheme.of(
                                                                               context)
-                                                                          .bodyMedium
+                                                                          .titleSmall
                                                                           .fontWeight,
                                                                       fontStyle: FlutterFlowTheme.of(
                                                                               context)
-                                                                          .bodyMedium
+                                                                          .titleSmall
                                                                           .fontStyle,
                                                                     ),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ],
+                                                                    color: Colors
+                                                                        .white,
+                                                                    fontSize:
+                                                                        14.0,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .titleSmall
+                                                                        .fontWeight,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .titleSmall
+                                                                        .fontStyle,
+                                                                  ),
+                                                          elevation: 0.0,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      8.0),
+                                                        ),
                                                       ),
-                                                    Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      children: [
-                                                        Icon(
-                                                          Icons.date_range,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryText,
-                                                          size: 18.0,
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      8.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0),
-                                                          child: Text(
-                                                            'VALIDADE: ${dateTimeFormat(
-                                                              "dd/MM/y",
-                                                              listViewCuponsViewTblAfiliadosCuponsRow
-                                                                  .validade,
-                                                              locale: FFLocalizations
-                                                                      .of(context)
-                                                                  .languageCode,
-                                                            )}',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  font: GoogleFonts
-                                                                      .readexPro(
-                                                                    fontWeight: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .fontWeight,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .fontStyle,
-                                                                  ),
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryText,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .fontStyle,
-                                                                ),
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      children: [
-                                                        Icon(
-                                                          Icons.percent_sharp,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryText,
-                                                          size: 18.0,
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      8.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0),
-                                                          child: Text(
-                                                            '${MediaQuery.sizeOf(context).width < kBreakpointSmall ? 'TIPO: ' : 'TIPO DE CUPOM: '} ${listViewCuponsViewTblAfiliadosCuponsRow.tipoCupom == 'DESCONTO' ? 'DESCONTO ${listViewCuponsViewTblAfiliadosCuponsRow.percDesconto?.toString()}%' : '${listViewCuponsViewTblAfiliadosCuponsRow.tempo?.toString()}${listViewCuponsViewTblAfiliadosCuponsRow.tipoCupom == 'MES' ? (listViewCuponsViewTblAfiliadosCuponsRow.tempo == 1 ? ' MES' : ' MESES') : (listViewCuponsViewTblAfiliadosCuponsRow.tempo == 1 ? ' DIA' : ' DIAS')}'}',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  font: GoogleFonts
-                                                                      .readexPro(
-                                                                    fontWeight: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .fontWeight,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .fontStyle,
-                                                                  ),
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryText,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .fontStyle,
-                                                                ),
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                    Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      children: [
-                                                        Icon(
-                                                          Icons.numbers_sharp,
-                                                          color: FlutterFlowTheme
-                                                                  .of(context)
-                                                              .secondaryText,
-                                                          size: 18.0,
-                                                        ),
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      8.0,
-                                                                      0.0,
-                                                                      0.0,
-                                                                      0.0),
-                                                          child: Text(
-                                                            'QUANT. USADOS: ${listViewCuponsViewTblAfiliadosCuponsRow.quantUsado?.toString()}',
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  font: GoogleFonts
-                                                                      .readexPro(
-                                                                    fontWeight: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .fontWeight,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .fontStyle,
-                                                                  ),
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryText,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .fontStyle,
-                                                                ),
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                            if (((listViewCuponsViewTblAfiliadosCuponsRow
-                                                                .nomeCupom !=
-                                                            null &&
-                                                        listViewCuponsViewTblAfiliadosCuponsRow
-                                                                .nomeCupom !=
-                                                            '') &&
-                                                    listViewCuponsViewTblAfiliadosCuponsRow
-                                                        .situacaoCupom!) &&
-                                                responsiveVisibility(
-                                                  context: context,
-                                                  phone: false,
-                                                ))
-                                              Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(
-                                                        0.0, 0.0, 16.0, 0.0),
-                                                child: InkWell(
-                                                  splashColor:
-                                                      Colors.transparent,
-                                                  focusColor:
-                                                      Colors.transparent,
-                                                  hoverColor:
-                                                      Colors.transparent,
-                                                  highlightColor:
-                                                      Colors.transparent,
-                                                  onTap: () async {
-                                                    if (listViewCuponsViewTblAfiliadosCuponsRow
-                                                            .excluido ==
-                                                        true) {
-                                                      await showDialog(
-                                                        context: context,
-                                                        builder:
-                                                            (alertDialogContext) {
-                                                          return AlertDialog(
-                                                            title: Text(
-                                                                'Atenção!'),
-                                                            content: Text(
-                                                                'O username foi alterado, esse cupom não existe mais.'),
-                                                            actions: [
-                                                              TextButton(
-                                                                onPressed: () =>
-                                                                    Navigator.pop(
-                                                                        alertDialogContext),
-                                                                child:
-                                                                    Text('Ok'),
-                                                              ),
-                                                            ],
-                                                          );
-                                                        },
-                                                      );
-                                                      return;
-                                                    }
-                                                    if (listViewCuponsViewTblAfiliadosCuponsRow
-                                                            .situacaoCupom ==
-                                                        false) {
-                                                      await showDialog(
-                                                        context: context,
-                                                        builder:
-                                                            (alertDialogContext) {
-                                                          return AlertDialog(
-                                                            title: Text(
-                                                                'Atenção!'),
-                                                            content: Text(
-                                                                'Cupom inativo não pode ser compartilhado.'),
-                                                            actions: [
-                                                              TextButton(
-                                                                onPressed: () =>
-                                                                    Navigator.pop(
-                                                                        alertDialogContext),
-                                                                child:
-                                                                    Text('Ok'),
-                                                              ),
-                                                            ],
-                                                          );
-                                                        },
-                                                      );
-                                                      return;
-                                                    }
-                                                    if (listViewCuponsViewTblAfiliadosCuponsRow
-                                                                .nomeCupom !=
-                                                            null &&
-                                                        listViewCuponsViewTblAfiliadosCuponsRow
-                                                                .nomeCupom !=
-                                                            '') {
-                                                      await Clipboard.setData(
-                                                          ClipboardData(
-                                                              text:
-                                                                  '${_model.queryConsAfiliadoApps?.where((e) => e.id == _model.dropDownAplicativoValue).toList().firstOrNull?.site}/${listViewCuponsViewTblAfiliadosCuponsRow.nomeCupom}'));
-                                                      ScaffoldMessenger.of(
-                                                              context)
-                                                          .showSnackBar(
-                                                        SnackBar(
-                                                          content: Text(
-                                                            'Link de cupom ${listViewCuponsViewTblAfiliadosCuponsRow.nomeCupom} copiado com sucesso...',
-                                                            style: TextStyle(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondaryBackground,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                            ),
-                                                          ),
-                                                          duration: Duration(
-                                                              milliseconds:
-                                                                  1500),
-                                                          backgroundColor:
-                                                              FlutterFlowTheme.of(
-                                                                      context)
-                                                                  .secondary,
-                                                        ),
-                                                      );
-                                                    } else {
-                                                      await showDialog(
-                                                        context: context,
-                                                        builder:
-                                                            (alertDialogContext) {
-                                                          return AlertDialog(
-                                                            title: Text(
-                                                                'Atenção!'),
-                                                            content: Text(
-                                                                'Clique em Adicionar para liberar esse  cupom'),
-                                                            actions: [
-                                                              TextButton(
-                                                                onPressed: () =>
-                                                                    Navigator.pop(
-                                                                        alertDialogContext),
-                                                                child:
-                                                                    Text('Ok'),
-                                                              ),
-                                                            ],
-                                                          );
-                                                        },
-                                                      );
-                                                      return;
-                                                    }
-                                                  },
-                                                  child: Icon(
-                                                    Icons.link,
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
-                                                        .secondaryText,
-                                                    size: 30.0,
-                                                  ),
-                                                ),
-                                              ),
-                                            Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                if (listViewCuponsViewTblAfiliadosCuponsRow
-                                                            .nomeCupom ==
-                                                        null ||
-                                                    listViewCuponsViewTblAfiliadosCuponsRow
-                                                            .nomeCupom ==
-                                                        '')
-                                                  FFButtonWidget(
-                                                    onPressed: () async {
-                                                      var confirmDialogResponse =
-                                                          await showDialog<
-                                                                  bool>(
-                                                                context:
-                                                                    context,
-                                                                builder:
-                                                                    (alertDialogContext) {
-                                                                  return AlertDialog(
-                                                                    title: Text(
-                                                                        'Atenção!'),
-                                                                    content: Text(
-                                                                        'Deseja adicionar o cupom ${'${functions.fcConverterStringMaiusculo(FFAppState().varTblAfiliado.username)}${listViewCuponsViewTblAfiliadosCuponsRow.nomeCupomPadrao}'}?'),
-                                                                    actions: [
-                                                                      TextButton(
-                                                                        onPressed: () => Navigator.pop(
-                                                                            alertDialogContext,
-                                                                            false),
-                                                                        child: Text(
-                                                                            'Não'),
-                                                                      ),
-                                                                      TextButton(
-                                                                        onPressed: () => Navigator.pop(
-                                                                            alertDialogContext,
-                                                                            true),
-                                                                        child: Text(
-                                                                            'Sim'),
-                                                                      ),
-                                                                    ],
-                                                                  );
-                                                                },
-                                                              ) ??
-                                                              false;
-                                                      if (confirmDialogResponse) {
-                                                        await TblAfiliadosCuponsLibTable()
-                                                            .insert({
-                                                          'id_afiliado':
-                                                              FFAppState()
-                                                                  .varIDAfiliadoLogado,
-                                                          'id_estabelecimento':
-                                                              FFAppState()
-                                                                  .VarIDEstabelecimentoLogado,
-                                                          'user_id':
-                                                              currentUserUid,
-                                                          'nome':
-                                                              '${functions.fcConverterStringMaiusculo(FFAppState().varTblAfiliado.username)}${listViewCuponsViewTblAfiliadosCuponsRow.nomeCupomPadrao}',
-                                                          'situacao': true,
-                                                          'id_cupom_padrao':
-                                                              listViewCuponsViewTblAfiliadosCuponsRow
-                                                                  .idCupomPadrao,
-                                                          'username':
-                                                              FFAppState()
-                                                                  .varTblAfiliado
-                                                                  .username,
-                                                          'id_afiliado_app': _model
-                                                              .varIDAfiliadoSelecionado,
-                                                        });
-                                                        ScaffoldMessenger.of(
-                                                                context)
-                                                            .showSnackBar(
-                                                          SnackBar(
-                                                            content: Text(
-                                                              'Cupom liberado com sucesso!',
-                                                              style: TextStyle(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryBackground,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                              ),
-                                                            ),
-                                                            duration: Duration(
-                                                                milliseconds:
-                                                                    1500),
-                                                            backgroundColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondary,
-                                                          ),
-                                                        );
-                                                        safeSetState(() => _model
-                                                                .requestCompleter =
-                                                            null);
-                                                        await _model
-                                                            .waitForRequestCompleted();
-                                                      }
-                                                    },
-                                                    text: 'Adicionar',
-                                                    icon: Icon(
-                                                      Icons.add,
-                                                      size: 15.0,
-                                                    ),
-                                                    options: FFButtonOptions(
-                                                      height: 40.0,
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  16.0,
-                                                                  0.0,
-                                                                  16.0,
-                                                                  0.0),
-                                                      iconPadding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0),
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .primary,
-                                                      textStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .titleSmall
-                                                              .override(
-                                                                font: GoogleFonts
-                                                                    .readexPro(
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleSmall
-                                                                      .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleSmall
-                                                                      .fontStyle,
-                                                                ),
-                                                                color: Colors
-                                                                    .white,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontWeight: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmall
-                                                                    .fontWeight,
-                                                                fontStyle: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmall
-                                                                    .fontStyle,
-                                                              ),
-                                                      elevation: 0.0,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              8.0),
-                                                    ),
-                                                  ),
-                                                if (((listViewCuponsViewTblAfiliadosCuponsRow
-                                                                    .nomeCupom !=
-                                                                null &&
+                                                    if (((listViewCuponsViewTblAfiliadosCuponsRow
+                                                                        .nomeCupom !=
+                                                                    null &&
+                                                                listViewCuponsViewTblAfiliadosCuponsRow
+                                                                        .nomeCupom !=
+                                                                    '') &&
                                                             listViewCuponsViewTblAfiliadosCuponsRow
-                                                                    .nomeCupom !=
-                                                                '') &&
-                                                        listViewCuponsViewTblAfiliadosCuponsRow
-                                                            .situacaoCupom!) &&
-                                                    responsiveVisibility(
-                                                      context: context,
-                                                      phone: false,
-                                                      tablet: false,
-                                                      tabletLandscape: false,
-                                                      desktop: false,
-                                                    ))
-                                                  FFButtonWidget(
-                                                    onPressed: () async {
-                                                      var confirmDialogResponse =
-                                                          await showDialog<
-                                                                  bool>(
-                                                                context:
-                                                                    context,
-                                                                builder:
-                                                                    (alertDialogContext) {
-                                                                  return AlertDialog(
-                                                                    title: Text(
-                                                                        'Atenção!'),
-                                                                    content: Text(
-                                                                        'Deseja inativar o cupom  ${'${functions.fcConverterStringMaiusculo(FFAppState().varTblAfiliado.username)}${listViewCuponsViewTblAfiliadosCuponsRow.nomeCupom}'}'),
-                                                                    actions: [
-                                                                      TextButton(
-                                                                        onPressed: () => Navigator.pop(
-                                                                            alertDialogContext,
-                                                                            false),
-                                                                        child: Text(
-                                                                            'Não'),
-                                                                      ),
-                                                                      TextButton(
-                                                                        onPressed: () => Navigator.pop(
-                                                                            alertDialogContext,
-                                                                            true),
-                                                                        child: Text(
-                                                                            'Sim'),
-                                                                      ),
-                                                                    ],
-                                                                  );
-                                                                },
-                                                              ) ??
-                                                              false;
-                                                      if (confirmDialogResponse) {
-                                                        await TblAfiliadosCuponsLibTable()
-                                                            .update(
-                                                          data: {
-                                                            'situacao': false,
-                                                          },
-                                                          matchingRows:
-                                                              (rows) =>
-                                                                  rows.eqOrNull(
-                                                            'id',
-                                                            listViewCuponsViewTblAfiliadosCuponsRow
-                                                                .idCupom,
-                                                          ),
-                                                        );
-                                                        ScaffoldMessenger.of(
-                                                                context)
-                                                            .showSnackBar(
-                                                          SnackBar(
-                                                            content: Text(
-                                                              'Cupom inativado com sucesso!',
-                                                              style: TextStyle(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryBackground,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                              ),
-                                                            ),
-                                                            duration: Duration(
-                                                                milliseconds:
-                                                                    1500),
-                                                            backgroundColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondary,
-                                                          ),
-                                                        );
-                                                        safeSetState(() => _model
-                                                                .requestCompleter =
-                                                            null);
-                                                        await _model
-                                                            .waitForRequestCompleted();
-                                                      }
-                                                    },
-                                                    text: 'Inativar',
-                                                    icon: Icon(
-                                                      Icons.block_sharp,
-                                                      size: 15.0,
-                                                    ),
-                                                    options: FFButtonOptions(
-                                                      height: 40.0,
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  16.0,
-                                                                  0.0,
-                                                                  16.0,
-                                                                  0.0),
-                                                      iconPadding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0),
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .error,
-                                                      textStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .titleSmall
-                                                              .override(
-                                                                font: GoogleFonts
-                                                                    .readexPro(
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleSmall
-                                                                      .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleSmall
-                                                                      .fontStyle,
-                                                                ),
-                                                                color: Colors
-                                                                    .white,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontWeight: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmall
-                                                                    .fontWeight,
-                                                                fontStyle: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmall
-                                                                    .fontStyle,
-                                                              ),
-                                                      elevation: 0.0,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              8.0),
-                                                    ),
-                                                  ),
-                                                if (((listViewCuponsViewTblAfiliadosCuponsRow
+                                                                .situacaoCupom!) &&
+                                                        responsiveVisibility(
+                                                          context: context,
+                                                          tablet: false,
+                                                          tabletLandscape:
+                                                              false,
+                                                          desktop: false,
+                                                        ))
+                                                      Icon(
+                                                        Icons.link,
+                                                        color:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .secondaryText,
+                                                        size: 30.0,
+                                                      ),
+                                                    if ((listViewCuponsViewTblAfiliadosCuponsRow
                                                                     .nomeCupom !=
                                                                 null &&
                                                             listViewCuponsViewTblAfiliadosCuponsRow
                                                                     .nomeCupom !=
                                                                 '') &&
                                                         !listViewCuponsViewTblAfiliadosCuponsRow
-                                                            .situacaoCupom!) &&
-                                                    responsiveVisibility(
-                                                      context: context,
-                                                      phone: false,
-                                                      tablet: false,
-                                                      tabletLandscape: false,
-                                                      desktop: false,
-                                                    ))
-                                                  FFButtonWidget(
-                                                    onPressed: () async {
-                                                      var confirmDialogResponse =
-                                                          await showDialog<
-                                                                  bool>(
-                                                                context:
-                                                                    context,
-                                                                builder:
-                                                                    (alertDialogContext) {
-                                                                  return AlertDialog(
-                                                                    title: Text(
-                                                                        'Atenção!'),
-                                                                    content: Text(
-                                                                        'Deseja Ativar o cupom  ${'${functions.fcConverterStringMaiusculo(FFAppState().varTblAfiliado.username)}${listViewCuponsViewTblAfiliadosCuponsRow.nomeCupom}'}'),
-                                                                    actions: [
-                                                                      TextButton(
-                                                                        onPressed: () => Navigator.pop(
-                                                                            alertDialogContext,
-                                                                            false),
-                                                                        child: Text(
-                                                                            'Não'),
-                                                                      ),
-                                                                      TextButton(
-                                                                        onPressed: () => Navigator.pop(
-                                                                            alertDialogContext,
-                                                                            true),
-                                                                        child: Text(
-                                                                            'Sim'),
-                                                                      ),
-                                                                    ],
-                                                                  );
-                                                                },
-                                                              ) ??
-                                                              false;
-                                                      if (confirmDialogResponse) {
-                                                        await TblAfiliadosCuponsLibTable()
-                                                            .update(
-                                                          data: {
-                                                            'situacao': true,
-                                                          },
-                                                          matchingRows:
-                                                              (rows) =>
-                                                                  rows.eqOrNull(
-                                                            'id',
-                                                            listViewCuponsViewTblAfiliadosCuponsRow
-                                                                .idCupom,
-                                                          ),
-                                                        );
-                                                        ScaffoldMessenger.of(
-                                                                context)
-                                                            .showSnackBar(
-                                                          SnackBar(
-                                                            content: Text(
-                                                              'Cupom inativado com sucesso!',
-                                                              style: TextStyle(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryBackground,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                              ),
-                                                            ),
-                                                            duration: Duration(
-                                                                milliseconds:
-                                                                    1500),
-                                                            backgroundColor:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondary,
-                                                          ),
-                                                        );
-                                                        safeSetState(() => _model
-                                                                .requestCompleter =
-                                                            null);
-                                                        await _model
-                                                            .waitForRequestCompleted();
-                                                      }
-                                                    },
-                                                    text: 'Ativar',
-                                                    icon: Icon(
-                                                      Icons.check,
-                                                      size: 15.0,
-                                                    ),
-                                                    options: FFButtonOptions(
-                                                      height: 40.0,
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  16.0,
-                                                                  0.0,
-                                                                  16.0,
-                                                                  0.0),
-                                                      iconPadding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0,
-                                                                  0.0),
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .success,
-                                                      textStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .titleSmall
-                                                              .override(
-                                                                font: GoogleFonts
-                                                                    .readexPro(
-                                                                  fontWeight: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleSmall
-                                                                      .fontWeight,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleSmall
-                                                                      .fontStyle,
-                                                                ),
-                                                                color: Colors
-                                                                    .white,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontWeight: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmall
-                                                                    .fontWeight,
-                                                                fontStyle: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleSmall
-                                                                    .fontStyle,
-                                                              ),
-                                                      elevation: 0.0,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              8.0),
-                                                    ),
-                                                  ),
-                                                if (((listViewCuponsViewTblAfiliadosCuponsRow
-                                                                    .nomeCupom !=
-                                                                null &&
-                                                            listViewCuponsViewTblAfiliadosCuponsRow
-                                                                    .nomeCupom !=
-                                                                '') &&
-                                                        listViewCuponsViewTblAfiliadosCuponsRow
-                                                            .situacaoCupom!) &&
-                                                    responsiveVisibility(
-                                                      context: context,
-                                                      tablet: false,
-                                                      tabletLandscape: false,
-                                                      desktop: false,
-                                                    ))
-                                                  Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 0.0,
-                                                                16.0, 0.0),
-                                                    child: Icon(
-                                                      Icons.link,
-                                                      color:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .secondaryText,
-                                                      size: 30.0,
-                                                    ),
-                                                  ),
-                                                if ((listViewCuponsViewTblAfiliadosCuponsRow
-                                                                .nomeCupom !=
-                                                            null &&
-                                                        listViewCuponsViewTblAfiliadosCuponsRow
-                                                                .nomeCupom !=
-                                                            '') &&
-                                                    !listViewCuponsViewTblAfiliadosCuponsRow
-                                                        .excluido!)
-                                                  Align(
-                                                    alignment:
-                                                        AlignmentDirectional(
-                                                            0.0, 0.0),
-                                                    child: Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  4.0,
-                                                                  4.0,
-                                                                  4.0,
-                                                                  4.0),
-                                                      child: InkWell(
+                                                            .excluido!)
+                                                      InkWell(
                                                         splashColor:
                                                             Colors.transparent,
                                                         focusColor:
@@ -2313,15 +1958,11 @@ class _CpAfiliadoCuponsWidgetState extends State<CpAfiliadoCuponsWidget>
                                                                 BorderRadius
                                                                     .circular(
                                                                         12.0),
-                                                            border: Border.all(
-                                                              color: Color(
-                                                                  0x3557636C),
-                                                            ),
                                                           ),
                                                           child: Row(
                                                             mainAxisSize:
                                                                 MainAxisSize
-                                                                    .max,
+                                                                    .min,
                                                             mainAxisAlignment:
                                                                 MainAxisAlignment
                                                                     .start,
@@ -2357,7 +1998,7 @@ class _CpAfiliadoCuponsWidgetState extends State<CpAfiliadoCuponsWidget>
                                                                   child: Column(
                                                                     mainAxisSize:
                                                                         MainAxisSize
-                                                                            .max,
+                                                                            .min,
                                                                     children: [
                                                                       Icon(
                                                                         Icons
@@ -2427,7 +2068,7 @@ class _CpAfiliadoCuponsWidgetState extends State<CpAfiliadoCuponsWidget>
                                                                   child: Column(
                                                                     mainAxisSize:
                                                                         MainAxisSize
-                                                                            .max,
+                                                                            .min,
                                                                     children: [
                                                                       Icon(
                                                                         Icons
@@ -2473,9 +2114,10 @@ class _CpAfiliadoCuponsWidgetState extends State<CpAfiliadoCuponsWidget>
                                                           ),
                                                         ),
                                                       ),
-                                                    ),
-                                                  ),
-                                              ].divide(SizedBox(height: 16.0)),
+                                                  ].divide(
+                                                      SizedBox(width: 8.0)),
+                                                ),
+                                              ),
                                             ),
                                           ],
                                         ),

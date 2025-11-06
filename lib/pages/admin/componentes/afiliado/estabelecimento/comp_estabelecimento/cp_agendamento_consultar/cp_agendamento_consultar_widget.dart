@@ -617,20 +617,12 @@ class _CpAgendamentoConsultarWidgetState
                                         child: Container(
                                           width: 100.0,
                                           decoration: BoxDecoration(
-                                            color: FFAppState()
-                                                        .VarTblEstabelecimentoLogado
-                                                        .idTema ==
-                                                    1
-                                                ? FlutterFlowTheme.of(context)
-                                                    .secondaryBackground
-                                                : FlutterFlowTheme.of(context)
-                                                    .cCFundoContainesDados,
+                                            color: FlutterFlowTheme.of(context)
+                                                .cCFundoContainesDados,
                                             borderRadius:
                                                 BorderRadius.circular(8.0),
                                             border: Border.all(
-                                              color:
-                                                  FlutterFlowTheme.of(context)
-                                                      .alternate,
+                                              color: Colors.transparent,
                                               width: 1.0,
                                             ),
                                           ),

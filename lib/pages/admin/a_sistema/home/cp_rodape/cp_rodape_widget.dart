@@ -82,7 +82,15 @@ class _CpRodapeWidgetState extends State<CpRodapeWidget> {
       child: Container(
         width: MediaQuery.sizeOf(context).width * 1.0,
         decoration: BoxDecoration(
-          color: Colors.transparent,
+          gradient: LinearGradient(
+            colors: [
+              FlutterFlowTheme.of(context).colorGradPage1,
+              FlutterFlowTheme.of(context).colorGradPage2
+            ],
+            stops: [0.0, 1.0],
+            begin: AlignmentDirectional(0.0, -1.0),
+            end: AlignmentDirectional(0, 1.0),
+          ),
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,

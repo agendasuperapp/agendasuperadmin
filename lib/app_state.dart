@@ -116,7 +116,7 @@ class FFAppState extends ChangeNotifier {
 
   late FlutterSecureStorage secureStorage;
 
-  String _VarVersaoSistema = '4.1.47';
+  String _VarVersaoSistema = '4.1.49';
   String get VarVersaoSistema => _VarVersaoSistema;
   set VarVersaoSistema(String value) {
     _VarVersaoSistema = value;
@@ -1125,6 +1125,12 @@ class FFAppState extends ChangeNotifier {
 
   void deleteVarTextoConcluirCad() {
     secureStorage.delete(key: 'ff_varTextoConcluirCad');
+  }
+
+  int _varLayoutMargemPgTopMibile = 8;
+  int get varLayoutMargemPgTopMibile => _varLayoutMargemPgTopMibile;
+  set varLayoutMargemPgTopMibile(int value) {
+    _varLayoutMargemPgTopMibile = value;
   }
 }
 

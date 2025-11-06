@@ -447,10 +447,6 @@ class _CpConfiguracoesWidgetState extends State<CpConfiguracoesWidget>
                                     color: FlutterFlowTheme.of(context)
                                         .cCFundoContainesDados,
                                     borderRadius: BorderRadius.circular(8.0),
-                                    border: Border.all(
-                                      color: FlutterFlowTheme.of(context)
-                                          .alternate,
-                                    ),
                                   ),
                                   child: Align(
                                     alignment: AlignmentDirectional(-1.0, 0.0),
@@ -2057,10 +2053,6 @@ class _CpConfiguracoesWidgetState extends State<CpConfiguracoesWidget>
                                     color: FlutterFlowTheme.of(context)
                                         .cCFundoContainesDados,
                                     borderRadius: BorderRadius.circular(8.0),
-                                    border: Border.all(
-                                      color: FlutterFlowTheme.of(context)
-                                          .alternate,
-                                    ),
                                   ),
                                   child: Padding(
                                     padding: EdgeInsets.all(4.0),
@@ -2150,10 +2142,6 @@ class _CpConfiguracoesWidgetState extends State<CpConfiguracoesWidget>
                                     color: FlutterFlowTheme.of(context)
                                         .cCFundoContainesDados,
                                     borderRadius: BorderRadius.circular(8.0),
-                                    border: Border.all(
-                                      color: FlutterFlowTheme.of(context)
-                                          .alternate,
-                                    ),
                                   ),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,
@@ -2356,10 +2344,6 @@ class _CpConfiguracoesWidgetState extends State<CpConfiguracoesWidget>
                                     color: FlutterFlowTheme.of(context)
                                         .cCFundoContainesDados,
                                     borderRadius: BorderRadius.circular(8.0),
-                                    border: Border.all(
-                                      color: FlutterFlowTheme.of(context)
-                                          .alternate,
-                                    ),
                                   ),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.max,

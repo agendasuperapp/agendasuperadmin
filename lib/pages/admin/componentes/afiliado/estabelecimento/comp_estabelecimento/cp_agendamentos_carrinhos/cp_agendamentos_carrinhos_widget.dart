@@ -127,7 +127,10 @@ class _CpAgendamentosCarrinhosWidgetState
               valueOrDefault<double>(
                 MediaQuery.sizeOf(context).width <=
                         FFAppState().varTamanhoMinimoTelaMenuLateral.toDouble()
-                    ? 0.0
+                    ? valueOrDefault<double>(
+                        FFAppState().varLayoutMargemPgTopMibile.toDouble(),
+                        16.0,
+                      )
                     : 16.0,
                 0.0,
               ),
@@ -868,10 +871,6 @@ class _CpAgendamentosCarrinhosWidgetState
                                   color: FlutterFlowTheme.of(context)
                                       .cCFundoContainesDados,
                                   borderRadius: BorderRadius.circular(8.0),
-                                  border: Border.all(
-                                    color:
-                                        FlutterFlowTheme.of(context).alternate,
-                                  ),
                                 ),
                                 child: Builder(
                                   builder: (context) => Padding(
@@ -1549,19 +1548,9 @@ class _CpAgendamentosCarrinhosWidgetState
                                 },
                                 child: Container(
                                   decoration: BoxDecoration(
-                                    color: FFAppState()
-                                                .VarTblEstabelecimentoLogado
-                                                .idTema ==
-                                            1
-                                        ? FlutterFlowTheme.of(context)
-                                            .secondaryBackground
-                                        : FlutterFlowTheme.of(context)
-                                            .cCFundoContainesDados,
+                                    color: FlutterFlowTheme.of(context)
+                                        .cCFundoContainesDados,
                                     borderRadius: BorderRadius.circular(8.0),
-                                    border: Border.all(
-                                      color: FlutterFlowTheme.of(context)
-                                          .alternate,
-                                    ),
                                   ),
                                   child: Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(

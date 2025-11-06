@@ -135,13 +135,13 @@ class _CpAgendamentosDiariosWidgetState
         child: Padding(
           padding: EdgeInsetsDirectional.fromSTEB(
               16.0,
-              valueOrDefault<double>(
-                MediaQuery.sizeOf(context).width <=
-                        FFAppState().varTamanhoMinimoTelaMenuLateral.toDouble()
-                    ? 0.0
-                    : 16.0,
-                0.0,
-              ),
+              MediaQuery.sizeOf(context).width <=
+                      FFAppState().varTamanhoMinimoTelaMenuLateral.toDouble()
+                  ? valueOrDefault<double>(
+                      FFAppState().varLayoutMargemPgTopMibile.toDouble(),
+                      16.0,
+                    )
+                  : 16.0,
               16.0,
               0.0),
           child: RefreshIndicator(
@@ -886,10 +886,6 @@ class _CpAgendamentosDiariosWidgetState
                                   color: FlutterFlowTheme.of(context)
                                       .cCFundoContainesDados,
                                   borderRadius: BorderRadius.circular(8.0),
-                                  border: Border.all(
-                                    color:
-                                        FlutterFlowTheme.of(context).alternate,
-                                  ),
                                 ),
                                 child: Builder(
                                   builder: (context) => Padding(
@@ -1543,12 +1539,13 @@ class _CpAgendamentosDiariosWidgetState
                         },
                       ),
                     ),
-                  if (responsiveVisibility(
-                    context: context,
-                    tablet: false,
-                    tabletLandscape: false,
-                    desktop: false,
-                  ))
+                  if ((_model.varDataSelecionada != null) &&
+                      responsiveVisibility(
+                        context: context,
+                        tablet: false,
+                        tabletLandscape: false,
+                        desktop: false,
+                      ))
                     FutureBuilder<List<ViewTblAgendamentosRow>>(
                       future: (_model.requestCompleter2 ??=
                               Completer<List<ViewTblAgendamentosRow>>()
@@ -1680,19 +1677,9 @@ class _CpAgendamentosDiariosWidgetState
                                 },
                                 child: Container(
                                   decoration: BoxDecoration(
-                                    color: FFAppState()
-                                                .VarTblEstabelecimentoLogado
-                                                .idTema ==
-                                            1
-                                        ? FlutterFlowTheme.of(context)
-                                            .secondaryBackground
-                                        : FlutterFlowTheme.of(context)
-                                            .cCFundoContainesDados,
+                                    color: FlutterFlowTheme.of(context)
+                                        .cCFundoContainesDados,
                                     borderRadius: BorderRadius.circular(8.0),
-                                    border: Border.all(
-                                      color: FlutterFlowTheme.of(context)
-                                          .alternate,
-                                    ),
                                   ),
                                   child: Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(

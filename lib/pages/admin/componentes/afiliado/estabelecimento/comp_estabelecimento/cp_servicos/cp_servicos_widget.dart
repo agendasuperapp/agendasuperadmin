@@ -168,15 +168,15 @@ class _CpServicosWidgetState extends State<CpServicosWidget>
               child: Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(
                     16.0,
-                    valueOrDefault<double>(
-                      MediaQuery.sizeOf(context).width <=
-                              FFAppState()
-                                  .varTamanhoMinimoTelaMenuLateral
-                                  .toDouble()
-                          ? 0.0
-                          : 16.0,
-                      0.0,
-                    ),
+                    MediaQuery.sizeOf(context).width <=
+                            FFAppState()
+                                .varTamanhoMinimoTelaMenuLateral
+                                .toDouble()
+                        ? valueOrDefault<double>(
+                            FFAppState().varLayoutMargemPgTopMibile.toDouble(),
+                            16.0,
+                          )
+                        : 16.0,
                     16.0,
                     16.0),
                 child: SingleChildScrollView(
@@ -666,7 +666,7 @@ class _CpServicosWidgetState extends State<CpServicosWidget>
                                     border: Border.all(
                                       color: listViewTblCadServicosRow.situacao!
                                           ? FlutterFlowTheme.of(context)
-                                              .alternate
+                                              .cCFundoContainesDados
                                           : FlutterFlowTheme.of(context).error,
                                       width: 1.0,
                                     ),

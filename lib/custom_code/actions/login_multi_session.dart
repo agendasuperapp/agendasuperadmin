@@ -15,75 +15,150 @@ import '/flutter_flow/custom_functions.dart';
 
 import 'dart:convert';
 import 'dart:io' show Platform;
+import 'dart:html' as html; // para PWA e tamanho de tela no web
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:http/http.dart' as http;
 import 'package:supabase_flutter/supabase_flutter.dart';
-import 'package:device_info_plus/device_info_plus.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:uuid/uuid.dart';
+import 'package:client_information/client_information.dart';
 
-// Detecta nome do dispositivo
-Future<String> getDeviceName() async {
-  try {
-    if (kIsWeb) return "Web Browser";
-    final deviceInfo = DeviceInfoPlugin();
-    if (Platform.isAndroid) {
-      final info = await deviceInfo.androidInfo;
-      return "${info.manufacturer} ${info.model}";
-    } else if (Platform.isIOS) {
-      final info = await deviceInfo.iosInfo;
-      return "${info.name} (${info.model})";
-    } else if (Platform.isWindows) {
-      final info = await deviceInfo.windowsInfo;
-      return info.computerName ?? "Windows PC";
-    } else if (Platform.isMacOS) {
-      final info = await deviceInfo.macOsInfo;
-      return info.computerName ?? "Mac Device";
-    } else {
-      return "Dispositivo desconhecido";
+/// ✅ Gera ou recupera um identificador único e persistente por navegador/app
+Future<String> getPersistentDeviceUID() async {
+  const storageKey = 'device_uid';
+  final uuid = const Uuid();
+
+  if (kIsWeb) {
+    final storage = html.window.localStorage;
+    var uid = storage[storageKey];
+    if (uid == null || uid.isEmpty) {
+      uid = uuid.v4();
+      storage[storageKey] = uid;
     }
-  } catch (_) {
-    return "Desconhecido";
+    return uid;
+  } else {
+    final prefs = await SharedPreferences.getInstance();
+    var uid = prefs.getString(storageKey);
+    if (uid == null || uid.isEmpty) {
+      uid = uuid.v4();
+      await prefs.setString(storageKey, uid);
+    }
+    return uid;
   }
 }
 
-// Login multi-sessão real (sem invalidar token)
+/// ✅ Coleta informações detalhadas do sistema e aplicativo
+Future<Map<String, dynamic>> getFullDeviceInfo() async {
+  final info = <String, dynamic>{};
+  try {
+    final clientInfo = await ClientInformation.fetch();
+
+    info['os_name'] = clientInfo.osName ?? 'unknown';
+    info['device_id'] = clientInfo.deviceId ?? 'unknown';
+    info['device_name'] = clientInfo.deviceName ?? 'unknown';
+    info['os_version'] = clientInfo.osVersion ?? 'unknown';
+    info['os_version_code'] = clientInfo.osVersionCode?.toString() ?? 'unknown';
+    info['software_name'] = clientInfo.softwareName ?? 'unknown';
+    info['software_version'] = clientInfo.softwareVersion ?? 'unknown';
+    info['application_id'] = clientInfo.applicationId ?? 'unknown';
+    info['application_type'] = clientInfo.applicationType ?? 'unknown';
+    info['application_name'] = clientInfo.applicationName ?? 'unknown';
+    info['application_version'] = clientInfo.applicationVersion ?? 'unknown';
+    info['application_build_code'] =
+        clientInfo.applicationBuildCode ?? 'unknown';
+
+    // 🔍 Detecta PWA
+    if (kIsWeb) {
+      final isPWA =
+          html.window.matchMedia('(display-mode: standalone)').matches ||
+              html.window.navigator.userAgent.contains('Progressive');
+      info['is_pwa'] = isPWA;
+    } else {
+      info['is_pwa'] = false;
+    }
+
+    // 📏 Tamanho da tela
+    if (kIsWeb) {
+      info['screen_width'] = html.window.screen?.width ?? 0;
+      info['screen_height'] = html.window.screen?.height ?? 0;
+    } else {
+      info['screen_width'] = 0;
+      info['screen_height'] = 0;
+    }
+
+    // 🔹 Plataforma
+    if (kIsWeb) {
+      info['platform'] = info['is_pwa'] ? 'pwa' : 'web';
+    } else if (Platform.isAndroid) {
+      info['platform'] = 'android';
+    } else if (Platform.isIOS) {
+      info['platform'] = 'ios';
+    } else if (Platform.isWindows) {
+      info['platform'] = 'windows';
+    } else if (Platform.isMacOS) {
+      info['platform'] = 'macos';
+    } else {
+      info['platform'] = 'other';
+    }
+  } catch (e) {
+    print('⚠️ Erro ao obter informações do dispositivo: $e');
+    info['platform'] = 'unknown';
+  }
+
+  return info;
+}
+
+/// 🔑 Função principal de login com registro multi-sessão
 Future<bool> loginMultiSession(String varemail, String varsenha) async {
   final supabase = Supabase.instance.client;
-  final deviceName = await getDeviceName();
+  final deviceUID = await getPersistentDeviceUID();
+  final deviceInfo = await getFullDeviceInfo();
 
   try {
-    // 1️⃣ Login direto com Supabase (gera sessão válida no browser)
+    // 1️⃣ Login direto com Supabase (mantém sessão válida)
     final result = await supabase.auth.signInWithPassword(
       email: varemail,
       password: varsenha,
     );
 
     if (result.user == null || result.session == null) {
-      print("❌ Falha ao autenticar usuário.");
+      print("❌ Falha ao autenticar usuário no Supabase.");
       return false;
     }
 
     print("✅ Login local no Supabase realizado com sucesso!");
 
-    // 2️⃣ Envia info do dispositivo para a Edge Function (registro multi-sessão)
+    // 2️⃣ Envia informações para a Edge Function
     const String url =
         'https://hzmixuvrnzpypriagecv.supabase.co/functions/v1/auth_multi_session';
 
-    await http.post(
+    final payload = {
+      'email': varemail,
+      'user_id': result.user?.id,
+      'device_uid': deviceUID,
+      'access_token': result.session?.accessToken,
+      'device_info': deviceInfo,
+    };
+
+    final response = await http.post(
       Uri.parse(url),
       headers: {'Content-Type': 'application/json'},
-      body: jsonEncode({
-        'email': varemail,
-        'device_name': deviceName,
-        'user_id': result.user?.id,
-        'access_token': result.session?.accessToken,
-      }),
+      body: jsonEncode(payload),
     );
 
-    print("📱 Dispositivo registrado na Edge Function com sucesso!");
-    print("👤 Usuário autenticado: ${result.user?.email}");
-    return true;
+    print("📡 Resposta da Edge Function: ${response.statusCode}");
+    print(response.body);
+
+    if (response.statusCode == 200) {
+      print("✅ Dispositivo registrado na Edge Function com sucesso!");
+      print("🖥️ ID: $deviceUID | Plataforma: ${deviceInfo['platform']}");
+      return true;
+    } else {
+      print("⚠️ Falha ao registrar dispositivo: ${response.body}");
+      return false;
+    }
   } catch (e, st) {
-    print("❌ Erro ao fazer login: $e");
+    print("❌ Erro ao fazer login multi-sessão: $e");
     print(st);
     return false;
   }

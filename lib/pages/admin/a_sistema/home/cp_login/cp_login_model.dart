@@ -1,4 +1,3 @@
-import '/auth/supabase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/custom_code/actions/index.dart' as actions;
 import '/index.dart';
@@ -101,37 +100,7 @@ class CpLoginModel extends FlutterFlowModel<CpLoginWidget> {
       textFieldEntrarEmailTextController.text,
       textFieldEntrarSenhaTextController.text,
     );
-    await showDialog(
-      context: context,
-      builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('teste'),
-          content: Text('1'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
-        );
-      },
-    );
     if (resultLoginMultSession) {
-      await showDialog(
-        context: context,
-        builder: (alertDialogContext) {
-          return AlertDialog(
-            title: Text('teste'),
-            content: Text(currentJwtToken),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(alertDialogContext),
-                child: Text('Ok'),
-              ),
-            ],
-          );
-        },
-      );
       FFAppState().varCarregouPrimeiraPagina = true;
       FFAppState().varAPPNotificacoesAtivas = true;
       FFAppState().varAPPOneSignalInicializado = false;

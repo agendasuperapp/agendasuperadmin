@@ -15,7 +15,7 @@ import '/flutter_flow/custom_functions.dart';
 
 import 'dart:convert';
 import 'dart:io' show Platform;
-import 'dart:html' as html; // para PWA e tamanho de tela no web
+import 'dart:ui' as ui; // <- para obter largura/altura de tela cross-platform
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:http/http.dart' as http;
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -28,26 +28,16 @@ Future<String> getPersistentDeviceUID() async {
   const storageKey = 'device_uid';
   final uuid = const Uuid();
 
-  if (kIsWeb) {
-    final storage = html.window.localStorage;
-    var uid = storage[storageKey];
-    if (uid == null || uid.isEmpty) {
-      uid = uuid.v4();
-      storage[storageKey] = uid;
-    }
-    return uid;
-  } else {
-    final prefs = await SharedPreferences.getInstance();
-    var uid = prefs.getString(storageKey);
-    if (uid == null || uid.isEmpty) {
-      uid = uuid.v4();
-      await prefs.setString(storageKey, uid);
-    }
-    return uid;
+  final prefs = await SharedPreferences.getInstance();
+  var uid = prefs.getString(storageKey);
+  if (uid == null || uid.isEmpty) {
+    uid = uuid.v4();
+    await prefs.setString(storageKey, uid);
   }
+  return uid;
 }
 
-/// ✅ Coleta informações detalhadas do sistema e aplicativo
+/// ✅ Coleta informações detalhadas do sistema e aplicativo (sem dart:html)
 Future<Map<String, dynamic>> getFullDeviceInfo() async {
   final info = <String, dynamic>{};
   try {
@@ -67,42 +57,48 @@ Future<Map<String, dynamic>> getFullDeviceInfo() async {
     info['application_build_code'] =
         clientInfo.applicationBuildCode ?? 'unknown';
 
-    // 🔍 Detecta PWA
-    if (kIsWeb) {
-      final isPWA =
-          html.window.matchMedia('(display-mode: standalone)').matches ||
-              html.window.navigator.userAgent.contains('Progressive');
-      info['is_pwa'] = isPWA;
-    } else {
-      info['is_pwa'] = false;
-    }
-
-    // 📏 Tamanho da tela
-    if (kIsWeb) {
-      info['screen_width'] = html.window.screen?.width ?? 0;
-      info['screen_height'] = html.window.screen?.height ?? 0;
-    } else {
-      info['screen_width'] = 0;
-      info['screen_height'] = 0;
+    // 📏 Tamanho da tela (sem BuildContext)
+    try {
+      final view = WidgetsBinding.instance.platformDispatcher.views.first;
+      final dpr = view.devicePixelRatio == 0 ? 1.0 : view.devicePixelRatio;
+      final logicalSize = view.physicalSize / dpr;
+      info['screen_width'] = logicalSize.width.round();
+      info['screen_height'] = logicalSize.height.round();
+    } catch (_) {
+      // fallback via ui.window (depreciado em alguns contexts, mas útil como reserva)
+      final dpr = ui.PlatformDispatcher.instance.views.first.devicePixelRatio;
+      final size = ui.PlatformDispatcher.instance.views.first.physicalSize;
+      info['screen_width'] = (size.width / (dpr == 0 ? 1.0 : dpr)).round();
+      info['screen_height'] = (size.height / (dpr == 0 ? 1.0 : dpr)).round();
     }
 
     // 🔹 Plataforma
     if (kIsWeb) {
-      info['platform'] = info['is_pwa'] ? 'pwa' : 'web';
+      info['platform'] = 'web';
+      // Sem dart:html, mantenha is_pwa = false (evita quebrar o build nativo).
+      info['is_pwa'] = false;
     } else if (Platform.isAndroid) {
       info['platform'] = 'android';
+      info['is_pwa'] = false;
     } else if (Platform.isIOS) {
       info['platform'] = 'ios';
+      info['is_pwa'] = false;
     } else if (Platform.isWindows) {
       info['platform'] = 'windows';
+      info['is_pwa'] = false;
     } else if (Platform.isMacOS) {
       info['platform'] = 'macos';
+      info['is_pwa'] = false;
     } else {
       info['platform'] = 'other';
+      info['is_pwa'] = false;
     }
   } catch (e) {
     print('⚠️ Erro ao obter informações do dispositivo: $e');
-    info['platform'] = 'unknown';
+    info['platform'] = kIsWeb ? 'web' : 'unknown';
+    info['is_pwa'] = false;
+    info['screen_width'] = 0;
+    info['screen_height'] = 0;
   }
 
   return info;

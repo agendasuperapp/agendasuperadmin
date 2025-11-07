@@ -15,7 +15,7 @@ import '/flutter_flow/custom_functions.dart';
 
 import 'dart:convert';
 import 'dart:io' show Platform;
-import 'dart:ui' as ui; // <- para obter largura/altura de tela cross-platform
+import 'dart:ui' as ui;
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:http/http.dart' as http;
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -37,7 +37,7 @@ Future<String> getPersistentDeviceUID() async {
   return uid;
 }
 
-/// ✅ Coleta informações detalhadas do sistema e aplicativo (sem dart:html)
+/// ✅ Coleta informações detalhadas do sistema e aplicativo
 Future<Map<String, dynamic>> getFullDeviceInfo() async {
   final info = <String, dynamic>{};
   try {
@@ -65,7 +65,6 @@ Future<Map<String, dynamic>> getFullDeviceInfo() async {
       info['screen_width'] = logicalSize.width.round();
       info['screen_height'] = logicalSize.height.round();
     } catch (_) {
-      // fallback via ui.window (depreciado em alguns contexts, mas útil como reserva)
       final dpr = ui.PlatformDispatcher.instance.views.first.devicePixelRatio;
       final size = ui.PlatformDispatcher.instance.views.first.physicalSize;
       info['screen_width'] = (size.width / (dpr == 0 ? 1.0 : dpr)).round();
@@ -75,28 +74,20 @@ Future<Map<String, dynamic>> getFullDeviceInfo() async {
     // 🔹 Plataforma
     if (kIsWeb) {
       info['platform'] = 'web';
-      // Sem dart:html, mantenha is_pwa = false (evita quebrar o build nativo).
-      info['is_pwa'] = false;
     } else if (Platform.isAndroid) {
       info['platform'] = 'android';
-      info['is_pwa'] = false;
     } else if (Platform.isIOS) {
       info['platform'] = 'ios';
-      info['is_pwa'] = false;
     } else if (Platform.isWindows) {
       info['platform'] = 'windows';
-      info['is_pwa'] = false;
     } else if (Platform.isMacOS) {
       info['platform'] = 'macos';
-      info['is_pwa'] = false;
     } else {
       info['platform'] = 'other';
-      info['is_pwa'] = false;
     }
   } catch (e) {
     print('⚠️ Erro ao obter informações do dispositivo: $e');
     info['platform'] = kIsWeb ? 'web' : 'unknown';
-    info['is_pwa'] = false;
     info['screen_width'] = 0;
     info['screen_height'] = 0;
   }
@@ -106,7 +97,7 @@ Future<Map<String, dynamic>> getFullDeviceInfo() async {
 
 /// 🔑 Função principal de login com registro multi-sessão
 Future<bool> loginMultiSession(
-    String varemail, String varsenha, int varidapp) async {
+    String varemail, String varsenha, int varidapp, bool varpwa) async {
   final supabase = Supabase.instance.client;
   final deviceUID = await getPersistentDeviceUID();
   final deviceInfo = await getFullDeviceInfo();
@@ -135,7 +126,8 @@ Future<bool> loginMultiSession(
       'device_uid': deviceUID,
       'access_token': result.session?.accessToken,
       'device_info': deviceInfo,
-      'id_app': varidapp, // ✅ Envia o ID do aplicativo
+      'id_app': varidapp,
+      'varpwa': varpwa, // ✅ novo argumento PWA
     };
 
     final response = await http.post(
@@ -150,7 +142,7 @@ Future<bool> loginMultiSession(
     if (response.statusCode == 200) {
       print("✅ Dispositivo registrado na Edge Function com sucesso!");
       print(
-          "🖥️ ID: $deviceUID | Plataforma: ${deviceInfo['platform']} | App: $varidapp");
+          "🖥️ ID: $deviceUID | Plataforma: ${deviceInfo['platform']} | App: $varidapp | PWA: $varpwa");
       return true;
     } else {
       print("⚠️ Falha ao registrar dispositivo: ${response.body}");

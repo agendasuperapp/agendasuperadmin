@@ -94,8 +94,15 @@ class CpLoginModel extends FlutterFlowModel<CpLoginWidget> {
 
   /// Action blocks.
   Future acbFazerLogin(BuildContext context) async {
+    bool? resultPWA;
     bool? resultLoginMultSession;
 
+    if (isWeb) {
+      resultPWA = await actions.caWebisRunningAsPWA();
+      FFAppState().updateVarTblDispositivoInformacoesStruct(
+        (e) => e..pwa = resultPWA,
+      );
+    }
     resultLoginMultSession = await actions.loginMultiSession(
       textFieldEntrarEmailTextController.text,
       textFieldEntrarSenhaTextController.text,
@@ -108,6 +115,7 @@ class CpLoginModel extends FlutterFlowModel<CpLoginWidget> {
           return 0;
         }
       }(),
+      isWeb ? FFAppState().VarTblDispositivoInformacoes.pwa : false,
     );
     if (resultLoginMultSession) {
       FFAppState().varCarregouPrimeiraPagina = true;

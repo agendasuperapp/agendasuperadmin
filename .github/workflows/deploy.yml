@@ -186,7 +186,7 @@ jobs:
           sed -i "s/applicationId \".*\"/applicationId \"${{ env.APP_ID_ANDROID }}\"/" android/app/build.gradle
           
           # Caminhos do overlay atual
-          ICON_DIR=".github/overlays/icons/${{ matrix.target.name }}"
+          ICON_DIR=".github/overlays/icons/${{ matrix.target.name }}/android_icons"
           ASSETS_PATH=".github/overlays/icons/${{ matrix.target.name }}/assets_images"
           
           echo "📂 Diretório de ícones: $ICON_DIR"

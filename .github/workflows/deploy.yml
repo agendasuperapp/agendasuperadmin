@@ -181,38 +181,51 @@ jobs:
         run: |
           echo "🧩 Aplicando ícones e assets personalizados..."
 
-          # 🧹 Limpar ícones antigos .webp que causam conflito
-          echo "🧹 Removendo ícones antigos .webp..."
-          find android/app/src/main/res -type f -name "ic_launcher.webp" -delete || true
-          echo "✅ Ícones .webp antigos removidos."
+          # 🧹 Limpar ícones antigos .webp e .png para garantir substituição total
+          echo "🧹 Limpando ícones antigos..."
+          find android/app/src/main/res -type f \( -name "ic_launcher.*" -o -name "ic_launcher_foreground.*" -o -name "ic_launcher_round.*" \) -delete || true
+          echo "✅ Ícones antigos removidos."
 
           # 🧹 Limpar assets antigos (para evitar sobrescrita parcial)
-          echo "🧹 Limpando assets antigos..."
           rm -rf assets/images || true
 
-          # Atualiza o applicationId dinamicamente
+          # Atualizar o applicationId dinamicamente
           sed -i "s/applicationId \".*\"/applicationId \"${{ env.APP_ID_ANDROID }}\"/" android/app/build.gradle
 
-          # Define os caminhos dos ícones e assets personalizados
+          # Caminhos de origem dos ícones e assets
           ICON_DIR=".github/overlays/icons/${{ matrix.target.name }}/android_icons"
           ASSETS_PATH=".github/overlays/icons/${{ matrix.target.name }}/assets_images"
 
-          # Copiar ícones personalizados para cada pasta mipmap
-          echo "🖼️ Copiando ícones personalizados..."
-          for dir in android/app/src/main/res/mipmap-*; do
-            if [ -d "$dir" ]; then
-              cp "$ICON_DIR/$dir/ic_launcher.png" "$dir/ic_launcher.png" 2>/dev/null || cp "$ICON_DIR/ic_launcher.png" "$dir/ic_launcher.png" || echo "⚠️ Falha ao copiar ic_launcher para $dir"
-              cp "$ICON_DIR/$dir/ic_launcher_foreground.png" "$dir/ic_launcher_foreground.png" 2>/dev/null || cp "$ICON_DIR/ic_launcher_foreground.png" "$dir/ic_launcher_foreground.png" || echo "⚠️ Falha ao copiar ic_launcher_foreground para $dir"
-            fi
+          echo "🖼️ Copiando ícones personalizados de ${ICON_DIR}..."
+
+          # Copiar ícones (png e xml) de cada densidade para android/app/src/main/res/mipmap-*
+          for density in mdpi hdpi xhdpi xxhdpi xxxhdpi; do
+            DEST="android/app/src/main/res/mipmap-${density}"
+            SRC="${ICON_DIR}/mipmap-${density}"
+
+            mkdir -p "$DEST"
+
+            # Copiar as variações foreground, round e principal
+            for icon in ic_launcher.png ic_launcher_foreground.png ic_launcher_round.png; do
+              if [ -f "${SRC}/${icon}" ]; then
+                cp "${SRC}/${icon}" "${DEST}/${icon}"
+                echo "✅ Copiado ${icon} para ${DEST}"
+              else
+                echo "⚠️ ${SRC}/${icon} não encontrado"
+              fi
+            done
           done
 
-
-          # Copiar arquivos XML do ícone adaptativo (anydpi-v26)
-          if [ -d "$ICON_DIR/mipmap-anydpi-v26" ]; then
-            cp "$ICON_DIR/mipmap-anydpi-v26/"*.xml android/app/src/main/res/mipmap-anydpi-v26/ || true
+          # Copiar XMLs adaptativos (mipmap-anydpi-v26)
+          if [ -d "${ICON_DIR}/mipmap-anydpi-v26" ]; then
+            mkdir -p android/app/src/main/res/mipmap-anydpi-v26
+            cp "${ICON_DIR}/mipmap-anydpi-v26/"*.xml android/app/src/main/res/mipmap-anydpi-v26/
+            echo "✅ XMLs adaptativos aplicados"
+          else
+            echo "⚠️ Nenhum mipmap-anydpi-v26 encontrado"
           fi
 
-          # Copiar assets se existirem
+          # Copiar assets personalizados, se existirem
           if [ -d "$ASSETS_PATH" ]; then
             mkdir -p assets/images
             rsync -av --ignore-missing-args "$ASSETS_PATH/"* assets/images/ || true

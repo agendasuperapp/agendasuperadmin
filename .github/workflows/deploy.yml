@@ -216,6 +216,16 @@ jobs:
             done
           done
 
+          # ✅ Copiar também a pasta values (onde está ic_launcher_background.xml)
+          if [ -d "${ICON_DIR}/values" ]; then
+            mkdir -p android/app/src/main/res/values
+            cp -r "${ICON_DIR}/values/"* android/app/src/main/res/values/
+            echo "✅ Arquivos de valores (colors, ic_launcher_background, themes, etc.) copiados com sucesso."
+          else
+            echo "⚠️ Nenhuma pasta values encontrada em ${ICON_DIR}"
+          fi
+          
+
           # Copiar XMLs adaptativos (mipmap-anydpi-v26)
           if [ -d "${ICON_DIR}/mipmap-anydpi-v26" ]; then
             mkdir -p android/app/src/main/res/mipmap-anydpi-v26

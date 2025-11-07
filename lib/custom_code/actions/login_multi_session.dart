@@ -105,7 +105,8 @@ Future<Map<String, dynamic>> getFullDeviceInfo() async {
 }
 
 /// 🔑 Função principal de login com registro multi-sessão
-Future<bool> loginMultiSession(String varemail, String varsenha) async {
+Future<bool> loginMultiSession(
+    String varemail, String varsenha, int varidapp) async {
   final supabase = Supabase.instance.client;
   final deviceUID = await getPersistentDeviceUID();
   final deviceInfo = await getFullDeviceInfo();
@@ -134,6 +135,7 @@ Future<bool> loginMultiSession(String varemail, String varsenha) async {
       'device_uid': deviceUID,
       'access_token': result.session?.accessToken,
       'device_info': deviceInfo,
+      'id_app': varidapp, // ✅ Envia o ID do aplicativo
     };
 
     final response = await http.post(
@@ -147,7 +149,8 @@ Future<bool> loginMultiSession(String varemail, String varsenha) async {
 
     if (response.statusCode == 200) {
       print("✅ Dispositivo registrado na Edge Function com sucesso!");
-      print("🖥️ ID: $deviceUID | Plataforma: ${deviceInfo['platform']}");
+      print(
+          "🖥️ ID: $deviceUID | Plataforma: ${deviceInfo['platform']} | App: $varidapp");
       return true;
     } else {
       print("⚠️ Falha ao registrar dispositivo: ${response.body}");

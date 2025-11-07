@@ -99,6 +99,15 @@ class CpLoginModel extends FlutterFlowModel<CpLoginWidget> {
     resultLoginMultSession = await actions.loginMultiSession(
       textFieldEntrarEmailTextController.text,
       textFieldEntrarSenhaTextController.text,
+      () {
+        if (FFAppState().varIDAPPAfiliado == 1) {
+          return 2;
+        } else if (FFAppState().varIDAPPAfiliado == 3) {
+          return 3;
+        } else {
+          return 0;
+        }
+      }(),
     );
     if (resultLoginMultSession) {
       FFAppState().varCarregouPrimeiraPagina = true;

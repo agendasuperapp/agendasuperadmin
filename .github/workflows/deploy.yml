@@ -182,6 +182,9 @@ jobs:
         run: |
           echo "🧩 Aplicando ícones e assets personalizados..."
           
+          # 🧹 Remover ícones antigos .webp que causam conflito
+          find android/app/src/main/res -name "ic_launcher.webp" -type f -delete
+
           # Atualiza o applicationId no build.gradle
           sed -i "s/applicationId \".*\"/applicationId \"${{ env.APP_ID_ANDROID }}\"/" android/app/build.gradle
           

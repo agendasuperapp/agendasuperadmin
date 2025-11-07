@@ -181,14 +181,30 @@ jobs:
       - name: 16️⃣ 🎨 Personalizar ícones, ID e assets
         run: |
           echo "🧩 Aplicando ícones e assets personalizados..."
+          
+          # Atualiza o applicationId no build.gradle
           sed -i "s/applicationId \".*\"/applicationId \"${{ env.APP_ID_ANDROID }}\"/" android/app/build.gradle
-          ICON_PATH=".github/overlays/icons/${{ matrix.target.name }}/ic_launcher.png"
+          
+          # Caminhos do overlay atual
+          ICON_DIR=".github/overlays/icons/${{ matrix.target.name }}"
           ASSETS_PATH=".github/overlays/icons/${{ matrix.target.name }}/assets_images"
-
-          for dir in android/app/src/main/res/mipmap-*; do
-            cp "$ICON_PATH" "$dir/ic_launcher.png" || echo "⚠️ Falha ao copiar ícone em $dir"
-          done
-
+          
+          echo "📂 Diretório de ícones: $ICON_DIR"
+          
+          # Copiar todas as pastas mipmap-* e arquivos XML para android/app/src/main/res
+          if [ -d "$ICON_DIR" ]; then
+            rsync -av --exclude ".git" "$ICON_DIR/" "android/app/src/main/res/" || echo "⚠️ Falha ao copiar ícones."
+            
+            if [ -f "$ICON_DIR/mipmap-anydpi-v26/ic_launcher.xml" ]; then
+              echo "✅ Arquivos XML de launcher aplicados com sucesso."
+            else
+              echo "⚠️ Nenhum arquivo XML encontrado em $ICON_DIR/mipmap-anydpi-v26"
+            fi
+          else
+            echo "⚠️ Diretório de ícones não encontrado: $ICON_DIR"
+          fi
+          
+          # Copiar imagens adicionais (assets)
           if [ -d "$ASSETS_PATH" ]; then
             mkdir -p assets/images
             rsync -av --ignore-missing-args "$ASSETS_PATH/"* assets/images/ || true
@@ -196,6 +212,7 @@ jobs:
           else
             echo "⚠️ Nenhum assets_images encontrado para ${{ matrix.target.name }}"
           fi
+
 
       # 17️⃣ Corrigir nome no Manifest
       - name: 17️⃣ 📝 Corrigir nome no AndroidManifest.xml

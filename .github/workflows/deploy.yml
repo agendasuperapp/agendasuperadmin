@@ -201,9 +201,11 @@ jobs:
           echo "🖼️ Copiando ícones personalizados..."
           for dir in android/app/src/main/res/mipmap-*; do
             if [ -d "$dir" ]; then
-              cp "$ICON_DIR/ic_launcher.png" "$dir/ic_launcher.png" || echo "⚠️ Falha ao copiar ícone para $dir"
+              cp "$ICON_DIR/$dir/ic_launcher.png" "$dir/ic_launcher.png" 2>/dev/null || cp "$ICON_DIR/ic_launcher.png" "$dir/ic_launcher.png" || echo "⚠️ Falha ao copiar ic_launcher para $dir"
+              cp "$ICON_DIR/$dir/ic_launcher_foreground.png" "$dir/ic_launcher_foreground.png" 2>/dev/null || cp "$ICON_DIR/ic_launcher_foreground.png" "$dir/ic_launcher_foreground.png" || echo "⚠️ Falha ao copiar ic_launcher_foreground para $dir"
             fi
           done
+
 
           # Copiar arquivos XML do ícone adaptativo (anydpi-v26)
           if [ -d "$ICON_DIR/mipmap-anydpi-v26" ]; then

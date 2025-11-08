@@ -547,6 +547,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           path: PgAgendamentosDiariosWidget.routePath,
           requireAuth: true,
           builder: (context, params) => PgAgendamentosDiariosWidget(),
+        ),
+        FFRoute(
+          name: PgPoliticaPrivacidadeWidget.routeName,
+          path: PgPoliticaPrivacidadeWidget.routePath,
+          builder: (context, params) => PgPoliticaPrivacidadeWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

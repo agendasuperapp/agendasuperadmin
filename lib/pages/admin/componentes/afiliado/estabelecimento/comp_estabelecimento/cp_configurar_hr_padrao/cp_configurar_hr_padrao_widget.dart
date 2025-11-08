@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'cp_configurar_hr_padrao_model.dart';
 export 'cp_configurar_hr_padrao_model.dart';
 
@@ -224,17 +225,19 @@ class _CpConfigurarHrPadraoWidgetState
                     await showDialog(
                       context: context,
                       builder: (alertDialogContext) {
-                        return AlertDialog(
-                          title: Text('Atenção!'),
-                          content: Text(
-                              'O máximo de minutos  automáticos são 180 minutos (3 horas)'),
-                          actions: [
-                            TextButton(
-                              onPressed: () =>
-                                  Navigator.pop(alertDialogContext),
-                              child: Text('Ok'),
-                            ),
-                          ],
+                        return WebViewAware(
+                          child: AlertDialog(
+                            title: Text('Atenção!'),
+                            content: Text(
+                                'O máximo de minutos  automáticos são 180 minutos (3 horas)'),
+                            actions: [
+                              TextButton(
+                                onPressed: () =>
+                                    Navigator.pop(alertDialogContext),
+                                child: Text('Ok'),
+                              ),
+                            ],
+                          ),
                         );
                       },
                     );

@@ -11,6 +11,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'cp_cad_temas_blackgroundx_model.dart';
 export 'cp_cad_temas_blackgroundx_model.dart';
 
@@ -481,9 +482,11 @@ class _CpCadTemasBlackgroundxWidgetState
                                                         0.0, 0.0)
                                                     .resolve(Directionality.of(
                                                         context)),
-                                                child: CpFotoWidget(
-                                                  paramFoto: _model
-                                                      .uploadedFileUrl_uploadDataLigth,
+                                                child: WebViewAware(
+                                                  child: CpFotoWidget(
+                                                    paramFoto: _model
+                                                        .uploadedFileUrl_uploadDataLigth,
+                                                  ),
                                                 ),
                                               );
                                             },
@@ -509,10 +512,12 @@ class _CpCadTemasBlackgroundxWidgetState
                                                         0.0, 0.0)
                                                     .resolve(Directionality.of(
                                                         context)),
-                                                child: CpFotoWidget(
-                                                  paramFoto: widget
-                                                      .paramRowTblTemasBlackground!
-                                                      .fotoLightMode!,
+                                                child: WebViewAware(
+                                                  child: CpFotoWidget(
+                                                    paramFoto: widget
+                                                        .paramRowTblTemasBlackground!
+                                                        .fotoLightMode!,
+                                                  ),
                                                 ),
                                               );
                                             },
@@ -976,9 +981,11 @@ class _CpCadTemasBlackgroundxWidgetState
                                                           .resolve(
                                                               Directionality.of(
                                                                   context)),
-                                                  child: CpFotoWidget(
-                                                    paramFoto: _model
-                                                        .uploadedFileUrl_uploadDataDark,
+                                                  child: WebViewAware(
+                                                    child: CpFotoWidget(
+                                                      paramFoto: _model
+                                                          .uploadedFileUrl_uploadDataDark,
+                                                    ),
                                                   ),
                                                 );
                                               },
@@ -1006,10 +1013,12 @@ class _CpCadTemasBlackgroundxWidgetState
                                                           .resolve(
                                                               Directionality.of(
                                                                   context)),
-                                                  child: CpFotoWidget(
-                                                    paramFoto: widget
-                                                        .paramRowTblTemasBlackground!
-                                                        .fotoDarkMod!,
+                                                  child: WebViewAware(
+                                                    child: CpFotoWidget(
+                                                      paramFoto: widget
+                                                          .paramRowTblTemasBlackground!
+                                                          .fotoDarkMod!,
+                                                    ),
                                                   ),
                                                 );
                                               },

@@ -12,6 +12,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'cp_cad_planos_nomes_model.dart';
 export 'cp_cad_planos_nomes_model.dart';
 
@@ -973,16 +974,18 @@ class _CpCadPlanosNomesWidgetState extends State<CpCadPlanosNomesWidget> {
                               await showDialog(
                                 context: context,
                                 builder: (alertDialogContext) {
-                                  return AlertDialog(
-                                    title: Text('Atenção!'),
-                                    content: Text('Selecione o Tipo'),
-                                    actions: [
-                                      TextButton(
-                                        onPressed: () =>
-                                            Navigator.pop(alertDialogContext),
-                                        child: Text('Ok'),
-                                      ),
-                                    ],
+                                  return WebViewAware(
+                                    child: AlertDialog(
+                                      title: Text('Atenção!'),
+                                      content: Text('Selecione o Tipo'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(alertDialogContext),
+                                          child: Text('Ok'),
+                                        ),
+                                      ],
+                                    ),
                                   );
                                 },
                               );
@@ -995,17 +998,19 @@ class _CpCadPlanosNomesWidgetState extends State<CpCadPlanosNomesWidget> {
                               await showDialog(
                                 context: context,
                                 builder: (alertDialogContext) {
-                                  return AlertDialog(
-                                    title: Text('Atenção!'),
-                                    content: Text(
-                                        'Quant. Máxima deve ser maior ou igual a quant. Mínima de profissionais'),
-                                    actions: [
-                                      TextButton(
-                                        onPressed: () =>
-                                            Navigator.pop(alertDialogContext),
-                                        child: Text('Ok'),
-                                      ),
-                                    ],
+                                  return WebViewAware(
+                                    child: AlertDialog(
+                                      title: Text('Atenção!'),
+                                      content: Text(
+                                          'Quant. Máxima deve ser maior ou igual a quant. Mínima de profissionais'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(alertDialogContext),
+                                          child: Text('Ok'),
+                                        ),
+                                      ],
+                                    ),
                                   );
                                 },
                               );
@@ -1032,17 +1037,19 @@ class _CpCadPlanosNomesWidgetState extends State<CpCadPlanosNomesWidget> {
                               await showDialog(
                                 context: context,
                                 builder: (alertDialogContext) {
-                                  return AlertDialog(
-                                    title: Text('Atenção!'),
-                                    content: Text(
-                                        'Esse nome de plano já está cadastrado no sistema.'),
-                                    actions: [
-                                      TextButton(
-                                        onPressed: () =>
-                                            Navigator.pop(alertDialogContext),
-                                        child: Text('Ok'),
-                                      ),
-                                    ],
+                                  return WebViewAware(
+                                    child: AlertDialog(
+                                      title: Text('Atenção!'),
+                                      content: Text(
+                                          'Esse nome de plano já está cadastrado no sistema.'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(alertDialogContext),
+                                          child: Text('Ok'),
+                                        ),
+                                      ],
+                                    ),
                                   );
                                 },
                               );
@@ -1127,17 +1134,19 @@ class _CpCadPlanosNomesWidgetState extends State<CpCadPlanosNomesWidget> {
                                 await showDialog(
                                   context: context,
                                   builder: (alertDialogContext) {
-                                    return AlertDialog(
-                                      title: Text('Atenção!'),
-                                      content: Text(
-                                          'Todos os planos com esse nome foram inativados'),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () =>
-                                              Navigator.pop(alertDialogContext),
-                                          child: Text('Ok'),
-                                        ),
-                                      ],
+                                    return WebViewAware(
+                                      child: AlertDialog(
+                                        title: Text('Atenção!'),
+                                        content: Text(
+                                            'Todos os planos com esse nome foram inativados'),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(
+                                                alertDialogContext),
+                                            child: Text('Ok'),
+                                          ),
+                                        ],
+                                      ),
                                     );
                                   },
                                 );

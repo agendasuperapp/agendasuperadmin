@@ -15,6 +15,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'cp_cabecalho_pagina_model.dart';
 export 'cp_cabecalho_pagina_model.dart';
 
@@ -141,17 +142,19 @@ class _CpCabecalhoPaginaWidgetState extends State<CpCabecalhoPaginaWidget>
                             await showDialog(
                               context: context,
                               builder: (alertDialogContext) {
-                                return AlertDialog(
-                                  title: Text('Atenção!'),
-                                  content:
-                                      Text('Modo desenvolvedor ativado...'),
-                                  actions: [
-                                    TextButton(
-                                      onPressed: () =>
-                                          Navigator.pop(alertDialogContext),
-                                      child: Text('Ok'),
-                                    ),
-                                  ],
+                                return WebViewAware(
+                                  child: AlertDialog(
+                                    title: Text('Atenção!'),
+                                    content:
+                                        Text('Modo desenvolvedor ativado...'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () =>
+                                            Navigator.pop(alertDialogContext),
+                                        child: Text('Ok'),
+                                      ),
+                                    ],
+                                  ),
                                 );
                               },
                             );
@@ -318,10 +321,12 @@ class _CpCabecalhoPaginaWidgetState extends State<CpCabecalhoPaginaWidget>
                                                     0.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
-                                            child: CpFotoWidget(
-                                              paramFoto: FFAppState()
-                                                  .VarTblEstabelecimentoLogado
-                                                  .fotoPerfil,
+                                            child: WebViewAware(
+                                              child: CpFotoWidget(
+                                                paramFoto: FFAppState()
+                                                    .VarTblEstabelecimentoLogado
+                                                    .fotoPerfil,
+                                              ),
                                             ),
                                           );
                                         },
@@ -330,16 +335,19 @@ class _CpCabecalhoPaginaWidgetState extends State<CpCabecalhoPaginaWidget>
                                       await showDialog(
                                         context: context,
                                         builder: (alertDialogContext) {
-                                          return AlertDialog(
-                                            title: Text('Atenção!'),
-                                            content: Text('Sem Foto'),
-                                            actions: [
-                                              TextButton(
-                                                onPressed: () => Navigator.pop(
-                                                    alertDialogContext),
-                                                child: Text('Ok'),
-                                              ),
-                                            ],
+                                          return WebViewAware(
+                                            child: AlertDialog(
+                                              title: Text('Atenção!'),
+                                              content: Text('Sem Foto'),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext),
+                                                  child: Text('Ok'),
+                                                ),
+                                              ],
+                                            ),
                                           );
                                         },
                                       );
@@ -409,18 +417,20 @@ class _CpCabecalhoPaginaWidgetState extends State<CpCabecalhoPaginaWidget>
                                           await showDialog(
                                             context: context,
                                             builder: (alertDialogContext) {
-                                              return AlertDialog(
-                                                title: Text('Atenção!'),
-                                                content: Text(
-                                                    'Modo desenvolvedor ativado...'),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () =>
-                                                        Navigator.pop(
-                                                            alertDialogContext),
-                                                    child: Text('Ok'),
-                                                  ),
-                                                ],
+                                              return WebViewAware(
+                                                child: AlertDialog(
+                                                  title: Text('Atenção!'),
+                                                  content: Text(
+                                                      'Modo desenvolvedor ativado...'),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext),
+                                                      child: Text('Ok'),
+                                                    ),
+                                                  ],
+                                                ),
                                               );
                                             },
                                           );
@@ -682,10 +692,12 @@ class _CpCabecalhoPaginaWidgetState extends State<CpCabecalhoPaginaWidget>
                                     backgroundColor: Colors.transparent,
                                     context: context,
                                     builder: (context) {
-                                      return Padding(
-                                        padding:
-                                            MediaQuery.viewInsetsOf(context),
-                                        child: CpNotificacaoWidget(),
+                                      return WebViewAware(
+                                        child: Padding(
+                                          padding:
+                                              MediaQuery.viewInsetsOf(context),
+                                          child: CpNotificacaoWidget(),
+                                        ),
                                       );
                                     },
                                   ).then((value) => safeSetState(() {}));
@@ -701,7 +713,9 @@ class _CpCabecalhoPaginaWidgetState extends State<CpCabecalhoPaginaWidget>
                                             AlignmentDirectional(0.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
-                                        child: CpNotificacaoWidget(),
+                                        child: WebViewAware(
+                                          child: CpNotificacaoWidget(),
+                                        ),
                                       );
                                     },
                                   );

@@ -15,6 +15,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'cp_notificacao_model.dart';
 export 'cp_notificacao_model.dart';
 
@@ -321,17 +322,19 @@ class _CpNotificacaoWidgetState extends State<CpNotificacaoWidget>
                                   await showDialog(
                                     context: context,
                                     builder: (alertDialogContext) {
-                                      return AlertDialog(
-                                        title: Text('Atenção!'),
-                                        content: Text(
-                                            'resultPermissOneSign:${_model.resultOneSignalCarregNotifON2?.toString()}'),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () => Navigator.pop(
-                                                alertDialogContext),
-                                            child: Text('Ok'),
-                                          ),
-                                        ],
+                                      return WebViewAware(
+                                        child: AlertDialog(
+                                          title: Text('Atenção!'),
+                                          content: Text(
+                                              'resultPermissOneSign:${_model.resultOneSignalCarregNotifON2?.toString()}'),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () => Navigator.pop(
+                                                  alertDialogContext),
+                                              child: Text('Ok'),
+                                            ),
+                                          ],
+                                        ),
                                       );
                                     },
                                   );
@@ -361,17 +364,19 @@ class _CpNotificacaoWidgetState extends State<CpNotificacaoWidget>
                                     await showDialog(
                                       context: context,
                                       builder: (alertDialogContext) {
-                                        return AlertDialog(
-                                          title: Text('Atenção!'),
-                                          content: Text(
-                                              'Falha ao desativar notificações, tente novamente'),
-                                          actions: [
-                                            TextButton(
-                                              onPressed: () => Navigator.pop(
-                                                  alertDialogContext),
-                                              child: Text('Ok'),
-                                            ),
-                                          ],
+                                        return WebViewAware(
+                                          child: AlertDialog(
+                                            title: Text('Atenção!'),
+                                            content: Text(
+                                                'Falha ao desativar notificações, tente novamente'),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext),
+                                                child: Text('Ok'),
+                                              ),
+                                            ],
+                                          ),
                                         );
                                       },
                                     );
@@ -464,17 +469,19 @@ class _CpNotificacaoWidgetState extends State<CpNotificacaoWidget>
                                   await showDialog(
                                     context: context,
                                     builder: (alertDialogContext) {
-                                      return AlertDialog(
-                                        title: Text('Atenção!'),
-                                        content: Text(
-                                            'Não foi possível inicializar as notificações, verifique  as permissões de notificações do seu dispositivo'),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () => Navigator.pop(
-                                                alertDialogContext),
-                                            child: Text('Ok'),
-                                          ),
-                                        ],
+                                      return WebViewAware(
+                                        child: AlertDialog(
+                                          title: Text('Atenção!'),
+                                          content: Text(
+                                              'Não foi possível inicializar as notificações, verifique  as permissões de notificações do seu dispositivo'),
+                                          actions: [
+                                            TextButton(
+                                              onPressed: () => Navigator.pop(
+                                                  alertDialogContext),
+                                              child: Text('Ok'),
+                                            ),
+                                          ],
+                                        ),
                                       );
                                     },
                                   );
@@ -504,26 +511,28 @@ class _CpNotificacaoWidgetState extends State<CpNotificacaoWidget>
                                     await showDialog<bool>(
                                           context: context,
                                           builder: (alertDialogContext) {
-                                            return AlertDialog(
-                                              title: Text('Atenção!'),
-                                              content: Text(
-                                                  'Deseja desativar as notificações desse dispositivo?'),
-                                              actions: [
-                                                TextButton(
-                                                  onPressed: () =>
-                                                      Navigator.pop(
-                                                          alertDialogContext,
-                                                          false),
-                                                  child: Text('Não'),
-                                                ),
-                                                TextButton(
-                                                  onPressed: () =>
-                                                      Navigator.pop(
-                                                          alertDialogContext,
-                                                          true),
-                                                  child: Text('Sim'),
-                                                ),
-                                              ],
+                                            return WebViewAware(
+                                              child: AlertDialog(
+                                                title: Text('Atenção!'),
+                                                content: Text(
+                                                    'Deseja desativar as notificações desse dispositivo?'),
+                                                actions: [
+                                                  TextButton(
+                                                    onPressed: () =>
+                                                        Navigator.pop(
+                                                            alertDialogContext,
+                                                            false),
+                                                    child: Text('Não'),
+                                                  ),
+                                                  TextButton(
+                                                    onPressed: () =>
+                                                        Navigator.pop(
+                                                            alertDialogContext,
+                                                            true),
+                                                    child: Text('Sim'),
+                                                  ),
+                                                ],
+                                              ),
                                             );
                                           },
                                         ) ??
@@ -613,17 +622,19 @@ class _CpNotificacaoWidgetState extends State<CpNotificacaoWidget>
                                     await showDialog(
                                       context: context,
                                       builder: (alertDialogContext) {
-                                        return AlertDialog(
-                                          title: Text('Atenção!'),
-                                          content: Text(
-                                              'Não foi possível inicializar as notificações, verifique  as permissões de notificações do seu dispositivo'),
-                                          actions: [
-                                            TextButton(
-                                              onPressed: () => Navigator.pop(
-                                                  alertDialogContext),
-                                              child: Text('Ok'),
-                                            ),
-                                          ],
+                                        return WebViewAware(
+                                          child: AlertDialog(
+                                            title: Text('Atenção!'),
+                                            content: Text(
+                                                'Não foi possível inicializar as notificações, verifique  as permissões de notificações do seu dispositivo'),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext),
+                                                child: Text('Ok'),
+                                              ),
+                                            ],
+                                          ),
                                         );
                                       },
                                     );
@@ -795,26 +806,28 @@ class _CpNotificacaoWidgetState extends State<CpNotificacaoWidget>
                                       await showDialog<bool>(
                                             context: context,
                                             builder: (alertDialogContext) {
-                                              return AlertDialog(
-                                                title: Text('Atenção!'),
-                                                content: Text(
-                                                    'Deseja desativar as notificações desse dispositivo?'),
-                                                actions: [
-                                                  TextButton(
-                                                    onPressed: () =>
-                                                        Navigator.pop(
-                                                            alertDialogContext,
-                                                            false),
-                                                    child: Text('Não'),
-                                                  ),
-                                                  TextButton(
-                                                    onPressed: () =>
-                                                        Navigator.pop(
-                                                            alertDialogContext,
-                                                            true),
-                                                    child: Text('Sim'),
-                                                  ),
-                                                ],
+                                              return WebViewAware(
+                                                child: AlertDialog(
+                                                  title: Text('Atenção!'),
+                                                  content: Text(
+                                                      'Deseja desativar as notificações desse dispositivo?'),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext,
+                                                              false),
+                                                      child: Text('Não'),
+                                                    ),
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext,
+                                                              true),
+                                                      child: Text('Sim'),
+                                                    ),
+                                                  ],
+                                                ),
                                               );
                                             },
                                           ) ??

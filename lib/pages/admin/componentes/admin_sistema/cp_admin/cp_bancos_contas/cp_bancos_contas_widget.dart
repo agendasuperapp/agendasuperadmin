@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'cp_bancos_contas_model.dart';
 export 'cp_bancos_contas_model.dart';
 
@@ -641,20 +642,23 @@ class _CpBancosContasWidgetState extends State<CpBancosContasWidget>
                                                           context: context,
                                                           builder:
                                                               (alertDialogContext) {
-                                                            return AlertDialog(
-                                                              title: Text(
-                                                                  'Atenção!'),
-                                                              content: Text(
-                                                                  'Esse banco já está cadastrada no sistema.'),
-                                                              actions: [
-                                                                TextButton(
-                                                                  onPressed: () =>
-                                                                      Navigator.pop(
-                                                                          alertDialogContext),
-                                                                  child: Text(
-                                                                      'Ok'),
-                                                                ),
-                                                              ],
+                                                            return WebViewAware(
+                                                              child:
+                                                                  AlertDialog(
+                                                                title: Text(
+                                                                    'Atenção!'),
+                                                                content: Text(
+                                                                    'Esse banco já está cadastrada no sistema.'),
+                                                                actions: [
+                                                                  TextButton(
+                                                                    onPressed: () =>
+                                                                        Navigator.pop(
+                                                                            alertDialogContext),
+                                                                    child: Text(
+                                                                        'Ok'),
+                                                                  ),
+                                                                ],
+                                                              ),
                                                             );
                                                           },
                                                         );
@@ -1246,19 +1250,21 @@ class _CpBancosContasWidgetState extends State<CpBancosContasWidget>
                                                                         var confirmDialogResponse = await showDialog<bool>(
                                                                               context: context,
                                                                               builder: (alertDialogContext) {
-                                                                                return AlertDialog(
-                                                                                  title: Text('Atenção!'),
-                                                                                  content: Text('Deseja ativar o banco  ${listViewBancosTblPlanosBancosRow.nome}?'),
-                                                                                  actions: [
-                                                                                    TextButton(
-                                                                                      onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                      child: Text('Não'),
-                                                                                    ),
-                                                                                    TextButton(
-                                                                                      onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                      child: Text('Sim'),
-                                                                                    ),
-                                                                                  ],
+                                                                                return WebViewAware(
+                                                                                  child: AlertDialog(
+                                                                                    title: Text('Atenção!'),
+                                                                                    content: Text('Deseja ativar o banco  ${listViewBancosTblPlanosBancosRow.nome}?'),
+                                                                                    actions: [
+                                                                                      TextButton(
+                                                                                        onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                        child: Text('Não'),
+                                                                                      ),
+                                                                                      TextButton(
+                                                                                        onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                        child: Text('Sim'),
+                                                                                      ),
+                                                                                    ],
+                                                                                  ),
                                                                                 );
                                                                               },
                                                                             ) ??
@@ -1315,19 +1321,21 @@ class _CpBancosContasWidgetState extends State<CpBancosContasWidget>
                                                                         var confirmDialogResponse = await showDialog<bool>(
                                                                               context: context,
                                                                               builder: (alertDialogContext) {
-                                                                                return AlertDialog(
-                                                                                  title: Text('Atenção!'),
-                                                                                  content: Text('Deseja inativar o banco ${listViewBancosTblPlanosBancosRow.nome}?'),
-                                                                                  actions: [
-                                                                                    TextButton(
-                                                                                      onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                      child: Text('Não'),
-                                                                                    ),
-                                                                                    TextButton(
-                                                                                      onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                      child: Text('Sim'),
-                                                                                    ),
-                                                                                  ],
+                                                                                return WebViewAware(
+                                                                                  child: AlertDialog(
+                                                                                    title: Text('Atenção!'),
+                                                                                    content: Text('Deseja inativar o banco ${listViewBancosTblPlanosBancosRow.nome}?'),
+                                                                                    actions: [
+                                                                                      TextButton(
+                                                                                        onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                        child: Text('Não'),
+                                                                                      ),
+                                                                                      TextButton(
+                                                                                        onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                        child: Text('Sim'),
+                                                                                      ),
+                                                                                    ],
+                                                                                  ),
                                                                                 );
                                                                               },
                                                                             ) ??
@@ -1954,19 +1962,22 @@ class _CpBancosContasWidgetState extends State<CpBancosContasWidget>
                                                               context: context,
                                                               builder:
                                                                   (context) {
-                                                                return Padding(
-                                                                  padding: MediaQuery
-                                                                      .viewInsetsOf(
-                                                                          context),
+                                                                return WebViewAware(
                                                                   child:
-                                                                      CpCadContasWidget(
-                                                                    paramCadastro:
-                                                                        false,
-                                                                    paramRowTblPlanosContas:
-                                                                        listViewContasViewTblPlanosContasRow,
-                                                                    paramIDAfiliadoApp:
-                                                                        listViewContasViewTblPlanosContasRow
-                                                                            .idAfiliadoApp!,
+                                                                      Padding(
+                                                                    padding: MediaQuery
+                                                                        .viewInsetsOf(
+                                                                            context),
+                                                                    child:
+                                                                        CpCadContasWidget(
+                                                                      paramCadastro:
+                                                                          false,
+                                                                      paramRowTblPlanosContas:
+                                                                          listViewContasViewTblPlanosContasRow,
+                                                                      paramIDAfiliadoApp:
+                                                                          listViewContasViewTblPlanosContasRow
+                                                                              .idAfiliadoApp!,
+                                                                    ),
                                                                   ),
                                                                 );
                                                               },
@@ -2184,15 +2195,17 @@ class _CpBancosContasWidgetState extends State<CpBancosContasWidget>
                                                                               await showDialog(
                                                                                 context: context,
                                                                                 builder: (alertDialogContext) {
-                                                                                  return AlertDialog(
-                                                                                    title: Text('Atenção!'),
-                                                                                    content: Text('A conta ativa não pode ser excluída.'),
-                                                                                    actions: [
-                                                                                      TextButton(
-                                                                                        onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                        child: Text('Ok'),
-                                                                                      ),
-                                                                                    ],
+                                                                                  return WebViewAware(
+                                                                                    child: AlertDialog(
+                                                                                      title: Text('Atenção!'),
+                                                                                      content: Text('A conta ativa não pode ser excluída.'),
+                                                                                      actions: [
+                                                                                        TextButton(
+                                                                                          onPressed: () => Navigator.pop(alertDialogContext),
+                                                                                          child: Text('Ok'),
+                                                                                        ),
+                                                                                      ],
+                                                                                    ),
                                                                                   );
                                                                                 },
                                                                               );
@@ -2201,19 +2214,21 @@ class _CpBancosContasWidgetState extends State<CpBancosContasWidget>
                                                                             var confirmDialogResponse = await showDialog<bool>(
                                                                                   context: context,
                                                                                   builder: (alertDialogContext) {
-                                                                                    return AlertDialog(
-                                                                                      title: Text('Atenção!'),
-                                                                                      content: Text('Deseja excluir a conta  ${listViewContasViewTblPlanosContasRow.nome}?${'\n'}ATENÇÃO! Processo irreversível'),
-                                                                                      actions: [
-                                                                                        TextButton(
-                                                                                          onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                          child: Text('Não'),
-                                                                                        ),
-                                                                                        TextButton(
-                                                                                          onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                          child: Text('Sim'),
-                                                                                        ),
-                                                                                      ],
+                                                                                    return WebViewAware(
+                                                                                      child: AlertDialog(
+                                                                                        title: Text('Atenção!'),
+                                                                                        content: Text('Deseja excluir a conta  ${listViewContasViewTblPlanosContasRow.nome}?${'\n'}ATENÇÃO! Processo irreversível'),
+                                                                                        actions: [
+                                                                                          TextButton(
+                                                                                            onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                            child: Text('Não'),
+                                                                                          ),
+                                                                                          TextButton(
+                                                                                            onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                            child: Text('Sim'),
+                                                                                          ),
+                                                                                        ],
+                                                                                      ),
                                                                                     );
                                                                                   },
                                                                                 ) ??
@@ -2261,19 +2276,21 @@ class _CpBancosContasWidgetState extends State<CpBancosContasWidget>
                                                                               var confirmDialogResponse = await showDialog<bool>(
                                                                                     context: context,
                                                                                     builder: (alertDialogContext) {
-                                                                                      return AlertDialog(
-                                                                                        title: Text('Atenção!'),
-                                                                                        content: Text('Deseja ativar a conta  ${listViewContasViewTblPlanosContasRow.nome}?${'\n'}ATENÇÃO! Todas as outras contas serão desativadas, apenas uma conta pode ficar ativa.'),
-                                                                                        actions: [
-                                                                                          TextButton(
-                                                                                            onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                            child: Text('Não'),
-                                                                                          ),
-                                                                                          TextButton(
-                                                                                            onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                            child: Text('Sim'),
-                                                                                          ),
-                                                                                        ],
+                                                                                      return WebViewAware(
+                                                                                        child: AlertDialog(
+                                                                                          title: Text('Atenção!'),
+                                                                                          content: Text('Deseja ativar a conta  ${listViewContasViewTblPlanosContasRow.nome}?${'\n'}ATENÇÃO! Todas as outras contas serão desativadas, apenas uma conta pode ficar ativa.'),
+                                                                                          actions: [
+                                                                                            TextButton(
+                                                                                              onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                              child: Text('Não'),
+                                                                                            ),
+                                                                                            TextButton(
+                                                                                              onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                              child: Text('Sim'),
+                                                                                            ),
+                                                                                          ],
+                                                                                        ),
                                                                                       );
                                                                                     },
                                                                                   ) ??
@@ -2332,19 +2349,21 @@ class _CpBancosContasWidgetState extends State<CpBancosContasWidget>
                                                                               var confirmDialogResponse = await showDialog<bool>(
                                                                                     context: context,
                                                                                     builder: (alertDialogContext) {
-                                                                                      return AlertDialog(
-                                                                                        title: Text('Atenção!'),
-                                                                                        content: Text('Deseja inativar a conta  ${listViewContasViewTblPlanosContasRow.nome}?'),
-                                                                                        actions: [
-                                                                                          TextButton(
-                                                                                            onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                            child: Text('Não'),
-                                                                                          ),
-                                                                                          TextButton(
-                                                                                            onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                            child: Text('Sim'),
-                                                                                          ),
-                                                                                        ],
+                                                                                      return WebViewAware(
+                                                                                        child: AlertDialog(
+                                                                                          title: Text('Atenção!'),
+                                                                                          content: Text('Deseja inativar a conta  ${listViewContasViewTblPlanosContasRow.nome}?'),
+                                                                                          actions: [
+                                                                                            TextButton(
+                                                                                              onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                              child: Text('Não'),
+                                                                                            ),
+                                                                                            TextButton(
+                                                                                              onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                              child: Text('Sim'),
+                                                                                            ),
+                                                                                          ],
+                                                                                        ),
                                                                                       );
                                                                                     },
                                                                                   ) ??
@@ -2414,18 +2433,20 @@ class _CpBancosContasWidgetState extends State<CpBancosContasWidget>
                                                   context: context,
                                                   builder:
                                                       (alertDialogContext) {
-                                                    return AlertDialog(
-                                                      title: Text('Atenção!'),
-                                                      content: Text(
-                                                          'Selecione um aplicativo.'),
-                                                      actions: [
-                                                        TextButton(
-                                                          onPressed: () =>
-                                                              Navigator.pop(
-                                                                  alertDialogContext),
-                                                          child: Text('Ok'),
-                                                        ),
-                                                      ],
+                                                    return WebViewAware(
+                                                      child: AlertDialog(
+                                                        title: Text('Atenção!'),
+                                                        content: Text(
+                                                            'Selecione um aplicativo.'),
+                                                        actions: [
+                                                          TextButton(
+                                                            onPressed: () =>
+                                                                Navigator.pop(
+                                                                    alertDialogContext),
+                                                            child: Text('Ok'),
+                                                          ),
+                                                        ],
+                                                      ),
                                                     );
                                                   },
                                                 );
@@ -2438,14 +2459,16 @@ class _CpBancosContasWidgetState extends State<CpBancosContasWidget>
                                                 enableDrag: false,
                                                 context: context,
                                                 builder: (context) {
-                                                  return Padding(
-                                                    padding:
-                                                        MediaQuery.viewInsetsOf(
-                                                            context),
-                                                    child: CpCadContasWidget(
-                                                      paramCadastro: true,
-                                                      paramIDAfiliadoApp: _model
-                                                          .dropDownAplicativo1Value!,
+                                                  return WebViewAware(
+                                                    child: Padding(
+                                                      padding: MediaQuery
+                                                          .viewInsetsOf(
+                                                              context),
+                                                      child: CpCadContasWidget(
+                                                        paramCadastro: true,
+                                                        paramIDAfiliadoApp: _model
+                                                            .dropDownAplicativo1Value!,
+                                                      ),
                                                     ),
                                                   );
                                                 },

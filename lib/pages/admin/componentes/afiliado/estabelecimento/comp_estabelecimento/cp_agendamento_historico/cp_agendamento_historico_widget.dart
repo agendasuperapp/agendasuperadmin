@@ -9,6 +9,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'cp_agendamento_historico_model.dart';
 export 'cp_agendamento_historico_model.dart';
 
@@ -320,8 +321,10 @@ class _CpAgendamentoHistoricoWidgetState
                                             AlignmentDirectional(0.0, 0.0)
                                                 .resolve(
                                                     Directionality.of(context)),
-                                        child: CaAguardeWidget(
-                                          paramMostrarAnimacao: false,
+                                        child: WebViewAware(
+                                          child: CaAguardeWidget(
+                                            paramMostrarAnimacao: false,
+                                          ),
                                         ),
                                       );
                                     },
@@ -341,10 +344,12 @@ class _CpAgendamentoHistoricoWidgetState
                                     useSafeArea: true,
                                     context: context,
                                     builder: (context) {
-                                      return Padding(
-                                        padding:
-                                            MediaQuery.viewInsetsOf(context),
-                                        child: CpAgendamentoConsultarWidget(),
+                                      return WebViewAware(
+                                        child: Padding(
+                                          padding:
+                                              MediaQuery.viewInsetsOf(context),
+                                          child: CpAgendamentoConsultarWidget(),
+                                        ),
                                       );
                                     },
                                   ).then((value) => safeSetState(() {}));

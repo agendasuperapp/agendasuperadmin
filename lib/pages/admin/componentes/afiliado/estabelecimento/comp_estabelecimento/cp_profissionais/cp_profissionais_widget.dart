@@ -14,6 +14,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'cp_profissionais_model.dart';
 export 'cp_profissionais_model.dart';
 
@@ -733,9 +734,11 @@ class _CpProfissionaisWidgetState extends State<CpProfissionaisWidget>
                                                             .resolve(
                                                                 Directionality.of(
                                                                     context)),
-                                                    child: CaAguardeWidget(
-                                                      paramMostrarAnimacao:
-                                                          false,
+                                                    child: WebViewAware(
+                                                      child: CaAguardeWidget(
+                                                        paramMostrarAnimacao:
+                                                            false,
+                                                      ),
                                                     ),
                                                   );
                                                 },
@@ -754,16 +757,18 @@ class _CpProfissionaisWidgetState extends State<CpProfissionaisWidget>
                                                 useSafeArea: true,
                                                 context: context,
                                                 builder: (context) {
-                                                  return Padding(
-                                                    padding:
-                                                        MediaQuery.viewInsetsOf(
-                                                            context),
-                                                    child:
-                                                        CpCadProfissionaisWidget(
-                                                      paramCadastro: false,
-                                                      paramIDProfissional:
-                                                          listViewTblProfissionaisRow
-                                                              .id,
+                                                  return WebViewAware(
+                                                    child: Padding(
+                                                      padding: MediaQuery
+                                                          .viewInsetsOf(
+                                                              context),
+                                                      child:
+                                                          CpCadProfissionaisWidget(
+                                                        paramCadastro: false,
+                                                        paramIDProfissional:
+                                                            listViewTblProfissionaisRow
+                                                                .id,
+                                                      ),
                                                     ),
                                                   );
                                                 },
@@ -820,10 +825,13 @@ class _CpProfissionaisWidgetState extends State<CpProfissionaisWidget>
                                                                       Directionality.of(
                                                                           context)),
                                                               child:
-                                                                  CpFotoWidget(
-                                                                paramFoto:
-                                                                    listViewTblProfissionaisRow
-                                                                        .foto!,
+                                                                  WebViewAware(
+                                                                child:
+                                                                    CpFotoWidget(
+                                                                  paramFoto:
+                                                                      listViewTblProfissionaisRow
+                                                                          .foto!,
+                                                                ),
                                                               ),
                                                             );
                                                           },
@@ -833,20 +841,23 @@ class _CpProfissionaisWidgetState extends State<CpProfissionaisWidget>
                                                           context: context,
                                                           builder:
                                                               (alertDialogContext) {
-                                                            return AlertDialog(
-                                                              title: Text(
-                                                                  'Atenção!'),
-                                                              content: Text(
-                                                                  'Profissional sem foto de perfil...'),
-                                                              actions: [
-                                                                TextButton(
-                                                                  onPressed: () =>
-                                                                      Navigator.pop(
-                                                                          alertDialogContext),
-                                                                  child: Text(
-                                                                      'Ok'),
-                                                                ),
-                                                              ],
+                                                            return WebViewAware(
+                                                              child:
+                                                                  AlertDialog(
+                                                                title: Text(
+                                                                    'Atenção!'),
+                                                                content: Text(
+                                                                    'Profissional sem foto de perfil...'),
+                                                                actions: [
+                                                                  TextButton(
+                                                                    onPressed: () =>
+                                                                        Navigator.pop(
+                                                                            alertDialogContext),
+                                                                    child: Text(
+                                                                        'Ok'),
+                                                                  ),
+                                                                ],
+                                                              ),
                                                             );
                                                           },
                                                         );
@@ -1243,17 +1254,19 @@ class _CpProfissionaisWidgetState extends State<CpProfissionaisWidget>
                             await showDialog(
                               context: context,
                               builder: (alertDialogContext) {
-                                return AlertDialog(
-                                  title: Text('Atenção!'),
-                                  content: Text(
-                                      'Você já tem ${_model.queryQtProfissionaisCad?.firstOrNull?.quant?.toString()}${_model.queryQtProfissionaisCad?.firstOrNull?.quant == 1 ? ' profissional cadastrado' : ' profissionais cadastrados'} no sistema e seu plano  permite cadastrar ${FFAppState().VarTblEstabelecimentoLogado.quantProfissionaisMax.toString()}${FFAppState().VarTblEstabelecimentoLogado.quantProfissionaisMax == 1 ? ' profissional.' : ' profissionais.'}${'\n\n'}Escolha outro plano ou desative algum profissional.'),
-                                  actions: [
-                                    TextButton(
-                                      onPressed: () =>
-                                          Navigator.pop(alertDialogContext),
-                                      child: Text('Ok'),
-                                    ),
-                                  ],
+                                return WebViewAware(
+                                  child: AlertDialog(
+                                    title: Text('Atenção!'),
+                                    content: Text(
+                                        'Você já tem ${_model.queryQtProfissionaisCad?.firstOrNull?.quant?.toString()}${_model.queryQtProfissionaisCad?.firstOrNull?.quant == 1 ? ' profissional cadastrado' : ' profissionais cadastrados'} no sistema e seu plano  permite cadastrar ${FFAppState().VarTblEstabelecimentoLogado.quantProfissionaisMax.toString()}${FFAppState().VarTblEstabelecimentoLogado.quantProfissionaisMax == 1 ? ' profissional.' : ' profissionais.'}${'\n\n'}Escolha outro plano ou desative algum profissional.'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () =>
+                                            Navigator.pop(alertDialogContext),
+                                        child: Text('Ok'),
+                                      ),
+                                    ],
+                                  ),
                                 );
                               },
                             );
@@ -1289,8 +1302,10 @@ class _CpProfissionaisWidgetState extends State<CpProfissionaisWidget>
                                   backgroundColor: Colors.transparent,
                                   alignment: AlignmentDirectional(0.0, 0.0)
                                       .resolve(Directionality.of(context)),
-                                  child: CaAguardeWidget(
-                                    paramMostrarAnimacao: false,
+                                  child: WebViewAware(
+                                    child: CaAguardeWidget(
+                                      paramMostrarAnimacao: false,
+                                    ),
                                   ),
                                 );
                               },
@@ -1306,10 +1321,12 @@ class _CpProfissionaisWidgetState extends State<CpProfissionaisWidget>
                               useSafeArea: true,
                               context: context,
                               builder: (context) {
-                                return Padding(
-                                  padding: MediaQuery.viewInsetsOf(context),
-                                  child: CpCadProfissionaisWidget(
-                                    paramCadastro: true,
+                                return WebViewAware(
+                                  child: Padding(
+                                    padding: MediaQuery.viewInsetsOf(context),
+                                    child: CpCadProfissionaisWidget(
+                                      paramCadastro: true,
+                                    ),
                                   ),
                                 );
                               },

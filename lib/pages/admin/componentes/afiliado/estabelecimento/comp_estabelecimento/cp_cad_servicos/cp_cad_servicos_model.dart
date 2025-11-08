@@ -7,6 +7,7 @@ import '/actions/actions.dart' as action_blocks;
 import '/flutter_flow/custom_functions.dart' as functions;
 import 'cp_cad_servicos_widget.dart' show CpCadServicosWidget;
 import 'package:flutter/material.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 
 class CpCadServicosModel extends FlutterFlowModel<CpCadServicosWidget> {
   ///  Local state fields for this component.
@@ -205,13 +206,15 @@ class CpCadServicosModel extends FlutterFlowModel<CpCadServicosWidget> {
           backgroundColor: Colors.transparent,
           context: context,
           builder: (context) {
-            return Padding(
-              padding: MediaQuery.viewInsetsOf(context),
-              child: CpDialogSnackBarWidget(
-                paramMensagem: 'Serviço adicionado com sucesso!',
-                paramCorTexto: FlutterFlowTheme.of(context).info,
-                paramCorFundo: FlutterFlowTheme.of(context).success,
-                paramTempoMsFechar: 2000,
+            return WebViewAware(
+              child: Padding(
+                padding: MediaQuery.viewInsetsOf(context),
+                child: CpDialogSnackBarWidget(
+                  paramMensagem: 'Serviço adicionado com sucesso!',
+                  paramCorTexto: FlutterFlowTheme.of(context).info,
+                  paramCorFundo: FlutterFlowTheme.of(context).success,
+                  paramTempoMsFechar: 2000,
+                ),
               ),
             );
           },

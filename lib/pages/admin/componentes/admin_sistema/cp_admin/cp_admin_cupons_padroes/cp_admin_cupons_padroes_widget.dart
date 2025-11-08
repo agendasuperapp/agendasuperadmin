@@ -16,6 +16,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'cp_admin_cupons_padroes_model.dart';
 export 'cp_admin_cupons_padroes_model.dart';
 
@@ -1011,9 +1012,11 @@ class _CpAdminCuponsPadroesWidgetState extends State<CpAdminCuponsPadroesWidget>
                                                             .resolve(
                                                                 Directionality.of(
                                                                     context)),
-                                                    child: CaAguardeWidget(
-                                                      paramMostrarAnimacao:
-                                                          false,
+                                                    child: WebViewAware(
+                                                      child: CaAguardeWidget(
+                                                        paramMostrarAnimacao:
+                                                            false,
+                                                      ),
                                                     ),
                                                   );
                                                 },
@@ -1032,17 +1035,19 @@ class _CpAdminCuponsPadroesWidgetState extends State<CpAdminCuponsPadroesWidget>
                                                 useSafeArea: true,
                                                 context: context,
                                                 builder: (context) {
-                                                  return Padding(
-                                                    padding:
-                                                        MediaQuery.viewInsetsOf(
-                                                            context),
-                                                    child:
-                                                        CpAdminCuponsPadroesCadWidget(
-                                                      paramCadastro: false,
-                                                      paramRowTblCupom:
-                                                          listViewCuponsViewTblAfiliadosCuponsAdminRow,
-                                                      paramIDAfiliadoApp: _model
-                                                          .dropDownAplicativoValue!,
+                                                  return WebViewAware(
+                                                    child: Padding(
+                                                      padding: MediaQuery
+                                                          .viewInsetsOf(
+                                                              context),
+                                                      child:
+                                                          CpAdminCuponsPadroesCadWidget(
+                                                        paramCadastro: false,
+                                                        paramRowTblCupom:
+                                                            listViewCuponsViewTblAfiliadosCuponsAdminRow,
+                                                        paramIDAfiliadoApp: _model
+                                                            .dropDownAplicativoValue!,
+                                                      ),
                                                     ),
                                                   );
                                                 },
@@ -1639,16 +1644,18 @@ class _CpAdminCuponsPadroesWidgetState extends State<CpAdminCuponsPadroesWidget>
                           await showDialog(
                             context: context,
                             builder: (alertDialogContext) {
-                              return AlertDialog(
-                                title: Text('Atenção!'),
-                                content: Text('Selecione um aplicativo.'),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () =>
-                                        Navigator.pop(alertDialogContext),
-                                    child: Text('Ok'),
-                                  ),
-                                ],
+                              return WebViewAware(
+                                child: AlertDialog(
+                                  title: Text('Atenção!'),
+                                  content: Text('Selecione um aplicativo.'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () =>
+                                          Navigator.pop(alertDialogContext),
+                                      child: Text('Ok'),
+                                    ),
+                                  ],
+                                ),
                               );
                             },
                           );
@@ -1686,9 +1693,11 @@ class _CpAdminCuponsPadroesWidgetState extends State<CpAdminCuponsPadroesWidget>
                                 backgroundColor: Colors.transparent,
                                 alignment: AlignmentDirectional(0.0, 0.0)
                                     .resolve(Directionality.of(context)),
-                                child: CaAguardeWidget(
-                                  paramMostrarAnimacao: false,
-                                  paramFecharAoClicar: true,
+                                child: WebViewAware(
+                                  child: CaAguardeWidget(
+                                    paramMostrarAnimacao: false,
+                                    paramFecharAoClicar: true,
+                                  ),
                                 ),
                               );
                             },
@@ -1704,12 +1713,14 @@ class _CpAdminCuponsPadroesWidgetState extends State<CpAdminCuponsPadroesWidget>
                             useSafeArea: true,
                             context: context,
                             builder: (context) {
-                              return Padding(
-                                padding: MediaQuery.viewInsetsOf(context),
-                                child: CpAdminCuponsPadroesCadWidget(
-                                  paramCadastro: true,
-                                  paramIDAfiliadoApp:
-                                      _model.dropDownAplicativoValue!,
+                              return WebViewAware(
+                                child: Padding(
+                                  padding: MediaQuery.viewInsetsOf(context),
+                                  child: CpAdminCuponsPadroesCadWidget(
+                                    paramCadastro: true,
+                                    paramIDAfiliadoApp:
+                                        _model.dropDownAplicativoValue!,
+                                  ),
                                 ),
                               );
                             },

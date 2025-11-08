@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'cp_admin_pag_saques_comprovante_model.dart';
 export 'cp_admin_pag_saques_comprovante_model.dart';
 
@@ -527,22 +528,28 @@ class _CpAdminPagSaquesComprovanteWidgetState
                                   await showDialog<bool>(
                                         context: context,
                                         builder: (alertDialogContext) {
-                                          return AlertDialog(
-                                            title: Text('Atenção!'),
-                                            content: Text(
-                                                'Deseja excluir o comprovante de pagamento?'),
-                                            actions: [
-                                              TextButton(
-                                                onPressed: () => Navigator.pop(
-                                                    alertDialogContext, false),
-                                                child: Text('Não'),
-                                              ),
-                                              TextButton(
-                                                onPressed: () => Navigator.pop(
-                                                    alertDialogContext, true),
-                                                child: Text('Sim'),
-                                              ),
-                                            ],
+                                          return WebViewAware(
+                                            child: AlertDialog(
+                                              title: Text('Atenção!'),
+                                              content: Text(
+                                                  'Deseja excluir o comprovante de pagamento?'),
+                                              actions: [
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext,
+                                                          false),
+                                                  child: Text('Não'),
+                                                ),
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          alertDialogContext,
+                                                          true),
+                                                  child: Text('Sim'),
+                                                ),
+                                              ],
+                                            ),
                                           );
                                         },
                                       ) ??
@@ -638,8 +645,10 @@ class _CpAdminPagSaquesComprovanteWidgetState
                                     backgroundColor: Colors.transparent,
                                     alignment: AlignmentDirectional(0.0, 0.0)
                                         .resolve(Directionality.of(context)),
-                                    child: CpFotoWidget(
-                                      paramFoto: _model.varComprovante!,
+                                    child: WebViewAware(
+                                      child: CpFotoWidget(
+                                        paramFoto: _model.varComprovante!,
+                                      ),
                                     ),
                                   );
                                 },
@@ -648,16 +657,18 @@ class _CpAdminPagSaquesComprovanteWidgetState
                               await showDialog(
                                 context: context,
                                 builder: (alertDialogContext) {
-                                  return AlertDialog(
-                                    title: Text('Atenção!'),
-                                    content: Text('Sem comprovante...'),
-                                    actions: [
-                                      TextButton(
-                                        onPressed: () =>
-                                            Navigator.pop(alertDialogContext),
-                                        child: Text('Ok'),
-                                      ),
-                                    ],
+                                  return WebViewAware(
+                                    child: AlertDialog(
+                                      title: Text('Atenção!'),
+                                      content: Text('Sem comprovante...'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(alertDialogContext),
+                                          child: Text('Ok'),
+                                        ),
+                                      ],
+                                    ),
                                   );
                                 },
                               );
@@ -689,16 +700,18 @@ class _CpAdminPagSaquesComprovanteWidgetState
                             await showDialog(
                               context: context,
                               builder: (alertDialogContext) {
-                                return AlertDialog(
-                                  title: Text('Atenção!'),
-                                  content: Text('Anexe um comprovante!'),
-                                  actions: [
-                                    TextButton(
-                                      onPressed: () =>
-                                          Navigator.pop(alertDialogContext),
-                                      child: Text('Ok'),
-                                    ),
-                                  ],
+                                return WebViewAware(
+                                  child: AlertDialog(
+                                    title: Text('Atenção!'),
+                                    content: Text('Anexe um comprovante!'),
+                                    actions: [
+                                      TextButton(
+                                        onPressed: () =>
+                                            Navigator.pop(alertDialogContext),
+                                        child: Text('Ok'),
+                                      ),
+                                    ],
+                                  ),
                                 );
                               },
                             );
@@ -707,28 +720,30 @@ class _CpAdminPagSaquesComprovanteWidgetState
                           var confirmDialogResponse = await showDialog<bool>(
                                 context: context,
                                 builder: (alertDialogContext) {
-                                  return AlertDialog(
-                                    title: Text('Atenção!'),
-                                    content: Text(
-                                        'Confirma o pagamento da comissão de ${formatNumber(
-                                      widget
-                                          .paramRowViewTblAfiliadoSaque?.valor,
-                                      formatType: FormatType.decimal,
-                                      decimalType: DecimalType.commaDecimal,
-                                      currency: 'R\$',
-                                    )} do afiliado ${widget.paramRowViewTblAfiliadoSaque?.nome}?'),
-                                    actions: [
-                                      TextButton(
-                                        onPressed: () => Navigator.pop(
-                                            alertDialogContext, false),
-                                        child: Text('Não'),
-                                      ),
-                                      TextButton(
-                                        onPressed: () => Navigator.pop(
-                                            alertDialogContext, true),
-                                        child: Text('Sim'),
-                                      ),
-                                    ],
+                                  return WebViewAware(
+                                    child: AlertDialog(
+                                      title: Text('Atenção!'),
+                                      content: Text(
+                                          'Confirma o pagamento da comissão de ${formatNumber(
+                                        widget.paramRowViewTblAfiliadoSaque
+                                            ?.valor,
+                                        formatType: FormatType.decimal,
+                                        decimalType: DecimalType.commaDecimal,
+                                        currency: 'R\$',
+                                      )} do afiliado ${widget.paramRowViewTblAfiliadoSaque?.nome}?'),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () => Navigator.pop(
+                                              alertDialogContext, false),
+                                          child: Text('Não'),
+                                        ),
+                                        TextButton(
+                                          onPressed: () => Navigator.pop(
+                                              alertDialogContext, true),
+                                          child: Text('Sim'),
+                                        ),
+                                      ],
+                                    ),
                                   );
                                 },
                               ) ??

@@ -121,3 +121,5 @@ export '/pages/admin/componentes/afiliado/estabelecimento/pg_estabelecimento/pg_
     show PgEstabelecimentoCadWidget;
 export '/pages/admin/componentes/afiliado/estabelecimento/pg_estabelecimento/pg_agendamentos_diarios/pg_agendamentos_diarios_widget.dart'
     show PgAgendamentosDiariosWidget;
+export '/pages/admin/a_sistema/home/pg_politica_privacidade/pg_politica_privacidade_widget.dart'
+    show PgPoliticaPrivacidadeWidget;

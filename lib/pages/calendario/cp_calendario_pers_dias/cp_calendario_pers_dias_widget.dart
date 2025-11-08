@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'cp_calendario_pers_dias_model.dart';
 export 'cp_calendario_pers_dias_model.dart';
 
@@ -325,16 +326,18 @@ class _CpCalendarioPersDiasWidgetState
                                 useSafeArea: true,
                                 context: context,
                                 builder: (context) {
-                                  return Padding(
-                                    padding: MediaQuery.viewInsetsOf(context),
-                                    child: CpDialogSnackBarWidget(
-                                      paramMensagem:
-                                          'Selecione uma data maior ou igual a hoje',
-                                      paramCorTexto:
-                                          FlutterFlowTheme.of(context).info,
-                                      paramCorFundo:
-                                          FlutterFlowTheme.of(context).error,
-                                      paramTempoMsFechar: 1000,
+                                  return WebViewAware(
+                                    child: Padding(
+                                      padding: MediaQuery.viewInsetsOf(context),
+                                      child: CpDialogSnackBarWidget(
+                                        paramMensagem:
+                                            'Selecione uma data maior ou igual a hoje',
+                                        paramCorTexto:
+                                            FlutterFlowTheme.of(context).info,
+                                        paramCorFundo:
+                                            FlutterFlowTheme.of(context).error,
+                                        paramTempoMsFechar: 1000,
+                                      ),
                                     ),
                                   );
                                 },

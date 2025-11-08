@@ -23,6 +23,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'cp_afiliado_dashboard_model.dart';
 export 'cp_afiliado_dashboard_model.dart';
 
@@ -573,10 +574,12 @@ class _CpAfiliadoDashboardWidgetState extends State<CpAfiliadoDashboardWidget>
                                                           .resolve(
                                                               Directionality.of(
                                                                   context)),
-                                                  child: CpFotoWidget(
-                                                    paramFoto: FFAppState()
-                                                        .varTblAfiliado
-                                                        .fotoPerfil,
+                                                  child: WebViewAware(
+                                                    child: CpFotoWidget(
+                                                      paramFoto: FFAppState()
+                                                          .varTblAfiliado
+                                                          .fotoPerfil,
+                                                    ),
                                                   ),
                                                 );
                                               },
@@ -585,17 +588,19 @@ class _CpAfiliadoDashboardWidgetState extends State<CpAfiliadoDashboardWidget>
                                             await showDialog(
                                               context: context,
                                               builder: (alertDialogContext) {
-                                                return AlertDialog(
-                                                  title: Text('Atenção!'),
-                                                  content: Text('Sem Foto'),
-                                                  actions: [
-                                                    TextButton(
-                                                      onPressed: () =>
-                                                          Navigator.pop(
-                                                              alertDialogContext),
-                                                      child: Text('Ok'),
-                                                    ),
-                                                  ],
+                                                return WebViewAware(
+                                                  child: AlertDialog(
+                                                    title: Text('Atenção!'),
+                                                    content: Text('Sem Foto'),
+                                                    actions: [
+                                                      TextButton(
+                                                        onPressed: () =>
+                                                            Navigator.pop(
+                                                                alertDialogContext),
+                                                        child: Text('Ok'),
+                                                      ),
+                                                    ],
+                                                  ),
                                                 );
                                               },
                                             );
@@ -1063,14 +1068,16 @@ class _CpAfiliadoDashboardWidgetState extends State<CpAfiliadoDashboardWidget>
                                                               .resolve(
                                                                   Directionality.of(
                                                                       context)),
-                                                      child: CpFotoWidget(
-                                                        paramFoto:
-                                                            valueOrDefault<
-                                                                String>(
-                                                          FFAppState()
-                                                              .varTblAfiliado
-                                                              .fotoPerfil,
-                                                          'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/agendador-de-beleza-qia8mb/assets/lp37pdsm6md0/sem-imagem.jpg',
+                                                      child: WebViewAware(
+                                                        child: CpFotoWidget(
+                                                          paramFoto:
+                                                              valueOrDefault<
+                                                                  String>(
+                                                            FFAppState()
+                                                                .varTblAfiliado
+                                                                .fotoPerfil,
+                                                            'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/agendador-de-beleza-qia8mb/assets/lp37pdsm6md0/sem-imagem.jpg',
+                                                          ),
                                                         ),
                                                       ),
                                                     );
@@ -1081,17 +1088,20 @@ class _CpAfiliadoDashboardWidgetState extends State<CpAfiliadoDashboardWidget>
                                                   context: context,
                                                   builder:
                                                       (alertDialogContext) {
-                                                    return AlertDialog(
-                                                      title: Text('Atenção!'),
-                                                      content: Text('Sem Foto'),
-                                                      actions: [
-                                                        TextButton(
-                                                          onPressed: () =>
-                                                              Navigator.pop(
-                                                                  alertDialogContext),
-                                                          child: Text('Ok'),
-                                                        ),
-                                                      ],
+                                                    return WebViewAware(
+                                                      child: AlertDialog(
+                                                        title: Text('Atenção!'),
+                                                        content:
+                                                            Text('Sem Foto'),
+                                                        actions: [
+                                                          TextButton(
+                                                            onPressed: () =>
+                                                                Navigator.pop(
+                                                                    alertDialogContext),
+                                                            child: Text('Ok'),
+                                                          ),
+                                                        ],
+                                                      ),
                                                     );
                                                   },
                                                 );
@@ -7976,9 +7986,12 @@ class _CpAfiliadoDashboardWidgetState extends State<CpAfiliadoDashboardWidget>
                                                                         alignment:
                                                                             AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                         child:
-                                                                            CpFotoWidget(
-                                                                          paramFoto:
-                                                                              userRolesPCCELViewTblAfiliadosRow.fotoPerfil!,
+                                                                            WebViewAware(
+                                                                          child:
+                                                                              CpFotoWidget(
+                                                                            paramFoto:
+                                                                                userRolesPCCELViewTblAfiliadosRow.fotoPerfil!,
+                                                                          ),
                                                                         ),
                                                                       );
                                                                     },
@@ -7989,19 +8002,20 @@ class _CpAfiliadoDashboardWidgetState extends State<CpAfiliadoDashboardWidget>
                                                                         context,
                                                                     builder:
                                                                         (alertDialogContext) {
-                                                                      return AlertDialog(
-                                                                        title: Text(
-                                                                            'Atenção!'),
-                                                                        content:
-                                                                            Text('Sem Foto'),
-                                                                        actions: [
-                                                                          TextButton(
-                                                                            onPressed: () =>
-                                                                                Navigator.pop(alertDialogContext),
-                                                                            child:
-                                                                                Text('Ok'),
-                                                                          ),
-                                                                        ],
+                                                                      return WebViewAware(
+                                                                        child:
+                                                                            AlertDialog(
+                                                                          title:
+                                                                              Text('Atenção!'),
+                                                                          content:
+                                                                              Text('Sem Foto'),
+                                                                          actions: [
+                                                                            TextButton(
+                                                                              onPressed: () => Navigator.pop(alertDialogContext),
+                                                                              child: Text('Ok'),
+                                                                            ),
+                                                                          ],
+                                                                        ),
                                                                       );
                                                                     },
                                                                   );
@@ -8979,9 +8993,12 @@ class _CpAfiliadoDashboardWidgetState extends State<CpAfiliadoDashboardWidget>
                                                                         alignment:
                                                                             AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                         child:
-                                                                            CpFotoWidget(
-                                                                          paramFoto:
-                                                                              listViewComissaoPCViewTblAfiliadosComissaoRow.fotoPerfil!,
+                                                                            WebViewAware(
+                                                                          child:
+                                                                              CpFotoWidget(
+                                                                            paramFoto:
+                                                                                listViewComissaoPCViewTblAfiliadosComissaoRow.fotoPerfil!,
+                                                                          ),
                                                                         ),
                                                                       );
                                                                     },
@@ -8992,19 +9009,20 @@ class _CpAfiliadoDashboardWidgetState extends State<CpAfiliadoDashboardWidget>
                                                                         context,
                                                                     builder:
                                                                         (alertDialogContext) {
-                                                                      return AlertDialog(
-                                                                        title: Text(
-                                                                            'Atenção!'),
-                                                                        content:
-                                                                            Text('Sem Foto'),
-                                                                        actions: [
-                                                                          TextButton(
-                                                                            onPressed: () =>
-                                                                                Navigator.pop(alertDialogContext),
-                                                                            child:
-                                                                                Text('Ok'),
-                                                                          ),
-                                                                        ],
+                                                                      return WebViewAware(
+                                                                        child:
+                                                                            AlertDialog(
+                                                                          title:
+                                                                              Text('Atenção!'),
+                                                                          content:
+                                                                              Text('Sem Foto'),
+                                                                          actions: [
+                                                                            TextButton(
+                                                                              onPressed: () => Navigator.pop(alertDialogContext),
+                                                                              child: Text('Ok'),
+                                                                            ),
+                                                                          ],
+                                                                        ),
                                                                       );
                                                                     },
                                                                   );
@@ -9856,10 +9874,12 @@ class _CpAfiliadoDashboardWidgetState extends State<CpAfiliadoDashboardWidget>
                                                                         .resolve(
                                                                             Directionality.of(context)),
                                                                     child:
-                                                                        CpFotoWidget(
-                                                                      paramFoto:
-                                                                          listViewComissaoCELViewTblAfiliadosComissaoRow
-                                                                              .fotoPerfil!,
+                                                                        WebViewAware(
+                                                                      child:
+                                                                          CpFotoWidget(
+                                                                        paramFoto:
+                                                                            listViewComissaoCELViewTblAfiliadosComissaoRow.fotoPerfil!,
+                                                                      ),
                                                                     ),
                                                                   );
                                                                 },
@@ -9870,20 +9890,22 @@ class _CpAfiliadoDashboardWidgetState extends State<CpAfiliadoDashboardWidget>
                                                                     context,
                                                                 builder:
                                                                     (alertDialogContext) {
-                                                                  return AlertDialog(
-                                                                    title: Text(
-                                                                        'Atenção!'),
-                                                                    content: Text(
-                                                                        'Sem Foto'),
-                                                                    actions: [
-                                                                      TextButton(
-                                                                        onPressed:
-                                                                            () =>
-                                                                                Navigator.pop(alertDialogContext),
-                                                                        child: Text(
-                                                                            'Ok'),
-                                                                      ),
-                                                                    ],
+                                                                  return WebViewAware(
+                                                                    child:
+                                                                        AlertDialog(
+                                                                      title: Text(
+                                                                          'Atenção!'),
+                                                                      content: Text(
+                                                                          'Sem Foto'),
+                                                                      actions: [
+                                                                        TextButton(
+                                                                          onPressed: () =>
+                                                                              Navigator.pop(alertDialogContext),
+                                                                          child:
+                                                                              Text('Ok'),
+                                                                        ),
+                                                                      ],
+                                                                    ),
                                                                   );
                                                                 },
                                                               );
@@ -10677,10 +10699,13 @@ class _CpAfiliadoDashboardWidgetState extends State<CpAfiliadoDashboardWidget>
                                                                           Directionality.of(
                                                                               context)),
                                                                   child:
-                                                                      CpFotoWidget(
-                                                                    paramFoto:
-                                                                        listViewAtivPCCELViewTblAfiliadosAtividadesRow
-                                                                            .fotoPerfil!,
+                                                                      WebViewAware(
+                                                                    child:
+                                                                        CpFotoWidget(
+                                                                      paramFoto:
+                                                                          listViewAtivPCCELViewTblAfiliadosAtividadesRow
+                                                                              .fotoPerfil!,
+                                                                    ),
                                                                   ),
                                                                 );
                                                               },
@@ -10690,20 +10715,23 @@ class _CpAfiliadoDashboardWidgetState extends State<CpAfiliadoDashboardWidget>
                                                               context: context,
                                                               builder:
                                                                   (alertDialogContext) {
-                                                                return AlertDialog(
-                                                                  title: Text(
-                                                                      'Atenção!'),
-                                                                  content: Text(
-                                                                      'Sem Foto'),
-                                                                  actions: [
-                                                                    TextButton(
-                                                                      onPressed:
-                                                                          () =>
-                                                                              Navigator.pop(alertDialogContext),
-                                                                      child: Text(
-                                                                          'Ok'),
-                                                                    ),
-                                                                  ],
+                                                                return WebViewAware(
+                                                                  child:
+                                                                      AlertDialog(
+                                                                    title: Text(
+                                                                        'Atenção!'),
+                                                                    content: Text(
+                                                                        'Sem Foto'),
+                                                                    actions: [
+                                                                      TextButton(
+                                                                        onPressed:
+                                                                            () =>
+                                                                                Navigator.pop(alertDialogContext),
+                                                                        child: Text(
+                                                                            'Ok'),
+                                                                      ),
+                                                                    ],
+                                                                  ),
                                                                 );
                                                               },
                                                             );

@@ -4,6 +4,7 @@ import '/index.dart';
 import 'cp_login_widget.dart' show CpLoginWidget;
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 
 class CpLoginModel extends FlutterFlowModel<CpLoginWidget> {
   ///  Local state fields for this component.
@@ -141,15 +142,17 @@ class CpLoginModel extends FlutterFlowModel<CpLoginWidget> {
       await showDialog(
         context: context,
         builder: (alertDialogContext) {
-          return AlertDialog(
-            title: Text('Atenção '),
-            content: Text('Falha no login, verifique seu E-mail e senha '),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(alertDialogContext),
-                child: Text('Ok'),
-              ),
-            ],
+          return WebViewAware(
+            child: AlertDialog(
+              title: Text('Atenção '),
+              content: Text('Falha no login, verifique seu E-mail e senha '),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(alertDialogContext),
+                  child: Text('Ok'),
+                ),
+              ],
+            ),
           );
         },
       );

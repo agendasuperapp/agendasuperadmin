@@ -16,6 +16,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'cp_plano_model.dart';
 export 'cp_plano_model.dart';
 
@@ -2314,19 +2315,21 @@ class _CpPlanoWidgetState extends State<CpPlanoWidget>
                                                                                 context,
                                                                             builder:
                                                                                 (alertDialogContext) {
-                                                                              return AlertDialog(
-                                                                                title: Text('Atenção!'),
-                                                                                content: Text('Deseja cancelar a assinatura?'),
-                                                                                actions: [
-                                                                                  TextButton(
-                                                                                    onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                    child: Text('Não'),
-                                                                                  ),
-                                                                                  TextButton(
-                                                                                    onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                    child: Text('Sim'),
-                                                                                  ),
-                                                                                ],
+                                                                              return WebViewAware(
+                                                                                child: AlertDialog(
+                                                                                  title: Text('Atenção!'),
+                                                                                  content: Text('Deseja cancelar a assinatura?'),
+                                                                                  actions: [
+                                                                                    TextButton(
+                                                                                      onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                      child: Text('Não'),
+                                                                                    ),
+                                                                                    TextButton(
+                                                                                      onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                      child: Text('Sim'),
+                                                                                    ),
+                                                                                  ],
+                                                                                ),
                                                                               );
                                                                             },
                                                                           ) ??
@@ -2394,17 +2397,20 @@ class _CpPlanoWidgetState extends State<CpPlanoWidget>
                                                                           context,
                                                                       builder:
                                                                           (alertDialogContext) {
-                                                                        return AlertDialog(
-                                                                          title:
-                                                                              Text('Atenção!'),
-                                                                          content:
-                                                                              Text('Assinatura cancelada...'),
-                                                                          actions: [
-                                                                            TextButton(
-                                                                              onPressed: () => Navigator.pop(alertDialogContext),
-                                                                              child: Text('Ok'),
-                                                                            ),
-                                                                          ],
+                                                                        return WebViewAware(
+                                                                          child:
+                                                                              AlertDialog(
+                                                                            title:
+                                                                                Text('Atenção!'),
+                                                                            content:
+                                                                                Text('Assinatura cancelada...'),
+                                                                            actions: [
+                                                                              TextButton(
+                                                                                onPressed: () => Navigator.pop(alertDialogContext),
+                                                                                child: Text('Ok'),
+                                                                              ),
+                                                                            ],
+                                                                          ),
                                                                         );
                                                                       },
                                                                     );
@@ -2498,19 +2504,21 @@ class _CpPlanoWidgetState extends State<CpPlanoWidget>
                                                                                 context,
                                                                             builder:
                                                                                 (alertDialogContext) {
-                                                                              return AlertDialog(
-                                                                                title: Text('Atenção!'),
-                                                                                content: Text('Deseja cancelar o plano?'),
-                                                                                actions: [
-                                                                                  TextButton(
-                                                                                    onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                    child: Text('Não'),
-                                                                                  ),
-                                                                                  TextButton(
-                                                                                    onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                    child: Text('Sim'),
-                                                                                  ),
-                                                                                ],
+                                                                              return WebViewAware(
+                                                                                child: AlertDialog(
+                                                                                  title: Text('Atenção!'),
+                                                                                  content: Text('Deseja cancelar o plano?'),
+                                                                                  actions: [
+                                                                                    TextButton(
+                                                                                      onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                      child: Text('Não'),
+                                                                                    ),
+                                                                                    TextButton(
+                                                                                      onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                      child: Text('Sim'),
+                                                                                    ),
+                                                                                  ],
+                                                                                ),
                                                                               );
                                                                             },
                                                                           ) ??
@@ -2578,17 +2586,20 @@ class _CpPlanoWidgetState extends State<CpPlanoWidget>
                                                                           context,
                                                                       builder:
                                                                           (alertDialogContext) {
-                                                                        return AlertDialog(
-                                                                          title:
-                                                                              Text('Atenção!'),
-                                                                          content:
-                                                                              Text('Cancelando com sucesso...'),
-                                                                          actions: [
-                                                                            TextButton(
-                                                                              onPressed: () => Navigator.pop(alertDialogContext),
-                                                                              child: Text('Ok'),
-                                                                            ),
-                                                                          ],
+                                                                        return WebViewAware(
+                                                                          child:
+                                                                              AlertDialog(
+                                                                            title:
+                                                                                Text('Atenção!'),
+                                                                            content:
+                                                                                Text('Cancelando com sucesso...'),
+                                                                            actions: [
+                                                                              TextButton(
+                                                                                onPressed: () => Navigator.pop(alertDialogContext),
+                                                                                child: Text('Ok'),
+                                                                              ),
+                                                                            ],
+                                                                          ),
                                                                         );
                                                                       },
                                                                     );
@@ -2849,17 +2860,20 @@ class _CpPlanoWidgetState extends State<CpPlanoWidget>
                                                                           context,
                                                                       builder:
                                                                           (alertDialogContext) {
-                                                                        return AlertDialog(
-                                                                          title:
-                                                                              Text('Atenção!'),
-                                                                          content:
-                                                                              Text('Cancelamento desfeito com sucesso, obrigado por containuar conosco.'),
-                                                                          actions: [
-                                                                            TextButton(
-                                                                              onPressed: () => Navigator.pop(alertDialogContext),
-                                                                              child: Text('Ok'),
-                                                                            ),
-                                                                          ],
+                                                                        return WebViewAware(
+                                                                          child:
+                                                                              AlertDialog(
+                                                                            title:
+                                                                                Text('Atenção!'),
+                                                                            content:
+                                                                                Text('Cancelamento desfeito com sucesso, obrigado por containuar conosco.'),
+                                                                            actions: [
+                                                                              TextButton(
+                                                                                onPressed: () => Navigator.pop(alertDialogContext),
+                                                                                child: Text('Ok'),
+                                                                              ),
+                                                                            ],
+                                                                          ),
                                                                         );
                                                                       },
                                                                     );

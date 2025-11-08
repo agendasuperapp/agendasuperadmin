@@ -32,6 +32,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'cp_estabelecimento_cad_model.dart';
 export 'cp_estabelecimento_cad_model.dart';
 
@@ -542,18 +543,20 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                 await showDialog(
                                   context: context,
                                   builder: (alertDialogContext) {
-                                    return AlertDialog(
-                                      title: Text('Teste'),
-                                      content: Text(FFAppState()
-                                          .VarIDEstabelecimentoLogado
-                                          .toString()),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () =>
-                                              Navigator.pop(alertDialogContext),
-                                          child: Text('Ok'),
-                                        ),
-                                      ],
+                                    return WebViewAware(
+                                      child: AlertDialog(
+                                        title: Text('Teste'),
+                                        content: Text(FFAppState()
+                                            .VarIDEstabelecimentoLogado
+                                            .toString()),
+                                        actions: [
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(
+                                                alertDialogContext),
+                                            child: Text('Ok'),
+                                          ),
+                                        ],
+                                      ),
                                     );
                                   },
                                 );
@@ -1009,10 +1012,11 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                           alignment:
                                                                               AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                           child:
-                                                                              CpFotoWidget(
-                                                                            paramFoto: _model.uploadedFileUrl_uploadDataEstabelecimentoPerfil1 != ''
-                                                                                ? _model.uploadedFileUrl_uploadDataEstabelecimentoPerfil1
-                                                                                : FFAppState().VarTblEstabelecimentoLogado.fotoPerfil,
+                                                                              WebViewAware(
+                                                                            child:
+                                                                                CpFotoWidget(
+                                                                              paramFoto: _model.uploadedFileUrl_uploadDataEstabelecimentoPerfil1 != '' ? _model.uploadedFileUrl_uploadDataEstabelecimentoPerfil1 : FFAppState().VarTblEstabelecimentoLogado.fotoPerfil,
+                                                                            ),
                                                                           ),
                                                                         );
                                                                       },
@@ -1023,17 +1027,20 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                           context,
                                                                       builder:
                                                                           (alertDialogContext) {
-                                                                        return AlertDialog(
-                                                                          title:
-                                                                              Text('Atenção!'),
-                                                                          content:
-                                                                              Text('Adicione uma foto...'),
-                                                                          actions: [
-                                                                            TextButton(
-                                                                              onPressed: () => Navigator.pop(alertDialogContext),
-                                                                              child: Text('Ok'),
-                                                                            ),
-                                                                          ],
+                                                                        return WebViewAware(
+                                                                          child:
+                                                                              AlertDialog(
+                                                                            title:
+                                                                                Text('Atenção!'),
+                                                                            content:
+                                                                                Text('Adicione uma foto...'),
+                                                                            actions: [
+                                                                              TextButton(
+                                                                                onPressed: () => Navigator.pop(alertDialogContext),
+                                                                                child: Text('Ok'),
+                                                                              ),
+                                                                            ],
+                                                                          ),
                                                                         );
                                                                       },
                                                                     );
@@ -1357,24 +1364,26 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                   .transparent,
                                                           context: context,
                                                           builder: (context) {
-                                                            return Padding(
-                                                              padding: MediaQuery
-                                                                  .viewInsetsOf(
-                                                                      context),
-                                                              child:
-                                                                  CpDialogSnackBarWidget(
-                                                                paramMensagem:
-                                                                    'Foto atualizada...',
-                                                                paramCorTexto:
-                                                                    FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .info,
-                                                                paramCorFundo:
-                                                                    FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .success,
-                                                                paramTempoMsFechar:
-                                                                    1000,
+                                                            return WebViewAware(
+                                                              child: Padding(
+                                                                padding: MediaQuery
+                                                                    .viewInsetsOf(
+                                                                        context),
+                                                                child:
+                                                                    CpDialogSnackBarWidget(
+                                                                  paramMensagem:
+                                                                      'Foto atualizada...',
+                                                                  paramCorTexto:
+                                                                      FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .info,
+                                                                  paramCorFundo:
+                                                                      FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .success,
+                                                                  paramTempoMsFechar:
+                                                                      1000,
+                                                                ),
                                                               ),
                                                             );
                                                           },
@@ -2548,15 +2557,17 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                               await showDialog(
                                                                                 context: context,
                                                                                 builder: (alertDialogContext) {
-                                                                                  return AlertDialog(
-                                                                                    title: Text('Atenção!'),
-                                                                                    content: Text('O máximo de Banners são 6'),
-                                                                                    actions: [
-                                                                                      TextButton(
-                                                                                        onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                        child: Text('Ok'),
-                                                                                      ),
-                                                                                    ],
+                                                                                  return WebViewAware(
+                                                                                    child: AlertDialog(
+                                                                                      title: Text('Atenção!'),
+                                                                                      content: Text('O máximo de Banners são 6'),
+                                                                                      actions: [
+                                                                                        TextButton(
+                                                                                          onPressed: () => Navigator.pop(alertDialogContext),
+                                                                                          child: Text('Ok'),
+                                                                                        ),
+                                                                                      ],
+                                                                                    ),
                                                                                   );
                                                                                 },
                                                                               );
@@ -2616,9 +2627,11 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                                     insetPadding: EdgeInsets.zero,
                                                                                     backgroundColor: Colors.transparent,
                                                                                     alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-                                                                                    child: CaAguardeWidget(
-                                                                                      paramMostrarAnimacao: true,
-                                                                                      paramFecharAoClicar: false,
+                                                                                    child: WebViewAware(
+                                                                                      child: CaAguardeWidget(
+                                                                                        paramMostrarAnimacao: true,
+                                                                                        paramFecharAoClicar: false,
+                                                                                      ),
                                                                                     ),
                                                                                   );
                                                                                 },
@@ -2814,8 +2827,10 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                                                       insetPadding: EdgeInsets.zero,
                                                                                                       backgroundColor: Colors.transparent,
                                                                                                       alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-                                                                                                      child: CpFotoWidget(
-                                                                                                        paramFoto: rowBannersTblEstabelecimentoBannersRow.foto,
+                                                                                                      child: WebViewAware(
+                                                                                                        child: CpFotoWidget(
+                                                                                                          paramFoto: rowBannersTblEstabelecimentoBannersRow.foto,
+                                                                                                        ),
                                                                                                       ),
                                                                                                     );
                                                                                                   },
@@ -2875,15 +2890,17 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                                                         await showDialog(
                                                                                                           context: context,
                                                                                                           builder: (alertDialogContext) {
-                                                                                                            return AlertDialog(
-                                                                                                              title: Text('A'),
-                                                                                                              content: Text('Pelo menos um Banner deve ficar ativo... Edite este ou adicione ou novo'),
-                                                                                                              actions: [
-                                                                                                                TextButton(
-                                                                                                                  onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                                                  child: Text('Ok'),
-                                                                                                                ),
-                                                                                                              ],
+                                                                                                            return WebViewAware(
+                                                                                                              child: AlertDialog(
+                                                                                                                title: Text('A'),
+                                                                                                                content: Text('Pelo menos um Banner deve ficar ativo... Edite este ou adicione ou novo'),
+                                                                                                                actions: [
+                                                                                                                  TextButton(
+                                                                                                                    onPressed: () => Navigator.pop(alertDialogContext),
+                                                                                                                    child: Text('Ok'),
+                                                                                                                  ),
+                                                                                                                ],
+                                                                                                              ),
                                                                                                             );
                                                                                                           },
                                                                                                         );
@@ -2894,19 +2911,21 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                                                         var confirmDialogResponse = await showDialog<bool>(
                                                                                                               context: context,
                                                                                                               builder: (alertDialogContext) {
-                                                                                                                return AlertDialog(
-                                                                                                                  title: Text('Atenção!'),
-                                                                                                                  content: Text('Deseja inativar este Banner?'),
-                                                                                                                  actions: [
-                                                                                                                    TextButton(
-                                                                                                                      onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                                                      child: Text('Não'),
-                                                                                                                    ),
-                                                                                                                    TextButton(
-                                                                                                                      onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                                                      child: Text('Sim'),
-                                                                                                                    ),
-                                                                                                                  ],
+                                                                                                                return WebViewAware(
+                                                                                                                  child: AlertDialog(
+                                                                                                                    title: Text('Atenção!'),
+                                                                                                                    content: Text('Deseja inativar este Banner?'),
+                                                                                                                    actions: [
+                                                                                                                      TextButton(
+                                                                                                                        onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                                                        child: Text('Não'),
+                                                                                                                      ),
+                                                                                                                      TextButton(
+                                                                                                                        onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                                                        child: Text('Sim'),
+                                                                                                                      ),
+                                                                                                                    ],
+                                                                                                                  ),
                                                                                                                 );
                                                                                                               },
                                                                                                             ) ??
@@ -2935,19 +2954,21 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                                                         var confirmDialogResponse = await showDialog<bool>(
                                                                                                               context: context,
                                                                                                               builder: (alertDialogContext) {
-                                                                                                                return AlertDialog(
-                                                                                                                  title: Text('Atenção!'),
-                                                                                                                  content: Text('Deseja ativar este Banner?'),
-                                                                                                                  actions: [
-                                                                                                                    TextButton(
-                                                                                                                      onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                                                      child: Text('Não'),
-                                                                                                                    ),
-                                                                                                                    TextButton(
-                                                                                                                      onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                                                      child: Text('Sim'),
-                                                                                                                    ),
-                                                                                                                  ],
+                                                                                                                return WebViewAware(
+                                                                                                                  child: AlertDialog(
+                                                                                                                    title: Text('Atenção!'),
+                                                                                                                    content: Text('Deseja ativar este Banner?'),
+                                                                                                                    actions: [
+                                                                                                                      TextButton(
+                                                                                                                        onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                                                        child: Text('Não'),
+                                                                                                                      ),
+                                                                                                                      TextButton(
+                                                                                                                        onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                                                        child: Text('Sim'),
+                                                                                                                      ),
+                                                                                                                    ],
+                                                                                                                  ),
                                                                                                                 );
                                                                                                               },
                                                                                                             ) ??
@@ -3040,15 +3061,17 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                                                         await showDialog(
                                                                                                           context: context,
                                                                                                           builder: (alertDialogContext) {
-                                                                                                            return AlertDialog(
-                                                                                                              title: Text('Atenção'),
-                                                                                                              content: Text('Pelo menos um Banner deve ficar ativo... Edite este ou adicione ou novo'),
-                                                                                                              actions: [
-                                                                                                                TextButton(
-                                                                                                                  onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                                                  child: Text('Ok'),
-                                                                                                                ),
-                                                                                                              ],
+                                                                                                            return WebViewAware(
+                                                                                                              child: AlertDialog(
+                                                                                                                title: Text('Atenção'),
+                                                                                                                content: Text('Pelo menos um Banner deve ficar ativo... Edite este ou adicione ou novo'),
+                                                                                                                actions: [
+                                                                                                                  TextButton(
+                                                                                                                    onPressed: () => Navigator.pop(alertDialogContext),
+                                                                                                                    child: Text('Ok'),
+                                                                                                                  ),
+                                                                                                                ],
+                                                                                                              ),
                                                                                                             );
                                                                                                           },
                                                                                                         );
@@ -3058,19 +3081,21 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                                                       var confirmDialogResponse = await showDialog<bool>(
                                                                                                             context: context,
                                                                                                             builder: (alertDialogContext) {
-                                                                                                              return AlertDialog(
-                                                                                                                title: Text('Atenção!'),
-                                                                                                                content: Text('Deseja EXCLUIR este Banner?'),
-                                                                                                                actions: [
-                                                                                                                  TextButton(
-                                                                                                                    onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                                                    child: Text('Não'),
-                                                                                                                  ),
-                                                                                                                  TextButton(
-                                                                                                                    onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                                                    child: Text('Sim'),
-                                                                                                                  ),
-                                                                                                                ],
+                                                                                                              return WebViewAware(
+                                                                                                                child: AlertDialog(
+                                                                                                                  title: Text('Atenção!'),
+                                                                                                                  content: Text('Deseja EXCLUIR este Banner?'),
+                                                                                                                  actions: [
+                                                                                                                    TextButton(
+                                                                                                                      onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                                                      child: Text('Não'),
+                                                                                                                    ),
+                                                                                                                    TextButton(
+                                                                                                                      onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                                                      child: Text('Sim'),
+                                                                                                                    ),
+                                                                                                                  ],
+                                                                                                                ),
                                                                                                               );
                                                                                                             },
                                                                                                           ) ??
@@ -3168,9 +3193,11 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                                                                 insetPadding: EdgeInsets.zero,
                                                                                                                 backgroundColor: Colors.transparent,
                                                                                                                 alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-                                                                                                                child: CaAguardeWidget(
-                                                                                                                  paramMostrarAnimacao: true,
-                                                                                                                  paramFecharAoClicar: false,
+                                                                                                                child: WebViewAware(
+                                                                                                                  child: CaAguardeWidget(
+                                                                                                                    paramMostrarAnimacao: true,
+                                                                                                                    paramFecharAoClicar: false,
+                                                                                                                  ),
                                                                                                                 ),
                                                                                                               );
                                                                                                             },
@@ -3400,8 +3427,10 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                             alignment:
                                                                                 AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                             child:
-                                                                                CpFotoWidget(
-                                                                              paramFoto: _model.uploadedFileUrl_uploadDataEstabelecimentoPerfil1 != '' ? _model.uploadedFileUrl_uploadDataEstabelecimentoPerfil1 : FFAppState().VarTblEstabelecimentoLogado.fotoPerfil,
+                                                                                WebViewAware(
+                                                                              child: CpFotoWidget(
+                                                                                paramFoto: _model.uploadedFileUrl_uploadDataEstabelecimentoPerfil1 != '' ? _model.uploadedFileUrl_uploadDataEstabelecimentoPerfil1 : FFAppState().VarTblEstabelecimentoLogado.fotoPerfil,
+                                                                              ),
                                                                             ),
                                                                           );
                                                                         },
@@ -3412,17 +3441,18 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                             context,
                                                                         builder:
                                                                             (alertDialogContext) {
-                                                                          return AlertDialog(
-                                                                            title:
-                                                                                Text('Atenção!'),
-                                                                            content:
-                                                                                Text('Adicione uma foto...'),
-                                                                            actions: [
-                                                                              TextButton(
-                                                                                onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                child: Text('Ok'),
-                                                                              ),
-                                                                            ],
+                                                                          return WebViewAware(
+                                                                            child:
+                                                                                AlertDialog(
+                                                                              title: Text('Atenção!'),
+                                                                              content: Text('Adicione uma foto...'),
+                                                                              actions: [
+                                                                                TextButton(
+                                                                                  onPressed: () => Navigator.pop(alertDialogContext),
+                                                                                  child: Text('Ok'),
+                                                                                ),
+                                                                              ],
+                                                                            ),
                                                                           );
                                                                         },
                                                                       );
@@ -3669,13 +3699,15 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                                 context,
                                                                             builder:
                                                                                 (context) {
-                                                                              return Padding(
-                                                                                padding: MediaQuery.viewInsetsOf(context),
-                                                                                child: CpDialogSnackBarWidget(
-                                                                                  paramMensagem: 'Foto perfil atualizada...',
-                                                                                  paramCorTexto: FlutterFlowTheme.of(context).info,
-                                                                                  paramCorFundo: FlutterFlowTheme.of(context).success,
-                                                                                  paramTempoMsFechar: 1000,
+                                                                              return WebViewAware(
+                                                                                child: Padding(
+                                                                                  padding: MediaQuery.viewInsetsOf(context),
+                                                                                  child: CpDialogSnackBarWidget(
+                                                                                    paramMensagem: 'Foto perfil atualizada...',
+                                                                                    paramCorTexto: FlutterFlowTheme.of(context).info,
+                                                                                    paramCorFundo: FlutterFlowTheme.of(context).success,
+                                                                                    paramTempoMsFechar: 1000,
+                                                                                  ),
                                                                                 ),
                                                                               );
                                                                             },
@@ -4859,10 +4891,12 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                               backgroundColor: Colors.transparent,
                                                                               context: context,
                                                                               builder: (context) {
-                                                                                return Padding(
-                                                                                  padding: MediaQuery.viewInsetsOf(context),
-                                                                                  child: CpValidarEmailTelWidget(
-                                                                                    paramEmailOuTelefone: 'T',
+                                                                                return WebViewAware(
+                                                                                  child: Padding(
+                                                                                    padding: MediaQuery.viewInsetsOf(context),
+                                                                                    child: CpValidarEmailTelWidget(
+                                                                                      paramEmailOuTelefone: 'T',
+                                                                                    ),
                                                                                   ),
                                                                                 );
                                                                               },
@@ -5059,10 +5093,12 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                               backgroundColor: Colors.transparent,
                                                                               context: context,
                                                                               builder: (context) {
-                                                                                return Padding(
-                                                                                  padding: MediaQuery.viewInsetsOf(context),
-                                                                                  child: CpValidarEmailTelWidget(
-                                                                                    paramEmailOuTelefone: 'E',
+                                                                                return WebViewAware(
+                                                                                  child: Padding(
+                                                                                    padding: MediaQuery.viewInsetsOf(context),
+                                                                                    child: CpValidarEmailTelWidget(
+                                                                                      paramEmailOuTelefone: 'E',
+                                                                                    ),
                                                                                   ),
                                                                                 );
                                                                               },
@@ -5284,9 +5320,11 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                                               insetPadding: EdgeInsets.zero,
                                                                                               backgroundColor: Colors.transparent,
                                                                                               alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-                                                                                              child: CaAguardeWidget(
-                                                                                                paramMostrarAnimacao: true,
-                                                                                                paramFecharAoClicar: false,
+                                                                                              child: WebViewAware(
+                                                                                                child: CaAguardeWidget(
+                                                                                                  paramMostrarAnimacao: true,
+                                                                                                  paramFecharAoClicar: false,
+                                                                                                ),
                                                                                               ),
                                                                                             );
                                                                                           },
@@ -5485,9 +5523,11 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                                                 insetPadding: EdgeInsets.zero,
                                                                                                 backgroundColor: Colors.transparent,
                                                                                                 alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-                                                                                                child: CaAguardeWidget(
-                                                                                                  paramMostrarAnimacao: true,
-                                                                                                  paramFecharAoClicar: false,
+                                                                                                child: WebViewAware(
+                                                                                                  child: CaAguardeWidget(
+                                                                                                    paramMostrarAnimacao: true,
+                                                                                                    paramFecharAoClicar: false,
+                                                                                                  ),
                                                                                                 ),
                                                                                               );
                                                                                             },
@@ -5669,9 +5709,11 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                                       insetPadding: EdgeInsets.zero,
                                                                                       backgroundColor: Colors.transparent,
                                                                                       alignment: AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
-                                                                                      child: CaAguardeWidget(
-                                                                                        paramMostrarAnimacao: true,
-                                                                                        paramFecharAoClicar: false,
+                                                                                      child: WebViewAware(
+                                                                                        child: CaAguardeWidget(
+                                                                                          paramMostrarAnimacao: true,
+                                                                                          paramFecharAoClicar: false,
+                                                                                        ),
                                                                                       ),
                                                                                     );
                                                                                   },
@@ -6710,13 +6752,15 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                                         backgroundColor: Colors.transparent,
                                                                                         context: context,
                                                                                         builder: (context) {
-                                                                                          return Padding(
-                                                                                            padding: MediaQuery.viewInsetsOf(context),
-                                                                                            child: CpDialogSnackBarWidget(
-                                                                                              paramMensagem: 'CEP inválido',
-                                                                                              paramCorTexto: FlutterFlowTheme.of(context).info,
-                                                                                              paramCorFundo: FlutterFlowTheme.of(context).error,
-                                                                                              paramTempoMsFechar: 1000,
+                                                                                          return WebViewAware(
+                                                                                            child: Padding(
+                                                                                              padding: MediaQuery.viewInsetsOf(context),
+                                                                                              child: CpDialogSnackBarWidget(
+                                                                                                paramMensagem: 'CEP inválido',
+                                                                                                paramCorTexto: FlutterFlowTheme.of(context).info,
+                                                                                                paramCorFundo: FlutterFlowTheme.of(context).error,
+                                                                                                paramTempoMsFechar: 1000,
+                                                                                              ),
                                                                                             ),
                                                                                           );
                                                                                         },
@@ -8067,20 +8111,23 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                               context: context,
                                                               builder:
                                                                   (alertDialogContext) {
-                                                                return AlertDialog(
-                                                                  title: Text(
-                                                                      'Atenção!'),
-                                                                  content: Text(
-                                                                      'Informe o nome da empresa'),
-                                                                  actions: [
-                                                                    TextButton(
-                                                                      onPressed:
-                                                                          () =>
-                                                                              Navigator.pop(alertDialogContext),
-                                                                      child: Text(
-                                                                          'Ok'),
-                                                                    ),
-                                                                  ],
+                                                                return WebViewAware(
+                                                                  child:
+                                                                      AlertDialog(
+                                                                    title: Text(
+                                                                        'Atenção!'),
+                                                                    content: Text(
+                                                                        'Informe o nome da empresa'),
+                                                                    actions: [
+                                                                      TextButton(
+                                                                        onPressed:
+                                                                            () =>
+                                                                                Navigator.pop(alertDialogContext),
+                                                                        child: Text(
+                                                                            'Ok'),
+                                                                      ),
+                                                                    ],
+                                                                  ),
                                                                 );
                                                               },
                                                             );
@@ -8098,20 +8145,23 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                               context: context,
                                                               builder:
                                                                   (alertDialogContext) {
-                                                                return AlertDialog(
-                                                                  title: Text(
-                                                                      'Atenção!'),
-                                                                  content: Text(
-                                                                      'O nome da empresa deve ter pelo menos 10 caracteres'),
-                                                                  actions: [
-                                                                    TextButton(
-                                                                      onPressed:
-                                                                          () =>
-                                                                              Navigator.pop(alertDialogContext),
-                                                                      child: Text(
-                                                                          'Ok'),
-                                                                    ),
-                                                                  ],
+                                                                return WebViewAware(
+                                                                  child:
+                                                                      AlertDialog(
+                                                                    title: Text(
+                                                                        'Atenção!'),
+                                                                    content: Text(
+                                                                        'O nome da empresa deve ter pelo menos 10 caracteres'),
+                                                                    actions: [
+                                                                      TextButton(
+                                                                        onPressed:
+                                                                            () =>
+                                                                                Navigator.pop(alertDialogContext),
+                                                                        child: Text(
+                                                                            'Ok'),
+                                                                      ),
+                                                                    ],
+                                                                  ),
                                                                 );
                                                               },
                                                             );
@@ -8151,20 +8201,23 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                               context: context,
                                                               builder:
                                                                   (alertDialogContext) {
-                                                                return AlertDialog(
-                                                                  title: Text(
-                                                                      'Atenção!'),
-                                                                  content: Text(
-                                                                      'Informe o username (Será usado na url do site Ex: www.site.com/username'),
-                                                                  actions: [
-                                                                    TextButton(
-                                                                      onPressed:
-                                                                          () =>
-                                                                              Navigator.pop(alertDialogContext),
-                                                                      child: Text(
-                                                                          'Ok'),
-                                                                    ),
-                                                                  ],
+                                                                return WebViewAware(
+                                                                  child:
+                                                                      AlertDialog(
+                                                                    title: Text(
+                                                                        'Atenção!'),
+                                                                    content: Text(
+                                                                        'Informe o username (Será usado na url do site Ex: www.site.com/username'),
+                                                                    actions: [
+                                                                      TextButton(
+                                                                        onPressed:
+                                                                            () =>
+                                                                                Navigator.pop(alertDialogContext),
+                                                                        child: Text(
+                                                                            'Ok'),
+                                                                      ),
+                                                                    ],
+                                                                  ),
                                                                 );
                                                               },
                                                             );
@@ -8182,20 +8235,23 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                               context: context,
                                                               builder:
                                                                   (alertDialogContext) {
-                                                                return AlertDialog(
-                                                                  title: Text(
-                                                                      'Atenção!'),
-                                                                  content: Text(
-                                                                      'O username deve ter pelo menos 6 caracteres'),
-                                                                  actions: [
-                                                                    TextButton(
-                                                                      onPressed:
-                                                                          () =>
-                                                                              Navigator.pop(alertDialogContext),
-                                                                      child: Text(
-                                                                          'Ok'),
-                                                                    ),
-                                                                  ],
+                                                                return WebViewAware(
+                                                                  child:
+                                                                      AlertDialog(
+                                                                    title: Text(
+                                                                        'Atenção!'),
+                                                                    content: Text(
+                                                                        'O username deve ter pelo menos 6 caracteres'),
+                                                                    actions: [
+                                                                      TextButton(
+                                                                        onPressed:
+                                                                            () =>
+                                                                                Navigator.pop(alertDialogContext),
+                                                                        child: Text(
+                                                                            'Ok'),
+                                                                      ),
+                                                                    ],
+                                                                  ),
                                                                 );
                                                               },
                                                             );
@@ -8233,20 +8289,23 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                               context: context,
                                                               builder:
                                                                   (alertDialogContext) {
-                                                                return AlertDialog(
-                                                                  title: Text(
-                                                                      'Atenção!'),
-                                                                  content: Text(
-                                                                      'Informe o nome do contato'),
-                                                                  actions: [
-                                                                    TextButton(
-                                                                      onPressed:
-                                                                          () =>
-                                                                              Navigator.pop(alertDialogContext),
-                                                                      child: Text(
-                                                                          'Ok'),
-                                                                    ),
-                                                                  ],
+                                                                return WebViewAware(
+                                                                  child:
+                                                                      AlertDialog(
+                                                                    title: Text(
+                                                                        'Atenção!'),
+                                                                    content: Text(
+                                                                        'Informe o nome do contato'),
+                                                                    actions: [
+                                                                      TextButton(
+                                                                        onPressed:
+                                                                            () =>
+                                                                                Navigator.pop(alertDialogContext),
+                                                                        child: Text(
+                                                                            'Ok'),
+                                                                      ),
+                                                                    ],
+                                                                  ),
                                                                 );
                                                               },
                                                             );
@@ -8262,20 +8321,23 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                               context: context,
                                                               builder:
                                                                   (alertDialogContext) {
-                                                                return AlertDialog(
-                                                                  title: Text(
-                                                                      'Atenção!'),
-                                                                  content: Text(
-                                                                      'Informe o telefone WhatsApp'),
-                                                                  actions: [
-                                                                    TextButton(
-                                                                      onPressed:
-                                                                          () =>
-                                                                              Navigator.pop(alertDialogContext),
-                                                                      child: Text(
-                                                                          'Ok'),
-                                                                    ),
-                                                                  ],
+                                                                return WebViewAware(
+                                                                  child:
+                                                                      AlertDialog(
+                                                                    title: Text(
+                                                                        'Atenção!'),
+                                                                    content: Text(
+                                                                        'Informe o telefone WhatsApp'),
+                                                                    actions: [
+                                                                      TextButton(
+                                                                        onPressed:
+                                                                            () =>
+                                                                                Navigator.pop(alertDialogContext),
+                                                                        child: Text(
+                                                                            'Ok'),
+                                                                      ),
+                                                                    ],
+                                                                  ),
                                                                 );
                                                               },
                                                             );
@@ -8293,20 +8355,23 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                               context: context,
                                                               builder:
                                                                   (alertDialogContext) {
-                                                                return AlertDialog(
-                                                                  title: Text(
-                                                                      'Atenção!'),
-                                                                  content: Text(
-                                                                      'Número de telefone inválido'),
-                                                                  actions: [
-                                                                    TextButton(
-                                                                      onPressed:
-                                                                          () =>
-                                                                              Navigator.pop(alertDialogContext),
-                                                                      child: Text(
-                                                                          'Ok'),
-                                                                    ),
-                                                                  ],
+                                                                return WebViewAware(
+                                                                  child:
+                                                                      AlertDialog(
+                                                                    title: Text(
+                                                                        'Atenção!'),
+                                                                    content: Text(
+                                                                        'Número de telefone inválido'),
+                                                                    actions: [
+                                                                      TextButton(
+                                                                        onPressed:
+                                                                            () =>
+                                                                                Navigator.pop(alertDialogContext),
+                                                                        child: Text(
+                                                                            'Ok'),
+                                                                      ),
+                                                                    ],
+                                                                  ),
                                                                 );
                                                               },
                                                             );
@@ -8345,20 +8410,23 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                               context: context,
                                                               builder:
                                                                   (alertDialogContext) {
-                                                                return AlertDialog(
-                                                                  title: Text(
-                                                                      'Atenção!'),
-                                                                  content: Text(
-                                                                      'Selecione o tipo de documento'),
-                                                                  actions: [
-                                                                    TextButton(
-                                                                      onPressed:
-                                                                          () =>
-                                                                              Navigator.pop(alertDialogContext),
-                                                                      child: Text(
-                                                                          'Ok'),
-                                                                    ),
-                                                                  ],
+                                                                return WebViewAware(
+                                                                  child:
+                                                                      AlertDialog(
+                                                                    title: Text(
+                                                                        'Atenção!'),
+                                                                    content: Text(
+                                                                        'Selecione o tipo de documento'),
+                                                                    actions: [
+                                                                      TextButton(
+                                                                        onPressed:
+                                                                            () =>
+                                                                                Navigator.pop(alertDialogContext),
+                                                                        child: Text(
+                                                                            'Ok'),
+                                                                      ),
+                                                                    ],
+                                                                  ),
                                                                 );
                                                               },
                                                             );
@@ -8378,20 +8446,22 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                     context,
                                                                 builder:
                                                                     (alertDialogContext) {
-                                                                  return AlertDialog(
-                                                                    title: Text(
-                                                                        'Atenção!'),
-                                                                    content: Text(
-                                                                        'Informe o CPF, ele será usado para emitir Nota Fiscal'),
-                                                                    actions: [
-                                                                      TextButton(
-                                                                        onPressed:
-                                                                            () =>
-                                                                                Navigator.pop(alertDialogContext),
-                                                                        child: Text(
-                                                                            'Ok'),
-                                                                      ),
-                                                                    ],
+                                                                  return WebViewAware(
+                                                                    child:
+                                                                        AlertDialog(
+                                                                      title: Text(
+                                                                          'Atenção!'),
+                                                                      content: Text(
+                                                                          'Informe o CPF, ele será usado para emitir Nota Fiscal'),
+                                                                      actions: [
+                                                                        TextButton(
+                                                                          onPressed: () =>
+                                                                              Navigator.pop(alertDialogContext),
+                                                                          child:
+                                                                              Text('Ok'),
+                                                                        ),
+                                                                      ],
+                                                                    ),
                                                                   );
                                                                 },
                                                               );
@@ -8410,20 +8480,22 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                     context,
                                                                 builder:
                                                                     (alertDialogContext) {
-                                                                  return AlertDialog(
-                                                                    title: Text(
-                                                                        'Atenção!'),
-                                                                    content: Text(
-                                                                        'CPF inválido, verifique.'),
-                                                                    actions: [
-                                                                      TextButton(
-                                                                        onPressed:
-                                                                            () =>
-                                                                                Navigator.pop(alertDialogContext),
-                                                                        child: Text(
-                                                                            'Ok'),
-                                                                      ),
-                                                                    ],
+                                                                  return WebViewAware(
+                                                                    child:
+                                                                        AlertDialog(
+                                                                      title: Text(
+                                                                          'Atenção!'),
+                                                                      content: Text(
+                                                                          'CPF inválido, verifique.'),
+                                                                      actions: [
+                                                                        TextButton(
+                                                                          onPressed: () =>
+                                                                              Navigator.pop(alertDialogContext),
+                                                                          child:
+                                                                              Text('Ok'),
+                                                                        ),
+                                                                      ],
+                                                                    ),
                                                                   );
                                                                 },
                                                               );
@@ -8467,20 +8539,22 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                     context,
                                                                 builder:
                                                                     (alertDialogContext) {
-                                                                  return AlertDialog(
-                                                                    title: Text(
-                                                                        'Atenção!'),
-                                                                    content: Text(
-                                                                        'O CPF do cadastro de Empresa deve ser igual ao do cadastro de Afiliado (${FFAppState().varTblAfiliado.docCpfCnpj})'),
-                                                                    actions: [
-                                                                      TextButton(
-                                                                        onPressed:
-                                                                            () =>
-                                                                                Navigator.pop(alertDialogContext),
-                                                                        child: Text(
-                                                                            'Ok'),
-                                                                      ),
-                                                                    ],
+                                                                  return WebViewAware(
+                                                                    child:
+                                                                        AlertDialog(
+                                                                      title: Text(
+                                                                          'Atenção!'),
+                                                                      content: Text(
+                                                                          'O CPF do cadastro de Empresa deve ser igual ao do cadastro de Afiliado (${FFAppState().varTblAfiliado.docCpfCnpj})'),
+                                                                      actions: [
+                                                                        TextButton(
+                                                                          onPressed: () =>
+                                                                              Navigator.pop(alertDialogContext),
+                                                                          child:
+                                                                              Text('Ok'),
+                                                                        ),
+                                                                      ],
+                                                                    ),
                                                                   );
                                                                 },
                                                               );
@@ -8498,20 +8572,22 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                     context,
                                                                 builder:
                                                                     (alertDialogContext) {
-                                                                  return AlertDialog(
-                                                                    title: Text(
-                                                                        'Atenção!'),
-                                                                    content: Text(
-                                                                        'Selecione o Gênero'),
-                                                                    actions: [
-                                                                      TextButton(
-                                                                        onPressed:
-                                                                            () =>
-                                                                                Navigator.pop(alertDialogContext),
-                                                                        child: Text(
-                                                                            'Ok'),
-                                                                      ),
-                                                                    ],
+                                                                  return WebViewAware(
+                                                                    child:
+                                                                        AlertDialog(
+                                                                      title: Text(
+                                                                          'Atenção!'),
+                                                                      content: Text(
+                                                                          'Selecione o Gênero'),
+                                                                      actions: [
+                                                                        TextButton(
+                                                                          onPressed: () =>
+                                                                              Navigator.pop(alertDialogContext),
+                                                                          child:
+                                                                              Text('Ok'),
+                                                                        ),
+                                                                      ],
+                                                                    ),
                                                                   );
                                                                 },
                                                               );
@@ -8532,20 +8608,22 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                     context,
                                                                 builder:
                                                                     (alertDialogContext) {
-                                                                  return AlertDialog(
-                                                                    title: Text(
-                                                                        'Atenção!'),
-                                                                    content: Text(
-                                                                        'Informe o CNPJ, ele será usado para emitir Nota Fiscal'),
-                                                                    actions: [
-                                                                      TextButton(
-                                                                        onPressed:
-                                                                            () =>
-                                                                                Navigator.pop(alertDialogContext),
-                                                                        child: Text(
-                                                                            'Ok'),
-                                                                      ),
-                                                                    ],
+                                                                  return WebViewAware(
+                                                                    child:
+                                                                        AlertDialog(
+                                                                      title: Text(
+                                                                          'Atenção!'),
+                                                                      content: Text(
+                                                                          'Informe o CNPJ, ele será usado para emitir Nota Fiscal'),
+                                                                      actions: [
+                                                                        TextButton(
+                                                                          onPressed: () =>
+                                                                              Navigator.pop(alertDialogContext),
+                                                                          child:
+                                                                              Text('Ok'),
+                                                                        ),
+                                                                      ],
+                                                                    ),
                                                                   );
                                                                 },
                                                               );
@@ -8564,20 +8642,22 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                     context,
                                                                 builder:
                                                                     (alertDialogContext) {
-                                                                  return AlertDialog(
-                                                                    title: Text(
-                                                                        'Atenção!'),
-                                                                    content: Text(
-                                                                        'CNPJ inválido, verifique.'),
-                                                                    actions: [
-                                                                      TextButton(
-                                                                        onPressed:
-                                                                            () =>
-                                                                                Navigator.pop(alertDialogContext),
-                                                                        child: Text(
-                                                                            'Ok'),
-                                                                      ),
-                                                                    ],
+                                                                  return WebViewAware(
+                                                                    child:
+                                                                        AlertDialog(
+                                                                      title: Text(
+                                                                          'Atenção!'),
+                                                                      content: Text(
+                                                                          'CNPJ inválido, verifique.'),
+                                                                      actions: [
+                                                                        TextButton(
+                                                                          onPressed: () =>
+                                                                              Navigator.pop(alertDialogContext),
+                                                                          child:
+                                                                              Text('Ok'),
+                                                                        ),
+                                                                      ],
+                                                                    ),
                                                                   );
                                                                 },
                                                               );
@@ -8594,20 +8674,23 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                               context: context,
                                                               builder:
                                                                   (alertDialogContext) {
-                                                                return AlertDialog(
-                                                                  title: Text(
-                                                                      'Atenção!'),
-                                                                  content: Text(
-                                                                      'Informe o Segmento'),
-                                                                  actions: [
-                                                                    TextButton(
-                                                                      onPressed:
-                                                                          () =>
-                                                                              Navigator.pop(alertDialogContext),
-                                                                      child: Text(
-                                                                          'Ok'),
-                                                                    ),
-                                                                  ],
+                                                                return WebViewAware(
+                                                                  child:
+                                                                      AlertDialog(
+                                                                    title: Text(
+                                                                        'Atenção!'),
+                                                                    content: Text(
+                                                                        'Informe o Segmento'),
+                                                                    actions: [
+                                                                      TextButton(
+                                                                        onPressed:
+                                                                            () =>
+                                                                                Navigator.pop(alertDialogContext),
+                                                                        child: Text(
+                                                                            'Ok'),
+                                                                      ),
+                                                                    ],
+                                                                  ),
                                                                 );
                                                               },
                                                             );
@@ -8623,20 +8706,23 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                               context: context,
                                                               builder:
                                                                   (alertDialogContext) {
-                                                                return AlertDialog(
-                                                                  title: Text(
-                                                                      'Atenção!'),
-                                                                  content: Text(
-                                                                      'Informe o CEP'),
-                                                                  actions: [
-                                                                    TextButton(
-                                                                      onPressed:
-                                                                          () =>
-                                                                              Navigator.pop(alertDialogContext),
-                                                                      child: Text(
-                                                                          'Ok'),
-                                                                    ),
-                                                                  ],
+                                                                return WebViewAware(
+                                                                  child:
+                                                                      AlertDialog(
+                                                                    title: Text(
+                                                                        'Atenção!'),
+                                                                    content: Text(
+                                                                        'Informe o CEP'),
+                                                                    actions: [
+                                                                      TextButton(
+                                                                        onPressed:
+                                                                            () =>
+                                                                                Navigator.pop(alertDialogContext),
+                                                                        child: Text(
+                                                                            'Ok'),
+                                                                      ),
+                                                                    ],
+                                                                  ),
                                                                 );
                                                               },
                                                             );
@@ -8654,20 +8740,23 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                               context: context,
                                                               builder:
                                                                   (alertDialogContext) {
-                                                                return AlertDialog(
-                                                                  title: Text(
-                                                                      'Atenção!'),
-                                                                  content: Text(
-                                                                      'CEP inválido'),
-                                                                  actions: [
-                                                                    TextButton(
-                                                                      onPressed:
-                                                                          () =>
-                                                                              Navigator.pop(alertDialogContext),
-                                                                      child: Text(
-                                                                          'Ok'),
-                                                                    ),
-                                                                  ],
+                                                                return WebViewAware(
+                                                                  child:
+                                                                      AlertDialog(
+                                                                    title: Text(
+                                                                        'Atenção!'),
+                                                                    content: Text(
+                                                                        'CEP inválido'),
+                                                                    actions: [
+                                                                      TextButton(
+                                                                        onPressed:
+                                                                            () =>
+                                                                                Navigator.pop(alertDialogContext),
+                                                                        child: Text(
+                                                                            'Ok'),
+                                                                      ),
+                                                                    ],
+                                                                  ),
                                                                 );
                                                               },
                                                             );
@@ -8683,20 +8772,23 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                               context: context,
                                                               builder:
                                                                   (alertDialogContext) {
-                                                                return AlertDialog(
-                                                                  title: Text(
-                                                                      'Atenção!'),
-                                                                  content: Text(
-                                                                      'Informe o nome da Rua'),
-                                                                  actions: [
-                                                                    TextButton(
-                                                                      onPressed:
-                                                                          () =>
-                                                                              Navigator.pop(alertDialogContext),
-                                                                      child: Text(
-                                                                          'Ok'),
-                                                                    ),
-                                                                  ],
+                                                                return WebViewAware(
+                                                                  child:
+                                                                      AlertDialog(
+                                                                    title: Text(
+                                                                        'Atenção!'),
+                                                                    content: Text(
+                                                                        'Informe o nome da Rua'),
+                                                                    actions: [
+                                                                      TextButton(
+                                                                        onPressed:
+                                                                            () =>
+                                                                                Navigator.pop(alertDialogContext),
+                                                                        child: Text(
+                                                                            'Ok'),
+                                                                      ),
+                                                                    ],
+                                                                  ),
                                                                 );
                                                               },
                                                             );
@@ -8712,20 +8804,23 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                               context: context,
                                                               builder:
                                                                   (alertDialogContext) {
-                                                                return AlertDialog(
-                                                                  title: Text(
-                                                                      'Atenção!'),
-                                                                  content: Text(
-                                                                      'Informe o Número'),
-                                                                  actions: [
-                                                                    TextButton(
-                                                                      onPressed:
-                                                                          () =>
-                                                                              Navigator.pop(alertDialogContext),
-                                                                      child: Text(
-                                                                          'Ok'),
-                                                                    ),
-                                                                  ],
+                                                                return WebViewAware(
+                                                                  child:
+                                                                      AlertDialog(
+                                                                    title: Text(
+                                                                        'Atenção!'),
+                                                                    content: Text(
+                                                                        'Informe o Número'),
+                                                                    actions: [
+                                                                      TextButton(
+                                                                        onPressed:
+                                                                            () =>
+                                                                                Navigator.pop(alertDialogContext),
+                                                                        child: Text(
+                                                                            'Ok'),
+                                                                      ),
+                                                                    ],
+                                                                  ),
                                                                 );
                                                               },
                                                             );
@@ -8741,20 +8836,23 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                               context: context,
                                                               builder:
                                                                   (alertDialogContext) {
-                                                                return AlertDialog(
-                                                                  title: Text(
-                                                                      'Atenção!'),
-                                                                  content: Text(
-                                                                      'Informe o nome da Cidade'),
-                                                                  actions: [
-                                                                    TextButton(
-                                                                      onPressed:
-                                                                          () =>
-                                                                              Navigator.pop(alertDialogContext),
-                                                                      child: Text(
-                                                                          'Ok'),
-                                                                    ),
-                                                                  ],
+                                                                return WebViewAware(
+                                                                  child:
+                                                                      AlertDialog(
+                                                                    title: Text(
+                                                                        'Atenção!'),
+                                                                    content: Text(
+                                                                        'Informe o nome da Cidade'),
+                                                                    actions: [
+                                                                      TextButton(
+                                                                        onPressed:
+                                                                            () =>
+                                                                                Navigator.pop(alertDialogContext),
+                                                                        child: Text(
+                                                                            'Ok'),
+                                                                      ),
+                                                                    ],
+                                                                  ),
                                                                 );
                                                               },
                                                             );
@@ -8770,20 +8868,23 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                               context: context,
                                                               builder:
                                                                   (alertDialogContext) {
-                                                                return AlertDialog(
-                                                                  title: Text(
-                                                                      'Atenção!'),
-                                                                  content: Text(
-                                                                      'Informe o nome do Bairro'),
-                                                                  actions: [
-                                                                    TextButton(
-                                                                      onPressed:
-                                                                          () =>
-                                                                              Navigator.pop(alertDialogContext),
-                                                                      child: Text(
-                                                                          'Ok'),
-                                                                    ),
-                                                                  ],
+                                                                return WebViewAware(
+                                                                  child:
+                                                                      AlertDialog(
+                                                                    title: Text(
+                                                                        'Atenção!'),
+                                                                    content: Text(
+                                                                        'Informe o nome do Bairro'),
+                                                                    actions: [
+                                                                      TextButton(
+                                                                        onPressed:
+                                                                            () =>
+                                                                                Navigator.pop(alertDialogContext),
+                                                                        child: Text(
+                                                                            'Ok'),
+                                                                      ),
+                                                                    ],
+                                                                  ),
                                                                 );
                                                               },
                                                             );
@@ -8824,20 +8925,22 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                     context,
                                                                 builder:
                                                                     (alertDialogContext) {
-                                                                  return AlertDialog(
-                                                                    title: Text(
-                                                                        'Atenção!'),
-                                                                    content: Text(
-                                                                        'Insira uma foto de Banner ou escolha um modelo pronto'),
-                                                                    actions: [
-                                                                      TextButton(
-                                                                        onPressed:
-                                                                            () =>
-                                                                                Navigator.pop(alertDialogContext),
-                                                                        child: Text(
-                                                                            'Ok'),
-                                                                      ),
-                                                                    ],
+                                                                  return WebViewAware(
+                                                                    child:
+                                                                        AlertDialog(
+                                                                      title: Text(
+                                                                          'Atenção!'),
+                                                                      content: Text(
+                                                                          'Insira uma foto de Banner ou escolha um modelo pronto'),
+                                                                      actions: [
+                                                                        TextButton(
+                                                                          onPressed: () =>
+                                                                              Navigator.pop(alertDialogContext),
+                                                                          child:
+                                                                              Text('Ok'),
+                                                                        ),
+                                                                      ],
+                                                                    ),
                                                                   );
                                                                 },
                                                               );
@@ -8855,20 +8958,22 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                     context,
                                                                 builder:
                                                                     (alertDialogContext) {
-                                                                  return AlertDialog(
-                                                                    title: Text(
-                                                                        'Atenção!'),
-                                                                    content: Text(
-                                                                        'Selecione um modelo de Banner'),
-                                                                    actions: [
-                                                                      TextButton(
-                                                                        onPressed:
-                                                                            () =>
-                                                                                Navigator.pop(alertDialogContext),
-                                                                        child: Text(
-                                                                            'Ok'),
-                                                                      ),
-                                                                    ],
+                                                                  return WebViewAware(
+                                                                    child:
+                                                                        AlertDialog(
+                                                                      title: Text(
+                                                                          'Atenção!'),
+                                                                      content: Text(
+                                                                          'Selecione um modelo de Banner'),
+                                                                      actions: [
+                                                                        TextButton(
+                                                                          onPressed: () =>
+                                                                              Navigator.pop(alertDialogContext),
+                                                                          child:
+                                                                              Text('Ok'),
+                                                                        ),
+                                                                      ],
+                                                                    ),
                                                                   );
                                                                 },
                                                               );
@@ -9006,24 +9111,24 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                             enableDrag: false,
                                                             context: context,
                                                             builder: (context) {
-                                                              return Padding(
-                                                                padding: MediaQuery
-                                                                    .viewInsetsOf(
-                                                                        context),
-                                                                child:
-                                                                    CpDialogSnackBarWidget(
-                                                                  paramMensagem:
-                                                                      'Salvo com sucesso...',
-                                                                  paramCorTexto:
-                                                                      FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .info,
-                                                                  paramCorFundo:
-                                                                      FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .success,
-                                                                  paramTempoMsFechar:
-                                                                      1000,
+                                                              return WebViewAware(
+                                                                child: Padding(
+                                                                  padding: MediaQuery
+                                                                      .viewInsetsOf(
+                                                                          context),
+                                                                  child:
+                                                                      CpDialogSnackBarWidget(
+                                                                    paramMensagem:
+                                                                        'Salvo com sucesso...',
+                                                                    paramCorTexto:
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .info,
+                                                                    paramCorFundo:
+                                                                        FlutterFlowTheme.of(context)
+                                                                            .success,
+                                                                    paramTempoMsFechar:
+                                                                        1000,
+                                                                  ),
                                                                 ),
                                                               );
                                                             },
@@ -9583,10 +9688,12 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                                 context,
                                                                             builder:
                                                                                 (context) {
-                                                                              return Padding(
-                                                                                padding: MediaQuery.viewInsetsOf(context),
-                                                                                child: CpEstabelecCadHrAtendimentosWidget(
-                                                                                  paramDiaSemana: listViewHrFuncionamentoTblHorariosFuncionamentoRow,
+                                                                              return WebViewAware(
+                                                                                child: Padding(
+                                                                                  padding: MediaQuery.viewInsetsOf(context),
+                                                                                  child: CpEstabelecCadHrAtendimentosWidget(
+                                                                                    paramDiaSemana: listViewHrFuncionamentoTblHorariosFuncionamentoRow,
+                                                                                  ),
                                                                                 ),
                                                                               );
                                                                             },
@@ -13259,19 +13366,20 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                         context,
                                                                     builder:
                                                                         (alertDialogContext) {
-                                                                      return AlertDialog(
-                                                                        title: Text(
-                                                                            'Atenção!'),
-                                                                        content:
-                                                                            Text('Falha ao conectar, tente novamente mais tarde...'),
-                                                                        actions: [
-                                                                          TextButton(
-                                                                            onPressed: () =>
-                                                                                Navigator.pop(alertDialogContext),
-                                                                            child:
-                                                                                Text('Ok'),
-                                                                          ),
-                                                                        ],
+                                                                      return WebViewAware(
+                                                                        child:
+                                                                            AlertDialog(
+                                                                          title:
+                                                                              Text('Atenção!'),
+                                                                          content:
+                                                                              Text('Falha ao conectar, tente novamente mais tarde...'),
+                                                                          actions: [
+                                                                            TextButton(
+                                                                              onPressed: () => Navigator.pop(alertDialogContext),
+                                                                              child: Text('Ok'),
+                                                                            ),
+                                                                          ],
+                                                                        ),
                                                                       );
                                                                     },
                                                                   );
@@ -13414,19 +13522,20 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                         context,
                                                                     builder:
                                                                         (alertDialogContext) {
-                                                                      return AlertDialog(
-                                                                        title: Text(
-                                                                            'Atenção!'),
-                                                                        content:
-                                                                            Text('Falha ao conexar na conexão já existente, tente novamente, se o problema persistir entre em contato com o suporte...${(_model.apiResultConectarInstancia?.bodyText ?? '')}'),
-                                                                        actions: [
-                                                                          TextButton(
-                                                                            onPressed: () =>
-                                                                                Navigator.pop(alertDialogContext),
-                                                                            child:
-                                                                                Text('Ok'),
-                                                                          ),
-                                                                        ],
+                                                                      return WebViewAware(
+                                                                        child:
+                                                                            AlertDialog(
+                                                                          title:
+                                                                              Text('Atenção!'),
+                                                                          content:
+                                                                              Text('Falha ao conexar na conexão já existente, tente novamente, se o problema persistir entre em contato com o suporte...${(_model.apiResultConectarInstancia?.bodyText ?? '')}'),
+                                                                          actions: [
+                                                                            TextButton(
+                                                                              onPressed: () => Navigator.pop(alertDialogContext),
+                                                                              child: Text('Ok'),
+                                                                            ),
+                                                                          ],
+                                                                        ),
                                                                       );
                                                                     },
                                                                   );
@@ -13441,19 +13550,22 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                       context,
                                                                   builder:
                                                                       (alertDialogContext) {
-                                                                    return AlertDialog(
-                                                                      title: Text(
-                                                                          'Atenção!'),
-                                                                      content: Text(
-                                                                          'Falha ao verificar STATUS CONEXÃO, tente novamente, se o problema persistir entre em contato com o suporte... ${(_model.apiResultStatusConexao1?.bodyText ?? '')}'),
-                                                                      actions: [
-                                                                        TextButton(
-                                                                          onPressed: () =>
-                                                                              Navigator.pop(alertDialogContext),
-                                                                          child:
-                                                                              Text('Ok'),
-                                                                        ),
-                                                                      ],
+                                                                    return WebViewAware(
+                                                                      child:
+                                                                          AlertDialog(
+                                                                        title: Text(
+                                                                            'Atenção!'),
+                                                                        content:
+                                                                            Text('Falha ao verificar STATUS CONEXÃO, tente novamente, se o problema persistir entre em contato com o suporte... ${(_model.apiResultStatusConexao1?.bodyText ?? '')}'),
+                                                                        actions: [
+                                                                          TextButton(
+                                                                            onPressed: () =>
+                                                                                Navigator.pop(alertDialogContext),
+                                                                            child:
+                                                                                Text('Ok'),
+                                                                          ),
+                                                                        ],
+                                                                      ),
                                                                     );
                                                                   },
                                                                 );
@@ -13503,11 +13615,14 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                         alignment:
                                                                             AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                         child:
-                                                                            CaAguardeWidget(
-                                                                          paramMostrarAnimacao:
-                                                                              true,
-                                                                          paramFecharAoClicar:
-                                                                              false,
+                                                                            WebViewAware(
+                                                                          child:
+                                                                              CaAguardeWidget(
+                                                                            paramMostrarAnimacao:
+                                                                                true,
+                                                                            paramFecharAoClicar:
+                                                                                false,
+                                                                          ),
                                                                         ),
                                                                       );
                                                                     },
@@ -13639,19 +13754,20 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                         context,
                                                                     builder:
                                                                         (alertDialogContext) {
-                                                                      return AlertDialog(
-                                                                        title: Text(
-                                                                            'Atenção!'),
-                                                                        content:
-                                                                            Text('Falha ao CRIAR conexão, tente novamente, se o problema persistir entre em contato com o suporte...${(_model.apiResultCriarInstanciaQrCode?.bodyText ?? '')}'),
-                                                                        actions: [
-                                                                          TextButton(
-                                                                            onPressed: () =>
-                                                                                Navigator.pop(alertDialogContext),
-                                                                            child:
-                                                                                Text('Ok'),
-                                                                          ),
-                                                                        ],
+                                                                      return WebViewAware(
+                                                                        child:
+                                                                            AlertDialog(
+                                                                          title:
+                                                                              Text('Atenção!'),
+                                                                          content:
+                                                                              Text('Falha ao CRIAR conexão, tente novamente, se o problema persistir entre em contato com o suporte...${(_model.apiResultCriarInstanciaQrCode?.bodyText ?? '')}'),
+                                                                          actions: [
+                                                                            TextButton(
+                                                                              onPressed: () => Navigator.pop(alertDialogContext),
+                                                                              child: Text('Ok'),
+                                                                            ),
+                                                                          ],
+                                                                        ),
                                                                       );
                                                                     },
                                                                   );
@@ -13821,19 +13937,20 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                         context,
                                                                     builder:
                                                                         (alertDialogContext) {
-                                                                      return AlertDialog(
-                                                                        title: Text(
-                                                                            'Atenção!'),
-                                                                        content:
-                                                                            Text('Falha ao CRIAR conexão, tente novamente, se o problema persistir entre em contato com o suporte...${(_model.apiResultCriarInstanciaNumTel?.bodyText ?? '')}'),
-                                                                        actions: [
-                                                                          TextButton(
-                                                                            onPressed: () =>
-                                                                                Navigator.pop(alertDialogContext),
-                                                                            child:
-                                                                                Text('Ok'),
-                                                                          ),
-                                                                        ],
+                                                                      return WebViewAware(
+                                                                        child:
+                                                                            AlertDialog(
+                                                                          title:
+                                                                              Text('Atenção!'),
+                                                                          content:
+                                                                              Text('Falha ao CRIAR conexão, tente novamente, se o problema persistir entre em contato com o suporte...${(_model.apiResultCriarInstanciaNumTel?.bodyText ?? '')}'),
+                                                                          actions: [
+                                                                            TextButton(
+                                                                              onPressed: () => Navigator.pop(alertDialogContext),
+                                                                              child: Text('Ok'),
+                                                                            ),
+                                                                          ],
+                                                                        ),
                                                                       );
                                                                     },
                                                                   );
@@ -15132,19 +15249,21 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                               context,
                                                                           builder:
                                                                               (alertDialogContext) {
-                                                                            return AlertDialog(
-                                                                              title: Text('Atenção!'),
-                                                                              content: Text('Deseja desconectar o WhatsApp? Os clientes não receberão mais mensagens de notificações'),
-                                                                              actions: [
-                                                                                TextButton(
-                                                                                  onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                  child: Text('Não'),
-                                                                                ),
-                                                                                TextButton(
-                                                                                  onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                  child: Text('Sim'),
-                                                                                ),
-                                                                              ],
+                                                                            return WebViewAware(
+                                                                              child: AlertDialog(
+                                                                                title: Text('Atenção!'),
+                                                                                content: Text('Deseja desconectar o WhatsApp? Os clientes não receberão mais mensagens de notificações'),
+                                                                                actions: [
+                                                                                  TextButton(
+                                                                                    onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                    child: Text('Não'),
+                                                                                  ),
+                                                                                  TextButton(
+                                                                                    onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                    child: Text('Sim'),
+                                                                                  ),
+                                                                                ],
+                                                                              ),
                                                                             );
                                                                           },
                                                                         ) ??
@@ -15320,19 +15439,21 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                               context,
                                                                           builder:
                                                                               (alertDialogContext) {
-                                                                            return AlertDialog(
-                                                                              title: Text('Atenção!'),
-                                                                              content: Text('Deseja DELETAR a conexão do WhatsApp com o sistema? Os clientes não receberão mais mensagens de notificações'),
-                                                                              actions: [
-                                                                                TextButton(
-                                                                                  onPressed: () => Navigator.pop(alertDialogContext, false),
-                                                                                  child: Text('Não'),
-                                                                                ),
-                                                                                TextButton(
-                                                                                  onPressed: () => Navigator.pop(alertDialogContext, true),
-                                                                                  child: Text('Sim'),
-                                                                                ),
-                                                                              ],
+                                                                            return WebViewAware(
+                                                                              child: AlertDialog(
+                                                                                title: Text('Atenção!'),
+                                                                                content: Text('Deseja DELETAR a conexão do WhatsApp com o sistema? Os clientes não receberão mais mensagens de notificações'),
+                                                                                actions: [
+                                                                                  TextButton(
+                                                                                    onPressed: () => Navigator.pop(alertDialogContext, false),
+                                                                                    child: Text('Não'),
+                                                                                  ),
+                                                                                  TextButton(
+                                                                                    onPressed: () => Navigator.pop(alertDialogContext, true),
+                                                                                    child: Text('Sim'),
+                                                                                  ),
+                                                                                ],
+                                                                              ),
                                                                             );
                                                                           },
                                                                         ) ??

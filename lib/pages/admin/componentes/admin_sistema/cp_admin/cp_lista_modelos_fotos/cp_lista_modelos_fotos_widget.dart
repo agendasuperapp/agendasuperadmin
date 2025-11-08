@@ -14,6 +14,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'cp_lista_modelos_fotos_model.dart';
 export 'cp_lista_modelos_fotos_model.dart';
 
@@ -343,11 +344,13 @@ class _CpListaModelosFotosWidgetState extends State<CpListaModelosFotosWidget>
                                                               .resolve(
                                                                   Directionality.of(
                                                                       context)),
-                                                      child: CaAguardeWidget(
-                                                        paramMostrarAnimacao:
-                                                            false,
-                                                        paramFecharAoClicar:
-                                                            false,
+                                                      child: WebViewAware(
+                                                        child: CaAguardeWidget(
+                                                          paramMostrarAnimacao:
+                                                              false,
+                                                          paramFecharAoClicar:
+                                                              false,
+                                                        ),
                                                       ),
                                                     );
                                                   },
@@ -366,15 +369,17 @@ class _CpListaModelosFotosWidgetState extends State<CpListaModelosFotosWidget>
                                                   useSafeArea: true,
                                                   context: context,
                                                   builder: (context) {
-                                                    return Padding(
-                                                      padding: MediaQuery
-                                                          .viewInsetsOf(
-                                                              context),
-                                                      child:
-                                                          CpCadModelosFotosWidget(
-                                                        paramCadastro: false,
-                                                        paramRowTbmodelosFotos:
-                                                            staggeredViewTblModelosFotosRow,
+                                                    return WebViewAware(
+                                                      child: Padding(
+                                                        padding: MediaQuery
+                                                            .viewInsetsOf(
+                                                                context),
+                                                        child:
+                                                            CpCadModelosFotosWidget(
+                                                          paramCadastro: false,
+                                                          paramRowTbmodelosFotos:
+                                                              staggeredViewTblModelosFotosRow,
+                                                        ),
                                                       ),
                                                     );
                                                   },
@@ -427,10 +432,13 @@ class _CpListaModelosFotosWidgetState extends State<CpListaModelosFotosWidget>
                                                                       Directionality.of(
                                                                           context)),
                                                               child:
-                                                                  CpFotoWidget(
-                                                                paramFoto:
-                                                                    staggeredViewTblModelosFotosRow
-                                                                        .foto!,
+                                                                  WebViewAware(
+                                                                child:
+                                                                    CpFotoWidget(
+                                                                  paramFoto:
+                                                                      staggeredViewTblModelosFotosRow
+                                                                          .foto!,
+                                                                ),
                                                               ),
                                                             );
                                                           },
@@ -440,20 +448,23 @@ class _CpListaModelosFotosWidgetState extends State<CpListaModelosFotosWidget>
                                                           context: context,
                                                           builder:
                                                               (alertDialogContext) {
-                                                            return AlertDialog(
-                                                              title: Text(
-                                                                  'Atenção!'),
-                                                              content: Text(
-                                                                  'Sem foto'),
-                                                              actions: [
-                                                                TextButton(
-                                                                  onPressed: () =>
-                                                                      Navigator.pop(
-                                                                          alertDialogContext),
-                                                                  child: Text(
-                                                                      'Ok'),
-                                                                ),
-                                                              ],
+                                                            return WebViewAware(
+                                                              child:
+                                                                  AlertDialog(
+                                                                title: Text(
+                                                                    'Atenção!'),
+                                                                content: Text(
+                                                                    'Sem foto'),
+                                                                actions: [
+                                                                  TextButton(
+                                                                    onPressed: () =>
+                                                                        Navigator.pop(
+                                                                            alertDialogContext),
+                                                                    child: Text(
+                                                                        'Ok'),
+                                                                  ),
+                                                                ],
+                                                              ),
                                                             );
                                                           },
                                                         );
@@ -631,8 +642,10 @@ class _CpListaModelosFotosWidgetState extends State<CpListaModelosFotosWidget>
                                 backgroundColor: Colors.transparent,
                                 alignment: AlignmentDirectional(0.0, 0.0)
                                     .resolve(Directionality.of(context)),
-                                child: CaAguardeWidget(
-                                  paramMostrarAnimacao: false,
+                                child: WebViewAware(
+                                  child: CaAguardeWidget(
+                                    paramMostrarAnimacao: false,
+                                  ),
                                 ),
                               );
                             },
@@ -648,10 +661,12 @@ class _CpListaModelosFotosWidgetState extends State<CpListaModelosFotosWidget>
                             useSafeArea: true,
                             context: context,
                             builder: (context) {
-                              return Padding(
-                                padding: MediaQuery.viewInsetsOf(context),
-                                child: CpCadModelosFotosWidget(
-                                  paramCadastro: true,
+                              return WebViewAware(
+                                child: Padding(
+                                  padding: MediaQuery.viewInsetsOf(context),
+                                  child: CpCadModelosFotosWidget(
+                                    paramCadastro: true,
+                                  ),
                                 ),
                               );
                             },

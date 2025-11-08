@@ -8,6 +8,7 @@ import '/actions/actions.dart' as action_blocks;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'pg_notificacoes_model.dart';
 export 'pg_notificacoes_model.dart';
 
@@ -65,44 +66,47 @@ class _PgNotificacoesWidgetState extends State<PgNotificacoesWidget> {
           ),
           child: Drawer(
             elevation: 16.0,
-            child: Stack(
-              children: [
-                wrapWithModel(
-                  model: _model.cpMenuLateralModel2,
-                  updateCallback: () => safeSetState(() {}),
-                  child: CpMenuLateralWidget(
-                    paramBotaoSelecionado: 'NOTIFICACOES',
-                    paramGrupoBotao: '0',
-                    paramElpacamentoTop: true,
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 12.0, 0.0),
-                  child: InkWell(
-                    splashColor: Colors.transparent,
-                    focusColor: Colors.transparent,
-                    hoverColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    onTap: () async {
-                      if (scaffoldKey.currentState!.isDrawerOpen ||
-                          scaffoldKey.currentState!.isEndDrawerOpen) {
-                        Navigator.pop(context);
-                      }
-                    },
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Icon(
-                          Icons.close,
-                          color: FlutterFlowTheme.of(context).txtMenuLateral,
-                          size: 24.0,
-                        ),
-                      ],
+            child: WebViewAware(
+              child: Stack(
+                children: [
+                  wrapWithModel(
+                    model: _model.cpMenuLateralModel2,
+                    updateCallback: () => safeSetState(() {}),
+                    child: CpMenuLateralWidget(
+                      paramBotaoSelecionado: 'NOTIFICACOES',
+                      paramGrupoBotao: '0',
+                      paramElpacamentoTop: true,
                     ),
                   ),
-                ),
-              ],
+                  Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 12.0, 0.0),
+                    child: InkWell(
+                      splashColor: Colors.transparent,
+                      focusColor: Colors.transparent,
+                      hoverColor: Colors.transparent,
+                      highlightColor: Colors.transparent,
+                      onTap: () async {
+                        if (scaffoldKey.currentState!.isDrawerOpen ||
+                            scaffoldKey.currentState!.isEndDrawerOpen) {
+                          Navigator.pop(context);
+                        }
+                      },
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Icon(
+                            Icons.close,
+                            color: FlutterFlowTheme.of(context).txtMenuLateral,
+                            size: 24.0,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

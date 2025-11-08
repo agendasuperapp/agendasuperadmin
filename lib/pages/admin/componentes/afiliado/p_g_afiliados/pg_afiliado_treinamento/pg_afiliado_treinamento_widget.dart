@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'pg_afiliado_treinamento_model.dart';
 export 'pg_afiliado_treinamento_model.dart';
 
@@ -217,17 +218,19 @@ class _PgAfiliadoTreinamentoWidgetState
                                     await showDialog(
                                       context: context,
                                       builder: (alertDialogContext) {
-                                        return AlertDialog(
-                                          title: Text('Atenção!'),
-                                          content: Text(
-                                              'Seu treinamento foi concluído com sucesso, agora seu painel de afiliado está liberado.'),
-                                          actions: [
-                                            TextButton(
-                                              onPressed: () => Navigator.pop(
-                                                  alertDialogContext),
-                                              child: Text('Ok'),
-                                            ),
-                                          ],
+                                        return WebViewAware(
+                                          child: AlertDialog(
+                                            title: Text('Atenção!'),
+                                            content: Text(
+                                                'Seu treinamento foi concluído com sucesso, agora seu painel de afiliado está liberado.'),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    alertDialogContext),
+                                                child: Text('Ok'),
+                                              ),
+                                            ],
+                                          ),
                                         );
                                       },
                                     );

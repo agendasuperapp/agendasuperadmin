@@ -18,6 +18,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'cp_configuracoes_model.dart';
 export 'cp_configuracoes_model.dart';
 
@@ -3410,16 +3411,18 @@ class _CpConfiguracoesWidgetState extends State<CpConfiguracoesWidget>
                     await showDialog(
                       context: context,
                       builder: (alertDialogContext) {
-                        return AlertDialog(
-                          title: Text('Atenção!'),
-                          content: Text('Selecione um tema'),
-                          actions: [
-                            TextButton(
-                              onPressed: () =>
-                                  Navigator.pop(alertDialogContext),
-                              child: Text('Ok'),
-                            ),
-                          ],
+                        return WebViewAware(
+                          child: AlertDialog(
+                            title: Text('Atenção!'),
+                            content: Text('Selecione um tema'),
+                            actions: [
+                              TextButton(
+                                onPressed: () =>
+                                    Navigator.pop(alertDialogContext),
+                                child: Text('Ok'),
+                              ),
+                            ],
+                          ),
                         );
                       },
                     );
@@ -3433,16 +3436,18 @@ class _CpConfiguracoesWidgetState extends State<CpConfiguracoesWidget>
                       await showDialog(
                         context: context,
                         builder: (alertDialogContext) {
-                          return AlertDialog(
-                            title: Text('Atenção!'),
-                            content: Text('Informe o percentual da entrada'),
-                            actions: [
-                              TextButton(
-                                onPressed: () =>
-                                    Navigator.pop(alertDialogContext),
-                                child: Text('Ok'),
-                              ),
-                            ],
+                          return WebViewAware(
+                            child: AlertDialog(
+                              title: Text('Atenção!'),
+                              content: Text('Informe o percentual da entrada'),
+                              actions: [
+                                TextButton(
+                                  onPressed: () =>
+                                      Navigator.pop(alertDialogContext),
+                                  child: Text('Ok'),
+                                ),
+                              ],
+                            ),
                           );
                         },
                       );
@@ -3464,16 +3469,18 @@ class _CpConfiguracoesWidgetState extends State<CpConfiguracoesWidget>
                       await showDialog(
                         context: context,
                         builder: (alertDialogContext) {
-                          return AlertDialog(
-                            title: Text('Atenção!'),
-                            content: Text('Informe a chave PIX'),
-                            actions: [
-                              TextButton(
-                                onPressed: () =>
-                                    Navigator.pop(alertDialogContext),
-                                child: Text('Ok'),
-                              ),
-                            ],
+                          return WebViewAware(
+                            child: AlertDialog(
+                              title: Text('Atenção!'),
+                              content: Text('Informe a chave PIX'),
+                              actions: [
+                                TextButton(
+                                  onPressed: () =>
+                                      Navigator.pop(alertDialogContext),
+                                  child: Text('Ok'),
+                                ),
+                              ],
+                            ),
                           );
                         },
                       );
@@ -3486,16 +3493,18 @@ class _CpConfiguracoesWidgetState extends State<CpConfiguracoesWidget>
                       await showDialog(
                         context: context,
                         builder: (alertDialogContext) {
-                          return AlertDialog(
-                            title: Text('Atenção!'),
-                            content: Text('Número de telefone inválido'),
-                            actions: [
-                              TextButton(
-                                onPressed: () =>
-                                    Navigator.pop(alertDialogContext),
-                                child: Text('Ok'),
-                              ),
-                            ],
+                          return WebViewAware(
+                            child: AlertDialog(
+                              title: Text('Atenção!'),
+                              content: Text('Número de telefone inválido'),
+                              actions: [
+                                TextButton(
+                                  onPressed: () =>
+                                      Navigator.pop(alertDialogContext),
+                                  child: Text('Ok'),
+                                ),
+                              ],
+                            ),
                           );
                         },
                       );
@@ -3508,16 +3517,18 @@ class _CpConfiguracoesWidgetState extends State<CpConfiguracoesWidget>
                       await showDialog(
                         context: context,
                         builder: (alertDialogContext) {
-                          return AlertDialog(
-                            title: Text('Atenção!'),
-                            content: Text('E-mail inválido'),
-                            actions: [
-                              TextButton(
-                                onPressed: () =>
-                                    Navigator.pop(alertDialogContext),
-                                child: Text('Ok'),
-                              ),
-                            ],
+                          return WebViewAware(
+                            child: AlertDialog(
+                              title: Text('Atenção!'),
+                              content: Text('E-mail inválido'),
+                              actions: [
+                                TextButton(
+                                  onPressed: () =>
+                                      Navigator.pop(alertDialogContext),
+                                  child: Text('Ok'),
+                                ),
+                              ],
+                            ),
                           );
                         },
                       );
@@ -3530,16 +3541,18 @@ class _CpConfiguracoesWidgetState extends State<CpConfiguracoesWidget>
                       await showDialog(
                         context: context,
                         builder: (alertDialogContext) {
-                          return AlertDialog(
-                            title: Text('Atenção!'),
-                            content: Text('CPF inválido'),
-                            actions: [
-                              TextButton(
-                                onPressed: () =>
-                                    Navigator.pop(alertDialogContext),
-                                child: Text('Ok'),
-                              ),
-                            ],
+                          return WebViewAware(
+                            child: AlertDialog(
+                              title: Text('Atenção!'),
+                              content: Text('CPF inválido'),
+                              actions: [
+                                TextButton(
+                                  onPressed: () =>
+                                      Navigator.pop(alertDialogContext),
+                                  child: Text('Ok'),
+                                ),
+                              ],
+                            ),
                           );
                         },
                       );
@@ -3552,16 +3565,18 @@ class _CpConfiguracoesWidgetState extends State<CpConfiguracoesWidget>
                       await showDialog(
                         context: context,
                         builder: (alertDialogContext) {
-                          return AlertDialog(
-                            title: Text('Atenção!'),
-                            content: Text('CNPJ inválido'),
-                            actions: [
-                              TextButton(
-                                onPressed: () =>
-                                    Navigator.pop(alertDialogContext),
-                                child: Text('Ok'),
-                              ),
-                            ],
+                          return WebViewAware(
+                            child: AlertDialog(
+                              title: Text('Atenção!'),
+                              content: Text('CNPJ inválido'),
+                              actions: [
+                                TextButton(
+                                  onPressed: () =>
+                                      Navigator.pop(alertDialogContext),
+                                  child: Text('Ok'),
+                                ),
+                              ],
+                            ),
                           );
                         },
                       );
@@ -3576,17 +3591,19 @@ class _CpConfiguracoesWidgetState extends State<CpConfiguracoesWidget>
                       await showDialog(
                         context: context,
                         builder: (alertDialogContext) {
-                          return AlertDialog(
-                            title: Text('Atenção!'),
-                            content:
-                                Text('Informe o nome do titular da chave PIX'),
-                            actions: [
-                              TextButton(
-                                onPressed: () =>
-                                    Navigator.pop(alertDialogContext),
-                                child: Text('Ok'),
-                              ),
-                            ],
+                          return WebViewAware(
+                            child: AlertDialog(
+                              title: Text('Atenção!'),
+                              content: Text(
+                                  'Informe o nome do titular da chave PIX'),
+                              actions: [
+                                TextButton(
+                                  onPressed: () =>
+                                      Navigator.pop(alertDialogContext),
+                                  child: Text('Ok'),
+                                ),
+                              ],
+                            ),
                           );
                         },
                       );
@@ -3601,17 +3618,19 @@ class _CpConfiguracoesWidgetState extends State<CpConfiguracoesWidget>
                     await showDialog(
                       context: context,
                       builder: (alertDialogContext) {
-                        return AlertDialog(
-                          title: Text('Atenção!'),
-                          content: Text(
-                              'Informe o tempo (Minutos) para lembrete antes do horário do serviço '),
-                          actions: [
-                            TextButton(
-                              onPressed: () =>
-                                  Navigator.pop(alertDialogContext),
-                              child: Text('Ok'),
-                            ),
-                          ],
+                        return WebViewAware(
+                          child: AlertDialog(
+                            title: Text('Atenção!'),
+                            content: Text(
+                                'Informe o tempo (Minutos) para lembrete antes do horário do serviço '),
+                            actions: [
+                              TextButton(
+                                onPressed: () =>
+                                    Navigator.pop(alertDialogContext),
+                                child: Text('Ok'),
+                              ),
+                            ],
+                          ),
                         );
                       },
                     );

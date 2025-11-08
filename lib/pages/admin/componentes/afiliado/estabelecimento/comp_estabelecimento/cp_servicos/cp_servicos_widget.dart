@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'cp_servicos_model.dart';
 export 'cp_servicos_model.dart';
 
@@ -718,8 +719,10 @@ class _CpServicosWidgetState extends State<CpServicosWidget>
                                                         0.0, 0.0)
                                                     .resolve(Directionality.of(
                                                         context)),
-                                                child: CaAguardeWidget(
-                                                  paramMostrarAnimacao: false,
+                                                child: WebViewAware(
+                                                  child: CaAguardeWidget(
+                                                    paramMostrarAnimacao: false,
+                                                  ),
                                                 ),
                                               );
                                             },
@@ -737,15 +740,17 @@ class _CpServicosWidgetState extends State<CpServicosWidget>
                                             useSafeArea: true,
                                             context: context,
                                             builder: (context) {
-                                              return Padding(
-                                                padding:
-                                                    MediaQuery.viewInsetsOf(
-                                                        context),
-                                                child: CpCadServicosWidget(
-                                                  paramCadastro: false,
-                                                  paramID:
-                                                      listViewTblCadServicosRow
-                                                          .id,
+                                              return WebViewAware(
+                                                child: Padding(
+                                                  padding:
+                                                      MediaQuery.viewInsetsOf(
+                                                          context),
+                                                  child: CpCadServicosWidget(
+                                                    paramCadastro: false,
+                                                    paramID:
+                                                        listViewTblCadServicosRow
+                                                            .id,
+                                                  ),
                                                 ),
                                               );
                                             },
@@ -795,10 +800,12 @@ class _CpServicosWidgetState extends State<CpServicosWidget>
                                                               .resolve(
                                                                   Directionality.of(
                                                                       context)),
-                                                          child: CpFotoWidget(
-                                                            paramFoto:
-                                                                listViewTblCadServicosRow
-                                                                    .foto!,
+                                                          child: WebViewAware(
+                                                            child: CpFotoWidget(
+                                                              paramFoto:
+                                                                  listViewTblCadServicosRow
+                                                                      .foto!,
+                                                            ),
                                                           ),
                                                         );
                                                       },
@@ -808,19 +815,22 @@ class _CpServicosWidgetState extends State<CpServicosWidget>
                                                       context: context,
                                                       builder:
                                                           (alertDialogContext) {
-                                                        return AlertDialog(
-                                                          title:
-                                                              Text('Atenção!'),
-                                                          content: Text(
-                                                              'Profissional sem foto de perfil...'),
-                                                          actions: [
-                                                            TextButton(
-                                                              onPressed: () =>
-                                                                  Navigator.pop(
-                                                                      alertDialogContext),
-                                                              child: Text('Ok'),
-                                                            ),
-                                                          ],
+                                                        return WebViewAware(
+                                                          child: AlertDialog(
+                                                            title: Text(
+                                                                'Atenção!'),
+                                                            content: Text(
+                                                                'Profissional sem foto de perfil...'),
+                                                            actions: [
+                                                              TextButton(
+                                                                onPressed: () =>
+                                                                    Navigator.pop(
+                                                                        alertDialogContext),
+                                                                child:
+                                                                    Text('Ok'),
+                                                              ),
+                                                            ],
+                                                          ),
                                                         );
                                                       },
                                                     );
@@ -1158,8 +1168,10 @@ class _CpServicosWidgetState extends State<CpServicosWidget>
                               backgroundColor: Colors.transparent,
                               alignment: AlignmentDirectional(0.0, 0.0)
                                   .resolve(Directionality.of(context)),
-                              child: CaAguardeWidget(
-                                paramMostrarAnimacao: false,
+                              child: WebViewAware(
+                                child: CaAguardeWidget(
+                                  paramMostrarAnimacao: false,
+                                ),
                               ),
                             );
                           },
@@ -1175,10 +1187,12 @@ class _CpServicosWidgetState extends State<CpServicosWidget>
                           useSafeArea: true,
                           context: context,
                           builder: (context) {
-                            return Padding(
-                              padding: MediaQuery.viewInsetsOf(context),
-                              child: CpCadServicosWidget(
-                                paramCadastro: true,
+                            return WebViewAware(
+                              child: Padding(
+                                padding: MediaQuery.viewInsetsOf(context),
+                                child: CpCadServicosWidget(
+                                  paramCadastro: true,
+                                ),
                               ),
                             );
                           },

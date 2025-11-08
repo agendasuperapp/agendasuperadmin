@@ -16,6 +16,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'cp_admin_pag_saques_model.dart';
 export 'cp_admin_pag_saques_model.dart';
 
@@ -649,10 +650,12 @@ class _CpAdminPagSaquesWidgetState extends State<CpAdminPagSaquesWidget>
                                                                 .resolve(
                                                                     Directionality.of(
                                                                         context)),
-                                                        child: CpFotoWidget(
-                                                          paramFoto:
-                                                              listViewViewTblAfiliadoPgSaquesRow
-                                                                  .fotoPerfil!,
+                                                        child: WebViewAware(
+                                                          child: CpFotoWidget(
+                                                            paramFoto:
+                                                                listViewViewTblAfiliadoPgSaquesRow
+                                                                    .fotoPerfil!,
+                                                          ),
                                                         ),
                                                       );
                                                     },
@@ -662,18 +665,21 @@ class _CpAdminPagSaquesWidgetState extends State<CpAdminPagSaquesWidget>
                                                     context: context,
                                                     builder:
                                                         (alertDialogContext) {
-                                                      return AlertDialog(
-                                                        title: Text('Atenção!'),
-                                                        content:
-                                                            Text('Sem Foto'),
-                                                        actions: [
-                                                          TextButton(
-                                                            onPressed: () =>
-                                                                Navigator.pop(
-                                                                    alertDialogContext),
-                                                            child: Text('Ok'),
-                                                          ),
-                                                        ],
+                                                      return WebViewAware(
+                                                        child: AlertDialog(
+                                                          title:
+                                                              Text('Atenção!'),
+                                                          content:
+                                                              Text('Sem Foto'),
+                                                          actions: [
+                                                            TextButton(
+                                                              onPressed: () =>
+                                                                  Navigator.pop(
+                                                                      alertDialogContext),
+                                                              child: Text('Ok'),
+                                                            ),
+                                                          ],
+                                                        ),
                                                       );
                                                     },
                                                   );
@@ -1296,14 +1302,16 @@ class _CpAdminPagSaquesWidgetState extends State<CpAdminPagSaquesWidget>
                                                                   .transparent,
                                                           context: context,
                                                           builder: (context) {
-                                                            return Padding(
-                                                              padding: MediaQuery
-                                                                  .viewInsetsOf(
-                                                                      context),
-                                                              child:
-                                                                  CpAdminPagSaquesComprovanteWidget(
-                                                                paramRowViewTblAfiliadoSaque:
-                                                                    listViewViewTblAfiliadoPgSaquesRow,
+                                                            return WebViewAware(
+                                                              child: Padding(
+                                                                padding: MediaQuery
+                                                                    .viewInsetsOf(
+                                                                        context),
+                                                                child:
+                                                                    CpAdminPagSaquesComprovanteWidget(
+                                                                  paramRowViewTblAfiliadoSaque:
+                                                                      listViewViewTblAfiliadoPgSaquesRow,
+                                                                ),
                                                               ),
                                                             );
                                                           },
@@ -1333,9 +1341,12 @@ class _CpAdminPagSaquesWidgetState extends State<CpAdminPagSaquesWidget>
                                                                       Directionality.of(
                                                                           context)),
                                                               child:
-                                                                  CpAdminPagSaquesComprovanteWidget(
-                                                                paramRowViewTblAfiliadoSaque:
-                                                                    listViewViewTblAfiliadoPgSaquesRow,
+                                                                  WebViewAware(
+                                                                child:
+                                                                    CpAdminPagSaquesComprovanteWidget(
+                                                                  paramRowViewTblAfiliadoSaque:
+                                                                      listViewViewTblAfiliadoPgSaquesRow,
+                                                                ),
                                                               ),
                                                             );
                                                           },
@@ -1401,11 +1412,12 @@ class _CpAdminPagSaquesWidgetState extends State<CpAdminPagSaquesWidget>
                                                                             context,
                                                                         builder:
                                                                             (context) {
-                                                                          return Padding(
-                                                                            padding:
-                                                                                MediaQuery.viewInsetsOf(context),
+                                                                          return WebViewAware(
                                                                             child:
-                                                                                CpNotaFiscalWidget(),
+                                                                                Padding(
+                                                                              padding: MediaQuery.viewInsetsOf(context),
+                                                                              child: CpNotaFiscalWidget(),
+                                                                            ),
                                                                           );
                                                                         },
                                                                       ).then((value) =>
@@ -1429,7 +1441,9 @@ class _CpAdminPagSaquesWidgetState extends State<CpAdminPagSaquesWidget>
                                                                             alignment:
                                                                                 AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                             child:
-                                                                                CpNotaFiscalWidget(),
+                                                                                WebViewAware(
+                                                                              child: CpNotaFiscalWidget(),
+                                                                            ),
                                                                           );
                                                                         },
                                                                       );
@@ -1473,14 +1487,16 @@ class _CpAdminPagSaquesWidgetState extends State<CpAdminPagSaquesWidget>
                                                                   .transparent,
                                                           context: context,
                                                           builder: (context) {
-                                                            return Padding(
-                                                              padding: MediaQuery
-                                                                  .viewInsetsOf(
-                                                                      context),
-                                                              child:
-                                                                  CpAdminPagSaquesComprovanteWidget(
-                                                                paramRowViewTblAfiliadoSaque:
-                                                                    listViewViewTblAfiliadoPgSaquesRow,
+                                                            return WebViewAware(
+                                                              child: Padding(
+                                                                padding: MediaQuery
+                                                                    .viewInsetsOf(
+                                                                        context),
+                                                                child:
+                                                                    CpAdminPagSaquesComprovanteWidget(
+                                                                  paramRowViewTblAfiliadoSaque:
+                                                                      listViewViewTblAfiliadoPgSaquesRow,
+                                                                ),
                                                               ),
                                                             );
                                                           },
@@ -1510,9 +1526,12 @@ class _CpAdminPagSaquesWidgetState extends State<CpAdminPagSaquesWidget>
                                                                       Directionality.of(
                                                                           context)),
                                                               child:
-                                                                  CpAdminPagSaquesComprovanteWidget(
-                                                                paramRowViewTblAfiliadoSaque:
-                                                                    listViewViewTblAfiliadoPgSaquesRow,
+                                                                  WebViewAware(
+                                                                child:
+                                                                    CpAdminPagSaquesComprovanteWidget(
+                                                                  paramRowViewTblAfiliadoSaque:
+                                                                      listViewViewTblAfiliadoPgSaquesRow,
+                                                                ),
                                                               ),
                                                             );
                                                           },
@@ -1622,11 +1641,14 @@ class _CpAdminPagSaquesWidgetState extends State<CpAdminPagSaquesWidget>
                                                                           context,
                                                                       builder:
                                                                           (context) {
-                                                                        return Padding(
-                                                                          padding:
-                                                                              MediaQuery.viewInsetsOf(context),
+                                                                        return WebViewAware(
                                                                           child:
-                                                                              CpNotaFiscalWidget(),
+                                                                              Padding(
+                                                                            padding:
+                                                                                MediaQuery.viewInsetsOf(context),
+                                                                            child:
+                                                                                CpNotaFiscalWidget(),
+                                                                          ),
                                                                         );
                                                                       },
                                                                     ).then((value) =>
@@ -1651,7 +1673,10 @@ class _CpAdminPagSaquesWidgetState extends State<CpAdminPagSaquesWidget>
                                                                           alignment:
                                                                               AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                           child:
-                                                                              CpNotaFiscalWidget(),
+                                                                              WebViewAware(
+                                                                            child:
+                                                                                CpNotaFiscalWidget(),
+                                                                          ),
                                                                         );
                                                                       },
                                                                     );

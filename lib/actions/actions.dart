@@ -17,6 +17,7 @@ import '/index.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 
 Future acBlockAtualizarHorasDispProfissional(
   BuildContext context, {
@@ -371,9 +372,11 @@ Future<bool> acLogarCliente(BuildContext context) async {
       enableDrag: false,
       context: context,
       builder: (context) {
-        return Padding(
-          padding: MediaQuery.viewInsetsOf(context),
-          child: CpLoginWidget(),
+        return WebViewAware(
+          child: Padding(
+            padding: MediaQuery.viewInsetsOf(context),
+            child: CpLoginWidget(),
+          ),
         );
       },
     );
@@ -394,9 +397,11 @@ Future<bool> acLogarCliente(BuildContext context) async {
       enableDrag: false,
       context: context,
       builder: (context) {
-        return Padding(
-          padding: MediaQuery.viewInsetsOf(context),
-          child: CpLoginWidget(),
+        return WebViewAware(
+          child: Padding(
+            padding: MediaQuery.viewInsetsOf(context),
+            child: CpLoginWidget(),
+          ),
         );
       },
     );
@@ -431,15 +436,17 @@ Future<bool> acAtualizarEstabelecimentoLogado(
     await showDialog(
       context: context,
       builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content: Text('Estabelecimento não encontrado'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
+        return WebViewAware(
+          child: AlertDialog(
+            title: Text('Atenção!'),
+            content: Text('Estabelecimento não encontrado'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          ),
         );
       },
     );
@@ -557,15 +564,17 @@ Future<bool> acAtualizarEstabelecimentoLogado(
     await showDialog(
       context: context,
       builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content: Text('Usuário não encontrado'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
+        return WebViewAware(
+          child: AlertDialog(
+            title: Text('Atenção!'),
+            content: Text('Usuário não encontrado'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          ),
         );
       },
     );
@@ -846,9 +855,11 @@ Future acAtualizarInicializacaoSistema(
         backgroundColor: Colors.transparent,
         context: context,
         builder: (context) {
-          return Padding(
-            padding: MediaQuery.viewInsetsOf(context),
-            child: CpHomeAssistenteCadWidget(),
+          return WebViewAware(
+            child: Padding(
+              padding: MediaQuery.viewInsetsOf(context),
+              child: CpHomeAssistenteCadWidget(),
+            ),
           );
         },
       );
@@ -867,7 +878,9 @@ Future acAtualizarInicializacaoSistema(
             backgroundColor: Colors.transparent,
             alignment: AlignmentDirectional(0.0, 0.0)
                 .resolve(Directionality.of(context)),
-            child: CpHomeAssistenteCadWidget(),
+            child: WebViewAware(
+              child: CpHomeAssistenteCadWidget(),
+            ),
           );
         },
       );
@@ -988,9 +1001,11 @@ Future acMensagemDialog(
           backgroundColor: Colors.transparent,
           alignment: AlignmentDirectional(0.0, 0.0)
               .resolve(Directionality.of(context)),
-          child: CpDialogSucessoWidget(
-            paramMensagem: paramMensagem!,
-            paramObservacao: paramObservacao,
+          child: WebViewAware(
+            child: CpDialogSucessoWidget(
+              paramMensagem: paramMensagem!,
+              paramObservacao: paramObservacao,
+            ),
           ),
         );
       },
@@ -1002,15 +1017,17 @@ Future acMensagemDialog(
     await showDialog(
       context: context,
       builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text(paramTitulo!),
-          content: Text(paramMensagem!),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
+        return WebViewAware(
+          child: AlertDialog(
+            title: Text(paramTitulo!),
+            content: Text(paramMensagem!),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          ),
         );
       },
     );
@@ -1025,29 +1042,31 @@ Future acMensagemDialog(
           backgroundColor: Colors.transparent,
           alignment: AlignmentDirectional(0.0, 0.0)
               .resolve(Directionality.of(context)),
-          child: CpDialogInfoWidget(
-            paramTitulo: paramTitulo!,
-            paramMensagem: paramMensagem!,
-            paramCorTexto: () {
-              if (paramTipo == 'info') {
-                return FlutterFlowTheme.of(context).secondaryText;
-              } else if (paramTipo == 'erro') {
-                return FlutterFlowTheme.of(context).error;
-              } else {
-                return FlutterFlowTheme.of(context).primary;
-              }
-            }(),
-            paramCorFundo: FlutterFlowTheme.of(context).secondaryBackground,
-            paramCorTitulo: () {
-              if (paramTipo == 'info') {
-                return FlutterFlowTheme.of(context).secondaryText;
-              } else if (paramTipo == 'erro') {
-                return FlutterFlowTheme.of(context).error;
-              } else {
-                return FlutterFlowTheme.of(context).primary;
-              }
-            }(),
-            paramVerCarrinho: paramVerCarrinho,
+          child: WebViewAware(
+            child: CpDialogInfoWidget(
+              paramTitulo: paramTitulo!,
+              paramMensagem: paramMensagem!,
+              paramCorTexto: () {
+                if (paramTipo == 'info') {
+                  return FlutterFlowTheme.of(context).secondaryText;
+                } else if (paramTipo == 'erro') {
+                  return FlutterFlowTheme.of(context).error;
+                } else {
+                  return FlutterFlowTheme.of(context).primary;
+                }
+              }(),
+              paramCorFundo: FlutterFlowTheme.of(context).secondaryBackground,
+              paramCorTitulo: () {
+                if (paramTipo == 'info') {
+                  return FlutterFlowTheme.of(context).secondaryText;
+                } else if (paramTipo == 'erro') {
+                  return FlutterFlowTheme.of(context).error;
+                } else {
+                  return FlutterFlowTheme.of(context).primary;
+                }
+              }(),
+              paramVerCarrinho: paramVerCarrinho,
+            ),
           ),
         );
       },
@@ -1063,19 +1082,21 @@ Future<bool> acSairSistema(BuildContext context) async {
   var confirmDialogResponse = await showDialog<bool>(
         context: context,
         builder: (alertDialogContext) {
-          return AlertDialog(
-            title: Text('Atençaõ!'),
-            content: Text('Deseja sair do usuário logado no sistema?'),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(alertDialogContext, false),
-                child: Text('Não'),
-              ),
-              TextButton(
-                onPressed: () => Navigator.pop(alertDialogContext, true),
-                child: Text('Sim'),
-              ),
-            ],
+          return WebViewAware(
+            child: AlertDialog(
+              title: Text('Atençaõ!'),
+              content: Text('Deseja sair do usuário logado no sistema?'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(alertDialogContext, false),
+                  child: Text('Não'),
+                ),
+                TextButton(
+                  onPressed: () => Navigator.pop(alertDialogContext, true),
+                  child: Text('Sim'),
+                ),
+              ],
+            ),
           );
         },
       ) ??
@@ -1445,16 +1466,18 @@ Future<String> acConsultarTelefone(
     await showDialog(
       context: context,
       builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content: Text(
-              'Esse telefone ${paramTelefone} Já está cadastrado no sistema.'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
+        return WebViewAware(
+          child: AlertDialog(
+            title: Text('Atenção!'),
+            content: Text(
+                'Esse telefone ${paramTelefone} Já está cadastrado no sistema.'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          ),
         );
       },
     );
@@ -1473,15 +1496,17 @@ Future<String> acConsultarTelefone(
     await showDialog(
       context: context,
       builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content: Text('Erro ao consultar telefone:${'\n\n'}Código: PARVAZ'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
+        return WebViewAware(
+          child: AlertDialog(
+            title: Text('Atenção!'),
+            content: Text('Erro ao consultar telefone:${'\n\n'}Código: PARVAZ'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          ),
         );
       },
     );
@@ -1495,15 +1520,17 @@ Future<String> acConsultarTelefone(
     await showDialog(
       context: context,
       builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content: Text('Erro ao consultar telefone:${'\n\n'}Código: TOKINV'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
+        return WebViewAware(
+          child: AlertDialog(
+            title: Text('Atenção!'),
+            content: Text('Erro ao consultar telefone:${'\n\n'}Código: TOKINV'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          ),
         );
       },
     );
@@ -1514,16 +1541,18 @@ Future<String> acConsultarTelefone(
     await showDialog(
       context: context,
       builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content:
-              Text('Erro ao consultar telefone:${'\n\n'}Código: Sucess False'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
+        return WebViewAware(
+          child: AlertDialog(
+            title: Text('Atenção!'),
+            content: Text(
+                'Erro ao consultar telefone:${'\n\n'}Código: Sucess False'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          ),
         );
       },
     );
@@ -1532,16 +1561,18 @@ Future<String> acConsultarTelefone(
     await showDialog(
       context: context,
       builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content: Text(
-              'Erro ao consultar telefone:${'\n\n'}Código: Indefinido ${(apiResultConsTel?.statusCode ?? 200).toString()}'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
+        return WebViewAware(
+          child: AlertDialog(
+            title: Text('Atenção!'),
+            content: Text(
+                'Erro ao consultar telefone:${'\n\n'}Código: Indefinido ${(apiResultConsTel?.statusCode ?? 200).toString()}'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          ),
         );
       },
     );
@@ -1588,16 +1619,18 @@ Future<String> acConsultarUsername(
     await showDialog(
       context: context,
       builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content: Text(
-              'Esse username  ${paramUsername} Já está cadastrado no sistema.'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
+        return WebViewAware(
+          child: AlertDialog(
+            title: Text('Atenção!'),
+            content: Text(
+                'Esse username  ${paramUsername} Já está cadastrado no sistema.'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          ),
         );
       },
     );
@@ -1614,15 +1647,17 @@ Future<String> acConsultarUsername(
     await showDialog(
       context: context,
       builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content: Text('Erro ao consultar username:${'\n\n'}Código: PARVAZ'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
+        return WebViewAware(
+          child: AlertDialog(
+            title: Text('Atenção!'),
+            content: Text('Erro ao consultar username:${'\n\n'}Código: PARVAZ'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          ),
         );
       },
     );
@@ -1634,15 +1669,17 @@ Future<String> acConsultarUsername(
     await showDialog(
       context: context,
       builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content: Text('Erro ao consultar username:${'\n\n'}Código: TOKINV'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
+        return WebViewAware(
+          child: AlertDialog(
+            title: Text('Atenção!'),
+            content: Text('Erro ao consultar username:${'\n\n'}Código: TOKINV'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          ),
         );
       },
     );
@@ -1651,16 +1688,18 @@ Future<String> acConsultarUsername(
     await showDialog(
       context: context,
       builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content:
-              Text('Erro ao consultar username:${'\n\n'}Código: Sucess False'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
+        return WebViewAware(
+          child: AlertDialog(
+            title: Text('Atenção!'),
+            content: Text(
+                'Erro ao consultar username:${'\n\n'}Código: Sucess False'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          ),
         );
       },
     );
@@ -1669,16 +1708,18 @@ Future<String> acConsultarUsername(
     await showDialog(
       context: context,
       builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content: Text(
-              'Erro ao consultar username:${'\n\n'}Código: Indefinido ${(apiResultConsUsernamex?.statusCode ?? 200).toString()}'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
+        return WebViewAware(
+          child: AlertDialog(
+            title: Text('Atenção!'),
+            content: Text(
+                'Erro ao consultar username:${'\n\n'}Código: Indefinido ${(apiResultConsUsernamex?.statusCode ?? 200).toString()}'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          ),
         );
       },
     );
@@ -1867,15 +1908,17 @@ Future<String> acConsultarCupom(
       await showDialog(
         context: context,
         builder: (alertDialogContext) {
-          return AlertDialog(
-            title: Text('Atenção!'),
-            content: Text('Esse cupom já está cadastrado no sistema.'),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(alertDialogContext),
-                child: Text('Ok'),
-              ),
-            ],
+          return WebViewAware(
+            child: AlertDialog(
+              title: Text('Atenção!'),
+              content: Text('Esse cupom já está cadastrado no sistema.'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(alertDialogContext),
+                  child: Text('Ok'),
+                ),
+              ],
+            ),
           );
         },
       );
@@ -1948,16 +1991,18 @@ Future<String> acConsultarCupom(
       await showDialog(
         context: context,
         builder: (alertDialogContext) {
-          return AlertDialog(
-            title: Text('Atenção!'),
-            content:
-                Text('Cupom não localizado, verifique se digitou corretamente'),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(alertDialogContext),
-                child: Text('Ok'),
-              ),
-            ],
+          return WebViewAware(
+            child: AlertDialog(
+              title: Text('Atenção!'),
+              content: Text(
+                  'Cupom não localizado, verifique se digitou corretamente'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(alertDialogContext),
+                  child: Text('Ok'),
+                ),
+              ],
+            ),
           );
         },
       );
@@ -1970,15 +2015,17 @@ Future<String> acConsultarCupom(
     await showDialog(
       context: context,
       builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content: Text('Erro ao consultar cupom:${'\n\n'}Código: PARVAZ'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
+        return WebViewAware(
+          child: AlertDialog(
+            title: Text('Atenção!'),
+            content: Text('Erro ao consultar cupom:${'\n\n'}Código: PARVAZ'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          ),
         );
       },
     );
@@ -1990,15 +2037,17 @@ Future<String> acConsultarCupom(
     await showDialog(
       context: context,
       builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content: Text('Erro ao consultar cupom:${'\n\n'}Código: TOKINV'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
+        return WebViewAware(
+          child: AlertDialog(
+            title: Text('Atenção!'),
+            content: Text('Erro ao consultar cupom:${'\n\n'}Código: TOKINV'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          ),
         );
       },
     );
@@ -2012,16 +2061,18 @@ Future<String> acConsultarCupom(
         await showDialog(
           context: context,
           builder: (alertDialogContext) {
-            return AlertDialog(
-              title: Text('Atenção!'),
-              content: Text(
-                  'Cupom não localizado, verifique se digitou corretamente'),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(alertDialogContext),
-                  child: Text('Ok'),
-                ),
-              ],
+            return WebViewAware(
+              child: AlertDialog(
+                title: Text('Atenção!'),
+                content: Text(
+                    'Cupom não localizado, verifique se digitou corretamente'),
+                actions: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(alertDialogContext),
+                    child: Text('Ok'),
+                  ),
+                ],
+              ),
             );
           },
         );
@@ -2031,16 +2082,18 @@ Future<String> acConsultarCupom(
       await showDialog(
         context: context,
         builder: (alertDialogContext) {
-          return AlertDialog(
-            title: Text('Atenção!'),
-            content: Text(
-                'Erro ao consultar cupom:${'\n\n'}Código: Indefinido ${(apiResultConsCupom?.statusCode ?? 200).toString()}'),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(alertDialogContext),
-                child: Text('Ok'),
-              ),
-            ],
+          return WebViewAware(
+            child: AlertDialog(
+              title: Text('Atenção!'),
+              content: Text(
+                  'Erro ao consultar cupom:${'\n\n'}Código: Indefinido ${(apiResultConsCupom?.statusCode ?? 200).toString()}'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(alertDialogContext),
+                  child: Text('Ok'),
+                ),
+              ],
+            ),
           );
         },
       );
@@ -2091,15 +2144,17 @@ Future<String> acConsultarNomeTabs(
     await showDialog(
       context: context,
       builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content: Text('O nome ${paramNome} já está cadastrado no sistema.'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
+        return WebViewAware(
+          child: AlertDialog(
+            title: Text('Atenção!'),
+            content: Text('O nome ${paramNome} já está cadastrado no sistema.'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          ),
         );
       },
     );
@@ -2116,15 +2171,17 @@ Future<String> acConsultarNomeTabs(
     await showDialog(
       context: context,
       builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content: Text('Erro ao consultar nome:${'\n\n'}Código: PARVAZ'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
+        return WebViewAware(
+          child: AlertDialog(
+            title: Text('Atenção!'),
+            content: Text('Erro ao consultar nome:${'\n\n'}Código: PARVAZ'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          ),
         );
       },
     );
@@ -2136,15 +2193,17 @@ Future<String> acConsultarNomeTabs(
     await showDialog(
       context: context,
       builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content: Text('Erro ao consultar nome:${'\n\n'}Código: TOKINV'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
+        return WebViewAware(
+          child: AlertDialog(
+            title: Text('Atenção!'),
+            content: Text('Erro ao consultar nome:${'\n\n'}Código: TOKINV'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          ),
         );
       },
     );
@@ -2153,15 +2212,18 @@ Future<String> acConsultarNomeTabs(
     await showDialog(
       context: context,
       builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content: Text('Erro ao consultar nome:${'\n\n'}Código: Sucess False'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
+        return WebViewAware(
+          child: AlertDialog(
+            title: Text('Atenção!'),
+            content:
+                Text('Erro ao consultar nome:${'\n\n'}Código: Sucess False'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          ),
         );
       },
     );
@@ -2170,16 +2232,18 @@ Future<String> acConsultarNomeTabs(
     await showDialog(
       context: context,
       builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content: Text(
-              'Erro ao consultar nome:${'\n\n'}Código: Indefinido ${(apiResultConsNome?.statusCode ?? 200).toString()}'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
+        return WebViewAware(
+          child: AlertDialog(
+            title: Text('Atenção!'),
+            content: Text(
+                'Erro ao consultar nome:${'\n\n'}Código: Indefinido ${(apiResultConsNome?.statusCode ?? 200).toString()}'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          ),
         );
       },
     );
@@ -2215,16 +2279,18 @@ Future<String> acConsultarEmail(
     await showDialog(
       context: context,
       builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content:
-              Text('Este E-mail ${paramEmail} já está cadastrado no sitema. '),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
+        return WebViewAware(
+          child: AlertDialog(
+            title: Text('Atenção!'),
+            content: Text(
+                'Este E-mail ${paramEmail} já está cadastrado no sitema. '),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          ),
         );
       },
     );
@@ -2241,15 +2307,17 @@ Future<String> acConsultarEmail(
     await showDialog(
       context: context,
       builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content: Text('Erro ao consultar E-mail:${'\n\n'}Código: PARVAZ'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
+        return WebViewAware(
+          child: AlertDialog(
+            title: Text('Atenção!'),
+            content: Text('Erro ao consultar E-mail:${'\n\n'}Código: PARVAZ'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          ),
         );
       },
     );
@@ -2261,15 +2329,17 @@ Future<String> acConsultarEmail(
     await showDialog(
       context: context,
       builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content: Text('Erro ao consultar E-mail:${'\n\n'}Código: TOKINV'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
+        return WebViewAware(
+          child: AlertDialog(
+            title: Text('Atenção!'),
+            content: Text('Erro ao consultar E-mail:${'\n\n'}Código: TOKINV'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          ),
         );
       },
     );
@@ -2278,16 +2348,18 @@ Future<String> acConsultarEmail(
     await showDialog(
       context: context,
       builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content:
-              Text('Erro ao consultar E-mail:${'\n\n'}Código: Sucess False'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
+        return WebViewAware(
+          child: AlertDialog(
+            title: Text('Atenção!'),
+            content:
+                Text('Erro ao consultar E-mail:${'\n\n'}Código: Sucess False'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          ),
         );
       },
     );
@@ -2296,16 +2368,18 @@ Future<String> acConsultarEmail(
     await showDialog(
       context: context,
       builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content: Text(
-              'Erro ao consultar E-mail:${'\n\n'}Código: Indefinido ${(apiResultConsEmailCad?.statusCode ?? 200).toString()}'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
+        return WebViewAware(
+          child: AlertDialog(
+            title: Text('Atenção!'),
+            content: Text(
+                'Erro ao consultar E-mail:${'\n\n'}Código: Indefinido ${(apiResultConsEmailCad?.statusCode ?? 200).toString()}'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          ),
         );
       },
     );
@@ -2349,16 +2423,18 @@ Future<String?> acConsultarCPFHubDev(
       await showDialog(
         context: context,
         builder: (alertDialogContext) {
-          return AlertDialog(
-            title: Text('Atenção!'),
-            content: Text(
-                'CPF não localizado, verifique se o CPF e data de nascimento informados estão corretos.'),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(alertDialogContext),
-                child: Text('Ok'),
-              ),
-            ],
+          return WebViewAware(
+            child: AlertDialog(
+              title: Text('Atenção!'),
+              content: Text(
+                  'CPF não localizado, verifique se o CPF e data de nascimento informados estão corretos.'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(alertDialogContext),
+                  child: Text('Ok'),
+                ),
+              ],
+            ),
           );
         },
       );
@@ -2368,16 +2444,18 @@ Future<String?> acConsultarCPFHubDev(
     await showDialog(
       context: context,
       builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content: Text(
-              'Falha ao consultar CPF, tente novamente, se o problema persistir entre em contato com o suporte.${'\n\n'}${(apiConsCPFResult?.bodyText ?? '')}'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
+        return WebViewAware(
+          child: AlertDialog(
+            title: Text('Atenção!'),
+            content: Text(
+                'Falha ao consultar CPF, tente novamente, se o problema persistir entre em contato com o suporte.${'\n\n'}${(apiConsCPFResult?.bodyText ?? '')}'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          ),
         );
       },
     );
@@ -2440,15 +2518,17 @@ Future<String> acConsultarCPF(
       await showDialog(
         context: context,
         builder: (alertDialogContext) {
-          return AlertDialog(
-            title: Text('Atenção!'),
-            content: Text('Tabela inválida'),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(alertDialogContext),
-                child: Text('Ok'),
-              ),
-            ],
+          return WebViewAware(
+            child: AlertDialog(
+              title: Text('Atenção!'),
+              content: Text('Tabela inválida'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(alertDialogContext),
+                  child: Text('Ok'),
+                ),
+              ],
+            ),
           );
         },
       );
@@ -2476,16 +2556,18 @@ Future<String> acConsultarCPF(
           await showDialog(
             context: context,
             builder: (alertDialogContext) {
-              return AlertDialog(
-                title: Text('Atenção!'),
-                content: Text(
-                    'Erro  ao consultar CPF, tente novamente, se o problema persistir entre em contato com o suporte.${'\n\n'}${(apiConsCPFResultSptb?.bodyText ?? '')}'),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(alertDialogContext),
-                    child: Text('Ok'),
-                  ),
-                ],
+              return WebViewAware(
+                child: AlertDialog(
+                  title: Text('Atenção!'),
+                  content: Text(
+                      'Erro  ao consultar CPF, tente novamente, se o problema persistir entre em contato com o suporte.${'\n\n'}${(apiConsCPFResultSptb?.bodyText ?? '')}'),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.pop(alertDialogContext),
+                      child: Text('Ok'),
+                    ),
+                  ],
+                ),
               );
             },
           );
@@ -2523,15 +2605,17 @@ Future<String> acConsultarCPF(
             await showDialog(
               context: context,
               builder: (alertDialogContext) {
-                return AlertDialog(
-                  title: Text('Atenção!'),
-                  content: Text('Tabela inválida'),
-                  actions: [
-                    TextButton(
-                      onPressed: () => Navigator.pop(alertDialogContext),
-                      child: Text('Ok'),
-                    ),
-                  ],
+                return WebViewAware(
+                  child: AlertDialog(
+                    title: Text('Atenção!'),
+                    content: Text('Tabela inválida'),
+                    actions: [
+                      TextButton(
+                        onPressed: () => Navigator.pop(alertDialogContext),
+                        child: Text('Ok'),
+                      ),
+                    ],
+                  ),
                 );
               },
             );
@@ -2545,16 +2629,18 @@ Future<String> acConsultarCPF(
           await showDialog(
             context: context,
             builder: (alertDialogContext) {
-              return AlertDialog(
-                title: Text('Atenção!'),
-                content: Text(
-                    'CPF não localizado, verifique se o CPF e data de nascimento informados estão corretos.'),
-                actions: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(alertDialogContext),
-                    child: Text('Ok'),
-                  ),
-                ],
+              return WebViewAware(
+                child: AlertDialog(
+                  title: Text('Atenção!'),
+                  content: Text(
+                      'CPF não localizado, verifique se o CPF e data de nascimento informados estão corretos.'),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.pop(alertDialogContext),
+                      child: Text('Ok'),
+                    ),
+                  ],
+                ),
               );
             },
           );
@@ -2564,16 +2650,18 @@ Future<String> acConsultarCPF(
         await showDialog(
           context: context,
           builder: (alertDialogContext) {
-            return AlertDialog(
-              title: Text('Atenção!'),
-              content: Text(
-                  'Falha ao consultar CPF, tente novamente, se o problema persistir entre em contato com o suporte.${'\n\n'}${(apiConsCPFResultSptb?.bodyText ?? '')}'),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(alertDialogContext),
-                  child: Text('Ok'),
-                ),
-              ],
+            return WebViewAware(
+              child: AlertDialog(
+                title: Text('Atenção!'),
+                content: Text(
+                    'Falha ao consultar CPF, tente novamente, se o problema persistir entre em contato com o suporte.${'\n\n'}${(apiConsCPFResultSptb?.bodyText ?? '')}'),
+                actions: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(alertDialogContext),
+                    child: Text('Ok'),
+                  ),
+                ],
+              ),
             );
           },
         );
@@ -2619,45 +2707,47 @@ Future<String> acConsultarCPFCNPJCad(
       await showDialog(
         context: context,
         builder: (alertDialogContext) {
-          return AlertDialog(
-            title: Text('Atenção!'),
-            content: Text(
-                'Esse documento ${paramCPFCNPJ} já está cadastrado no sistema${'\n\n'}${() {
-              if ((FunctionsServerSupabaseGroup.consultarDocCadCPFOuCNPJCall
-                          .idestab(
-                        (apiResultConsCPF?.jsonBody ?? ''),
-                      ) !=
-                      null) &&
-                  (FunctionsServerSupabaseGroup.consultarDocCadCPFOuCNPJCall
-                          .idafiliado(
-                        (apiResultConsCPF?.jsonBody ?? ''),
-                      ) !=
-                      null)) {
-                return 'Cadastrado em outro estabelecimento e afiliado.';
-              } else if (FunctionsServerSupabaseGroup
-                      .consultarDocCadCPFOuCNPJCall
-                      .idestab(
-                    (apiResultConsCPF?.jsonBody ?? ''),
-                  ) !=
-                  null) {
-                return 'Cadastrado em outro estabelecimento';
-              } else if (FunctionsServerSupabaseGroup
-                      .consultarDocCadCPFOuCNPJCall
-                      .idafiliado(
-                    (apiResultConsCPF?.jsonBody ?? ''),
-                  ) !=
-                  null) {
-                return 'Cadastrado em outro afiliado.';
-              } else {
-                return '';
-              }
-            }()}'),
-            actions: [
-              TextButton(
-                onPressed: () => Navigator.pop(alertDialogContext),
-                child: Text('Ok'),
-              ),
-            ],
+          return WebViewAware(
+            child: AlertDialog(
+              title: Text('Atenção!'),
+              content: Text(
+                  'Esse documento ${paramCPFCNPJ} já está cadastrado no sistema${'\n\n'}${() {
+                if ((FunctionsServerSupabaseGroup.consultarDocCadCPFOuCNPJCall
+                            .idestab(
+                          (apiResultConsCPF?.jsonBody ?? ''),
+                        ) !=
+                        null) &&
+                    (FunctionsServerSupabaseGroup.consultarDocCadCPFOuCNPJCall
+                            .idafiliado(
+                          (apiResultConsCPF?.jsonBody ?? ''),
+                        ) !=
+                        null)) {
+                  return 'Cadastrado em outro estabelecimento e afiliado.';
+                } else if (FunctionsServerSupabaseGroup
+                        .consultarDocCadCPFOuCNPJCall
+                        .idestab(
+                      (apiResultConsCPF?.jsonBody ?? ''),
+                    ) !=
+                    null) {
+                  return 'Cadastrado em outro estabelecimento';
+                } else if (FunctionsServerSupabaseGroup
+                        .consultarDocCadCPFOuCNPJCall
+                        .idafiliado(
+                      (apiResultConsCPF?.jsonBody ?? ''),
+                    ) !=
+                    null) {
+                  return 'Cadastrado em outro afiliado.';
+                } else {
+                  return '';
+                }
+              }()}'),
+              actions: [
+                TextButton(
+                  onPressed: () => Navigator.pop(alertDialogContext),
+                  child: Text('Ok'),
+                ),
+              ],
+            ),
           );
         },
       );
@@ -2672,16 +2762,18 @@ Future<String> acConsultarCPFCNPJCad(
     await showDialog(
       context: context,
       builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content: Text(
-              'Erro ao consultar CPF/CNPJ:${'\n\n'}Usuário não localizado'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
+        return WebViewAware(
+          child: AlertDialog(
+            title: Text('Atenção!'),
+            content: Text(
+                'Erro ao consultar CPF/CNPJ:${'\n\n'}Usuário não localizado'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          ),
         );
       },
     );
@@ -2693,15 +2785,17 @@ Future<String> acConsultarCPFCNPJCad(
     await showDialog(
       context: context,
       builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content: Text('Erro ao consultar CPF/CNPJ:${'\n\n'}Código: PARVAZ'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
+        return WebViewAware(
+          child: AlertDialog(
+            title: Text('Atenção!'),
+            content: Text('Erro ao consultar CPF/CNPJ:${'\n\n'}Código: PARVAZ'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          ),
         );
       },
     );
@@ -2713,15 +2807,17 @@ Future<String> acConsultarCPFCNPJCad(
     await showDialog(
       context: context,
       builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content: Text('Erro ao consultar CPF/CNPJ:${'\n\n'}Código: TOKINV'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
+        return WebViewAware(
+          child: AlertDialog(
+            title: Text('Atenção!'),
+            content: Text('Erro ao consultar CPF/CNPJ:${'\n\n'}Código: TOKINV'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          ),
         );
       },
     );
@@ -2730,16 +2826,18 @@ Future<String> acConsultarCPFCNPJCad(
     await showDialog(
       context: context,
       builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content:
-              Text('Erro ao consultar CPF/CNPJ:${'\n\n'}Código: Sucess False'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
+        return WebViewAware(
+          child: AlertDialog(
+            title: Text('Atenção!'),
+            content: Text(
+                'Erro ao consultar CPF/CNPJ:${'\n\n'}Código: Sucess False'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          ),
         );
       },
     );
@@ -2748,16 +2846,18 @@ Future<String> acConsultarCPFCNPJCad(
     await showDialog(
       context: context,
       builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content: Text(
-              'Erro ao consultar CPF/CNPJ:${'\n\n'}Código: Indefinido ${(apiResultConsCPF?.statusCode ?? 200).toString()}'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
+        return WebViewAware(
+          child: AlertDialog(
+            title: Text('Atenção!'),
+            content: Text(
+                'Erro ao consultar CPF/CNPJ:${'\n\n'}Código: Indefinido ${(apiResultConsCPF?.statusCode ?? 200).toString()}'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          ),
         );
       },
     );
@@ -2871,15 +2971,17 @@ Future<String> acDeletarCupons(BuildContext context) async {
     await showDialog(
       context: context,
       builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content: Text('Erro ao deletar cupons${'\n\n'}Código: False'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
+        return WebViewAware(
+          child: AlertDialog(
+            title: Text('Atenção!'),
+            content: Text('Erro ao deletar cupons${'\n\n'}Código: False'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          ),
         );
       },
     );
@@ -2891,15 +2993,17 @@ Future<String> acDeletarCupons(BuildContext context) async {
     await showDialog(
       context: context,
       builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content: Text('Erro ao deletar cupons${'\n\n'}Código: PARVAZ'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
+        return WebViewAware(
+          child: AlertDialog(
+            title: Text('Atenção!'),
+            content: Text('Erro ao deletar cupons${'\n\n'}Código: PARVAZ'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          ),
         );
       },
     );
@@ -2911,15 +3015,17 @@ Future<String> acDeletarCupons(BuildContext context) async {
     await showDialog(
       context: context,
       builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content: Text('Erro ao deletar cupons${'\n\n'}Código: TOKINV'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
+        return WebViewAware(
+          child: AlertDialog(
+            title: Text('Atenção!'),
+            content: Text('Erro ao deletar cupons${'\n\n'}Código: TOKINV'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          ),
         );
       },
     );
@@ -2928,15 +3034,18 @@ Future<String> acDeletarCupons(BuildContext context) async {
     await showDialog(
       context: context,
       builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content: Text('Erro ao deletar cupons${'\n\n'}Código: Sucess False'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
+        return WebViewAware(
+          child: AlertDialog(
+            title: Text('Atenção!'),
+            content:
+                Text('Erro ao deletar cupons${'\n\n'}Código: Sucess False'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          ),
         );
       },
     );
@@ -2945,16 +3054,18 @@ Future<String> acDeletarCupons(BuildContext context) async {
     await showDialog(
       context: context,
       builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content: Text(
-              'Erro ao deletar cupons${'\n\n'}Código: Indefinido ${(apiResultAddCupons?.statusCode ?? 200).toString()}'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
+        return WebViewAware(
+          child: AlertDialog(
+            title: Text('Atenção!'),
+            content: Text(
+                'Erro ao deletar cupons${'\n\n'}Código: Indefinido ${(apiResultAddCupons?.statusCode ?? 200).toString()}'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          ),
         );
       },
     );
@@ -3405,15 +3516,17 @@ Future<String> acSolicitarSaque(BuildContext context) async {
     await showDialog(
       context: context,
       builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content: Text('Erro ao solicitar saque${'\n\n'}Código: False'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
+        return WebViewAware(
+          child: AlertDialog(
+            title: Text('Atenção!'),
+            content: Text('Erro ao solicitar saque${'\n\n'}Código: False'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          ),
         );
       },
     );
@@ -3425,15 +3538,17 @@ Future<String> acSolicitarSaque(BuildContext context) async {
     await showDialog(
       context: context,
       builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content: Text('Erro ao solicitar saque${'\n\n'}Código: PARVAZ'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
+        return WebViewAware(
+          child: AlertDialog(
+            title: Text('Atenção!'),
+            content: Text('Erro ao solicitar saque${'\n\n'}Código: PARVAZ'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          ),
         );
       },
     );
@@ -3445,15 +3560,17 @@ Future<String> acSolicitarSaque(BuildContext context) async {
     await showDialog(
       context: context,
       builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content: Text('Erro ao solicitar saque${'\n\n'}Código: TOKINV'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
+        return WebViewAware(
+          child: AlertDialog(
+            title: Text('Atenção!'),
+            content: Text('Erro ao solicitar saque${'\n\n'}Código: TOKINV'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          ),
         );
       },
     );
@@ -3462,18 +3579,20 @@ Future<String> acSolicitarSaque(BuildContext context) async {
     await showDialog(
       context: context,
       builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content:
-              Text('${FunctionsServerSupabaseGroup.fcsolicitarsaqueCall.message(
-            (apiResultSolicitarSaque?.jsonBody ?? ''),
-          )}'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
+        return WebViewAware(
+          child: AlertDialog(
+            title: Text('Atenção!'),
+            content: Text(
+                '${FunctionsServerSupabaseGroup.fcsolicitarsaqueCall.message(
+              (apiResultSolicitarSaque?.jsonBody ?? ''),
+            )}'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          ),
         );
       },
     );
@@ -3482,18 +3601,20 @@ Future<String> acSolicitarSaque(BuildContext context) async {
     await showDialog(
       context: context,
       builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content: Text(
-              'Erro ao solicitar saque, Código: Indefinido ${'\n\n'}${(apiResultSolicitarSaque?.bodyText ?? '')}${'\n\n'}${FunctionsServerSupabaseGroup.fcsolicitarsaqueCall.message(
-            (apiResultSolicitarSaque?.jsonBody ?? ''),
-          )}'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
+        return WebViewAware(
+          child: AlertDialog(
+            title: Text('Atenção!'),
+            content: Text(
+                'Erro ao solicitar saque, Código: Indefinido ${'\n\n'}${(apiResultSolicitarSaque?.bodyText ?? '')}${'\n\n'}${FunctionsServerSupabaseGroup.fcsolicitarsaqueCall.message(
+              (apiResultSolicitarSaque?.jsonBody ?? ''),
+            )}'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          ),
         );
       },
     );
@@ -3626,15 +3747,17 @@ Future<bool> acConsultarModelosServicos(
     await showDialog(
       context: context,
       builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content: Text('Erro ao consultar Serviços:${'\n\n'}Código: PARVAZ'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
+        return WebViewAware(
+          child: AlertDialog(
+            title: Text('Atenção!'),
+            content: Text('Erro ao consultar Serviços:${'\n\n'}Código: PARVAZ'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          ),
         );
       },
     );
@@ -3648,15 +3771,17 @@ Future<bool> acConsultarModelosServicos(
     await showDialog(
       context: context,
       builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content: Text('Erro ao consultar Serviços:${'\n\n'}Código: TOKINV'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
+        return WebViewAware(
+          child: AlertDialog(
+            title: Text('Atenção!'),
+            content: Text('Erro ao consultar Serviços:${'\n\n'}Código: TOKINV'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          ),
         );
       },
     );
@@ -3665,22 +3790,24 @@ Future<bool> acConsultarModelosServicos(
     await showDialog(
       context: context,
       builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content: Text(
-              '${FunctionsServerSupabaseGroup.consultarModelosServicosCall.message(
+        return WebViewAware(
+          child: AlertDialog(
+            title: Text('Atenção!'),
+            content: Text(
+                '${FunctionsServerSupabaseGroup.consultarModelosServicosCall.message(
+                      (apiResultConsModServ?.jsonBody ?? ''),
+                    ) != null && FunctionsServerSupabaseGroup.consultarModelosServicosCall.message(
+                      (apiResultConsModServ?.jsonBody ?? ''),
+                    ) != '' ? FunctionsServerSupabaseGroup.consultarModelosServicosCall.message(
                     (apiResultConsModServ?.jsonBody ?? ''),
-                  ) != null && FunctionsServerSupabaseGroup.consultarModelosServicosCall.message(
-                    (apiResultConsModServ?.jsonBody ?? ''),
-                  ) != '' ? FunctionsServerSupabaseGroup.consultarModelosServicosCall.message(
-                  (apiResultConsModServ?.jsonBody ?? ''),
-                ) : 'ERRO! ${(apiResultConsModServ?.bodyText ?? '')}'}'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
+                  ) : 'ERRO! ${(apiResultConsModServ?.bodyText ?? '')}'}'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          ),
         );
       },
     );
@@ -3689,16 +3816,18 @@ Future<bool> acConsultarModelosServicos(
     await showDialog(
       context: context,
       builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content: Text(
-              'Erro ao consultar Serviços:${'\n\n'}${(apiResultConsModServ?.bodyText ?? '')}'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
+        return WebViewAware(
+          child: AlertDialog(
+            title: Text('Atenção!'),
+            content: Text(
+                'Erro ao consultar Serviços:${'\n\n'}${(apiResultConsModServ?.bodyText ?? '')}'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          ),
         );
       },
     );
@@ -3930,15 +4059,17 @@ Future<bool> acOneSignalAPPInicializarNotificacoes(BuildContext context) async {
             await showDialog(
               context: context,
               builder: (alertDialogContext) {
-                return AlertDialog(
-                  title: Text('TEste'),
-                  content: Text('One Signal Inicializado'),
-                  actions: [
-                    TextButton(
-                      onPressed: () => Navigator.pop(alertDialogContext),
-                      child: Text('Ok'),
-                    ),
-                  ],
+                return WebViewAware(
+                  child: AlertDialog(
+                    title: Text('TEste'),
+                    content: Text('One Signal Inicializado'),
+                    actions: [
+                      TextButton(
+                        onPressed: () => Navigator.pop(alertDialogContext),
+                        child: Text('Ok'),
+                      ),
+                    ],
+                  ),
                 );
               },
             );
@@ -4103,18 +4234,20 @@ Future<String> acCriarPagamentoPlanoEstab(
     await showDialog(
       context: context,
       builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content:
-              Text('${FunctionsServerSupabaseGroup.fccriarpagamentoCall.message(
-            (apiResultCriarPgPlanoEstab?.jsonBody ?? ''),
-          )}'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
+        return WebViewAware(
+          child: AlertDialog(
+            title: Text('Atenção!'),
+            content: Text(
+                '${FunctionsServerSupabaseGroup.fccriarpagamentoCall.message(
+              (apiResultCriarPgPlanoEstab?.jsonBody ?? ''),
+            )}'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          ),
         );
       },
     );
@@ -4141,18 +4274,20 @@ Future<bool> acEdgeFuncDesfazCancAssinatura(
   await showDialog(
     context: context,
     builder: (alertDialogContext) {
-      return AlertDialog(
-        title: Text('Atenção!'),
-        content: Text(
-            'Erro ao desfazer cancelamento, tente novamente.${'\n'}${EdgeFunctionsSupabaseGroup.stripedesfazcancelassinaturaCall.error(
-          (apiResultDesfazCancAssinatura?.jsonBody ?? ''),
-        )}'),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(alertDialogContext),
-            child: Text('Ok'),
-          ),
-        ],
+      return WebViewAware(
+        child: AlertDialog(
+          title: Text('Atenção!'),
+          content: Text(
+              'Erro ao desfazer cancelamento, tente novamente.${'\n'}${EdgeFunctionsSupabaseGroup.stripedesfazcancelassinaturaCall.error(
+            (apiResultDesfazCancAssinatura?.jsonBody ?? ''),
+          )}'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(alertDialogContext),
+              child: Text('Ok'),
+            ),
+          ],
+        ),
       );
     },
   );
@@ -4180,18 +4315,20 @@ Future<String> acStripePortalURL(
   await showDialog(
     context: context,
     builder: (alertDialogContext) {
-      return AlertDialog(
-        title: Text('Atenção!'),
-        content: Text(
-            'Erro ao gerar url: ${EdgeFunctionsSupabaseGroup.stripeportalurlCall.message(
-          (apiStripePostalUrlResult?.jsonBody ?? ''),
-        )}'),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(alertDialogContext),
-            child: Text('Ok'),
-          ),
-        ],
+      return WebViewAware(
+        child: AlertDialog(
+          title: Text('Atenção!'),
+          content: Text(
+              'Erro ao gerar url: ${EdgeFunctionsSupabaseGroup.stripeportalurlCall.message(
+            (apiStripePostalUrlResult?.jsonBody ?? ''),
+          )}'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(alertDialogContext),
+              child: Text('Ok'),
+            ),
+          ],
+        ),
       );
     },
   );
@@ -4246,18 +4383,20 @@ Future<String> acCriarPagamentoAfiliacao(
     await showDialog(
       context: context,
       builder: (alertDialogContext) {
-        return AlertDialog(
-          title: Text('Atenção!'),
-          content: Text(
-              '${FunctionsServerSupabaseGroup.fcCriarPagamentoAfiliacaoCall.message(
-            (apiResultCriarPgPlanoAfiliacao?.jsonBody ?? ''),
-          )}'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(alertDialogContext),
-              child: Text('Ok'),
-            ),
-          ],
+        return WebViewAware(
+          child: AlertDialog(
+            title: Text('Atenção!'),
+            content: Text(
+                '${FunctionsServerSupabaseGroup.fcCriarPagamentoAfiliacaoCall.message(
+              (apiResultCriarPgPlanoAfiliacao?.jsonBody ?? ''),
+            )}'),
+            actions: [
+              TextButton(
+                onPressed: () => Navigator.pop(alertDialogContext),
+                child: Text('Ok'),
+              ),
+            ],
+          ),
         );
       },
     );

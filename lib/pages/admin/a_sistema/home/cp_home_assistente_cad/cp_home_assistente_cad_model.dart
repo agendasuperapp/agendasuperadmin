@@ -12,6 +12,7 @@ import '/index.dart';
 import 'cp_home_assistente_cad_widget.dart' show CpHomeAssistenteCadWidget;
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 
 class CpHomeAssistenteCadModel
     extends FlutterFlowModel<CpHomeAssistenteCadWidget> {
@@ -450,13 +451,15 @@ class CpHomeAssistenteCadModel
         backgroundColor: Colors.transparent,
         context: context,
         builder: (context) {
-          return Padding(
-            padding: MediaQuery.viewInsetsOf(context),
-            child: Container(
-              height: MediaQuery.sizeOf(context).height * 0.8,
-              child: CpCadServicosWidget(
-                paramCadastro: false,
-                paramID: resultInsertServico?.id,
+          return WebViewAware(
+            child: Padding(
+              padding: MediaQuery.viewInsetsOf(context),
+              child: Container(
+                height: MediaQuery.sizeOf(context).height * 0.8,
+                child: CpCadServicosWidget(
+                  paramCadastro: false,
+                  paramID: resultInsertServico?.id,
+                ),
               ),
             ),
           );
@@ -472,9 +475,11 @@ class CpHomeAssistenteCadModel
             backgroundColor: Colors.transparent,
             alignment: AlignmentDirectional(0.0, 0.0)
                 .resolve(Directionality.of(context)),
-            child: CpCadServicosWidget(
-              paramCadastro: false,
-              paramID: resultInsertServico?.id,
+            child: WebViewAware(
+              child: CpCadServicosWidget(
+                paramCadastro: false,
+                paramID: resultInsertServico?.id,
+              ),
             ),
           );
         },

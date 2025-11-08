@@ -18,6 +18,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'cp_menu_lateral_model.dart';
 export 'cp_menu_lateral_model.dart';
 
@@ -357,20 +358,22 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                         context: context,
                                                         builder:
                                                             (alertDialogContext) {
-                                                          return AlertDialog(
-                                                            title: Text(
-                                                                'Atenção!'),
-                                                            content: Text(
-                                                                'Modo desenvolvedor ativado...'),
-                                                            actions: [
-                                                              TextButton(
-                                                                onPressed: () =>
-                                                                    Navigator.pop(
-                                                                        alertDialogContext),
-                                                                child:
-                                                                    Text('Ok'),
-                                                              ),
-                                                            ],
+                                                          return WebViewAware(
+                                                            child: AlertDialog(
+                                                              title: Text(
+                                                                  'Atenção!'),
+                                                              content: Text(
+                                                                  'Modo desenvolvedor ativado...'),
+                                                              actions: [
+                                                                TextButton(
+                                                                  onPressed: () =>
+                                                                      Navigator.pop(
+                                                                          alertDialogContext),
+                                                                  child: Text(
+                                                                      'Ok'),
+                                                                ),
+                                                              ],
+                                                            ),
                                                           );
                                                         },
                                                       );
@@ -4142,19 +4145,22 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                                       context,
                                                                   builder:
                                                                       (alertDialogContext) {
-                                                                    return AlertDialog(
-                                                                      title: Text(
-                                                                          'tese'),
-                                                                      content: Text(
-                                                                          'Primeira Pág FALSE 1'),
-                                                                      actions: [
-                                                                        TextButton(
-                                                                          onPressed: () =>
-                                                                              Navigator.pop(alertDialogContext),
-                                                                          child:
-                                                                              Text('Ok'),
-                                                                        ),
-                                                                      ],
+                                                                    return WebViewAware(
+                                                                      child:
+                                                                          AlertDialog(
+                                                                        title: Text(
+                                                                            'tese'),
+                                                                        content:
+                                                                            Text('Primeira Pág FALSE 1'),
+                                                                        actions: [
+                                                                          TextButton(
+                                                                            onPressed: () =>
+                                                                                Navigator.pop(alertDialogContext),
+                                                                            child:
+                                                                                Text('Ok'),
+                                                                          ),
+                                                                        ],
+                                                                      ),
                                                                     );
                                                                   },
                                                                 );
@@ -4167,19 +4173,22 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                                       context,
                                                                   builder:
                                                                       (alertDialogContext) {
-                                                                    return AlertDialog(
-                                                                      title: Text(
-                                                                          'tese'),
-                                                                      content: Text(
-                                                                          'Primeira Pág FALSE 2'),
-                                                                      actions: [
-                                                                        TextButton(
-                                                                          onPressed: () =>
-                                                                              Navigator.pop(alertDialogContext),
-                                                                          child:
-                                                                              Text('Ok'),
-                                                                        ),
-                                                                      ],
+                                                                    return WebViewAware(
+                                                                      child:
+                                                                          AlertDialog(
+                                                                        title: Text(
+                                                                            'tese'),
+                                                                        content:
+                                                                            Text('Primeira Pág FALSE 2'),
+                                                                        actions: [
+                                                                          TextButton(
+                                                                            onPressed: () =>
+                                                                                Navigator.pop(alertDialogContext),
+                                                                            child:
+                                                                                Text('Ok'),
+                                                                          ),
+                                                                        ],
+                                                                      ),
                                                                     );
                                                                   },
                                                                 );
@@ -4192,19 +4201,22 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                                       context,
                                                                   builder:
                                                                       (alertDialogContext) {
-                                                                    return AlertDialog(
-                                                                      title: Text(
-                                                                          'tese'),
-                                                                      content: Text(
-                                                                          'Primeira Pág TRUE'),
-                                                                      actions: [
-                                                                        TextButton(
-                                                                          onPressed: () =>
-                                                                              Navigator.pop(alertDialogContext),
-                                                                          child:
-                                                                              Text('Ok'),
-                                                                        ),
-                                                                      ],
+                                                                    return WebViewAware(
+                                                                      child:
+                                                                          AlertDialog(
+                                                                        title: Text(
+                                                                            'tese'),
+                                                                        content:
+                                                                            Text('Primeira Pág TRUE'),
+                                                                        actions: [
+                                                                          TextButton(
+                                                                            onPressed: () =>
+                                                                                Navigator.pop(alertDialogContext),
+                                                                            child:
+                                                                                Text('Ok'),
+                                                                          ),
+                                                                        ],
+                                                                      ),
                                                                     );
                                                                   },
                                                                 );
@@ -4441,19 +4453,22 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                                       context,
                                                                   builder:
                                                                       (alertDialogContext) {
-                                                                    return AlertDialog(
-                                                                      title: Text(
-                                                                          'tese'),
-                                                                      content: Text(
-                                                                          'Primeira Pág FALSE 1'),
-                                                                      actions: [
-                                                                        TextButton(
-                                                                          onPressed: () =>
-                                                                              Navigator.pop(alertDialogContext),
-                                                                          child:
-                                                                              Text('Ok'),
-                                                                        ),
-                                                                      ],
+                                                                    return WebViewAware(
+                                                                      child:
+                                                                          AlertDialog(
+                                                                        title: Text(
+                                                                            'tese'),
+                                                                        content:
+                                                                            Text('Primeira Pág FALSE 1'),
+                                                                        actions: [
+                                                                          TextButton(
+                                                                            onPressed: () =>
+                                                                                Navigator.pop(alertDialogContext),
+                                                                            child:
+                                                                                Text('Ok'),
+                                                                          ),
+                                                                        ],
+                                                                      ),
                                                                     );
                                                                   },
                                                                 );
@@ -4466,19 +4481,22 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                                       context,
                                                                   builder:
                                                                       (alertDialogContext) {
-                                                                    return AlertDialog(
-                                                                      title: Text(
-                                                                          'tese'),
-                                                                      content: Text(
-                                                                          'Primeira Pág FALSE 2'),
-                                                                      actions: [
-                                                                        TextButton(
-                                                                          onPressed: () =>
-                                                                              Navigator.pop(alertDialogContext),
-                                                                          child:
-                                                                              Text('Ok'),
-                                                                        ),
-                                                                      ],
+                                                                    return WebViewAware(
+                                                                      child:
+                                                                          AlertDialog(
+                                                                        title: Text(
+                                                                            'tese'),
+                                                                        content:
+                                                                            Text('Primeira Pág FALSE 2'),
+                                                                        actions: [
+                                                                          TextButton(
+                                                                            onPressed: () =>
+                                                                                Navigator.pop(alertDialogContext),
+                                                                            child:
+                                                                                Text('Ok'),
+                                                                          ),
+                                                                        ],
+                                                                      ),
                                                                     );
                                                                   },
                                                                 );
@@ -4491,19 +4509,22 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                                       context,
                                                                   builder:
                                                                       (alertDialogContext) {
-                                                                    return AlertDialog(
-                                                                      title: Text(
-                                                                          'tese'),
-                                                                      content: Text(
-                                                                          'Primeira Pág TRUE'),
-                                                                      actions: [
-                                                                        TextButton(
-                                                                          onPressed: () =>
-                                                                              Navigator.pop(alertDialogContext),
-                                                                          child:
-                                                                              Text('Ok'),
-                                                                        ),
-                                                                      ],
+                                                                    return WebViewAware(
+                                                                      child:
+                                                                          AlertDialog(
+                                                                        title: Text(
+                                                                            'tese'),
+                                                                        content:
+                                                                            Text('Primeira Pág TRUE'),
+                                                                        actions: [
+                                                                          TextButton(
+                                                                            onPressed: () =>
+                                                                                Navigator.pop(alertDialogContext),
+                                                                            child:
+                                                                                Text('Ok'),
+                                                                          ),
+                                                                        ],
+                                                                      ),
                                                                     );
                                                                   },
                                                                 );
@@ -11826,16 +11847,19 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                                           alignment:
                                                                               AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                           child:
-                                                                              CpFotoWidget(
-                                                                            paramFoto: FFAppState().varIDAPPAfiliado == 1
-                                                                                ? valueOrDefault<String>(
-                                                                                    FFAppState().VarTblEstabelecimentoLogado.fotoPerfil,
-                                                                                    'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/agendador-de-beleza-qia8mb/assets/lp37pdsm6md0/sem-imagem.jpg',
-                                                                                  )
-                                                                                : valueOrDefault<String>(
-                                                                                    FFAppState().varTblAfiliado.fotoPerfil,
-                                                                                    'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/agendador-de-beleza-qia8mb/assets/lp37pdsm6md0/sem-imagem.jpg',
-                                                                                  ),
+                                                                              WebViewAware(
+                                                                            child:
+                                                                                CpFotoWidget(
+                                                                              paramFoto: FFAppState().varIDAPPAfiliado == 1
+                                                                                  ? valueOrDefault<String>(
+                                                                                      FFAppState().VarTblEstabelecimentoLogado.fotoPerfil,
+                                                                                      'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/agendador-de-beleza-qia8mb/assets/lp37pdsm6md0/sem-imagem.jpg',
+                                                                                    )
+                                                                                  : valueOrDefault<String>(
+                                                                                      FFAppState().varTblAfiliado.fotoPerfil,
+                                                                                      'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/agendador-de-beleza-qia8mb/assets/lp37pdsm6md0/sem-imagem.jpg',
+                                                                                    ),
+                                                                            ),
                                                                           ),
                                                                         );
                                                                       },
@@ -11846,17 +11870,20 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                                           context,
                                                                       builder:
                                                                           (alertDialogContext) {
-                                                                        return AlertDialog(
-                                                                          title:
-                                                                              Text('Atenção!'),
-                                                                          content:
-                                                                              Text('Sem Foto'),
-                                                                          actions: [
-                                                                            TextButton(
-                                                                              onPressed: () => Navigator.pop(alertDialogContext),
-                                                                              child: Text('Ok'),
-                                                                            ),
-                                                                          ],
+                                                                        return WebViewAware(
+                                                                          child:
+                                                                              AlertDialog(
+                                                                            title:
+                                                                                Text('Atenção!'),
+                                                                            content:
+                                                                                Text('Sem Foto'),
+                                                                            actions: [
+                                                                              TextButton(
+                                                                                onPressed: () => Navigator.pop(alertDialogContext),
+                                                                                child: Text('Ok'),
+                                                                              ),
+                                                                            ],
+                                                                          ),
                                                                         );
                                                                       },
                                                                     );
@@ -11937,20 +11964,23 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                             context: context,
                                                             builder:
                                                                 (alertDialogContext) {
-                                                              return AlertDialog(
-                                                                title: Text(
-                                                                    'Atenção!'),
-                                                                content: Text(
-                                                                    'Modo desenvolvedor ativado...'),
-                                                                actions: [
-                                                                  TextButton(
-                                                                    onPressed: () =>
-                                                                        Navigator.pop(
-                                                                            alertDialogContext),
-                                                                    child: Text(
-                                                                        'Ok'),
-                                                                  ),
-                                                                ],
+                                                              return WebViewAware(
+                                                                child:
+                                                                    AlertDialog(
+                                                                  title: Text(
+                                                                      'Atenção!'),
+                                                                  content: Text(
+                                                                      'Modo desenvolvedor ativado...'),
+                                                                  actions: [
+                                                                    TextButton(
+                                                                      onPressed:
+                                                                          () =>
+                                                                              Navigator.pop(alertDialogContext),
+                                                                      child: Text(
+                                                                          'Ok'),
+                                                                    ),
+                                                                  ],
+                                                                ),
                                                               );
                                                             },
                                                           );
@@ -12154,11 +12184,14 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                                           context,
                                                                       builder:
                                                                           (context) {
-                                                                        return Padding(
-                                                                          padding:
-                                                                              MediaQuery.viewInsetsOf(context),
+                                                                        return WebViewAware(
                                                                           child:
-                                                                              CpNotificacaoWidget(),
+                                                                              Padding(
+                                                                            padding:
+                                                                                MediaQuery.viewInsetsOf(context),
+                                                                            child:
+                                                                                CpNotificacaoWidget(),
+                                                                          ),
                                                                         );
                                                                       },
                                                                     ).then((value) =>
@@ -12180,7 +12213,10 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                                           alignment:
                                                                               AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                           child:
-                                                                              CpNotificacaoWidget(),
+                                                                              WebViewAware(
+                                                                            child:
+                                                                                CpNotificacaoWidget(),
+                                                                          ),
                                                                         );
                                                                       },
                                                                     );
@@ -12355,8 +12391,10 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                                             alignment:
                                                                                 AlignmentDirectional(0.0, 0.0).resolve(Directionality.of(context)),
                                                                             child:
-                                                                                CpFotoWidget(
-                                                                              paramFoto: FFAppState().VarTblEstabelecimentoLogado.fotoPerfil,
+                                                                                WebViewAware(
+                                                                              child: CpFotoWidget(
+                                                                                paramFoto: FFAppState().VarTblEstabelecimentoLogado.fotoPerfil,
+                                                                              ),
                                                                             ),
                                                                           );
                                                                         },
@@ -12367,17 +12405,18 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                                             context,
                                                                         builder:
                                                                             (alertDialogContext) {
-                                                                          return AlertDialog(
-                                                                            title:
-                                                                                Text('Atenção!'),
-                                                                            content:
-                                                                                Text('Sem Foto'),
-                                                                            actions: [
-                                                                              TextButton(
-                                                                                onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                child: Text('Ok'),
-                                                                              ),
-                                                                            ],
+                                                                          return WebViewAware(
+                                                                            child:
+                                                                                AlertDialog(
+                                                                              title: Text('Atenção!'),
+                                                                              content: Text('Sem Foto'),
+                                                                              actions: [
+                                                                                TextButton(
+                                                                                  onPressed: () => Navigator.pop(alertDialogContext),
+                                                                                  child: Text('Ok'),
+                                                                                ),
+                                                                              ],
+                                                                            ),
                                                                           );
                                                                         },
                                                                       );
@@ -12463,17 +12502,18 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                                             context,
                                                                         builder:
                                                                             (alertDialogContext) {
-                                                                          return AlertDialog(
-                                                                            title:
-                                                                                Text('Atenção!'),
-                                                                            content:
-                                                                                Text('Modo desenvolvedor ativado...'),
-                                                                            actions: [
-                                                                              TextButton(
-                                                                                onPressed: () => Navigator.pop(alertDialogContext),
-                                                                                child: Text('Ok'),
-                                                                              ),
-                                                                            ],
+                                                                          return WebViewAware(
+                                                                            child:
+                                                                                AlertDialog(
+                                                                              title: Text('Atenção!'),
+                                                                              content: Text('Modo desenvolvedor ativado...'),
+                                                                              actions: [
+                                                                                TextButton(
+                                                                                  onPressed: () => Navigator.pop(alertDialogContext),
+                                                                                  child: Text('Ok'),
+                                                                                ),
+                                                                              ],
+                                                                            ),
                                                                           );
                                                                         },
                                                                       );

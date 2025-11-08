@@ -810,9 +810,10 @@ Future acAtualizarInicializacaoSistema(
   bool? resultisRunningAsPWAIni;
   String? resultgetDeviceUID;
 
-  if (functions.fcDifrencaHorasEntreDatetimes(
-          FFAppState().varDataUltAtzAtividade!, getCurrentTimestamp) >
-      10) {
+  if ((functions.fcDifrencaHorasEntreDatetimes(
+              FFAppState().varDataUltAtzAtividade!, getCurrentTimestamp) >
+          30) ||
+      FFAppState().VarEmDesenvolvimento) {
     await action_blocks.acAtualizarLogAtividadeDevice(context);
   }
   await actions.setFullscreenMode();

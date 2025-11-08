@@ -127,7 +127,7 @@ Future<bool> loginMultiSession(
       'access_token': result.session?.accessToken,
       'device_info': deviceInfo,
       'id_app': varidapp,
-      'varpwa': varpwa, // ✅ novo argumento PWA
+      'is_pwa': varpwa, // ✅ renomeado: agora combina com a Edge Function
     };
 
     final response = await http.post(

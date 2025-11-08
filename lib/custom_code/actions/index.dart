@@ -27,3 +27,4 @@ export 'ca_web_force_reload_no_cache.dart' show caWebForceReloadNoCache;
 export 'ca_web_redirect_to_url.dart' show caWebRedirectToUrl;
 export 'login_multi_session.dart' show loginMultiSession;
 export 'set_fullscreen_mode.dart' show setFullscreenMode;
+export 'get_device_u_i_d.dart' show getDeviceUID;

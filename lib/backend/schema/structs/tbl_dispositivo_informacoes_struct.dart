@@ -22,6 +22,7 @@ class TblDispositivoInformacoesStruct extends BaseStruct {
     String? tamanhoTela,
     bool? pwa,
     String? appVersionLoaded,
+    String? uuidDevice,
   })  : _osName = osName,
         _deviceId = deviceId,
         _deviceName = deviceName,
@@ -36,7 +37,8 @@ class TblDispositivoInformacoesStruct extends BaseStruct {
         _applicationBuildCode = applicationBuildCode,
         _tamanhoTela = tamanhoTela,
         _pwa = pwa,
-        _appVersionLoaded = appVersionLoaded;
+        _appVersionLoaded = appVersionLoaded,
+        _uuidDevice = uuidDevice;
 
   // "osName" field.
   String? _osName;
@@ -143,6 +145,13 @@ class TblDispositivoInformacoesStruct extends BaseStruct {
 
   bool hasAppVersionLoaded() => _appVersionLoaded != null;
 
+  // "uuidDevice" field.
+  String? _uuidDevice;
+  String get uuidDevice => _uuidDevice ?? '';
+  set uuidDevice(String? val) => _uuidDevice = val;
+
+  bool hasUuidDevice() => _uuidDevice != null;
+
   static TblDispositivoInformacoesStruct fromMap(Map<String, dynamic> data) =>
       TblDispositivoInformacoesStruct(
         osName: data['osName'] as String?,
@@ -160,6 +169,7 @@ class TblDispositivoInformacoesStruct extends BaseStruct {
         tamanhoTela: data['tamanho_tela'] as String?,
         pwa: data['pwa'] as bool?,
         appVersionLoaded: data['appVersionLoaded'] as String?,
+        uuidDevice: data['uuidDevice'] as String?,
       );
 
   static TblDispositivoInformacoesStruct? maybeFromMap(dynamic data) => data
@@ -183,6 +193,7 @@ class TblDispositivoInformacoesStruct extends BaseStruct {
         'tamanho_tela': _tamanhoTela,
         'pwa': _pwa,
         'appVersionLoaded': _appVersionLoaded,
+        'uuidDevice': _uuidDevice,
       }.withoutNulls;
 
   @override
@@ -245,6 +256,10 @@ class TblDispositivoInformacoesStruct extends BaseStruct {
         ),
         'appVersionLoaded': serializeParam(
           _appVersionLoaded,
+          ParamType.String,
+        ),
+        'uuidDevice': serializeParam(
+          _uuidDevice,
           ParamType.String,
         ),
       }.withoutNulls;
@@ -327,6 +342,11 @@ class TblDispositivoInformacoesStruct extends BaseStruct {
           ParamType.String,
           false,
         ),
+        uuidDevice: deserializeParam(
+          data['uuidDevice'],
+          ParamType.String,
+          false,
+        ),
       );
 
   @override
@@ -349,7 +369,8 @@ class TblDispositivoInformacoesStruct extends BaseStruct {
         applicationBuildCode == other.applicationBuildCode &&
         tamanhoTela == other.tamanhoTela &&
         pwa == other.pwa &&
-        appVersionLoaded == other.appVersionLoaded;
+        appVersionLoaded == other.appVersionLoaded &&
+        uuidDevice == other.uuidDevice;
   }
 
   @override
@@ -368,7 +389,8 @@ class TblDispositivoInformacoesStruct extends BaseStruct {
         applicationBuildCode,
         tamanhoTela,
         pwa,
-        appVersionLoaded
+        appVersionLoaded,
+        uuidDevice
       ]);
 }
 
@@ -388,6 +410,7 @@ TblDispositivoInformacoesStruct createTblDispositivoInformacoesStruct({
   String? tamanhoTela,
   bool? pwa,
   String? appVersionLoaded,
+  String? uuidDevice,
 }) =>
     TblDispositivoInformacoesStruct(
       osName: osName,
@@ -405,4 +428,5 @@ TblDispositivoInformacoesStruct createTblDispositivoInformacoesStruct({
       tamanhoTela: tamanhoTela,
       pwa: pwa,
       appVersionLoaded: appVersionLoaded,
+      uuidDevice: uuidDevice,
     );

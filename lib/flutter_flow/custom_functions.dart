@@ -832,3 +832,11 @@ String fcConverterArrayParaString(List<String> varStringArray) {
   return varStringArray.join(
       '\n'); // Converte o array de strings em uma string com várias linhas
 }
+
+int fcDifrencaHorasEntreDatetimes(
+  DateTime varDataInicial,
+  DateTime varDataFinal,
+) {
+  // retorne a diferença de minutos entre duas datetime
+  return varDataFinal.difference(varDataInicial).inMinutes;
+}

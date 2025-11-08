@@ -107,6 +107,13 @@ class FFAppState extends ChangeNotifier {
           await secureStorage.getString('ff_varTextoConcluirCad') ??
               _varTextoConcluirCad;
     });
+    await _safeInitAsync(() async {
+      _varDataUltAtzAtividade =
+          await secureStorage.read(key: 'ff_varDataUltAtzAtividade') != null
+              ? DateTime.fromMillisecondsSinceEpoch(
+                  (await secureStorage.getInt('ff_varDataUltAtzAtividade'))!)
+              : _varDataUltAtzAtividade;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -116,7 +123,7 @@ class FFAppState extends ChangeNotifier {
 
   late FlutterSecureStorage secureStorage;
 
-  String _VarVersaoSistema = '4.1.52';
+  String _VarVersaoSistema = '4.1.53';
   String get VarVersaoSistema => _VarVersaoSistema;
   set VarVersaoSistema(String value) {
     _VarVersaoSistema = value;
@@ -1131,6 +1138,21 @@ class FFAppState extends ChangeNotifier {
   int get varLayoutMargemPgTopMibile => _varLayoutMargemPgTopMibile;
   set varLayoutMargemPgTopMibile(int value) {
     _varLayoutMargemPgTopMibile = value;
+  }
+
+  DateTime? _varDataUltAtzAtividade =
+      DateTime.fromMillisecondsSinceEpoch(1762565940000);
+  DateTime? get varDataUltAtzAtividade => _varDataUltAtzAtividade;
+  set varDataUltAtzAtividade(DateTime? value) {
+    _varDataUltAtzAtividade = value;
+    value != null
+        ? secureStorage.setInt(
+            'ff_varDataUltAtzAtividade', value.millisecondsSinceEpoch)
+        : secureStorage.remove('ff_varDataUltAtzAtividade');
+  }
+
+  void deleteVarDataUltAtzAtividade() {
+    secureStorage.delete(key: 'ff_varDataUltAtzAtividade');
   }
 }
 

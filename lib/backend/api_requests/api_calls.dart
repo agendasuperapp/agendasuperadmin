@@ -1199,6 +1199,8 @@ class EdgeFunctionsSupabaseGroup {
   static StripeportalurlCall stripeportalurlCall = StripeportalurlCall();
   static ConsultarcpfhubioCall consultarcpfhubioCall = ConsultarcpfhubioCall();
   static AuthmultisessionCall authmultisessionCall = AuthmultisessionCall();
+  static LogatividadedeviceCall logatividadedeviceCall =
+      LogatividadedeviceCall();
 }
 
 class ConsultarCpfSpbtCall {
@@ -1497,6 +1499,49 @@ class AuthmultisessionCall {
     return ApiManager.instance.makeApiCall(
       callName: 'authmultisession',
       apiUrl: '${baseUrl}/auth_multi_session',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ${token}',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class LogatividadedeviceCall {
+  Future<ApiCallResponse> call({
+    String? userId = '',
+    String? email = '',
+    String? deviceUid = '',
+    String? applicationVersion = '',
+    String? idApp = '',
+    String? token =
+        'eyJhbGciOiJIUzI1NiIsImtpZCI6IkZLdFM5emVrUExJOUxSMkQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2h6bWl4dXZybnpweXByaWFnZWN2LnN1cGFiYXNlLmNvL2F1dGgvdjEiLCJzdWIiOiIzNDhiMTk4OS0yNTNhLTQwYzMtYTQxMi1iM2RiYzFkMTc2MDIiLCJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNzU2MTY5OTU3LCJpYXQiOjE3NTYxNjYzNTcsImVtYWlsIjoic2FsYW9pc2FyZXNlbmRpekB0ZXN0ZXguY29tLmJyIiwicGhvbmUiOiIiLCJhcHBfbWV0YWRhdGEiOnsicHJvdmlkZXIiOiJlbWFpbCIsInByb3ZpZGVycyI6WyJlbWFpbCJdfSwidXNlcl9tZXRhZGF0YSI6eyJlbWFpbCI6InNhbGFvaXNhcmVzZW5kaXpAdGVzdGV4LmNvbS5iciIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJwaG9uZV92ZXJpZmllZCI6ZmFsc2UsInN1YiI6IjM0OGIxOTg5LTI1M2EtNDBjMy1hNDEyLWIzZGJjMWQxNzYwMiJ9LCJyb2xlIjoiYXV0aGVudGljYXRlZCIsImFhbCI6ImFhbDEiLCJhbXIiOlt7Im1ldGhvZCI6InBhc3N3b3JkIiwidGltZXN0YW1wIjoxNzU2MTY2MzU2fV0sInNlc3Npb25faWQiOiJkYTg2MTEwMi03ZGNkLTRmNDEtYThiNC1iM2FjMzUwYjZhYmMiLCJpc19hbm9ueW1vdXMiOmZhbHNlfQ.iVBvYphHn_LFOCuZaLhLLN7b-loGnpaTH6Bhno51yzc',
+  }) async {
+    final baseUrl = EdgeFunctionsSupabaseGroup.getBaseUrl(
+      token: token,
+    );
+
+    final ffApiRequestBody = '''
+{
+  "user_id": "${escapeStringForJson(userId)}",
+  "email": "${escapeStringForJson(email)}",
+  "device_uid": "${escapeStringForJson(deviceUid)}",
+  "application_version": "${escapeStringForJson(applicationVersion)}",
+  "id_app": "${escapeStringForJson(idApp)}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'logatividadedevice',
+      apiUrl: '${baseUrl}log_atividade_device',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',

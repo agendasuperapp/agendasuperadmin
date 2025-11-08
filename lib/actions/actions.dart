@@ -808,7 +808,13 @@ Future acAtualizarInicializacaoSistema(
   List<String>? customDeviceInfo;
   String? resultgetLoadedAppVersionIni;
   bool? resultisRunningAsPWAIni;
+  String? resultgetDeviceUID;
 
+  if (functions.fcDifrencaHorasEntreDatetimes(
+          FFAppState().varDataUltAtzAtividade!, getCurrentTimestamp) >
+      10) {
+    await action_blocks.acAtualizarLogAtividadeDevice(context);
+  }
   await actions.setFullscreenMode();
   if (kDebugMode || FFAppState().VarEmDesenvolvimento) {
     FFAppState().varIDAPPAfiliado = 1;
@@ -876,6 +882,10 @@ Future acAtualizarInicializacaoSistema(
       customDeviceInfo = await actions.caSistemaOpDetectAll();
       resultgetLoadedAppVersionIni = await actions.caWebGetLoadedAppVersion();
       resultisRunningAsPWAIni = await actions.caWebisRunningAsPWA();
+      resultgetDeviceUID = await actions.getDeviceUID();
+      FFAppState().updateVarTblDispositivoInformacoesStruct(
+        (e) => e..uuidDevice = resultgetDeviceUID,
+      );
       if (customDeviceInfo?.firstOrNull != 'NULL') {
         FFAppState().updateVarTblDispositivoInformacoesStruct(
           (e) => e
@@ -4293,4 +4303,45 @@ Future acConsultarAtualizacaoSistema(BuildContext context) async {
       backgroundColor: FlutterFlowTheme.of(context).secondary,
     ),
   );
+}
+
+Future acAtualizarLogAtividadeDevice(BuildContext context) async {
+  String? resultGetDeviceUiD2;
+  ApiCallResponse? apiResultLogAtividdeDevice;
+
+  resultGetDeviceUiD2 = await actions.getDeviceUID();
+  apiResultLogAtividdeDevice =
+      await EdgeFunctionsSupabaseGroup.logatividadedeviceCall.call(
+    userId: currentUserUid,
+    email: currentUserEmail,
+    deviceUid: resultGetDeviceUiD2,
+    applicationVersion: FFAppState().VarVersaoSistema,
+    token: currentJwtToken,
+    idApp: () {
+      if (FFAppState().varIDAPPAfiliado == 1) {
+        return 2;
+      } else if (FFAppState().varIDAPPAfiliado == 3) {
+        return 3;
+      } else {
+        return 0;
+      }
+    }()
+        .toString(),
+  );
+
+  if ((apiResultLogAtividdeDevice.succeeded ?? true)) {
+    FFAppState().varDataUltAtzAtividade = getCurrentTimestamp;
+    if (FFAppState().VarEmDesenvolvimento) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            'LOG ATIVIDADE REGISTRADO',
+            style: TextStyle(),
+          ),
+          duration: Duration(milliseconds: 4000),
+          backgroundColor: FlutterFlowTheme.of(context).secondary,
+        ),
+      );
+    }
+  }
 }

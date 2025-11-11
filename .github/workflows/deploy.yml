@@ -272,6 +272,7 @@ jobs:
       # 18️⃣ Gerar APK Release
       - name: 18️⃣ 🤖 Gerar APK Release Assinado
         run: |
+          flutter build appbundle --release
           flutter build apk --release --target-platform android-arm64
           VERSION=${{ env.VERSION }}
           SAFE_APPNAME=$(echo "${{ env.APPNAME }}" | tr ' ' '_' )

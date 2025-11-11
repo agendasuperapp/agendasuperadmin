@@ -22,8 +22,8 @@ class TblNotificacoesRow extends SupabaseDataRow {
   set dataCadastro(DateTime value) =>
       setField<DateTime>('data_cadastro', value);
 
-  int get idEstabelecimento => getField<int>('id_estabelecimento')!;
-  set idEstabelecimento(int value) =>
+  int? get idEstabelecimento => getField<int>('id_estabelecimento');
+  set idEstabelecimento(int? value) =>
       setField<int>('id_estabelecimento', value);
 
   int? get idAfiliado => getField<int>('id_afiliado');
@@ -95,4 +95,7 @@ class TblNotificacoesRow extends SupabaseDataRow {
 
   int? get idConfig => getField<int>('id_config');
   set idConfig(int? value) => setField<int>('id_config', value);
+
+  int? get idApp => getField<int>('id_app');
+  set idApp(int? value) => setField<int>('id_app', value);
 }

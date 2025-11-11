@@ -1598,6 +1598,7 @@ class FunctionsServerSupabaseGroup {
       FcCriarPagamentoAfiliacaoCall();
   static FcconsultarplanoslandpgCall fcconsultarplanoslandpgCall =
       FcconsultarplanoslandpgCall();
+  static FcdeleteauthuserCall fcdeleteauthuserCall = FcdeleteauthuserCall();
 }
 
 class ConsultarTelefoneCall {
@@ -2803,6 +2804,47 @@ class FcconsultarplanoslandpgCall {
     return ApiManager.instance.makeApiCall(
       callName: 'fcconsultarplanoslandpg',
       apiUrl: '${baseUrl}fc_consultar_planos_landpg',
+      callType: ApiCallType.POST,
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh6bWl4dXZybnpweXByaWFnZWN2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjQ5NjkzMTQsImV4cCI6MjA0MDU0NTMxNH0.VHtjYivpM8c9RLmKimwRiLgnb8zqGrZ88Q8vpVLZcZ0',
+        'Authorization': 'Bearer ${token}',
+      },
+      params: {},
+      body: ffApiRequestBody,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+      isStreamingApi: false,
+      alwaysAllowBody: false,
+    );
+  }
+}
+
+class FcdeleteauthuserCall {
+  Future<ApiCallResponse> call({
+    String? paramUserId = '',
+    String? paramEmail = '',
+    List<String>? paramMotivoList,
+    String? token = '',
+  }) async {
+    final baseUrl = FunctionsServerSupabaseGroup.getBaseUrl(
+      token: token,
+    );
+    final paramMotivo = _serializeList(paramMotivoList);
+
+    final ffApiRequestBody = '''
+{
+  "param_user_id": "${escapeStringForJson(paramUserId)}",
+  "param_email": "${escapeStringForJson(paramEmail)}",
+  "param_motivo": ${paramMotivo}
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'fcdeleteauthuser',
+      apiUrl: '${baseUrl}fc_delete_auth_user',
       callType: ApiCallType.POST,
       headers: {
         'Content-Type': 'application/json',

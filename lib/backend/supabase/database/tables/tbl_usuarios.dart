@@ -74,4 +74,15 @@ class TblUsuariosRow extends SupabaseDataRow {
 
   bool get adminSistema => getField<bool>('admin_sistema')!;
   set adminSistema(bool value) => setField<bool>('admin_sistema', value);
+
+  DateTime? get ultimaAtividade => getField<DateTime>('ultima_atividade');
+  set ultimaAtividade(DateTime? value) =>
+      setField<DateTime>('ultima_atividade', value);
+
+  bool? get excluido => getField<bool>('excluido');
+  set excluido(bool? value) => setField<bool>('excluido', value);
+
+  DateTime? get dataExclusao => getField<DateTime>('data_exclusao');
+  set dataExclusao(DateTime? value) =>
+      setField<DateTime>('data_exclusao', value);
 }

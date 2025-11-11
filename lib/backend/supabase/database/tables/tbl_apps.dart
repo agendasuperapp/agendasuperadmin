@@ -36,6 +36,13 @@ class TblAppsRow extends SupabaseDataRow {
   String? get site => getField<String>('site');
   set site(String? value) => setField<String>('site', value);
 
-  int? get idAppAfiliado => getField<int>('id_app_afiliado');
-  set idAppAfiliado(int? value) => setField<int>('id_app_afiliado', value);
+  int? get idAfiliadoApp => getField<int>('id_afiliado_app');
+  set idAfiliadoApp(int? value) => setField<int>('id_afiliado_app', value);
+
+  String? get icone => getField<String>('icone');
+  set icone(String? value) => setField<String>('icone', value);
+
+  String? get bannerNotificacao => getField<String>('banner_notificacao');
+  set bannerNotificacao(String? value) =>
+      setField<String>('banner_notificacao', value);
 }

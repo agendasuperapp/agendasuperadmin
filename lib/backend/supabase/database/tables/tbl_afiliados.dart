@@ -126,4 +126,7 @@ class TblAfiliadosRow extends SupabaseDataRow {
 
   String get uuid => getField<String>('uuid')!;
   set uuid(String value) => setField<String>('uuid', value);
+
+  bool get excluido => getField<bool>('excluido')!;
+  set excluido(bool value) => setField<bool>('excluido', value);
 }

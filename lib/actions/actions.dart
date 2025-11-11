@@ -4,10 +4,10 @@ import '/backend/schema/structs/index.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/pages/admin/a_sistema/home/cp_home_assistente_cad/cp_home_assistente_cad_widget.dart';
-import '/pages/admin/a_sistema/home/cp_login/cp_login_widget.dart';
-import '/pages/page_mensagens_personalizadas/cp_dialog_info/cp_dialog_info_widget.dart';
-import '/pages/page_mensagens_personalizadas/cp_dialog_sucesso/cp_dialog_sucesso_widget.dart';
+import '/pages/a_home/cp_home/cp_home_assistente_cad/cp_home_assistente_cad_widget.dart';
+import '/pages/a_home/cp_home/cp_login/cp_login_widget.dart';
+import '/pages/e_sistema/page_mensagens_personalizadas/cp_dialog_info/cp_dialog_info_widget.dart';
+import '/pages/e_sistema/page_mensagens_personalizadas/cp_dialog_sucesso/cp_dialog_sucesso_widget.dart';
 import 'dart:async';
 import '/actions/actions.dart' as action_blocks;
 import '/custom_code/actions/index.dart' as actions;
@@ -827,7 +827,7 @@ Future acAtualizarInicializacaoSistema(
   }
   await actions.setFullscreenMode();
   if (kDebugMode || FFAppState().VarEmDesenvolvimento) {
-    FFAppState().varIDAPPAfiliado = 1;
+    FFAppState().varIDAPPAfiliado = 3;
     FFAppState().update(() {});
   }
   if ((FFAppState().varCarregouPrimeiraPagina == true) &&
@@ -1076,79 +1076,82 @@ Future acMensagemDialog(
   }
 }
 
-Future<bool> acSairSistema(BuildContext context) async {
+Future<bool> acSairSistema(
+  BuildContext context, {
+  required bool? paramPerguntar,
+}) async {
   String? acResultSetOneSignalEsternalUserIdLogoff2;
 
-  var confirmDialogResponse = await showDialog<bool>(
-        context: context,
-        builder: (alertDialogContext) {
-          return WebViewAware(
-            child: AlertDialog(
-              title: Text('Atençaõ!'),
-              content: Text('Deseja sair do usuário logado no sistema?'),
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(alertDialogContext, false),
-                  child: Text('Não'),
-                ),
-                TextButton(
-                  onPressed: () => Navigator.pop(alertDialogContext, true),
-                  child: Text('Sim'),
-                ),
-              ],
-            ),
-          );
-        },
-      ) ??
-      false;
-  if (confirmDialogResponse) {
-    FFAppState().VarTblEstabelecimentoLogado = TblEstabelecimentoLogadoStruct();
-    FFAppState().VarIDUsuarioLogado = 0;
-    FFAppState().varPaginaSelecionada = '';
-    FFAppState().VarTblWhatsApp = TblWhatsAppStruct();
-    FFAppState().VarIDEstabelecimentoLogado = 0;
-    FFAppState().varTblAfiliado = TblAfiliadoFFezX1b2Struct();
-    FFAppState().varIDAfiliadoLogado = 0;
-    FFAppState().varTblUsuarios = TblUsuarioLogadoAdminStruct();
-    FFAppState().varAPPIDOneSignal = '';
-    FFAppState().varAPPOneSignalInicializado = false;
-    FFAppState().varAPPNotificacoesAtivas = true;
-    FFAppState().varWebOneSignalContadorAtzOptions = 0;
-    FFAppState().varWebOneSignalTblOptions =
-        TblOneSignalOptionsXveSve1azStruct();
-    FFAppState().varWebOneSignalOptions = [];
-    FFAppState().varWebOneSignalStatusSetIDExterno = '';
-    FFAppState().varWebOneSignalResultSetExternID = '';
-    FFAppState().varWebOneSignalWebStatusNotificacao = '';
-    FFAppState().varWebOneSignalNotificacoesAtivas = true;
-    FFAppState().deleteVarUltimaSenhaLogada();
-    FFAppState().varUltimaSenhaLogada = '';
-
-    FFAppState().varAssistenteCadastroAberto = false;
-    if (isAndroid || isiOS) {
-      unawaited(
-        () async {
-          await actions.caAPPOneSignalLogoutExternalId();
-        }(),
-      );
+  if (paramPerguntar!) {
+    var confirmDialogResponse = await showDialog<bool>(
+          context: context,
+          builder: (alertDialogContext) {
+            return WebViewAware(
+              child: AlertDialog(
+                title: Text('Atençaõ!'),
+                content: Text('Deseja sair do usuário logado no sistema?'),
+                actions: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(alertDialogContext, false),
+                    child: Text('Não'),
+                  ),
+                  TextButton(
+                    onPressed: () => Navigator.pop(alertDialogContext, true),
+                    child: Text('Sim'),
+                  ),
+                ],
+              ),
+            );
+          },
+        ) ??
+        false;
+    if (!confirmDialogResponse) {
+      return false;
     }
-    if (isWeb) {
-      unawaited(
-        () async {
-          acResultSetOneSignalEsternalUserIdLogoff2 =
-              await actions.caWebOneSignalSetExternalUserId(
-            'LOGOFF${FFAppState().VarTblDispositivoInformacoes.deviceId}',
-          );
-        }(),
-      );
-      FFAppState().varWebOneSignalResultSetExternID = 'LOGOFF';
-      FFAppState().varWebOneSignalStatusSetIDExterno = 'LOGOFF';
-      FFAppState().update(() {});
-    }
-    return true;
-  } else {
-    return false;
   }
+  FFAppState().VarTblEstabelecimentoLogado = TblEstabelecimentoLogadoStruct();
+  FFAppState().VarIDUsuarioLogado = 0;
+  FFAppState().varPaginaSelecionada = '';
+  FFAppState().VarTblWhatsApp = TblWhatsAppStruct();
+  FFAppState().VarIDEstabelecimentoLogado = 0;
+  FFAppState().varTblAfiliado = TblAfiliadoFFezX1b2Struct();
+  FFAppState().varIDAfiliadoLogado = 0;
+  FFAppState().varTblUsuarios = TblUsuarioLogadoAdminStruct();
+  FFAppState().varAPPIDOneSignal = '';
+  FFAppState().varAPPOneSignalInicializado = false;
+  FFAppState().varAPPNotificacoesAtivas = true;
+  FFAppState().varWebOneSignalContadorAtzOptions = 0;
+  FFAppState().varWebOneSignalTblOptions = TblOneSignalOptionsXveSve1azStruct();
+  FFAppState().varWebOneSignalOptions = [];
+  FFAppState().varWebOneSignalStatusSetIDExterno = '';
+  FFAppState().varWebOneSignalResultSetExternID = '';
+  FFAppState().varWebOneSignalWebStatusNotificacao = '';
+  FFAppState().varWebOneSignalNotificacoesAtivas = true;
+  FFAppState().deleteVarUltimaSenhaLogada();
+  FFAppState().varUltimaSenhaLogada = '';
+
+  FFAppState().varAssistenteCadastroAberto = false;
+  if (isAndroid || isiOS) {
+    unawaited(
+      () async {
+        await actions.caAPPOneSignalLogoutExternalId();
+      }(),
+    );
+  }
+  if (isWeb) {
+    unawaited(
+      () async {
+        acResultSetOneSignalEsternalUserIdLogoff2 =
+            await actions.caWebOneSignalSetExternalUserId(
+          'LOGOFF${FFAppState().VarTblDispositivoInformacoes.deviceId}',
+        );
+      }(),
+    );
+    FFAppState().varWebOneSignalResultSetExternID = 'LOGOFF';
+    FFAppState().varWebOneSignalStatusSetIDExterno = 'LOGOFF';
+    FFAppState().update(() {});
+  }
+  return true;
 }
 
 Future<bool> acWhatsAppDeletarConexao(

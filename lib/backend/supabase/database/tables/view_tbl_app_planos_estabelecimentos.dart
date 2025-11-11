@@ -121,9 +121,6 @@ class ViewTblAppPlanosEstabelecimentosRow extends SupabaseDataRow {
   set precoAssinatura(double? value) =>
       setField<double>('preco_assinatura', value);
 
-  String? get stripeStatus => getField<String>('stripe_status');
-  set stripeStatus(String? value) => setField<String>('stripe_status', value);
-
   String? get stripeSubscriptionId =>
       getField<String>('stripe_subscription_id');
   set stripeSubscriptionId(String? value) =>
@@ -177,4 +174,19 @@ class ViewTblAppPlanosEstabelecimentosRow extends SupabaseDataRow {
 
   double? get percComissao => getField<double>('perc_comissao');
   set percComissao(double? value) => setField<double>('perc_comissao', value);
+
+  String? get nomeApp => getField<String>('nome_app');
+  set nomeApp(String? value) => setField<String>('nome_app', value);
+
+  String? get iconeLight => getField<String>('icone_light');
+  set iconeLight(String? value) => setField<String>('icone_light', value);
+
+  String? get iconeDark => getField<String>('icone_dark');
+  set iconeDark(String? value) => setField<String>('icone_dark', value);
+
+  String? get logoLight => getField<String>('logo_light');
+  set logoLight(String? value) => setField<String>('logo_light', value);
+
+  String? get logoDark => getField<String>('logo_dark');
+  set logoDark(String? value) => setField<String>('logo_dark', value);
 }

@@ -84,4 +84,7 @@ class TblClientesRow extends SupabaseDataRow {
 
   DateTime? get dataSenha => getField<DateTime>('data_senha');
   set dataSenha(DateTime? value) => setField<DateTime>('data_senha', value);
+
+  bool get excluido => getField<bool>('excluido')!;
+  set excluido(bool value) => setField<bool>('excluido', value);
 }

@@ -35,4 +35,16 @@ class ViewTblAfiliadoAppsRow extends SupabaseDataRow {
 
   String? get urlApk => getField<String>('url_apk');
   set urlApk(String? value) => setField<String>('url_apk', value);
+
+  String? get iconeLight => getField<String>('icone_light');
+  set iconeLight(String? value) => setField<String>('icone_light', value);
+
+  String? get iconeDark => getField<String>('icone_dark');
+  set iconeDark(String? value) => setField<String>('icone_dark', value);
+
+  String? get logoLight => getField<String>('logo_light');
+  set logoLight(String? value) => setField<String>('logo_light', value);
+
+  String? get logoDark => getField<String>('logo_dark');
+  set logoDark(String? value) => setField<String>('logo_dark', value);
 }

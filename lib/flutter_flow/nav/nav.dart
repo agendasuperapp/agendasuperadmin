@@ -552,6 +552,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: PgPoliticaPrivacidadeWidget.routeName,
           path: PgPoliticaPrivacidadeWidget.routePath,
           builder: (context, params) => PgPoliticaPrivacidadeWidget(),
+        ),
+        FFRoute(
+          name: PgExclusaoContaWidget.routeName,
+          path: PgExclusaoContaWidget.routePath,
+          requireAuth: true,
+          builder: (context, params) => PgExclusaoContaWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

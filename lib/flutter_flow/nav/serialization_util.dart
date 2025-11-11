@@ -286,6 +286,8 @@ dynamic deserializeParam<T>(
             return ViewTblEstabStatusAssinaturaFiltroRow(data);
           case TblUsuariosTesteRow:
             return TblUsuariosTesteRow(data);
+          case TblLogsAcessoRow:
+            return TblLogsAcessoRow(data);
           case TblNotificacoesConfigRow:
             return TblNotificacoesConfigRow(data);
           case ViewTblAfiliadoPlanoRow:
@@ -392,6 +394,8 @@ dynamic deserializeParam<T>(
             return ViewTblHorariosDispHorasRow(data);
           case ViewTblVersoesClienteRow:
             return ViewTblVersoesClienteRow(data);
+          case TblUsuariosExcluidosRow:
+            return TblUsuariosExcluidosRow(data);
           case TblAfiliadosLadPgPergRow:
             return TblAfiliadosLadPgPergRow(data);
           case TblWhatsappRow:
@@ -440,6 +444,8 @@ dynamic deserializeParam<T>(
             return TblPagamentosStripeLogRow(data);
           case ViewTblHorariosFuncionamentoRow:
             return ViewTblHorariosFuncionamentoRow(data);
+          case TblAuthMultiSessionRow:
+            return TblAuthMultiSessionRow(data);
           case TblProfissionaisRow:
             return TblProfissionaisRow(data);
           case ViewTblAppPlanosNomesFiltrosRow:

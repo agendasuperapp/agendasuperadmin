@@ -291,12 +291,7 @@ class _CpExclusaoContaWidgetState extends State<CpExclusaoContaWidget>
                           hoverColor: Colors.transparent,
                           highlightColor: Colors.transparent,
                           onTap: () async {
-                            if (FFAppState().VarAbrirJanelasWebAndroid ==
-                                true) {
-                              Navigator.pop(context);
-                            } else {
-                              Navigator.pop(context);
-                            }
+                            context.safePop();
                           },
                           child: Icon(
                             Icons.close,
@@ -1634,34 +1629,38 @@ class _CpExclusaoContaWidgetState extends State<CpExclusaoContaWidget>
                                                         'Caso queira cancelar a conta primeiro faça o cancelamento da assinatura clicando em Geranciar Assinatura',
                                                         textAlign:
                                                             TextAlign.center,
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .labelMedium
-                                                            .override(
-                                                              font: GoogleFonts
-                                                                  .plusJakartaSans(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                                fontStyle: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .labelMedium
-                                                                    .fontStyle,
-                                                              ),
-                                                              color: Color(
-                                                                  0xFFFAFF00),
-                                                              fontSize: 16.0,
-                                                              letterSpacing:
-                                                                  0.0,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500,
-                                                              fontStyle:
-                                                                  FlutterFlowTheme.of(
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .displayLarge
+                                                                .override(
+                                                                  font: GoogleFonts
+                                                                      .outfit(
+                                                                    fontWeight: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .displayLarge
+                                                                        .fontWeight,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .displayLarge
+                                                                        .fontStyle,
+                                                                  ),
+                                                                  color: FlutterFlowTheme.of(
                                                                           context)
-                                                                      .labelMedium
+                                                                      .error,
+                                                                  fontSize:
+                                                                      18.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .displayLarge
+                                                                      .fontWeight,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .displayLarge
                                                                       .fontStyle,
-                                                            ),
+                                                                ),
                                                       ),
                                                     if (columnViewTblAppPlanosEstabelecimentosRow
                                                             .planoAtivo! &&
@@ -1701,11 +1700,17 @@ class _CpExclusaoContaWidgetState extends State<CpExclusaoContaWidget>
                                                                     () {});
                                                               return;
                                                             }
-                                                            await actions
-                                                                .caWebRedirectToUrl(
-                                                              _model
-                                                                  .resultStripePortalUrsl!,
-                                                            );
+                                                            if (isWeb) {
+                                                              await actions
+                                                                  .caWebRedirectToUrl(
+                                                                _model
+                                                                    .resultStripePortalUrsl!,
+                                                              );
+                                                            } else {
+                                                              await launchURL(_model
+                                                                  .resultStripePortalUrsl!);
+                                                            }
+
                                                             if (_shouldSetState)
                                                               safeSetState(
                                                                   () {});
@@ -2407,7 +2412,11 @@ class _CpExclusaoContaWidgetState extends State<CpExclusaoContaWidget>
                                       child: AlertDialog(
                                         title: Text('Atenção!'),
                                         content: Text(
-                                            'Erro ao excluir conta, tente novamente${'\n'}${(_model.apiResulDeleteUser?.exceptionMessage ?? '')}'),
+                                            'Erro ao excluir conta, tente novamente${'\n'}${FunctionsServerSupabaseGroup.fcdeleteauthuserCall.message(
+                                          (_model.apiResulDeleteUser
+                                                  ?.jsonBody ??
+                                              ''),
+                                        )}'),
                                         actions: [
                                           TextButton(
                                             onPressed: () => Navigator.pop(

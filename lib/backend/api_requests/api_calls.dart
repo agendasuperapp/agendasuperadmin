@@ -2863,6 +2863,15 @@ class FcdeleteauthuserCall {
       alwaysAllowBody: false,
     );
   }
+
+  String? message(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.message''',
+      ));
+  String? code(dynamic response) => castToType<String>(getJsonField(
+        response,
+        r'''$.code''',
+      ));
 }
 
 /// End Functions Server Supabase Group Code

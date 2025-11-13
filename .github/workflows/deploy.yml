@@ -275,13 +275,13 @@ jobs:
           VERSION=${{ env.VERSION }}
           SAFE_APPNAME=$(echo "${{ env.APPNAME }}" | tr ' ' '_' )
 
-          echo "🔹 Gerando APK..."
-          flutter build apk --release --target-platform android-arm64
-          mv build/app/outputs/flutter-apk/app-release.apk "build/app/outputs/flutter-apk/${SAFE_APPNAME}_${VERSION}_arm64.apk"
+          echo "🔹 Gerando APK universal (compatível com todos os dispositivos)..."
+          flutter build apk --release
+          mv build/app/outputs/flutter-apk/app-release.apk "build/app/outputs/flutter-apk/${SAFE_APPNAME}_${VERSION}.apk"
 
-          echo "🔹 Gerando AAB..."
+          echo "🔹 Gerando AAB universal..."
           flutter build appbundle --release
-          mv build/app/outputs/bundle/release/app-release.aab "build/app/outputs/flutter-apk/${SAFE_APPNAME}_${VERSION}_arm64.aab"
+          mv build/app/outputs/bundle/release/app-release.aab "build/app/outputs/flutter-apk/${SAFE_APPNAME}_${VERSION}.aab"
 
       # 19️⃣ ☁️ Enviar APK e AAB via FTP
       - name: 19️⃣ ☁️ Enviar APK e AAB para Hostinger
@@ -296,8 +296,8 @@ jobs:
             mkdir -f apk || true;
             cd apk;
             lcd build/app/outputs/flutter-apk;
-            put ${SAFE_APPNAME}_${VERSION}_arm64.apk;
-            put ${SAFE_APPNAME}_${VERSION}_arm64.aab;
+            put ${SAFE_APPNAME}_${VERSION}.apk;
+            put ${SAFE_APPNAME}_${VERSION}.aab;
             bye
           "
 

@@ -346,6 +346,8 @@ dynamic deserializeParam<T>(
             return ViewTblAppPlanosPeriodosRow(data);
           case ViewTblPagamentosStripeAppRow:
             return ViewTblPagamentosStripeAppRow(data);
+          case ViewInternalTblPagamentosStripeAppsPveabxaRow:
+            return ViewInternalTblPagamentosStripeAppsPveabxaRow(data);
           case ViewTblAfiliadosCuponsPadFiltroRow:
             return ViewTblAfiliadosCuponsPadFiltroRow(data);
           case TblDiasSemanaRow:
@@ -446,6 +448,8 @@ dynamic deserializeParam<T>(
             return ViewTblHorariosFuncionamentoRow(data);
           case TblAuthMultiSessionRow:
             return TblAuthMultiSessionRow(data);
+          case ViewInternalTblPagamentosStripeLogXtesbxdaRow:
+            return ViewInternalTblPagamentosStripeLogXtesbxdaRow(data);
           case TblProfissionaisRow:
             return TblProfissionaisRow(data);
           case ViewTblAppPlanosNomesFiltrosRow:

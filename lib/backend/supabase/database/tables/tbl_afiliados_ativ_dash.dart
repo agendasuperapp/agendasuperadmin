@@ -73,4 +73,16 @@ class TblAfiliadosAtivDashRow extends SupabaseDataRow {
 
   int? get idPgStripeApp => getField<int>('id_pg_stripe_app');
   set idPgStripeApp(int? value) => setField<int>('id_pg_stripe_app', value);
+
+  int? get idPgStripeLog => getField<int>('id_pg_stripe_log');
+  set idPgStripeLog(int? value) => setField<int>('id_pg_stripe_log', value);
+
+  int? get idPlanoPreco => getField<int>('id_plano_preco');
+  set idPlanoPreco(int? value) => setField<int>('id_plano_preco', value);
+
+  bool get trialPeriod => getField<bool>('trial_period')!;
+  set trialPeriod(bool value) => setField<bool>('trial_period', value);
+
+  int? get trialPeriodDays => getField<int>('trial_period_days');
+  set trialPeriodDays(int? value) => setField<int>('trial_period_days', value);
 }

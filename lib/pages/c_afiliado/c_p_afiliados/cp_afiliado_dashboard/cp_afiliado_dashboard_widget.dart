@@ -71,13 +71,12 @@ class _CpAfiliadoDashboardWidgetState extends State<CpAfiliadoDashboardWidget>
           milliseconds: 1000,
         ),
       );
-      if (MediaQuery.sizeOf(context).width <=
-          FFAppState().varTamanhoMinimoTelaMenuLateral.toDouble()) {
+      if (MediaQuery.sizeOf(context).width < kBreakpointMedium) {
+        safeSetState(() => _model.requestCompleter3 = null);
+        await _model.waitForRequestCompleted3();
+      } else {
         safeSetState(() => _model.requestCompleter1 = null);
         await _model.waitForRequestCompleted1();
-      } else {
-        safeSetState(() => _model.requestCompleter2 = null);
-        await _model.waitForRequestCompleted2();
       }
     });
 
@@ -404,13 +403,17 @@ class _CpAfiliadoDashboardWidgetState extends State<CpAfiliadoDashboardWidget>
               FFAppState().varTamanhoMinimoTelaMenuLateral.toDouble()) {
             safeSetState(() => _model.requestCompleter4 = null);
             await _model.waitForRequestCompleted4();
-            safeSetState(() => _model.requestCompleter1 = null);
-            await _model.waitForRequestCompleted1();
           } else {
-            safeSetState(() => _model.requestCompleter3 = null);
-            await _model.waitForRequestCompleted3();
             safeSetState(() => _model.requestCompleter2 = null);
             await _model.waitForRequestCompleted2();
+          }
+
+          if (MediaQuery.sizeOf(context).width < kBreakpointMedium) {
+            safeSetState(() => _model.requestCompleter3 = null);
+            await _model.waitForRequestCompleted3();
+          } else {
+            safeSetState(() => _model.requestCompleter1 = null);
+            await _model.waitForRequestCompleted1();
           }
 
           safeSetState(() => _model.requestCompleter5 = null);
@@ -8855,7 +8858,7 @@ class _CpAfiliadoDashboardWidgetState extends State<CpAfiliadoDashboardWidget>
                                 ),
                               ),
                               FutureBuilder<List<ViewTblAfiliadosComissaoRow>>(
-                                future: (_model.requestCompleter3 ??= Completer<
+                                future: (_model.requestCompleter2 ??= Completer<
                                         List<ViewTblAfiliadosComissaoRow>>()
                                       ..complete(ViewTblAfiliadosComissaoTable()
                                           .queryRows(
@@ -10422,14 +10425,13 @@ class _CpAfiliadoDashboardWidgetState extends State<CpAfiliadoDashboardWidget>
                             ),
                           ],
                         ),
-                        if ((MediaQuery.sizeOf(context).width >
-                                FFAppState()
-                                    .varTamanhoMinimoTelaMenuLateral
-                                    .toDouble()) &&
-                            responsiveVisibility(
-                              context: context,
-                              phone: false,
-                            ))
+                        if (responsiveVisibility(
+                          context: context,
+                          phone: false,
+                          tablet: false,
+                          tabletLandscape: false,
+                          desktop: false,
+                        ))
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 16.0, 0.0, 0.0),
@@ -10453,7 +10455,7 @@ class _CpAfiliadoDashboardWidgetState extends State<CpAfiliadoDashboardWidget>
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
                                     Expanded(
-                                      flex: 4,
+                                      flex: 5,
                                       child: Padding(
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             0.0, 0.0, 12.0, 0.0),
@@ -10504,7 +10506,7 @@ class _CpAfiliadoDashboardWidgetState extends State<CpAfiliadoDashboardWidget>
                                       ),
                                     ),
                                     Expanded(
-                                      flex: 1,
+                                      flex: 2,
                                       child: Container(
                                         width: 125.0,
                                         decoration: BoxDecoration(),
@@ -10625,30 +10627,781 @@ class _CpAfiliadoDashboardWidgetState extends State<CpAfiliadoDashboardWidget>
                                           ),
                                         ),
                                       ),
-                                  ],
+                                  ].divide(SizedBox(width: 8.0)),
                                 ),
                               ),
                             ),
                           ),
-                        if ((MediaQuery.sizeOf(context).width >
-                                FFAppState()
-                                    .varTamanhoMinimoTelaMenuLateral
-                                    .toDouble()) &&
-                            responsiveVisibility(
-                              context: context,
-                              phone: false,
-                            ))
+                        if (responsiveVisibility(
+                          context: context,
+                          tabletLandscape: false,
+                          desktop: false,
+                        ))
                           Padding(
                             padding: EdgeInsetsDirectional.fromSTEB(
                                 0.0, 8.0, 0.0, 0.0),
                             child: FutureBuilder<
                                 List<ViewTblAfiliadosAtividadesRow>>(
-                              future: (_model.requestCompleter2 ??= Completer<
+                              future: (_model.requestCompleter3 ??= Completer<
                                       List<ViewTblAfiliadosAtividadesRow>>()
                                     ..complete(ViewTblAfiliadosAtividadesTable()
                                         .queryRows(
                                       queryFn: (q) => q,
-                                      limit: 50,
+                                      limit: 15,
+                                    )))
+                                  .future,
+                              builder: (context, snapshot) {
+                                // Customize what your widget looks like when it's loading.
+                                if (!snapshot.hasData) {
+                                  return Center(
+                                    child: SizedBox(
+                                      width: 50.0,
+                                      height: 50.0,
+                                      child: CircularProgressIndicator(
+                                        valueColor:
+                                            AlwaysStoppedAnimation<Color>(
+                                          FlutterFlowTheme.of(context).primary,
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                }
+                                List<ViewTblAfiliadosAtividadesRow>
+                                    listViewativCELViewTblAfiliadosAtividadesRowList =
+                                    snapshot.data!;
+
+                                if (listViewativCELViewTblAfiliadosAtividadesRowList
+                                    .isEmpty) {
+                                  return CpSemCadastroWidget();
+                                }
+
+                                return ListView.separated(
+                                  padding: EdgeInsets.zero,
+                                  primary: false,
+                                  shrinkWrap: true,
+                                  scrollDirection: Axis.vertical,
+                                  itemCount:
+                                      listViewativCELViewTblAfiliadosAtividadesRowList
+                                          .length,
+                                  separatorBuilder: (_, __) =>
+                                      SizedBox(height: 8.0),
+                                  itemBuilder: (context, listViewativCELIndex) {
+                                    final listViewativCELViewTblAfiliadosAtividadesRow =
+                                        listViewativCELViewTblAfiliadosAtividadesRowList[
+                                            listViewativCELIndex];
+                                    return Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 0.0, 0.0, 1.0),
+                                      child: Container(
+                                        width: 100.0,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                          border: Border.all(
+                                            color: FlutterFlowTheme.of(context)
+                                                .alternate,
+                                          ),
+                                        ),
+                                        child: Padding(
+                                          padding: EdgeInsets.all(8.0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(40.0),
+                                                child: Image.network(
+                                                  valueOrDefault<String>(
+                                                    listViewativCELViewTblAfiliadosAtividadesRow
+                                                        .fotoPerfil,
+                                                    'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/agendador-de-beleza-qia8mb/assets/lp37pdsm6md0/sem-imagem.jpg',
+                                                  ),
+                                                  width: 50.0,
+                                                  height: 50.0,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+                                              Expanded(
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(
+                                                          4.0, 0.0, 0.0, 0.0),
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .center,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    children: [
+                                                      SelectionArea(
+                                                          child: Text(
+                                                        valueOrDefault<String>(
+                                                          listViewativCELViewTblAfiliadosAtividadesRow
+                                                              .nome,
+                                                          ' ...',
+                                                        ),
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  font: GoogleFonts
+                                                                      .plusJakartaSans(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .fontStyle,
+                                                                  ),
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryText,
+                                                                  fontSize:
+                                                                      14.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontStyle,
+                                                                ),
+                                                      )),
+                                                      Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    4.0,
+                                                                    0.0,
+                                                                    0.0),
+                                                        child: SelectionArea(
+                                                            child: Text(
+                                                          valueOrDefault<
+                                                              String>(
+                                                            listViewativCELViewTblAfiliadosAtividadesRow
+                                                                .descricaoTipo,
+                                                            '...',
+                                                          ),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodySmall
+                                                              .override(
+                                                                font: GoogleFonts
+                                                                    .plusJakartaSans(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodySmall
+                                                                      .fontStyle,
+                                                                ),
+                                                                color: listViewativCELViewTblAfiliadosAtividadesRow
+                                                                            .tipoAtividade ==
+                                                                        'CAD'
+                                                                    ? FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .success
+                                                                    : FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryText,
+                                                                fontSize: 12.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
+                                                                fontStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodySmall
+                                                                    .fontStyle,
+                                                              ),
+                                                        )),
+                                                      ),
+                                                      SelectionArea(
+                                                          child: Text(
+                                                        '📅 ${valueOrDefault<String>(
+                                                          dateTimeFormat(
+                                                            "dd/MM/y H:mm",
+                                                            listViewativCELViewTblAfiliadosAtividadesRow
+                                                                .dataCadastro,
+                                                            locale: FFLocalizations
+                                                                    .of(context)
+                                                                .languageCode,
+                                                          ),
+                                                          '...',
+                                                        )}',
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  font: GoogleFonts
+                                                                      .plusJakartaSans(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .fontStyle,
+                                                                  ),
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryText,
+                                                                  fontSize:
+                                                                      12.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontStyle,
+                                                                ),
+                                                      )),
+                                                      if (listViewativCELViewTblAfiliadosAtividadesRow
+                                                                  .cupom !=
+                                                              null &&
+                                                          listViewativCELViewTblAfiliadosAtividadesRow
+                                                                  .cupom !=
+                                                              '')
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      0.0,
+                                                                      4.0,
+                                                                      0.0,
+                                                                      0.0),
+                                                          child: SelectionArea(
+                                                              child: Text(
+                                                            valueOrDefault<
+                                                                String>(
+                                                              '🟩 CUPOM: ${valueOrDefault<String>(
+                                                                listViewativCELViewTblAfiliadosAtividadesRow
+                                                                    .cupom,
+                                                                '...',
+                                                              )}',
+                                                              '...',
+                                                            ),
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodySmall
+                                                                .override(
+                                                                  font: GoogleFonts
+                                                                      .plusJakartaSans(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodySmall
+                                                                        .fontStyle,
+                                                                  ),
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .success,
+                                                                  fontSize:
+                                                                      12.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodySmall
+                                                                      .fontStyle,
+                                                                ),
+                                                          )),
+                                                        ),
+                                                      if (listViewativCELViewTblAfiliadosAtividadesRow
+                                                                  .nomePlano !=
+                                                              null &&
+                                                          listViewativCELViewTblAfiliadosAtividadesRow
+                                                                  .nomePlano !=
+                                                              '')
+                                                        SelectionArea(
+                                                            child: Text(
+                                                          valueOrDefault<
+                                                              String>(
+                                                            '🟢 Plano: ${listViewativCELViewTblAfiliadosAtividadesRow.nomePlano} ${listViewativCELViewTblAfiliadosAtividadesRow.nomePlanoPeriodos}',
+                                                            '...',
+                                                          ),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodySmall
+                                                              .override(
+                                                                font: GoogleFonts
+                                                                    .plusJakartaSans(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodySmall
+                                                                      .fontStyle,
+                                                                ),
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                                fontSize: 14.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                fontStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodySmall
+                                                                    .fontStyle,
+                                                              ),
+                                                        )),
+                                                      if (listViewativCELViewTblAfiliadosAtividadesRow
+                                                              .trialPeriod ??
+                                                          true)
+                                                        SelectionArea(
+                                                            child: Text(
+                                                          valueOrDefault<
+                                                              String>(
+                                                            '🟠 Período de teste: ${listViewativCELViewTblAfiliadosAtividadesRow.trialPeriodDays?.toString()}  dias',
+                                                            '...',
+                                                          ),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodySmall
+                                                              .override(
+                                                                font: GoogleFonts
+                                                                    .plusJakartaSans(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodySmall
+                                                                      .fontStyle,
+                                                                ),
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .tertiary,
+                                                                fontSize: 14.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                fontStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodySmall
+                                                                    .fontStyle,
+                                                              ),
+                                                        )),
+                                                      if (FFAppState()
+                                                              .varTblUsuarios
+                                                              .adminSistema &&
+                                                          responsiveVisibility(
+                                                            context: context,
+                                                            tablet: false,
+                                                            tabletLandscape:
+                                                                false,
+                                                            desktop: false,
+                                                          ))
+                                                        Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          children: [
+                                                            if (listViewativCELViewTblAfiliadosAtividadesRow
+                                                                    .tipoAtividade ==
+                                                                'PAG')
+                                                              Container(
+                                                                height: 32.0,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  color: Color(
+                                                                      0x4C39D2C0),
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              40.0),
+                                                                  border: Border
+                                                                      .all(
+                                                                    color: Color(
+                                                                        0xFF39D2C0),
+                                                                  ),
+                                                                ),
+                                                                alignment:
+                                                                    AlignmentDirectional(
+                                                                        0.0,
+                                                                        0.0),
+                                                                child: Padding(
+                                                                  padding: EdgeInsetsDirectional
+                                                                      .fromSTEB(
+                                                                          12.0,
+                                                                          0.0,
+                                                                          12.0,
+                                                                          0.0),
+                                                                  child:
+                                                                      SelectionArea(
+                                                                          child:
+                                                                              Text(
+                                                                    valueOrDefault<
+                                                                        String>(
+                                                                      formatNumber(
+                                                                        listViewativCELViewTblAfiliadosAtividadesRow
+                                                                            .valorPagoCliente,
+                                                                        formatType:
+                                                                            FormatType.decimal,
+                                                                        decimalType:
+                                                                            DecimalType.commaDecimal,
+                                                                        currency:
+                                                                            'R\$',
+                                                                      ),
+                                                                      '...',
+                                                                    ),
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .override(
+                                                                          font:
+                                                                              GoogleFonts.plusJakartaSans(
+                                                                            fontWeight:
+                                                                                FontWeight.w500,
+                                                                            fontStyle:
+                                                                                FlutterFlowTheme.of(context).bodyMedium.fontStyle,
+                                                                          ),
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).secondaryText,
+                                                                          fontSize:
+                                                                              14.0,
+                                                                          letterSpacing:
+                                                                              0.0,
+                                                                          fontWeight:
+                                                                              FontWeight.w500,
+                                                                          fontStyle: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .fontStyle,
+                                                                        ),
+                                                                  )),
+                                                                ),
+                                                              ),
+                                                          ],
+                                                        ),
+                                                      if ((listViewativCELViewTblAfiliadosAtividadesRow
+                                                                  .valorComissao !=
+                                                              null) &&
+                                                          responsiveVisibility(
+                                                            context: context,
+                                                            tablet: false,
+                                                            tabletLandscape:
+                                                                false,
+                                                            desktop: false,
+                                                          ))
+                                                        Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Container(
+                                                              height: 32.0,
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                color: Color(
+                                                                    0x4C39D2C0),
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            40.0),
+                                                                border:
+                                                                    Border.all(
+                                                                  color: Color(
+                                                                      0xFF39D2C0),
+                                                                ),
+                                                              ),
+                                                              alignment:
+                                                                  AlignmentDirectional(
+                                                                      0.0, 0.0),
+                                                              child: Padding(
+                                                                padding: EdgeInsetsDirectional
+                                                                    .fromSTEB(
+                                                                        12.0,
+                                                                        0.0,
+                                                                        12.0,
+                                                                        0.0),
+                                                                child:
+                                                                    SelectionArea(
+                                                                        child:
+                                                                            Text(
+                                                                  valueOrDefault<
+                                                                      String>(
+                                                                    formatNumber(
+                                                                      listViewativCELViewTblAfiliadosAtividadesRow
+                                                                          .valorComissao,
+                                                                      formatType:
+                                                                          FormatType
+                                                                              .decimal,
+                                                                      decimalType:
+                                                                          DecimalType
+                                                                              .commaDecimal,
+                                                                      currency:
+                                                                          'R\$',
+                                                                    ),
+                                                                    '...',
+                                                                  ),
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .override(
+                                                                        font: GoogleFonts
+                                                                            .plusJakartaSans(
+                                                                          fontWeight:
+                                                                              FontWeight.w500,
+                                                                          fontStyle: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .fontStyle,
+                                                                        ),
+                                                                        color: FlutterFlowTheme.of(context)
+                                                                            .secondaryText,
+                                                                        fontSize:
+                                                                            14.0,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        fontWeight:
+                                                                            FontWeight.w500,
+                                                                        fontStyle: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .fontStyle,
+                                                                      ),
+                                                                )),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                    ].divide(
+                                                        SizedBox(height: 4.0)),
+                                                  ),
+                                                ),
+                                              ),
+                                              if (FFAppState()
+                                                      .varTblUsuarios
+                                                      .adminSistema &&
+                                                  responsiveVisibility(
+                                                    context: context,
+                                                    phone: false,
+                                                    tabletLandscape: false,
+                                                    desktop: false,
+                                                  ))
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    if (listViewativCELViewTblAfiliadosAtividadesRow
+                                                            .tipoAtividade ==
+                                                        'PAG')
+                                                      Container(
+                                                        height: 32.0,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color:
+                                                              Color(0x4C39D2C0),
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      40.0),
+                                                          border: Border.all(
+                                                            color: Color(
+                                                                0xFF39D2C0),
+                                                          ),
+                                                        ),
+                                                        alignment:
+                                                            AlignmentDirectional(
+                                                                0.0, 0.0),
+                                                        child: Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(
+                                                                      12.0,
+                                                                      0.0,
+                                                                      12.0,
+                                                                      0.0),
+                                                          child: SelectionArea(
+                                                              child: Text(
+                                                            valueOrDefault<
+                                                                String>(
+                                                              formatNumber(
+                                                                listViewativCELViewTblAfiliadosAtividadesRow
+                                                                    .valorPagoCliente,
+                                                                formatType:
+                                                                    FormatType
+                                                                        .decimal,
+                                                                decimalType:
+                                                                    DecimalType
+                                                                        .commaDecimal,
+                                                                currency: 'R\$',
+                                                              ),
+                                                              '...',
+                                                            ),
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  font: GoogleFonts
+                                                                      .plusJakartaSans(
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .fontStyle,
+                                                                  ),
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryText,
+                                                                  fontSize:
+                                                                      14.0,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontStyle,
+                                                                ),
+                                                          )),
+                                                        ),
+                                                      ),
+                                                  ],
+                                                ),
+                                              if ((listViewativCELViewTblAfiliadosAtividadesRow
+                                                          .valorComissao !=
+                                                      null) &&
+                                                  responsiveVisibility(
+                                                    context: context,
+                                                    phone: false,
+                                                    tabletLandscape: false,
+                                                    desktop: false,
+                                                  ))
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  children: [
+                                                    Container(
+                                                      height: 32.0,
+                                                      decoration: BoxDecoration(
+                                                        color:
+                                                            Color(0x4C39D2C0),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(40.0),
+                                                        border: Border.all(
+                                                          color:
+                                                              Color(0xFF39D2C0),
+                                                        ),
+                                                      ),
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                              0.0, 0.0),
+                                                      child: Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    12.0,
+                                                                    0.0,
+                                                                    12.0,
+                                                                    0.0),
+                                                        child: SelectionArea(
+                                                            child: Text(
+                                                          valueOrDefault<
+                                                              String>(
+                                                            formatNumber(
+                                                              listViewativCELViewTblAfiliadosAtividadesRow
+                                                                  .valorComissao,
+                                                              formatType:
+                                                                  FormatType
+                                                                      .decimal,
+                                                              decimalType:
+                                                                  DecimalType
+                                                                      .commaDecimal,
+                                                              currency: 'R\$',
+                                                            ),
+                                                            '...',
+                                                          ),
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                font: GoogleFonts
+                                                                    .plusJakartaSans(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontStyle,
+                                                                ),
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                                fontSize: 14.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
+                                                                fontStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontStyle,
+                                                              ),
+                                                        )),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                            ].divide(SizedBox(width: 8.0)),
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                );
+                              },
+                            ),
+                          ),
+                        if (responsiveVisibility(
+                          context: context,
+                          phone: false,
+                          tablet: false,
+                        ))
+                          Padding(
+                            padding: EdgeInsetsDirectional.fromSTEB(
+                                0.0, 8.0, 0.0, 0.0),
+                            child: FutureBuilder<
+                                List<ViewTblAfiliadosAtividadesRow>>(
+                              future: (_model.requestCompleter1 ??= Completer<
+                                      List<ViewTblAfiliadosAtividadesRow>>()
+                                    ..complete(ViewTblAfiliadosAtividadesTable()
+                                        .queryRows(
+                                      queryFn: (q) => q,
+                                      limit: 15,
                                     )))
                                   .future,
                               builder: (context, snapshot) {
@@ -10707,7 +11460,7 @@ class _CpAfiliadoDashboardWidgetState extends State<CpAfiliadoDashboardWidget>
                                           mainAxisSize: MainAxisSize.max,
                                           children: [
                                             Expanded(
-                                              flex: 4,
+                                              flex: 5,
                                               child: Padding(
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(
@@ -10735,8 +11488,8 @@ class _CpAfiliadoDashboardWidgetState extends State<CpAfiliadoDashboardWidget>
                                                                 .fotoPerfil,
                                                             'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/agendador-de-beleza-qia8mb/assets/lp37pdsm6md0/sem-imagem.jpg',
                                                           ),
-                                                          width: 75.0,
-                                                          height: 75.0,
+                                                          width: 50.0,
+                                                          height: 50.0,
                                                           fit: BoxFit.cover,
                                                         ),
                                                       ),
@@ -10760,7 +11513,8 @@ class _CpAfiliadoDashboardWidgetState extends State<CpAfiliadoDashboardWidget>
                                                               CrossAxisAlignment
                                                                   .start,
                                                           children: [
-                                                            Text(
+                                                            SelectionArea(
+                                                                child: Text(
                                                               valueOrDefault<
                                                                   String>(
                                                                 listViewAtivPCViewTblAfiliadosAtividadesRow
@@ -10796,20 +11550,59 @@ class _CpAfiliadoDashboardWidgetState extends State<CpAfiliadoDashboardWidget>
                                                                         .bodyMedium
                                                                         .fontStyle,
                                                                   ),
-                                                            ),
-                                                            Padding(
-                                                              padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          0.0,
-                                                                          4.0,
-                                                                          0.0,
-                                                                          0.0),
-                                                              child: Text(
+                                                            )),
+                                                            SelectionArea(
+                                                                child: Text(
+                                                              valueOrDefault<
+                                                                  String>(
+                                                                listViewAtivPCViewTblAfiliadosAtividadesRow
+                                                                    .descricaoTipo,
+                                                                '...',
+                                                              ),
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodySmall
+                                                                  .override(
+                                                                    font: GoogleFonts
+                                                                        .plusJakartaSans(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w500,
+                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodySmall
+                                                                          .fontStyle,
+                                                                    ),
+                                                                    color: listViewAtivPCViewTblAfiliadosAtividadesRow.tipoAtividade ==
+                                                                            'CAD'
+                                                                        ? FlutterFlowTheme.of(context)
+                                                                            .success
+                                                                        : FlutterFlowTheme.of(context)
+                                                                            .secondaryText,
+                                                                    fontSize:
+                                                                        14.0,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodySmall
+                                                                        .fontStyle,
+                                                                  ),
+                                                            )),
+                                                            if (listViewAtivPCViewTblAfiliadosAtividadesRow
+                                                                        .nomePlano !=
+                                                                    null &&
+                                                                listViewAtivPCViewTblAfiliadosAtividadesRow
+                                                                        .nomePlano !=
+                                                                    '')
+                                                              SelectionArea(
+                                                                  child: Text(
                                                                 valueOrDefault<
                                                                     String>(
-                                                                  listViewAtivPCViewTblAfiliadosAtividadesRow
-                                                                      .descricaoTipo,
+                                                                  '🟢 Plano: ${listViewAtivPCViewTblAfiliadosAtividadesRow.nomePlano} ${listViewAtivPCViewTblAfiliadosAtividadesRow.nomePlanoPeriodos}',
                                                                   '...',
                                                                 ),
                                                                 style: FlutterFlowTheme.of(
@@ -10819,31 +11612,65 @@ class _CpAfiliadoDashboardWidgetState extends State<CpAfiliadoDashboardWidget>
                                                                       font: GoogleFonts
                                                                           .plusJakartaSans(
                                                                         fontWeight:
-                                                                            FontWeight.w500,
+                                                                            FontWeight.bold,
                                                                         fontStyle: FlutterFlowTheme.of(context)
                                                                             .bodySmall
                                                                             .fontStyle,
                                                                       ),
-                                                                      color: listViewAtivPCViewTblAfiliadosAtividadesRow.tipoAtividade ==
-                                                                              'CAD'
-                                                                          ? FlutterFlowTheme.of(context)
-                                                                              .success
-                                                                          : FlutterFlowTheme.of(context)
-                                                                              .secondaryText,
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .secondaryText,
                                                                       fontSize:
                                                                           14.0,
                                                                       letterSpacing:
                                                                           0.0,
                                                                       fontWeight:
                                                                           FontWeight
-                                                                              .w500,
+                                                                              .bold,
                                                                       fontStyle: FlutterFlowTheme.of(
                                                                               context)
                                                                           .bodySmall
                                                                           .fontStyle,
                                                                     ),
-                                                              ),
-                                                            ),
+                                                              )),
+                                                            if (listViewAtivPCViewTblAfiliadosAtividadesRow
+                                                                    .trialPeriod ??
+                                                                true)
+                                                              SelectionArea(
+                                                                  child: Text(
+                                                                valueOrDefault<
+                                                                    String>(
+                                                                  '🟠 Período de teste: ${listViewAtivPCViewTblAfiliadosAtividadesRow.trialPeriodDays?.toString()}  dias',
+                                                                  '...',
+                                                                ),
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodySmall
+                                                                    .override(
+                                                                      font: GoogleFonts
+                                                                          .plusJakartaSans(
+                                                                        fontWeight:
+                                                                            FontWeight.bold,
+                                                                        fontStyle: FlutterFlowTheme.of(context)
+                                                                            .bodySmall
+                                                                            .fontStyle,
+                                                                      ),
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .tertiary,
+                                                                      fontSize:
+                                                                          14.0,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodySmall
+                                                                          .fontStyle,
+                                                                    ),
+                                                              )),
                                                             if (listViewAtivPCViewTblAfiliadosAtividadesRow
                                                                         .cupom !=
                                                                     null &&
@@ -10855,105 +11682,98 @@ class _CpAfiliadoDashboardWidgetState extends State<CpAfiliadoDashboardWidget>
                                                                     MainAxisSize
                                                                         .max,
                                                                 children: [
-                                                                  Padding(
-                                                                    padding: EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            4.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                    child: Text(
-                                                                      valueOrDefault<
-                                                                          String>(
-                                                                        'CUPOM: ${valueOrDefault<String>(
-                                                                          listViewAtivPCViewTblAfiliadosAtividadesRow
-                                                                              .cupom,
-                                                                          '...',
-                                                                        )}',
+                                                                  SelectionArea(
+                                                                      child:
+                                                                          Text(
+                                                                    valueOrDefault<
+                                                                        String>(
+                                                                      '🟩 CUPOM: ${valueOrDefault<String>(
+                                                                        listViewAtivPCViewTblAfiliadosAtividadesRow
+                                                                            .cupom,
                                                                         '...',
-                                                                      ),
-                                                                      style: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodySmall
-                                                                          .override(
-                                                                            font:
-                                                                                GoogleFonts.plusJakartaSans(
-                                                                              fontWeight: FontWeight.bold,
-                                                                              fontStyle: FlutterFlowTheme.of(context).bodySmall.fontStyle,
-                                                                            ),
-                                                                            color:
-                                                                                FlutterFlowTheme.of(context).success,
-                                                                            fontSize:
-                                                                                12.0,
-                                                                            letterSpacing:
-                                                                                0.0,
+                                                                      )}',
+                                                                      '...',
+                                                                    ),
+                                                                    style: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodySmall
+                                                                        .override(
+                                                                          font:
+                                                                              GoogleFonts.plusJakartaSans(
                                                                             fontWeight:
                                                                                 FontWeight.bold,
                                                                             fontStyle:
                                                                                 FlutterFlowTheme.of(context).bodySmall.fontStyle,
                                                                           ),
-                                                                    ),
-                                                                  ),
+                                                                          color:
+                                                                              FlutterFlowTheme.of(context).success,
+                                                                          fontSize:
+                                                                              14.0,
+                                                                          letterSpacing:
+                                                                              0.0,
+                                                                          fontWeight:
+                                                                              FontWeight.bold,
+                                                                          fontStyle: FlutterFlowTheme.of(context)
+                                                                              .bodySmall
+                                                                              .fontStyle,
+                                                                        ),
+                                                                  )),
                                                                 ],
                                                               ),
                                                             if (listViewAtivPCViewTblAfiliadosAtividadesRow
                                                                     .tipo2 ==
                                                                 'COMISSAO')
-                                                              Padding(
-                                                                padding:
-                                                                    EdgeInsetsDirectional
-                                                                        .fromSTEB(
-                                                                            0.0,
-                                                                            4.0,
-                                                                            0.0,
-                                                                            0.0),
-                                                                child: Text(
-                                                                  valueOrDefault<
-                                                                      String>(
-                                                                    'Período plano: ${dateTimeFormat(
-                                                                      "dd/MM/y",
-                                                                      listViewAtivPCViewTblAfiliadosAtividadesRow
-                                                                          .dataInicial,
-                                                                      locale: FFLocalizations.of(
-                                                                              context)
-                                                                          .languageCode,
-                                                                    )} - ${dateTimeFormat(
-                                                                      "dd/MM/y",
-                                                                      listViewAtivPCViewTblAfiliadosAtividadesRow
-                                                                          .dataFinal,
-                                                                      locale: FFLocalizations.of(
-                                                                              context)
-                                                                          .languageCode,
-                                                                    )}',
-                                                                    '...',
-                                                                  ),
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodySmall
-                                                                      .override(
-                                                                        font: GoogleFonts
-                                                                            .plusJakartaSans(
-                                                                          fontWeight:
-                                                                              FontWeight.normal,
-                                                                          fontStyle: FlutterFlowTheme.of(context)
-                                                                              .bodySmall
-                                                                              .fontStyle,
-                                                                        ),
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .secondaryText,
-                                                                        fontSize:
-                                                                            12.0,
-                                                                        letterSpacing:
-                                                                            0.0,
+                                                              SelectionArea(
+                                                                  child: Text(
+                                                                valueOrDefault<
+                                                                    String>(
+                                                                  '📅 Período plano: ${dateTimeFormat(
+                                                                    "dd/MM/y",
+                                                                    listViewAtivPCViewTblAfiliadosAtividadesRow
+                                                                        .dataInicial,
+                                                                    locale: FFLocalizations.of(
+                                                                            context)
+                                                                        .languageCode,
+                                                                  )} - ${dateTimeFormat(
+                                                                    "dd/MM/y",
+                                                                    listViewAtivPCViewTblAfiliadosAtividadesRow
+                                                                        .dataFinal,
+                                                                    locale: FFLocalizations.of(
+                                                                            context)
+                                                                        .languageCode,
+                                                                  )}',
+                                                                  '...',
+                                                                ),
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodySmall
+                                                                    .override(
+                                                                      font: GoogleFonts
+                                                                          .plusJakartaSans(
                                                                         fontWeight:
                                                                             FontWeight.normal,
                                                                         fontStyle: FlutterFlowTheme.of(context)
                                                                             .bodySmall
                                                                             .fontStyle,
                                                                       ),
-                                                                ),
-                                                              ),
-                                                          ],
+                                                                      color: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .secondaryText,
+                                                                      fontSize:
+                                                                          14.0,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .normal,
+                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodySmall
+                                                                          .fontStyle,
+                                                                    ),
+                                                              )),
+                                                          ].divide(SizedBox(
+                                                              height: 4.0)),
                                                         ),
                                                       ),
                                                     ),
@@ -10967,9 +11787,10 @@ class _CpAfiliadoDashboardWidgetState extends State<CpAfiliadoDashboardWidget>
                                               tablet: false,
                                             ))
                                               Expanded(
-                                                flex: 1,
-                                                child: Text(
-                                                  valueOrDefault<String>(
+                                                flex: 2,
+                                                child: SelectionArea(
+                                                    child: Text(
+                                                  '📅 ${valueOrDefault<String>(
                                                     dateTimeFormat(
                                                       "dd/MM/y H:mm",
                                                       listViewAtivPCViewTblAfiliadosAtividadesRow
@@ -10980,7 +11801,7 @@ class _CpAfiliadoDashboardWidgetState extends State<CpAfiliadoDashboardWidget>
                                                               .languageCode,
                                                     ),
                                                     '...',
-                                                  ),
+                                                  )}',
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyMedium
@@ -11009,7 +11830,7 @@ class _CpAfiliadoDashboardWidgetState extends State<CpAfiliadoDashboardWidget>
                                                                 .bodyMedium
                                                                 .fontStyle,
                                                       ),
-                                                ),
+                                                )),
                                               ),
                                             if (FFAppState()
                                                 .varTblUsuarios
@@ -11049,7 +11870,8 @@ class _CpAfiliadoDashboardWidgetState extends State<CpAfiliadoDashboardWidget>
                                                                       0.0,
                                                                       12.0,
                                                                       0.0),
-                                                          child: Text(
+                                                          child: SelectionArea(
+                                                              child: Text(
                                                             valueOrDefault<
                                                                 String>(
                                                               formatNumber(
@@ -11094,7 +11916,7 @@ class _CpAfiliadoDashboardWidgetState extends State<CpAfiliadoDashboardWidget>
                                                                       .bodyMedium
                                                                       .fontStyle,
                                                                 ),
-                                                          ),
+                                                          )),
                                                         ),
                                                       ),
                                                   ],
@@ -11132,7 +11954,8 @@ class _CpAfiliadoDashboardWidgetState extends State<CpAfiliadoDashboardWidget>
                                                                     0.0,
                                                                     12.0,
                                                                     0.0),
-                                                        child: Text(
+                                                        child: SelectionArea(
+                                                            child: Text(
                                                           valueOrDefault<
                                                               String>(
                                                             formatNumber(
@@ -11176,426 +11999,13 @@ class _CpAfiliadoDashboardWidgetState extends State<CpAfiliadoDashboardWidget>
                                                                     .bodyMedium
                                                                     .fontStyle,
                                                               ),
-                                                        ),
+                                                        )),
                                                       ),
                                                     ),
                                                 ],
                                               ),
                                             ),
-                                          ],
-                                        ),
-                                      ),
-                                    );
-                                  },
-                                );
-                              },
-                            ),
-                          ),
-                        if ((MediaQuery.sizeOf(context).width <=
-                                FFAppState()
-                                    .varTamanhoMinimoTelaMenuLateral
-                                    .toDouble()) &&
-                            responsiveVisibility(
-                              context: context,
-                              desktop: false,
-                            ))
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 8.0, 0.0, 0.0),
-                            child: FutureBuilder<
-                                List<ViewTblAfiliadosAtividadesRow>>(
-                              future: (_model.requestCompleter1 ??= Completer<
-                                      List<ViewTblAfiliadosAtividadesRow>>()
-                                    ..complete(ViewTblAfiliadosAtividadesTable()
-                                        .queryRows(
-                                      queryFn: (q) => q,
-                                      limit: 50,
-                                    )))
-                                  .future,
-                              builder: (context, snapshot) {
-                                // Customize what your widget looks like when it's loading.
-                                if (!snapshot.hasData) {
-                                  return Center(
-                                    child: SizedBox(
-                                      width: 50.0,
-                                      height: 50.0,
-                                      child: CircularProgressIndicator(
-                                        valueColor:
-                                            AlwaysStoppedAnimation<Color>(
-                                          FlutterFlowTheme.of(context).primary,
-                                        ),
-                                      ),
-                                    ),
-                                  );
-                                }
-                                List<ViewTblAfiliadosAtividadesRow>
-                                    listViewCELViewTblAfiliadosAtividadesRowList =
-                                    snapshot.data!;
-
-                                if (listViewCELViewTblAfiliadosAtividadesRowList
-                                    .isEmpty) {
-                                  return CpSemCadastroWidget();
-                                }
-
-                                return ListView.separated(
-                                  padding: EdgeInsets.zero,
-                                  primary: false,
-                                  shrinkWrap: true,
-                                  scrollDirection: Axis.vertical,
-                                  itemCount:
-                                      listViewCELViewTblAfiliadosAtividadesRowList
-                                          .length,
-                                  separatorBuilder: (_, __) =>
-                                      SizedBox(height: 8.0),
-                                  itemBuilder: (context, listViewCELIndex) {
-                                    final listViewCELViewTblAfiliadosAtividadesRow =
-                                        listViewCELViewTblAfiliadosAtividadesRowList[
-                                            listViewCELIndex];
-                                    return Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 1.0),
-                                      child: Container(
-                                        width: 100.0,
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(8.0),
-                                          border: Border.all(
-                                            color: FlutterFlowTheme.of(context)
-                                                .alternate,
-                                          ),
-                                        ),
-                                        child: Padding(
-                                          padding: EdgeInsets.all(8.0),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            children: [
-                                              ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(40.0),
-                                                child: Image.network(
-                                                  valueOrDefault<String>(
-                                                    listViewCELViewTblAfiliadosAtividadesRow
-                                                        .fotoPerfil,
-                                                    'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/agendador-de-beleza-qia8mb/assets/lp37pdsm6md0/sem-imagem.jpg',
-                                                  ),
-                                                  width: 50.0,
-                                                  height: 50.0,
-                                                  fit: BoxFit.cover,
-                                                ),
-                                              ),
-                                              Flexible(
-                                                child: Column(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.center,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.start,
-                                                  children: [
-                                                    Text(
-                                                      valueOrDefault<String>(
-                                                        listViewCELViewTblAfiliadosAtividadesRow
-                                                            .nome,
-                                                        ' ...',
-                                                      ),
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                font: GoogleFonts
-                                                                    .plusJakartaSans(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .bold,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .fontStyle,
-                                                                ),
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontSize: 14.0,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold,
-                                                                fontStyle: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .fontStyle,
-                                                              ),
-                                                    ),
-                                                    Padding(
-                                                      padding:
-                                                          EdgeInsetsDirectional
-                                                              .fromSTEB(
-                                                                  0.0,
-                                                                  4.0,
-                                                                  0.0,
-                                                                  0.0),
-                                                      child: Text(
-                                                        valueOrDefault<String>(
-                                                          listViewCELViewTblAfiliadosAtividadesRow
-                                                              .descricaoTipo,
-                                                          '...',
-                                                        ),
-                                                        style: FlutterFlowTheme
-                                                                .of(context)
-                                                            .bodySmall
-                                                            .override(
-                                                              font: GoogleFonts
-                                                                  .plusJakartaSans(
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                                fontStyle: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodySmall
-                                                                    .fontStyle,
-                                                              ),
-                                                              color: listViewCELViewTblAfiliadosAtividadesRow
-                                                                          .tipo2 ==
-                                                                      'CAD'
-                                                                  ? FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .success
-                                                                  : FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primary,
-                                                              fontSize: 12.0,
-                                                              letterSpacing:
-                                                                  0.0,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500,
-                                                              fontStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodySmall
-                                                                      .fontStyle,
-                                                            ),
-                                                      ),
-                                                    ),
-                                                    Text(
-                                                      valueOrDefault<String>(
-                                                        dateTimeFormat(
-                                                          "dd/MM/y H:mm",
-                                                          listViewCELViewTblAfiliadosAtividadesRow
-                                                              .dataCadastro,
-                                                          locale:
-                                                              FFLocalizations.of(
-                                                                      context)
-                                                                  .languageCode,
-                                                        ),
-                                                        '...',
-                                                      ),
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                font: GoogleFonts
-                                                                    .plusJakartaSans(
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .fontStyle,
-                                                                ),
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontSize: 12.0,
-                                                                letterSpacing:
-                                                                    0.0,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                                fontStyle: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .fontStyle,
-                                                              ),
-                                                    ),
-                                                    Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .start,
-                                                      children: [
-                                                        if (listViewCELViewTblAfiliadosAtividadesRow
-                                                                .valorComissao !=
-                                                            null)
-                                                          Container(
-                                                            height: 32.0,
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              color: Color(
-                                                                  0x4C39D2C0),
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          40.0),
-                                                              border:
-                                                                  Border.all(
-                                                                color: Color(
-                                                                    0xFF39D2C0),
-                                                              ),
-                                                            ),
-                                                            alignment:
-                                                                AlignmentDirectional(
-                                                                    0.0, 0.0),
-                                                            child: Padding(
-                                                              padding:
-                                                                  EdgeInsetsDirectional
-                                                                      .fromSTEB(
-                                                                          12.0,
-                                                                          0.0,
-                                                                          12.0,
-                                                                          0.0),
-                                                              child: Text(
-                                                                valueOrDefault<
-                                                                    String>(
-                                                                  formatNumber(
-                                                                    listViewCELViewTblAfiliadosAtividadesRow
-                                                                        .valorComissao,
-                                                                    formatType:
-                                                                        FormatType
-                                                                            .decimal,
-                                                                    decimalType:
-                                                                        DecimalType
-                                                                            .commaDecimal,
-                                                                    currency:
-                                                                        'R\$',
-                                                                  ),
-                                                                  '...',
-                                                                ),
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      font: GoogleFonts
-                                                                          .plusJakartaSans(
-                                                                        fontWeight:
-                                                                            FontWeight.w500,
-                                                                        fontStyle: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .fontStyle,
-                                                                      ),
-                                                                      color: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .secondaryText,
-                                                                      fontSize:
-                                                                          14.0,
-                                                                      letterSpacing:
-                                                                          0.0,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w500,
-                                                                      fontStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .fontStyle,
-                                                                    ),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                      ],
-                                                    ),
-                                                    if (FFAppState()
-                                                        .varTblUsuarios
-                                                        .adminSistema)
-                                                      Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        children: [
-                                                          if (listViewCELViewTblAfiliadosAtividadesRow
-                                                                  .tipoAtividade ==
-                                                              'PAG')
-                                                            Container(
-                                                              height: 32.0,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                color: Color(
-                                                                    0x4C39D2C0),
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            40.0),
-                                                                border:
-                                                                    Border.all(
-                                                                  color: Color(
-                                                                      0xFF39D2C0),
-                                                                ),
-                                                              ),
-                                                              alignment:
-                                                                  AlignmentDirectional(
-                                                                      0.0, 0.0),
-                                                              child: Padding(
-                                                                padding: EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        12.0,
-                                                                        0.0,
-                                                                        12.0,
-                                                                        0.0),
-                                                                child: Text(
-                                                                  valueOrDefault<
-                                                                      String>(
-                                                                    formatNumber(
-                                                                      listViewCELViewTblAfiliadosAtividadesRow
-                                                                          .valorPagoCliente,
-                                                                      formatType:
-                                                                          FormatType
-                                                                              .decimal,
-                                                                      decimalType:
-                                                                          DecimalType
-                                                                              .commaDecimal,
-                                                                      currency:
-                                                                          'R\$',
-                                                                    ),
-                                                                    '...',
-                                                                  ),
-                                                                  style: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .override(
-                                                                        font: GoogleFonts
-                                                                            .plusJakartaSans(
-                                                                          fontWeight:
-                                                                              FontWeight.w500,
-                                                                          fontStyle: FlutterFlowTheme.of(context)
-                                                                              .bodyMedium
-                                                                              .fontStyle,
-                                                                        ),
-                                                                        color: FlutterFlowTheme.of(context)
-                                                                            .secondaryText,
-                                                                        fontSize:
-                                                                            14.0,
-                                                                        letterSpacing:
-                                                                            0.0,
-                                                                        fontWeight:
-                                                                            FontWeight.w500,
-                                                                        fontStyle: FlutterFlowTheme.of(context)
-                                                                            .bodyMedium
-                                                                            .fontStyle,
-                                                                      ),
-                                                                ),
-                                                              ),
-                                                            ),
-                                                        ],
-                                                      ),
-                                                  ].divide(
-                                                      SizedBox(height: 4.0)),
-                                                ),
-                                              ),
-                                            ].divide(SizedBox(width: 8.0)),
-                                          ),
+                                          ].divide(SizedBox(width: 8.0)),
                                         ),
                                       ),
                                     );

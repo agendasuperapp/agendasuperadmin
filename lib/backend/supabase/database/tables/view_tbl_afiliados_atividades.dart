@@ -105,4 +105,10 @@ class ViewTblAfiliadosAtividadesRow extends SupabaseDataRow {
 
   String? get cupom => getField<String>('cupom');
   set cupom(String? value) => setField<String>('cupom', value);
+
+  bool? get trialPeriod => getField<bool>('trial_period');
+  set trialPeriod(bool? value) => setField<bool>('trial_period', value);
+
+  int? get trialPeriodDays => getField<int>('trial_period_days');
+  set trialPeriodDays(int? value) => setField<int>('trial_period_days', value);
 }

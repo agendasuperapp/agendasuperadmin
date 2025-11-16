@@ -37,4 +37,7 @@ class TblNotificacoesQuantRow extends SupabaseDataRow {
 
   String get tipo => getField<String>('tipo')!;
   set tipo(String value) => setField<String>('tipo', value);
+
+  int? get idApp => getField<int>('id_app');
+  set idApp(int? value) => setField<int>('id_app', value);
 }

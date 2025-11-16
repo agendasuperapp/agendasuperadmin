@@ -20,8 +20,8 @@ class TblUsuariosRow extends SupabaseDataRow {
   String get userId => getField<String>('user_id')!;
   set userId(String value) => setField<String>('user_id', value);
 
-  int get idEstabelecimento => getField<int>('id_estabelecimento')!;
-  set idEstabelecimento(int value) =>
+  int? get idEstabelecimento => getField<int>('id_estabelecimento');
+  set idEstabelecimento(int? value) =>
       setField<int>('id_estabelecimento', value);
 
   DateTime get dataCadastro => getField<DateTime>('data_cadastro')!;
@@ -31,8 +31,8 @@ class TblUsuariosRow extends SupabaseDataRow {
   String? get nome => getField<String>('nome');
   set nome(String? value) => setField<String>('nome', value);
 
-  String get telefone => getField<String>('telefone')!;
-  set telefone(String value) => setField<String>('telefone', value);
+  String? get telefone => getField<String>('telefone');
+  set telefone(String? value) => setField<String>('telefone', value);
 
   bool get telefoneVerificado => getField<bool>('telefone_verificado')!;
   set telefoneVerificado(bool value) =>

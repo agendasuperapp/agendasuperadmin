@@ -35,6 +35,9 @@ class ViewTblAfiliadosAtividadesRow extends SupabaseDataRow {
   String? get descricaoTipo => getField<String>('descricao_tipo');
   set descricaoTipo(String? value) => setField<String>('descricao_tipo', value);
 
+  String? get nomeApp => getField<String>('nome_app');
+  set nomeApp(String? value) => setField<String>('nome_app', value);
+
   String? get tipoComissao => getField<String>('tipo_comissao');
   set tipoComissao(String? value) => setField<String>('tipo_comissao', value);
 
@@ -46,10 +49,6 @@ class ViewTblAfiliadosAtividadesRow extends SupabaseDataRow {
   int? get idAfiliadoIndicador => getField<int>('id_afiliado_indicador');
   set idAfiliadoIndicador(int? value) =>
       setField<int>('id_afiliado_indicador', value);
-
-  int? get idEstabelecimento => getField<int>('id_estabelecimento');
-  set idEstabelecimento(int? value) =>
-      setField<int>('id_estabelecimento', value);
 
   String? get nome => getField<String>('nome');
   set nome(String? value) => setField<String>('nome', value);

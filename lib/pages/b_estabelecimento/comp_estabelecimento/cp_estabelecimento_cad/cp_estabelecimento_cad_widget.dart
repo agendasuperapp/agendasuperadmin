@@ -4076,9 +4076,11 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                         borderRadius:
                                                                             BorderRadius.circular(8.0),
                                                                       ),
-                                                                      hoverColor:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .secondaryBackground,
+                                                                      filled:
+                                                                          true,
+                                                                      fillColor:
+                                                                          Colors
+                                                                              .transparent,
                                                                       prefixIcon:
                                                                           Icon(
                                                                         Icons
@@ -4271,9 +4273,11 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                           BorderRadius.circular(
                                                                               8.0),
                                                                     ),
-                                                                    hoverColor:
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .secondaryBackground,
+                                                                    filled:
+                                                                        true,
+                                                                    fillColor:
+                                                                        Colors
+                                                                            .transparent,
                                                                     prefixIcon:
                                                                         Icon(
                                                                       Icons
@@ -4438,7 +4442,8 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                                 ),
                                                                                 borderRadius: BorderRadius.circular(8.0),
                                                                               ),
-                                                                              hoverColor: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                              filled: true,
+                                                                              fillColor: Colors.transparent,
                                                                               prefixIcon: Icon(
                                                                                 Icons.link,
                                                                               ),
@@ -4564,7 +4569,8 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                                 ),
                                                                                 borderRadius: BorderRadius.circular(8.0),
                                                                               ),
-                                                                              hoverColor: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                              filled: true,
+                                                                              fillColor: Colors.transparent,
                                                                               prefixIcon: Icon(
                                                                                 Icons.person,
                                                                               ),
@@ -4830,7 +4836,8 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                                     ),
                                                                                     borderRadius: BorderRadius.circular(8.0),
                                                                                   ),
-                                                                                  hoverColor: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                  filled: true,
+                                                                                  fillColor: Colors.transparent,
                                                                                   prefixIcon: Icon(
                                                                                     Icons.phone_android,
                                                                                   ),
@@ -5033,7 +5040,8 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                                     ),
                                                                                     borderRadius: BorderRadius.circular(8.0),
                                                                                   ),
-                                                                                  hoverColor: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                  filled: true,
+                                                                                  fillColor: Colors.transparent,
                                                                                   prefixIcon: Icon(
                                                                                     Icons.alternate_email_sharp,
                                                                                   ),
@@ -5443,7 +5451,8 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                                     ),
                                                                                     borderRadius: BorderRadius.circular(8.0),
                                                                                   ),
-                                                                                  hoverColor: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                  filled: true,
+                                                                                  fillColor: Colors.transparent,
                                                                                   prefixIcon: Icon(
                                                                                     Icons.numbers_sharp,
                                                                                   ),
@@ -5640,7 +5649,8 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                                     ),
                                                                                     borderRadius: BorderRadius.circular(8.0),
                                                                                   ),
-                                                                                  hoverColor: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                  filled: true,
+                                                                                  fillColor: Colors.transparent,
                                                                                   prefixIcon: Icon(
                                                                                     Icons.date_range,
                                                                                   ),
@@ -5957,8 +5967,10 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                             borderRadius:
                                                                                 BorderRadius.circular(8.0),
                                                                           ),
-                                                                          hoverColor:
-                                                                              FlutterFlowTheme.of(context).secondaryBackground,
+                                                                          filled:
+                                                                              true,
+                                                                          fillColor:
+                                                                              Colors.transparent,
                                                                           prefixIcon:
                                                                               Icon(
                                                                             Icons.numbers_sharp,
@@ -6100,8 +6112,10 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                           borderRadius:
                                                                               BorderRadius.circular(8.0),
                                                                         ),
-                                                                        hoverColor:
-                                                                            FlutterFlowTheme.of(context).secondaryBackground,
+                                                                        filled:
+                                                                            true,
+                                                                        fillColor:
+                                                                            Colors.transparent,
                                                                         prefixIcon:
                                                                             Icon(
                                                                           Icons
@@ -6270,7 +6284,8 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                                       ),
                                                                                       borderRadius: BorderRadius.circular(8.0),
                                                                                     ),
-                                                                                    hoverColor: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                    filled: true,
+                                                                                    fillColor: Colors.transparent,
                                                                                     prefixIcon: Icon(
                                                                                       Icons.person,
                                                                                     ),
@@ -6382,7 +6397,8 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                                       ),
                                                                                       borderRadius: BorderRadius.circular(8.0),
                                                                                     ),
-                                                                                    hoverColor: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                    filled: true,
+                                                                                    fillColor: Colors.transparent,
                                                                                     prefixIcon: Icon(
                                                                                       Icons.person,
                                                                                     ),
@@ -6898,7 +6914,8 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                                   ),
                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                 ),
-                                                                                hoverColor: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                filled: true,
+                                                                                fillColor: Colors.transparent,
                                                                                 prefixIcon: Icon(
                                                                                   Icons.numbers_sharp,
                                                                                 ),
@@ -6999,7 +7016,8 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                                   ),
                                                                                   borderRadius: BorderRadius.circular(8.0),
                                                                                 ),
-                                                                                hoverColor: FlutterFlowTheme.of(context).secondaryBackground,
+                                                                                filled: true,
+                                                                                fillColor: Colors.transparent,
                                                                                 prefixIcon: Icon(
                                                                                   Icons.store_outlined,
                                                                                 ),
@@ -7165,9 +7183,11 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                         borderRadius:
                                                                             BorderRadius.circular(8.0),
                                                                       ),
-                                                                      hoverColor:
-                                                                          FlutterFlowTheme.of(context)
-                                                                              .secondaryBackground,
+                                                                      filled:
+                                                                          true,
+                                                                      fillColor:
+                                                                          Colors
+                                                                              .transparent,
                                                                       prefixIcon:
                                                                           Icon(
                                                                         Icons
@@ -7325,8 +7345,10 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                           borderRadius:
                                                                               BorderRadius.circular(8.0),
                                                                         ),
-                                                                        hoverColor:
-                                                                            FlutterFlowTheme.of(context).secondaryBackground,
+                                                                        filled:
+                                                                            true,
+                                                                        fillColor:
+                                                                            Colors.transparent,
                                                                         prefixIcon:
                                                                             Icon(
                                                                           Icons
@@ -7497,8 +7519,10 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                           borderRadius:
                                                                               BorderRadius.circular(8.0),
                                                                         ),
-                                                                        hoverColor:
-                                                                            FlutterFlowTheme.of(context).secondaryBackground,
+                                                                        filled:
+                                                                            true,
+                                                                        fillColor:
+                                                                            Colors.transparent,
                                                                         prefixIcon:
                                                                             Icon(
                                                                           Icons
@@ -7653,8 +7677,10 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                           borderRadius:
                                                                               BorderRadius.circular(8.0),
                                                                         ),
-                                                                        hoverColor:
-                                                                            FlutterFlowTheme.of(context).secondaryBackground,
+                                                                        filled:
+                                                                            true,
+                                                                        fillColor:
+                                                                            Colors.transparent,
                                                                         prefixIcon:
                                                                             Icon(
                                                                           Icons
@@ -7976,9 +8002,11 @@ class _CpEstabelecimentoCadWidgetState extends State<CpEstabelecimentoCadWidget>
                                                                           BorderRadius.circular(
                                                                               8.0),
                                                                     ),
-                                                                    hoverColor:
-                                                                        FlutterFlowTheme.of(context)
-                                                                            .secondaryBackground,
+                                                                    filled:
+                                                                        true,
+                                                                    fillColor:
+                                                                        Colors
+                                                                            .transparent,
                                                                     prefixIcon:
                                                                         Icon(
                                                                       Icons

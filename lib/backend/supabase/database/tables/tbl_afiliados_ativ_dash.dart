@@ -31,21 +31,11 @@ class TblAfiliadosAtivDashRow extends SupabaseDataRow {
   set idAfiliadoIndicador(int? value) =>
       setField<int>('id_afiliado_indicador', value);
 
-  int get idEstabelecimento => getField<int>('id_estabelecimento')!;
-  set idEstabelecimento(int value) =>
-      setField<int>('id_estabelecimento', value);
-
   int? get idAfiliado => getField<int>('id_afiliado');
   set idAfiliado(int? value) => setField<int>('id_afiliado', value);
 
   String? get userId => getField<String>('user_id');
   set userId(String? value) => setField<String>('user_id', value);
-
-  int? get idEstabPlano => getField<int>('id_estab_plano');
-  set idEstabPlano(int? value) => setField<int>('id_estab_plano', value);
-
-  int? get idAfiliadoPlano => getField<int>('id_afiliado_plano');
-  set idAfiliadoPlano(int? value) => setField<int>('id_afiliado_plano', value);
 
   int? get idAfiliadoComissao => getField<int>('id_afiliado_comissao');
   set idAfiliadoComissao(int? value) =>
@@ -77,4 +67,10 @@ class TblAfiliadosAtivDashRow extends SupabaseDataRow {
 
   String get tipo3 => getField<String>('tipo3')!;
   set tipo3(String value) => setField<String>('tipo3', value);
+
+  int? get idAfiliadoApp => getField<int>('id_afiliado_app');
+  set idAfiliadoApp(int? value) => setField<int>('id_afiliado_app', value);
+
+  int? get idPgStripeApp => getField<int>('id_pg_stripe_app');
+  set idPgStripeApp(int? value) => setField<int>('id_pg_stripe_app', value);
 }

@@ -31,8 +31,8 @@ class TblAfiliadosComissoesRow extends SupabaseDataRow {
   set idEstabelecimento(int value) =>
       setField<int>('id_estabelecimento', value);
 
-  int? get idEstabPlano => getField<int>('id_estab_plano');
-  set idEstabPlano(int? value) => setField<int>('id_estab_plano', value);
+  int? get idPgStripeApps => getField<int>('id_pg_stripe_apps');
+  set idPgStripeApps(int? value) => setField<int>('id_pg_stripe_apps', value);
 
   int? get idPlanoPreco => getField<int>('id_plano_preco');
   set idPlanoPreco(int? value) => setField<int>('id_plano_preco', value);

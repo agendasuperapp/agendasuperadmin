@@ -1,3 +1,4 @@
+import '/auth/supabase_auth/auth_util.dart';
 import '/backend/supabase/supabase.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -45,8 +46,16 @@ class _CpRodapeWidgetState extends State<CpRodapeWidget> {
 
     // On component load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
-      _model.queryConsQtNotif = await TblNotificacoesQuantTable().queryRows(
-        queryFn: (q) => q,
+      _model.queryConsQtNotif = await ViewTblNotificacoesQuantTable().queryRows(
+        queryFn: (q) => q
+            .eqOrNull(
+              'user_id',
+              currentUserUid,
+            )
+            .eqOrNull(
+              'id_app',
+              FFAppState().varIDAPPAfiliado == 1 ? 2 : 3,
+            ),
       );
     });
 

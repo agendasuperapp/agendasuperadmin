@@ -527,7 +527,7 @@ class _CpEstabelecimentoDashboardWidgetState
                           child: Container(
                             constraints: BoxConstraints(
                               maxWidth: MediaQuery.sizeOf(context).width <
-                                      kBreakpointSmall
+                                      kBreakpointMedium
                                   ? MediaQuery.sizeOf(context).width
                                   : 350.0,
                             ),

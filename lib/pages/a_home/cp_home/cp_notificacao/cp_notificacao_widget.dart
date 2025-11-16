@@ -961,7 +961,15 @@ class _CpNotificacaoWidgetState extends State<CpNotificacaoWidget>
                           EdgeInsetsDirectional.fromSTEB(0.0, 8.0, 0.0, 16.0),
                       child: FutureBuilder<List<ViewTblNotificacoesRow>>(
                         future: ViewTblNotificacoesTable().queryRows(
-                          queryFn: (q) => q,
+                          queryFn: (q) => q
+                              .eqOrNull(
+                                'user_id',
+                                currentUserUid,
+                              )
+                              .eqOrNull(
+                                'id_app',
+                                FFAppState().varIDAPPAfiliado == 1 ? 2 : 3,
+                              ),
                         ),
                         builder: (context, snapshot) {
                           // Customize what your widget looks like when it's loading.

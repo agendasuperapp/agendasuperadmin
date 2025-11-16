@@ -77,4 +77,7 @@ class TblAfiliadosAppsRow extends SupabaseDataRow {
 
   String? get nomeApk => getField<String>('nome_apk');
   set nomeApk(String? value) => setField<String>('nome_apk', value);
+
+  int? get idAppp => getField<int>('id_appp');
+  set idAppp(int? value) => setField<int>('id_appp', value);
 }

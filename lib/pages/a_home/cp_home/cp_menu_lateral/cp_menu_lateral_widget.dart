@@ -620,12 +620,7 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                             color: FlutterFlowTheme.of(context)
                                                 .menuLateralBotoes,
                                           ),
-                                        if ((FFAppState().varIDAPPAfiliado ==
-                                                1) ||
-                                            (FFAppState()
-                                                    .varTblUsuarios
-                                                    .adminSistema ==
-                                                true))
+                                        if (FFAppState().varIDAPPAfiliado == 1)
                                           Column(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
@@ -3791,12 +3786,7 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                               ),
                                             ],
                                           ),
-                                        if ((FFAppState().varIDAPPAfiliado ==
-                                                3) ||
-                                            (FFAppState()
-                                                    .varTblUsuarios
-                                                    .adminSistema ==
-                                                true))
+                                        if (FFAppState().varIDAPPAfiliado == 3)
                                           Column(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [

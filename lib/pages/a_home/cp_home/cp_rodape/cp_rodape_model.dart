@@ -7,7 +7,7 @@ class CpRodapeModel extends FlutterFlowModel<CpRodapeWidget> {
   ///  State fields for stateful widgets in this component.
 
   // Stores action output result for [Backend Call - Query Rows] action in cp_rodape widget.
-  List<TblNotificacoesQuantRow>? queryConsQtNotif;
+  List<ViewTblNotificacoesQuantRow>? queryConsQtNotif;
   // State field(s) for MouseRegionDashBoard widget.
   bool mouseRegionDashBoardHovered = false;
   // State field(s) for MouseRegionAgendamentos widget.

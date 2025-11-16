@@ -103,4 +103,10 @@ class ViewTblAfiliadosCuponsRow extends SupabaseDataRow {
 
   String? get nomeApp => getField<String>('nome_app');
   set nomeApp(String? value) => setField<String>('nome_app', value);
+
+  String? get iconeLight => getField<String>('icone_light');
+  set iconeLight(String? value) => setField<String>('icone_light', value);
+
+  String? get iconeDark => getField<String>('icone_dark');
+  set iconeDark(String? value) => setField<String>('icone_dark', value);
 }

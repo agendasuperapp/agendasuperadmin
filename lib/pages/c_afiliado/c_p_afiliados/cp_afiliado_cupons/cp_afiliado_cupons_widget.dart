@@ -709,7 +709,12 @@ class _CpAfiliadoCuponsWidgetState extends State<CpAfiliadoCuponsWidget>
                                       ),
                                     ),
                                   ),
-                                ],
+                                ].divide((MediaQuery.sizeOf(context).width <
+                                            kBreakpointMedium
+                                        ? false
+                                        : true)
+                                    ? SizedBox(width: 8.0)
+                                    : SizedBox(height: 8.0)),
                               ),
                             ),
                           ),
@@ -1136,10 +1141,18 @@ class _CpAfiliadoCuponsWidgetState extends State<CpAfiliadoCuponsWidget>
                                                                     Text(
                                                                       valueOrDefault<
                                                                           String>(
-                                                                        listViewCuponsViewTblAfiliadosCuponsRow.nomeCupom != null &&
-                                                                                listViewCuponsViewTblAfiliadosCuponsRow.nomeCupom != ''
-                                                                            ? listViewCuponsViewTblAfiliadosCuponsRow.nomeCupom
-                                                                            : '${functions.fcConverterStringMaiusculo(FFAppState().varTblAfiliado.username)}${listViewCuponsViewTblAfiliadosCuponsRow.nomeCupomPadrao}',
+                                                                        () {
+                                                                          if (listViewCuponsViewTblAfiliadosCuponsRow.nomeCupom != null &&
+                                                                              listViewCuponsViewTblAfiliadosCuponsRow.nomeCupom !=
+                                                                                  '') {
+                                                                            return listViewCuponsViewTblAfiliadosCuponsRow.nomeCupom;
+                                                                          } else if (listViewCuponsViewTblAfiliadosCuponsRow
+                                                                              .principal!) {
+                                                                            return functions.fcConverterStringMaiusculo(FFAppState().varTblAfiliado.username);
+                                                                          } else {
+                                                                            return '${functions.fcConverterStringMaiusculo(FFAppState().varTblAfiliado.username)}${listViewCuponsViewTblAfiliadosCuponsRow.nomeCupomPadrao}';
+                                                                          }
+                                                                        }(),
                                                                         '...',
                                                                       ),
                                                                       style: FlutterFlowTheme.of(
@@ -1664,8 +1677,13 @@ class _CpAfiliadoCuponsWidgetState extends State<CpAfiliadoCuponsWidget>
                                                                       .VarIDEstabelecimentoLogado,
                                                               'user_id':
                                                                   currentUserUid,
-                                                              'nome':
-                                                                  '${functions.fcConverterStringMaiusculo(FFAppState().varTblAfiliado.username)}${listViewCuponsViewTblAfiliadosCuponsRow.nomeCupomPadrao}',
+                                                              'nome': listViewCuponsViewTblAfiliadosCuponsRow
+                                                                      .principal!
+                                                                  ? functions.fcConverterStringMaiusculo(
+                                                                      FFAppState()
+                                                                          .varTblAfiliado
+                                                                          .username)
+                                                                  : '${functions.fcConverterStringMaiusculo(FFAppState().varTblAfiliado.username)}${listViewCuponsViewTblAfiliadosCuponsRow.nomeCupomPadrao}',
                                                               'situacao': true,
                                                               'id_cupom_padrao':
                                                                   listViewCuponsViewTblAfiliadosCuponsRow

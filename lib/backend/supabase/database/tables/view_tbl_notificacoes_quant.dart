@@ -21,4 +21,7 @@ class ViewTblNotificacoesQuantRow extends SupabaseDataRow {
 
   int? get quant => getField<int>('quant');
   set quant(int? value) => setField<int>('quant', value);
+
+  int? get idApp => getField<int>('id_app');
+  set idApp(int? value) => setField<int>('id_app', value);
 }

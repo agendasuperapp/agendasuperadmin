@@ -87,6 +87,9 @@ class ViewTblAfiliadosCuponsAdminRow extends SupabaseDataRow {
   bool? get admin => getField<bool>('admin');
   set admin(bool? value) => setField<bool>('admin', value);
 
+  bool? get principal => getField<bool>('principal');
+  set principal(bool? value) => setField<bool>('principal', value);
+
   int? get quantUsado => getField<int>('quant_usado');
   set quantUsado(int? value) => setField<int>('quant_usado', value);
 }

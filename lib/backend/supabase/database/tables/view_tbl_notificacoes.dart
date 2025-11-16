@@ -89,4 +89,13 @@ class ViewTblNotificacoesRow extends SupabaseDataRow {
   String? get retornoOneSegnal => getField<String>('retorno_one_segnal');
   set retornoOneSegnal(String? value) =>
       setField<String>('retorno_one_segnal', value);
+
+  String? get destino => getField<String>('destino');
+  set destino(String? value) => setField<String>('destino', value);
+
+  int? get idConfig => getField<int>('id_config');
+  set idConfig(int? value) => setField<int>('id_config', value);
+
+  int? get idApp => getField<int>('id_app');
+  set idApp(int? value) => setField<int>('id_app', value);
 }

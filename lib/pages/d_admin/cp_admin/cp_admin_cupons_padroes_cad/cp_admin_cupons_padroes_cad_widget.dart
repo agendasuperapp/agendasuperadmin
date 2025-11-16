@@ -93,6 +93,8 @@ class _CpAdminCuponsPadroesCadWidgetState
         widget.paramCadastro! ? true : widget.paramRowTblCupom!.situacao!;
     _model.switchTipoUsuarioValue =
         widget.paramCadastro! ? true : !widget.paramRowTblCupom!.admin!;
+    _model.switchPrincipalValue =
+        widget.paramCadastro! ? false : widget.paramRowTblCupom!.principal!;
     WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {
           _model.textFieldValidadeTextController?.text = dateTimeFormat(
             "dd/MM/y",
@@ -2608,6 +2610,69 @@ class _CpAdminCuponsPadroesCadWidgetState
                           ),
                         ),
                       ),
+                      Padding(
+                        padding:
+                            EdgeInsetsDirectional.fromSTEB(0.0, 12.0, 0.0, 0.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color:
+                                FlutterFlowTheme.of(context).primaryBackground,
+                            borderRadius: BorderRadius.circular(25.0),
+                          ),
+                          child: Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Switch.adaptive(
+                                  value: _model.switchPrincipalValue!,
+                                  onChanged: (newValue) async {
+                                    safeSetState(() => _model
+                                        .switchPrincipalValue = newValue);
+                                  },
+                                  activeColor:
+                                      FlutterFlowTheme.of(context).info,
+                                  activeTrackColor:
+                                      FlutterFlowTheme.of(context).success,
+                                  inactiveTrackColor:
+                                      FlutterFlowTheme.of(context).error,
+                                  inactiveThumbColor:
+                                      FlutterFlowTheme.of(context).info,
+                                ),
+                                Text(
+                                  'Cupom Principal/Padrão',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        font: GoogleFonts.readexPro(
+                                          fontWeight:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontWeight,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .bodyMedium
+                                                  .fontStyle,
+                                        ),
+                                        color: _model.switchPrincipalValue!
+                                            ? FlutterFlowTheme.of(context)
+                                                .success
+                                            : FlutterFlowTheme.of(context)
+                                                .error,
+                                        letterSpacing: 0.0,
+                                        fontWeight: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontWeight,
+                                        fontStyle: FlutterFlowTheme.of(context)
+                                            .bodyMedium
+                                            .fontStyle,
+                                      ),
+                                ),
+                              ].divide(SizedBox(width: 4.0)),
+                            ),
+                          ),
+                        ),
+                      ),
                       if ((widget.paramCadastro == false) &&
                           (widget.paramRowTblCupom!.quantUsado! > 0))
                         Padding(
@@ -2894,6 +2959,7 @@ class _CpAdminCuponsPadroesCadWidgetState
                                   'id_planos_nomes_liberados':
                                       _model.varIDPlanosNomesLib,
                                   'admin': !_model.switchTipoUsuarioValue!,
+                                  'principal': _model.switchPrincipalValue,
                                 },
                                 matchingRows: (rows) => rows.eqOrNull(
                                   'id',
@@ -2947,6 +3013,7 @@ class _CpAdminCuponsPadroesCadWidgetState
                                         : false,
                                 'id_afiliado_app': widget.paramIDAfiliadoApp,
                                 'admin': !_model.switchTipoUsuarioValue!,
+                                'principal': _model.switchPrincipalValue,
                               });
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(

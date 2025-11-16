@@ -113,6 +113,8 @@ class CpAdminCuponsPadroesCadModel
   bool? switchSituacaoValue;
   // State field(s) for SwitchTipoUsuario widget.
   bool? switchTipoUsuarioValue;
+  // State field(s) for SwitchPrincipal widget.
+  bool? switchPrincipalValue;
   // Stores action output result for [Backend Call - Query Rows] action in Button widget.
   List<TblAfiliadosCuponsPadRow>? queryResultConsCupomCad;
 

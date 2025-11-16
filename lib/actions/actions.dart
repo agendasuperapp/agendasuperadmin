@@ -826,7 +826,7 @@ Future acAtualizarInicializacaoSistema(
     await action_blocks.acAtualizarLogAtividadeDevice(context);
   }
   await actions.setFullscreenMode();
-  if (kDebugMode || FFAppState().VarEmDesenvolvimento) {
+  if (kDebugMode) {
     FFAppState().varIDAPPAfiliado = 3;
     FFAppState().update(() {});
   }
@@ -3409,7 +3409,6 @@ Future acHomeCadastrarEstabelecimento(
   await TblAfiliadosAtivDashTable().insert({
     'user_id_afiliado_indicador': FFAppState().varTblAfiliadoCupom.userId,
     'id_afiliado_indicador': FFAppState().varTblAfiliadoCupom.idAfiliado,
-    'id_estabelecimento': supaCadEstabelecimentoBlock.id,
     'user_id': currentUserUid,
     'situacao': true,
     'status_pag': 'PENDENTE',

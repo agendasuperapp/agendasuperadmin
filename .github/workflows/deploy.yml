@@ -171,10 +171,16 @@ jobs:
             echo "storeFile=${{ github.workspace }}/android/app/upload-keystore.jks"
           } > android/key.properties
 
-      # 📱 Adicionar google-services.json dinamicamente
+      # 📱 Adicionar google-services.json certo conforme o app
       - name: 📱 Adicionar google-services.json
         run: |
-          echo "${{ secrets.GOOGLE_SERVICES_JSON_AFILIADO }}" > android/app/google-services.json
+          if [[ "${{ matrix.target.name }}" == "agendasuper" ]]; then
+            echo "${{ secrets.GOOGLE_SERVICES_JSON_AGENDASUPER }}" > android/app/google-services.json
+          fi
+          if [[ "${{ matrix.target.name }}" == "rendarecorrente" ]]; then
+            echo "${{ secrets.GOOGLE_SERVICES_JSON_AFILIADO }}" > android/app/google-services.json
+          fi
+
           echo "google-services.json criado com sucesso!"
           
 

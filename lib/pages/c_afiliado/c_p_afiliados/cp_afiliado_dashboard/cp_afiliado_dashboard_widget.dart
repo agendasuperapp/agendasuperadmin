@@ -10647,7 +10647,7 @@ class _CpAfiliadoDashboardWidgetState extends State<CpAfiliadoDashboardWidget>
                                     ..complete(ViewTblAfiliadosAtividadesTable()
                                         .queryRows(
                                       queryFn: (q) => q,
-                                      limit: 15,
+                                      limit: 10,
                                     )))
                                   .future,
                               builder: (context, snapshot) {
@@ -11401,7 +11401,7 @@ class _CpAfiliadoDashboardWidgetState extends State<CpAfiliadoDashboardWidget>
                                     ..complete(ViewTblAfiliadosAtividadesTable()
                                         .queryRows(
                                       queryFn: (q) => q,
-                                      limit: 15,
+                                      limit: 10,
                                     )))
                                   .future,
                               builder: (context, snapshot) {

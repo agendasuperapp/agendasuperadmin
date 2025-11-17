@@ -44,9 +44,9 @@ class CpAfiliadoDashboardModel
 
   // Stores action output result for [Action Block - acConsAfiliadoDaschboard] action in cp_afiliado_dashboard widget.
   String? acReulstConsAfilDashboard1;
+  Completer<List<ViewTblAfiliadosAtividadesRow>>? requestCompleter4;
   Completer<List<ViewTblAfiliadosAtividadesRow>>? requestCompleter3;
-  Completer<List<ViewTblAfiliadosAtividadesRow>>? requestCompleter1;
-  Completer<List<ViewTblAfiliadosComissaoRow>>? requestCompleter4;
+  Completer<List<ViewTblAfiliadosComissaoRow>>? requestCompleter1;
   Completer<List<ViewTblAfiliadosComissaoRow>>? requestCompleter2;
   Completer<List<ViewTblAfiliadosRow>>? requestCompleter5;
   // Stores action output result for [Action Block - acConsAfiliadoDaschboard] action in Column widget.
@@ -115,6 +115,21 @@ class CpAfiliadoDashboardModel
   }
 
   /// Additional helper methods.
+  Future waitForRequestCompleted4({
+    double minWait = 0,
+    double maxWait = double.infinity,
+  }) async {
+    final stopwatch = Stopwatch()..start();
+    while (true) {
+      await Future.delayed(Duration(milliseconds: 50));
+      final timeElapsed = stopwatch.elapsedMilliseconds;
+      final requestComplete = requestCompleter4?.isCompleted ?? false;
+      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
+        break;
+      }
+    }
+  }
+
   Future waitForRequestCompleted3({
     double minWait = 0,
     double maxWait = double.infinity,
@@ -139,21 +154,6 @@ class CpAfiliadoDashboardModel
       await Future.delayed(Duration(milliseconds: 50));
       final timeElapsed = stopwatch.elapsedMilliseconds;
       final requestComplete = requestCompleter1?.isCompleted ?? false;
-      if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
-        break;
-      }
-    }
-  }
-
-  Future waitForRequestCompleted4({
-    double minWait = 0,
-    double maxWait = double.infinity,
-  }) async {
-    final stopwatch = Stopwatch()..start();
-    while (true) {
-      await Future.delayed(Duration(milliseconds: 50));
-      final timeElapsed = stopwatch.elapsedMilliseconds;
-      final requestComplete = requestCompleter4?.isCompleted ?? false;
       if (timeElapsed > maxWait || (requestComplete && timeElapsed > minWait)) {
         break;
       }

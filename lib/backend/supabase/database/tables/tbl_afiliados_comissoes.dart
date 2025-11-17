@@ -23,13 +23,9 @@ class TblAfiliadosComissoesRow extends SupabaseDataRow {
   set dataCadastro(DateTime value) =>
       setField<DateTime>('data_cadastro', value);
 
-  int get idAfiliadoIndicador => getField<int>('id_afiliado_indicador')!;
-  set idAfiliadoIndicador(int value) =>
+  int? get idAfiliadoIndicador => getField<int>('id_afiliado_indicador');
+  set idAfiliadoIndicador(int? value) =>
       setField<int>('id_afiliado_indicador', value);
-
-  int get idEstabelecimento => getField<int>('id_estabelecimento')!;
-  set idEstabelecimento(int value) =>
-      setField<int>('id_estabelecimento', value);
 
   int? get idPgStripeApps => getField<int>('id_pg_stripe_apps');
   set idPgStripeApps(int? value) => setField<int>('id_pg_stripe_apps', value);
@@ -41,11 +37,11 @@ class TblAfiliadosComissoesRow extends SupabaseDataRow {
   set valorPagoCliente(double value) =>
       setField<double>('valor_pago_cliente', value);
 
-  double get percComissao => getField<double>('perc_comissao')!;
-  set percComissao(double value) => setField<double>('perc_comissao', value);
+  double? get percComissao => getField<double>('perc_comissao');
+  set percComissao(double? value) => setField<double>('perc_comissao', value);
 
-  double get valorComissao => getField<double>('valor_comissao')!;
-  set valorComissao(double value) => setField<double>('valor_comissao', value);
+  double? get valorComissao => getField<double>('valor_comissao');
+  set valorComissao(double? value) => setField<double>('valor_comissao', value);
 
   String get statusPgComissao => getField<String>('status_pg_comissao')!;
   set statusPgComissao(String value) =>
@@ -55,15 +51,10 @@ class TblAfiliadosComissoesRow extends SupabaseDataRow {
   set dataPgComisao(DateTime? value) =>
       setField<DateTime>('data_pg_comisao', value);
 
-  String get userIdAfiliadoIndicador =>
-      getField<String>('user_id_afiliado_indicador')!;
-  set userIdAfiliadoIndicador(String value) =>
+  String? get userIdAfiliadoIndicador =>
+      getField<String>('user_id_afiliado_indicador');
+  set userIdAfiliadoIndicador(String? value) =>
       setField<String>('user_id_afiliado_indicador', value);
-
-  String? get userIdEstabelecimento =>
-      getField<String>('user_id_estabelecimento');
-  set userIdEstabelecimento(String? value) =>
-      setField<String>('user_id_estabelecimento', value);
 
   String get idTemp => getField<String>('id_temp')!;
   set idTemp(String value) => setField<String>('id_temp', value);
@@ -73,9 +64,6 @@ class TblAfiliadosComissoesRow extends SupabaseDataRow {
 
   String get tipo => getField<String>('tipo')!;
   set tipo(String value) => setField<String>('tipo', value);
-
-  int? get idAfiliadoPlano => getField<int>('id_afiliado_plano');
-  set idAfiliadoPlano(int? value) => setField<int>('id_afiliado_plano', value);
 
   int? get idSaque => getField<int>('id_saque');
   set idSaque(int? value) => setField<int>('id_saque', value);
@@ -93,4 +81,7 @@ class TblAfiliadosComissoesRow extends SupabaseDataRow {
 
   bool? get renovacao => getField<bool>('renovacao');
   set renovacao(bool? value) => setField<bool>('renovacao', value);
+
+  int? get idPgStripeApp => getField<int>('id_pg_stripe_app');
+  set idPgStripeApp(int? value) => setField<int>('id_pg_stripe_app', value);
 }

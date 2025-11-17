@@ -10,7 +10,6 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:webviewx_plus/webviewx_plus.dart';
 import 'cp_afiliado_comissoes_model.dart';
 export 'cp_afiliado_comissoes_model.dart';
 
@@ -47,7 +46,7 @@ class _CpAfiliadoComissoesWidgetState extends State<CpAfiliadoComissoesWidget>
             milliseconds: 1000,
           ),
         );
-        if (MediaQuery.sizeOf(context).width < kBreakpointSmall) {
+        if (MediaQuery.sizeOf(context).width < kBreakpointMedium) {
           safeSetState(() => _model.requestCompleter2 = null);
           await _model.waitForRequestCompleted2();
         } else {
@@ -331,7 +330,7 @@ class _CpAfiliadoComissoesWidgetState extends State<CpAfiliadoComissoesWidget>
                               ),
                               child: Padding(
                                 padding: EdgeInsetsDirectional.fromSTEB(
-                                    4.0, 0.0, 4.0, 0.0),
+                                    4.0, 4.0, 4.0, 4.0),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.max,
                                   children: [
@@ -543,16 +542,32 @@ class _CpAfiliadoComissoesWidgetState extends State<CpAfiliadoComissoesWidget>
                                       ),
                                     ),
                                     Expanded(
-                                      child: Container(
-                                        width: 110.0,
-                                        decoration: BoxDecoration(),
-                                        child: Text(
-                                          'Saque',
-                                          maxLines: 2,
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                font: GoogleFonts.readexPro(
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            8.0, 0.0, 0.0, 0.0),
+                                        child: Container(
+                                          width: 110.0,
+                                          decoration: BoxDecoration(),
+                                          child: Text(
+                                            'Saque',
+                                            maxLines: 2,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  font: GoogleFonts.readexPro(
+                                                    fontWeight:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium
+                                                            .fontWeight,
+                                                    fontStyle:
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .bodyMedium
+                                                            .fontStyle,
+                                                  ),
+                                                  fontSize: 12.0,
+                                                  letterSpacing: 0.0,
                                                   fontWeight:
                                                       FlutterFlowTheme.of(
                                                               context)
@@ -564,17 +579,7 @@ class _CpAfiliadoComissoesWidgetState extends State<CpAfiliadoComissoesWidget>
                                                           .bodyMedium
                                                           .fontStyle,
                                                 ),
-                                                fontSize: 12.0,
-                                                letterSpacing: 0.0,
-                                                fontWeight:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .fontWeight,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .fontStyle,
-                                              ),
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -620,15 +625,6 @@ class _CpAfiliadoComissoesWidgetState extends State<CpAfiliadoComissoesWidget>
                                         ),
                                       ),
                                     ),
-                                    Container(
-                                      width: 100.0,
-                                      decoration: BoxDecoration(),
-                                      child: Icon(
-                                        Icons.chevron_right,
-                                        color: Colors.transparent,
-                                        size: 24.0,
-                                      ),
-                                    ),
                                   ],
                                 ),
                               ),
@@ -647,10 +643,9 @@ class _CpAfiliadoComissoesWidgetState extends State<CpAfiliadoComissoesWidget>
                                         List<ViewTblAfiliadosComissaoRow>>()
                                       ..complete(ViewTblAfiliadosComissaoTable()
                                           .queryRows(
-                                        queryFn: (q) => q.neqOrNull(
-                                          'id_estabelecimento',
-                                          FFAppState()
-                                              .VarIDEstabelecimentoLogado,
+                                        queryFn: (q) => q.eqOrNull(
+                                          'id_afiliado_indicador',
+                                          FFAppState().varIDAfiliadoLogado,
                                         ),
                                       )))
                                     .future,
@@ -672,10 +667,10 @@ class _CpAfiliadoComissoesWidgetState extends State<CpAfiliadoComissoesWidget>
                                     );
                                   }
                                   List<ViewTblAfiliadosComissaoRow>
-                                      listViewPCViewTblAfiliadosComissaoRowList =
+                                      listViewComissaoPCViewTblAfiliadosComissaoRowList =
                                       snapshot.data!;
 
-                                  if (listViewPCViewTblAfiliadosComissaoRowList
+                                  if (listViewComissaoPCViewTblAfiliadosComissaoRowList
                                       .isEmpty) {
                                     return CpSemCadastroWidget();
                                   }
@@ -692,14 +687,15 @@ class _CpAfiliadoComissoesWidgetState extends State<CpAfiliadoComissoesWidget>
                                       shrinkWrap: true,
                                       scrollDirection: Axis.vertical,
                                       itemCount:
-                                          listViewPCViewTblAfiliadosComissaoRowList
+                                          listViewComissaoPCViewTblAfiliadosComissaoRowList
                                               .length,
                                       separatorBuilder: (_, __) =>
-                                          SizedBox(height: 8.0),
-                                      itemBuilder: (context, listViewPCIndex) {
-                                        final listViewPCViewTblAfiliadosComissaoRow =
-                                            listViewPCViewTblAfiliadosComissaoRowList[
-                                                listViewPCIndex];
+                                          SizedBox(height: 16.0),
+                                      itemBuilder:
+                                          (context, listViewComissaoPCIndex) {
+                                        final listViewComissaoPCViewTblAfiliadosComissaoRow =
+                                            listViewComissaoPCViewTblAfiliadosComissaoRowList[
+                                                listViewComissaoPCIndex];
                                         return Container(
                                           decoration: BoxDecoration(
                                             color: FlutterFlowTheme.of(context)
@@ -720,76 +716,12 @@ class _CpAfiliadoComissoesWidgetState extends State<CpAfiliadoComissoesWidget>
                                                     mainAxisSize:
                                                         MainAxisSize.max,
                                                     children: [
-                                                      if (FFAppState()
-                                                          .varTblUsuarios
-                                                          .adminSistema)
-                                                        Padding(
-                                                          padding:
-                                                              EdgeInsetsDirectional
-                                                                  .fromSTEB(
-                                                                      0.0,
-                                                                      0.0,
-                                                                      4.0,
-                                                                      0.0),
-                                                          child: Text(
-                                                            valueOrDefault<
-                                                                        String>(
-                                                                      listViewPCViewTblAfiliadosComissaoRow
-                                                                          .tipo,
-                                                                      '...',
-                                                                    ) ==
-                                                                    'PLANOESTAB'
-                                                                ? valueOrDefault<
-                                                                    String>(
-                                                                    listViewPCViewTblAfiliadosComissaoRow
-                                                                        .idEstabelecimento
-                                                                        ?.toString(),
-                                                                    '...',
-                                                                  )
-                                                                : valueOrDefault<
-                                                                    String>(
-                                                                    listViewPCViewTblAfiliadosComissaoRow
-                                                                        .idAfiliado
-                                                                        ?.toString(),
-                                                                    '...',
-                                                                  ),
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  font: GoogleFonts
-                                                                      .readexPro(
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .normal,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .fontStyle,
-                                                                  ),
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryText,
-                                                                  fontSize:
-                                                                      12.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .normal,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .fontStyle,
-                                                                ),
-                                                          ),
-                                                        ),
                                                       Container(
                                                         decoration:
                                                             BoxDecoration(),
                                                         child: Container(
-                                                          width: 25.0,
-                                                          height: 25.0,
+                                                          width: 50.0,
+                                                          height: 50.0,
                                                           clipBehavior:
                                                               Clip.antiAlias,
                                                           decoration:
@@ -800,7 +732,7 @@ class _CpAfiliadoComissoesWidgetState extends State<CpAfiliadoComissoesWidget>
                                                           child: Image.network(
                                                             valueOrDefault<
                                                                 String>(
-                                                              listViewPCViewTblAfiliadosComissaoRow
+                                                              listViewComissaoPCViewTblAfiliadosComissaoRow
                                                                   .fotoPerfil,
                                                               'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/agendador-de-beleza-qia8mb/assets/lp37pdsm6md0/sem-imagem.jpg',
                                                             ),
@@ -836,7 +768,7 @@ class _CpAfiliadoComissoesWidgetState extends State<CpAfiliadoComissoesWidget>
                                                                 Text(
                                                                   valueOrDefault<
                                                                       String>(
-                                                                    listViewPCViewTblAfiliadosComissaoRow
+                                                                    listViewComissaoPCViewTblAfiliadosComissaoRow
                                                                         .nome,
                                                                     '...',
                                                                   ),
@@ -868,8 +800,8 @@ class _CpAfiliadoComissoesWidgetState extends State<CpAfiliadoComissoesWidget>
                                                                 Text(
                                                                   valueOrDefault<
                                                                       String>(
-                                                                    listViewPCViewTblAfiliadosComissaoRow
-                                                                        .nomeSegmento,
+                                                                    listViewComissaoPCViewTblAfiliadosComissaoRow
+                                                                        .nomeApp,
                                                                     '...',
                                                                   ),
                                                                   style: FlutterFlowTheme.of(
@@ -885,7 +817,7 @@ class _CpAfiliadoComissoesWidgetState extends State<CpAfiliadoComissoesWidget>
                                                                               .fontStyle,
                                                                         ),
                                                                         color: FlutterFlowTheme.of(context)
-                                                                            .primary,
+                                                                            .secondaryText,
                                                                         fontSize:
                                                                             12.0,
                                                                         letterSpacing:
@@ -918,11 +850,11 @@ class _CpAfiliadoComissoesWidgetState extends State<CpAfiliadoComissoesWidget>
                                                       child: Text(
                                                         valueOrDefault<String>(
                                                           () {
-                                                            if (listViewPCViewTblAfiliadosComissaoRow
+                                                            if (listViewComissaoPCViewTblAfiliadosComissaoRow
                                                                     .nivel ==
                                                                 2) {
                                                               return 'Comissão Nível II';
-                                                            } else if (listViewPCViewTblAfiliadosComissaoRow
+                                                            } else if (listViewComissaoPCViewTblAfiliadosComissaoRow
                                                                     .renovacaoPlano ==
                                                                 true) {
                                                               return 'Renovação';
@@ -947,13 +879,13 @@ class _CpAfiliadoComissoesWidgetState extends State<CpAfiliadoComissoesWidget>
                                                                     .fontStyle,
                                                               ),
                                                               color: () {
-                                                                if (listViewPCViewTblAfiliadosComissaoRow
+                                                                if (listViewComissaoPCViewTblAfiliadosComissaoRow
                                                                         .nivel ==
                                                                     2) {
                                                                   return FlutterFlowTheme.of(
                                                                           context)
                                                                       .tertiary;
-                                                                } else if (listViewPCViewTblAfiliadosComissaoRow
+                                                                } else if (listViewComissaoPCViewTblAfiliadosComissaoRow
                                                                     .renovacaoPlano!) {
                                                                   return FlutterFlowTheme.of(
                                                                           context)
@@ -992,20 +924,11 @@ class _CpAfiliadoComissoesWidgetState extends State<CpAfiliadoComissoesWidget>
                                                           BoxDecoration(),
                                                       child: Text(
                                                         valueOrDefault<String>(
-                                                          () {
-                                                            if (listViewPCViewTblAfiliadosComissaoRow
-                                                                    .nivel ==
-                                                                2) {
-                                                              return 'Comissão Nível II';
-                                                            } else if (listViewPCViewTblAfiliadosComissaoRow
-                                                                    .tipo ==
-                                                                'PLANOESTAB') {
-                                                              return '${listViewPCViewTblAfiliadosComissaoRow.nomePlano} ${listViewPCViewTblAfiliadosComissaoRow.nomePlanoPeriodos}';
-                                                            } else {
-                                                              return listViewPCViewTblAfiliadosComissaoRow
-                                                                  .nomePlano;
-                                                            }
-                                                          }(),
+                                                          listViewComissaoPCViewTblAfiliadosComissaoRow
+                                                                      .nivel ==
+                                                                  2
+                                                              ? 'Comissão Nível II'
+                                                              : '${listViewComissaoPCViewTblAfiliadosComissaoRow.nomePlano} | ${listViewComissaoPCViewTblAfiliadosComissaoRow.nomePlanoPeriodos}',
                                                           '...',
                                                         ),
                                                         style: FlutterFlowTheme
@@ -1022,25 +945,15 @@ class _CpAfiliadoComissoesWidgetState extends State<CpAfiliadoComissoesWidget>
                                                                     .bodyMedium
                                                                     .fontStyle,
                                                               ),
-                                                              color: () {
-                                                                if (listViewPCViewTblAfiliadosComissaoRow
-                                                                        .nivel ==
-                                                                    2) {
-                                                                  return FlutterFlowTheme.of(
+                                                              color: listViewComissaoPCViewTblAfiliadosComissaoRow
+                                                                          .nivel ==
+                                                                      2
+                                                                  ? FlutterFlowTheme.of(
                                                                           context)
-                                                                      .tertiary;
-                                                                } else if (listViewPCViewTblAfiliadosComissaoRow
-                                                                        .tipo ==
-                                                                    'AFILIACAO') {
-                                                                  return FlutterFlowTheme.of(
+                                                                      .tertiary
+                                                                  : FlutterFlowTheme.of(
                                                                           context)
-                                                                      .success;
-                                                                } else {
-                                                                  return FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .primary;
-                                                                }
-                                                              }(),
+                                                                      .primary,
                                                               fontSize: 12.0,
                                                               letterSpacing:
                                                                   0.0,
@@ -1070,7 +983,7 @@ class _CpAfiliadoComissoesWidgetState extends State<CpAfiliadoComissoesWidget>
                                                       child: Text(
                                                         valueOrDefault<String>(
                                                           formatNumber(
-                                                            listViewPCViewTblAfiliadosComissaoRow
+                                                            listViewComissaoPCViewTblAfiliadosComissaoRow
                                                                 .valorPagoCliente,
                                                             formatType:
                                                                 FormatType
@@ -1126,248 +1039,32 @@ class _CpAfiliadoComissoesWidgetState extends State<CpAfiliadoComissoesWidget>
                                                       width: 110.0,
                                                       decoration:
                                                           BoxDecoration(),
-                                                      child: Row(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        children: [
-                                                          Text(
-                                                            valueOrDefault<
-                                                                String>(
-                                                              '${valueOrDefault<String>(
-                                                                formatNumber(
-                                                                  listViewPCViewTblAfiliadosComissaoRow
-                                                                      .percComissao,
-                                                                  formatType:
-                                                                      FormatType
-                                                                          .decimal,
-                                                                  decimalType:
-                                                                      DecimalType
-                                                                          .commaDecimal,
-                                                                ),
-                                                                '...',
-                                                              )}%',
-                                                              '...',
-                                                            ),
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  font: GoogleFonts
-                                                                      .readexPro(
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .normal,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .fontStyle,
+                                                      child: RichText(
+                                                        textScaler:
+                                                            MediaQuery.of(
+                                                                    context)
+                                                                .textScaler,
+                                                        text: TextSpan(
+                                                          children: [
+                                                            TextSpan(
+                                                              text:
+                                                                  valueOrDefault<
+                                                                      String>(
+                                                                '${valueOrDefault<String>(
+                                                                  formatNumber(
+                                                                    listViewComissaoPCViewTblAfiliadosComissaoRow
+                                                                        .percComissao,
+                                                                    formatType:
+                                                                        FormatType
+                                                                            .decimal,
+                                                                    decimalType:
+                                                                        DecimalType
+                                                                            .commaDecimal,
                                                                   ),
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryText,
-                                                                  fontSize:
-                                                                      12.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .normal,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .fontStyle,
-                                                                ),
-                                                          ),
-                                                          Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        8.0,
-                                                                        0.0,
-                                                                        0.0,
-                                                                        0.0),
-                                                            child: Text(
-                                                              valueOrDefault<
-                                                                  String>(
-                                                                formatNumber(
-                                                                  listViewPCViewTblAfiliadosComissaoRow
-                                                                      .valorComissao,
-                                                                  formatType:
-                                                                      FormatType
-                                                                          .decimal,
-                                                                  decimalType:
-                                                                      DecimalType
-                                                                          .commaDecimal,
-                                                                  currency:
-                                                                      'R\$',
-                                                                ),
+                                                                  '...',
+                                                                )}%',
                                                                 '...',
                                                               ),
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .bodyMedium
-                                                                  .override(
-                                                                    font: GoogleFonts
-                                                                        .readexPro(
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold,
-                                                                      fontStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .bodyMedium
-                                                                          .fontStyle,
-                                                                    ),
-                                                                    color: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .success,
-                                                                    fontSize:
-                                                                        14.0,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .fontStyle,
-                                                                  ),
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-                                                Expanded(
-                                                  child: Container(
-                                                    decoration: BoxDecoration(
-                                                      color: () {
-                                                        if (listViewPCViewTblAfiliadosComissaoRow
-                                                                .statusPgComissao ==
-                                                            'PENDENTE') {
-                                                          return FlutterFlowTheme
-                                                                  .of(context)
-                                                              .accent3;
-                                                        } else if (listViewPCViewTblAfiliadosComissaoRow
-                                                                .statusPgComissao ==
-                                                            'SOLICITADO') {
-                                                          return FlutterFlowTheme
-                                                                  .of(context)
-                                                              .accent1;
-                                                        } else if (listViewPCViewTblAfiliadosComissaoRow
-                                                                .statusPgComissao ==
-                                                            'PAGO') {
-                                                          return FlutterFlowTheme
-                                                                  .of(context)
-                                                              .accent2;
-                                                        } else {
-                                                          return FlutterFlowTheme
-                                                                  .of(context)
-                                                              .error;
-                                                        }
-                                                      }(),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              8.0),
-                                                    ),
-                                                    child: Padding(
-                                                      padding:
-                                                          EdgeInsets.all(4.0),
-                                                      child: Column(
-                                                        mainAxisSize:
-                                                            MainAxisSize.max,
-                                                        children: [
-                                                          Text(
-                                                            valueOrDefault<
-                                                                String>(
-                                                              () {
-                                                                if (listViewPCViewTblAfiliadosComissaoRow
-                                                                        .statusPgComissao ==
-                                                                    'PENDENTE') {
-                                                                  return 'Pendente';
-                                                                } else if (listViewPCViewTblAfiliadosComissaoRow
-                                                                        .statusPgComissao ==
-                                                                    'SOLICITADO') {
-                                                                  return 'Solicitado';
-                                                                } else if (listViewPCViewTblAfiliadosComissaoRow
-                                                                        .statusPgComissao ==
-                                                                    'PAGO') {
-                                                                  return 'Pago';
-                                                                } else {
-                                                                  return listViewPCViewTblAfiliadosComissaoRow
-                                                                      .statusPgComissao;
-                                                                }
-                                                              }(),
-                                                              '...',
-                                                            ),
-                                                            textAlign: TextAlign
-                                                                .center,
-                                                            style: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .bodyMedium
-                                                                .override(
-                                                                  font: GoogleFonts
-                                                                      .readexPro(
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w500,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .bodyMedium
-                                                                        .fontStyle,
-                                                                  ),
-                                                                  color: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .secondaryText,
-                                                                  fontSize:
-                                                                      12.0,
-                                                                  letterSpacing:
-                                                                      0.0,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
-                                                                  fontStyle: FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .bodyMedium
-                                                                      .fontStyle,
-                                                                ),
-                                                          ),
-                                                          if (listViewPCViewTblAfiliadosComissaoRow
-                                                                  .statusPgComissao !=
-                                                              'SOLICITADO')
-                                                            Text(
-                                                              () {
-                                                                if (listViewPCViewTblAfiliadosComissaoRow
-                                                                        .statusPgComissao ==
-                                                                    'PAGO') {
-                                                                  return valueOrDefault<
-                                                                      String>(
-                                                                    dateTimeFormat(
-                                                                      "dd/MM/y H:mm",
-                                                                      listViewPCViewTblAfiliadosComissaoRow
-                                                                          .dataPgComisao,
-                                                                      locale: FFLocalizations.of(
-                                                                              context)
-                                                                          .languageCode,
-                                                                    ),
-                                                                    '...',
-                                                                  );
-                                                                } else if (listViewPCViewTblAfiliadosComissaoRow
-                                                                        .statusSolicitacao ==
-                                                                    'DISPONIVEL') {
-                                                                  return 'Saque disponível';
-                                                                } else if (listViewPCViewTblAfiliadosComissaoRow
-                                                                        .statusPgComissao ==
-                                                                    'PENDENTE') {
-                                                                  return 'Libera em ${listViewPCViewTblAfiliadosComissaoRow.diasParaLiberar?.toString()}${listViewPCViewTblAfiliadosComissaoRow.diasParaLiberar == 1 ? ' dia' : ' dias'}';
-                                                                } else {
-                                                                  return '';
-                                                                }
-                                                              }(),
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .center,
                                                               style: FlutterFlowTheme
                                                                       .of(context)
                                                                   .bodyMedium
@@ -1382,12 +1079,9 @@ class _CpAfiliadoComissoesWidgetState extends State<CpAfiliadoComissoesWidget>
                                                                           .bodyMedium
                                                                           .fontStyle,
                                                                     ),
-                                                                    color: listViewPCViewTblAfiliadosComissaoRow.statusSolicitacao ==
-                                                                            'DISPONIVEL'
-                                                                        ? FlutterFlowTheme.of(context)
-                                                                            .success
-                                                                        : FlutterFlowTheme.of(context)
-                                                                            .error,
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .secondaryText,
                                                                     fontSize:
                                                                         12.0,
                                                                     letterSpacing:
@@ -1401,7 +1095,243 @@ class _CpAfiliadoComissoesWidgetState extends State<CpAfiliadoComissoesWidget>
                                                                         .fontStyle,
                                                                   ),
                                                             ),
-                                                        ],
+                                                            TextSpan(
+                                                              text: '  |  ',
+                                                              style:
+                                                                  TextStyle(),
+                                                            ),
+                                                            TextSpan(
+                                                              text:
+                                                                  valueOrDefault<
+                                                                      String>(
+                                                                formatNumber(
+                                                                  listViewComissaoPCViewTblAfiliadosComissaoRow
+                                                                      .valorComissao,
+                                                                  formatType:
+                                                                      FormatType
+                                                                          .decimal,
+                                                                  decimalType:
+                                                                      DecimalType
+                                                                          .commaDecimal,
+                                                                  currency:
+                                                                      'R\$',
+                                                                ),
+                                                                '...',
+                                                              ),
+                                                              style: TextStyle(
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .success,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                              ),
+                                                            )
+                                                          ],
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .bodyMedium
+                                                              .override(
+                                                                font: GoogleFonts
+                                                                    .readexPro(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .normal,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMedium
+                                                                      .fontStyle,
+                                                                ),
+                                                                color: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryText,
+                                                                fontSize: 12.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .normal,
+                                                                fontStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontStyle,
+                                                              ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                                Expanded(
+                                                  child: Padding(
+                                                    padding:
+                                                        EdgeInsetsDirectional
+                                                            .fromSTEB(8.0, 0.0,
+                                                                0.0, 0.0),
+                                                    child: Container(
+                                                      decoration: BoxDecoration(
+                                                        color: () {
+                                                          if (listViewComissaoPCViewTblAfiliadosComissaoRow
+                                                                  .statusPgComissao ==
+                                                              'PENDENTE') {
+                                                            return FlutterFlowTheme
+                                                                    .of(context)
+                                                                .error;
+                                                          } else if (listViewComissaoPCViewTblAfiliadosComissaoRow
+                                                                  .statusPgComissao ==
+                                                              'SOLICITADO') {
+                                                            return FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primary;
+                                                          } else if (listViewComissaoPCViewTblAfiliadosComissaoRow
+                                                                  .statusPgComissao ==
+                                                              'PAGO') {
+                                                            return FlutterFlowTheme
+                                                                    .of(context)
+                                                                .success;
+                                                          } else {
+                                                            return FlutterFlowTheme
+                                                                    .of(context)
+                                                                .error;
+                                                          }
+                                                        }(),
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(8.0),
+                                                      ),
+                                                      child: Padding(
+                                                        padding:
+                                                            EdgeInsets.all(4.0),
+                                                        child: Column(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          children: [
+                                                            Text(
+                                                              valueOrDefault<
+                                                                  String>(
+                                                                () {
+                                                                  if (listViewComissaoPCViewTblAfiliadosComissaoRow
+                                                                          .statusPgComissao ==
+                                                                      'PENDENTE') {
+                                                                    return 'Pendente';
+                                                                  } else if (listViewComissaoPCViewTblAfiliadosComissaoRow
+                                                                          .statusPgComissao ==
+                                                                      'SOLICITADO') {
+                                                                    return 'Solicitado';
+                                                                  } else if (listViewComissaoPCViewTblAfiliadosComissaoRow
+                                                                          .statusPgComissao ==
+                                                                      'PAGO') {
+                                                                    return 'Pago';
+                                                                  } else {
+                                                                    return listViewComissaoPCViewTblAfiliadosComissaoRow
+                                                                        .statusPgComissao;
+                                                                  }
+                                                                }(),
+                                                                '...',
+                                                              ),
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .center,
+                                                              style: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .bodyMedium
+                                                                  .override(
+                                                                    font: GoogleFonts
+                                                                        .readexPro(
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w500,
+                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontStyle,
+                                                                    ),
+                                                                    color: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .info,
+                                                                    fontSize:
+                                                                        14.0,
+                                                                    letterSpacing:
+                                                                        0.0,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500,
+                                                                    fontStyle: FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .bodyMedium
+                                                                        .fontStyle,
+                                                                  ),
+                                                            ),
+                                                            if (listViewComissaoPCViewTblAfiliadosComissaoRow
+                                                                    .statusPgComissao !=
+                                                                'SOLICITADO')
+                                                              Text(
+                                                                valueOrDefault<
+                                                                    String>(
+                                                                  () {
+                                                                    if (listViewComissaoPCViewTblAfiliadosComissaoRow
+                                                                            .statusPgComissao ==
+                                                                        'PAGO') {
+                                                                      return valueOrDefault<
+                                                                          String>(
+                                                                        dateTimeFormat(
+                                                                          "dd/MM/y H:mm",
+                                                                          listViewComissaoPCViewTblAfiliadosComissaoRow
+                                                                              .dataPgComisao,
+                                                                          locale:
+                                                                              FFLocalizations.of(context).languageCode,
+                                                                        ),
+                                                                        '...',
+                                                                      );
+                                                                    } else if (listViewComissaoPCViewTblAfiliadosComissaoRow
+                                                                            .statusSolicitacao ==
+                                                                        'DISPONIVEL') {
+                                                                      return 'Saque disponível';
+                                                                    } else if (listViewComissaoPCViewTblAfiliadosComissaoRow
+                                                                            .statusPgComissao ==
+                                                                        'PENDENTE') {
+                                                                      return 'Libera em ${listViewComissaoPCViewTblAfiliadosComissaoRow.diasParaLiberar?.toString()}${listViewComissaoPCViewTblAfiliadosComissaoRow.diasParaLiberar == 1 ? ' dia' : ' dias'}';
+                                                                    } else {
+                                                                      return '';
+                                                                    }
+                                                                  }(),
+                                                                  '...',
+                                                                ),
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .center,
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .override(
+                                                                      font: GoogleFonts
+                                                                          .readexPro(
+                                                                        fontWeight:
+                                                                            FontWeight.bold,
+                                                                        fontStyle: FlutterFlowTheme.of(context)
+                                                                            .bodyMedium
+                                                                            .fontStyle,
+                                                                      ),
+                                                                      color: listViewComissaoPCViewTblAfiliadosComissaoRow.statusSolicitacao ==
+                                                                              'DISPONIVEL'
+                                                                          ? FlutterFlowTheme.of(context)
+                                                                              .success
+                                                                          : FlutterFlowTheme.of(context)
+                                                                              .warning,
+                                                                      fontSize:
+                                                                          14.0,
+                                                                      letterSpacing:
+                                                                          0.0,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                      fontStyle: FlutterFlowTheme.of(
+                                                                              context)
+                                                                          .bodyMedium
+                                                                          .fontStyle,
+                                                                    ),
+                                                              ),
+                                                          ],
+                                                        ),
                                                       ),
                                                     ),
                                                   ),
@@ -1420,7 +1350,7 @@ class _CpAfiliadoComissoesWidgetState extends State<CpAfiliadoComissoesWidget>
                                                         valueOrDefault<String>(
                                                           dateTimeFormat(
                                                             "dd/MM/y H:mm",
-                                                            listViewPCViewTblAfiliadosComissaoRow
+                                                            listViewComissaoPCViewTblAfiliadosComissaoRow
                                                                 .dataPagamento,
                                                             locale: FFLocalizations
                                                                     .of(context)
@@ -1462,82 +1392,6 @@ class _CpAfiliadoComissoesWidgetState extends State<CpAfiliadoComissoesWidget>
                                                     ),
                                                   ),
                                                 ),
-                                                Container(
-                                                  width: 100.0,
-                                                  decoration: BoxDecoration(),
-                                                  child: Visibility(
-                                                    visible:
-                                                        (listViewPCViewTblAfiliadosComissaoRow
-                                                                    .tipo ==
-                                                                'PLANOESTAB') &&
-                                                            (listViewPCViewTblAfiliadosComissaoRow
-                                                                    .nivel ==
-                                                                1),
-                                                    child: Row(
-                                                      mainAxisSize:
-                                                          MainAxisSize.max,
-                                                      mainAxisAlignment:
-                                                          MainAxisAlignment
-                                                              .center,
-                                                      children: [
-                                                        InkWell(
-                                                          splashColor: Colors
-                                                              .transparent,
-                                                          focusColor: Colors
-                                                              .transparent,
-                                                          hoverColor: Colors
-                                                              .transparent,
-                                                          highlightColor: Colors
-                                                              .transparent,
-                                                          onTap: () async {
-                                                            if (listViewPCViewTblAfiliadosComissaoRow
-                                                                        .username ==
-                                                                    null ||
-                                                                listViewPCViewTblAfiliadosComissaoRow
-                                                                        .username ==
-                                                                    '') {
-                                                              await showDialog(
-                                                                context:
-                                                                    context,
-                                                                builder:
-                                                                    (alertDialogContext) {
-                                                                  return WebViewAware(
-                                                                    child:
-                                                                        AlertDialog(
-                                                                      title: Text(
-                                                                          'Atenção!'),
-                                                                      content: Text(
-                                                                          'Cadastro em andamento, aguarde...'),
-                                                                      actions: [
-                                                                        TextButton(
-                                                                          onPressed: () =>
-                                                                              Navigator.pop(alertDialogContext),
-                                                                          child:
-                                                                              Text('Ok'),
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                  );
-                                                                },
-                                                              );
-                                                              return;
-                                                            } else {
-                                                              await launchURL(
-                                                                  'https://agendasuper.flutterflow.app/${listViewPCViewTblAfiliadosComissaoRow.username}');
-                                                            }
-                                                          },
-                                                          child: Icon(
-                                                            Icons.link,
-                                                            color: FlutterFlowTheme
-                                                                    .of(context)
-                                                                .secondaryText,
-                                                            size: 24.0,
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ),
                                               ],
                                             ),
                                           ),
@@ -1563,8 +1417,10 @@ class _CpAfiliadoComissoesWidgetState extends State<CpAfiliadoComissoesWidget>
                                         List<ViewTblAfiliadosComissaoRow>>()
                                       ..complete(ViewTblAfiliadosComissaoTable()
                                           .queryRows(
-                                        queryFn: (q) => q.or(
-                                            "id_afiliado_indicador.eq.${FFAppState().varIDAfiliadoLogado}, id_estabelecimento.neq.${FFAppState().VarIDEstabelecimentoLogado}"),
+                                        queryFn: (q) => q.eqOrNull(
+                                          'id_afiliado_indicador',
+                                          FFAppState().varIDAfiliadoLogado,
+                                        ),
                                       )))
                                     .future,
                                 builder: (context, snapshot) {
@@ -1585,10 +1441,10 @@ class _CpAfiliadoComissoesWidgetState extends State<CpAfiliadoComissoesWidget>
                                     );
                                   }
                                   List<ViewTblAfiliadosComissaoRow>
-                                      listViewCelViewTblAfiliadosComissaoRowList =
+                                      listViewComissaoCelViewTblAfiliadosComissaoRowList =
                                       snapshot.data!;
 
-                                  if (listViewCelViewTblAfiliadosComissaoRowList
+                                  if (listViewComissaoCelViewTblAfiliadosComissaoRowList
                                       .isEmpty) {
                                     return CpSemCadastroWidget();
                                   }
@@ -1605,14 +1461,15 @@ class _CpAfiliadoComissoesWidgetState extends State<CpAfiliadoComissoesWidget>
                                       shrinkWrap: true,
                                       scrollDirection: Axis.vertical,
                                       itemCount:
-                                          listViewCelViewTblAfiliadosComissaoRowList
+                                          listViewComissaoCelViewTblAfiliadosComissaoRowList
                                               .length,
                                       separatorBuilder: (_, __) =>
                                           SizedBox(height: 8.0),
-                                      itemBuilder: (context, listViewCelIndex) {
-                                        final listViewCelViewTblAfiliadosComissaoRow =
-                                            listViewCelViewTblAfiliadosComissaoRowList[
-                                                listViewCelIndex];
+                                      itemBuilder:
+                                          (context, listViewComissaoCelIndex) {
+                                        final listViewComissaoCelViewTblAfiliadosComissaoRow =
+                                            listViewComissaoCelViewTblAfiliadosComissaoRowList[
+                                                listViewComissaoCelIndex];
                                         return Container(
                                           decoration: BoxDecoration(
                                             color: FlutterFlowTheme.of(context)
@@ -1626,9 +1483,7 @@ class _CpAfiliadoComissoesWidgetState extends State<CpAfiliadoComissoesWidget>
                                             ),
                                           ),
                                           child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    4.0, 4.0, 4.0, 4.0),
+                                            padding: EdgeInsets.all(8.0),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
                                               crossAxisAlignment:
@@ -1651,7 +1506,7 @@ class _CpAfiliadoComissoesWidgetState extends State<CpAfiliadoComissoesWidget>
                                                       ),
                                                       child: Image.network(
                                                         valueOrDefault<String>(
-                                                          listViewCelViewTblAfiliadosComissaoRow
+                                                          listViewComissaoCelViewTblAfiliadosComissaoRow
                                                               .fotoPerfil,
                                                           'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/agendador-de-beleza-qia8mb/assets/lp37pdsm6md0/sem-imagem.jpg',
                                                         ),
@@ -1703,7 +1558,7 @@ class _CpAfiliadoComissoesWidgetState extends State<CpAfiliadoComissoesWidget>
                                                                           Icon(
                                                                         Icons
                                                                             .repeat_one,
-                                                                        color: listViewCelViewTblAfiliadosComissaoRow.renovacaoPlano!
+                                                                        color: listViewComissaoCelViewTblAfiliadosComissaoRow.renovacaoPlano!
                                                                             ? FlutterFlowTheme.of(context).success
                                                                             : FlutterFlowTheme.of(context).primary,
                                                                         size:
@@ -1716,10 +1571,10 @@ class _CpAfiliadoComissoesWidgetState extends State<CpAfiliadoComissoesWidget>
                                                                         valueOrDefault<
                                                                             String>(
                                                                           () {
-                                                                            if (listViewCelViewTblAfiliadosComissaoRow.nivel ==
+                                                                            if (listViewComissaoCelViewTblAfiliadosComissaoRow.nivel ==
                                                                                 2) {
                                                                               return 'Comissão Nível II';
-                                                                            } else if (listViewCelViewTblAfiliadosComissaoRow.renovacaoPlano ==
+                                                                            } else if (listViewComissaoCelViewTblAfiliadosComissaoRow.renovacaoPlano ==
                                                                                 true) {
                                                                               return 'Renovação';
                                                                             } else {
@@ -1735,7 +1590,7 @@ class _CpAfiliadoComissoesWidgetState extends State<CpAfiliadoComissoesWidget>
                                                                                 fontWeight: FontWeight.normal,
                                                                                 fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                               ),
-                                                                              color: listViewCelViewTblAfiliadosComissaoRow.renovacaoPlano! ? FlutterFlowTheme.of(context).success : FlutterFlowTheme.of(context).primary,
+                                                                              color: listViewComissaoCelViewTblAfiliadosComissaoRow.renovacaoPlano! ? FlutterFlowTheme.of(context).success : FlutterFlowTheme.of(context).primary,
                                                                               fontSize: 12.0,
                                                                               letterSpacing: 0.0,
                                                                               fontWeight: FontWeight.normal,
@@ -1770,7 +1625,7 @@ class _CpAfiliadoComissoesWidgetState extends State<CpAfiliadoComissoesWidget>
                                                                       child:
                                                                           Text(
                                                                         '${valueOrDefault<String>(
-                                                                          listViewCelViewTblAfiliadosComissaoRow
+                                                                          listViewComissaoCelViewTblAfiliadosComissaoRow
                                                                               .nome,
                                                                           '...',
                                                                         )}',
@@ -1806,8 +1661,8 @@ class _CpAfiliadoComissoesWidgetState extends State<CpAfiliadoComissoesWidget>
                                                                           Icon(
                                                                         Icons
                                                                             .add_to_queue,
-                                                                        color: listViewCelViewTblAfiliadosComissaoRow.tipo ==
-                                                                                'AFILIACAO'
+                                                                        color: listViewComissaoCelViewTblAfiliadosComissaoRow.nivel ==
+                                                                                2
                                                                             ? FlutterFlowTheme.of(context).tertiary
                                                                             : FlutterFlowTheme.of(context).primary,
                                                                         size:
@@ -1817,24 +1672,13 @@ class _CpAfiliadoComissoesWidgetState extends State<CpAfiliadoComissoesWidget>
                                                                     Flexible(
                                                                       child:
                                                                           Text(
-                                                                        '${valueOrDefault<String>(
-                                                                          listViewCelViewTblAfiliadosComissaoRow
-                                                                              .nomePlano,
+                                                                        valueOrDefault<
+                                                                            String>(
+                                                                          listViewComissaoCelViewTblAfiliadosComissaoRow.nivel == 2
+                                                                              ? 'Comissão Nível II'
+                                                                              : '${listViewComissaoCelViewTblAfiliadosComissaoRow.nomePlano} | ${listViewComissaoCelViewTblAfiliadosComissaoRow.nomePlanoPeriodos}',
                                                                           '...',
-                                                                        )} ${valueOrDefault<String>(
-                                                                          () {
-                                                                            if (listViewCelViewTblAfiliadosComissaoRow.nivel ==
-                                                                                2) {
-                                                                              return 'Comissão Nível II';
-                                                                            } else if (listViewCelViewTblAfiliadosComissaoRow.tipo ==
-                                                                                'PLANOESTAB') {
-                                                                              return '${listViewCelViewTblAfiliadosComissaoRow.nomePlano} ${listViewCelViewTblAfiliadosComissaoRow.nomePlanoPeriodos}';
-                                                                            } else {
-                                                                              return listViewCelViewTblAfiliadosComissaoRow.nomePlano;
-                                                                            }
-                                                                          }(),
-                                                                          '...',
-                                                                        )}',
+                                                                        ),
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .bodyMedium
                                                                             .override(
@@ -1842,7 +1686,7 @@ class _CpAfiliadoComissoesWidgetState extends State<CpAfiliadoComissoesWidget>
                                                                                 fontWeight: FontWeight.normal,
                                                                                 fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                               ),
-                                                                              color: listViewCelViewTblAfiliadosComissaoRow.tipo == 'AFILIACAO' ? FlutterFlowTheme.of(context).tertiary : FlutterFlowTheme.of(context).primary,
+                                                                              color: listViewComissaoCelViewTblAfiliadosComissaoRow.nivel == 2 ? FlutterFlowTheme.of(context).tertiary : FlutterFlowTheme.of(context).primary,
                                                                               fontSize: 12.0,
                                                                               letterSpacing: 0.0,
                                                                               fontWeight: FontWeight.normal,
@@ -1876,11 +1720,12 @@ class _CpAfiliadoComissoesWidgetState extends State<CpAfiliadoComissoesWidget>
                                                                     Flexible(
                                                                       child:
                                                                           Text(
-                                                                        '${valueOrDefault<String>(
-                                                                          listViewCelViewTblAfiliadosComissaoRow
-                                                                              .nomeSegmento,
+                                                                        valueOrDefault<
+                                                                            String>(
+                                                                          listViewComissaoCelViewTblAfiliadosComissaoRow
+                                                                              .nomeApp,
                                                                           '...',
-                                                                        )}',
+                                                                        ),
                                                                         style: FlutterFlowTheme.of(context)
                                                                             .bodyMedium
                                                                             .override(
@@ -1926,7 +1771,7 @@ class _CpAfiliadoComissoesWidgetState extends State<CpAfiliadoComissoesWidget>
                                                                             String>(
                                                                           dateTimeFormat(
                                                                             "dd/MM/y H:mm",
-                                                                            listViewCelViewTblAfiliadosComissaoRow.dataPagamento,
+                                                                            listViewComissaoCelViewTblAfiliadosComissaoRow.dataPagamento,
                                                                             locale:
                                                                                 FFLocalizations.of(context).languageCode,
                                                                           ),
@@ -2000,7 +1845,7 @@ class _CpAfiliadoComissoesWidgetState extends State<CpAfiliadoComissoesWidget>
                                                                           Text(
                                                                         'Valor:${valueOrDefault<String>(
                                                                           formatNumber(
-                                                                            listViewCelViewTblAfiliadosComissaoRow.valorPagoCliente,
+                                                                            listViewComissaoCelViewTblAfiliadosComissaoRow.valorPagoCliente,
                                                                             formatType:
                                                                                 FormatType.decimal,
                                                                             decimalType:
@@ -2053,7 +1898,7 @@ class _CpAfiliadoComissoesWidgetState extends State<CpAfiliadoComissoesWidget>
                                                                           Text(
                                                                         'Comissão: ${valueOrDefault<String>(
                                                                           formatNumber(
-                                                                            listViewCelViewTblAfiliadosComissaoRow.percComissao,
+                                                                            listViewComissaoCelViewTblAfiliadosComissaoRow.percComissao,
                                                                             formatType:
                                                                                 FormatType.decimal,
                                                                             decimalType:
@@ -2104,7 +1949,7 @@ class _CpAfiliadoComissoesWidgetState extends State<CpAfiliadoComissoesWidget>
                                                                           Text(
                                                                         'Comissão:${valueOrDefault<String>(
                                                                           formatNumber(
-                                                                            listViewCelViewTblAfiliadosComissaoRow.valorComissao,
+                                                                            listViewComissaoCelViewTblAfiliadosComissaoRow.valorComissao,
                                                                             formatType:
                                                                                 FormatType.decimal,
                                                                             decimalType:
@@ -2147,18 +1992,18 @@ class _CpAfiliadoComissoesWidgetState extends State<CpAfiliadoComissoesWidget>
                                                                         BoxDecoration(
                                                                       color:
                                                                           () {
-                                                                        if (listViewCelViewTblAfiliadosComissaoRow.statusPgComissao ==
+                                                                        if (listViewComissaoCelViewTblAfiliadosComissaoRow.statusPgComissao ==
                                                                             'PENDENTE') {
                                                                           return FlutterFlowTheme.of(context)
-                                                                              .accent3;
-                                                                        } else if (listViewCelViewTblAfiliadosComissaoRow.statusPgComissao ==
+                                                                              .error;
+                                                                        } else if (listViewComissaoCelViewTblAfiliadosComissaoRow.statusPgComissao ==
                                                                             'SOLICITADO') {
                                                                           return FlutterFlowTheme.of(context)
-                                                                              .accent1;
-                                                                        } else if (listViewCelViewTblAfiliadosComissaoRow.statusPgComissao ==
+                                                                              .primary;
+                                                                        } else if (listViewComissaoCelViewTblAfiliadosComissaoRow.statusPgComissao ==
                                                                             'PAGO') {
                                                                           return FlutterFlowTheme.of(context)
-                                                                              .accent2;
+                                                                              .success;
                                                                         } else {
                                                                           return FlutterFlowTheme.of(context)
                                                                               .error;
@@ -2183,14 +2028,14 @@ class _CpAfiliadoComissoesWidgetState extends State<CpAfiliadoComissoesWidget>
                                                                           Text(
                                                                             valueOrDefault<String>(
                                                                               () {
-                                                                                if (listViewCelViewTblAfiliadosComissaoRow.statusPgComissao == 'PENDENTE') {
+                                                                                if (listViewComissaoCelViewTblAfiliadosComissaoRow.statusPgComissao == 'PENDENTE') {
                                                                                   return 'Saque pendente';
-                                                                                } else if (listViewCelViewTblAfiliadosComissaoRow.statusPgComissao == 'SOLICITADO') {
+                                                                                } else if (listViewComissaoCelViewTblAfiliadosComissaoRow.statusPgComissao == 'SOLICITADO') {
                                                                                   return 'Saque solicitado';
-                                                                                } else if (listViewCelViewTblAfiliadosComissaoRow.statusPgComissao == 'PAGO') {
+                                                                                } else if (listViewComissaoCelViewTblAfiliadosComissaoRow.statusPgComissao == 'PAGO') {
                                                                                   return 'Saque pago';
                                                                                 } else {
-                                                                                  return listViewCelViewTblAfiliadosComissaoRow.statusPgComissao;
+                                                                                  return listViewComissaoCelViewTblAfiliadosComissaoRow.statusPgComissao;
                                                                                 }
                                                                               }(),
                                                                               '...',
@@ -2202,29 +2047,29 @@ class _CpAfiliadoComissoesWidgetState extends State<CpAfiliadoComissoesWidget>
                                                                                     fontWeight: FontWeight.w500,
                                                                                     fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                                   ),
-                                                                                  color: FlutterFlowTheme.of(context).secondaryText,
+                                                                                  color: FlutterFlowTheme.of(context).info,
                                                                                   fontSize: MediaQuery.sizeOf(context).width < 1000.0 ? 12.0 : 14.0,
                                                                                   letterSpacing: 0.0,
                                                                                   fontWeight: FontWeight.w500,
                                                                                   fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                                 ),
                                                                           ),
-                                                                          if (listViewCelViewTblAfiliadosComissaoRow.statusPgComissao !=
+                                                                          if (listViewComissaoCelViewTblAfiliadosComissaoRow.statusPgComissao !=
                                                                               'SOLICITADO')
                                                                             Text(
                                                                               () {
-                                                                                if (listViewCelViewTblAfiliadosComissaoRow.statusPgComissao == 'PAGO') {
+                                                                                if (listViewComissaoCelViewTblAfiliadosComissaoRow.statusPgComissao == 'PAGO') {
                                                                                   return dateTimeFormat(
                                                                                     "dd/MM/y H:mm",
-                                                                                    listViewCelViewTblAfiliadosComissaoRow.dataPgComisao!,
+                                                                                    listViewComissaoCelViewTblAfiliadosComissaoRow.dataPgComisao!,
                                                                                     locale: FFLocalizations.of(context).languageCode,
                                                                                   );
-                                                                                } else if (listViewCelViewTblAfiliadosComissaoRow.statusSolicitacao == 'DISPONIVEL') {
+                                                                                } else if (listViewComissaoCelViewTblAfiliadosComissaoRow.statusSolicitacao == 'DISPONIVEL') {
                                                                                   return 'Saque disponível';
-                                                                                } else if (listViewCelViewTblAfiliadosComissaoRow.statusPgComissao == 'PENDENTE') {
-                                                                                  return 'Libera em ${listViewCelViewTblAfiliadosComissaoRow.diasParaLiberar?.toString()}${listViewCelViewTblAfiliadosComissaoRow.diasParaLiberar == 1 ? ' dia' : ' dias'}';
+                                                                                } else if (listViewComissaoCelViewTblAfiliadosComissaoRow.statusPgComissao == 'PENDENTE') {
+                                                                                  return 'Libera em ${listViewComissaoCelViewTblAfiliadosComissaoRow.diasParaLiberar?.toString()}${listViewComissaoCelViewTblAfiliadosComissaoRow.diasParaLiberar == 1 ? ' dia' : ' dias'}';
                                                                                 } else {
-                                                                                  return '';
+                                                                                  return '...';
                                                                                 }
                                                                               }(),
                                                                               textAlign: TextAlign.center,
@@ -2233,8 +2078,8 @@ class _CpAfiliadoComissoesWidgetState extends State<CpAfiliadoComissoesWidget>
                                                                                       fontWeight: FontWeight.normal,
                                                                                       fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
                                                                                     ),
-                                                                                    color: listViewCelViewTblAfiliadosComissaoRow.statusSolicitacao == 'DISPONIVEL' ? FlutterFlowTheme.of(context).success : FlutterFlowTheme.of(context).error,
-                                                                                    fontSize: 12.0,
+                                                                                    color: listViewComissaoCelViewTblAfiliadosComissaoRow.statusSolicitacao == 'DISPONIVEL' ? FlutterFlowTheme.of(context).success : FlutterFlowTheme.of(context).warning,
+                                                                                    fontSize: 14.0,
                                                                                     letterSpacing: 0.0,
                                                                                     fontWeight: FontWeight.normal,
                                                                                     fontStyle: FlutterFlowTheme.of(context).bodyMedium.fontStyle,
@@ -2251,86 +2096,6 @@ class _CpAfiliadoComissoesWidgetState extends State<CpAfiliadoComissoesWidget>
                                                         ),
                                                       ),
                                                     ],
-                                                  ),
-                                                ),
-                                                Align(
-                                                  alignment:
-                                                      AlignmentDirectional(
-                                                          0.0, 0.0),
-                                                  child: Container(
-                                                    width: 30.0,
-                                                    decoration: BoxDecoration(),
-                                                    child: Visibility(
-                                                      visible: (listViewCelViewTblAfiliadosComissaoRow
-                                                                  .tipo ==
-                                                              'PLANOESTAB') &&
-                                                          (listViewCelViewTblAfiliadosComissaoRow
-                                                                  .nivel ==
-                                                              1),
-                                                      child: InkWell(
-                                                        splashColor:
-                                                            Colors.transparent,
-                                                        focusColor:
-                                                            Colors.transparent,
-                                                        hoverColor:
-                                                            Colors.transparent,
-                                                        highlightColor:
-                                                            Colors.transparent,
-                                                        onTap: () async {
-                                                          if (listViewCelViewTblAfiliadosComissaoRow
-                                                                      .username ==
-                                                                  null ||
-                                                              listViewCelViewTblAfiliadosComissaoRow
-                                                                      .username ==
-                                                                  '') {
-                                                            await showDialog(
-                                                              context: context,
-                                                              builder:
-                                                                  (alertDialogContext) {
-                                                                return WebViewAware(
-                                                                  child:
-                                                                      AlertDialog(
-                                                                    title: Text(
-                                                                        'Atenção!'),
-                                                                    content: Text(
-                                                                        'Cadastro em andamento, aguarde...'),
-                                                                    actions: [
-                                                                      TextButton(
-                                                                        onPressed:
-                                                                            () =>
-                                                                                Navigator.pop(alertDialogContext),
-                                                                        child: Text(
-                                                                            'Ok'),
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                );
-                                                              },
-                                                            );
-                                                            return;
-                                                          } else {
-                                                            await launchURL(
-                                                                'https://agendasuper.flutterflow.app/${listViewCelViewTblAfiliadosComissaoRow.username}');
-                                                          }
-                                                        },
-                                                        child: Row(
-                                                          mainAxisSize:
-                                                              MainAxisSize.max,
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .center,
-                                                          children: [
-                                                            Icon(
-                                                              Icons.link,
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .secondaryText,
-                                                              size: 24.0,
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ),
                                                   ),
                                                 ),
                                               ],
@@ -2377,12 +2142,15 @@ class _CpAfiliadoComissoesWidgetState extends State<CpAfiliadoComissoesWidget>
                           clipBehavior: Clip.none,
                           children: [
                             Text(
-                              'QUANT. PAGAMENTOS: ${valueOrDefault<String>(
-                                stackViewTblAfiliadosComissaoTotaisRow
-                                    ?.quantPagRecebidos
-                                    ?.toString(),
-                                '0',
-                              )}',
+                              valueOrDefault<String>(
+                                'QUANT. PAGAMENTOS: ${valueOrDefault<String>(
+                                  stackViewTblAfiliadosComissaoTotaisRow
+                                      ?.quantPagRecebidos
+                                      ?.toString(),
+                                  '0',
+                                )}',
+                                '...',
+                              ),
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
@@ -2403,16 +2171,19 @@ class _CpAfiliadoComissoesWidgetState extends State<CpAfiliadoComissoesWidget>
                                   ),
                             ),
                             Text(
-                              'TOTAL COMISSÃO: ${valueOrDefault<String>(
-                                formatNumber(
-                                  stackViewTblAfiliadosComissaoTotaisRow
-                                      ?.valorComissao,
-                                  formatType: FormatType.decimal,
-                                  decimalType: DecimalType.commaDecimal,
-                                  currency: 'R\$',
-                                ),
-                                'R\$0,00',
-                              )}',
+                              valueOrDefault<String>(
+                                'TOTAL COMISSÃO: ${valueOrDefault<String>(
+                                  formatNumber(
+                                    stackViewTblAfiliadosComissaoTotaisRow
+                                        ?.valorComissao,
+                                    formatType: FormatType.decimal,
+                                    decimalType: DecimalType.commaDecimal,
+                                    currency: 'R\$',
+                                  ),
+                                  'R\$0,00',
+                                )}',
+                                '...',
+                              ),
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(

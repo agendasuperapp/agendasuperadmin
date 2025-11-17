@@ -16,45 +16,37 @@ class ViewTblAfiliadosComissaoRow extends SupabaseDataRow {
   @override
   SupabaseTable get table => ViewTblAfiliadosComissaoTable();
 
-  String? get tipo => getField<String>('tipo');
-  set tipo(String? value) => setField<String>('tipo', value);
+  int? get idComissao => getField<int>('id_comissao');
+  set idComissao(int? value) => setField<int>('id_comissao', value);
+
+  int? get idAfiliadoApp => getField<int>('id_afiliado_app');
+  set idAfiliadoApp(int? value) => setField<int>('id_afiliado_app', value);
+
+  String? get nomeApp => getField<String>('nome_app');
+  set nomeApp(String? value) => setField<String>('nome_app', value);
+
+  int? get idAfiliadoIndicador => getField<int>('id_afiliado_indicador');
+  set idAfiliadoIndicador(int? value) =>
+      setField<int>('id_afiliado_indicador', value);
 
   String? get userIdAfiliadoIndicador =>
       getField<String>('user_id_afiliado_indicador');
   set userIdAfiliadoIndicador(String? value) =>
       setField<String>('user_id_afiliado_indicador', value);
 
-  int? get idComissao => getField<int>('id_comissao');
-  set idComissao(int? value) => setField<int>('id_comissao', value);
-
-  int? get idAfiliadoIndicador => getField<int>('id_afiliado_indicador');
-  set idAfiliadoIndicador(int? value) =>
-      setField<int>('id_afiliado_indicador', value);
-
-  int? get idEstabelecimento => getField<int>('id_estabelecimento');
-  set idEstabelecimento(int? value) =>
-      setField<int>('id_estabelecimento', value);
-
-  int? get idAfiliado => getField<int>('id_afiliado');
-  set idAfiliado(int? value) => setField<int>('id_afiliado', value);
+  String? get nomeAfiliadoIndicador =>
+      getField<String>('nome_afiliado_indicador');
+  set nomeAfiliadoIndicador(String? value) =>
+      setField<String>('nome_afiliado_indicador', value);
 
   String? get nome => getField<String>('nome');
   set nome(String? value) => setField<String>('nome', value);
 
-  String? get username => getField<String>('username');
-  set username(String? value) => setField<String>('username', value);
-
   String? get fotoPerfil => getField<String>('foto_perfil');
   set fotoPerfil(String? value) => setField<String>('foto_perfil', value);
 
-  String? get nomeSegmento => getField<String>('nome_segmento');
-  set nomeSegmento(String? value) => setField<String>('nome_segmento', value);
-
-  String? get cidade => getField<String>('cidade');
-  set cidade(String? value) => setField<String>('cidade', value);
-
-  int? get idEstabPlano => getField<int>('id_estab_plano');
-  set idEstabPlano(int? value) => setField<int>('id_estab_plano', value);
+  int? get idPgStripeApp => getField<int>('id_pg_stripe_app');
+  set idPgStripeApp(int? value) => setField<int>('id_pg_stripe_app', value);
 
   int? get idPlanoPreco => getField<int>('id_plano_preco');
   set idPlanoPreco(int? value) => setField<int>('id_plano_preco', value);
@@ -107,4 +99,7 @@ class ViewTblAfiliadosComissaoRow extends SupabaseDataRow {
 
   int? get nivel => getField<int>('nivel');
   set nivel(int? value) => setField<int>('nivel', value);
+
+  String? get cupom => getField<String>('cupom');
+  set cupom(String? value) => setField<String>('cupom', value);
 }

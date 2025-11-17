@@ -10,6 +10,8 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
+import 'package:onesignal_flutter/onesignal_flutter.dart';
+
 Future caAPPOneSignalInicializa(String varIDOneSignal) async {
   // Log detalhado
   OneSignal.Debug.setLogLevel(OSLogLevel.verbose);

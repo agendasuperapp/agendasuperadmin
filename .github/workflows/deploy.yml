@@ -171,6 +171,13 @@ jobs:
             echo "storeFile=${{ github.workspace }}/android/app/upload-keystore.jks"
           } > android/key.properties
 
+      # 📱 Adicionar google-services.json dinamicamente
+      - name: 📱 Adicionar google-services.json
+        run: |
+          echo "${{ secrets.GOOGLE_SERVICES_JSON_AFILIADO }}" > android/app/google-services.json
+          echo "google-services.json criado com sucesso!"
+          
+
       # 15️⃣ Aplicar custom codes overlay
       - name: 15️⃣ 🔄 Aplicar custom codes overlay
         run: |

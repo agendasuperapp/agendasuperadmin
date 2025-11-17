@@ -4004,7 +4004,17 @@ Future<bool> acOneSignalAPPInicializarNotificacoes(BuildContext context) async {
 
   if ((isAndroid || isiOS) &&
       (currentUserUid != '')) {
-    await actions.caAPPOneSignalInicializa();
+    await actions.caAPPOneSignalInicializa(
+      () {
+        if (FFAppState().varIDAPPAfiliado == 1) {
+          return '5438416a-02cf-4ff7-901c-1df6362ca882';
+        } else if (FFAppState().varIDAPPAfiliado == 3) {
+          return '051879bd-e4a0-4213-a950-07ecc8a4d6ad';
+        } else {
+          return '123456';
+        }
+      }(),
+    );
     await Future.delayed(
       Duration(
         milliseconds: 500,

@@ -10,16 +10,15 @@ import 'package:flutter/material.dart';
 // Begin custom action code
 // DO NOT REMOVE OR MODIFY THE CODE ABOVE!
 
-import 'package:onesignal_flutter/onesignal_flutter.dart';
-
-Future caAPPOneSignalInicializa() async {
+Future caAPPOneSignalInicializa(String varIDOneSignal) async {
+  // Log detalhado
   OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
 
+  // Inicializa o OneSignal com o ID passado por argumento
   OneSignal.initialize(
-    '051879bd-e4a0-4213-a950-07ecc8a4d6ad', //painel.rendarecorrente.app App Afiliado
+    varIDOneSignal,
   );
 
-  //'5438416a-02cf-4ff7-901c-1df6362ca882', // substitua pelo seu App ID do OneSignal
-
-  OneSignal.Notifications.requestPermission(true);
+  // Solicita permissão ao usuário (Android/iOS)
+  //OneSignal.Notifications.requestPermission(true);
 }

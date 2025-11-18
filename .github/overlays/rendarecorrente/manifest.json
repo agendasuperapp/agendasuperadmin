@@ -7,7 +7,7 @@
   "display": "standalone",
   "background_color": "#0175C2",
   "theme_color": "#0175C2",
-  "description": "Seja uma afiliado, ganhe renda recorrente indicando nossos aplicativos",
+  "description": "Seja um afiliado, ganhe renda recorrente indicando nossos aplicativos",
   "orientation": "portrait-primary",
   "prefer_related_applications": false,
   "icons": [
@@ -23,4 +23,5 @@
     }
   ]
 }
+
 

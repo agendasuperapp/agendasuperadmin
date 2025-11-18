@@ -1,6 +1,6 @@
 {
-  "name": "APP Afiliado",
-  "short_name": "APP Afiliado",
+  "name": "APP Renda recorrente",
+  "short_name": "APP Renda recorrente",
   "start_url": "/",
   "scope": "/",
   "id": "/",
@@ -23,3 +23,4 @@
     }
   ]
 }
+

@@ -154,16 +154,6 @@ class _PgAfiliadoComissoesMensaisWidgetState
                     Expanded(
                       child: Container(
                         decoration: BoxDecoration(
-                          image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: Image.network(
-                              Theme.of(context).brightness == Brightness.dark
-                                  ? 'SEM FOTO USAR COR CONTAINER'
-                                  : FFAppState()
-                                      .VarTblEstabelecimentoLogado
-                                      .fotoLightMode,
-                            ).image,
-                          ),
                           gradient: LinearGradient(
                             colors: [
                               FlutterFlowTheme.of(context).colorGradPage1,

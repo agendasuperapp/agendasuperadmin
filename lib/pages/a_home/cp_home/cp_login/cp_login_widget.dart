@@ -319,15 +319,19 @@ class _CpLoginWidgetState extends State<CpLoginWidget>
                               ),
                             ),
                             Text(
-                              () {
-                                if (FFAppState().varIDAPPAfiliado == 1) {
-                                  return 'Agenda Super Admin';
-                                } else if (FFAppState().varIDAPPAfiliado == 3) {
-                                  return 'APP Afiliado';
-                                } else {
-                                  return '...';
-                                }
-                              }(),
+                              valueOrDefault<String>(
+                                () {
+                                  if (FFAppState().varIDAPPAfiliado == 1) {
+                                    return 'Agenda Super Admin';
+                                  } else if (FFAppState().varIDAPPAfiliado ==
+                                      3) {
+                                    return 'APP Renda recorrente';
+                                  } else {
+                                    return 'APP Renda recorrente';
+                                  }
+                                }(),
+                                'APP Renda recorrente',
+                              ),
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(

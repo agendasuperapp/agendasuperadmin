@@ -22,5 +22,5 @@ Future caAPPOneSignalInicializa(String varIDOneSignal) async {
   );
 
   // Solicita permissão ao usuário (Android/iOS)
-  //OneSignal.Notifications.requestPermission(true);
+  OneSignal.Notifications.requestPermission(true);
 }

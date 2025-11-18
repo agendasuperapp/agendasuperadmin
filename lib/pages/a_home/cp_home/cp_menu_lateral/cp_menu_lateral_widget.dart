@@ -402,28 +402,16 @@ class _CpMenuLateralWidgetState extends State<CpMenuLateralWidget>
                                                           if (FFAppState()
                                                                   .varIDAPPAfiliado ==
                                                               1) {
-                                                            return (Theme.of(
-                                                                            context)
-                                                                        .brightness ==
-                                                                    Brightness
-                                                                        .dark
-                                                                ? 'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/agenda-super-admin-0zp7nv/assets/w0d6fzopxt5l/AgendaSuperBranco.png'
-                                                                : 'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/agenda-super-admin-0zp7nv/assets/f8lu7rvvvl1k/AgendaSuperVerde2.png');
+                                                            return 'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/agenda-super-admin-0zp7nv/assets/f8lu7rvvvl1k/AgendaSuperVerde2.png';
                                                           } else if (FFAppState()
                                                                   .varIDAPPAfiliado ==
                                                               3) {
-                                                            return (Theme.of(
-                                                                            context)
-                                                                        .brightness ==
-                                                                    Brightness
-                                                                        .dark
-                                                                ? 'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/agenda-super-admin-0zp7nv/assets/wmecbhn9vru6/AppAfiliado_(1).png'
-                                                                : 'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/agenda-super-admin-0zp7nv/assets/6v1dxik8e3t6/AppAfiliado_(5).png');
+                                                            return 'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/agenda-super-admin-0zp7nv/assets/o6ghz352moci/RendaRecorrente_Branco_Verde.png';
                                                           } else {
-                                                            return 'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/agenda-super-admin-0zp7nv/assets/f8lu7rvvvl1k/AgendaSuperVerde2.png';
+                                                            return 'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/agenda-super-admin-0zp7nv/assets/o6ghz352moci/RendaRecorrente_Branco_Verde.png';
                                                           }
                                                         }(),
-                                                        'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/agenda-super-admin-0zp7nv/assets/f8lu7rvvvl1k/AgendaSuperVerde2.png',
+                                                        'https://storage.googleapis.com/flutterflow-io-6f20.appspot.com/projects/agenda-super-admin-0zp7nv/assets/o6ghz352moci/RendaRecorrente_Branco_Verde.png',
                                                       ),
                                                       height: 60.0,
                                                       fit: BoxFit.contain,

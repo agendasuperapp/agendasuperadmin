@@ -74,7 +74,7 @@ jobs:
               APP_ID_ANDROID="com.adminagendasupertwo.app"
               ;;
             "rendarecorrente")
-              APPNAME="APP Afiliado"
+              APPNAME="APP Renda recorrente"
               IDAFILIADOAPP="3"
               SITE="painel.rendarecorrente.app"
               APP_ID_ANDROID="com.adminrendarecorrentetwo.app"
